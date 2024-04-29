@@ -1,12 +1,14 @@
+'use client'
 import { TextInputProps } from '@/types/props.type'
 import React from 'react'
 
-function TextInput({ value, onChange, placeholder, label, name, autoComplete, error, onClear, ...props }: TextInputProps) {
+function TextInput({ id, value, onChange, placeholder, label, name, autoComplete, error, onClear, ...props }: TextInputProps) {
     return (
-        <>
-            <label htmlFor="email-address" className='self-start'>{label}</label>
+        <div>
+            <label htmlFor={id} className='self-start text-black'>{label}</label>
             <div className='flex items-center px-3 justify-between gap-0 border focus-within:border-primary rounded-[40px] w-full'>
                 <input
+                    id={id}
                     type="text"
                     placeholder={placeholder || 'Type here'}
                     name={name || 'text-input'}
@@ -22,7 +24,7 @@ function TextInput({ value, onChange, placeholder, label, name, autoComplete, er
                     </button>
                 }
             </div >
-        </>
+        </div>
     )
 }
 

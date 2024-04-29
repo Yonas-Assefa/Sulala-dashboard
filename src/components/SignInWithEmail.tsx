@@ -70,7 +70,8 @@ function SignInWithEmail({ takePassword = true }) {
                                 <img src="/closed-eye.svg" alt="" className='mr-0 stroke-emerald-500' />
                             </button>
                         }
-                    </div></>}
+                    </div>
+                </>}
         </div>
     )
 }
