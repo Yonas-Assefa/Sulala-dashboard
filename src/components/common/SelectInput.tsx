@@ -7,7 +7,7 @@ function SelectInput({ value, onChange, placeholder, label, name, autoComplete, 
     const [open, setOpen] = React.useState(false)
 
     return (
-        <>
+        <div>
             <label htmlFor="email-address" className='self-start'>{label}</label>
             {/* <div className='flex items-center px-3 justify-between gap-0 border focus-within:border-primary rounded-[40px] w-full cursor-pointer'>
                 <div className="input w-full max-w-xs bg-white rounded-r-[30px] focus:border-0 focus:outline-none flex items-center justify-start text-gray-400">
@@ -67,7 +67,7 @@ function SelectInput({ value, onChange, placeholder, label, name, autoComplete, 
                     </li>
                 </ul>
             </div>
-        </>
+        </div>
     )
 }
 
