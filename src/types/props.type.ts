@@ -14,6 +14,7 @@ export type TextInputProps = BaseInputProps
 
 export type SelectInputProps = BaseInputProps & {
     multi?: boolean
+    options?: string[]
 }
 
 export type FileInputProps = Pick<BaseInputProps, 'onChange' | 'label' | 'name' | 'error' | 'onClear'> & {

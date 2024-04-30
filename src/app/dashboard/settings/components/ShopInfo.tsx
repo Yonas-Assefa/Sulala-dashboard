@@ -27,7 +27,9 @@ function ShopInfo() {
                 <TextInput id='categories' placeholder='Categories' label='Categories' onChange={() => { }} onClear={() => { }} value='' />
                 <TextInput id='legal-address' placeholder='Legal Address' label='Legal Address' onChange={() => { }} onClear={() => { }} value='' />
                 <TextInput id='website' placeholder='Website' label='Website' onChange={() => { }} onClear={() => { }} value='' />
-                <TextAreaInput id='description' placeholder='Text' label='Shop description' onChange={() => { }} onClear={() => { }} value='' />
+                <div className="col-span-2">
+                    <TextAreaInput id='description' placeholder='Text' label='Shop description' onChange={() => { }} onClear={() => { }} value='' />
+                </div>
             </div>
 
             <div className='max-w-[400px] flex flex-col items-start gap-5'>

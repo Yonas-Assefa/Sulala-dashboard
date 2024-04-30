@@ -4,6 +4,7 @@ type Props = {
     onClick?: () => void
     padding?: 'xsm' | 'sm' | 'md' | 'lg' | 'xlg'
     name?: string
+    disabled?: boolean
 }
 
 const paddings = {
@@ -14,11 +15,13 @@ const paddings = {
     xlg: 'px-[300px]'
 }
 
-function PrimaryButton({ padding, name, onClick }: Props) {
+function PrimaryButton({ padding, name, onClick, disabled = false }: Props) {
     return (
         <button
-            className={`btn rounded-[40px] bg-secondary border-0 text-white hover:bg-primary ${padding && paddings[padding]}`}
-            onClick={onClick}>
+            className={`btn rounded-[40px] disabled:bg-secondary border-0 disabled:text-white disabled:cursor-not-allowed text-white bg-primary hover:bg-primary/80 ${padding && paddings[padding]}`}
+            onClick={onClick}
+            disabled={disabled}
+        >
             {name || 'Continue'}
             {/* <img src="/loading.gif" alt="" className='h-[30px]' /> */}
 

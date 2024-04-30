@@ -15,9 +15,9 @@ function SelectInput({ value, onChange, placeholder, label, name, autoComplete, 
                 </div>
                 <img src="/icons/chevron-up.svg" alt="" />
             </div > */}
-            <div className={`dropdown bg-white m-0 p-0 border-0 w-full hover:bg-white outline-none ${open && 'dropdown-open'}`}>
+            <div className={`dropdown bg-white rounded-[30px] m-0 p-0 border-0 w-full hover:bg-white outline-none ${open && 'dropdown-open'}`}>
                 <div className='flex items-center px-3 justify-between gap-0 border focus-within:border-primary rounded-[40px] w-full cursor-pointer'>
-                    <button className="input w-full max-w-xs bg-white rounded-r-[30px] select-none focus:border-0 focus:outline-none flex items-center justify-start text-gray-400">
+                    <button className="input w-full max-w-xs bg-transparent select-none focus:border-0 focus:outline-none flex items-center justify-start text-gray-400">
                         <p>{value || placeholder}</p>
                     </button>
                     {open ?

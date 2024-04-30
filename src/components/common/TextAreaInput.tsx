@@ -14,7 +14,7 @@ type Props = {
 
 function TextAreaInput({ id, name, label, placeholder }: Props) {
     return (
-        <div className='col-span-2'>
+        <div className=''>
             <label htmlFor={id} className='self-start'>{label}</label>
             <textarea name={name} placeholder={placeholder} className="textarea textarea-bordered rounded-[20px] textarea-lg w-full bg-white" ></textarea>
         </div>
