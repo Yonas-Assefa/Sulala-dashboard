@@ -17,6 +17,12 @@ export type SelectInputProps = BaseInputProps & {
     options?: string[]
 }
 
+export type CustomSelectInputProps = BaseInputProps & {
+    multi?: boolean
+    nested?: boolean
+    options?: string[]
+}
+
 export type FileInputProps = Pick<BaseInputProps, 'onChange' | 'label' | 'name' | 'error' | 'onClear'> & {
     value: FileList | null
 }

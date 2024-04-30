@@ -84,11 +84,11 @@ function page() {
                     </div>
                     <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
                         <h3 className='font-semibold text-xl'>Product organization</h3>
-                        <SelectInput id='category' label='Category' options={['Category 1', 'Category 2', 'Category 3']} onChange={() => { }} onClear={() => { }} value='' />
+                        <SelectInput id='category' label='Category' multi={true} nested={false} onChange={() => { }} onClear={() => { }} value='' />
                     </div>
                     <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
                         <h3 className='font-semibold text-xl'>Product promotion</h3>
-                        <SelectInput id='category' label='Promo campaign (optional)' options={['Category 1', 'Category 2', 'Category 3']} onChange={() => { }} onClear={() => { }} value='' />
+                        <SelectInput id='category' label='Promo campaign (optional)' multi={false} nested={true} onChange={() => { }} onClear={() => { }} value='' />
                         <TextAreaInput id='description' placeholder='Enter tags for the product' label='Tags' onChange={() => { }} onClear={() => { }} value='' />
                     </div>
                 </div>
