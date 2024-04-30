@@ -3,14 +3,14 @@ import React from 'react'
 import mockData, { productStatusColors } from '../data'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import DeleteProductModal from './modals/DeleteProductModal'
+import DeleteServiceModal from './modals/DeleteServiceModal'
 
-function MyProductsTable() {
+function MyServicesTable() {
     const searchParams = useSearchParams()
 
     return (
         <>
-            <DeleteProductModal open={searchParams.get('action') === 'delete-product'} item={searchParams.get('item')} />
+            <DeleteServiceModal open={searchParams.get('action') == 'delete-service'} item={searchParams.get('item')} />
             <div className="overflow-x-auto border rounded-[20px]">
                 <div className='flex justify-between p-3 items-center'>
                     <div className='flex items-center gap-4'>
@@ -25,7 +25,7 @@ function MyProductsTable() {
                         </div>
                         <div className="border flex flex-row gap-1 p-1 rounded-[30px]">
                             <img src="/icons/search.svg" alt="" />
-                            <input type="text" className='bg-white outline-none border-0 focus:outline-none focus:border-0' placeholder='Seach my products' />
+                            <input type="text" className='bg-white outline-none border-0 focus:outline-none focus:border-0' placeholder='Seach by name or id' />
                         </div>
                     </div>
                     <div className='flex flex-row gap-2 '>
@@ -64,16 +64,15 @@ function MyProductsTable() {
                                 </label>
                             </th>
                             <th>№</th>
-                            <th>Item</th>
+                            <th>Service</th>
                             <th>Status</th>
                             <th>Upload date</th>
                             <th>Price</th>
-                            <th>Quantity</th>
                             <th>Category</th>
                             <th>
                                 <div className="flex flex-row items-center justify-between">
                                     <p>Actions </p>
-                                    <Link href={'?item=all&action=delete-product'}>
+                                    <Link href={'?item=all&action=delete-service'}>
                                         <img src="/icons/delete_red.svg" alt="" />
                                     </Link>
                                 </div>
@@ -95,8 +94,7 @@ function MyProductsTable() {
                                         </td>
                                         <td>
                                             <div className="flex flex-row items-center">
-                                                <img src={product.item.image} alt="" />
-                                                <p>{product.item.name}</p>
+                                                <p>{product.service.name}</p>
                                             </div>
                                         </td>
                                         <td className='flex justify-start items-center'>
@@ -134,18 +132,13 @@ function MyProductsTable() {
                                             <p>{product.price}</p>
                                         </td>
                                         <td>
-                                            <p>{product.quantity}pcs</p>
-                                        </td>
-                                        <td>
                                             <p>{product.category}</p>
                                         </td>
                                         <td>
                                             <div className='flex flex-row gap-4'>
                                                 <div className='flex flex-row gap-2'>
                                                     <img src="/icons/edit.svg" alt="" />
-                                                    <Link href={`?item=${product.id}&action=delete-product`}>
-                                                        <img src="/icons/delete.svg" alt="" />
-                                                    </Link>
+                                                    <Link href={`?item=${product.id}&action=delete-service`}><img src="/icons/delete.svg" alt="" /></Link>
                                                 </div>
                                                 <div className='flex flex-row gap-2'>
                                                     <img src="/icons/whatshot_green.svg" alt="" />
@@ -165,4 +158,4 @@ function MyProductsTable() {
     )
 }
 
-export default MyProductsTable
+export default MyServicesTable
