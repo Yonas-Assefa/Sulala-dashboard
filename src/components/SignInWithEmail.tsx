@@ -27,12 +27,12 @@ function SignInWithEmail({ takePassword = true }) {
     return (
         <div className='flex flex-col gap-3 w-full items-center'>
             <label htmlFor="email-address" className='self-start'>Email</label>
-            <div className='flex items-center px-3 justify-between gap-0 border focus-within:border-primary rounded-[40px] w-full'>
+            <div className='flex items-center px-3 bg-white justify-between gap-0 border focus-within:border-primary rounded-[40px] w-full'>
                 <input
                     type="text"
                     placeholder="Type here"
                     name='email-address'
-                    className="input w-full max-w-xs bg-white rounded-r-[30px] focus:border-0 focus:outline-none"
+                    className="input w-full max-w-xs bg-transparent focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none"
                     onChange={handleEmailAddress}
                     value={email}
                     ref={emailInput}
@@ -49,13 +49,13 @@ function SignInWithEmail({ takePassword = true }) {
             {takePassword &&
                 <>
                     <label htmlFor="password" className='self-start'>Password</label>
-                    <div className='flex items-center px-3 justify-between gap-0 border focus-within:border-primary rounded-[40px] w-full'>
+                    <div className='flex items-center bg-white px-3 justify-between gap-0 border focus-within:border-primary rounded-[40px] w-full'>
 
                         <input
                             type={showPassword ? 'text' : 'password'}
                             placeholder="Type here"
                             name='password'
-                            className="input w-full max-w-xs bg-white rounded-r-[30px] focus:border-0 focus:outline-none"
+                            className="input w-full max-w-xs bg-transparent focus:bg-transparent border-0 active:border-0 focus:border-0 focus:outline-none"
                             onChange={handlePasswordChange}
                             value={password}
                             autoComplete='false'
