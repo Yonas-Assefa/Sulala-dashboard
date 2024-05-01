@@ -1,11 +1,11 @@
 import React from 'react'
 import TextInput from './common/TextInput'
-import SelectInput from './common/SelectInput'
+import SelectInput from './common/LegacySelectInput'
 import FileInput from './common/FileInput'
 
 function SetupAccountStageOne() {
     return (
-        <div className='flex flex-col gap-5 w-full items-center'>
+        <div className='flex flex-col gap-5 w-full items-stretch'>
             <TextInput label="What's your first name?" placeholder='Enter your first name' value='' onChange={() => { }} onClear={() => { }} />
             <TextInput label="What's your last name?" placeholder='Enter your last name' value='' onChange={() => { }} onClear={() => { }} />
             <TextInput label="What's your email address?" placeholder='Enter your email address' value='' onChange={() => { }} onClear={() => { }} />
@@ -15,7 +15,7 @@ function SetupAccountStageOne() {
 
 function SetupAccountStageTwo() {
     return (
-        <div className='flex flex-col gap-5 w-full items-center'>
+        <div className='flex flex-col gap-5 w-full items-stretch'>
             <TextInput label="What's your company name?" placeholder='Enter your company name' value='' onChange={() => { }} onClear={() => { }} />
             <SelectInput label='Please choose categories for sale' placeholder='Choose categories' value='' onChange={() => { }} onClear={() => { }} />
             <TextInput label="What's your legal address?" placeholder='Enter your email address' value='' onChange={() => { }} onClear={() => { }} />

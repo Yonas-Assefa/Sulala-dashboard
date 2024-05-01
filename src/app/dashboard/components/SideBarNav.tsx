@@ -10,7 +10,7 @@ function SideBarNav() {
     const pathname = usePathname()
 
     return (
-        <nav className='w-[300px] h-screen bg-tertiary flex flex-col justify-between'>
+        <nav className='min-w-[300px] h-screen bg-tertiary flex flex-col justify-between'>
             <div>
                 <Header />
                 <ul className="flex flex-col list-none">

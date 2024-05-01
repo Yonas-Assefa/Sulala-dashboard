@@ -8,7 +8,6 @@ type Props = {
 }
 
 function SecondaryButton({ href, name, padding }: Props) {
-    console.log({ padding })
     const paddings = {
         xsm: 'px-[10px]',
         sm: 'px-[30px]',

@@ -28,7 +28,8 @@ function PasswordInput({ label, placeholder, name, id, password, handlePasswordC
                     name={name}
                     type={showPassword ? 'text' : 'password'}
                     placeholder={placeholder || 'Type here'}
-                    className="input w-full max-w-xs bg-white rounded-r-[30px] focus:border-0 focus:outline-none"
+                    className='input w-full max-w-xs bg-transparent focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none'
+                    // className="input w-full max-w-xs bg-white rounded-r-[30px] focus:border-0 focus:outline-none"
                     onChange={handlePasswordChange}
                     value={password}
                     autoComplete='false'
