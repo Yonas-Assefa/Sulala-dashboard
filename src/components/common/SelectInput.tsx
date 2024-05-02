@@ -2,47 +2,53 @@
 import { CustomSelectInputProps } from '@/types/props.type'
 import React, { useEffect } from 'react'
 
-function CustomMultiSelectInput({ value, onChange, placeholder, label, name, autoComplete, error, onClear, multi = false, nested = false, ...props }: CustomSelectInputProps) {
+function CustomMultiSelectInput({ value, onChange, placeholder, label, name, autoComplete, error, onClear, multi = false, nested = false, withImage = false, ...props }: CustomSelectInputProps) {
 
     type SelectedValues = {
         value: string
         label: string
+        image?: string
     }
 
-    type NestedSelectedValues = {
-        label: string
-        value: string
+    type NestedSelectedValues = SelectedValues & {
         options: SelectedValues[]
     }
 
     const initialData: SelectedValues[] = [
         {
             value: 'pet-foods-and-treats',
-            label: 'Pet foods and treats'
+            label: 'Pet foods and treats',
+            image: '/images/milktake-silver.svg'
         },
         {
             value: 'pet-accessories',
-            label: 'Pet accessories'
+            label: 'Pet accessories',
+            image: '/images/pet-horse-cattle-shampoo.svg'
         },
         {
             value: 'pet-toys',
-            label: 'Pet toys'
+            label: 'Pet toys',
+            image: '/images/equigloss.svg'
         },
         {
             value: 'pet-care',
-            label: 'Pet care'
+            label: 'Pet care',
+            image: '/images/milktake-silver.svg'
         },
         {
             value: 'pet-health',
-            label: 'Pet health'
+            label: 'Pet health',
+            image: '/images/pet-horse-cattle-shampoo.svg'
         },
         {
             value: 'pet-grooming',
-            label: 'Pet grooming'
+            label: 'Pet grooming',
+            image: '/images/equigloss.svg'
         },
         {
             value: 'pet-training',
-            label: 'Pet training'
+            label: 'Pet training',
+            image: '/images/milktake-silver.svg'
         }
     ]
 
@@ -241,6 +247,9 @@ function CustomMultiSelectInput({ value, onChange, placeholder, label, name, aut
                                     onClick={() => handleSelect(option.value)}
                                 >
                                     <div className={`form-control w-full flex flex-row justify-between rounded-none ${options.length !== i + 1 && 'border-b'}`}>
+                                        {
+                                            withImage && <img src={option?.image} alt="" />
+                                        }
                                         <label htmlFor='1' className="label-text cursor-pointer label w-full flex justify-between text-black text-md">
                                             {option.label}
                                         </label>
