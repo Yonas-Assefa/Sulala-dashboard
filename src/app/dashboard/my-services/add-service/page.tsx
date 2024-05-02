@@ -1,5 +1,6 @@
 'use client'
 import BackButton from '@/components/common/BackButton'
+import ImageUnselectButton from '@/components/common/ImageUnselectButton'
 import PrimaryButton from '@/components/common/PrimaryButton'
 import SelectInput from '@/components/common/SelectInput'
 import TextAreaInput from '@/components/common/TextAreaInput'
@@ -40,21 +41,15 @@ function page() {
                                 </label> */}
                                 <div className='flex flex-wrap gap-3'>
                                     <div className='bg-[#d9d9d9] block h-[180px] aspect-square rounded-[20px] relative'>
-                                        <div className='bg-white absolute -top-[8px] -right-[8px] p-1 rounded-full cursor-pointer select-none'>
-                                            <img src="/icons/x.svg" alt="" />
-                                        </div>
+                                        <ImageUnselectButton />
                                         <img src="/images/cow-1.png" alt="" className='w-full h-full rounded-[20px]' />
                                     </div>
                                     <div className='bg-[#d9d9d9] block h-[180px] aspect-square rounded-[20px] relative'>
-                                        <div className='bg-white absolute -top-[8px] -right-[8px] p-1 rounded-full cursor-pointer select-none'>
-                                            <img src="/icons/x.svg" alt="" />
-                                        </div>
+                                        <ImageUnselectButton />
                                         <img src="/images/cow-2.png" alt="" className='w-full h-full rounded-[20px]' />
                                     </div>
                                     <div className='bg-[#d9d9d9] block h-[180px] aspect-square rounded-[20px] relative'>
-                                        <div className='bg-white absolute -top-[8px] -right-[8px] p-1 rounded-full cursor-pointer select-none'>
-                                            <img src="/icons/x.svg" alt="" />
-                                        </div>
+                                        <ImageUnselectButton />
                                         <img src="/images/cow-3.png" alt="" className='w-full h-full rounded-[20px]' />
                                     </div>
                                     <label htmlFor='image' className='bg-[#ffffff] cursor-pointer block h-[180px] aspect-square rounded-[20px]'>

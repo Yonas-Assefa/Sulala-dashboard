@@ -4,6 +4,8 @@ import CustomMultiSelectInput from '@/components/common/SelectInput'
 import TextAreaInput from '@/components/common/TextAreaInput'
 import TextInput from '@/components/common/TextInput'
 import React from 'react'
+import SummaryDescription from './SummaryDescription'
+import ImageUnselectButton from '@/components/common/ImageUnselectButton'
 
 function BannerAdsForm() {
     return (
@@ -34,9 +36,7 @@ function BannerAdsForm() {
                         </label> */}
                                 <div className='w-full'>
                                     <div className='bg-[#d9d9d9] block rounded-[20px] relative'>
-                                        <div className='bg-white absolute active:scale-75 transition-all -top-[8px] -right-[8px] p-1 rounded-full cursor-pointer select-none'>
-                                            <img src="/icons/x.svg" alt="" />
-                                        </div>
+                                        <ImageUnselectButton />
                                         <img src="/images/banner.png" alt="" className='w-full h-full rounded-[20px]' />
                                     </div>
                                 </div>
@@ -104,49 +104,14 @@ function BannerAdsForm() {
             <div className='col-span-1 bg-white flex flex-col gap-8'>
                 <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
                     <h3 className='font-semibold text-xl'>Summary</h3>
-                    <div className='flex flex-col gap-3 p-2'>
-                        <h4 className='text-lg font-semibold'>Campaign name</h4>
-                        <p>promo 1</p>
-                    </div>
-                    {/*                     
-                    <div className='flex flex-col gap-3 p-2'>
-                        <h4 className='text-lg font-semibold'>Description</h4>
-                        <p>Milktech Silver Premium Calf & Foal Milk Replace 20kg &nbsp;
-                            EEquiGLOSS 2in1 Conditioning Shampoo &nbsp;
-                            Pet, Horse & Cattle Shampoo
-                        </p>
-                    </div> */}
-                    <div className='flex flex-col gap-3 p-2'>
-                        <h4 className='text-lg font-semibold'>Start date & time</h4>
-                        <p>14.04.2024 &nbsp; &nbsp; 09:00 AM</p>
-                    </div>
-                    <div className='flex flex-col gap-3 p-2'>
-                        <h4 className='text-lg font-semibold'>End date & time</h4>
-                        <p>20.04.2024 &nbsp; &nbsp; 10:00 AM</p>
-                    </div>
-                    <div className='flex flex-col gap-3 p-2'>
-                        <h4 className='text-lg font-semibold'>Banner</h4>
-                        <p>Uploaded</p>
-                    </div>
-                    <div className='flex flex-col gap-3 p-2'>
-                        <h4 className='text-lg font-semibold'>Destination</h4>
-                        <p>List of products</p>
-                    </div>
-                    <div className='flex flex-col gap-3 p-2'>
-                        <h4 className='text-lg font-semibold'>Products</h4>
-                        <p>Milktech Silver Premium Calf & Foal Milk Replace 20kg &nbsp;
-                            EquiGLOSS 2in1 Conditioning Shampoo 500ml &nbsp;
-                            Pet, Horse & Cattle Shampoo
-                        </p>
-                    </div>
-                    <div className='flex flex-col gap-3 p-2'>
-                        <h4 className='text-lg font-semibold'>Budgeting</h4>
-                        <p>Daily budget</p>
-                    </div>
-                    <div className='flex flex-col gap-3 p-2'>
-                        <h4 className='text-lg font-semibold'>Budget</h4>
-                        <p>$40</p>
-                    </div>
+                    <SummaryDescription title='Campaign name' description='promo 1' />
+                    <SummaryDescription title='Start date & time' description='14.04.2024 &nbsp; &nbsp; 09:00 AM' />
+                    <SummaryDescription title='End date & time' description='20.04.2024 &nbsp; &nbsp; 10:00 AM' />
+                    <SummaryDescription title='Banner' description='Uploaded' />
+                    <SummaryDescription title='Destination' description='List of products' />
+                    <SummaryDescription title='Products' description='Milktech Silver Premium Calf & Foal Milk Replace 20kg &nbsp; EquiGLOSS 2in1 Conditioning Shampoo 500ml &nbsp; Pet, Horse & Cattle Shampoo' />
+                    <SummaryDescription title='Budgeting' description='Daily budget' />
+                    <SummaryDescription title='Budget' description='$40' />
                 </div>
             </div>
         </div>
