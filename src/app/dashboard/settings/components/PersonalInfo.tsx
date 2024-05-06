@@ -1,7 +1,7 @@
-import PhoneNumberInput from '@/components/common/PhoneNumberInput'
-import PrimaryButton from '@/components/common/PrimaryButton'
-import SecondaryButton from '@/components/common/SecondaryButton'
-import TextInput from '@/components/common/TextInput'
+import PhoneNumberInput from '@/components/common/form/PhoneNumberInput'
+import PrimaryButton from '@/components/common/ui/PrimaryButton'
+import SecondaryButton from '@/components/common/ui/SecondaryButton'
+import TextInput from '@/components/common/form/TextInput'
 import React from 'react'
 
 function PersonalInfo() {

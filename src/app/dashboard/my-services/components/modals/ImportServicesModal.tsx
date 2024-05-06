@@ -1,8 +1,8 @@
 'use client'
-import FileInput from '@/components/common/FileInput'
-import PasswordInput from '@/components/common/PasswordInput'
-import PrimaryButton from '@/components/common/PrimaryButton'
-import TextInput from '@/components/common/TextInput'
+import FileInput from '@/components/common/form/FileInput'
+import PasswordInput from '@/components/common/form/PasswordInput'
+import PrimaryButton from '@/components/common/ui/PrimaryButton'
+import TextInput from '@/components/common/form/TextInput'
 import { useRouter, useSearchParams } from 'next/navigation'
 import React from 'react'
 

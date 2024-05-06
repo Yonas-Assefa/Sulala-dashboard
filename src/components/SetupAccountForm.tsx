@@ -1,7 +1,7 @@
 import React from 'react'
-import TextInput from './common/TextInput'
-import SelectInput from './common/LegacySelectInput'
-import FileInput from './common/FileInput'
+import TextInput from './common/form/TextInput'
+import SelectInput from './common/form/LegacySelectInput'
+import FileInput from './common/form/FileInput'
 
 function SetupAccountStageOne() {
     return (

@@ -1,84 +1,14 @@
 'use client'
-import countries from './utils/countries.json'
+import PhoneNumberInput from './common/form/PhoneNumberInput'
 
-import React, { ElementRef } from "react"
+import React from "react"
 
 function SignInWithPhone() {
 
-    type CountryCode = {
-        name: string,
-        dial_code: string,
-        code: string,
-        flag: string
-    }
-
-    const [phone, setPhone] = React.useState('')
-    const [countryCode, setCountryCode] = React.useState<CountryCode>()
-    const phoneInputRef = React.useRef<ElementRef<'input'>>(null)
-    const countryCodeRef = React.useRef<ElementRef<'details'>>(null)
-
-
-    const handlePhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPhone(e.target.value)
-    }
-
-    const clearPhoneNumber = () => {
-        setPhone('')
-        phoneInputRef.current?.focus()
-    }
-
-    const selectCountryCode = (country: CountryCode) => {
-        setCountryCode(country)
-        countryCodeRef.current?.removeAttribute('open')
-        phoneInputRef.current?.focus()
-    }
-
-
     return (
-        <div className='flex flex-col gap-3 w-full items-center'>
-            <label htmlFor="phone-number" className='self-start'>Phone number</label>
-            <div className='flex items-center gap-0 border focus-within:border-primary rounded-[40px] w-full'>
-                <details className="dropdown relative" ref={countryCodeRef}>
-                    <summary className='min-w-[80px] bordered select-none cursor-pointer flex gap-2 items-center justify-center px-5'>
-                        <span>{countryCode?.flag}</span>
-                        <p>{countryCode?.dial_code}</p>
-                        <img src="/icons/chevron-down.svg" className='w-[15px] ml-2' alt="" />
-                    </summary>
-                    <ul tabIndex={0} className="dropdown absolute max-h-[300px] overflow-y-scroll z-[1] menu p-0 mt-4 border-2  shadow rounded-box w-52 bg-white block">
-                        {
-                            countries.map((country, index) => {
-                                return (<li className='flex flex-row' onClick={() => selectCountryCode(country)}>
-                                    <p>{country.flag} <span>{country.dial_code} </span> {country.name}</p>
-                                </li>)
-                            })
-                        }
-                    </ul>
-                </details>
-                <div className='flex border-l-2 border-blue-300 w-full pr-3 focus-within:border-primary'>
-                    <input
-                        type="text"
-                        id='phone-input'
-                        placeholder="Type here"
-                        className="input w-full max-w-xs bg-white rounded-r-[30px] focus:border-0 focus:outline-none"
-                        onChange={handlePhoneNumber}
-                        value={phone}
-                        ref={phoneInputRef}
-                    />
-                    {phone &&
-                        <button
-                            onClick={clearPhoneNumber}>
-                            <img src="/x-circle.svg" alt="" className='mr-0 stroke-emerald-500' />
-                        </button>
-                    }
-                </div>
-            </div>
-            {/* <IntlTelInput
-                initialValue={'09'}
-                onChangeNumber={() => { }}
-                onChangeValidity={() => { }}
-                onChangeErrorCode={() => { }}
-            /> */}
-        </div>
+        <>
+            <PhoneNumberInput />
+        </>
     )
 }
 

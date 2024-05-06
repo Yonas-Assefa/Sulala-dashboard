@@ -1,11 +1,11 @@
-import DateInput from '@/components/common/DateInput'
+import DateInput from '@/components/common/form/DateInput'
 import PrimaryButton from '@/components/common/PrimaryButton'
-import CustomMultiSelectInput from '@/components/common/SelectInput'
-import TextAreaInput from '@/components/common/TextAreaInput'
-import TextInput from '@/components/common/TextInput'
+import CustomMultiSelectInput from '@/components/common/form/SelectInput'
+import TextAreaInput from '@/components/common/form/TextAreaInput'
+import TextInput from '@/components/common/form/TextInput'
 import React from 'react'
 import SummaryDescription from './SummaryDescription'
-import ImageUnselectButton from '@/components/common/ImageUnselectButton'
+import ImageUnselectButton from '@/components/common/ui/ImageUnselectButton'
 
 function BannerAdsForm() {
     return (

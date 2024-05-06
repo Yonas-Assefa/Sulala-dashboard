@@ -1,10 +1,10 @@
 'use client'
-import BackButton from '@/components/common/BackButton'
-import ImageUnselectButton from '@/components/common/ImageUnselectButton'
+import BackButton from '@/components/common/ui/BackButton'
+import ImageUnselectButton from '@/components/common/ui/ImageUnselectButton'
 import PrimaryButton from '@/components/common/PrimaryButton'
-import SelectInput from '@/components/common/SelectInput'
-import TextAreaInput from '@/components/common/TextAreaInput'
-import TextInput from '@/components/common/TextInput'
+import SelectInput from '@/components/common/form/SelectInput'
+import TextAreaInput from '@/components/common/form/TextAreaInput'
+import TextInput from '@/components/common/form/TextInput'
 import React from 'react'
 
 function page() {

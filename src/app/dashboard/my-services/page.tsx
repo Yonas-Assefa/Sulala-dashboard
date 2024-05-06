@@ -1,5 +1,5 @@
-import PrimaryButton from '@/components/common/PrimaryButton'
-import SecondaryButton from '@/components/common/SecondaryButton'
+import PrimaryButton from '@/components/common/ui/PrimaryButton'
+import SecondaryButton from '@/components/common/ui/SecondaryButton'
 import React from 'react'
 import MyServicesTable from './components/MyServicesTable'
 import Link from 'next/link'

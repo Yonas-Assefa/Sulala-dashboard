@@ -1,9 +1,9 @@
-import PhoneNumberInput from '@/components/common/PhoneNumberInput'
-import PrimaryButton from '@/components/common/PrimaryButton'
-import SecondaryButton from '@/components/common/SecondaryButton'
-import SelectInput from '@/components/common/SelectInput'
-import TextAreaInput from '@/components/common/TextAreaInput'
-import TextInput from '@/components/common/TextInput'
+import PhoneNumberInput from '@/components/common/form/PhoneNumberInput'
+import PrimaryButton from '@/components/common/ui/PrimaryButton'
+import SecondaryButton from '@/components/common/ui/SecondaryButton'
+import SelectInput from '@/components/common/form/SelectInput'
+import TextAreaInput from '@/components/common/form/TextAreaInput'
+import TextInput from '@/components/common/form/TextInput'
 import React from 'react'
 
 function ShopInfo() {

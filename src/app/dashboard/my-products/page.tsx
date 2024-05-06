@@ -1,9 +1,11 @@
-import PrimaryButton from '@/components/common/PrimaryButton'
-import SecondaryButton from '@/components/common/SecondaryButton'
+import PrimaryButton from '@/components/common/ui/PrimaryButton'
+import SecondaryButton from '@/components/common/ui/SecondaryButton'
 import React from 'react'
-import MyProductsTable from './components/MyProductsTable'
 import Link from 'next/link'
 import ImportProductsModal from './components/modals/ImportProductsModal'
+import Table from '@/components/common/table/Table'
+import mockData from './components/table/data'
+import { tabSchema, tableSchema } from './components/table/schema'
 
 function page() {
 
@@ -33,7 +35,7 @@ function page() {
                     </div>
                 </div>
 
-                <MyProductsTable />
+                <Table mockData={mockData} tabSchema={tabSchema} tableSchema={tableSchema} />
 
             </div >
         </>
