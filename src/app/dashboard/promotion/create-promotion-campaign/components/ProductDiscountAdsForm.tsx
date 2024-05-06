@@ -1,5 +1,5 @@
 import DateInput from '@/components/common/form/DateInput'
-import PrimaryButton from '@/components/common/PrimaryButton'
+import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import CustomMultiSelectInput from '@/components/common/form/SelectInput'
 import TextAreaInput from '@/components/common/form/TextAreaInput'
 import TextInput from '@/components/common/form/TextInput'

@@ -2,8 +2,8 @@ import SignInWithEmail from '@/components/SignInWithEmail'
 import SignInWithPhone from '@/components/SignInWithPhone'
 import { SignupProps } from '@/types/props.type'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import React, { ElementRef } from 'react'
+import React from 'react'
+import PhoneEmailTab from '../components/PhoneEmailTab'
 
 function SignIn({ searchParams: { by } }: SignupProps) {
 
@@ -13,18 +13,7 @@ function SignIn({ searchParams: { by } }: SignupProps) {
       <h1 className='text-[50px] font-serif font-semibold'>Sign in</h1>
 
       {/* SIGN IN OPTIONS */}
-      <div className='flex tabs gap-4 w-full px-10' role='tablist'>
-        <Link href={'/auth/sign-in?by=phone'}
-          className={`w-1/2 p-2 text-center ${by !== 'email' && 'text-primary border-b-2 border-primary'}`}
-        >
-          Via phone number
-        </Link>
-        <Link href={'/auth/sign-in?by=email'}
-          className={`w-1/2 p-2 text-center ${by === 'email' && 'text-primary border-b-2 border-primary'}`}
-        >
-          Via email
-        </Link>
-      </div>
+      <PhoneEmailTab />
 
       <div className='flex flex-col gap-6 w-full px-10'>
         {/* SIGN IN INPUT */}

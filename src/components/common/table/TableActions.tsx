@@ -1,11 +1,16 @@
+'use client'
 import Link from 'next/link'
 import React from 'react'
 import { Actions } from './table.type'
+import { usePathname, useSearchParams } from 'next/navigation'
+import { useCreateQueryString } from '@/hooks/useCreateQueryString'
 
 type Props = Actions & {
     product_id: string
 }
 function TableActions({ edit, delete: deleteItem, promote, product_id, toggle }: Props) {
+    const { createQueryString } = useCreateQueryString()
+
     return (
         <td>
             <div className='flex flex-row gap-4'>
@@ -16,12 +21,12 @@ function TableActions({ edit, delete: deleteItem, promote, product_id, toggle }:
                         </div>
                     }
                     {edit &&
-                        <Link href={`?item=${product_id}&action=delete-product`}>
+                        <Link href={createQueryString([{ key: 'item', value: product_id }, { key: 'action', value: 'edit-product' }])}>
                             <img src="/icons/edit.svg" alt="" />
                         </Link>
                     }
                     {deleteItem &&
-                        <Link href={`?item=${product_id}&action=delete-product`}>
+                        <Link href={createQueryString([{ key: 'item', value: product_id }, { key: 'action', value: 'delete-product' }])}>
                             <img src="/icons/delete.svg" alt="" />
                         </Link>
                     }

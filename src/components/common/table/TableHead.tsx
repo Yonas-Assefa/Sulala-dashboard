@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import { TableSchema } from './table.type'
+import TableDelete from './TableDelete'
 
 type Props = {
     tableSchema: TableSchema
@@ -33,14 +34,7 @@ function TableHead({ tableSchema }: Props) {
                     })
                 }
                 {tableSchema.include.checkbox &&
-                    <th>
-                        <div className="flex flex-row items-center justify-between">
-                            <p>Actions </p>
-                            <Link href={'?item=all&action=delete-product'}>
-                                <img src="/icons/delete_red.svg" alt="" />
-                            </Link>
-                        </div>
-                    </th>
+                    <TableDelete />
                 }
             </tr>
         </thead>

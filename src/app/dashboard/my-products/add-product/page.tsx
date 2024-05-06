@@ -1,7 +1,7 @@
 'use client'
 import BackButton from '@/components/common/ui/BackButton'
 import ImageUnselectButton from '@/components/common/ui/ImageUnselectButton'
-import PrimaryButton from '@/components/common/PrimaryButton'
+import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import SelectInput from '@/components/common/form/SelectInput'
 import TextAreaInput from '@/components/common/form/TextAreaInput'
 import TextInput from '@/components/common/form/TextInput'

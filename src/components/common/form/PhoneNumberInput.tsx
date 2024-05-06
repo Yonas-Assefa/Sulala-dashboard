@@ -1,5 +1,5 @@
 import React, { ElementRef } from 'react'
-import countries from '../../utils/countries.json'
+import countries from '../../constants/countries.json'
 
 function PhoneNumberInput() {
     type CountryCode = {
@@ -76,22 +76,23 @@ function PhoneNumberInput() {
                         }
                     </ul>
                 </details>
-                <div className='flex border-l-2 border-blue-300 w-full pr-3 focus-within:border-primary'>
+                <div className='flex border-l-2 border-blue-300 w-full justify-between pr-3 focus-within:border-primary'>
                     <input
                         type="text"
                         id='phone-input'
                         placeholder="Type here"
-                        className="input w-full max-w-xs bg-white rounded-r-[30px] focus:border-0 focus:outline-none"
+                        className="input w-full bg-transparent border-0 outline-0 rounded-r-[30px] focus:border-0 focus:outline-none"
                         onChange={handlePhoneNumber}
                         value={phone}
                         ref={phoneInputRef}
                     />
-                    {phone &&
-                        <button
-                            onClick={clearPhoneNumber}>
-                            <img src="/x-circle.svg" alt="" className='mr-0 stroke-emerald-500' />
-                        </button>
-                    }
+
+                    <button
+                        className={!phone ? 'invisible' : 'visible'}
+                        onClick={clearPhoneNumber}>
+                        <img src="/x-circle.svg" alt="" className='mr-0 stroke-emerald-500' />
+                    </button>
+
                 </div>
             </div>
             {/* <IntlTelInput
