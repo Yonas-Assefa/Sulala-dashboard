@@ -25,11 +25,11 @@ const tableSchema: TableSchema = {
             type: 'number',
         },
         {
-            key: 'item_name',
-            title: 'Item',
+            key: 'service_name',
+            title: 'Service',
             type: 'string',
-            image: true,
-            image_key: 'item_image',
+            image: false,
+            image_key: undefined,
         },
         {
             key: 'status',
@@ -49,11 +49,6 @@ const tableSchema: TableSchema = {
             type: 'string',
         },
         {
-            key: 'quantity',
-            title: 'Quantity',
-            type: 'number',
-        },
-        {
             key: 'category',
             title: 'Category',
             type: 'string',
@@ -62,14 +57,12 @@ const tableSchema: TableSchema = {
 }
 
 type MockDataItem = {
-    id: number;
-    item_image: string;
-    item_name: string;
-    status: keyof typeof colorSchema;
-    upload_date: string;
-    price: string;
-    quantity: string;
-    category: string;
+    id: number
+    service_name: string
+    status: keyof typeof colorSchema
+    upload_date: string
+    price: string
+    category: string
     [key: string]: any
 };
 

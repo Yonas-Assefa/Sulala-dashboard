@@ -1,16 +1,31 @@
+'use client'
 import React from 'react'
-
-type Schema = { key: string; title: string; type: string; badge?: boolean | undefined; schema_colors?: Record<string, string> | undefined; image?: boolean | undefined; image_key?: string | undefined; }
+import { Schema } from './table.type'
 
 type Prop = {
     product_key: string,
-    schema: Schema
+    schema: Schema,
+    last_items: boolean
 }
 
-function TableBadge({ product_key, schema }: Prop) {
-    console.log({ product_key, schema })
+function TableBadge({ product_key, schema, last_items }: Prop) {
+
+    const selectRef = React.useRef<HTMLDetailsElement>(null)
+
+    React.useEffect(() => {
+        const handleClick = (e: MouseEvent) => {
+            if (selectRef.current && !selectRef.current.contains(e.target as Node)) {
+                selectRef.current.removeAttribute('open')
+            }
+        }
+        document.addEventListener('click', handleClick)
+        return () => {
+            document.removeEventListener('click', handleClick)
+        }
+    }, [])
+
     return (
-        <details className="dropdown">
+        <details className={`dropdown ${!last_items ? 'dropdown-bottom' : 'dropdown-top'}`} ref={selectRef}>
             <summary className={`flex relative gap-1 flex-row items-center p-2 cursor-pointer rounded-[30px] px-3 ${schema.schema_colors?.[product_key as keyof typeof schema.schema_colors]}`}>
                 <p className='capitalize'>{product_key}</p>
                 <img src="/icons/chevron-down.svg" className='w-[20px] aspect-auto' alt="" />

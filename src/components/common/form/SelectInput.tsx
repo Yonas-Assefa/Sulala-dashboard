@@ -176,7 +176,6 @@ function CustomMultiSelectInput({ value, onChange, placeholder, label, name, aut
             } else {
                 if (selectedParent) {
                     const selectedChildValue = options.find(option => option.value === value) as SelectedValues
-                    console.log({ selectedChildValue })
                     if (multi) {
                         if (selected.find(item => item.value === selectedChildValue?.value)) {
                             setSelected(selected.filter(item => item.value !== selectedChildValue?.value))

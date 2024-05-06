@@ -1,9 +1,10 @@
-import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import SecondaryButton from '@/components/common/ui/SecondaryButton'
 import React from 'react'
-import MyServicesTable from './components/MyServicesTable'
 import Link from 'next/link'
 import ImportServicesModal from './components/modals/ImportServicesModal'
+import Table from '@/components/common/table/Table'
+import mockData from './components/table/data'
+import { tabSchema, tableSchema } from './components/table/schema'
 
 function page() {
 
@@ -34,7 +35,7 @@ function page() {
                     </div>
                 </div>
 
-                <MyServicesTable />
+                <Table mockData={mockData} tabSchema={tabSchema} tableSchema={tableSchema} />
 
             </div >
         </>

@@ -1,9 +1,11 @@
+'use client'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import React from 'react'
+import { TabSchema } from './table.type'
 
 type Props = {
-    tabSchema: string[]
+    tabSchema: TabSchema
 }
 
 function TableTab({ tabSchema }: Props) {

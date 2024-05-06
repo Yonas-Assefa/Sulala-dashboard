@@ -1,3 +1,5 @@
+import { MockData } from "./schema";
+
 const mockData: MockData = [
     {
         id: 1,
@@ -66,24 +68,5 @@ const mockData: MockData = [
         amount_spend: 6000
     },
 ]
-
-type MockData = {
-    id: number
-    campaign_name: string
-    promotion_type: string
-    status: 'active' | 'completed' | 'scheduled' | 'paused'
-    start_date: string
-    end_date: string
-    impressions: number
-    number_of_clicks: number
-    amount_spend: number
-}[]
-
-export const promotionStatusColors = {
-    active: 'bg-[#edfbe6] text-[#1d7941]',
-    completed: 'bg-[#f6f6f6] text-[#52565d]',
-    scheduled: 'bg-[#fef6d0] text-[#43464c]',
-    paused: 'bg-[#fde7e7] text-[#b91c1c]',
-}
 
 export default mockData

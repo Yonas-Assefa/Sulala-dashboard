@@ -1,13 +1,14 @@
 'use client'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import React from 'react'
 
-type Props = {
-    open: boolean,
-    item: string | null
-}
-function DeleteModal({ open, item }: Props) {
+function DeleteModal() {
     const router = useRouter()
+    const searchParams = useSearchParams()
+
+    const open = searchParams.get('action') === 'delete-product'
+    const item = searchParams.get('item')
+
     return (
         <dialog id="my_modal_4" className={`modal ${open && 'modal-open'}`} onClick={() => router.back()}>
             <div className="modal-box w-11/12 max-w-sm bg-white px-0" onClick={(e) => e.stopPropagation()}>

@@ -1,9 +1,9 @@
-import PrimaryButton from '@/components/common/PrimaryButton'
-import SecondaryButton from '@/components/common/SecondaryButton'
 import React from 'react'
-import PromotionCampaignTable from './components/PromotionCampaignTable'
 import Link from 'next/link'
 import CreateCampaignModal from './components/modals/CreateCampaignModal'
+import Table from '@/components/common/table/Table'
+import mockData from './components/table/data'
+import { tabSchema, tableSchema } from './components/table/schema'
 
 function page() {
 
@@ -27,7 +27,8 @@ function page() {
                     </div>
                 </div>
 
-                <PromotionCampaignTable />
+                {/* <PromotionCampaignTable /> */}
+                <Table mockData={mockData} tabSchema={tabSchema} tableSchema={tableSchema} />
 
             </div >
         </>
