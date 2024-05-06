@@ -24,8 +24,8 @@ function ImportServicesModal() {
     }
 
     return (
-        <dialog id="my_modal_4" className={`modal ${open && 'modal-open'}`}>
-            <div className="modal-box w-11/12 max-w-sm bg-white px-0">
+        <dialog id="my_modal_4" className={`modal ${open && 'modal-open'}`} onClick={() => router.back()}>
+            <div className="modal-box w-11/12 max-w-sm bg-white px-0" onClick={(e) => e.stopPropagation()}>
                 <div className='border-b-2 border-gray-200 pb-3'>
                     <h3 className="font-bold text-xl text-black text-center font-serif">Edit worktime</h3>
                 </div>

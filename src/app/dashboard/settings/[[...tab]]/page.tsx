@@ -21,14 +21,11 @@ type Props = {
 
 function SettingsPage({ params: { tab } }: Props) {
     const activeTab = tab ? tab[0] : 'personal-info'
-    const openLogoutModal = tab ? tab[1] == 'logout' : false
-    const openChangePasswordModal = tab ? (activeTab == 'personal-info' && tab[1] == 'change-password') : false
-    const openCreatePaymentMethodModal = tab ? (activeTab == 'billing-info' && tab[1] == 'create-payment-method') : false
     return (
         <>
-            <LogoutModal open={openLogoutModal} />
-            <ChangePasswordModal open={openChangePasswordModal} />
-            <CreatePaymentMethodModal open={openCreatePaymentMethodModal} />
+            <LogoutModal />
+            <ChangePasswordModal />
+            <CreatePaymentMethodModal />
             <div className='text-black flex flex-col w-full h-full p-8 gap-10'>
                 <h1 className='text-5xl font-semibold font-serif'>Settings</h1>
 

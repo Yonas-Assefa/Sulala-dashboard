@@ -18,8 +18,8 @@ function PersonalInfo() {
             <div className='flex flex-col items-start py-4 gap-8'>
                 <PrimaryButton padding={'md'} name='Save' onClick={() => { }} />
                 <div className='flex flex-col gap-3'>
-                    <SecondaryButton padding={'sm'} name='Change password' href='/dashboard/settings/personal-info/change-password' />
-                    <SecondaryButton padding={'xsm'} name='Log out' href='/dashboard/settings/personal-info/logout' />
+                    <SecondaryButton padding={'sm'} name='Change password' href='?action=change-password' />
+                    <SecondaryButton padding={'xsm'} name='Log out' href='?action=logout' />
                 </div>
             </div>
         </div>

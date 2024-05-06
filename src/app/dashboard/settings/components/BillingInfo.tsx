@@ -51,7 +51,7 @@ function BillingInfo() {
                         </div>
                     </div>
                 </div>
-                <Link href={`${path}/create-payment-method`} className='flex flex-row gap-2 bg-tertiary self-start py-2 px-4 rounded-[30px]'>
+                <Link href={`?action=create-payment-method`} className='flex flex-row gap-2 bg-tertiary self-start py-2 px-4 rounded-[30px]'>
                     <img src="/icons/plus.svg" alt="" />
                     <span>Add new</span>
                 </Link>
