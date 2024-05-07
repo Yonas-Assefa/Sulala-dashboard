@@ -13,7 +13,9 @@ function PersonalInfo() {
             <div className='grid grid-cols-2 max-w-[1300px] gap-5'>
                 <TextInput id='first-name' placeholder='First name' label='First name' onChange={() => { }} onClear={() => { }} value='' />
                 <TextInput id='last-name' placeholder='Last name' label='Last name' onChange={() => { }} onClear={() => { }} value='' />
-                <PhoneNumberInput />
+                <div className='flex flex-col gap-0 w-full items-center'>
+                    <PhoneNumberInput />
+                </div>
                 <TextInput id='email' placeholder='Email' label='Email' onChange={() => { }} onClear={() => { }} value='' />
                 <TextInput id='address' placeholder='Address' label='Address' onChange={() => { }} onClear={() => { }} value='' />
             </div>

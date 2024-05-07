@@ -6,6 +6,7 @@ import TextInput from '@/components/common/form/TextInput'
 import React from 'react'
 import SummaryDescription from './SummaryDescription'
 import ImageUnselectButton from '@/components/common/ui/ImageUnselectButton'
+import CustomRadioWithConditionalInput from '@/components/common/form/RadioWithConditionalInput'
 
 function ProductDiscountAdsForm() {
     return (
@@ -49,60 +50,13 @@ function ProductDiscountAdsForm() {
                 <div className='flex flex-col gap-5 bg-tertiary rounded-[30px] p-8'>
                     <h3 className='font-semibold text-xl'>Promotional discount type</h3>
                     <div className='max-w-[1300px] gap-6 flex flex-col'>
-                        {
-                            [
-                                {
-                                    name: 'percentage off',
-                                    id: 'percentage_off'
-                                }, {
-                                    name: 'one plus one',
-                                    id: 'one_plus_one'
-                                }, {
-                                    name: 'limited price',
-                                    id: 'limited_price'
-                                }, {
-                                    name: 'percentage off the minimum cart size',
-                                    id: 'percentage_off_the_minimum_cart_size'
-                                }, {
-                                    name: 'free shipping',
-                                    id: 'free_shipping'
-                                }, {
-                                    name: 'none',
-                                    id: 'none'
-                                }
-                            ]
-                                .map((item) => {
-                                    return (
-                                        <div className='flex flex-col gap-5 ' key={item.id}>
-                                            <label htmlFor={item.id} className='peer flex flex-row gap-2 items-center cursor-pointer'>
-                                                <input type="radio" name="dicount_type" id={item.id} className="radio radio-success border-secondary" />
-                                                <span className='capitalize'>{item.name}</span>
-                                            </label>
-                                            <div className='w-1/2 check hidden peer-has-[:checked]:block '>
-                                                <TextInput label='Discount amount %' placeholder='Enter discount amount' onChange={() => { }} onClear={() => { }} value='' />
-                                            </div>
-                                        </div>
-                                    )
-                                })
-                        }
+                        <CustomRadioWithConditionalInput inputForEach={true} key={'promo-discount-type'} id={'promo-discount-type'} />
                     </div>
                 </div>
                 <div className='flex flex-col gap-5 bg-tertiary rounded-[30px] p-8'>
                     <h3 className='font-semibold text-xl'>Budgeting</h3>
                     <div className='max-w-[1300px] gap-6 flex flex-col'>
-                        <div className='flex flex-col gap-5 group'>
-                            <label htmlFor='daily_budgeting' className='flex flex-row gap-2 items-center cursor-pointer'>
-                                <input type="radio" name="budgeting" id='daily_budgeting' className="radio radio-success border-secondary" />
-                                <span className='capitalize'>Daily budgeting</span>
-                            </label>
-                            <label htmlFor='weekly_budgeting' className='flex flex-row gap-2 items-center cursor-pointer'>
-                                <input type="radio" name="budgeting" id='weekly_budgeting' className="radio radio-success border-secondary" />
-                                <span className='capitalize'>Weekly budgeting</span>
-                            </label>
-                            <div className='w-1/2 check hidden group-has-[:checked]:block '>
-                                <TextInput label='Budget' placeholder='Enter your budget' onChange={() => { }} onClear={() => { }} value='' />
-                            </div>
-                        </div>
+                        <CustomRadioWithConditionalInput inputForEach={false} key={'budgeting'} id={'budgeting'} />
                     </div>
                 </div>
                 <div className="flex flex-row">

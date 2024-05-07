@@ -5,60 +5,88 @@ import CustomMultiSelectInput from './SelectInput'
 type Props = {
     inputForEach?: boolean
     showLabel?: boolean
+    id: string
 }
 
-function CustomRadioWithConditionalInput({ inputForEach = true, showLabel }: Props) {
+function CustomRadioWithConditionalInput({ inputForEach, showLabel, id }: Props) {
+
+    type InputMeta = {
+        type: 'select' | 'text',
+        placeholder: string
+        options?: string[]
+        label: string
+    }
 
     type RadioInputOptions = {
         id: string
         label: string
         value: string
-        input?: React.ReactNode
+        input?: InputMeta
     }
 
-    type RadioInput = Omit<RadioInputOptions, 'value'> & {
+    type RadioInput = RadioInputOptions & {
         options: RadioInputOptions[]
     }
 
     const radioInputsForEachInput: RadioInput = {
         id: 'promotional_discount_type',
         label: 'Promotional discount type',
+        value: 'promotional_discount_type',
         options: [
             {
                 id: 'percentage_off_1',
                 label: 'Percentage off',
                 value: 'percentage_off',
-                input: <TextInput label='Discount amount' placeholder='Enter discount amount' onChange={() => { }} onClear={() => { }} value='' />
+                input: {
+                    label: 'Discount amount %',
+                    placeholder: 'Enter discount amount',
+                    type: 'text'
+                }
             },
             {
                 id: 'one_plus_one_2',
                 label: 'One plus one',
                 value: 'one_plus_one',
-                input: <CustomMultiSelectInput label='Budget' placeholder='Enter your budget' onChange={() => { }} onClear={() => { }} value='' />
+                input: {
+                    label: 'Budget',
+                    placeholder: 'Enter your budget',
+                    type: 'select',
+                }
             },
             {
                 id: 'limited_price_3',
                 label: 'Limited price',
                 value: 'limited_price',
-                input: <TextInput label='Discount amount' placeholder='Enter discount amount' onChange={() => { }} onClear={() => { }} value='' />
+                input: {
+                    label: 'Discount amount',
+                    placeholder: 'Enter discount amount',
+                    type: 'text'
+                }
             },
             {
                 id: 'percentage_off_the_minimum_cart_size_4',
                 label: 'Percentage off the minimum cart size',
                 value: 'percentage_off_the_minimum_cart_size',
-                input: <TextInput label='Discount amount' placeholder='Enter discount amount' onChange={() => { }} onClear={() => { }} value='' />
+                input: {
+                    label: 'Discount amount',
+                    placeholder: 'Enter discount amount',
+                    type: 'text'
+                }
             },
             {
                 id: 'free_shipping_5',
                 label: 'Free shipping',
                 value: 'free_shipping',
-                input: <TextInput label='Discount amount' placeholder='Enter discount amount' onChange={() => { }} onClear={() => { }} value='' />
+                input: {
+                    label: 'Discount amount',
+                    placeholder: 'Enter discount amount',
+                    type: 'text'
+                }
             },
             {
                 id: 'none_6',
                 label: 'None',
                 value: 'none',
-                input: <CustomMultiSelectInput label='Budget' placeholder='Enter your budget' onChange={() => { }} onClear={() => { }} value='' />
             }
         ],
     }
@@ -66,6 +94,7 @@ function CustomRadioWithConditionalInput({ inputForEach = true, showLabel }: Pro
     const radioInputs: RadioInput = {
         id: 'daily_budgeting',
         label: 'Daily budgeting',
+        value: 'daily_budgeting',
         options: [
             {
                 id: 'daily_budgeting_1',
@@ -78,8 +107,14 @@ function CustomRadioWithConditionalInput({ inputForEach = true, showLabel }: Pro
                 value: 'weekly_budgeting',
             }
         ],
-        input: <TextInput label='Budget' placeholder='Enter your budget' onChange={() => { }} onClear={() => { }} value='' />
+        input: {
+            label: 'Budget',
+            placeholder: 'Enter your budget',
+            type: 'text'
+        }
     }
+
+    console.log({ inputForEach })
 
     const data = inputForEach ? radioInputsForEachInput : radioInputs
 
@@ -87,28 +122,66 @@ function CustomRadioWithConditionalInput({ inputForEach = true, showLabel }: Pro
         <div className='flex flex-col gap-5 group' >
             {showLabel && <p className="font-semibold">{data.label}</p>}
             {
-                radioInputsForEachInput.options.map((radioInput, index) => {
-                    const peerId = `peer/${index + 1}`
-                    const peerHasChecked = `peer-has-[:checked]/${index + 1}:block`
+                radioInputsForEachInput.options.map((radioInput) => {
                     return (
-                        <>
-                            <label htmlFor={radioInput.id} className={`${peerId} flex flex-row gap-2 items-center cursor-pointer`}>
-                                <input type="radio" name="dicount_type" id={radioInput.id} className="radio radio-success border-secondary" />
+                        <div className='flex flex-col gap-3'>
+                            <label htmlFor={id + radioInput.id} className={`peer flex flex-row gap-2 items-center cursor-pointer`}>
+                                <input type="radio" name="dicount_type" id={id + radioInput.id} className="radio radio-success border-secondary" />
                                 <span className='capitalize'>{radioInput.label}</span>
                             </label>
                             {inputForEach &&
-                                <div className={`w-1/2 check hidden ${peerHasChecked} `}>
-                                    {radioInput?.input}
+                                <div className={`w-1/2 check hidden peer-has-[:checked]:block `}>
+                                    {
+                                        radioInput?.input && (
+                                            radioInput.input.type === 'text' ?
+                                                <TextInput
+                                                    label={radioInput.input.label}
+                                                    placeholder={radioInput.input.placeholder}
+                                                    onChange={() => { }}
+                                                    onClear={() => { }}
+                                                    value=''
+                                                />
+                                                :
+                                                <CustomMultiSelectInput
+                                                    label={radioInput.input.label}
+                                                    placeholder={radioInput.input.placeholder}
+                                                    options={radioInput.input.options}
+                                                    onChange={() => { }}
+                                                    onClear={() => { }}
+                                                    value=''
+                                                />
+                                        )
+                                    }
                                 </div>
                             }
-                        </>
+                        </div>
                     )
                 })
             }
             {
                 !inputForEach &&
                 <div className='w-1/2 check hidden group-has-[:checked]:block '>
-                    {data?.input}
+                    {
+                        data?.input && (
+                            data.input.type === 'text' ?
+                                <TextInput
+                                    label={data.input.label}
+                                    placeholder={data.input.placeholder}
+                                    onChange={() => { }}
+                                    onClear={() => { }}
+                                    value=''
+                                />
+                                :
+                                <CustomMultiSelectInput
+                                    label={data.input.label}
+                                    placeholder={data.input.placeholder}
+                                    options={data.input.options}
+                                    onChange={() => { }}
+                                    onClear={() => { }}
+                                    value=''
+                                />
+
+                        )}
                 </div>
             }
         </div >

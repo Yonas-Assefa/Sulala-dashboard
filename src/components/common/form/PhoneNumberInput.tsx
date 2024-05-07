@@ -56,7 +56,7 @@ function PhoneNumberInput() {
         return country.name.toLowerCase().includes(filterCountry.toLowerCase()) || country.dial_code.includes(filterCountry)
     }
     return (
-        <div className='flex flex-col gap-0 w-full items-center'>
+        <>
             <label htmlFor="phone-number" className='self-start'>Phone number</label>
             <div className='flex items-center gap-0 border focus-within:border-primary rounded-[40px] w-full'>
                 <details className="dropdown relative bg-transparent h-full" ref={countryCodeRef}>
@@ -101,7 +101,7 @@ function PhoneNumberInput() {
             onChangeValidity={() => { }}
             onChangeErrorCode={() => { }}
         /> */}
-        </div>
+        </>
     )
 }
 
