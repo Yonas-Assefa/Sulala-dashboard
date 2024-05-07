@@ -2,21 +2,20 @@ import Link from 'next/link'
 import React from 'react'
 import { TableSchema } from './table.type'
 import TableDelete from './TableDelete'
+import TableCheckbox from './TableCheckbox'
 
 type Props = {
     tableSchema: TableSchema
+    allItemIds: string[]
 }
 
-function TableHead({ tableSchema }: Props) {
+function TableHead({ tableSchema, allItemIds }: Props) {
     return (
         <thead className='text-black'>
             <tr className='border-secondary/30'>
                 {
-                    tableSchema.include.checkbox && <th>
-                        <label>
-                            <input type="checkbox" className="checkbox checkbox-success" />
-                        </label>
-                    </th>
+                    tableSchema.include.checkbox &&
+                    <TableCheckbox items_id={allItemIds} isHeader />
                 }
                 {
                     tableSchema.schema.map((schema) => {

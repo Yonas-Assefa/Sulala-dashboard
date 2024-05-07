@@ -1,12 +1,48 @@
+'use client'
+import { useCreateQueryString } from '@/hooks/useCreateQueryString'
 import React from 'react'
 
+type Props = {
+    item_id?: string,
+    items_id?: string[],
+    isHeader?: boolean
+}
 
+function TableCheckbox({ item_id, isHeader, items_id }: Props) {
+    const { createQueryStringAndPush, searchParams } = useCreateQueryString()
 
-function TableCheckbox() {
+    const selected_items = searchParams.get('item')?.toString()?.split(',') || []
+    let isChecked = false
+
+    if (!isHeader) {
+        isChecked = selected_items.includes(item_id + '')
+    } else {
+        isChecked = selected_items?.length === items_id?.length
+    }
+
+    const handleClick = () => {
+        if (isChecked) {
+            if (!isHeader && item_id) {
+                const selected_items = searchParams.get('item')?.toString()?.split(',') || []
+                const new_selected_items = selected_items?.filter((item) => item !== (item_id + ''))
+                createQueryStringAndPush('item', new_selected_items?.join(','))
+            } else {
+                createQueryStringAndPush('item', '')
+            }
+        } else {
+            if (!isHeader && item_id) {
+                const selected_items = searchParams.get('item')?.toString()?.split(',') || []
+                const new_selected_items = selected_items?.concat(item_id)
+                createQueryStringAndPush('item', new_selected_items?.join(','))
+            } else {
+                createQueryStringAndPush('item', items_id?.join(','))
+            }
+        }
+    }
     return (
         <td>
-            <label>
-                <input type="checkbox" className="checkbox checkbox-success" />
+            <label onClick={handleClick}>
+                <input type="checkbox" className="checkbox checkbox-success" checked={isChecked} />
             </label>
         </td>
     )

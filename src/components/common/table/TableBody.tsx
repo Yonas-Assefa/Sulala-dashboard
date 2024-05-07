@@ -19,7 +19,7 @@ function TableBody({ tableSchema, mockData }: Props) {
                         <tr className='border-secondary/30'>
                             {
                                 tableSchema.include.checkbox &&
-                                <TableCheckbox />
+                                <TableCheckbox item_id={product.id} />
                             }
                             {
                                 tableSchema.schema.map((schema) => {
