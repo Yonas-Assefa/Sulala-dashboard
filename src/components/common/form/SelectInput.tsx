@@ -7,7 +7,7 @@ import { initialData, initialNestedData } from './constants/select-input.placeho
 function CustomMultiSelectInput({ value, onChange, placeholder, label, name, autoComplete, error, onClear, multi = false, nested = false, withImage = false, data, ...props }: CustomSelectInputProps) {
 
 
-    const [options, setOptions] = React.useState<SelectInputSchema[]>((nested ? initialNestedData : initialData))
+    const [options, setOptions] = React.useState<SelectInputSchema[]>(data || (nested ? initialNestedData : initialData))
 
     const [selected, setSelected] = React.useState<SelectInputSchema[]>([])
     const [selectedParent, setSelectedParent] = React.useState<SelectInputSchema | null>(null)
