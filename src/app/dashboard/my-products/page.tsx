@@ -2,8 +2,8 @@ import React from 'react'
 import ImportProductsModal from './components/modals/ImportProductsModal'
 import Table from '@/components/common/table/Table'
 import ProductHead from './components/ProductHead'
-import { productData, productsFilterData, productsSortData } from './components/table/data'
-import { productTableSchema } from './components/table/schema'
+import { productData, productsFilterData, productsSortData } from './schema/data'
+import { productTableSchema } from './schema/schema'
 
 function page() {
 

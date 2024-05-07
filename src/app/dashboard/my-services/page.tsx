@@ -2,8 +2,8 @@ import React from 'react'
 import ImportServicesModal from './components/modals/ImportServicesModal'
 import Table from '@/components/common/table/Table'
 import ServiceHead from './components/ServiceHead'
-import { servicesFilterData, servicesSortData, serviceData } from './components/table/data'
-import { serviceTableSchema } from './components/table/schema'
+import { servicesFilterData, servicesSortData, serviceData } from './schema/data'
+import { serviceTableSchema } from './schema/schema'
 
 function page() {
 

@@ -11,7 +11,7 @@ type Props = {
 
 function TableHead({ tableSchema, allItemIds }: Props) {
     return (
-        <thead className='text-black'>
+        <thead className='text-black bg-secondary/10'>
             <tr className='border-secondary/30'>
                 {
                     tableSchema.include.checkbox &&
@@ -32,7 +32,8 @@ function TableHead({ tableSchema, allItemIds }: Props) {
                         )
                     })
                 }
-                {tableSchema.include.checkbox &&
+                {tableSchema.include.actions &&
+                    tableSchema.include.checkbox &&
                     <TableDelete />
                 }
             </tr>

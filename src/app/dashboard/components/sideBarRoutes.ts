@@ -3,7 +3,7 @@ const routes = [
         icon: '/icons/shopping_bag.svg',
         activeIcon: '/icons/shopping_bag_active.svg',
         name: 'Orders',
-        path: '/dashboard/orders'
+        path: '/dashboard/orders?filter=all'
     },
     {
         icon: '/icons/storefront.svg',

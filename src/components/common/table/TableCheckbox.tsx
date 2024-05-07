@@ -42,7 +42,7 @@ function TableCheckbox({ item_id, isHeader, items_id }: Props) {
     return (
         <td>
             <label onClick={handleClick}>
-                <input type="checkbox" className="checkbox checkbox-success" checked={isChecked} />
+                <input type="checkbox" className="checkbox checkbox-success border-gray-400/50 checked:border-success" checked={isChecked} />
             </label>
         </td>
     )

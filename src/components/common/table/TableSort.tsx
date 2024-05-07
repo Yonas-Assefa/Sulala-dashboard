@@ -27,7 +27,7 @@ function TableSort({ sortData }: Props) {
 
     return (
         <div className='flex flex-row gap-2 '>
-            <div className="dropdown">
+            <div className="dropdown dropdown-end">
                 <div tabIndex={0} role="button" className="bg-white border rounded-[30px] p-1 px-3 flex flex-row gap-2">
                     <img src="/icons/swap_vert.svg" alt="" onClick={handleSortBy} className={`transition-all ${sort_by == 'newest' ? 'rotate-180' : '-rotate-180'}`} />
                     <p className='capitalize'>Sort by {sort_filter}: <span>{sort_by}</span></p>

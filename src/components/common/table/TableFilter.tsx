@@ -14,8 +14,10 @@ function TableFilter({ filterData }: Props) {
         <div role="tablist" className="tabs">
             {
                 filterData.map((filter) => {
+                    const filter_label = filter.replace(/_/g, ' ')
+                    const isActive = searchParams.get('filter') === filter || (!searchParams.get('filter') && filter === 'all')
                     return (
-                        <Link href={createQueryString('filter', filter)} role="tab" className={`tab capitalize rounded-[30px] bg-white text-black ${searchParams.get('filter') === filter ? 'tab-active' : ''} bg-white text-black`}>{filter}</Link>
+                        <Link href={createQueryString('filter', filter)} role="tab" className={`tab capitalize rounded-[30px] bg-white text-black ${isActive ? 'tab-active' : ''} bg-white text-black`}>{filter_label}</Link>
                     )
                 })
             }
