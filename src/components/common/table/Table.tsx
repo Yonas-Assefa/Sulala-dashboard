@@ -5,12 +5,12 @@ import TableSearch from './TableSearch'
 import TableSort from './TableSort'
 import TableHead from './TableHead'
 import TableBody from './TableBody'
-import { MockData, SortSchema, FilterData, TableSchema } from '../../../types/table.type'
+import { Data, SortSchema, FilterData, TableSchema } from '../../../types/table.type'
 
 type Props = {
     filterData: FilterData
     tableSchema: TableSchema
-    data: MockData
+    data: Data
     sortData: SortSchema
 }
 
