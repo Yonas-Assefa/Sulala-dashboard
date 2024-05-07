@@ -76,7 +76,7 @@ function PhoneNumberInput() {
                         }
                     </ul>
                 </details>
-                <div className='flex border-l-2 border-blue-300 w-full justify-between pr-3 focus-within:border-primary'>
+                <div className='flex border-l-2 w-full justify-between pr-3 focus-within:border-primary'>
                     <input
                         type="text"
                         id='phone-input'
