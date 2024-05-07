@@ -17,7 +17,7 @@ function TableBody({ tableSchema, mockData }: Props) {
                 mockData.map((product, index) => {
                     const last_items = index > mockData.length - 3
                     return (
-                        <tr className='border-secondary/30'>
+                        <tr className='border-secondary/30' key={product.id}>
                             {
                                 tableSchema.include.checkbox &&
                                 <TableCheckbox item_id={product.id} />
@@ -26,7 +26,7 @@ function TableBody({ tableSchema, mockData }: Props) {
                                 tableSchema.schema.map((schema) => {
                                     const product_key = product[schema.key as keyof typeof product];
                                     return (
-                                        <td>
+                                        <td key={schema.key}>
                                             {schema.badge ?
 
                                                 <TableBadge product_key={product_key} schema={schema} last_items={last_items} />

@@ -104,6 +104,7 @@ function CustomMultiSelectInput({ value, onChange, placeholder, label, name, aut
                             return (
                                 <li
                                     onClick={() => handleSelect(option.value)}
+                                    key={option.value}
                                 >
                                     <div className={`form-control w-full flex flex-row justify-between rounded-none ${options.length !== i + 1 && 'border-b'}`}>
                                         {

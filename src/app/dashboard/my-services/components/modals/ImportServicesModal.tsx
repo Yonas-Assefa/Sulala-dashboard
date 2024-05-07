@@ -39,7 +39,7 @@ function ImportServicesModal() {
                             {
                                 ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((day, i) => {
                                     return (
-                                        <label className={`cursor-pointer label p-4 ${i !== 6 && 'border-b'}`}>
+                                        <label className={`cursor-pointer label p-4 ${i !== 6 && 'border-b'}`} key={day}>
                                             <span className="label-text text-black">{day}</span>
                                             {/* <input type="checkbox" defaultChecked className="checkbox checkbox-success" /> */}
                                             <input type="checkbox" className="checkbox checkbox-success border-secondary" />

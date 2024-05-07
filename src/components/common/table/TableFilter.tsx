@@ -17,7 +17,7 @@ function TableFilter({ filterData }: Props) {
                     const filter_label = filter.replace(/_/g, ' ')
                     const isActive = searchParams.get('filter') === filter || (!searchParams.get('filter') && filter === 'all')
                     return (
-                        <Link href={createQueryString('filter', filter)} role="tab" className={`tab capitalize rounded-[30px] bg-white text-black ${isActive ? 'tab-active' : ''} bg-white text-black`}>{filter_label}</Link>
+                        <Link key={filter} href={createQueryString('filter', filter)} role="tab" className={`tab capitalize rounded-[30px] bg-white text-black ${isActive ? 'tab-active' : ''} bg-white text-black`}>{filter_label}</Link>
                     )
                 })
             }

@@ -69,7 +69,7 @@ function PhoneNumberInput() {
                         <input type="text" name="search-country" placeholder='Search countries' className='bg-white border m-2 p-1 rounded-[10px] w-11/12' value={filterCountry} onChange={handleFilterCountry} id="" />
                         {
                             countries.filter((ele) => applyCountryFilter(ele)).map((country, index) => {
-                                return (<li className='flex flex-row' onClick={() => selectCountryCode(country)}>
+                                return (<li className='flex flex-row' onClick={() => selectCountryCode(country)} key={country.code}>
                                     <p>{country.flag} <span>{country.dial_code} </span> {country.name}</p>
                                 </li>)
                             })

@@ -37,7 +37,7 @@ function TableBadge({ product_key, schema, last_items }: Prop) {
                         {
                             Object.keys(schema.schema_colors || {}).map((color) => {
                                 return (
-                                    <div className='flex flex-row justify-between gap-2 items-center cursor-pointer'>
+                                    <div className='flex flex-row justify-between gap-2 items-center cursor-pointer' key={color}>
                                         {/* {product_key === color && <input type="checkbox" defaultChecked className="checkbox checkbox-xs checkbox-success" />} */}
                                         <p>{color.replace('_', ' ')}</p>
                                         {product_key === color && <img src="/icons/check.svg" alt="" />}

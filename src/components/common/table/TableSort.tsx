@@ -39,8 +39,8 @@ function TableSort({ sortData }: Props) {
                             sortData.map((sort) => {
                                 const isChecked = searchParams.get('sort') === sort.value
                                 return (
-                                    <label onClick={() => handleChange(sort.value)} htmlFor={sort.value} className='flex flex-row gap-2 items-center cursor-pointer'>
-                                        <input type="radio" name="radio-5" id={sort.value} className="radio radio-success border-secondary" checked={isChecked} />
+                                    <label htmlFor={sort.value} className='flex flex-row gap-2 items-center cursor-pointer' key={sort.value}>
+                                        <input type="radio" name="radio-5" id={sort.value} className="radio radio-success border-secondary" checked={isChecked} onChange={() => handleChange(sort.value)} />
                                         <p>{sort.label}</p>
                                     </label>
                                 )

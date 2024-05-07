@@ -17,7 +17,7 @@ function CustomRadioWithConditionalInput({ inputForEach, showLabel, id, data }: 
             {
                 inputData.options.map((radioInput) => {
                     return (
-                        <div className='flex flex-col gap-3'>
+                        <div className='flex flex-col gap-3' key={radioInput.id}>
                             <label htmlFor={id + radioInput.id} className={`peer flex flex-row gap-2 items-center cursor-pointer`}>
                                 <input type="radio" name={id} id={id + radioInput.id} className="radio radio-success border-secondary" />
                                 <span className='capitalize'>{radioInput.label}</span>
