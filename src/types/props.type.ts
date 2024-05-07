@@ -20,6 +20,7 @@ export type SelectInputProps = BaseInputProps & {
 export type CustomSelectInputProps = BaseInputProps & {
     multi?: boolean
     nested?: boolean
+    withImage?: boolean
     options?: string[]
 }
 
