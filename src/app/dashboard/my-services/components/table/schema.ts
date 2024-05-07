@@ -1,12 +1,12 @@
 import { TableSchema } from "@/types/table.type";
 
-export const ServicesBadgeColorSchema = {
+export const servicesBadgeColorSchema = {
     active: 'bg-[#edfbe6] text-[#1d7941]',
     archived: 'bg-[#f6f6f6] text-[#52565d]',
     draft: 'bg-[#fef6d0] text-[#43464c]',
 }
 
-export const ServiceTableSchema: TableSchema = {
+export const serviceTableSchema: TableSchema = {
     include: {
         checkbox: true,
         actions: {
@@ -34,7 +34,7 @@ export const ServiceTableSchema: TableSchema = {
             title: 'Status',
             type: 'string',
             badge: true,
-            schema_colors: ServicesBadgeColorSchema,
+            schema_colors: servicesBadgeColorSchema,
         },
         {
             key: 'upload_date',

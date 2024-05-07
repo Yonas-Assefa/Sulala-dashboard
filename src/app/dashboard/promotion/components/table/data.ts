@@ -1,6 +1,6 @@
-import { MockData } from "./schema";
+import { PromotionDataItem } from "./type";
 
-const mockData: MockData = [
+export const promotionData: PromotionDataItem[] = [
     {
         id: 1,
         campaign_name: 'Campaign 1',
@@ -69,4 +69,19 @@ const mockData: MockData = [
     },
 ]
 
-export default mockData
+export const promotionSortData = [
+    {
+        label: 'Date',
+        value: 'date'
+    },
+    {
+        label: 'Product title',
+        value: 'product_title'
+    },
+    {
+        label: 'Created',
+        value: 'created'
+    }
+]
+
+export const promotionFilterData = ['all', 'active', 'draft', 'archived']

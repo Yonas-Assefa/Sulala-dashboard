@@ -1,9 +1,9 @@
-import { ServicesBadgeColorSchema } from "./schema";
+import { servicesBadgeColorSchema } from "./schema";
 
 export type ServiceDataItem = {
     id: number
     service_name: string
-    status: keyof typeof ServicesBadgeColorSchema
+    status: keyof typeof servicesBadgeColorSchema
     upload_date: string
     price: string
     category: string

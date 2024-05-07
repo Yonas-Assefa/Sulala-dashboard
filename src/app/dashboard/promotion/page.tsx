@@ -3,8 +3,8 @@ import React from 'react'
 import Link from 'next/link'
 import CreateCampaignModal from './components/modals/CreateCampaignModal'
 import Table from '@/components/common/table/Table'
-import mockData from './components/table/data'
-import { tabSchema, tableSchema } from './components/table/schema'
+import { promotionData, promotionFilterData, promotionSortData } from './components/table/data'
+import { promotionTableSchema } from './components/table/schema'
 import { useCreateQueryString } from '@/hooks/useCreateQueryString'
 
 function page() {
@@ -31,7 +31,7 @@ function page() {
                 </div>
 
                 {/* <PromotionCampaignTable /> */}
-                <Table mockData={mockData} tabSchema={tabSchema} tableSchema={tableSchema} />
+                <Table data={promotionData} filterData={promotionFilterData} tableSchema={promotionTableSchema} sortData={promotionSortData} />
 
             </div >
         </>

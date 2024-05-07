@@ -75,7 +75,7 @@ export const serviceData: ServiceDataItem[] = [
     },
 ]
 
-export const ServicesSortData = [
+export const servicesSortData = [
     {
         label: 'Date',
         value: 'date'
@@ -91,4 +91,4 @@ export const ServicesSortData = [
 ]
 
 
-export const ServicesFilterData = ['all', 'active', 'draft', 'archived']
+export const servicesFilterData = ['all', 'active', 'draft', 'archived']

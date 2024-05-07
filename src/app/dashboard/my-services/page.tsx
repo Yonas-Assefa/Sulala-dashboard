@@ -2,8 +2,8 @@ import React from 'react'
 import ImportServicesModal from './components/modals/ImportServicesModal'
 import Table from '@/components/common/table/Table'
 import ServiceHead from './components/ServiceHead'
-import { ServicesFilterData, ServicesSortData, serviceData } from './components/table/data'
-import { ServiceTableSchema } from './components/table/schema'
+import { servicesFilterData, servicesSortData, serviceData } from './components/table/data'
+import { serviceTableSchema } from './components/table/schema'
 
 function page() {
 
@@ -15,7 +15,7 @@ function page() {
                 {/* HEADER FOR MY SERVICES */}
                 <ServiceHead />
 
-                <Table data={serviceData} filterData={ServicesFilterData} tableSchema={ServiceTableSchema} sortData={ServicesSortData} />
+                <Table data={serviceData} filterData={servicesFilterData} tableSchema={serviceTableSchema} sortData={servicesSortData} />
 
             </div >
         </>

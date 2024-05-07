@@ -1,15 +1,13 @@
-import { TableSchema } from "@/components/common/table/table.type";
+import { TableSchema } from "@/types/table.type";
 
-const tabSchema = ['all', 'active', 'draft', 'archived']
-
-const colorSchema = {
+export const promotionBadgeColorSchema = {
     active: 'bg-[#edfbe6] text-[#1d7941]',
     completed: 'bg-[#f6f6f6] text-[#52565d]',
     scheduled: 'bg-[#fef6d0] text-[#43464c]',
     paused: 'bg-[#fde7e7] text-[#b91c1c]',
 }
 
-const tableSchema: TableSchema = {
+export const promotionTableSchema: TableSchema = {
     include: {
         checkbox: true,
         actions: {
@@ -39,7 +37,7 @@ const tableSchema: TableSchema = {
             title: 'Status',
             type: 'string',
             badge: true,
-            schema_colors: colorSchema,
+            schema_colors: promotionBadgeColorSchema,
         },
         {
             key: 'start_date',
@@ -69,20 +67,3 @@ const tableSchema: TableSchema = {
         }
     ]
 }
-
-type MockDataItem = {
-    id: number
-    campaign_name: string
-    promotion_type: string
-    status: 'active' | 'completed' | 'scheduled' | 'paused'
-    start_date: string
-    end_date: string
-    impressions: number
-    number_of_clicks: number
-    amount_spend: number
-    [key: string]: any
-};
-
-export type MockData = MockDataItem[]
-
-export { tabSchema, tableSchema }
