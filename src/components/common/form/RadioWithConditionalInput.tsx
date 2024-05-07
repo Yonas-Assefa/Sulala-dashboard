@@ -9,7 +9,6 @@ import { CustomRadioInputProps as Props } from '@/types/props.type'
 
 function CustomRadioWithConditionalInput({ inputForEach, showLabel, id, data }: Props) {
 
-    const [selected, setSelected] = React.useState<string>('')
     const inputData = data || (inputForEach ? radioInputsForEachInput : radioInputs) as RadioInputSchema
 
     return (
@@ -20,13 +19,13 @@ function CustomRadioWithConditionalInput({ inputForEach, showLabel, id, data }: 
                     return (
                         <div className='flex flex-col gap-3'>
                             <label htmlFor={id + radioInput.id} className={`peer flex flex-row gap-2 items-center cursor-pointer`}>
-                                <input type="radio" name="dicount_type" id={id + radioInput.id} className="radio radio-success border-secondary" />
+                                <input type="radio" name={id} id={id + radioInput.id} className="radio radio-success border-secondary" />
                                 <span className='capitalize'>{radioInput.label}</span>
                             </label>
-                            {inputForEach &&
+                            {inputForEach && radioInput?.input &&
                                 <div className={`w-1/2 check hidden peer-has-[:checked]:block `}>
                                     {
-                                        radioInput?.input && (
+                                        (
                                             radioInput.input.type === 'text' ?
                                                 <TextInput
                                                     label={radioInput.input.label}
@@ -53,10 +52,10 @@ function CustomRadioWithConditionalInput({ inputForEach, showLabel, id, data }: 
                 })
             }
             {
-                !inputForEach &&
+                !inputForEach && inputData?.input &&
                 <div className='w-1/2 check hidden group-has-[:checked]:block '>
                     {
-                        inputData?.input && (
+                        (
                             inputData.input.type === 'text' ?
                                 <TextInput
                                     label={inputData.input.label}
