@@ -2,11 +2,10 @@
 import { SelectInputSchema } from '@/types/input-field.type'
 import { CustomSelectInputProps } from '@/types/props.type'
 import React, { useEffect } from 'react'
-import { initialData, initialNestedData } from './constants/select-input.placeholder'
+import initialData from '../../constants/select-input.placeholder.json'
+import initialNestedData from '../../constants/select-input-nested.placeholder.json'
 
 function CustomMultiSelectInput({ value, onChange, placeholder, label, name, autoComplete, error, onClear, multi = false, nested = false, withImage = false, data, ...props }: CustomSelectInputProps) {
-
-
     const [options, setOptions] = React.useState<SelectInputSchema[]>(data || (nested ? initialNestedData : initialData))
 
     const [selected, setSelected] = React.useState<SelectInputSchema[]>([])

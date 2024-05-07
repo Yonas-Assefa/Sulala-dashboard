@@ -1,128 +1,22 @@
+'use client'
 import React from 'react'
 import TextInput from './TextInput'
 import CustomMultiSelectInput from './SelectInput'
+import radioInputsForEachInput from '../../constants/radio-input-foreach.placeholder.json'
+import radioInputs from '../../constants/radio-input.placeholder.json'
+import { RadioInputSchema } from '@/types/input-field.type'
+import { CustomRadioInputProps as Props } from '@/types/props.type'
 
-type Props = {
-    inputForEach?: boolean
-    showLabel?: boolean
-    id: string
-}
+function CustomRadioWithConditionalInput({ inputForEach, showLabel, id, data }: Props) {
 
-function CustomRadioWithConditionalInput({ inputForEach, showLabel, id }: Props) {
-
-    type InputMeta = {
-        type: 'select' | 'text',
-        placeholder: string
-        options?: string[]
-        label: string
-    }
-
-    type RadioInputOptions = {
-        id: string
-        label: string
-        value: string
-        input?: InputMeta
-    }
-
-    type RadioInput = RadioInputOptions & {
-        options: RadioInputOptions[]
-    }
-
-    const radioInputsForEachInput: RadioInput = {
-        id: 'promotional_discount_type',
-        label: 'Promotional discount type',
-        value: 'promotional_discount_type',
-        options: [
-            {
-                id: 'percentage_off_1',
-                label: 'Percentage off',
-                value: 'percentage_off',
-                input: {
-                    label: 'Discount amount %',
-                    placeholder: 'Enter discount amount',
-                    type: 'text'
-                }
-            },
-            {
-                id: 'one_plus_one_2',
-                label: 'One plus one',
-                value: 'one_plus_one',
-                input: {
-                    label: 'Budget',
-                    placeholder: 'Enter your budget',
-                    type: 'select',
-                }
-            },
-            {
-                id: 'limited_price_3',
-                label: 'Limited price',
-                value: 'limited_price',
-                input: {
-                    label: 'Discount amount',
-                    placeholder: 'Enter discount amount',
-                    type: 'text'
-                }
-            },
-            {
-                id: 'percentage_off_the_minimum_cart_size_4',
-                label: 'Percentage off the minimum cart size',
-                value: 'percentage_off_the_minimum_cart_size',
-                input: {
-                    label: 'Discount amount',
-                    placeholder: 'Enter discount amount',
-                    type: 'text'
-                }
-            },
-            {
-                id: 'free_shipping_5',
-                label: 'Free shipping',
-                value: 'free_shipping',
-                input: {
-                    label: 'Discount amount',
-                    placeholder: 'Enter discount amount',
-                    type: 'text'
-                }
-            },
-            {
-                id: 'none_6',
-                label: 'None',
-                value: 'none',
-            }
-        ],
-    }
-
-    const radioInputs: RadioInput = {
-        id: 'daily_budgeting',
-        label: 'Daily budgeting',
-        value: 'daily_budgeting',
-        options: [
-            {
-                id: 'daily_budgeting_1',
-                label: 'Daily budgeting',
-                value: 'daily_budgeting',
-            },
-            {
-                id: 'weekly_budgeting_2',
-                label: 'Weekly budgeting',
-                value: 'weekly_budgeting',
-            }
-        ],
-        input: {
-            label: 'Budget',
-            placeholder: 'Enter your budget',
-            type: 'text'
-        }
-    }
-
-    console.log({ inputForEach })
-
-    const data = inputForEach ? radioInputsForEachInput : radioInputs
+    const [selected, setSelected] = React.useState<string>('')
+    const inputData = data || (inputForEach ? radioInputsForEachInput : radioInputs) as RadioInputSchema
 
     return (
         <div className='flex flex-col gap-5 group' >
-            {showLabel && <p className="font-semibold">{data.label}</p>}
+            {showLabel && <p className="font-semibold">{inputData.label}</p>}
             {
-                radioInputsForEachInput.options.map((radioInput) => {
+                inputData.options.map((radioInput) => {
                     return (
                         <div className='flex flex-col gap-3'>
                             <label htmlFor={id + radioInput.id} className={`peer flex flex-row gap-2 items-center cursor-pointer`}>
@@ -162,20 +56,20 @@ function CustomRadioWithConditionalInput({ inputForEach, showLabel, id }: Props)
                 !inputForEach &&
                 <div className='w-1/2 check hidden group-has-[:checked]:block '>
                     {
-                        data?.input && (
-                            data.input.type === 'text' ?
+                        inputData?.input && (
+                            inputData.input.type === 'text' ?
                                 <TextInput
-                                    label={data.input.label}
-                                    placeholder={data.input.placeholder}
+                                    label={inputData.input.label}
+                                    placeholder={inputData.input.placeholder}
                                     onChange={() => { }}
                                     onClear={() => { }}
                                     value=''
                                 />
                                 :
                                 <CustomMultiSelectInput
-                                    label={data.input.label}
-                                    placeholder={data.input.placeholder}
-                                    options={data.input.options}
+                                    label={inputData.input.label}
+                                    placeholder={inputData.input.placeholder}
+                                    options={inputData.input.options}
                                     onChange={() => { }}
                                     onClear={() => { }}
                                     value=''

@@ -95,12 +95,6 @@ function PhoneNumberInput() {
 
                 </div>
             </div>
-            {/* <IntlTelInput
-            initialValue={'09'}
-            onChangeNumber={() => { }}
-            onChangeValidity={() => { }}
-            onChangeErrorCode={() => { }}
-        /> */}
         </>
     )
 }
