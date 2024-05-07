@@ -1,5 +1,5 @@
 import React from 'react'
-import { TableSchema } from './table.type'
+import { TableSchema } from '../../../types/table.type'
 import TableCheckbox from './TableCheckbox'
 import TableBadge from './TableBadge'
 import TableActions from './TableActions'

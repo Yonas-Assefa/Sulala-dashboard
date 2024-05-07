@@ -1,6 +1,6 @@
-import { MockData } from "./schema";
+import { ServiceDataItem } from "./type"
 
-const mockData: MockData = [
+export const serviceData: ServiceDataItem[] = [
     {
         id: 1,
         service_name: 'Grooming for cows',
@@ -75,4 +75,20 @@ const mockData: MockData = [
     },
 ]
 
-export default mockData
+export const ServicesSortData = [
+    {
+        label: 'Date',
+        value: 'date'
+    },
+    {
+        label: 'Product title',
+        value: 'product_title'
+    },
+    {
+        label: 'Created',
+        value: 'created'
+    }
+]
+
+
+export const ServicesFilterData = ['all', 'active', 'draft', 'archived']

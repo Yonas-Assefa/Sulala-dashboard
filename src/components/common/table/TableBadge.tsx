@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { Schema } from './table.type'
+import { Schema } from '../../../types/table.type'
 
 type Prop = {
     product_key: string,

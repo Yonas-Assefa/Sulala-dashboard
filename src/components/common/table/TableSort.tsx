@@ -1,30 +1,20 @@
 'use client'
 import { useCreateQueryString } from '@/hooks/useCreateQueryString'
+import { SortSchema } from '@/types/table.type'
 import React from 'react'
 
-function TableSort() {
+type Props = {
+    sortData: SortSchema
+}
+
+function TableSort({ sortData }: Props) {
     const { createQueryStringAndPush, searchParams } = useCreateQueryString()
 
     const handleChange = (value: string) => {
         createQueryStringAndPush('sort', value)
     }
 
-    const SortSchema = [
-        {
-            label: 'Date',
-            value: 'date'
-        },
-        {
-            label: 'Product title',
-            value: 'product_title'
-        },
-        {
-            label: 'Created',
-            value: 'created'
-        }
-    ]
-
-    const sort_filter = SortSchema.find(ele => ele.value == searchParams.get('sort'))?.label
+    const sort_filter = sortData.find(ele => ele.value == searchParams.get('sort'))?.label
     const sort_by = searchParams.get('sort_by') || 'newest'
 
     const handleSortBy = () => {
@@ -46,7 +36,7 @@ function TableSort() {
                     <p className='text-black font-semibold'>Sort by</p>
                     <div className='flex flex-col gap-3 p-2'>
                         {
-                            SortSchema.map((sort) => {
+                            sortData.map((sort) => {
                                 const isChecked = searchParams.get('sort') === sort.value
                                 return (
                                     <label onClick={() => handleChange(sort.value)} htmlFor={sort.value} className='flex flex-row gap-2 items-center cursor-pointer'>

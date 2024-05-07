@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import React from 'react'
-import { Actions } from './table.type'
+import { Actions } from '../../../types/table.type'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { useCreateQueryString } from '@/hooks/useCreateQueryString'
 

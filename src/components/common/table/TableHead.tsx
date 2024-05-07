@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import { TableSchema } from './table.type'
+import { TableSchema } from '../../../types/table.type'
 import TableDelete from './TableDelete'
 import TableCheckbox from './TableCheckbox'
 
