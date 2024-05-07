@@ -1,17 +1,19 @@
 'use client'
-import PasswordInput from '@/components/common/PasswordInput'
-import PrimaryButton from '@/components/common/PrimaryButton'
-import { useRouter } from 'next/navigation'
+import PasswordInput from '@/components/common/form/PasswordInput'
+import PrimaryButton from '@/components/common/ui/PrimaryButton'
+import { useRouter, useSearchParams } from 'next/navigation'
 import React from 'react'
 
 type Props = {
     open: boolean
 }
-function ChangePasswordModal({ open }: Props) {
+function ChangePasswordModal() {
     const router = useRouter()
+    const searchParams = useSearchParams()
+    const open = searchParams.get('action') == 'change-password'
     return (
-        <dialog id="my_modal_4" className={`modal ${open && 'modal-open'}`}>
-            <div className="modal-box w-11/12 max-w-sm bg-white px-0">
+        <dialog id="my_modal_4" className={`modal ${open && 'modal-open'}`} onClick={() => router.back()}>
+            <div className="modal-box w-11/12 max-w-sm bg-white px-0" onClick={(e) => e.stopPropagation()}>
                 <div className='border-b-2 border-gray-200 pb-3'>
                     <h3 className="font-bold text-xl text-black text-center font-serif">Change Password</h3>
                 </div>

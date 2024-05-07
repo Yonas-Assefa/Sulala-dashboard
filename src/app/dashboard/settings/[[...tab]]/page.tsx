@@ -1,14 +1,9 @@
 'use client'
-import PhoneNumberInput from '@/components/common/PhoneNumberInput'
-import PrimaryButton from '@/components/common/PrimaryButton'
-import SecondaryButton from '@/components/common/SecondaryButton'
-import TextInput from '@/components/common/TextInput'
 import Link from 'next/link'
 import React from 'react'
-import { toast } from 'react-toastify'
-import PersonalInfo from '../components/PersonalInfo'
-import ShopInfo from '../components/ShopInfo'
-import BillingInfo from '../components/BillingInfo'
+import PersonalInfo from '../components/PersonalInfo/page'
+import ShopInfo from '../components/ShopInfo/page'
+import BillingInfo from '../components/BillingInfo/page'
 import LogoutModal from '../components/modals/LogoutModal'
 import ChangePasswordModal from '../components/modals/ChangePasswordModal'
 import CreatePaymentMethodModal from '../components/modals/createPaymentMethodModal'
@@ -21,14 +16,11 @@ type Props = {
 
 function SettingsPage({ params: { tab } }: Props) {
     const activeTab = tab ? tab[0] : 'personal-info'
-    const openLogoutModal = tab ? tab[1] == 'logout' : false
-    const openChangePasswordModal = tab ? (activeTab == 'personal-info' && tab[1] == 'change-password') : false
-    const openCreatePaymentMethodModal = tab ? (activeTab == 'billing-info' && tab[1] == 'create-payment-method') : false
     return (
         <>
-            <LogoutModal open={openLogoutModal} />
-            <ChangePasswordModal open={openChangePasswordModal} />
-            <CreatePaymentMethodModal open={openCreatePaymentMethodModal} />
+            <LogoutModal />
+            <ChangePasswordModal />
+            <CreatePaymentMethodModal />
             <div className='text-black flex flex-col w-full h-full p-8 gap-10'>
                 <h1 className='text-5xl font-semibold font-serif'>Settings</h1>
 

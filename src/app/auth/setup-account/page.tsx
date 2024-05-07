@@ -1,6 +1,6 @@
 'use client'
 import SetupAccountForm from '@/components/SetupAccountForm'
-import BackButton from '@/components/common/BackButton'
+import BackButton from '@/components/common/ui/BackButton'
 import ProgressBar from '@/components/common/ProgressBar'
 import React, { ElementRef } from 'react'
 

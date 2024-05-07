@@ -9,7 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "intl-tel-input": "^21.2.7",
+    "intl-tel-input": "^21.2.8",
+    "libphonenumber-js": "^1.10.62",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",

@@ -16,7 +16,7 @@ function SideBarNav() {
                 <ul className="flex flex-col list-none">
                     {
                         routes.map((route) => {
-                            const isActive = pathname.includes(route.path)
+                            const isActive = pathname.includes(route.path.split('?')[0])
                             return (
                                 <Link href={route.path}>
                                     <li className={`flex gap-3 p-4 ${!isActive ? 'bg-transparent text-[#52565D]' : 'bg-primary text-white'}`} key={route.name}>

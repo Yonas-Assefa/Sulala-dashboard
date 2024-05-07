@@ -1,18 +1,19 @@
 'use client'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import React from 'react'
 
-type Props = {
-    open: boolean
-    item: string | null
-}
-function DeleteServiceModal({ open, item }: Props) {
+function DeleteModal() {
     const router = useRouter()
+    const searchParams = useSearchParams()
+
+    const open = searchParams.get('action') === 'delete-product'
+    const item = searchParams.get('item')
+
     return (
-        <dialog id="my_modal_4" className={`modal ${open && 'modal-open'}`}>
-            <div className="modal-box w-11/12 max-w-sm bg-white px-0">
+        <dialog id="my_modal_4" className={`modal ${open && 'modal-open'}`} onClick={() => router.back()}>
+            <div className="modal-box w-11/12 max-w-sm bg-white px-0" onClick={(e) => e.stopPropagation()}>
                 <div className='border-b-2 border-gray-200 pb-3'>
-                    <h3 className="font-bold text-xl text-black text-center font-serif">Delete {item === 'all' ? 'all' : 'selected'} services?</h3>
+                    <h3 className="font-bold text-xl text-black text-center font-serif">Delete {item === 'all' ? 'all' : 'selected'} items?</h3>
                 </div>
                 <div className="px-5 flex flex-col gap-3 my-4">
                     <button className="btn w-full rounded-[40px] bg-[#f6f6f6] hover:bg-primary/20 border-0 text-red-600 ">Yes</button>
@@ -28,4 +29,4 @@ function DeleteServiceModal({ open, item }: Props) {
     )
 }
 
-export default DeleteServiceModal
+export default DeleteModal

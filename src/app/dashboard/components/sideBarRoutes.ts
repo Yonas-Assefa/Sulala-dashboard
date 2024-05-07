@@ -9,13 +9,13 @@ const routes = [
         icon: '/icons/storefront.svg',
         activeIcon: '/icons/storefront_active.svg',
         name: 'My Products',
-        path: '/dashboard/my-products'
+        path: '/dashboard/my-products?filter=all'
     },
     {
         icon: '/icons/medical_services.svg',
         activeIcon: '/icons/medical_services_active.svg',
         name: 'My Services',
-        path: '/dashboard/my-services'
+        path: '/dashboard/my-services?filter=all'
     },
     {
         icon: '/icons/settings.svg',
@@ -27,7 +27,7 @@ const routes = [
         icon: '/icons/whatshot.svg',
         activeIcon: '/icons/whatshot_active.svg',
         name: 'Promotion',
-        path: '/dashboard/promotion'
+        path: '/dashboard/promotion?filter=all'
     }
 ]
 
