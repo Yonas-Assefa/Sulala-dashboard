@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import React from 'react'
 import { TableSchema } from '../../../types/table.type'
 import TableDelete from './TableDelete'
@@ -20,7 +19,7 @@ function TableHead({ tableSchema, allItemIds }: Props) {
                 {
                     tableSchema.schema.map((schema) => {
                         return (
-                            <th>
+                            <th key={schema.key}>
                                 {
                                     !schema.tooltips ?
                                         <p>{schema.title}</p> :

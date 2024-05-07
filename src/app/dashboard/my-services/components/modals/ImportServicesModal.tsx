@@ -23,6 +23,8 @@ function ImportServicesModal() {
         setFile(null)
     }
 
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
     return (
         <dialog id="my_modal_4" className={`modal ${open && 'modal-open'}`} onClick={() => router.back()}>
             <div className="modal-box w-11/12 max-w-sm bg-white px-0" onClick={(e) => e.stopPropagation()}>
@@ -37,7 +39,7 @@ function ImportServicesModal() {
                         </div>
                         <div className="form-control border rounded-[30px] overflow-hidden">
                             {
-                                ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((day, i) => {
+                                days.map((day, i) => {
                                     return (
                                         <label className={`cursor-pointer label p-4 ${i !== 6 && 'border-b'}`} key={day}>
                                             <span className="label-text text-black">{day}</span>
