@@ -7,7 +7,13 @@ import TextAreaInput from '@/components/common/form/TextAreaInput'
 import TextInput from '@/components/common/form/TextInput'
 import React from 'react'
 
-function page() {
+type Props = {
+    params: {
+        tab: string[]
+    }
+}
+
+function page({ params: { tab } }: Props) {
     return (
         <div className='text-black flex flex-col w-full h-full p-8 gap-10'>
             <div className='flex flex-row font-semibold justify-start items-center gap-6 text-3xl font-serif'>

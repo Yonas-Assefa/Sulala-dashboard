@@ -6,7 +6,13 @@ import ProductDiscountAdsForm from './components/ProductDiscountAdsForm'
 import BannerAdsForm from './components/BannerAdsForm'
 import { useCreateQueryString } from '@/hooks/useCreateQueryString'
 
-function page() {
+type Props = {
+    params: {
+        tab: string[]
+    }
+}
+
+function page({ params: { tab } }: Props) {
     const { searchParams, createQueryString } = useCreateQueryString()
     const activeTab = searchParams.get('tab') || 'product-discounts-ads'
     return (

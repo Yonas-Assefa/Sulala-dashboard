@@ -19,7 +19,7 @@ function ProductHead() {
                 <div>
                     <Link
                         className={`btn rounded-[40px] disabled:bg-secondary border-0 disabled:text-white disabled:cursor-not-allowed text-white bg-primary hover:bg-primary/80`}
-                        href={'/dashboard/my-products/add-product'}
+                        href={'/dashboard/my-products/add'}
                     >
                         Add Product
                     </Link>
