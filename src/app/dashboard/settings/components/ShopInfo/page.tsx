@@ -8,7 +8,7 @@ import React from 'react'
 
 function ShopInfo() {
     return (
-        <div className='mt-4 w-full flex flex-col gap-8 overflow-y-scroll'>
+        <div className='mt-4 w-full flex flex-col gap-8'>
             <div className='flex flex-row gap-4 items-center'>
                 <label htmlFor='add-photo' className="bg-tertiary cursor-pointer w-[6vw] min-w-[50px] flex justify-center items-center aspect-square rounded-full">
                     <img src="/icons/camera.svg" alt="" />

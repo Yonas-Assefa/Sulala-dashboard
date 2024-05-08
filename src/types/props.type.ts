@@ -31,7 +31,7 @@ export type CustomRadioInputProps = {
     inputForEach?: boolean
     showLabel?: boolean
     id: string
-    data: RadioInputSchema
+    data?: RadioInputSchema
 }
 
 export type FileInputProps = Pick<BaseInputProps, 'onChange' | 'label' | 'name' | 'error' | 'onClear'> & {

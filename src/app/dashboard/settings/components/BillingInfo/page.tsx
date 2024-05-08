@@ -7,7 +7,7 @@ import BillingInfoCard from './BillingInfoCard'
 function BillingInfo() {
     const { createQueryString } = useCreateQueryString()
     return (
-        <div className='mt-4 w-full flex flex-col gap-8 items-start overflow-y-scroll'>
+        <div className='mt-4 w-full flex flex-col gap-8 items-start'>
             <div className='flex flex-col gap-4'>
                 <h4 className='font-[500]'>Payment methods</h4>
 

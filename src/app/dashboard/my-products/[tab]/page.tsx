@@ -15,7 +15,7 @@ type Props = {
 
 function page({ params: { tab } }: Props) {
     return (
-        <div className='text-black flex flex-col w-full h-full p-8 gap-10'>
+        <div className='text-black flex flex-col w-full h-full p-8 gap-10 overflow-y-scroll'>
             <div className='flex flex-row font-semibold justify-start items-center gap-6 text-3xl font-serif'>
                 <div className='mt-4' >
                     <BackButton />
