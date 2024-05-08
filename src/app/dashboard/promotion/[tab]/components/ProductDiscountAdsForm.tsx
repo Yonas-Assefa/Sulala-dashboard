@@ -25,17 +25,17 @@ function ProductDiscountAdsForm() {
                         <div className="col-span-2">
                             <div className='flex flex-col gap-1'>
                                 <p>Banner Ads</p>
-                                {/* <label htmlFor="image" className='flex flex-col items-center justify-center gap-5 cursor-pointer w-full bg-white p-4 border rounded-[30px] border-dashed h-[300px]'>
-                            <img src="/icons/image.svg" alt="" />
-                            <div className='flex flex-col justify-center items-center text-secondary'>
-                                <p>Upload banner. JPEG, PNG</p>
-                                <p>Maximum size 20 MB</p>
-                            </div>
-                            <div className='flex gap-2'>
-                                <img src="/icons/upload.svg" alt="" className='w-[15px]' />
-                                <p className='text-primary font-semibold'>Upload</p>
-                            </div>
-                        </label> */}
+                                <label htmlFor="image" className='flex flex-col items-center justify-center gap-5 cursor-pointer w-full bg-white p-4 border rounded-[30px] border-dashed h-[300px]'>
+                                    <img src="/icons/image.svg" alt="" />
+                                    <div className='flex flex-col justify-center items-center text-secondary'>
+                                        <p>Upload banner. JPEG, PNG</p>
+                                        <p>Maximum size 20 MB</p>
+                                    </div>
+                                    <div className='flex gap-2'>
+                                        <img src="/icons/upload.svg" alt="" className='w-[15px]' />
+                                        <p className='text-primary font-semibold'>Upload</p>
+                                    </div>
+                                </label>
                                 <div className='w-full'>
                                     <div className='bg-[#d9d9d9] block rounded-[20px] relative'>
                                         <ImageUnselectButton />
