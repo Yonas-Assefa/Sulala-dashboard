@@ -3,7 +3,6 @@ import SetupAccountForm from '@/components/SetupAccountForm'
 import BackButton from '@/components/common/ui/BackButton'
 import ProgressBar from '@/components/common/ui/ProgressBar'
 import { useCreateQueryString } from '@/hooks/useCreateQueryString'
-import pushNotification from '@/utils/pushNotification.util'
 import React from 'react'
 
 function SetupAccount() {
@@ -12,7 +11,6 @@ function SetupAccount() {
   const activeStage = searchParams.get('stage') || 'one'
 
   const handleNextStage = () => {
-    return pushNotification('Hello coders it was easy!', 'error')
     if (activeStage === 'one') createQueryStringAndPush('stage', 'two')
     else if (activeStage === 'two') createQueryStringAndPush('stage', 'three')
   }
