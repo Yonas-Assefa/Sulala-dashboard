@@ -34,8 +34,11 @@ export type CustomRadioInputProps = {
     data?: RadioInputSchema
 }
 
+type AcceptFileFormate = 'image/*' | 'audio/*' | 'video/*' | 'application/pdf' | 'application/msword' | '.pdf' | '.jpeg' | '.png' | '.jpg' | '.doc' | '.docx' | '.xls' | '.xlsx' | '.csv' | '.txt'
+
 export type FileInputProps = Pick<BaseInputProps, 'onChange' | 'label' | 'name' | 'error' | 'onClear'> & {
     value: FileList | null
+    accept: AcceptFileFormate[]
 }
 
 export type SignupProps = {

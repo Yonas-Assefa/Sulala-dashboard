@@ -47,8 +47,8 @@ function SetupAccountStageThree() {
     return (
         <div className='flex flex-col gap-5 w-full items-start'>
             <h4 className='font-semibold'>Please upload documents</h4>
-            <FileInput label='Please attach the certificates' onChange={handleCertificate} onClear={clearCertificate} value={certificate} />
-            <FileInput label='Please attach the tax form' onChange={handleTaxForm} onClear={clearTaxForm} value={taxForm} />
+            <FileInput label='Please attach the certificates' onChange={handleCertificate} onClear={clearCertificate} value={certificate} accept={['.pdf', 'image/*']} />
+            <FileInput label='Please attach the tax form' onChange={handleTaxForm} onClear={clearTaxForm} value={taxForm} accept={['.pdf', 'image/*']} />
         </div>
     )
 }

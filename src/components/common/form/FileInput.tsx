@@ -1,7 +1,7 @@
 import { FileInputProps } from '@/types/props.type'
 import React from 'react'
 
-function FileInput({ onChange, label, name, error, onClear, value, ...props }: FileInputProps) {
+function FileInput({ onChange, label, name, error, onClear, value, accept, ...props }: FileInputProps) {
 
     return (
         <>
@@ -25,6 +25,7 @@ function FileInput({ onChange, label, name, error, onClear, value, ...props }: F
                             name={name || 'text-input'}
                             className="hidden"
                             onChange={onChange}
+                            accept={accept.join(',')}
                         />
                     </> :
                     <div className='flex flex-row gap-5'>
