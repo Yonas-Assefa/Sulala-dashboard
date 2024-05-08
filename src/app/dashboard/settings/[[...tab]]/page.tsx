@@ -16,11 +16,6 @@ type Props = {
 
 function SettingsPage({ params: { tab } }: Props) {
     const activeTab = tab ? tab[0] : 'personal-info'
-    const tabs = [
-        { name: 'Personal Info', id: 'personal-info' },
-        { name: 'Shop Info', id: 'shop-info' },
-        { name: 'Billing Info', id: 'billing-info' }
-    ]
     return (
         <>
             <LogoutModal />

@@ -1,27 +1,13 @@
-import PhoneNumberInput from '@/components/common/form/PhoneNumberInput'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
-import SecondaryButton from '@/components/common/ui/SecondaryButton'
-import SelectInput from '@/components/common/form/SelectInput'
 import TextAreaInput from '@/components/common/form/TextAreaInput'
 import TextInput from '@/components/common/form/TextInput'
 import React from 'react'
+import ProfileImagePicker from '@/components/common/form/ProfileImagePicker'
 
 function ShopInfo() {
     return (
         <div className='mt-4 w-full flex flex-col gap-8'>
-            <div className='flex flex-row gap-4 items-center'>
-                <label htmlFor='add-photo' className="bg-tertiary cursor-pointer w-[6vw] min-w-[50px] flex justify-center items-center aspect-square rounded-full">
-                    <img src="/icons/camera.svg" alt="" />
-                </label>
-                <div className='flex flex-col gap-2'>
-                    <p className='text-primary font-semibold'>Add photo</p>
-                    <div className='text-secondary flex flex-col gap-0'>
-                        <span>JPEG, PNG</span>
-                        <span>Max 20 MB</span>
-                    </div>
-                </div>
-                <input type="file" name="add-photo" id="add-photo" className='hidden' />
-            </div>
+            <ProfileImagePicker />
             <div className='grid grid-cols-2 max-w-[1300px] gap-5'>
                 <TextInput id='shop-name' placeholder='Shop name' label='Shop name' onChange={() => { }} onClear={() => { }} value='' />
                 <TextInput id='categories' placeholder='Categories' label='Categories' onChange={() => { }} onClear={() => { }} value='' />

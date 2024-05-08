@@ -4,8 +4,8 @@ import React from 'react'
 
 function TextInput({ id, value, onChange, placeholder, label, name, autoComplete, error, onClear, ...props }: TextInputProps) {
     return (
-        <div>
-            <label htmlFor={id} className='self-start text-black'>{label}</label>
+        <label htmlFor={id} >
+            <p className='self-start text-black'>{label}</p>
             <div className='flex bg-white items-center px-3 justify-between gap-0 border focus-within:border-primary rounded-[40px] w-full'>
                 <input
                     id={id}
@@ -14,7 +14,7 @@ function TextInput({ id, value, onChange, placeholder, label, name, autoComplete
                     name={name || 'text-input'}
                     className='input w-full max-w-xs bg-transparent focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none'
                     onChange={onChange}
-                    value={value}
+                    // value={value}
                     autoComplete={autoComplete || 'false'}
                 />
                 {false &&
@@ -24,7 +24,7 @@ function TextInput({ id, value, onChange, placeholder, label, name, autoComplete
                     </button>
                 }
             </div >
-        </div>
+        </label>
     )
 }
 
