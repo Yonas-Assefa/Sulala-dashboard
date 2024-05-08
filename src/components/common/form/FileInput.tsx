@@ -3,6 +3,18 @@ import React from 'react'
 
 function FileInput({ onChange, label, name, error, onClear, value, accept, ...props }: FileInputProps) {
 
+    const acceptFilesList = accept.map((fileType, index) => {
+        const filteredFileType = fileType.replace('.', '').toUpperCase()
+        if (index === 0) {
+            return filteredFileType
+        } else if (index === accept.length - 1) {
+            return ` or ${filteredFileType}`
+        } else {
+            return `, ${filteredFileType}`
+        }
+    }
+    )
+
     return (
         <>
             <div className='w-full'>
@@ -12,7 +24,7 @@ function FileInput({ onChange, label, name, error, onClear, value, accept, ...pr
                             <p className='text-secondary'>{label}</p>
                             <div className='border border-dashed flex flex-col justify-center py-8 gap-4 items-center px-3 rounded-[30px] w-full'>
                                 <img src="/icons/file.svg" alt="" />
-                                <p className='text-secondary'>PDF file, Maximum 5 MB</p>
+                                <p className='text-secondary text-center'>{acceptFilesList.join('')} file, Maximum 5 MB</p>
                                 <div className='flex gap-2'>
                                     <img src="/icons/upload.svg" alt="" className='w-[15px]' />
                                     <p className='text-primary font-semibold'>Upload</p>
