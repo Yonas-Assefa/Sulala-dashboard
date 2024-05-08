@@ -76,7 +76,7 @@ function PhoneNumberInput() {
                                 .filter((country) => applyCountryFilter(country))
                                 .map((country) => (
                                     <li className={`flex flex-row w-full rounded-md hover:bg-gray-100 ${countryCode?.code == country.code ? 'bg-gray-400/20' : ''}`} onClick={() => selectCountryCode(country)} key={country.code}>
-                                        <div className='hover:bg-transparent focus:bg-transparent active:bg-transparent w-full flex justify-between'>
+                                        <div className='hover:bg-transparent focus:bg-transparent active:bg-transparent w-full flex justify-between tooltip' data-tip={country.name}>
                                             <div className='flex flex-row justify-start gap-3 truncate'>
                                                 <span>{country.flag}</span>
                                                 <span>{country.dial_code}</span>
