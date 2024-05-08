@@ -15,6 +15,7 @@ function PhoneNumberInput() {
     const countryCodeRef = React.useRef<ElementRef<'details'>>(null)
     const [filterCountry, setFilterCountry] = React.useState('')
 
+    // CLOSE DROPDOWN WHEN CLICKED OUTSIDE
     React.useEffect(() => {
         const handleClick = (e: MouseEvent) => {
             if (countryCodeRef.current && !countryCodeRef.current.contains(e.target as Node)) {
@@ -50,32 +51,38 @@ function PhoneNumberInput() {
     }
 
     const applyCountryFilter = (country: CountryCode) => {
-        if (filterCountry === '') {
-            return true
-        }
-        return country.name.toLowerCase().includes(filterCountry.toLowerCase()) || country.dial_code.includes(filterCountry)
-    }
+        const filter = filterCountry.toLowerCase();
+        return filter === '' ||
+            country.name.toLowerCase().includes(filter) ||
+            country.dial_code.includes(filter);
+    };
+
     return (
         <>
             <label htmlFor="phone-number" className='self-start'>Phone number</label>
             <div className='flex items-center gap-0 border focus-within:border-primary rounded-[40px] w-full'>
                 <details className="dropdown relative bg-transparent h-full" ref={countryCodeRef}>
+                    {/* DISPLAYING COUNTRY FLAG, AND COUNTRY DIAL CODE */}
                     <summary className='min-w-[80px] bordered bg-transparent h-full select-none cursor-pointer flex gap-1 items-center justify-center px-5'>
                         <span>{countryCode?.flag}</span>
                         <p>{countryCode?.dial_code}</p>
                         <img src="/icons/chevron-down.svg" className='w-[15px] ml-2' alt="" />
                     </summary>
+                    {/* DROPDOWN OPTION STARTS FROM HERE */}
                     <ul tabIndex={0} className="dropdown absolute max-h-[300px] overflow-y-scroll z-[1] menu p-0 mt-4 border-2  shadow rounded-box w-52 bg-white block">
                         <input type="text" name="search-country" placeholder='Search countries' className='bg-white border m-2 p-1 rounded-[10px] w-11/12' value={filterCountry} onChange={handleFilterCountry} id="" />
                         {
-                            countries.filter((ele) => applyCountryFilter(ele)).map((country, index) => {
-                                return (<li className='flex flex-row' onClick={() => selectCountryCode(country)} key={country.code}>
-                                    <p>{country.flag} <span>{country.dial_code} </span> {country.name}</p>
-                                </li>)
-                            })
+                            countries
+                                .filter((country) => applyCountryFilter(country))
+                                .map((country) => (
+                                    <li className='flex flex-row' onClick={() => selectCountryCode(country)} key={country.code}>
+                                        <p>{country.flag} <span>{country.dial_code}</span> {country.name}</p>
+                                    </li>
+                                ))
                         }
                     </ul>
                 </details>
+                {/* PHONE NUMBER INPUT AND CLEAR BUTTON */}
                 <div className='flex border-l-2 w-full justify-between pr-3 focus-within:border-primary'>
                     <input
                         type="text"
