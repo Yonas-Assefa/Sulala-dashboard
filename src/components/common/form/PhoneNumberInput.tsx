@@ -56,7 +56,7 @@ function PhoneNumberInput() {
         return country.name.toLowerCase().includes(filterCountry.toLowerCase()) || country.dial_code.includes(filterCountry)
     }
     return (
-        <div className='flex flex-col gap-0 w-full items-center'>
+        <>
             <label htmlFor="phone-number" className='self-start'>Phone number</label>
             <div className='flex items-center gap-0 border focus-within:border-primary rounded-[40px] w-full'>
                 <details className="dropdown relative bg-transparent h-full" ref={countryCodeRef}>
@@ -69,14 +69,14 @@ function PhoneNumberInput() {
                         <input type="text" name="search-country" placeholder='Search countries' className='bg-white border m-2 p-1 rounded-[10px] w-11/12' value={filterCountry} onChange={handleFilterCountry} id="" />
                         {
                             countries.filter((ele) => applyCountryFilter(ele)).map((country, index) => {
-                                return (<li className='flex flex-row' onClick={() => selectCountryCode(country)}>
+                                return (<li className='flex flex-row' onClick={() => selectCountryCode(country)} key={country.code}>
                                     <p>{country.flag} <span>{country.dial_code} </span> {country.name}</p>
                                 </li>)
                             })
                         }
                     </ul>
                 </details>
-                <div className='flex border-l-2 border-blue-300 w-full justify-between pr-3 focus-within:border-primary'>
+                <div className='flex border-l-2 w-full justify-between pr-3 focus-within:border-primary'>
                     <input
                         type="text"
                         id='phone-input'
@@ -95,13 +95,7 @@ function PhoneNumberInput() {
 
                 </div>
             </div>
-            {/* <IntlTelInput
-            initialValue={'09'}
-            onChangeNumber={() => { }}
-            onChangeValidity={() => { }}
-            onChangeErrorCode={() => { }}
-        /> */}
-        </div>
+        </>
     )
 }
 

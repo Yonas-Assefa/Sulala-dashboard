@@ -1,5 +1,8 @@
 import RevenueCard from "./RevenueCard";
 import OrdersTable from "./OrdersTable";
+import Table from "@/components/common/table/Table";
+import { orderServiceData, orderServiceFilterData, orderServiceSortData } from "../schema/services/data";
+import { orderServiceTableSchema } from "../schema/services/schema";
 
 function Services() {
   return (
@@ -22,11 +25,13 @@ function Services() {
             totalCurrentFee={750}
           />
 
-          
+
         </div>
 
         {/* Services TABLE */}
-        <OrdersTable tableType="services" />
+        {/* <OrdersTable tableType="services" /> */}
+        <Table data={orderServiceData} filterData={orderServiceFilterData} sortData={orderServiceSortData} tableSchema={orderServiceTableSchema} />
+
       </div>
     </>
   );

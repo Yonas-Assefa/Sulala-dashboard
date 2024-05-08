@@ -1,6 +1,6 @@
-import { MockData } from "./schema";
+import { ProductDataItem } from "./type"
 
-const mockData: MockData = [
+export const productData: ProductDataItem[] = [
     {
         id: 1,
         item_image: '/images/milktake-silver.svg',
@@ -93,4 +93,20 @@ const mockData: MockData = [
     },
 ]
 
-export default mockData
+export const productsSortData = [
+    {
+        label: 'Date',
+        value: 'date'
+    },
+    {
+        label: 'Product title',
+        value: 'product_title'
+    },
+    {
+        label: 'Created',
+        value: 'created'
+    }
+]
+
+
+export const productsFilterData = ['all', 'active', 'draft', 'archived']

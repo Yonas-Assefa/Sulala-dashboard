@@ -7,9 +7,11 @@ type Schema = {
     image?: boolean | undefined;
     image_key?: string | undefined;
     tooltips?: string | undefined;
+    dropdown?: boolean | undefined;
+    dropdown_data?: { label: string, data: Record<string, string>[] } | undefined;
 }
 
-type TabSchema = string[]
+type FilterData = string[]
 
 type Actions = {
     edit: boolean;
@@ -21,11 +23,18 @@ type Actions = {
 type TableSchema = {
     include: {
         checkbox: boolean;
-        actions: Actions;
+        actions?: Actions;
     };
     schema: Schema[];
 }
 
-type MockData = Record<string, any>[]
+type Data = Record<string, any>[]
 
-export type { Schema, TabSchema, TableSchema, Actions, MockData }
+type SortData = {
+    label: string,
+    value: string
+}
+
+type SortSchema = SortData[]
+
+export type { Schema, FilterData, TableSchema, Actions, Data, SortData, SortSchema }

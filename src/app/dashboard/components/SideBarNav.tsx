@@ -18,7 +18,7 @@ function SideBarNav() {
                         routes.map((route) => {
                             const isActive = pathname.includes(route.path.split('?')[0])
                             return (
-                                <Link href={route.path}>
+                                <Link href={route.path} key={route.name}>
                                     <li className={`flex gap-3 p-4 ${!isActive ? 'bg-transparent text-[#52565D]' : 'bg-primary text-white'}`} key={route.name}>
                                         <img src={isActive ? route.activeIcon : route.icon} alt="" />
                                         <h6>

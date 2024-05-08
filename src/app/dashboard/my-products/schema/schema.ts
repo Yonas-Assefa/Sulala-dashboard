@@ -1,14 +1,12 @@
-import { TableSchema } from "@/components/common/table/table.type";
+import { TableSchema } from "@/types/table.type";
 
-const tabSchema = ['all', 'active', 'draft', 'archived']
-
-const colorSchema = {
+export const productBadgeColorSchema = {
     active: 'bg-[#edfbe6] text-[#1d7941]',
     archived: 'bg-[#f6f6f6] text-[#52565d]',
     draft: 'bg-[#fef6d0] text-[#43464c]',
 }
 
-const tableSchema: TableSchema = {
+export const productTableSchema: TableSchema = {
     include: {
         checkbox: true,
         actions: {
@@ -36,7 +34,7 @@ const tableSchema: TableSchema = {
             title: 'Status',
             type: 'string',
             badge: true,
-            schema_colors: colorSchema,
+            schema_colors: productBadgeColorSchema,
         },
         {
             key: 'upload_date',
@@ -60,19 +58,3 @@ const tableSchema: TableSchema = {
         },
     ]
 }
-
-type MockDataItem = {
-    id: number;
-    item_image: string;
-    item_name: string;
-    status: keyof typeof colorSchema;
-    upload_date: string;
-    price: string;
-    quantity: string;
-    category: string;
-    [key: string]: any
-};
-
-export type MockData = MockDataItem[]
-
-export { tabSchema, tableSchema }

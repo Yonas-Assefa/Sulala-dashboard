@@ -1,11 +1,9 @@
-import SecondaryButton from '@/components/common/ui/SecondaryButton'
 import React from 'react'
-import Link from 'next/link'
 import ImportServicesModal from './components/modals/ImportServicesModal'
 import Table from '@/components/common/table/Table'
-import mockData from './components/table/data'
-import { tabSchema, tableSchema } from './components/table/schema'
 import ServiceHead from './components/ServiceHead'
+import { servicesFilterData, servicesSortData, serviceData } from './schema/data'
+import { serviceTableSchema } from './schema/schema'
 
 function page() {
 
@@ -17,7 +15,7 @@ function page() {
                 {/* HEADER FOR MY SERVICES */}
                 <ServiceHead />
 
-                <Table mockData={mockData} tabSchema={tabSchema} tableSchema={tableSchema} />
+                <Table data={serviceData} filterData={servicesFilterData} tableSchema={serviceTableSchema} sortData={servicesSortData} />
 
             </div >
         </>

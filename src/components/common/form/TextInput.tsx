@@ -13,7 +13,6 @@ function TextInput({ id, value, onChange, placeholder, label, name, autoComplete
                     placeholder={placeholder || 'Type here'}
                     name={name || 'text-input'}
                     className='input w-full max-w-xs bg-transparent focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none'
-                    // className="input w-full max-w-xs bg-transparent border-0 border-transparent active:border-0 active:outline-none  rounded-r-[30px] focus:border-0 focus:outline-none"
                     onChange={onChange}
                     value={value}
                     autoComplete={autoComplete || 'false'}

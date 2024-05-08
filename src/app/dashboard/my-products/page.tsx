@@ -1,9 +1,9 @@
 import React from 'react'
 import ImportProductsModal from './components/modals/ImportProductsModal'
 import Table from '@/components/common/table/Table'
-import mockData from './components/table/data'
-import { tabSchema, tableSchema } from './components/table/schema'
 import ProductHead from './components/ProductHead'
+import { productData, productsFilterData, productsSortData } from './schema/data'
+import { productTableSchema } from './schema/schema'
 
 function page() {
 
@@ -15,7 +15,7 @@ function page() {
                 {/* HEADER FOR MY PRODUCTS */}
                 <ProductHead />
 
-                <Table mockData={mockData} tabSchema={tabSchema} tableSchema={tableSchema} />
+                <Table data={productData} filterData={productsFilterData} tableSchema={productTableSchema} sortData={productsSortData} />
 
             </div >
         </>

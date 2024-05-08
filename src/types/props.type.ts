@@ -1,3 +1,5 @@
+import { RadioInputSchema, SelectInputSchema } from "./input-field.type"
+
 type BaseInputProps = {
     id?: string
     value: string
@@ -22,6 +24,14 @@ export type CustomSelectInputProps = BaseInputProps & {
     nested?: boolean
     withImage?: boolean
     options?: string[]
+    data?: SelectInputSchema[]
+}
+
+export type CustomRadioInputProps = {
+    inputForEach?: boolean
+    showLabel?: boolean
+    id: string
+    data: RadioInputSchema
 }
 
 export type FileInputProps = Pick<BaseInputProps, 'onChange' | 'label' | 'name' | 'error' | 'onClear'> & {
