@@ -50,18 +50,6 @@ function ProfileImagePicker() {
                         </div>
                     </div>
                 }
-
-                {/* {!image ? <div className='flex flex-col gap-2'>
-                    <p className='text-primary font-semibold'>Add photo</p>
-                    <div className='text-secondary flex flex-col gap-0'>
-                        <span>JPEG, PNG</span>
-                        <span>Max 20 MB</span>
-                    </div>
-                </div> :
-                    <div className='flex flex-row gap-2'>
-                        <label htmlFor='add-photo' className='text-primary font-semibold cursor-pointer'>Change photo</label>
-                        <button className='text-danger font-semibold' onClick={handleDeleteImage}>Delete photo</button>
-                    </div>} */}
                 <input type="file" name="add-photo" id="add-photo" className='hidden' accept='image/*' onChange={handleRawImage} />
             </div></>
     )
