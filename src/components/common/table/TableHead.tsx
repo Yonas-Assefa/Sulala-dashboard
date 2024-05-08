@@ -23,8 +23,8 @@ function TableHead({ tableSchema, allItemIds }: Props) {
                                 {
                                     !schema.tooltips ?
                                         <p>{schema.title}</p> :
-                                        <div className="tooltip tooltip-base" data-tip={schema.tooltips}>
-                                            <p className="bg-white text-black cursor-pointer">{schema.title}</p>
+                                        <div className="tooltip bg-transparent tooltip-base" data-tip={schema.tooltips}>
+                                            <p className="bg-transparent text-black cursor-pointer">{schema.title}</p>
                                         </div>
                                 }
                             </th>

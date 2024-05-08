@@ -18,8 +18,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ToastContainer hideProgressBar={false} newestOnTop={false} draggable className='select-none' />
       <body className={inter.className}>
+        <ToastContainer hideProgressBar={false} newestOnTop={false} draggable className='select-none' />
         {children}
       </body>
     </html>

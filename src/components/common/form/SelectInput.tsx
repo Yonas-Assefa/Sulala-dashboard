@@ -14,6 +14,16 @@ function CustomMultiSelectInput({ value, onChange, placeholder, label, name, aut
     const selectRef = React.useRef<HTMLDetailsElement>(null)
     const [open, setOpen] = React.useState(false)
 
+    const openDropdown = () => {
+        selectRef.current?.setAttribute('open', 'true')
+        setOpen(true)
+    }
+
+    const closeDropdown = () => {
+        selectRef.current?.removeAttribute('open')
+        setOpen(false)
+    }
+
     const handleSelect = (value: string) => {
         if (nested) {
             if (!selectedParent) {
@@ -21,6 +31,8 @@ function CustomMultiSelectInput({ value, onChange, placeholder, label, name, aut
                 if (selectedParentValue && selectedParentValue.options) {
                     setSelectedParent(selectedParentValue)
                     setOptions(selectedParentValue.options)
+                    console.log('setting open dropdown')
+                    openDropdown()
                 }
             } else {
                 if (selectedParent) {
@@ -65,9 +77,8 @@ function CustomMultiSelectInput({ value, onChange, placeholder, label, name, aut
 
     useEffect(() => {
         const handleClick = (e: MouseEvent) => {
-            if (selectRef.current && !selectRef.current.contains(e.target as Node)) {
-                selectRef.current.removeAttribute('open')
-                setOpen(false)
+            if (selectRef.current && !selectRef.current?.contains(e.target as Node)) {
+                closeDropdown()
             } else {
                 setOpen(!open)
             }
@@ -80,7 +91,7 @@ function CustomMultiSelectInput({ value, onChange, placeholder, label, name, aut
 
     return (
         <div>
-            <label htmlFor="email-address" className='self-start'>{label}</label>
+            <p className='self-start'>{label}</p>
             <details ref={selectRef} className={`dropdown bg-white rounded-[30px] m-0 p-0 border w-full hover:bg-white outline-none `}>
                 <summary className={`flex items-center overflow-hidden px-3 justify-between gap-0 focus-within:border-primary rounded-[40px] w-full cursor-pointer input bg-transparent select-none focus:outline-none ${computedValue ? 'text-black' : 'text-gray-400'}`}
                 >
