@@ -12,6 +12,7 @@ function CustomMultiSelectInput({ value, onChange, placeholder, label, name, aut
     const [selectedParent, setSelectedParent] = React.useState<SelectInputSchema | null>(null)
     const [computedValue, setComputedValue] = React.useState<string | null>(null)
     const selectRef = React.useRef<HTMLDetailsElement>(null)
+    const [open, setOpen] = React.useState(false)
 
     const handleSelect = (value: string) => {
         if (nested) {
@@ -66,6 +67,9 @@ function CustomMultiSelectInput({ value, onChange, placeholder, label, name, aut
         const handleClick = (e: MouseEvent) => {
             if (selectRef.current && !selectRef.current.contains(e.target as Node)) {
                 selectRef.current.removeAttribute('open')
+                setOpen(false)
+            } else {
+                setOpen(!open)
             }
         }
         document.addEventListener('click', handleClick)
@@ -82,7 +86,7 @@ function CustomMultiSelectInput({ value, onChange, placeholder, label, name, aut
                 >
 
                     <p className='truncate'>{computedValue || (placeholder || 'Select one')}</p>
-                    <img src="/icons/chevron-down.svg" alt="" className={`transition-all ${selectRef.current?.open && 'rotate-180'}`} />
+                    <img src="/icons/chevron-down.svg" alt="" className={`transition-all ${open && 'rotate-180'}`} />
                 </summary >
                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 my-3 border-2 shadow rounded-box w-full bg-white">
                     {selectedParent &&

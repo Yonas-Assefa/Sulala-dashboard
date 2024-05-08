@@ -1,35 +1,38 @@
 'use client'
 import SetupAccountForm from '@/components/SetupAccountForm'
 import BackButton from '@/components/common/ui/BackButton'
-import ProgressBar from '@/components/common/ProgressBar'
-import React, { ElementRef } from 'react'
+import ProgressBar from '@/components/common/ui/ProgressBar'
+import { useCreateQueryString } from '@/hooks/useCreateQueryString'
+import pushNotification from '@/utils/pushNotification.util'
+import React from 'react'
 
 function SetupAccount() {
 
-  const [activeStage, setActiveStage] = React.useState<1 | 2 | 3>(1)
+  const { createQueryStringAndPush, searchParams } = useCreateQueryString()
+  const activeStage = searchParams.get('stage') || 'one'
 
   const handleNextStage = () => {
-    if (activeStage === 1) setActiveStage(2)
-    else if (activeStage === 2) setActiveStage(3)
+    return pushNotification('Hello coders it was easy!', 'error')
+    if (activeStage === 'one') createQueryStringAndPush('stage', 'two')
+    else if (activeStage === 'two') createQueryStringAndPush('stage', 'three')
   }
 
   const handlePreviousStage = () => {
-    if (activeStage === 1) setActiveStage(3)
-    else if (activeStage === 2) setActiveStage(1)
-    else if (activeStage === 3) setActiveStage(2)
+    if (activeStage === 'two') createQueryStringAndPush('stage', 'one')
+    else if (activeStage === 'three') createQueryStringAndPush('stage', 'two')
   }
 
   return (
     <div className='text-black w-10/12 flex flex-col gap-5 items-center'>
-      {activeStage != 1 && <BackButton onClick={handlePreviousStage} />}
+      {activeStage != 'one' && <BackButton onClick={handlePreviousStage} />}
       {/* SIGN IN HEADER */}
       <h1 className='text-[40px] font-serif font-semibold'>Set up your account</h1>
 
       {/* SIGN IN OPTIONS */}
       <div className='flex tabs gap-2 w-full px-10' role='progress-bars'>
-        <ProgressBar value={activeStage >= 1 ? 100 : 0} />
-        <ProgressBar value={activeStage >= 2 ? 100 : 0} />
-        <ProgressBar value={activeStage >= 3 ? 100 : 0} />
+        <ProgressBar value={100} />
+        <ProgressBar value={activeStage != 'one' ? 100 : 0} />
+        <ProgressBar value={activeStage == 'three' ? 100 : 0} />
       </div>
 
       <div className='flex flex-col gap-6 w-full px-10'>
@@ -42,7 +45,7 @@ function SetupAccount() {
             className='btn w-full rounded-[40px] bg-secondary border-0 text-white hover:bg-primary'
             onClick={handleNextStage}
           >
-            {activeStage !== 3 ? 'Continue' : 'Verify'}
+            {activeStage !== 'three' ? 'Continue' : 'Verify'}
             {/* <img src="/loading.gif" alt="" className='h-[30px]' /> */}
 
           </button>
