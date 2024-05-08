@@ -6,21 +6,28 @@ import SelectInput from '@/components/common/form/SelectInput'
 import TextAreaInput from '@/components/common/form/TextAreaInput'
 import TextInput from '@/components/common/form/TextInput'
 import React from 'react'
+import { notFound } from 'next/navigation'
 
 type Props = {
     params: {
-        tab: string[]
+        tab: string
     }
 }
 
 function page({ params: { tab } }: Props) {
+
+    if (!['add', 'edit'].includes(tab)) {
+        return notFound()
+    }
+
+
     return (
         <div className='text-black flex flex-col w-full h-full p-8 gap-10 overflow-y-scroll'>
             <div className='flex flex-row font-semibold justify-start items-center gap-6 text-3xl font-serif'>
                 <div className='mt-4' >
                     <BackButton />
                 </div>
-                <h2>Add Product</h2>
+                <h2 className='capitalize'>{tab} Product</h2>
             </div>
             <div className='grid grid-cols-3 gap-6'>
                 <div className='col-span-2 flex flex-col gap-5 bg-tertiary rounded-[30px] p-8'>

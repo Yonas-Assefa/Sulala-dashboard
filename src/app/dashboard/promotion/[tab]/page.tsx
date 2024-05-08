@@ -5,14 +5,21 @@ import React from 'react'
 import ProductDiscountAdsForm from './components/ProductDiscountAdsForm'
 import BannerAdsForm from './components/BannerAdsForm'
 import { useCreateQueryString } from '@/hooks/useCreateQueryString'
+import { notFound } from 'next/navigation'
 
 type Props = {
     params: {
-        tab: string[]
+        tab: string
     }
 }
 
-function page({ params: { tab } }: Props) {
+function page({ params: { tab: action } }: Props) {
+
+    if (!['add', 'edit'].includes(action)) {
+        return notFound()
+    }
+
+
     const { searchParams, createQueryString } = useCreateQueryString()
     const activeTab = searchParams.get('tab') || 'product-discounts-ads'
 
@@ -22,7 +29,7 @@ function page({ params: { tab } }: Props) {
                 <div className='mt-4' >
                     <BackButton />
                 </div>
-                <h2>Create promo campaign</h2>
+                <h2 className='capitalize'>{action} promo campaign</h2>
             </div>
             <div className='box-content border-b-2 border-secondary'>
                 <div className="self-start font-medium flex flex-row">
