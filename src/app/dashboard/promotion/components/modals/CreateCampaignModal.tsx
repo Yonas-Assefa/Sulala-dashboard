@@ -3,14 +3,29 @@ import Link from 'next/link'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import React from 'react'
 
-// type Props = {
-//     open: boolean
-// }
 function CreateCampaignModal() {
     const router = useRouter()
     const pathname = usePathname()
     const searchParams = useSearchParams()
     const open = searchParams.get('action') == 'add-campaign'
+
+    const [type, setType] = React.useState<'service' | 'product'>()
+
+    type PromotionType = {
+        id: 'service' | 'product'
+        name: string
+    }
+
+    const promotions: PromotionType[] = [
+        {
+            id: 'service',
+            name: 'Promote services',
+        },
+        {
+            id: 'product',
+            name: 'Promote products',
+        }
+    ]
 
     return (
         <dialog id="my_modal_4" className={`modal ${open && 'modal-open'}`} onClick={() => router.back()}>
@@ -20,18 +35,24 @@ function CreateCampaignModal() {
                 </div>
                 <div className="px-5 flex flex-col gap-3 mt-4">
                     <div className='flex flex-col gap-4 my-2'>
-                        <label htmlFor='radio-1' className='flex flex-row gap-2 items-center cursor-pointer'>
-                            <input type="radio" name="radio-5" id='radio-1' className="radio radio-success border-secondary" />
-                            <p className='text-black font-semibold'>Promote services</p>
-                        </label>
-                        <label htmlFor='radio-2' className='flex flex-row gap-2 items-center cursor-pointer'>
-                            <input type="radio" name="radio-5" id='radio-2' className="radio radio-success border-secondary" />
-                            <p className='text-black font-semibold'>Promote products</p>
-                        </label>
+                        {
+                            promotions.map(promotion => {
+                                return (
+                                    <label htmlFor={promotion.id} className='flex flex-row gap-2 items-center cursor-pointer'>
+                                        <input type="radio" name="radio-5" id={promotion.id}
+                                            className="radio radio-success border-secondary"
+                                            checked={type == promotion.id}
+                                            onChange={() => setType(promotion.id)}
+                                        />
+                                        <p className='text-black font-semibold'>{promotion.name}</p>
+                                    </label>
+                                )
+                            })
+                        }
                     </div>
                     <Link
                         className={`btn rounded-[40px] disabled:bg-secondary border-0 disabled:text-white disabled:cursor-not-allowed text-white bg-primary hover:bg-primary/80`}
-                        href={`${pathname}/add`}
+                        href={`${pathname}/add?type=${type}`}
                     >
                         Continue
                     </Link>
