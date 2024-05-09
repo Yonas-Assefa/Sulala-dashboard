@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import BillingInfoCard from './BillingInfoCard'
 import { openModal } from '@/utils/openModal'
