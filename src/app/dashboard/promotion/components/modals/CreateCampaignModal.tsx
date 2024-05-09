@@ -1,14 +1,11 @@
 'use client'
+import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import Link from 'next/link'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import React from 'react'
 
 function CreateCampaignModal() {
-    const router = useRouter()
     const pathname = usePathname()
-    const searchParams = useSearchParams()
-    const open = searchParams.get('action') == 'add-campaign'
-
     const [type, setType] = React.useState<'service' | 'product'>()
 
     type PromotionType = {
@@ -28,8 +25,8 @@ function CreateCampaignModal() {
     ]
 
     return (
-        <dialog id="my_modal_4" className={`modal ${open && 'modal-open'}`} onClick={() => router.back()}>
-            <div className="modal-box w-11/12 max-w-sm bg-white px-0" onClick={(e) => e.stopPropagation()}>
+        <dialog id="create_campaign_modal" className='modal'>
+            <div className="modal-box w-11/12 max-w-sm bg-white px-0">
                 <div className='border-b-2 border-gray-200 pb-3'>
                     <h3 className="font-bold text-xl text-black text-center font-serif">Create campaign</h3>
                 </div>
@@ -50,14 +47,12 @@ function CreateCampaignModal() {
                             })
                         }
                     </div>
-                    <Link
-                        className={`btn rounded-[40px] disabled:bg-secondary border-0 disabled:text-white disabled:cursor-not-allowed text-white bg-primary hover:bg-primary/80`}
-                        href={`${pathname}/add?type=${type}`}
-                    >
-                        Continue
-                    </Link>
+                    <PrimaryButton name='Continue' href={`${pathname}/add?type=${type}`} disabled={!type} />
                 </div>
             </div>
+            <form method="dialog" className="modal-backdrop">
+                <button className='text-black'></button>
+            </form>
         </dialog>
     )
 }

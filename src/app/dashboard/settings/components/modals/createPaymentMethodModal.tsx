@@ -21,7 +21,7 @@ function CreatePaymentMethodModal() {
                 </div>
             </div>
             <form method="dialog" className="modal-backdrop">
-                <button className='text-black'>closedfsf</button>
+                <button className='text-black'></button>
             </form>
         </dialog>
     )

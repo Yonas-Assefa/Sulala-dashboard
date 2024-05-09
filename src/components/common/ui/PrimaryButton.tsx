@@ -22,7 +22,8 @@ const paddings = {
 
 function PrimaryButton({ padding, name, handleClick, modal, href, disabled = false }: Props) {
 
-    const handleButtonClick = () => {
+    const handleButtonClick = (e: React.MouseEvent) => {
+        if (disabled) e.preventDefault()
         if (handleClick) {
             handleClick()
         }
@@ -34,8 +35,8 @@ function PrimaryButton({ padding, name, handleClick, modal, href, disabled = fal
     if (href) {
         return (
             <Link href={href}
-                className={`btn rounded-[40px] disabled:bg-secondary border-0 disabled:text-white disabled:cursor-not-allowed text-white bg-primary hover:bg-primary/80 ${padding && paddings[padding]}`}
-                onClick={handleClick}
+                className={`btn rounded-[40px] disabled:bg-secondary border-0 disabled:text-white disabled:cursor-not-allowed text-white bg-primary hover:bg-primary/80 ${padding && paddings[padding]} ${disabled && 'bg-secondary hover:bg-secondary border-0 text-white cursor-not-allowed'}`}
+                onClick={handleButtonClick}
             >
                 {name || 'Continue'}
                 {/* <img src="/loading.gif" alt="" className='h-[30px]' /> */}
