@@ -38,7 +38,7 @@ function CreateCampaignModal() {
                         {
                             promotions.map(promotion => {
                                 return (
-                                    <label htmlFor={promotion.id} className='flex flex-row gap-2 items-center cursor-pointer'>
+                                    <label htmlFor={promotion.id} className='flex flex-row gap-2 items-center cursor-pointer' key={promotion.id}>
                                         <input type="radio" name="radio-5" id={promotion.id}
                                             className="radio radio-success border-secondary"
                                             checked={type == promotion.id}

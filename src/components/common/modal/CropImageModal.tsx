@@ -37,7 +37,7 @@ function CropImageModal({ handleCropChange, rawImage }: Props) {
                         src={rawImage}
                         style={{ height: 400, width: "100%" }}
                         // Cropper.js options
-                        initialAspectRatio={16 / 9}
+                        initialAspectRatio={9 / 9}
                         guides={false}
                         crop={onCrop}
                         ref={cropperRef}
