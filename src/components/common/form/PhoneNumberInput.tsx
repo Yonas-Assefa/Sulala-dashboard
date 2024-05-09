@@ -1,5 +1,5 @@
 import React, { ElementRef } from 'react'
-import countries from '../../constants/countries.json'
+import countries from '@/constants/countries.json'
 
 function PhoneNumberInput() {
     type CountryCode = {

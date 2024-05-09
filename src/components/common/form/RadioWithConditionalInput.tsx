@@ -2,8 +2,8 @@
 import React from 'react'
 import TextInput from './TextInput'
 import CustomMultiSelectInput from './SelectInput'
-import radioInputsForEachInput from '../../constants/radio-input-foreach.placeholder.json'
-import radioInputs from '../../constants/radio-input.placeholder.json'
+import radioInputsForEachInput from '@/constants/radio-input-foreach.placeholder.json'
+import radioInputs from '@/constants/radio-input.placeholder.json'
 import { RadioInputSchema } from '@/types/input-field.type'
 import { CustomRadioInputProps as Props } from '@/types/props.type'
 

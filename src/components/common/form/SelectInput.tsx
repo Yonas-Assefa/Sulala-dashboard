@@ -2,8 +2,8 @@
 import { SelectInputSchema } from '@/types/input-field.type'
 import { CustomSelectInputProps } from '@/types/props.type'
 import React, { useEffect } from 'react'
-import initialData from '../../constants/select-input.placeholder.json'
-import initialNestedData from '../../constants/select-input-nested.placeholder.json'
+import initialData from '@/constants/select-input.placeholder.json'
+import initialNestedData from '@/constants/select-input-nested.placeholder.json'
 import { useDetectClickOutside } from 'react-detect-click-outside';
 
 function CustomMultiSelectInput({ value, onChange, placeholder, label, name, autoComplete, error, onClear, multi = false, nested = false, withImage = false, data, ...props }: CustomSelectInputProps) {
