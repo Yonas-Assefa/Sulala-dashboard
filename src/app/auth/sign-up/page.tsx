@@ -1,11 +1,7 @@
-import SignInWithEmail from '@/components/SignInWithEmail'
-import SignInWithPhone from '@/components/SignInWithPhone'
 import { SignupProps } from '@/types/props.type'
-import Link from 'next/link'
 import React from 'react'
 import PhoneEmailTab from '../components/PhoneEmailTab'
-import PrimaryButton from '@/components/common/ui/PrimaryButton'
-import SecondaryButton from '@/components/common/ui/SecondaryButton'
+import SignUpForm from './SignUpForm'
 
 function SignUp({ searchParams: { by } }: SignupProps) {
 
@@ -17,24 +13,8 @@ function SignUp({ searchParams: { by } }: SignupProps) {
       {/* SIGN IN OPTIONS */}
       <PhoneEmailTab />
 
-      <form className='flex flex-col gap-6 w-full px-10'>
-        {/* SIGN IN INPUT */}
-        {by !== 'email' ?
-          <SignInWithPhone /> :
-          <SignInWithEmail takePassword={false} />}
-
-        {/* SIGN UP LINK */}
-        <div className='flex flex-col gap-3 w-full items-center'>
-          <div className='w-full flex flex-col'>
-            <PrimaryButton name='Continue' disabled />
-          </div>
-
-
-          <p className='text-[#70757f]'>Already have an account?</p>
-          <SecondaryButton name='Sign in' href={'/auth/sign-in'} />
-
-        </div>
-      </form>
+      {/* FORM */}
+      <SignUpForm by={by} />
 
 
       <div className="divider"></div>
