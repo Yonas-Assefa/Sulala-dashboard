@@ -16,7 +16,7 @@ function BudgetingCard() {
                         <span className='capitalize'>Weekly budgeting</span>
                     </label>
                     <div className='w-1/2 check hidden group-has-[:checked]:block '>
-                        <TextInput label='Budget' placeholder='Enter your budget' onChange={() => { }} onClear={() => { }} value='' />
+                        <TextInput label='Budget' placeholder='Enter your budget' />
                     </div>
                 </div>
             </div>

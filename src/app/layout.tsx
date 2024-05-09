@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PageSuspense from "@/components/common/ui/PageSuspense";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className} suppressHydrationWarning>
         <ToastContainer hideProgressBar={false} newestOnTop={false} draggable className='select-none' />
-        <Suspense fallback={<h1>loading</h1>}>
+        <Suspense fallback={<PageSuspense />}>
           {children}
         </Suspense>
       </body>

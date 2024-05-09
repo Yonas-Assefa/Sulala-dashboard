@@ -34,7 +34,7 @@ function ImageListSelector({ multi = false, label }: Props) {
                         {
                             images.map((image, index) => (
                                 <div key={index} className='bg-[#d9d9d9] block h-[180px] aspect-square rounded-[20px] relative'>
-                                    <ImageUnselectButton onClick={() => {
+                                    <ImageUnselectButton handleClick={() => {
                                         setImages((prevImages) => prevImages.filter((_, i) => i !== index))
                                     }} />
                                     <img src={image} alt="" className='w-full h-full rounded-[20px]' />
@@ -49,7 +49,7 @@ function ImageListSelector({ multi = false, label }: Props) {
                     </div> :
                     <div className='w-full'>
                         <div className='bg-[#d9d9d9] block rounded-[20px] relative'>
-                            <ImageUnselectButton onClick={() => setImages([])} />
+                            <ImageUnselectButton handleClick={() => setImages([])} />
                             <img src={images[0]} alt="" className='w-full h-full rounded-[20px]' />
                         </div>
                     </div>}

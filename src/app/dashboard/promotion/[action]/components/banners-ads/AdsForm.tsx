@@ -13,7 +13,7 @@ function BannerAdsForm() {
                 <DestinationCard />
                 <BudgetingCard />
                 <div className="flex flex-row">
-                    <PrimaryButton padding={'md'} name='Pay & Schedule' onClick={() => { }} disabled />
+                    <PrimaryButton padding={'md'} name='Pay & Schedule' disabled />
                 </div>
 
             </div>

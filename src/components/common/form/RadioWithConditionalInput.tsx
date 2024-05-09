@@ -28,18 +28,12 @@ function CustomRadioWithConditionalInput({ inputForEach, showLabel, id, data }: 
                                 <TextInput
                                     label={radioInput.input.label}
                                     placeholder={radioInput.input.placeholder}
-                                    onChange={() => { }}
-                                    onClear={() => { }}
-                                    value=''
                                 />
                                 :
                                 <CustomMultiSelectInput
                                     label={radioInput.input.label}
                                     placeholder={radioInput.input.placeholder}
                                     options={radioInput.input.options}
-                                    onChange={() => { }}
-                                    onClear={() => { }}
-                                    value=''
                                 />
                             }
                         </div>
@@ -53,18 +47,12 @@ function CustomRadioWithConditionalInput({ inputForEach, showLabel, id, data }: 
                         <TextInput
                             label={inputData.input.label}
                             placeholder={inputData.input.placeholder}
-                            onChange={() => { }}
-                            onClear={() => { }}
-                            value=''
                         />
                         :
                         <CustomMultiSelectInput
                             label={inputData.input.label}
                             placeholder={inputData.input.placeholder}
                             options={inputData.input.options}
-                            onChange={() => { }}
-                            onClear={() => { }}
-                            value=''
                         />
                     }
                 </div>

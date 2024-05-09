@@ -13,7 +13,7 @@ function TableActions({ edit, delete: deleteItem, promote, product_id, toggle }:
     const pathname = usePathname()
 
     const getEditLink = () => {
-        return pathname + '/edit?item=' + product_id
+        return pathname + '/edit?type=product&item=' + product_id
     }
 
     return (

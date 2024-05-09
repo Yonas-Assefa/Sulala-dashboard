@@ -1,3 +1,4 @@
+'use client'
 import React, { ElementRef } from 'react'
 import countries from '@/constants/countries.json'
 

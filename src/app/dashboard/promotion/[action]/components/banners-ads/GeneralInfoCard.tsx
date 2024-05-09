@@ -8,8 +8,8 @@ function GeneralInfoCard() {
         <div className='flex flex-col gap-5 bg-tertiary rounded-[30px] p-8'>
             <h3 className='font-semibold text-xl'>General Info</h3>
             <div className='max-w-[1300px] gap-5 flex flex-col'>
-                <TextInput id='campagn-name' placeholder='Enter campaign name' label='Campaign name' onChange={() => { }} onClear={() => { }} value='' />
-                {/* <TextAreaInput id='description' placeholder='Enter description/promotional quotes' label='Description/Promotional quotes' onChange={() => { }} onClear={() => { }} value='' /> */}
+                <TextInput id='campagn-name' placeholder='Enter campaign name' label='Campaign name' />
+                {/* <TextAreaInput id='description' placeholder='Enter description/promotional quotes' label='Description/Promotional quotes'   /> */}
                 <div className="grid grid-cols-2">
                     <DateInput label='Start date & time' />
                     <DateInput label='End date & time' />

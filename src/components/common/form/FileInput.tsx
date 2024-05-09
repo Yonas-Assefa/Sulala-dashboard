@@ -1,7 +1,8 @@
+'use client'
 import { FileInputProps } from '@/types/props.type'
 import React from 'react'
 
-function FileInput({ onChange, label, name, error, onClear, value, accept, ...props }: FileInputProps) {
+function FileInput({ label, name, error, accept, handleFile, file, ...props }: FileInputProps) {
 
     const acceptFilesList = accept.map((fileType, index) => {
         const filteredFileType = fileType.replace('.', '').toUpperCase()
@@ -18,7 +19,7 @@ function FileInput({ onChange, label, name, error, onClear, value, accept, ...pr
     return (
         <>
             <div className='w-full'>
-                {!value?.length ?
+                {!file?.length ?
                     <>
                         <label htmlFor="file-1" className=' cursor-pointer w-full flex flex-col gap-3'>
                             <p className='text-secondary'>{label}</p>
@@ -36,13 +37,13 @@ function FileInput({ onChange, label, name, error, onClear, value, accept, ...pr
                             id='file-1'
                             name={name || 'text-input'}
                             className="hidden"
-                            onChange={onChange}
+                            onChange={handleFile}
                             accept={accept.join(',')}
                         />
                     </> :
                     <div className='flex flex-row gap-5'>
                         <img src="/icons/file-green.svg" alt="" />
-                        <p className='font-semibold text-black'>{value?.[0]?.name}</p>
+                        <p className='font-semibold text-black'>{file?.[0]?.name}</p>
                     </div>}
             </div >
         </>

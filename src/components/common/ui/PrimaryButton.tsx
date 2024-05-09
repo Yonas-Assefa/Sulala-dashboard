@@ -1,7 +1,12 @@
+'use client'
+import { openModal } from '@/utils/openModal'
+import Link from 'next/link'
 import React from 'react'
 
 type Props = {
-    onClick?: () => void
+    handleClick?: () => void
+    href?: string
+    modal?: string
     padding?: 'xsm' | 'sm' | 'md' | 'lg' | 'xlg'
     name?: string
     disabled?: boolean
@@ -15,12 +20,34 @@ const paddings = {
     xlg: 'px-[300px]'
 }
 
-function PrimaryButton({ padding, name, onClick, disabled = false }: Props) {
-    return (
+function PrimaryButton({ padding, name, handleClick, modal, href, disabled = false }: Props) {
+
+    const handleButtonClick = () => {
+        if (handleClick) {
+            handleClick()
+        }
+        if (modal) {
+            openModal(modal)
+        }
+    }
+
+    if (href) {
+        return (
+            <Link href={href}
+                className={`btn rounded-[40px] disabled:bg-secondary border-0 disabled:text-white disabled:cursor-not-allowed text-white bg-primary hover:bg-primary/80 ${padding && paddings[padding]}`}
+                onClick={handleClick}
+            >
+                {name || 'Continue'}
+                {/* <img src="/loading.gif" alt="" className='h-[30px]' /> */}
+
+            </Link>
+        )
+    }
+    else return (
         <button
             type='submit'
             className={`btn rounded-[40px] disabled:bg-secondary border-0 disabled:text-white disabled:cursor-not-allowed text-white bg-primary hover:bg-primary/80 ${padding && paddings[padding]}`}
-            onClick={onClick}
+            onClick={handleButtonClick}
             disabled={disabled}
         >
             {name || 'Continue'}

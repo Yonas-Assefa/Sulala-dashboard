@@ -28,7 +28,7 @@ function DestinationCard() {
                                         <span className='capitalize'>{item.name}</span>
                                     </label>
                                     <div className='w-1/2 check hidden peer-has-[:checked]:block '>
-                                        <CustomMultiSelectInput id={item.id} label={item.input_label} placeholder={item.input_placeholder} multi={true} nested={false} withImage={true} onChange={() => { }} onClear={() => { }} value='' />
+                                        <CustomMultiSelectInput id={item.id} label={item.input_label} placeholder={item.input_placeholder} multi={true} nested={false} withImage={true} />
                                     </div>
                                 </div>
                             )
