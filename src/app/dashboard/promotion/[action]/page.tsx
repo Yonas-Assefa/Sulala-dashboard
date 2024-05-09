@@ -9,15 +9,19 @@ import { getAction, getItemType, getTab } from './utils/helper.util'
 
 type Props = {
     params: {
+        action: string
+    },
+    searchParams: {
+        type: string
         tab: string
     }
 }
 
-function page({ params: { tab: actionType } }: Props) {
-    const { searchParams, createQueryString } = useCreateQueryString()
+function page({ params: { action: actionType }, searchParams: { tab: tabType, type } }: Props) {
+    const { createQueryString } = useCreateQueryString()
 
-    const item = getItemType(searchParams.get('type'))
-    const tab = getTab(searchParams.get('tab'), searchParams.get('type'))
+    const item = getItemType(type)
+    const tab = getTab(tabType, type)
     const action = getAction(actionType)
 
     return (

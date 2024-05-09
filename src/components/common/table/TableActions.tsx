@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import React from 'react'
 import { Actions } from '../../../types/table.type'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { useCreateQueryString } from '@/hooks/useCreateQueryString'
 
 type Props = Actions & {
