@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from 'react'
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from 'react-toastify';
@@ -20,7 +21,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className} suppressHydrationWarning>
         <ToastContainer hideProgressBar={false} newestOnTop={false} draggable className='select-none' />
-        {children}
+        <Suspense fallback={<h1>loading</h1>}>
+          {children}
+        </Suspense>
       </body>
     </html>
   );

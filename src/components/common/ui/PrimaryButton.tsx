@@ -18,6 +18,7 @@ const paddings = {
 function PrimaryButton({ padding, name, onClick, disabled = false }: Props) {
     return (
         <button
+            type='submit'
             className={`btn rounded-[40px] disabled:bg-secondary border-0 disabled:text-white disabled:cursor-not-allowed text-white bg-primary hover:bg-primary/80 ${padding && paddings[padding]}`}
             onClick={onClick}
             disabled={disabled}

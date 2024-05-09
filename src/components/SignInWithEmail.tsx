@@ -26,12 +26,12 @@ function SignInWithEmail({ takePassword = true }) {
 
     return (
         <div className='flex flex-col gap-3 w-full items-center'>
-            <label htmlFor="email-address" className='self-start'>Email</label>
+            <label htmlFor="email" className='self-start'>Email</label>
             <div className='flex items-center px-3 bg-white justify-between gap-0 border focus-within:border-primary rounded-[40px] w-full'>
                 <input
                     type="text"
                     placeholder="Type here"
-                    name='email-address'
+                    name='email'
                     className="input w-full max-w-xs bg-transparent focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none"
                     onChange={handleEmailAddress}
                     value={email}
