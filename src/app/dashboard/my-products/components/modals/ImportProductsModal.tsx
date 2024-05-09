@@ -29,7 +29,7 @@ function ImportProductsModal() {
                     <h3 className="font-bold text-xl text-black text-center font-serif">Import</h3>
                 </div>
                 <div className="px-5 flex flex-col gap-3 mt-4">
-                    <FileInput label='Please attach the csv file' onChange={handleFile} onClear={clearFile} value={file} />
+                    <FileInput label='Please attach the csv file' onChange={handleFile} onClear={clearFile} value={file} accept={['.csv']} />
                     <PrimaryButton name='Import' disabled={file?.length == undefined} />
                 </div>
             </div>

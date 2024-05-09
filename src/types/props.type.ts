@@ -31,11 +31,14 @@ export type CustomRadioInputProps = {
     inputForEach?: boolean
     showLabel?: boolean
     id: string
-    data: RadioInputSchema
+    data?: RadioInputSchema
 }
+
+type AcceptFileFormate = 'image/*' | 'audio/*' | 'video/*' | 'application/pdf' | 'application/msword' | '.pdf' | '.jpeg' | '.png' | '.jpg' | '.doc' | '.docx' | '.xls' | '.xlsx' | '.csv' | '.txt'
 
 export type FileInputProps = Pick<BaseInputProps, 'onChange' | 'label' | 'name' | 'error' | 'onClear'> & {
     value: FileList | null
+    accept: AcceptFileFormate[]
 }
 
 export type SignupProps = {

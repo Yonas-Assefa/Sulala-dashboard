@@ -1,7 +1,7 @@
 import React from 'react'
 import TextInput from './common/form/TextInput'
-import SelectInput from './common/form/LegacySelectInput'
 import FileInput from './common/form/FileInput'
+import CustomMultiSelectInput from './common/form/SelectInput'
 
 function SetupAccountStageOne() {
     return (
@@ -17,7 +17,7 @@ function SetupAccountStageTwo() {
     return (
         <div className='flex flex-col gap-5 w-full items-stretch'>
             <TextInput label="What's your company name?" placeholder='Enter your company name' value='' onChange={() => { }} onClear={() => { }} />
-            <SelectInput label='Please choose categories for sale' placeholder='Choose categories' value='' onChange={() => { }} onClear={() => { }} />
+            <CustomMultiSelectInput multi={false} nested={false} label='Please choose categories for sale' placeholder='Choose categories' value='' onChange={() => { }} onClear={() => { }} />
             <TextInput label="What's your legal address?" placeholder='Enter your email address' value='' onChange={() => { }} onClear={() => { }} />
         </div>
     )
@@ -47,18 +47,18 @@ function SetupAccountStageThree() {
     return (
         <div className='flex flex-col gap-5 w-full items-start'>
             <h4 className='font-semibold'>Please upload documents</h4>
-            <FileInput label='Please attach the certificates' onChange={handleCertificate} onClear={clearCertificate} value={certificate} />
-            <FileInput label='Please attach the tax form' onChange={handleTaxForm} onClear={clearTaxForm} value={taxForm} />
+            <FileInput label='Please attach the certificates' onChange={handleCertificate} onClear={clearCertificate} value={certificate} accept={['.pdf', 'image/*']} />
+            <FileInput label='Please attach the tax form' onChange={handleTaxForm} onClear={clearTaxForm} value={taxForm} accept={['.pdf', 'image/*']} />
         </div>
     )
 }
 
-function SetupAccountForm({ activeStage = 1 }) {
+function SetupAccountForm({ activeStage }: { activeStage: string }) {
     return (
         <div>
-            {activeStage === 1 && <SetupAccountStageOne />}
-            {activeStage === 2 && <SetupAccountStageTwo />}
-            {activeStage === 3 && <SetupAccountStageThree />}
+            {activeStage === 'one' && <SetupAccountStageOne />}
+            {activeStage === 'two' && <SetupAccountStageTwo />}
+            {activeStage === 'three' && <SetupAccountStageThree />}
         </div>
     )
 }

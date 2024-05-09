@@ -9,10 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.35.1",
     "intl-tel-input": "^21.2.8",
     "libphonenumber-js": "^1.10.62",
     "next": "14.2.3",
     "react": "^18",
+    "react-cropper": "^2.3.3",
+    "react-detect-click-outside": "^1.1.7",
     "react-dom": "^18",
     "react-toastify": "^10.0.5"
   },

@@ -20,7 +20,7 @@ function ServiceHead() {
                 <div>
                     <Link
                         className={`btn rounded-[40px] disabled:bg-secondary border-0 disabled:text-white disabled:cursor-not-allowed text-white bg-primary hover:bg-primary/80`}
-                        href={'/dashboard/my-services/add-service'}
+                        href={'/dashboard/my-services/add'}
                     >
                         Add Service
                     </Link>

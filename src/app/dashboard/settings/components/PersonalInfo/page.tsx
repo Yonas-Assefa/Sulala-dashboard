@@ -9,7 +9,7 @@ import { useCreateQueryString } from '@/hooks/useCreateQueryString'
 function PersonalInfo() {
     const { createQueryString } = useCreateQueryString()
     return (
-        <div className='mt-4 w-full flex flex-col gap-8 overflow-y-scroll'>
+        <div className='mt-4 w-full flex flex-col gap-8'>
             <div className='grid grid-cols-2 max-w-[1300px] gap-5'>
                 <TextInput id='first-name' placeholder='First name' label='First name' onChange={() => { }} onClear={() => { }} value='' />
                 <TextInput id='last-name' placeholder='Last name' label='Last name' onChange={() => { }} onClear={() => { }} value='' />

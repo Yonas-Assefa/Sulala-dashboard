@@ -10,6 +10,11 @@ type Props = Actions & {
 }
 function TableActions({ edit, delete: deleteItem, promote, product_id, toggle }: Props) {
     const { createQueryString } = useCreateQueryString()
+    const pathname = usePathname()
+
+    const getEditLink = () => {
+        return pathname + '/edit?item=' + product_id
+    }
 
     return (
         <td>
@@ -21,7 +26,7 @@ function TableActions({ edit, delete: deleteItem, promote, product_id, toggle }:
                         </div>
                     }
                     {edit &&
-                        <Link href={createQueryString([{ key: 'item', value: product_id }, { key: 'action', value: 'edit-product' }])}>
+                        <Link href={getEditLink()}>
                             <img src="/icons/edit.svg" alt="" />
                         </Link>
                     }

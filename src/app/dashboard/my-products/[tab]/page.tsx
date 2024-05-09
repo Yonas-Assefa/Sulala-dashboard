@@ -6,15 +6,29 @@ import SelectInput from '@/components/common/form/SelectInput'
 import TextAreaInput from '@/components/common/form/TextAreaInput'
 import TextInput from '@/components/common/form/TextInput'
 import React from 'react'
+import { notFound } from 'next/navigation'
+import ImageListSelector from '@/components/common/form/ImageListSelector'
 
-function page() {
+type Props = {
+    params: {
+        tab: string
+    }
+}
+
+function page({ params: { tab } }: Props) {
+
+    if (!['add', 'edit'].includes(tab)) {
+        return notFound()
+    }
+
+
     return (
-        <div className='text-black flex flex-col w-full h-full p-8 gap-10'>
+        <div className='text-black flex flex-col w-full h-full p-8 gap-10 overflow-y-scroll'>
             <div className='flex flex-row font-semibold justify-start items-center gap-6 text-3xl font-serif'>
                 <div className='mt-4' >
                     <BackButton />
                 </div>
-                <h2>Add Product</h2>
+                <h2 className='capitalize'>{tab} Product</h2>
             </div>
             <div className='grid grid-cols-3 gap-6'>
                 <div className='col-span-2 flex flex-col gap-5 bg-tertiary rounded-[30px] p-8'>
@@ -28,35 +42,7 @@ function page() {
                         <TextInput id='price' placeholder='Enter price' label='Price' onChange={() => { }} onClear={() => { }} value='' />
                         <TextInput id='discount' placeholder='Enter discount in %' label='Discount' onChange={() => { }} onClear={() => { }} value='' />
                         <div className="col-span-2">
-                            <div className='flex flex-col gap-1'>
-                                <p>Images</p>
-                                {/* <label htmlFor="image" className='flex flex-col items-center justify-center gap-5 cursor-pointer w-full bg-white p-4 border rounded-[30px] border-dashed h-[300px]'>
-                                    <img src="/icons/image.svg" alt="" />
-                                    <div className='flex flex-col justify-center items-center text-secondary'>
-                                        <p>Upload upto 8 images. JPEG, PNG</p>
-                                        <p>Maximum size 20 MB</p>
-                                    </div>
-                                    <div className='flex gap-2'>
-                                        <img src="/icons/upload.svg" alt="" className='w-[15px]' />
-                                        <p className='text-primary font-semibold'>Upload</p>
-                                    </div>
-                                </label> */}
-                                <div className='flex flex-wrap gap-3'>
-                                    <div className='bg-[#d9d9d9] block h-[180px] aspect-square rounded-[20px] relative'>
-                                        <ImageUnselectButton />
-                                    </div>
-                                    <div className='bg-[#d9d9d9] block h-[180px] aspect-square rounded-[20px] relative'>
-                                        <ImageUnselectButton />
-                                        <img src="/images/milktake-silver.svg" alt="" className='w-full h-full rounded-[20px]' />
-                                    </div>
-                                    <label htmlFor='image' className='bg-[#ffffff] cursor-pointer block h-[180px] aspect-square rounded-[20px]'>
-                                        <div className='w-full h-full flex justify-center items-center'>
-                                            <img src="/icons/image.svg" alt="" className='w-[30px] aspect-square' />
-                                        </div>
-                                    </label>
-                                </div>
-                                <input type="file" name="" id="image" className='hidden' />
-                            </div>
+                            <ImageListSelector multi />
                         </div>
                     </div>
 
