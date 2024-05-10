@@ -9,9 +9,10 @@ type Props = {
     handleClick?: () => void
     name: string
     padding?: 'xsm' | 'sm' | 'md' | 'lg' | 'xlg'
+    type?: 'submit' | 'reset' | 'button'
 }
 
-function SecondaryButton({ href, name, padding, modal, handleClick }: Props) {
+function SecondaryButton({ href, name, padding, modal, type, handleClick }: Props) {
     const paddings = {
         xsm: 'px-[10px]',
         sm: 'px-[30px]',
@@ -36,7 +37,11 @@ function SecondaryButton({ href, name, padding, modal, handleClick }: Props) {
             </Link>
         )
     } else {
-        return (<button onClick={handleButtonClick} className={`btn w-full rounded-[40px] bg-[#f6f6f6] hover:bg-primary/20 border-0 text-black ${padding && paddings[padding]}`}>
+        return (<button
+            onClick={handleButtonClick}
+            className={`btn w-full rounded-[40px] bg-[#f6f6f6] hover:bg-primary/20 border-0 text-black ${padding && paddings[padding]}`}
+            type={type || 'button'}
+        >
             {name}
         </button>)
     }

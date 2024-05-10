@@ -2,6 +2,7 @@
 import { openModal } from '@/utils/openModal'
 import Link from 'next/link'
 import React from 'react'
+import { useFormStatus } from 'react-dom'
 
 type Props = {
     handleClick?: () => void
@@ -10,6 +11,7 @@ type Props = {
     padding?: 'xsm' | 'sm' | 'md' | 'lg' | 'xlg'
     name?: string
     disabled?: boolean
+    type?: 'submit' | 'reset' | 'button'
 }
 
 const paddings = {
@@ -20,7 +22,9 @@ const paddings = {
     xlg: 'px-[300px]'
 }
 
-function PrimaryButton({ padding, name, handleClick, modal, href, disabled = false }: Props) {
+function PrimaryButton({ padding, name, handleClick, modal, href, type, disabled = false }: Props) {
+
+    const { pending } = useFormStatus();
 
     const handleButtonClick = (e: React.MouseEvent) => {
         if (disabled) e.preventDefault()
@@ -35,25 +39,28 @@ function PrimaryButton({ padding, name, handleClick, modal, href, disabled = fal
     if (href) {
         return (
             <Link href={href}
-                className={`btn rounded-[40px] disabled:bg-secondary border-0 disabled:text-white disabled:cursor-not-allowed text-white bg-primary hover:bg-primary/80 ${padding && paddings[padding]} ${disabled && 'bg-secondary hover:bg-secondary border-0 text-white cursor-not-allowed'}`}
+                className={`btn rounded-[40px] disabled:bg-secondary border-0 disabled:text-white disabled:cursor-not-allowed text-white bg-primary hover:bg-primary/80 ${padding && paddings[padding]} ${(disabled || pending) && 'bg-secondary hover:bg-secondary border-0 text-white cursor-not-allowed'}`}
                 onClick={handleButtonClick}
             >
-                {name || 'Continue'}
-                {/* <img src="/loading.gif" alt="" className='h-[30px]' /> */}
+                {
+                    pending ? <span className="loading loading-spinner loading-md text-primary"></span> :
+                        (name || 'Continue')
+                }
 
             </Link>
         )
     }
     else return (
         <button
-            type='submit'
+            type={type || 'button'}
             className={`btn rounded-[40px] disabled:bg-secondary border-0 disabled:text-white disabled:cursor-not-allowed text-white bg-primary hover:bg-primary/80 ${padding && paddings[padding]}`}
             onClick={handleButtonClick}
-            disabled={disabled}
+            disabled={disabled || pending}
         >
-            {name || 'Continue'}
-            {/* <img src="/loading.gif" alt="" className='h-[30px]' /> */}
-
+            {
+                pending ? <span className="loading loading-spinner loading-md text-primary"></span> :
+                    (name || 'Continue')
+            }
         </button>
     )
 }

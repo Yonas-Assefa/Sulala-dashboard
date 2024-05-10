@@ -1,7 +1,12 @@
 'use client'
+import { error } from 'console'
 import React, { ElementRef } from 'react'
 
-function SignInWithEmail({ takePassword = true }) {
+type Props = {
+    error?: string
+    takePassword?: boolean
+}
+function SignInWithEmail({ takePassword = true, error }: Props) {
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
     const [showPassword, setShowPassword] = React.useState(false)
@@ -27,23 +32,28 @@ function SignInWithEmail({ takePassword = true }) {
     return (
         <div className='flex flex-col gap-3 w-full items-center'>
             <label htmlFor="email" className='self-start'>Email</label>
-            <div className='flex items-center px-3 bg-white justify-between gap-0 border focus-within:border-primary rounded-[40px] w-full'>
-                <input
-                    type="text"
-                    placeholder="Type here"
-                    name='email'
-                    className="input w-full max-w-xs bg-transparent focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none"
-                    onChange={handleEmailAddress}
-                    value={email}
-                    ref={emailInput}
-                    autoComplete='false'
-                />
-                {email &&
-                    <button
-                        onClick={clearEmailAddress}>
-                        <img src="/x-circle.svg" alt="" className='mr-0 stroke-emerald-500' />
-                    </button>
-                }
+            <div className='w-full'>
+                <div className={`flex items-center px-3 justify-between gap-0 border focus-within:border-primary rounded-[40px] w-full ${error ? 'bg-dangerlight border-danger' : 'bg-white'}`}>
+                    <input
+                        type="text"
+                        placeholder="Type here"
+                        name='email'
+                        className="input w-full max-w-xs bg-transparent focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none"
+                        onChange={handleEmailAddress}
+                        value={email}
+                        ref={emailInput}
+                        autoComplete='false'
+                    />
+                    {email &&
+                        <button
+                            onClick={clearEmailAddress}>
+                            <img src="/x-circle.svg" alt="" className='mr-0 stroke-emerald-500' />
+                        </button>
+                    }
+                </div>
+                {error && <span className="text-xs text-danger">
+                    {error}
+                </span>}
             </div>
 
             {takePassword &&

@@ -1,5 +1,4 @@
 'use client'
-import { signIn } from '@/app/actions'
 import SignInWithEmail from '@/components/SignInWithEmail'
 import SignInWithPhone from '@/components/SignInWithPhone'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
@@ -12,11 +11,14 @@ type SignInProps = {
 
 function SignInForm({ by }: SignInProps) {
     return (
-        <form action={signIn} className='flex flex-col gap-6 w-full px-10'>
+        <form action={() => { }} className='flex flex-col gap-6 w-full px-10'>
             {/* SIGN IN INPUT */}
             {by !== 'email' ?
                 <SignInWithPhone /> :
-                <SignInWithEmail />}
+                <SignInWithEmail />
+            }
+
+            <input type='text' hidden name='by' value={by} />
 
             {/* SIGN UP LINK */}
             <div className='flex flex-col gap-3 w-full items-center'>
