@@ -36,7 +36,7 @@ function SignInWithEmail({ takePassword = true, error }: Props) {
                 <div className={`flex items-center px-3 justify-between gap-0 border rounded-[40px] w-full ${error ? 'bg-dangerlight border-danger' : 'bg-white focus-within:border-primary'}`}>
                     <input
                         type="text"
-                        placeholder="Type here"
+                        placeholder="Enter email"
                         name='email'
                         className="input w-full max-w-xs bg-transparent focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none"
                         onChange={handleEmailAddress}

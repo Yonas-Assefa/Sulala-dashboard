@@ -99,7 +99,7 @@ function PhoneNumberInput({ error }: { error?: string }) {
                             type="text"
                             id='phone_number'
                             name='phone_number'
-                            placeholder="Type here"
+                            placeholder="Enter phone number"
                             className="input w-full bg-transparent border-0 outline-0 rounded-r-[30px] focus:border-0 focus:outline-none"
                             onChange={handlePhoneNumber}
                             value={phone}
