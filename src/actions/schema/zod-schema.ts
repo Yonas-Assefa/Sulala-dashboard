@@ -4,6 +4,7 @@ import parsePhoneNumberFromString from 'libphonenumber-js';
 export const phoneSignUpSchema = z.object({
     phone_number: z.string().transform((arg, ctx) => {
         const phone = parsePhoneNumberFromString(arg, {
+            // DEFAULT ETHIOPIA
             defaultCountry: 'ET',
             extract: false,
         });

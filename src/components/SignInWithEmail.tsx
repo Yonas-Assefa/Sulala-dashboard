@@ -33,7 +33,7 @@ function SignInWithEmail({ takePassword = true, error }: Props) {
         <div className='flex flex-col gap-3 w-full items-center'>
             <label htmlFor="email" className='self-start'>Email</label>
             <div className='w-full'>
-                <div className={`flex items-center px-3 justify-between gap-0 border focus-within:border-primary rounded-[40px] w-full ${error ? 'bg-dangerlight border-danger' : 'bg-white'}`}>
+                <div className={`flex items-center px-3 justify-between gap-0 border rounded-[40px] w-full ${error ? 'bg-dangerlight border-danger' : 'bg-white focus-within:border-primary'}`}>
                     <input
                         type="text"
                         placeholder="Type here"
@@ -42,7 +42,7 @@ function SignInWithEmail({ takePassword = true, error }: Props) {
                         onChange={handleEmailAddress}
                         value={email}
                         ref={emailInput}
-                        autoComplete='false'
+                        autoComplete="disabled"
                     />
                     {email &&
                         <button
@@ -68,7 +68,7 @@ function SignInWithEmail({ takePassword = true, error }: Props) {
                             className="input w-full max-w-xs bg-transparent focus:bg-transparent border-0 active:border-0 focus:border-0 focus:outline-none"
                             onChange={handlePasswordChange}
                             value={password}
-                            autoComplete='false'
+                            autoComplete="disabled"
                         />
                         {showPassword ?
                             <button

@@ -94,7 +94,7 @@ function PhoneNumberInput({ error }: { error?: string }) {
                         </ul>
                     </details>
                     {/* PHONE NUMBER INPUT AND CLEAR BUTTON */}
-                    <div className={`flex border-l-2 w-full justify-between pr-3 ${error ? 'border-danger' : 'focus-within:border-primary'}`}>
+                    <div className={`flex border-l w-full justify-between pr-3 ${error ? 'border-danger' : 'focus-within:border-primary'}`}>
                         <input
                             type="text"
                             id='phone_number'
@@ -104,6 +104,7 @@ function PhoneNumberInput({ error }: { error?: string }) {
                             onChange={handlePhoneNumber}
                             value={phone}
                             ref={phoneInputRef}
+                            autoComplete="disabled"
                         />
 
                         <ResetButton handleClear={clearPhoneNumber} show={!!phone} />

@@ -1,7 +1,6 @@
 'use server'
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
-import { revalidatePath } from 'next/cache';
-import { SIGNUP_URL } from './constants/urls.constant';
+import { SIGNUP_URL } from './config/urls';
 import { emailSignUpSchema, phoneSignUpSchema } from './schema/zod-schema';
 import { getPhoneNumber } from './utils/helper';
 
