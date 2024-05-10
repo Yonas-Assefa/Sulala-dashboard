@@ -1,21 +1,33 @@
 'use client'
+import { signIn } from '@/actions/signin'
 import SignInWithEmail from '@/components/SignInWithEmail'
 import SignInWithPhone from '@/components/SignInWithPhone'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import SecondaryButton from '@/components/common/ui/SecondaryButton'
+import { useToastMessage } from '@/hooks/useToastMessage'
+import { EMPTY_FORM_STATE } from '@/utils/formStateHelper'
 import React from 'react'
+import { useFormState } from 'react-dom'
 
 type SignInProps = {
     by: "phone" | "email" | undefined
 }
 
 function SignInForm({ by }: SignInProps) {
+
+    const [formState, action] = useFormState(
+        signIn,
+        EMPTY_FORM_STATE
+    );
+
+    useToastMessage(formState);
+
     return (
-        <form action={() => { }} className='flex flex-col gap-6 w-full px-10'>
+        <form action={action} className='flex flex-col gap-6 w-full px-10'>
             {/* SIGN IN INPUT */}
             {by !== 'email' ?
-                <SignInWithPhone /> :
-                <SignInWithEmail />
+                <SignInWithPhone error={formState.fieldErrors?.phone_number?.[0]} /> :
+                <SignInWithEmail emailError={formState.fieldErrors?.email?.[0]} passwordError={formState.fieldErrors?.password?.[0]} />
             }
 
             <input type='text' hidden name='by' value={by} />
@@ -23,7 +35,7 @@ function SignInForm({ by }: SignInProps) {
             {/* SIGN UP LINK */}
             <div className='flex flex-col gap-3 w-full items-center'>
                 <div className='w-full flex flex-col'>
-                    <PrimaryButton name='Sign in' />
+                    <PrimaryButton name='Sign in' type='submit' />
                 </div>
 
                 <p className='text-[#70757f] select-none'>Don't have an account?</p>

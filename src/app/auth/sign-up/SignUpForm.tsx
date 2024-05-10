@@ -27,7 +27,7 @@ function SignUpForm({ by }: SignUpProps) {
             {/* SIGN IN INPUT */}
             {by !== 'email' ?
                 <SignInWithPhone error={formState.fieldErrors?.phone_number?.[0]} /> :
-                <SignInWithEmail error={formState.fieldErrors?.email?.[0]} takePassword={false} />}
+                <SignInWithEmail emailError={formState.fieldErrors?.email?.[0]} takePassword={false} />}
 
             <input type='text' hidden name='by' value={by} />
 
