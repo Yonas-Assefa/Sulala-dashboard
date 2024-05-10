@@ -1,10 +1,10 @@
 'use server'
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
-import { SIGNUP_URL } from './config/urls';
-import { emailSignUpSchema, phoneAuthSchema } from './schema/zod-schema';
+import { EMAIL_SIGNIN_URL, PHONE_SIGNIN_URL } from './config/urls';
+import { emailSignInSchema, phoneAuthSchema } from './schema/zod-schema';
 import { getPhoneNumber } from './utils/helper';
 
-export const signUp = async (
+export const signIn = async (
     formState: FormState,
     formData: FormData
 ) => {
@@ -12,20 +12,22 @@ export const signUp = async (
         const by = formData.get('by')?.toString()
 
         const data = {}
+        const SIGNIN_URL = by == 'email' ? EMAIL_SIGNIN_URL : PHONE_SIGNIN_URL
 
         if (by == 'email') {
-            const ZodObj = emailSignUpSchema.parse({
+            const ZodObj = emailSignInSchema.parse({
                 email: formData.get('email'),
+                password: formData.get('password'),
             });
             Object.assign(data, { ...ZodObj })
         } else {
             const ZodObj = phoneAuthSchema.parse({
-                phone_number: getPhoneNumber({ phone_number: formData.get('phone_number'), country_code: formData.get('country_code') }),
+                phone_number: getPhoneNumber({ phone_number: formData.get('phone_number'), country_code: formData.get('country_code') })
             });
             Object.assign(data, { ...ZodObj })
         }
 
-        const response = await fetch(SIGNUP_URL, {
+        const response = await fetch(SIGNIN_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -35,14 +37,10 @@ export const signUp = async (
 
         const body = await response.json()
         if (!response.ok || !body.success) {
-            throw new Error(body.message || 'Failed to sign up');
+            throw new Error(body.message || 'Failed to signin');
         }
 
-        const successMessage = (by == 'email') ?
-            'Check your email for the verification link' :
-            'Check your message for the verification code'
-
-        return toFormState('SUCCESS', `Signup successful! ${successMessage}.`);
+        return toFormState('SUCCESS', 'Signin successful!.');
     } catch (error) {
         return fromErrorToFormState(error);
     }

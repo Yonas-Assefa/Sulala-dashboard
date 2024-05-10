@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import parsePhoneNumberFromString from 'libphonenumber-js';
 
-export const phoneSignUpSchema = z.object({
+export const phoneAuthSchema = z.object({
     phone_number: z.string().transform((arg, ctx) => {
         const phone = parsePhoneNumberFromString(arg, {
             // DEFAULT ETHIOPIA
@@ -22,4 +22,9 @@ export const phoneSignUpSchema = z.object({
 
 export const emailSignUpSchema = z.object({
     email: z.string().email(),
+});
+
+export const emailSignInSchema = z.object({
+    email: z.string().email(),
+    password: z.string(),
 });
