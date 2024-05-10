@@ -46,7 +46,8 @@ function SignInWithEmail({ takePassword = true, emailError, passwordError }: Pro
                     />
                     {email &&
                         <button
-                            onClick={clearEmailAddress}>
+                            onClick={clearEmailAddress}
+                            type='button'>
                             <img src="/x-circle.svg" alt="" className='mr-0 stroke-emerald-500' />
                         </button>
                     }
