@@ -11,7 +11,7 @@ export const signIn = async (
     try {
         const by = formData.get('by')?.toString()
 
-        const data = {}
+        const data: { email?: string, password?: string, phone_number?: string } = {}
         const SIGNIN_URL = by == 'email' ? EMAIL_SIGNIN_URL : PHONE_SIGNIN_URL
 
         if (by == 'email') {
@@ -40,7 +40,13 @@ export const signIn = async (
             throw new Error(body.message || 'Failed to signin');
         }
 
-        return toFormState('SUCCESS', 'Signin successful!.');
+        const successMessage = (by == 'email') ?
+            'Signin successful!.' :
+            'Check your message for the verification code'
+
+        const redirectUrl = (by == 'email') ? '' : `/auth/enter-otp?phone=${data.phone_number}&action=signin`
+
+        return toFormState('SUCCESS', successMessage, redirectUrl);
     } catch (error) {
         return fromErrorToFormState(error);
     }

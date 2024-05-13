@@ -1,8 +1,12 @@
 import React, { ElementRef } from 'react'
 
-function OTPInput({ submitBtn }: { submitBtn: React.RefObject<ElementRef<'button'>> }) {
-
-    const [otp, setOTP] = React.useState<string[]>(['', '', '', '', '', ''])
+type Props = {
+    submitBtn: React.RefObject<ElementRef<'button'>>
+    setDisabled: React.Dispatch<React.SetStateAction<boolean>>
+    otp: string[]
+    setOTP: React.Dispatch<React.SetStateAction<string[]>>
+}
+function OTPInput({ submitBtn, setDisabled, otp, setOTP }: Props) {
 
     const input1 = React.useRef<ElementRef<'input'>>(null)
     const input2 = React.useRef<ElementRef<'input'>>(null)
@@ -10,6 +14,11 @@ function OTPInput({ submitBtn }: { submitBtn: React.RefObject<ElementRef<'button
     const input4 = React.useRef<ElementRef<'input'>>(null)
     const input5 = React.useRef<ElementRef<'input'>>(null)
     const input6 = React.useRef<ElementRef<'input'>>(null)
+
+    React.useEffect(() => {
+        console.log({ otp }); // Log the updated otp state
+        setDisabled(otp.some(value => value === ''));
+    }, [otp]);
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const index = parseInt(e.target.name.slice(-1))
