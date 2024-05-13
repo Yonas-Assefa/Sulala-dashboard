@@ -1,4 +1,33 @@
 import { cookies } from "next/headers";
+import parsePhoneNumberFromString from 'libphonenumber-js';
+import { z } from 'zod';
+
+export const phoneTransform = (arg: string, ctx: z.RefinementCtx) => {
+    const phone = parsePhoneNumberFromString(arg, {
+        // DEFAULT ETHIOPIA
+        defaultCountry: 'ET',
+        extract: false,
+    });
+
+    if (phone && phone.isValid()) {
+        return phone.number;
+    }
+    ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Invalid phone number',
+    });
+    return z.NEVER;
+}
+
+export const confirmPasswordRefine = {
+    Fn: (values: any) => {
+        return values.password === values.confirm_password;
+    },
+    Opt: {
+        message: "Passwords must match!",
+        path: ["confirm_password"],
+    }
+}
 
 type TGetPhoneNumber = {
     phone_number: FormDataEntryValue | string | null;
@@ -64,4 +93,9 @@ export const setBrowserCookie = (response: Response) => {
         httpOnly: true,
         path: '/',
     })
+    // cookies().set('set-cookie', cookieString)
+}
+
+export const getBrowserCookie = () => {
+    return cookies().getAll().toSorted() || ''
 }

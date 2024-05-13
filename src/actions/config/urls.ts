@@ -18,3 +18,5 @@ export const VERIFY_PHONE = `${VENDOR_BASE_URL}verify-phonenumber/`;
 export const CONFIRM_PHONE = `${VENDOR_BASE_URL}confirm_phonenumber_login/`;
 
 export const VERIFY_EMAIL = `${VENDOR_BASE_URL}verify-email/`;
+
+export const CREATE_PASSWORD = `${VENDOR_BASE_URL}set-password/`;
