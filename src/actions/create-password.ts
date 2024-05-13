@@ -15,11 +15,13 @@ export const createPassword = async (
             confirm_password: formData.get('password_confirm'),
         });
 
+        console.log({ session: getBrowserCookie()?.value })
+
         const response = await fetch(CREATE_PASSWORD, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Cookie': getBrowserCookie(),
+                'Cookie': getBrowserCookie()?.value,
             },
             body: JSON.stringify(data),
         });

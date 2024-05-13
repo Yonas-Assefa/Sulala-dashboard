@@ -5,6 +5,7 @@ import "./globals.css";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PageSuspense from "@/components/common/ui/PageSuspense";
+import QueryProvider from "@/components/common/provider/QueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,12 +19,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  console.log('RootLayout')
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className} suppressHydrationWarning>
         <ToastContainer hideProgressBar={true} newestOnTop={false} draggable className='select-none' />
         <Suspense fallback={<PageSuspense />}>
-          {children}
+          <QueryProvider>{children}</QueryProvider>
         </Suspense>
       </body>
     </html>

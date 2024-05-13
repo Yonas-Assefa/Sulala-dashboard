@@ -1,4 +1,3 @@
-import { cookies } from "next/headers";
 import parsePhoneNumberFromString from 'libphonenumber-js';
 import { z } from 'zod';
 
@@ -68,34 +67,4 @@ export const makeRequestWithCookie = async (url: string, data: object, method: T
         body: method === 'GET' ? undefined : JSON.stringify(data),
     })
     return response
-}
-
-export const setBrowserCookie = (response: Response) => {
-    const cookieString = response.headers.get('set-cookie') || '';
-    // const accessToken = RegExp(/(?<=access=).+?(?=;)/).exec(cookieString)?.[0]
-    // const refreshToken = RegExp(/(?<=refresh=).+?(?=;)/).exec(cookieString)?.[0]
-    // const csrfToken = RegExp(/(?<=csrftoken=).+?(?=;)/).exec(cookieString)?.[0]
-    // cookies().set({
-    //     name: 'access',
-    //     value: accessToken || '',
-    //     httpOnly: true,
-    //     path: '/',
-    // })
-    // cookies().set({
-    //     name: 'refresh',
-    //     value: refreshToken || '',
-    //     httpOnly: true,
-    //     path: '/',
-    // })
-    // cookies().set({
-    //     name: 'csrftoken',
-    //     value: csrfToken || '',
-    //     httpOnly: true,
-    //     path: '/',
-    // })
-    cookies().set('session', cookieString)
-}
-
-export const getBrowserCookie = () => {
-    return cookies().get('session') || ''
 }
