@@ -34,7 +34,7 @@ export type CustomRadioInputProps = {
 
 type AcceptFileFormate = 'image/*' | 'audio/*' | 'video/*' | 'application/pdf' | 'application/msword' | '.pdf' | '.jpeg' | '.png' | '.jpg' | '.doc' | '.docx' | '.xls' | '.xlsx' | '.csv' | '.txt'
 
-export type FileInputProps = Pick<BaseInputProps, 'label' | 'name' | 'error'> & {
+export type FileInputProps = Pick<BaseInputProps, 'label' | 'name' | 'error' | 'id'> & {
     accept: AcceptFileFormate[]
     handleFile: ChangeEventHandler<HTMLInputElement>
     file: FileList | null

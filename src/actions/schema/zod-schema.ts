@@ -28,3 +28,15 @@ export const verifyEmailSchema = z.object({
     confirmation_token: z.string({ message: 'Invalid url' }),
     vendor_id: z.string({ message: 'Invalid url' }),
 })
+
+export const setupAccountOneSchema = z.object({
+    first_name: z.string(),
+    last_name: z.string(),
+    email: z.string().email(),
+})
+
+export const setupAccountTwoSchema = z.object({
+    company_name: z.string(),
+    address: z.string(),
+    sale_category: z.string(),
+})
