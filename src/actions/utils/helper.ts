@@ -71,31 +71,46 @@ export const makeRequestWithCookie = async (url: string, data: object, method: T
 }
 
 export const setBrowserCookie = (response: Response) => {
-    const cookieString = response.headers.get('set-cookie') || '';
-    const accessToken = RegExp(/(?<=access=).+?(?=;)/).exec(cookieString)?.[0]
-    const refreshToken = RegExp(/(?<=refresh=).+?(?=;)/).exec(cookieString)?.[0]
-    const csrfToken = RegExp(/(?<=csrftoken=).+?(?=;)/).exec(cookieString)?.[0]
+    const cookieArray = response.headers.getSetCookie() || [];
+    const cookieString = response.headers.get('Set-Cookie') || '';
+    // const accessTokenArray = cookieString.find((cookie: string) => cookie.includes('access='))?.split('; ')
+    for (const cookie of cookieArray) {
+        const cookieProps = cookie.split('; ')
+        const [key, value] = cookieProps[0].split('=')
+        const httpOnly = cookieProps.find((prop) => prop.includes('HttpOnly'))
+        const path = cookieProps.find((prop) => prop.includes('Path'))?.split('=')[1]
+        const expires = cookieProps.find((prop) => prop.includes('expires'))?.split('=')[1]
+        const samesite = cookieProps.find((prop) => prop.includes('SameSite'))?.split('=')[1]
+
+        cookies().set({
+            name: key,
+            value: value,
+            httpOnly: !!httpOnly,
+            path: path,
+            expires: new Date(expires || ''),
+        })
+    }
+
     cookies().set({
-        name: 'access',
-        value: accessToken || '',
-        httpOnly: true,
-        path: '/',
+        name: 'all_cookies',
+        value: cookieString,
     })
-    cookies().set({
-        name: 'refresh',
-        value: refreshToken || '',
-        httpOnly: true,
-        path: '/',
-    })
-    cookies().set({
-        name: 'csrftoken',
-        value: csrfToken || '',
-        httpOnly: true,
-        path: '/',
-    })
-    // cookies().set('set-cookie', cookieString)
 }
 
 export const getBrowserCookie = () => {
-    return cookies().getAll().toSorted() || ''
+    const cookieArray = cookies().getAll()
+    return cookieArray.filter((cookie) => cookie.name !== 'all_cookies').map((cookie) => `${cookie.name}=${cookie.value}`).join('; ')
+}
+
+export const getBearerToken = () => {
+    const token = 'Bearer ' + cookies().get('access')?.value || ''
+    return token
+}
+
+export const getRequestHeaders = () => {
+    return {
+        'Content-Type': 'application/json',
+        'Cookie': getBrowserCookie(),
+        'Authorization': getBearerToken(),
+    }
 }
