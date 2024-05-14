@@ -90,16 +90,11 @@ export const setBrowserCookie = (response: Response) => {
             expires: new Date(expires || ''),
         })
     }
-
-    cookies().set({
-        name: 'all_cookies',
-        value: cookieString,
-    })
 }
 
 export const getBrowserCookie = () => {
     const cookieArray = cookies().getAll()
-    return cookieArray.filter((cookie) => cookie.name !== 'all_cookies').map((cookie) => `${cookie.name}=${cookie.value}`).join('; ')
+    return cookieArray.map((cookie) => `${cookie.name}=${cookie.value}`).join('; ')
 }
 
 export const getBearerToken = () => {
@@ -113,4 +108,8 @@ export const getRequestHeaders = () => {
         'Cookie': getBrowserCookie(),
         'Authorization': getBearerToken(),
     }
+}
+
+export const isAuthenticated = () => {
+    return !!cookies().get('access')?.value
 }

@@ -1,10 +1,12 @@
 'use client'
-import OTPInput from '@/components/OTPInput'
-import SignInWithEmail from '@/components/SignInWithEmail'
-import SignInWithPhone from '@/components/SignInWithPhone'
 import React, { ElementRef, useEffect } from 'react'
 
-function ConfirmationLetter() {
+type Props = {
+    searchParams: {
+        email: string
+    }
+}
+function ConfirmationLetter({ searchParams: { email } }: Props) {
     const submitBtn = React.useRef<ElementRef<'button'>>(null)
     const [counter, setCounter] = React.useState(30)
 
@@ -25,7 +27,7 @@ function ConfirmationLetter() {
             {/* SIGN IN HEADER */}
             <div className='flex flex-col gap-6'>
                 <h1 className='text-[40px] font-serif font-semibold self-start'>The confirmation letter has been sent</h1>
-                <p className='text-gray-500'>Check the &nbsp; <span className='text-primary font-semibold'>johnsmith@gmail.com</span> &nbsp;
+                <p className='text-gray-500'>Check the &nbsp; <span className='text-primary font-semibold'>{email}</span> &nbsp;
                     mailbox to which the registration confirmation email was sent.
                 </p>
                 <div className='flex flex-col gap-6 w-full'>
