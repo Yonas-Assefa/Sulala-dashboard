@@ -32,7 +32,7 @@ export const enterOtp = async (
 
         const successMessage = 'Verification successful!'
 
-        const redirectUrl = '/dashboard/settings'
+        const redirectUrl = action === 'signup' ? '/auth/setup-account' : '/dashboard/settings'
 
         return toFormState('SUCCESS', successMessage, redirectUrl);
     } catch (error) {

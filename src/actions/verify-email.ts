@@ -23,7 +23,10 @@ export const verifyEmail = async ({ confirmation_token, vendor_id }: VerifyEmail
                 const redirectUrl = '/auth/create-password'
                 return toFormState('SUCCESS', successMessage, redirectUrl);
             }
-            throw new Error(body.message || 'Failed to verify emial address');
+            const redirectUrl = '/auth/sign-in'
+            const failedMessage = body.message || 'Failed to verify email address'
+            return toFormState('ERROR', failedMessage, redirectUrl);
+            // throw new Error(body.message || 'Failed to verify emial address');
         }
 
         setBrowserCookie(response)

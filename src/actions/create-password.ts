@@ -31,7 +31,7 @@ export const createPassword = async (
 
         const successMessage = 'Password created successfully!'
 
-        const redirectUrl = '/dashboard/settings'
+        const redirectUrl = '/auth/setup-account'
 
         return toFormState('SUCCESS', successMessage, redirectUrl);
     } catch (error) {

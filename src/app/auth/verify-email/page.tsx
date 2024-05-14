@@ -26,6 +26,7 @@ async function VerifyEmail({ searchParams: { confirmation_token, vendor_id } }: 
       }
     } else {
       pushNotification(formState.message, 'error')
+      router.push('/auth/sign-in')
     }
   }
 
