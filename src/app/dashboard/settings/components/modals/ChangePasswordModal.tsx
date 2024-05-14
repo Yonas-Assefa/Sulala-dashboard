@@ -11,9 +11,9 @@ function ChangePasswordModal() {
                     <h3 className="font-bold text-xl text-black text-center font-serif">Change Password</h3>
                 </div>
                 <div className="px-5 flex flex-col gap-3 mt-4">
-                    <PasswordInput handlePasswordChange={() => { }} id='current-password' label='Current password' name='current-password' password='' placeholder='Enter current password' />
-                    <PasswordInput handlePasswordChange={() => { }} id='new-password' label='New password' name='new-password' password='' placeholder='Enter new password' />
-                    <PasswordInput handlePasswordChange={() => { }} id='confirm-password' label='Confirm password' name='confirm-password' password='' placeholder='Cofirm password' />
+                    <PasswordInput id='current-password' label='Current password' name='current-password' placeholder='Enter current password' />
+                    <PasswordInput id='new-password' label='New password' name='new-password' placeholder='Enter new password' />
+                    <PasswordInput id='confirm-password' label='Confirm password' name='confirm-password' placeholder='Cofirm password' />
                     <PrimaryButton name='Confirm' />
                 </div>
             </div>

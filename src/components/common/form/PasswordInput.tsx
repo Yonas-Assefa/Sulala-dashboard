@@ -6,11 +6,11 @@ type Props = {
     placeholder: string
     name: string
     id: string
-    showLabel: boolean
+    showLabel?: boolean
     error?: string
 }
 
-function PasswordInput({ label, placeholder, name, id, showLabel, error }: Props) {
+function PasswordInput({ label, placeholder, name, id, showLabel = true, error }: Props) {
 
     const [showPassword, setShowPassword] = React.useState(false)
 

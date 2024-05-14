@@ -1,14 +1,13 @@
 'use client'
-import { signIn } from '@/actions/signin'
 import SignInWithEmail from '@/components/SignInWithEmail'
 import SignInWithPhone from '@/components/SignInWithPhone'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import SecondaryButton from '@/components/common/ui/SecondaryButton'
-import { useRedirectRoute } from '@/hooks/useRedirectRoute'
-import { useToastMessage } from '@/hooks/useToastMessage'
-import { EMPTY_FORM_STATE } from '@/utils/formStateHelper'
+import { useFormSubmit } from '@/hooks/useFormSubmit'
+import { signin } from '@/services/api.service'
+import { validateSignin } from '@/services/validate.service'
+import { TSignin } from '@/types/api-service.type'
 import React from 'react'
-import { useFormState } from 'react-dom'
 
 type SignInProps = {
     by: "phone" | "email" | undefined
@@ -16,20 +15,25 @@ type SignInProps = {
 
 function SignInForm({ by }: SignInProps) {
 
-    const [formState, action] = useFormState(
-        signIn,
-        EMPTY_FORM_STATE
-    );
-
-    useToastMessage(formState);
-    useRedirectRoute(formState);
+    const { fieldErrors, onSubmit, loading } = useFormSubmit<TSignin>({
+        Fn: signin,
+        Opt: {
+            successMessage: ({ data }) => (data.email) ?
+                'Signup successful! Check your email for the verification link' :
+                'Signup successful! Check your message for the verification code',
+            failureMessage: 'Failed to sign up',
+            successRedirectUrl: ({ data }) => (data.email) ? '' :
+                `/auth/enter-otp?phone=${data.phone_number}&action=signup`
+        },
+        validate: validateSignin
+    })
 
     return (
-        <form action={action} className='flex flex-col gap-6 w-full px-10'>
+        <form onSubmit={onSubmit} className='flex flex-col gap-6 w-full px-10'>
             {/* SIGN IN INPUT */}
             {by !== 'email' ?
-                <SignInWithPhone error={formState.fieldErrors?.phone_number?.[0]} /> :
-                <SignInWithEmail emailError={formState.fieldErrors?.email?.[0]} passwordError={formState.fieldErrors?.password?.[0]} />
+                <SignInWithPhone error={fieldErrors?.phone_number?.[0]} /> :
+                <SignInWithEmail emailError={fieldErrors?.email?.[0]} passwordError={fieldErrors?.password?.[0]} />
             }
 
             <input type='text' hidden name='by' value={by} />
@@ -37,7 +41,7 @@ function SignInForm({ by }: SignInProps) {
             {/* SIGN UP LINK */}
             <div className='flex flex-col gap-3 w-full items-center'>
                 <div className='w-full flex flex-col'>
-                    <PrimaryButton name='Sign in' type='submit' />
+                    <PrimaryButton name='Sign in' type='submit' isLoading={loading} />
                 </div>
 
                 <p className='text-[#70757f] select-none'>Don't have an account?</p>

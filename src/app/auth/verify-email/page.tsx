@@ -1,5 +1,8 @@
 'use client'
-import { verifyEmail } from '@/actions/verify-email'
+import { useFormSubmit } from '@/hooks/useFormSubmit'
+import { verifyEmail } from '@/services/api.service'
+import { validateVerifyEmail } from '@/services/validate.service'
+import { TVerifyEmail } from '@/types/api-service.type'
 import { FormState } from '@/utils/formStateHelper'
 import pushNotification from '@/utils/pushNotification.util'
 import { redirect, useRouter } from 'next/navigation'
@@ -15,26 +18,23 @@ type Props = {
 
 async function VerifyEmail({ searchParams: { confirmation_token, vendor_id } }: Props) {
 
-  const router = useRouter()
-
-  const parseFormState = async () => {
-    const formState = await verifyEmail({ confirmation_token, vendor_id })
-    if (formState.status === 'SUCCESS') {
-      pushNotification(formState.message, 'success')
-      if (formState.redirectUrl) {
-        router.push(formState.redirectUrl)
-      }
-    } else {
-      pushNotification(formState.message, 'error')
-    }
-  }
+  const { onSubmit: parseFormState } = useFormSubmit<TVerifyEmail>({
+    Fn: verifyEmail,
+    Opt: {
+      successRedirectUrl: '/dashboard/settings',
+      failureRedirectUrl: ({ error }) => error?.message === 'Email already verified' ?
+        '/dashboard/settings' : '/auth/sign-up',
+      successMessage: 'Email verified successfully!',
+      failureMessage: 'Failed to verify email'
+    },
+    validate: validateVerifyEmail
+  })
 
   React.useEffect(() => {
-    if (!confirmation_token || !vendor_id) {
-      pushNotification('Invalid link', 'error')
-      redirect('/auth/sign-in')
-    }
-    parseFormState()
+    const formData = new FormData()
+    formData.append('confirmation_token', confirmation_token)
+    formData.append('vendor_id', vendor_id)
+    parseFormState(formData)
   }, [])
 
 

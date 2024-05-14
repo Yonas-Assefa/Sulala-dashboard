@@ -1,12 +1,11 @@
 'use client'
-import { enterOtp } from '@/actions/enter-otp'
 import OTPInput from '@/components/OTPInput'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
-import { useRedirectRoute } from '@/hooks/useRedirectRoute'
-import { useToastMessage } from '@/hooks/useToastMessage'
-import { EMPTY_FORM_STATE } from '@/utils/formStateHelper'
+import { useFormSubmit } from '@/hooks/useFormSubmit'
+import { verifyPhone } from '@/services/api.service'
+import { validateOtp } from '@/services/validate.service'
+import { TVerifyPhone } from '@/types/api-service.type'
 import React, { ElementRef } from 'react'
-import { useFormState } from 'react-dom'
 
 type Props = {
     phone: string
@@ -26,16 +25,18 @@ function EnterOtpForm({ phone, action: authAction }: Props) {
         return () => clearInterval(interval)
     })
 
-    const [formState, action] = useFormState(
-        enterOtp,
-        EMPTY_FORM_STATE
-    );
-
-    useToastMessage(formState);
-    useRedirectRoute(formState);
+    const { fieldErrors, onSubmit, loading } = useFormSubmit<TVerifyPhone>({
+        Fn: verifyPhone,
+        Opt: {
+            successMessage: 'Verification successful!',
+            failureMessage: 'Failed to verify phone number',
+            successRedirectUrl: '/dashboard/settings'
+        },
+        validate: validateOtp
+    })
 
     return (
-        <form action={action} className='flex flex-col gap-6 w-full'>
+        <form onSubmit={onSubmit} className='flex flex-col gap-6 w-full'>
             {/* OTP IN INPUT */}
             <OTPInput submitBtn={submitBtn} setDisabled={setDisabled} otp={otp} setOTP={setOTP} />
             {/* SIGN UP LINK */}
@@ -47,7 +48,7 @@ function EnterOtpForm({ phone, action: authAction }: Props) {
                     <p className='text-[#70757f]'>Send new code in 00:{counter}</p> :
                     <button className='text-primary font-semibold btn bg-transparent focus:bg-transparent hover:bg-transparent border-0 shadow-none'>Send new code</button>}
                 <div className='flex flex-col w-full'>
-                    <PrimaryButton name='Confirm' type='submit' ref={submitBtn} disabled={disabled} />
+                    <PrimaryButton name='Confirm' type='submit' ref={submitBtn} disabled={disabled} isLoading={loading} />
                 </div>
             </div>
         </form>

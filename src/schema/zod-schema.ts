@@ -23,3 +23,8 @@ export const createPasswordSchema = z.object({
     password: z.string().min(6, 'Password must be at least 6 characters long'),
     confirm_password: z.string().min(6, 'Password must be at least 6 characters long')
 }).refine(confirmPasswordRefine.Fn, confirmPasswordRefine.Opt);
+
+export const verifyEmailSchema = z.object({
+    confirmation_token: z.string({ message: 'Invalid link' }),
+    vendor_id: z.string({ message: 'Invalid link' }),
+});

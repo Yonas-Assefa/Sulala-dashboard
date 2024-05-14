@@ -16,14 +16,15 @@ export const EMPTY_FORM_STATE: FormState = {
     redirectUrl: undefined
 };
 
-export const fromErrorToFormState = (error: unknown) => {
+export const fromErrorToFormState = (error: unknown, redirectUrl?: string) => {
+    console.log({ redirectUrl })
     if (error instanceof ZodError) {
         return {
             status: 'ERROR' as const,
             message: error.errors[0].message,
             fieldErrors: error.flatten().fieldErrors,
             timestamp: Date.now(),
-            redirectUrl: undefined
+            redirectUrl: redirectUrl
         };
     } else if (error instanceof Error) {
         return {
@@ -31,6 +32,7 @@ export const fromErrorToFormState = (error: unknown) => {
             message: error.message,
             fieldErrors: {},
             timestamp: Date.now(),
+            redirectUrl: redirectUrl
         };
     } else {
         return {
@@ -38,6 +40,7 @@ export const fromErrorToFormState = (error: unknown) => {
             message: 'An unknown error occurred',
             fieldErrors: {},
             timestamp: Date.now(),
+            redirectUrl: redirectUrl
         };
     }
 };

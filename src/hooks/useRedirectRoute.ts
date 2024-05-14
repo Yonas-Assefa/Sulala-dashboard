@@ -8,7 +8,6 @@ export const useRedirectRoute = (formState: FormState) => {
 
     React.useEffect(() => {
         if (
-            formState.status === "SUCCESS" &&
             formState.redirectUrl &&
             pathname !== formState.redirectUrl) {
             router.push(formState.redirectUrl);
