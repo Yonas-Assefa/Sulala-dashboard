@@ -44,7 +44,7 @@ export const signIn = async (
             'Signin successful!.' :
             'Check your message for the verification code'
 
-        const redirectUrl = (by == 'email') ? '' : `/auth/enter-otp?phone=${data.phone_number}&action=signin`
+        const redirectUrl = (by == 'email') ? '/dashboard/settings' : `/auth/enter-otp?phone=${data.phone_number}&action=signin`
 
         return toFormState('SUCCESS', successMessage, redirectUrl);
     } catch (error) {
