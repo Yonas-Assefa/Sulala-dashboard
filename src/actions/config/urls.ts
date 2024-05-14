@@ -9,6 +9,8 @@ const VENDOR_BASE_URL = `${BASE_URL}vendors/`
 
 export const SIGNUP_URL = `${VENDOR_BASE_URL}register/`;
 
+export const SETUP_URL = `${VENDOR_BASE_URL}update_profile/`;
+
 export const PHONE_SIGNIN_URL = `${VENDOR_BASE_URL}login-with-phonenumber/`;
 
 export const EMAIL_SIGNIN_URL = `${VENDOR_BASE_URL}login-with-email/`;

@@ -7,7 +7,7 @@ type BaseInputProps = {
     label: string
     name?: string
     autoComplete?: string
-    error?: boolean
+    error?: string
 }
 
 export type TextInputProps = BaseInputProps

@@ -30,8 +30,8 @@ export const verifyEmailSchema = z.object({
 })
 
 export const setupAccountOneSchema = z.object({
-    first_name: z.string(),
-    last_name: z.string(),
+    first_name: z.string().min(2, 'First name must be at least 2 characters long'),
+    last_name: z.string().min(2, 'Last name must be at least 2 characters long'),
     email: z.string().email(),
 })
 
@@ -40,3 +40,7 @@ export const setupAccountTwoSchema = z.object({
     address: z.string(),
     sale_category: z.string(),
 })
+
+// export const setupAccountThreeSchema = z.object({
+//     phone_number: z.string().transform(phoneTransform),
+// })
