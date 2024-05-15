@@ -21,7 +21,9 @@ export const createPassword = async (
 
         const body = await response.json()
         if (!response.ok || !body.success) {
-            throw new Error(body.message || 'Failed to create password');
+            console.log({ body })
+            const message = body.message || body[Object.keys(body)[0]][0] || 'Failed to create password';
+            throw new Error(message || 'Failed to create password');
         }
 
         const successMessage = 'Password created successfully!'
