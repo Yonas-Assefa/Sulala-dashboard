@@ -104,8 +104,8 @@ export const getBearerToken = () => {
 
 export const getRequestHeaders = () => {
     return {
-        'Content-Type': 'application/json',
-        'Cookie': getBrowserCookie(),
+        // 'Content-Type': 'application/json',
+        // 'Cookie': getBrowserCookie(),
         'Authorization': getBearerToken(),
     }
 }

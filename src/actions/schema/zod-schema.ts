@@ -33,16 +33,46 @@ export const verifyEmailSchema = z.object({
     vendor_id: z.string({ message: 'Invalid url' }),
 })
 
-export const setupAccountOneSchema = z.object({
+export const setupAccountFirstStepSchema = z.object({
     first_name: z.string().min(2, 'First name must be at least 2 characters long'),
     last_name: z.string().min(2, 'Last name must be at least 2 characters long'),
     email: z.string().email(),
 })
 
-export const setupAccountTwoSchema = z.object({
-    company_name: z.string(),
-    address: z.string(),
-    sale_category: z.string(),
+const MAX_FILE_SIZE = 5000000;
+const ACCEPTED_IMAGE_TYPES = [
+    ".pdf", "application/pdf"
+];
+
+export const setupAccountLastStepSchema = z.object({
+    name: z.string().min(1, 'Company name must be at least 1 character long'),
+    legal_address: z.string().min(1, 'Address must be at least 1 character long'),
+    category: z.number().min(1, 'Please choose at least one category'),
+    certificates: z.any()
+        .refine((file) => {
+            console.log({ file })
+            if (file.size === 0 || file.name === undefined) return false;
+            else return true;
+        }, "Please update or add new image.")
+
+        .refine(
+            (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
+            "only pdf files are accepted."
+        ),
+    // .refine((file) => file.size <= MAX_FILE_SIZE, `Max file size is 5MB.`),
+
+    tax_forms: z.any()
+        .refine((file) => {
+            console.log({ file })
+            if (file.size === 0 || file.name === undefined) return false;
+            else return true;
+        }, "Please update or add new image.")
+
+        .refine(
+            (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
+            "only pdf files are accepted."
+        )
+    // .refine((file) => file.size <= MAX_FILE_SIZE, `Max file size is 5MB.`),
 })
 
 // export const setupAccountThreeSchema = z.object({
