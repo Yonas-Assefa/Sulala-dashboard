@@ -40,7 +40,7 @@ export const fileRefine = {
         if (file.size === 0 || file.name === undefined) return false;
         else return true;
     },
-    existMg: "Please update or add new image.",
+    existMg: "Please update or add new file.",
     acceptFn: (file: any) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
     acceptMg: "only pdf files are accepted.",
     maxsizeFn: (file: any) => file.size <= MAX_FILE_SIZE,

@@ -37,9 +37,9 @@ function SetupAccountStageTwo({ formState, categoryLists, show }: { formState: F
     })
     return (
         <section className={`flex flex-col gap-5 w-full items-stretch ${!show && 'hidden'}`}>
-            <TextInput value={campany_name} setValue={setCompanyName} label="What's your company name?" placeholder='Enter your company name' id='company_name' name='company_name' error={formState.fieldErrors?.company_name?.[0]} />
-            <CustomMultiSelectInput value={sales_category} setValue={setSalesCategory} label='Please choose categories for sale' placeholder='Choose categories' id='sale_category' name='sale_category' error={formState.fieldErrors?.sale_category?.[0]} data={data} />
-            <TextInput value={address} setValue={setAddress} label="What's your legal address?" placeholder='Enter your legal address' id='address' name='address' error={formState.fieldErrors?.address?.[0]} />
+            <TextInput value={campany_name} setValue={setCompanyName} label="What's your company name?" placeholder='Enter your company name' id='company_name' name='company_name' error={formState.fieldErrors?.name?.[0]} />
+            <CustomMultiSelectInput value={sales_category} setValue={setSalesCategory} label='Please choose categories for sale' placeholder='Choose categories' id='sale_category' name='sale_category' error={formState.fieldErrors?.category?.[0]} data={data} />
+            <TextInput value={address} setValue={setAddress} label="What's your legal address?" placeholder='Enter your legal address' id='address' name='address' error={formState.fieldErrors?.legal_address?.[0]} />
         </section>
     )
 }
@@ -60,8 +60,8 @@ function SetupAccountStageThree({ formState, show }: { formState: FormState, sho
     return (
         <section className={`flex flex-col gap-5 w-full items-start ${!show && 'hidden'}`}>
             <h4 className='font-semibold'>Please upload documents</h4>
-            <FileInput label='Please attach the certificates' handleFile={handleCertificate} file={certificate} accept={['.pdf', 'image/*']} id='certificate' name='certificate' />
-            <FileInput label='Please attach the tax section' handleFile={handleTaxForm} file={taxForm} accept={['.pdf', 'image/*']} id='tax_form' name='tax_form' />
+            <FileInput label='Please attach the certificates' handleFile={handleCertificate} file={certificate} accept={['.pdf', 'image/*']} id='certificate' name='certificate' error={formState.fieldErrors?.certificates?.[0]} />
+            <FileInput label='Please attach the tax section' handleFile={handleTaxForm} file={taxForm} accept={['.pdf', 'image/*']} id='tax_form' name='tax_form' error={formState.fieldErrors?.tax_forms?.[0]} />
         </section>
     )
 }
