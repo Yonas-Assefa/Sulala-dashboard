@@ -9,7 +9,6 @@ export const getCategories = async () => {
         headers: getRequestHeaders()
     })
     const body = await response.json()
-    console.log({ body })
 
     if (!response.ok || !body.success) {
         throw new Error(body.message || 'Failed to resend OTP');

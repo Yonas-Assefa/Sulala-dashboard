@@ -2,7 +2,7 @@
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { SETUP_URL, SHOP_ACCOUNT } from './config/urls';
 import { setupAccountFirstStepSchema, setupAccountLastStepSchema } from './schema/zod-schema';
-import { getRequestHeaders } from './utils/helper';
+import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders } from './utils/helper';
 
 export const setupAccount = async (
     formState: FormState,
@@ -12,9 +12,6 @@ export const setupAccount = async (
         const stage = formData.get('stage')?.toString()
 
         const data: { phone_number?: string, email?: string } = {}
-
-        const ObjectfromEntries = Object.fromEntries(formData);
-        console.log({ ObjectfromEntries })
 
         if (stage == 'one') {
             const ZodObj = setupAccountFirstStepSchema.parse({
@@ -34,50 +31,26 @@ export const setupAccount = async (
             Object.assign(data, { ...ZodObj })
         }
 
-
-        const certificateBytes = await formData.get('certificate')?.arrayBuffer()
-        const certificateBuffer = Buffer.from(certificateBytes);
-
-
-        const tax_formBytes = await formData.get('tax_form')?.arrayBuffer()
-        const tax_formBuffer = Buffer.from(tax_formBytes);
-
-        console.log({
-            ...data,
-            certificates: formData.get('certificate'),
-            tax_forms: formData.get('tax_form'),
-        })
-
         const response = stage == 'one' ? await fetch(SETUP_URL, {
             method: 'PATCH',
             headers: getRequestHeaders(),
             body: JSON.stringify(data),
         }) : await fetch(SHOP_ACCOUNT, {
             method: 'POST',
-            headers: {
-                ...getRequestHeaders(),
-                'Content-Type': 'multipart/form-data'
-            },
-            body: JSON.stringify({
-                ...data,
-                certificates: certificateBuffer,
-                tax_forms: tax_formBuffer,
-            }),
+            headers: getMultiPartRequestHeaders(),
+            body: changeObjToFormData(data),
         })
-        console.log({ response })
-        console.log({ ...response.body })
         const body = await response.json()
         if (!response.ok || !body.success) {
-            throw new Error(body.message || 'Failed to sign up');
+            throw new Error(body.message || 'Failed to submit form');
         }
 
-        const successMessage = 'Account setup 1/3'
+        const successMessage = stage == 'one' ? 'Account setup 1/3' : 'Account setup 3/3';
 
-        const redirectUrl = `/auth/setup-account?stage=${stage == 'one' ? 'two' : 'three'}`
+        const redirectUrl = stage !== 'three' ? `/auth/setup-account?stage=${stage == 'one' ? 'two' : 'three'}` : '/auth/setup-complete';
 
         return toFormState('INFO', successMessage, redirectUrl);
     } catch (error) {
-        console.log({ error })
         return fromErrorToFormState(error);
     }
 };

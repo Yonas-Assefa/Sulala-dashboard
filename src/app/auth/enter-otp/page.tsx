@@ -12,7 +12,6 @@ type Props = {
 
 function EnterOTP({ searchParams: { phone: rawPhone, action } }: Props) {
     const phone = '+' + rawPhone.trim().replace('+', '')
-    console.log({ phone })
 
     if (!phone) return redirect('/auth/sign-in')
 

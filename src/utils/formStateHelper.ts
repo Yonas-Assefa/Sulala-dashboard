@@ -6,6 +6,7 @@ export type FormState = {
     fieldErrors: Record<string, string[] | undefined>;
     timestamp: number;
     redirectUrl?: string;
+    extras?: any
 };
 
 export const EMPTY_FORM_STATE: FormState = {

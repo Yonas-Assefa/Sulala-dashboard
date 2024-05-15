@@ -13,9 +13,7 @@ type VerifyEmailArgs = {
 export const verifyEmail = async ({ confirmation_token, vendor_id }: VerifyEmailArgs) => {
     try {
         const response = await makeRequest(`${VERIFY_EMAIL}?confirmation_token=${confirmation_token}&vendor_id=${vendor_id}`, {}, 'GET')
-        console.log({ status: response.status })
         const body = await response.json()
-        console.log({ body })
 
         if (!response.ok || !body.success) {
             if (body.message === 'Email already verified') {

@@ -29,6 +29,24 @@ export const confirmPasswordRefine = {
     }
 }
 
+const MAX_FILE_SIZE = 5000000;
+const ACCEPTED_IMAGE_TYPES = [
+    ".pdf", "application/pdf"
+];
+
+
+export const fileRefine = {
+    existFn: (file: any) => {
+        if (file.size === 0 || file.name === undefined) return false;
+        else return true;
+    },
+    existMg: "Please update or add new image.",
+    acceptFn: (file: any) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
+    acceptMg: "only pdf files are accepted.",
+    maxsizeFn: (file: any) => file.size <= MAX_FILE_SIZE,
+    maxsizeMg: `Max file size is 5MB.`
+}
+
 type TGetPhoneNumber = {
     phone_number: FormDataEntryValue | string | null;
     country_code: FormDataEntryValue | string | null;
@@ -104,12 +122,24 @@ export const getBearerToken = () => {
 
 export const getRequestHeaders = () => {
     return {
-        // 'Content-Type': 'application/json',
-        // 'Cookie': getBrowserCookie(),
+        'Authorization': getBearerToken(),
+        'Content-Type': 'application/json',
+    }
+}
+
+export const getMultiPartRequestHeaders = () => {
+    return {
         'Authorization': getBearerToken(),
     }
 }
 
 export const isAuthenticated = () => {
     return !!cookies().get('access')?.value
+}
+
+export const changeObjToFormData = (Obj: object) => {
+    return Object.entries(Obj).reduce((acc, [key, value]) => {
+        acc.append(key, value)
+        return acc
+    }, new FormData())
 }

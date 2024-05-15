@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { confirmPasswordRefine, phoneTransform } from '../utils/helper';
+import { confirmPasswordRefine, fileRefine, phoneTransform } from '../utils/helper';
 
 export const phoneAuthSchema = z.object({
     phone_number: z.string().transform(phoneTransform)
@@ -39,40 +39,19 @@ export const setupAccountFirstStepSchema = z.object({
     email: z.string().email(),
 })
 
-const MAX_FILE_SIZE = 5000000;
-const ACCEPTED_IMAGE_TYPES = [
-    ".pdf", "application/pdf"
-];
-
 export const setupAccountLastStepSchema = z.object({
     name: z.string().min(1, 'Company name must be at least 1 character long'),
     legal_address: z.string().min(1, 'Address must be at least 1 character long'),
     category: z.number().min(1, 'Please choose at least one category'),
     certificates: z.any()
-        .refine((file) => {
-            console.log({ file })
-            if (file.size === 0 || file.name === undefined) return false;
-            else return true;
-        }, "Please update or add new image.")
-
-        .refine(
-            (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
-            "only pdf files are accepted."
-        ),
-    // .refine((file) => file.size <= MAX_FILE_SIZE, `Max file size is 5MB.`),
+        .refine(fileRefine.existFn, fileRefine.existMg)
+        .refine(fileRefine.acceptFn, fileRefine.acceptMg),
+    // .refine(fileRefine.maxsizeFn, fileRefine.maxsizeMg),
 
     tax_forms: z.any()
-        .refine((file) => {
-            console.log({ file })
-            if (file.size === 0 || file.name === undefined) return false;
-            else return true;
-        }, "Please update or add new image.")
-
-        .refine(
-            (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
-            "only pdf files are accepted."
-        )
-    // .refine((file) => file.size <= MAX_FILE_SIZE, `Max file size is 5MB.`),
+        .refine(fileRefine.existFn, fileRefine.existMg)
+        .refine(fileRefine.acceptFn, fileRefine.acceptMg),
+    // .refine(fileRefine.maxsizeFn, fileRefine.maxsizeMg),
 })
 
 // export const setupAccountThreeSchema = z.object({

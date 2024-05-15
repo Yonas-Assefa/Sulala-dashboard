@@ -3,6 +3,7 @@ import SetupAccountForm from '@/components/SetupAccountForm'
 import BackButton from '@/components/common/ui/BackButton'
 import ProgressBar from '@/components/common/ui/ProgressBar'
 import { useCreateQueryString } from '@/hooks/useCreateQueryString'
+import { notFound, redirect } from 'next/navigation'
 import React from 'react'
 
 type Props = {
@@ -11,8 +12,11 @@ type Props = {
   }
 }
 async function SetupAccount({ searchParams: { stage: activeStage } }: Props) {
+  if (!['one', 'two', 'three'].includes(activeStage)) {
+    return redirect('/auth/setup-account?stage=one')
+  }
+
   const categoryLists = await getCategories()
-  console.log({ categoryLists })
   return (
     <div className='text-black w-10/12 flex flex-col gap-5 items-center'>
       {activeStage != 'one' && <BackButton />}

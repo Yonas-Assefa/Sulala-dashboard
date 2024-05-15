@@ -14,7 +14,6 @@ export const resendOtp = async ({ phone_number }: { phone_number: string }) => {
         const response = await makeRequest(RESEND_OTP, data, 'PATCH')
 
         const body = await response.json()
-        console.log({ body, data })
 
         if (!response.ok || !body.success) {
             throw new Error(body.message || 'Failed to resend OTP');
