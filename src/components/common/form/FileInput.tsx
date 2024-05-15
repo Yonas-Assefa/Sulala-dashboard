@@ -2,7 +2,7 @@
 import { FileInputProps } from '@/types/props.type'
 import React from 'react'
 
-function FileInput({ label, name, error, accept, handleFile, file, ...props }: FileInputProps) {
+function FileInput({ label, name, error, accept, handleFile, file, id, ...props }: FileInputProps) {
 
     const acceptFilesList = accept.map((fileType, index) => {
         const filteredFileType = fileType.replace('.', '').toUpperCase()
@@ -34,7 +34,7 @@ function FileInput({ label, name, error, accept, handleFile, file, ...props }: F
                         </label>
                         <input
                             type="file"
-                            id='file-1'
+                            id={id || 'file-1'}
                             name={name || 'text-input'}
                             className="hidden"
                             onChange={handleFile}

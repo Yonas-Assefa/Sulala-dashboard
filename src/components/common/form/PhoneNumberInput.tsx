@@ -2,6 +2,7 @@
 import React, { ElementRef } from 'react'
 import countries from '@/constants/countries.json'
 import ResetButton from '../ui/ResetButton'
+import { getUserLocation } from '@/utils/getUserLocation'
 
 function PhoneNumberInput({ error }: { error?: string }) {
     type CountryCode = {
@@ -28,6 +29,15 @@ function PhoneNumberInput({ error }: { error?: string }) {
         return () => {
             document.removeEventListener('click', handleClick)
         }
+    }, [])
+
+    // GET USER LOCATION AND SET DEFAULT COUNTRY DIAL CODE
+    React.useEffect(() => {
+        getUserLocation()
+            .then(data => {
+                const country = countries.find((country: CountryCode) => country.code === data.country_code)
+                setCountryCode(country)
+            })
     }, [])
 
     const handlePhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -2,15 +2,15 @@
 import React from 'react'
 
 type Props = {
-    password: string
-    handlePasswordChange: (e: React.ChangeEvent<HTMLInputElement>) => void
     label: string
     placeholder: string
     name: string
     id: string
+    showLabel: boolean
+    error?: string
 }
 
-function PasswordInput({ label, placeholder, name, id, password, handlePasswordChange }: Props) {
+function PasswordInput({ label, placeholder, name, id, showLabel, error }: Props) {
 
     const [showPassword, setShowPassword] = React.useState(false)
 
@@ -20,8 +20,8 @@ function PasswordInput({ label, placeholder, name, id, password, handlePasswordC
 
     return (
         <div>
-            <label htmlFor={id} className='self-start text-black'>{label}</label>
-            <div className='flex items-center px-3 justify-between gap-0 border focus-within:border-primary rounded-[40px] w-full'>
+            {showLabel && <label htmlFor={id} className='self-start text-black'>{label}</label>}
+            <div className={`flex items-center px-3 justify-between gap-0 border rounded-[40px] w-full ${error ? 'border-danger bg-dangerlight' : 'focus-within:border-primary'}`}>
 
                 <input
                     id={id}
@@ -30,8 +30,6 @@ function PasswordInput({ label, placeholder, name, id, password, handlePasswordC
                     placeholder={placeholder || 'Type here'}
                     className='input text-black w-full max-w-xs bg-transparent focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none'
                     // className="input w-full max-w-xs bg-white rounded-r-[30px] focus:border-0 focus:outline-none"
-                    onChange={handlePasswordChange}
-                    value={password}
                     autoComplete='false'
                 />
                 {showPassword ?
@@ -45,6 +43,9 @@ function PasswordInput({ label, placeholder, name, id, password, handlePasswordC
                     </button>
                 }
             </div>
+            {error && <span className="text-xs text-danger">
+                {error}
+            </span>}
         </div>
     )
 }

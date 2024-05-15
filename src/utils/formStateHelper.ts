@@ -5,6 +5,7 @@ export type FormState = {
     message: string;
     fieldErrors: Record<string, string[] | undefined>;
     timestamp: number;
+    redirectUrl?: string;
 };
 
 export const EMPTY_FORM_STATE: FormState = {
@@ -12,6 +13,7 @@ export const EMPTY_FORM_STATE: FormState = {
     message: '',
     fieldErrors: {},
     timestamp: Date.now(),
+    redirectUrl: undefined
 };
 
 export const fromErrorToFormState = (error: unknown) => {
@@ -21,6 +23,7 @@ export const fromErrorToFormState = (error: unknown) => {
             message: error.errors[0].message,
             fieldErrors: error.flatten().fieldErrors,
             timestamp: Date.now(),
+            redirectUrl: undefined
         };
     } else if (error instanceof Error) {
         return {
@@ -41,12 +44,14 @@ export const fromErrorToFormState = (error: unknown) => {
 
 export const toFormState = (
     status: FormState['status'],
-    message: string
+    message: string,
+    redirectUrl?: string
 ): FormState => {
     return {
         status,
         message,
         fieldErrors: {},
         timestamp: Date.now(),
+        redirectUrl,
     };
 };

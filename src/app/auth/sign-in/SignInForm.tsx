@@ -4,6 +4,7 @@ import SignInWithEmail from '@/components/SignInWithEmail'
 import SignInWithPhone from '@/components/SignInWithPhone'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import SecondaryButton from '@/components/common/ui/SecondaryButton'
+import { useRedirectRoute } from '@/hooks/useRedirectRoute'
 import { useToastMessage } from '@/hooks/useToastMessage'
 import { EMPTY_FORM_STATE } from '@/utils/formStateHelper'
 import React from 'react'
@@ -21,6 +22,7 @@ function SignInForm({ by }: SignInProps) {
     );
 
     useToastMessage(formState);
+    useRedirectRoute(formState);
 
     return (
         <form action={action} className='flex flex-col gap-6 w-full px-10'>

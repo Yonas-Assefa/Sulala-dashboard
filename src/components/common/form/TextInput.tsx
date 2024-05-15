@@ -6,7 +6,7 @@ function TextInput({ id, placeholder, label, name, autoComplete, error, ...props
     return (
         <label htmlFor={id} >
             <p className='self-start text-black'>{label}</p>
-            <div className='flex bg-white items-center px-3 justify-between gap-0 border focus-within:border-primary rounded-[40px] w-full'>
+            <div className={`flex items-center px-3 justify-between gap-0 border rounded-[40px] w-full ${error ? 'bg-dangerlight border-danger' : 'bg-white focus-within:border-primary'}`}>
                 <input
                     id={id}
                     type="text"
@@ -21,6 +21,9 @@ function TextInput({ id, placeholder, label, name, autoComplete, error, ...props
                     </button>
                 }
             </div >
+            {error && <span className="text-xs text-danger">
+                {error}
+            </span>}
         </label>
     )
 }

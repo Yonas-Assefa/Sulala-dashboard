@@ -12,6 +12,7 @@ type Props = {
     name?: string
     disabled?: boolean
     type?: 'submit' | 'reset' | 'button'
+    ref?: React.RefObject<HTMLButtonElement>
 }
 
 const paddings = {
@@ -22,7 +23,7 @@ const paddings = {
     xlg: 'px-[300px]'
 }
 
-function PrimaryButton({ padding, name, handleClick, modal, href, type, disabled = false }: Props) {
+function PrimaryButton({ padding, name, handleClick, modal, ref, href, type, disabled = false }: Props) {
 
     const { pending } = useFormStatus();
 
@@ -56,6 +57,7 @@ function PrimaryButton({ padding, name, handleClick, modal, href, type, disabled
             className={`btn rounded-[40px] disabled:bg-secondary border-0 disabled:text-white disabled:cursor-not-allowed text-white bg-primary hover:bg-primary/80 ${padding && paddings[padding]}`}
             onClick={handleButtonClick}
             disabled={disabled || pending}
+            ref={ref}
         >
             {
                 pending ? <span className="loading loading-spinner loading-md text-primary"></span> :

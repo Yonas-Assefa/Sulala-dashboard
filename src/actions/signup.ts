@@ -11,7 +11,7 @@ export const signUp = async (
     try {
         const by = formData.get('by')?.toString()
 
-        const data = {}
+        const data: { phone_number?: string, email?: string } = {}
 
         if (by == 'email') {
             const ZodObj = emailSignUpSchema.parse({
@@ -20,7 +20,10 @@ export const signUp = async (
             Object.assign(data, { ...ZodObj })
         } else {
             const ZodObj = phoneAuthSchema.parse({
-                phone_number: getPhoneNumber({ phone_number: formData.get('phone_number'), country_code: formData.get('country_code') }),
+                phone_number: getPhoneNumber({
+                    phone_number: formData.get('phone_number'),
+                    country_code: formData.get('country_code')
+                }),
             });
             Object.assign(data, { ...ZodObj })
         }
@@ -42,7 +45,9 @@ export const signUp = async (
             'Check your email for the verification link' :
             'Check your message for the verification code'
 
-        return toFormState('SUCCESS', `Signup successful! ${successMessage}.`);
+        const redirectUrl = (by == 'email') ? `/auth/confirm-letter?email=${data.email}&action=signup` : `/auth/enter-otp?phone=${data.phone_number}&action=signup`
+
+        return toFormState('SUCCESS', `Signup successful! ${successMessage}.`, redirectUrl);
     } catch (error) {
         return fromErrorToFormState(error);
     }

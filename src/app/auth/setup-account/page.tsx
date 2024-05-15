@@ -36,20 +36,6 @@ function SetupAccount() {
       <div className='flex flex-col gap-6 w-full px-10'>
         {/* SIGN IN INPUT */}
         <SetupAccountForm activeStage={activeStage} />
-
-        {/* SIGN UP LINK */}
-        <div className='flex flex-col gap-3 w-full items-center'>
-          <button
-            className='btn w-full rounded-[40px] bg-secondary border-0 text-white hover:bg-primary'
-            onClick={handleNextStage}
-          >
-            {activeStage !== 'three' ? 'Continue' : 'Verify'}
-            {/* <img src="/loading.gif" alt="" className='h-[30px]' /> */}
-
-          </button>
-          <p className='text-black font-semibold text-center'>By verifying your account, you agree
-            to the <span className='text-primary'>Terms of Service and Privacy Policy</span></p>
-        </div>
       </div>
 
     </div >

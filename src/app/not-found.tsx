@@ -1,10 +1,11 @@
 import React from 'react'
 import SideBarNav from './dashboard/components/SideBarNav';
+import { isAuthenticated } from '@/actions/utils/helper';
 
 function NotFoundPage() {
     return (
         <div className='w-screen h-screen flex flex-row'>
-            <SideBarNav />
+            {isAuthenticated() && <SideBarNav />}
             <div className='bg-white flex-grow'>
                 <div className='w-full h-full flex justify-between flex-col items-center'>
                     <div className='flex justify-center items-center w-full h-full'>
