@@ -6,6 +6,7 @@ import Table from '@/components/common/table/Table'
 import { promotionData, promotionFilterData, promotionSortData } from './schema/data'
 import { promotionTableSchema } from './schema/schema'
 import { useCreateQueryString } from '@/hooks/useCreateQueryString'
+import PrimaryButton from '@/components/common/ui/PrimaryButton'
 
 function page() {
     const { createQueryString } = useCreateQueryString()
@@ -20,12 +21,7 @@ function page() {
                     <h1 className='text-5xl font-semibold font-serif'>Promotion campaigns</h1>
                     <div className='flex flex-row gap-3 items-center'>
                         <div>
-                            <Link
-                                className={`btn rounded-[40px] disabled:bg-secondary border-0 disabled:text-white disabled:cursor-not-allowed text-white bg-primary hover:bg-primary/80`}
-                                href={createQueryString('action', 'add-campaign')}
-                            >
-                                Create campaign
-                            </Link>
+                            <PrimaryButton name='Create campaign' modal='create_campaign_modal' />
                         </div>
                     </div>
                 </div>

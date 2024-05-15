@@ -1,13 +1,11 @@
 'use client'
 import React from 'react'
 import CropImageModal from '../modal/CropImageModal'
-import { useCreateQueryString } from '@/hooks/useCreateQueryString'
+import { openModal } from '@/utils/openModal'
 
 function ProfileImagePicker() {
     const [image, setImage] = React.useState<string | undefined>()
     const [rawImage, setRawImage] = React.useState<string | undefined>()
-
-    const { createQueryStringAndPush } = useCreateQueryString()
 
     const handleCropChange = (event: HTMLCanvasElement["toDataURL"]) => {
         setImage(event)
@@ -22,12 +20,12 @@ function ProfileImagePicker() {
         const selectedFiles = Array.from(event.target.files as Iterable<File> | ArrayLike<File>);
         const uploadedImages = selectedFiles.map((file) => URL.createObjectURL(file));
         setRawImage(uploadedImages[0]);
-        createQueryStringAndPush('action', 'crop-image')
+        openModal('crop_image_setting_modal')
     }
 
     return (
         <>
-            {rawImage && <CropImageModal handleCropChange={handleCropChange} rawImage={rawImage} />}
+            <CropImageModal handleCropChange={handleCropChange} rawImage={rawImage} />
             <div className='flex flex-row gap-4 items-center'>
                 {!image ?
                     <label htmlFor='add-photo' className='flex flex-row gap-4 items-center cursor-pointer' >

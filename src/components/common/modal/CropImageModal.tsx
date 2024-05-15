@@ -8,27 +8,20 @@ import { useCreateQueryString } from '@/hooks/useCreateQueryString';
 
 type Props = {
     handleCropChange: (event: any) => void
-    rawImage: string
+    rawImage: string | undefined
 }
 
 function CropImageModal({ handleCropChange, rawImage }: Props) {
-    const router = useRouter()
-    const { searchParams, createQueryStringAndPush } = useCreateQueryString()
     const cropperRef = React.useRef<ReactCropperElement>(null);
-    const open = searchParams.get('action') == 'crop-image'
 
     const onCrop = () => {
         const cropper = cropperRef.current?.cropper;
         handleCropChange(cropper?.getCroppedCanvas().toDataURL());
     };
 
-    const handleClick = () => {
-        createQueryStringAndPush('action', '')
-    }
-
     return (
-        <dialog id="my_modal_4" className={`modal ${open && 'modal-open'}`} onClick={() => router.back()}>
-            <div className="modal-box w-11/12 max-w-sm bg-white px-0" onClick={(e) => e.stopPropagation()}>
+        <dialog id="crop_image_setting_modal" className='modal'>
+            <div className="modal-box w-11/12 max-w-sm bg-white px-0">
                 <div className='border-b-2 border-gray-200 pb-3'>
                     <h3 className="font-bold text-xl text-black text-center font-serif">Crop your photo</h3>
                 </div>
@@ -37,16 +30,19 @@ function CropImageModal({ handleCropChange, rawImage }: Props) {
                         src={rawImage}
                         style={{ height: 400, width: "100%" }}
                         // Cropper.js options
-                        initialAspectRatio={16 / 9}
+                        initialAspectRatio={9 / 9}
                         guides={false}
                         crop={onCrop}
                         ref={cropperRef}
                     />
-                    <div className='flex w-full flex-col' onClick={handleClick}>
+                    <form method="dialog" className='flex w-full flex-col'>
                         <PrimaryButton name='Save' />
-                    </div>
+                    </form>
                 </div>
             </div>
+            <form method="dialog" className="modal-backdrop">
+                <button className='text-black'></button>
+            </form>
         </dialog>
     )
 }

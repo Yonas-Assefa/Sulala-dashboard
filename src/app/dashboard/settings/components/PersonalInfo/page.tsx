@@ -11,20 +11,20 @@ function PersonalInfo() {
     return (
         <div className='mt-4 w-full flex flex-col gap-8'>
             <div className='grid grid-cols-2 max-w-[1300px] gap-5'>
-                <TextInput id='first-name' placeholder='First name' label='First name' onChange={() => { }} onClear={() => { }} value='' />
-                <TextInput id='last-name' placeholder='Last name' label='Last name' onChange={() => { }} onClear={() => { }} value='' />
+                <TextInput id='first-name' placeholder='First name' label='First name' />
+                <TextInput id='last-name' placeholder='Last name' label='Last name' />
                 <div className='flex flex-col gap-0 w-full items-center'>
                     <PhoneNumberInput />
                 </div>
-                <TextInput id='email' placeholder='Email' label='Email' onChange={() => { }} onClear={() => { }} value='' />
-                <TextInput id='address' placeholder='Address' label='Address' onChange={() => { }} onClear={() => { }} value='' />
+                <TextInput id='email' placeholder='Email' label='Email' />
+                <TextInput id='address' placeholder='Address' label='Address' />
             </div>
 
             <div className='flex flex-col items-start py-4 gap-8'>
-                <PrimaryButton padding={'md'} name='Save' onClick={() => { }} />
+                <PrimaryButton padding={'md'} name='Save' />
                 <div className='flex flex-col gap-3'>
-                    <SecondaryButton padding={'sm'} name='Change password' href={createQueryString('action', 'change-password')} />
-                    <SecondaryButton padding={'xsm'} name='Log out' href={createQueryString('action', 'logout')} />
+                    <SecondaryButton padding={'sm'} name='Change password' modal='change_password_setting_modal' />
+                    <SecondaryButton padding={'xsm'} name='Log out' modal='logout_setting_modal' />
                 </div>
             </div>
         </div>

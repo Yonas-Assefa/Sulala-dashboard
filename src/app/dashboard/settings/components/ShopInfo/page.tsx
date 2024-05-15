@@ -9,12 +9,12 @@ function ShopInfo() {
         <div className='mt-4 w-full flex flex-col gap-8'>
             <ProfileImagePicker />
             <div className='grid grid-cols-2 max-w-[1300px] gap-5'>
-                <TextInput id='shop-name' placeholder='Shop name' label='Shop name' onChange={() => { }} onClear={() => { }} value='' />
-                <TextInput id='categories' placeholder='Categories' label='Categories' onChange={() => { }} onClear={() => { }} value='' />
-                <TextInput id='legal-address' placeholder='Legal Address' label='Legal Address' onChange={() => { }} onClear={() => { }} value='' />
-                <TextInput id='website' placeholder='Website' label='Website' onChange={() => { }} onClear={() => { }} value='' />
+                <TextInput id='shop-name' placeholder='Shop name' label='Shop name' />
+                <TextInput id='categories' placeholder='Categories' label='Categories' />
+                <TextInput id='legal-address' placeholder='Legal Address' label='Legal Address' />
+                <TextInput id='website' placeholder='Website' label='Website' />
                 <div className="col-span-2">
-                    <TextAreaInput id='description' placeholder='Text' label='Shop description' onChange={() => { }} onClear={() => { }} value='' />
+                    <TextAreaInput id='description' placeholder='Text' label='Shop description' />
                 </div>
             </div>
 
@@ -37,7 +37,7 @@ function ShopInfo() {
                     </div>
                 </div>
                 <div className='mt-5'>
-                    <PrimaryButton padding={'md'} name='Save' onClick={() => { }} />
+                    <PrimaryButton padding={'md'} name='Save' />
                 </div>
             </div>
 

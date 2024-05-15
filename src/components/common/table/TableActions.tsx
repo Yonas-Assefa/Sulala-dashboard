@@ -2,8 +2,9 @@
 import Link from 'next/link'
 import React from 'react'
 import { Actions } from '../../../types/table.type'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { useCreateQueryString } from '@/hooks/useCreateQueryString'
+import { openModal } from '@/utils/openModal'
 
 type Props = Actions & {
     product_id: string
@@ -13,7 +14,7 @@ function TableActions({ edit, delete: deleteItem, promote, product_id, toggle }:
     const pathname = usePathname()
 
     const getEditLink = () => {
-        return pathname + '/edit?item=' + product_id
+        return pathname + '/edit?type=product&item=' + product_id
     }
 
     return (
@@ -31,7 +32,7 @@ function TableActions({ edit, delete: deleteItem, promote, product_id, toggle }:
                         </Link>
                     }
                     {deleteItem &&
-                        <Link href={createQueryString([{ key: 'item', value: product_id }, { key: 'action', value: 'delete-product' }])}>
+                        <Link href={createQueryString([{ key: 'item', value: product_id }])} onClick={() => openModal('delete_item_table_modal')}>
                             <img src="/icons/delete.svg" alt="" />
                         </Link>
                     }

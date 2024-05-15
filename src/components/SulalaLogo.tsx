@@ -1,6 +1,6 @@
 import React from 'react'
 
-function LandingHeader() {
+function SulalaLogo() {
   return (
     <div className='text-black p-5 flex items-center gap-3 self-start'>
       <img src='/sulala-logo.svg' className='w-[40px]' />
@@ -9,4 +9,4 @@ function LandingHeader() {
   )
 }
 
-export default LandingHeader
+export default SulalaLogo

@@ -1,5 +1,5 @@
 import React from 'react'
-import ImportServicesModal from './components/modals/ImportServicesModal'
+import EditServiceWorkTime from './components/modals/EditServiceWorkTime'
 import Table from '@/components/common/table/Table'
 import ServiceHead from './components/ServiceHead'
 import { servicesFilterData, servicesSortData, serviceData } from './schema/data'
@@ -9,7 +9,7 @@ function page() {
 
     return (
         <>
-            <ImportServicesModal />
+            <EditServiceWorkTime />
             <div className='text-black flex flex-col w-full h-full p-8 gap-10'>
 
                 {/* HEADER FOR MY SERVICES */}

@@ -1,15 +1,13 @@
+import { ChangeEventHandler } from "react"
 import { RadioInputSchema, SelectInputSchema } from "./input-field.type"
 
 type BaseInputProps = {
     id?: string
-    value: string
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
     placeholder?: string
     label: string
     name?: string
     autoComplete?: string
     error?: boolean
-    onClear: () => void
 }
 
 export type TextInputProps = BaseInputProps
@@ -36,9 +34,10 @@ export type CustomRadioInputProps = {
 
 type AcceptFileFormate = 'image/*' | 'audio/*' | 'video/*' | 'application/pdf' | 'application/msword' | '.pdf' | '.jpeg' | '.png' | '.jpg' | '.doc' | '.docx' | '.xls' | '.xlsx' | '.csv' | '.txt'
 
-export type FileInputProps = Pick<BaseInputProps, 'onChange' | 'label' | 'name' | 'error' | 'onClear'> & {
-    value: FileList | null
+export type FileInputProps = Pick<BaseInputProps, 'label' | 'name' | 'error'> & {
     accept: AcceptFileFormate[]
+    handleFile: ChangeEventHandler<HTMLInputElement>
+    file: FileList | null
 }
 
 export type SignupProps = {

@@ -33,10 +33,10 @@ function page({ params: { tab } }: Props) {
                 <div className='col-span-2 flex flex-col gap-5 bg-tertiary rounded-[30px] p-8'>
                     <h3 className='font-semibold text-xl'>General Info</h3>
                     <div className='grid grid-cols-2 max-w-[1300px] gap-5'>
-                        <TextInput id='service-name' placeholder='Enter service name' label='Title' onChange={() => { }} onClear={() => { }} value='' />
-                        <TextInput id='price' placeholder='Enter price' label='Price' onChange={() => { }} onClear={() => { }} value='' />
+                        <TextInput id='service-name' placeholder='Enter service name' label='Title' />
+                        <TextInput id='price' placeholder='Enter price' label='Price' />
                         <div className="col-span-2">
-                            <TextAreaInput id='description' placeholder='Text' label='Description' onChange={() => { }} onClear={() => { }} value='' />
+                            <TextAreaInput id='description' placeholder='Text' label='Description' />
                         </div>
                         <div className="col-span-2">
                             <ImageListSelector multi />
@@ -64,17 +64,17 @@ function page({ params: { tab } }: Props) {
                     </div>
                     <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
                         <h3 className='font-semibold text-xl'>Product organization</h3>
-                        <SelectInput id='category' label='Category' multi={true} nested={true} onChange={() => { }} onClear={() => { }} value='' />
+                        <SelectInput id='category' label='Category' multi={true} nested={true} />
                     </div>
                     <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
                         <h3 className='font-semibold text-xl'>Product promotion</h3>
-                        <SelectInput id='category' label='Promo campaign (optional)' multi={false} nested={false} onChange={() => { }} onClear={() => { }} value='' />
-                        <TextAreaInput id='description' placeholder='Enter tags for the product' label='Tags' onChange={() => { }} onClear={() => { }} value='' />
+                        <SelectInput id='category' label='Promo campaign (optional)' multi={false} nested={false} />
+                        <TextAreaInput id='description' placeholder='Enter tags for the product' label='Tags' />
                     </div>
                 </div>
             </div>
             <div className="flex flex-row">
-                <PrimaryButton padding={'md'} name='Save' onClick={() => { }} disabled />
+                <PrimaryButton padding={'md'} name='Save' disabled />
             </div>
         </div>
     )

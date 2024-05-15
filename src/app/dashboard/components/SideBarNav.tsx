@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import Header from "@/components/SulalaLogo";
+import SulalaLogo from "@/components/SulalaLogo";
 import Link from 'next/link';
 import routes from './sideBarRoutes';
 import { usePathname } from 'next/navigation';
@@ -12,7 +12,7 @@ function SideBarNav() {
     return (
         <nav className='min-w-[300px] h-screen bg-tertiary flex flex-col justify-between'>
             <div>
-                <Header />
+                <SulalaLogo />
                 <ul className="flex flex-col list-none">
                     {
                         routes.map((route) => {

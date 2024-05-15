@@ -2,7 +2,7 @@
 import { TextInputProps } from '@/types/props.type'
 import React from 'react'
 
-function TextInput({ id, value, onChange, placeholder, label, name, autoComplete, error, onClear, ...props }: TextInputProps) {
+function TextInput({ id, placeholder, label, name, autoComplete, error, ...props }: TextInputProps) {
     return (
         <label htmlFor={id} >
             <p className='self-start text-black'>{label}</p>
@@ -13,13 +13,10 @@ function TextInput({ id, value, onChange, placeholder, label, name, autoComplete
                     placeholder={placeholder || 'Type here'}
                     name={name || 'text-input'}
                     className='input w-full max-w-xs bg-transparent focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none'
-                    onChange={onChange}
-                    // value={value}
                     autoComplete={autoComplete || 'false'}
                 />
                 {false &&
-                    <button
-                        onClick={onClear}>
+                    <button>
                         <img src="/x-circle.svg" alt="" className='mr-0 stroke-emerald-500' />
                     </button>
                 }

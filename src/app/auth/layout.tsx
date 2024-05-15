@@ -1,5 +1,5 @@
 import Footer from "@/components/Footer";
-import Header from "@/components/SulalaLogo";
+import SulalaLogo from "@/components/SulalaLogo";
 import React from "react";
 
 export default function AuthPageLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -10,7 +10,7 @@ export default function AuthPageLayout({ children }: Readonly<{ children: React.
             </div>
             <div className='bg-white w-3/12 min-w-[600px]'>
                 <div className='w-full h-full flex justify-between flex-col items-center'>
-                    <Header />
+                    <SulalaLogo />
                     {children}
                     <Footer />
                 </div>

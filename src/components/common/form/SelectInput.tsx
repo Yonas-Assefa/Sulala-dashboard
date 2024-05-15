@@ -2,11 +2,11 @@
 import { SelectInputSchema } from '@/types/input-field.type'
 import { CustomSelectInputProps } from '@/types/props.type'
 import React, { useEffect } from 'react'
-import initialData from '../../constants/select-input.placeholder.json'
-import initialNestedData from '../../constants/select-input-nested.placeholder.json'
+import initialData from '@/constants/select-input.placeholder.json'
+import initialNestedData from '@/constants/select-input-nested.placeholder.json'
 import { useDetectClickOutside } from 'react-detect-click-outside';
 
-function CustomMultiSelectInput({ value, onChange, placeholder, label, name, autoComplete, error, onClear, multi = false, nested = false, withImage = false, data, ...props }: CustomSelectInputProps) {
+function CustomMultiSelectInput({ placeholder, label, name, autoComplete, error, multi = false, nested = false, withImage = false, data, ...props }: CustomSelectInputProps) {
     const [options, setOptions] = React.useState<SelectInputSchema[]>(data || (nested ? initialNestedData : initialData))
 
     const [selected, setSelected] = React.useState<SelectInputSchema[]>([])
@@ -88,7 +88,7 @@ function CustomMultiSelectInput({ value, onChange, placeholder, label, name, aut
         // REF IS USED TO DETECT CLICK OUTSIDE THE DROPDOWN PARENT DIV ELEMENT TO TRIGGER CLOSE DROPDOWN
         // SELECT REF IS USED TO OPEN AND CLOSE THE DROPDOWN
         <div ref={ref}>
-            <p className='self-start'>{label}</p>
+            <p className='self-start capitalize'>{label}</p>
             <details ref={selectRef} className={`dropdown bg-white rounded-[30px] m-0 p-0 border w-full hover:bg-white outline-none `}>
                 {/* SUMMARY HOLDS SELECTED COMPUTED VALUE OR PLACEHOLDER IF THERE IS NO SELECTED VALUE */}
                 <summary className={`flex items-center overflow-hidden px-3 justify-between gap-0 focus-within:border-primary rounded-[40px] w-full cursor-pointer input bg-transparent select-none focus:outline-none ${computedValue ? 'text-black' : 'text-gray-400'}`}

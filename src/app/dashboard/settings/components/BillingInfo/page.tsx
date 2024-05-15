@@ -1,11 +1,10 @@
 'use client'
-import { useCreateQueryString } from '@/hooks/useCreateQueryString'
-import Link from 'next/link'
 import React from 'react'
 import BillingInfoCard from './BillingInfoCard'
+import { openModal } from '@/utils/openModal'
 
 function BillingInfo() {
-    const { createQueryString } = useCreateQueryString()
+
     return (
         <div className='mt-4 w-full flex flex-col gap-8 items-start'>
             <div className='flex flex-col gap-4'>
@@ -15,10 +14,10 @@ function BillingInfo() {
                 <BillingInfoCard isPrimary={false} />
 
 
-                <Link href={createQueryString('action', 'create-payment-method')} className='flex flex-row gap-2 bg-tertiary self-start py-2 px-4 rounded-[30px]'>
+                <button onClick={() => openModal('create_payment_method_modal')} className='flex flex-row gap-2 bg-tertiary self-start py-2 px-4 rounded-[30px]'>
                     <img src="/icons/plus.svg" alt="" />
                     <span>Add new</span>
-                </Link>
+                </button>
             </div>
         </div>
     )

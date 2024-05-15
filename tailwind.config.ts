@@ -18,7 +18,8 @@ const config: Config = {
         primary: "#176635",
         secondary: '#a2a6ac',
         tertiary: '#f6f6f6',
-        danger: '#f93e2d'
+        danger: '#f93e2d',
+        dangerlight: '#fee4e0'
       }
     },
   },

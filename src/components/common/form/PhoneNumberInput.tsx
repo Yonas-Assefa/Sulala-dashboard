@@ -1,7 +1,9 @@
+'use client'
 import React, { ElementRef } from 'react'
-import countries from '../../constants/countries.json'
+import countries from '@/constants/countries.json'
+import ResetButton from '../ui/ResetButton'
 
-function PhoneNumberInput() {
+function PhoneNumberInput({ error }: { error?: string }) {
     type CountryCode = {
         name: string,
         dial_code: string,
@@ -60,55 +62,59 @@ function PhoneNumberInput() {
     return (
         <>
             <label htmlFor="phone-number" className='self-start'>Phone number</label>
-            <div className='flex items-center gap-0 border focus-within:border-primary rounded-[40px] w-full'>
-                <details className="dropdown relative bg-transparent h-full" ref={countryCodeRef}>
-                    {/* DISPLAYING COUNTRY FLAG, AND COUNTRY DIAL CODE */}
-                    <summary className='min-w-[80px] bordered bg-transparent h-full select-none cursor-pointer flex gap-1 items-center justify-center px-5'>
-                        <span>{countryCode?.flag}</span>
-                        <p>{countryCode?.dial_code}</p>
-                        <img src="/icons/chevron-down.svg" className='w-[15px] ml-2' alt="" />
-                    </summary>
-                    {/* DROPDOWN OPTION STARTS FROM HERE */}
-                    <ul tabIndex={0} className="dropdown absolute max-h-[300px] overflow-y-scroll z-[1] menu p-0 mt-4 border-2  shadow rounded-box w-52 bg-white block">
-                        <input type="text" name="search-country" placeholder='Search countries' className='bg-white border m-2 p-1 rounded-[10px] w-11/12' value={filterCountry} onChange={handleFilterCountry} id="" />
-                        {
-                            countries
-                                .filter((country) => applyCountryFilter(country))
-                                .map((country) => (
-                                    <li className={`flex flex-row w-full rounded-md hover:bg-gray-100 ${countryCode?.code == country.code ? 'bg-gray-400/20' : ''}`} onClick={() => selectCountryCode(country)} key={country.code}>
-                                        <div className='hover:bg-transparent focus:bg-transparent active:bg-transparent w-full flex justify-between tooltip' data-tip={country.name}>
-                                            <div className='flex flex-row justify-start gap-3 truncate'>
-                                                <span>{country.flag}</span>
-                                                <span>{country.dial_code}</span>
-                                                <span className='truncate'>{country.name}</span>
+            <div className='w-full'>
+                <div className={`flex items-center gap-0 border rounded-[40px] w-full ${error ? 'bg-dangerlight border-danger' : 'focus-within:border-primary'}`}>
+                    <details className="dropdown relative bg-transparent h-full" ref={countryCodeRef}>
+                        {/* DISPLAYING COUNTRY FLAG, AND COUNTRY DIAL CODE */}
+                        <summary className='min-w-[80px] bordered bg-transparent h-full select-none cursor-pointer flex gap-1 items-center justify-center px-5'>
+                            <span>{countryCode?.flag}</span>
+                            <p>{countryCode?.dial_code}</p>
+                            <img src="/icons/chevron-down.svg" className='w-[15px] ml-2' alt="" />
+                        </summary>
+                        <input type="text" id='country_code' name='country_code' hidden value={countryCode?.dial_code} />
+                        {/* DROPDOWN OPTION STARTS FROM HERE */}
+                        <ul tabIndex={0} className="dropdown absolute max-h-[300px] overflow-y-scroll z-[1] menu p-0 mt-4 border-2  shadow rounded-box w-52 bg-white block">
+                            <input type="text" name="search-country" placeholder='Search countries' className='bg-white border m-2 p-1 rounded-[10px] w-11/12' value={filterCountry} onChange={handleFilterCountry} id="" />
+                            {
+                                countries
+                                    .filter((country) => applyCountryFilter(country))
+                                    .map((country) => (
+                                        <li className={`flex flex-row w-full rounded-md hover:bg-gray-100 ${countryCode?.code == country.code ? 'bg-gray-400/20' : ''}`} onClick={() => selectCountryCode(country)} key={country.code}>
+                                            <div className='hover:bg-transparent focus:bg-transparent active:bg-transparent w-full flex justify-between tooltip' data-tip={country.name}>
+                                                <div className='flex flex-row justify-start gap-3 truncate'>
+                                                    <span>{country.flag}</span>
+                                                    <span>{country.dial_code}</span>
+                                                    <span className='truncate'>{country.name}</span>
+                                                </div>
+                                                {countryCode?.code == country.code && <img src="/icons/check.svg" className='bg-transparent' alt="check-mark" />}
                                             </div>
-                                            {countryCode?.code == country.code && <img src="/icons/check.svg" className='bg-transparent' alt="check-mark" />}
-                                        </div>
-                                    </li>
-                                ))
-                        }
-                    </ul>
-                </details>
-                {/* PHONE NUMBER INPUT AND CLEAR BUTTON */}
-                <div className='flex border-l-2 w-full justify-between pr-3 focus-within:border-primary'>
-                    <input
-                        type="text"
-                        id='phone-input'
-                        placeholder="Type here"
-                        className="input w-full bg-transparent border-0 outline-0 rounded-r-[30px] focus:border-0 focus:outline-none"
-                        onChange={handlePhoneNumber}
-                        value={phone}
-                        ref={phoneInputRef}
-                    />
+                                        </li>
+                                    ))
+                            }
+                        </ul>
+                    </details>
+                    {/* PHONE NUMBER INPUT AND CLEAR BUTTON */}
+                    <div className={`flex border-l w-full justify-between pr-3 ${error ? 'border-danger' : 'focus-within:border-primary'}`}>
+                        <input
+                            type="text"
+                            id='phone_number'
+                            name='phone_number'
+                            placeholder="Enter phone number"
+                            className="input w-full bg-transparent border-0 outline-0 rounded-r-[30px] focus:border-0 focus:outline-none"
+                            onChange={handlePhoneNumber}
+                            value={phone}
+                            ref={phoneInputRef}
+                            autoComplete="disabled"
+                        />
 
-                    <button
-                        className={!phone ? 'invisible' : 'visible'}
-                        onClick={clearPhoneNumber}>
-                        <img src="/x-circle.svg" alt="" className='mr-0 stroke-emerald-500' />
-                    </button>
-
+                        <ResetButton handleClear={clearPhoneNumber} show={!!phone} />
+                    </div>
                 </div>
+                {error && <span className="text-xs text-danger">
+                    {error}
+                </span>}
             </div>
+
         </>
     )
 }

@@ -6,9 +6,9 @@ import CustomMultiSelectInput from './common/form/SelectInput'
 function SetupAccountStageOne() {
     return (
         <div className='flex flex-col gap-5 w-full items-stretch'>
-            <TextInput label="What's your first name?" placeholder='Enter your first name' value='' onChange={() => { }} onClear={() => { }} />
-            <TextInput label="What's your last name?" placeholder='Enter your last name' value='' onChange={() => { }} onClear={() => { }} />
-            <TextInput label="What's your email address?" placeholder='Enter your email address' value='' onChange={() => { }} onClear={() => { }} />
+            <TextInput label="What's your first name?" placeholder='Enter your first name' />
+            <TextInput label="What's your last name?" placeholder='Enter your last name' />
+            <TextInput label="What's your email address?" placeholder='Enter your email address' />
         </div>
     )
 }
@@ -16,9 +16,9 @@ function SetupAccountStageOne() {
 function SetupAccountStageTwo() {
     return (
         <div className='flex flex-col gap-5 w-full items-stretch'>
-            <TextInput label="What's your company name?" placeholder='Enter your company name' value='' onChange={() => { }} onClear={() => { }} />
-            <CustomMultiSelectInput multi={false} nested={false} label='Please choose categories for sale' placeholder='Choose categories' value='' onChange={() => { }} onClear={() => { }} />
-            <TextInput label="What's your legal address?" placeholder='Enter your email address' value='' onChange={() => { }} onClear={() => { }} />
+            <TextInput label="What's your company name?" placeholder='Enter your company name' />
+            <CustomMultiSelectInput multi={false} nested={false} label='Please choose categories for sale' placeholder='Choose categories' />
+            <TextInput label="What's your legal address?" placeholder='Enter your email address' />
         </div>
     )
 }
@@ -36,19 +36,11 @@ function SetupAccountStageThree() {
         SetTaxForm(e.target.files)
     }
 
-    const clearCertificate = () => {
-        SetCertificate(null)
-    }
-
-    const clearTaxForm = () => {
-        SetTaxForm(null)
-    }
-
     return (
         <div className='flex flex-col gap-5 w-full items-start'>
             <h4 className='font-semibold'>Please upload documents</h4>
-            <FileInput label='Please attach the certificates' onChange={handleCertificate} onClear={clearCertificate} value={certificate} accept={['.pdf', 'image/*']} />
-            <FileInput label='Please attach the tax form' onChange={handleTaxForm} onClear={clearTaxForm} value={taxForm} accept={['.pdf', 'image/*']} />
+            <FileInput label='Please attach the certificates' handleFile={handleCertificate} file={certificate} accept={['.pdf', 'image/*']} />
+            <FileInput label='Please attach the tax form' handleFile={handleTaxForm} file={taxForm} accept={['.pdf', 'image/*']} />
         </div>
     )
 }

@@ -22,7 +22,7 @@ function SetupAccount() {
 
   return (
     <div className='text-black w-10/12 flex flex-col gap-5 items-center'>
-      {activeStage != 'one' && <BackButton onClick={handlePreviousStage} />}
+      {activeStage != 'one' && <BackButton handleClick={handlePreviousStage} />}
       {/* SIGN IN HEADER */}
       <h1 className='text-[40px] font-serif font-semibold'>Set up your account</h1>
 
