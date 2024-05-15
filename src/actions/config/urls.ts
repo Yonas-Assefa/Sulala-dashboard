@@ -17,6 +17,8 @@ export const EMAIL_SIGNIN_URL = `${VENDOR_BASE_URL}login-with-email/`;
 
 export const VERIFY_PHONE = `${VENDOR_BASE_URL}verify-phonenumber/`;
 
+export const RESEND_OTP = `${VENDOR_BASE_URL}resendOtp/`;
+
 export const CONFIRM_PHONE = `${VENDOR_BASE_URL}confirm_phonenumber_login/`;
 
 export const VERIFY_EMAIL = `${VENDOR_BASE_URL}verify-email/`;

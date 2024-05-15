@@ -44,7 +44,7 @@ export const setupAccount = async (
 
         const redirectUrl = '/auth/setup-account?stage=two'
 
-        return toFormState('SUCCESS', successMessage, redirectUrl);
+        return toFormState('INFO', successMessage, redirectUrl);
     } catch (error) {
         return fromErrorToFormState(error);
     }

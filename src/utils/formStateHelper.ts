@@ -1,7 +1,7 @@
 import { ZodError } from 'zod';
 
 export type FormState = {
-    status: 'UNSET' | 'SUCCESS' | 'ERROR';
+    status: 'UNSET' | 'SUCCESS' | 'ERROR' | 'INFO';
     message: string;
     fieldErrors: Record<string, string[] | undefined>;
     timestamp: number;

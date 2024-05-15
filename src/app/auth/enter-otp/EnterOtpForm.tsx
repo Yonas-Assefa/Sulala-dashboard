@@ -1,10 +1,13 @@
 'use client'
 import { enterOtp } from '@/actions/enter-otp'
+import { resendOtp } from '@/actions/resend-otp'
 import OTPInput from '@/components/OTPInput'
+import Counter from '@/components/common/ui/Counter'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import { useRedirectRoute } from '@/hooks/useRedirectRoute'
 import { useToastMessage } from '@/hooks/useToastMessage'
-import { EMPTY_FORM_STATE } from '@/utils/formStateHelper'
+import { HiddenInput } from '@/types/common.types'
+import { EMPTY_FORM_STATE, FormState } from '@/utils/formStateHelper'
 import React, { ElementRef } from 'react'
 import { useFormState } from 'react-dom'
 
@@ -15,16 +18,10 @@ type Props = {
 
 function EnterOtpForm({ phone, action: authAction }: Props) {
     const submitBtn = React.useRef<ElementRef<'button'>>(null)
-    const [counter, setCounter] = React.useState(30)
     const [disabled, setDisabled] = React.useState(true)
     const [otp, setOTP] = React.useState<string[]>(['', '', '', '', '', ''])
 
-    React.useEffect(() => {
-        const interval = setInterval(() => {
-            counter > 0 ? setCounter(counter - 1) : clearInterval(interval)
-        }, 1000)
-        return () => clearInterval(interval)
-    })
+    const [counterFormState, setCounterFormState] = React.useState<FormState>(EMPTY_FORM_STATE)
 
     const [formState, action] = useFormState(
         enterOtp,
@@ -32,7 +29,13 @@ function EnterOtpForm({ phone, action: authAction }: Props) {
     );
 
     useToastMessage(formState);
+    useToastMessage(counterFormState);
     useRedirectRoute(formState);
+
+    const counterFunction = async () => {
+        const res = await resendOtp({ phone_number: phone })
+        setCounterFormState(res)
+    }
 
     return (
         <form action={action} className='flex flex-col gap-6 w-full'>
@@ -43,9 +46,7 @@ function EnterOtpForm({ phone, action: authAction }: Props) {
             <input type="text" name="otp" id="otp" hidden value={otp.join('')} />
             <input type="text" name="action" id="action" hidden value={authAction} />
             <div className='flex flex-col gap-3 w-full items-center'>
-                {counter > 0 ?
-                    <p className='text-[#70757f]'>Send new code in 00:{counter}</p> :
-                    <button className='text-primary font-semibold btn bg-transparent focus:bg-transparent hover:bg-transparent border-0 shadow-none'>Send new code</button>}
+                <Counter initialValue={0} buttonLabel='Send new code' buttonFunction={counterFunction} />
                 <div className='flex flex-col w-full'>
                     <PrimaryButton name='Confirm' type='submit' ref={submitBtn} disabled={disabled} />
                 </div>
