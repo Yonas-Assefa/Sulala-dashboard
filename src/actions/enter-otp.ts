@@ -22,7 +22,6 @@ export const enterOtp = async (
             await makeRequest(CONFIRM_PHONE, data, 'POST')
 
         const body = await response.json()
-        console.log({ body, data })
 
         if (!response.ok || !body.success) {
             throw new Error(body.message || 'Failed to verify phone number');

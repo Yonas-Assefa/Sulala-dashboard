@@ -2,7 +2,14 @@
 import { TextInputProps } from '@/types/props.type'
 import React from 'react'
 
-function TextInput({ id, placeholder, label, name, autoComplete, error, ...props }: TextInputProps) {
+function TextInput({ value, setValue, id, placeholder, label, name, autoComplete, error, ...props }: TextInputProps) {
+    const inputArgs = {}
+    if (value) {
+        Object.assign(inputArgs, { value })
+    }
+    if (setValue) {
+        Object.assign(inputArgs, { onChange: (e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value) })
+    }
     return (
         <label htmlFor={id} >
             <p className='self-start text-black'>{label}</p>
@@ -14,6 +21,8 @@ function TextInput({ id, placeholder, label, name, autoComplete, error, ...props
                     name={name || 'text-input'}
                     className='input w-full max-w-xs bg-transparent focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none'
                     autoComplete={autoComplete || 'false'}
+                    {...inputArgs}
+                // {...props}
                 />
                 {false &&
                     <button>

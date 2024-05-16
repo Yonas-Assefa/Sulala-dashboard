@@ -8,6 +8,8 @@ type BaseInputProps = {
     name?: string
     autoComplete?: string
     error?: string
+    value?: string,
+    setValue?: (value: string) => void
 }
 
 export type TextInputProps = BaseInputProps

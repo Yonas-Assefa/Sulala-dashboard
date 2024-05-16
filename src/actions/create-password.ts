@@ -13,9 +13,6 @@ export const createPassword = async (
             password: formData.get('password'),
             confirm_password: formData.get('password_confirm'),
         });
-
-        console.log({ getBrowserCookie: getBrowserCookie() })
-
         const response = await fetch(CREATE_PASSWORD, {
             method: 'PATCH',
             headers: getRequestHeaders(),
@@ -23,9 +20,10 @@ export const createPassword = async (
         });
 
         const body = await response.json()
-        console.log({ body, data })
         if (!response.ok || !body.success) {
-            throw new Error(body.message || 'Failed to create password');
+            console.log({ body })
+            const message = body.message || body[Object.keys(body)[0]][0] || 'Failed to create password';
+            throw new Error(message || 'Failed to create password');
         }
 
         const successMessage = 'Password created successfully!'

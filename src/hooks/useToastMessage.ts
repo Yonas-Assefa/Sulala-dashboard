@@ -13,6 +13,8 @@ const useToastMessage = (formState: FormState) => {
     if (showToast) {
       if (formState.status === 'ERROR') {
         pushNotification(formState.message, 'error');
+      } else if (formState.status === 'INFO') {
+        pushNotification(formState.message, 'info');
       } else {
         pushNotification(formState.message, 'success');
       }

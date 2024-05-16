@@ -5,6 +5,7 @@ import "./globals.css";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PageSuspense from "@/components/common/ui/PageSuspense";
+import { CounterStoreProvider } from '@/providers/setup-account-store-provider'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +24,7 @@ export default function RootLayout({
       <body className={inter.className} suppressHydrationWarning>
         <ToastContainer hideProgressBar={true} newestOnTop={false} draggable className='select-none' />
         <Suspense fallback={<PageSuspense />}>
-          {children}
+          <CounterStoreProvider>{children}</CounterStoreProvider>
         </Suspense>
       </body>
     </html>

@@ -16,7 +16,6 @@ function OTPInput({ submitBtn, setDisabled, otp, setOTP }: Props) {
     const input6 = React.useRef<ElementRef<'input'>>(null)
 
     React.useEffect(() => {
-        console.log({ otp }); // Log the updated otp state
         setDisabled(otp.some(value => value === ''));
     }, [otp]);
 

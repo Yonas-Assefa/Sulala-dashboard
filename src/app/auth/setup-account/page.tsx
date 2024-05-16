@@ -1,28 +1,25 @@
-'use client'
+import { getCategories } from '@/actions/get-categories'
 import SetupAccountForm from '@/components/SetupAccountForm'
 import BackButton from '@/components/common/ui/BackButton'
 import ProgressBar from '@/components/common/ui/ProgressBar'
 import { useCreateQueryString } from '@/hooks/useCreateQueryString'
+import { notFound, redirect } from 'next/navigation'
 import React from 'react'
 
-function SetupAccount() {
-
-  const { createQueryStringAndPush, searchParams } = useCreateQueryString()
-  const activeStage = searchParams.get('stage') || 'one'
-
-  const handleNextStage = () => {
-    if (activeStage === 'one') createQueryStringAndPush('stage', 'two')
-    else if (activeStage === 'two') createQueryStringAndPush('stage', 'three')
+type Props = {
+  searchParams: {
+    stage: string
+  }
+}
+async function SetupAccount({ searchParams: { stage: activeStage } }: Props) {
+  if (!['one', 'two', 'three'].includes(activeStage)) {
+    return redirect('/auth/setup-account?stage=one')
   }
 
-  const handlePreviousStage = () => {
-    if (activeStage === 'two') createQueryStringAndPush('stage', 'one')
-    else if (activeStage === 'three') createQueryStringAndPush('stage', 'two')
-  }
-
+  const categoryLists = await getCategories()
   return (
     <div className='text-black w-10/12 flex flex-col gap-5 items-center'>
-      {activeStage != 'one' && <BackButton handleClick={handlePreviousStage} />}
+      {activeStage != 'one' && <BackButton />}
       {/* SIGN IN HEADER */}
       <h1 className='text-[40px] font-serif font-semibold'>Set up your account</h1>
 
@@ -35,7 +32,7 @@ function SetupAccount() {
 
       <div className='flex flex-col gap-6 w-full px-10'>
         {/* SIGN IN INPUT */}
-        <SetupAccountForm activeStage={activeStage} />
+        <SetupAccountForm activeStage={activeStage} categoryLists={categoryLists} />
       </div>
 
     </div >
