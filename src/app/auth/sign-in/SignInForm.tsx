@@ -1,5 +1,5 @@
 'use client'
-import { signIn } from '@/actions/signin'
+import { signIn } from '@/actions/auth/signin'
 import SignInWithEmail from '@/components/SignInWithEmail'
 import SignInWithPhone from '@/components/SignInWithPhone'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'

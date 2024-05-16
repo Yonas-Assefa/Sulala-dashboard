@@ -30,8 +30,11 @@ export const confirmPasswordRefine = {
 }
 
 const MAX_FILE_SIZE = 5000000;
-const ACCEPTED_IMAGE_TYPES = [
+const PDF_TYPES = [
     ".pdf", "application/pdf"
+];
+const IMAGE_TYPES = [
+    ".jpg", ".jpeg", ".png", "image/*", "image/jpeg", "image/png"
 ];
 
 
@@ -41,11 +44,35 @@ export const fileRefine = {
         else return true;
     },
     existMg: "Please update or add new file.",
-    acceptFn: (file: any) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
+    acceptFn: (file: any) => PDF_TYPES.includes(file?.type),
     acceptMg: "only pdf files are accepted.",
     maxsizeFn: (file: any) => file.size <= MAX_FILE_SIZE,
     maxsizeMg: `Max file size is 5MB.`
 }
+
+export const imageRefine = {
+    existFn: (file: any) => {
+        if (file.size === 0 || file.name === undefined) return false;
+        else return true;
+    },
+    existMg: "Please update or add new file.",
+    acceptFn: (file: any) => {
+        console.log({ fileType: file?.type })
+        return IMAGE_TYPES.includes(file?.type)
+    },
+    acceptMg: "only images files are accepted.",
+    maxsizeFn: (file: any) => file.size <= MAX_FILE_SIZE,
+    maxsizeMg: `Max file size is 5MB.`
+}
+
+export const isFiniteNumber = (value: unknown): value is number => {
+    return typeof value === 'number' && isFinite(value);
+};
+
+export const transformToNumber = (value: string): number => {
+    const parsedValue = parseFloat(value);
+    return isNaN(parsedValue) ? 0 : Math.floor(parsedValue)
+};
 
 type TGetPhoneNumber = {
     phone_number: FormDataEntryValue | string | null;

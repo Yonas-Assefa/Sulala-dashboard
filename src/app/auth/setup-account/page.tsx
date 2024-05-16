@@ -1,4 +1,4 @@
-import { getCategories } from '@/actions/get-categories'
+import { getCategories } from '@/actions/auth/get-categories'
 import SetupAccountForm from '@/components/SetupAccountForm'
 import BackButton from '@/components/common/ui/BackButton'
 import ProgressBar from '@/components/common/ui/ProgressBar'

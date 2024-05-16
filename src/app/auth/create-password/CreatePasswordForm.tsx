@@ -1,5 +1,5 @@
 'use client'
-import { createPassword } from '@/actions/create-password';
+import { createPassword } from '@/actions/auth/create-password';
 import PasswordInput from '@/components/common/form/PasswordInput'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import { useRedirectRoute } from '@/hooks/useRedirectRoute';

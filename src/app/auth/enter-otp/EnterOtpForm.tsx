@@ -1,6 +1,6 @@
 'use client'
-import { enterOtp } from '@/actions/enter-otp'
-import { resendOtp } from '@/actions/resend-otp'
+import { enterOtp } from '@/actions/auth/enter-otp'
+import { resendOtp } from '@/actions/auth/resend-otp'
 import OTPInput from '@/components/OTPInput'
 import Counter from '@/components/common/ui/Counter'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'

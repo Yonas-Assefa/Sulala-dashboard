@@ -1,7 +1,7 @@
 'use server'
 
-import { CATEGORIES } from "./config/urls"
-import { getRequestHeaders, makeRequest } from "./utils/helper"
+import { CATEGORIES } from "../config/urls"
+import { getRequestHeaders, makeRequest } from "../utils/helper"
 
 export const getCategories = async () => {
     const response = await fetch(CATEGORIES, {
