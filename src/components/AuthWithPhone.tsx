@@ -3,7 +3,7 @@ import PhoneNumberInput from './common/form/PhoneNumberInput'
 
 import React from "react"
 
-function SignInWithPhone({ error }: { error?: string }) {
+function AuthWithPhone({ error }: { error?: string }) {
 
     return (
         <div className='flex flex-col gap-3 w-full items-center'>
@@ -13,4 +13,4 @@ function SignInWithPhone({ error }: { error?: string }) {
     )
 }
 
-export default SignInWithPhone
+export default AuthWithPhone
