@@ -1,7 +1,7 @@
 'use server'
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
-import { CREATE_PASSWORD, PRODUCTS, } from '../config/urls';
-import { createPasswordSchema, createProductSchema, } from '../schema/zod-schema';
+import { PRODUCTS, } from '../config/urls';
+import { createProductSchema, updateProductSchema, } from '../schema/zod-schema';
 import { changeObjToFormData, getBrowserCookie, getMultiPartRequestHeaders, getRequestHeaders, getResponseErrorMessage } from '../utils/helper';
 import { revalidatePath } from 'next/cache';
 
@@ -10,34 +10,70 @@ export const createProduct = async (
     formData: FormData
 ) => {
     try {
-        console.log({ status: formData.get('status') })
-        const data = createProductSchema.parse({
+
+        const dataToBeParsed = {
             title: formData.get('product_name'),
             description: formData.get('description'),
             price: +(formData.get('price') || 0),
             discounted_price: +(formData.get('discount') || 0),
             category: +(formData.get('category') || 0),
-            images: formData.get('product_images'),
             inventory: +(formData.get('quality') || 0),
             status: formData.get('status'),
-        });
-        const response = await fetch(PRODUCTS, {
-            method: 'POST',
+        }
+
+        const tab = formData.get('tab')
+
+        if (tab == 'add') {
+            Object.assign(dataToBeParsed, { images: formData.get('product_images'), })
+        } else {
+            const allImages = formData.getAll('product_images')?.filter((image) => image instanceof File && image.size > 0)
+            console.log({ allImages })
+            // const images = formData.get('product_images') as FileList | null
+            // if (images && 'size' in images && typeof images.size == 'number' && images.size > 0) {
+            //     Object.assign(dataToBeParsed, { images: formData.get('product_images') })
+            // }
+            if (allImages.length > 0) {
+                Object.assign(dataToBeParsed, { images: allImages })
+            }
+        }
+
+        const data = tab == 'add' ?
+            createProductSchema.parse(dataToBeParsed) :
+            updateProductSchema.parse({
+                ...dataToBeParsed,
+                id: +(formData.get('item') || 0)
+            });
+        const item_id = +(formData.get('item') || 0)
+
+        if ('id' in data) {
+            const { id, ...rest } = data
+            Object.assign(data, rest)
+        }
+
+        const URL = tab == 'add' ? PRODUCTS : `${PRODUCTS}${item_id}/`
+        const METHOD = tab == 'add' ? 'POST' : 'PATCH'
+        const DATA = changeObjToFormData(data)
+
+        const response = await fetch(URL, {
+            method: METHOD,
             headers: getMultiPartRequestHeaders(),
-            body: changeObjToFormData(data),
+            body: DATA,
         });
 
         const body = await response.json()
-        console.log({ body })
         if (!response.ok || !body.success) {
             const message = getResponseErrorMessage(body)
             throw new Error(message || 'Failed to submit form');
         }
 
-        const successMessage = 'Product created successfully!'
+        const successMessage = tab == 'add' ?
+            'Product created successfully!' : 'Product updated successfully!'
 
         const redirectUrl = '/dashboard/my-products'
         revalidatePath('/dashboard/my-products')
+        if (tab == 'edit') {
+            revalidatePath('/dashboard/my-products/edit')
+        }
 
         return toFormState('SUCCESS', successMessage, redirectUrl);
     } catch (error) {

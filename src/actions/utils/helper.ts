@@ -57,7 +57,6 @@ export const imageRefine = {
     },
     existMg: "Please update or add new file.",
     acceptFn: (file: any) => {
-        console.log({ fileType: file?.type })
         return IMAGE_TYPES.includes(file?.type)
     },
     acceptMg: "only images files are accepted.",
@@ -166,14 +165,25 @@ export const isAuthenticated = () => {
 
 export const changeObjToFormData = (Obj: object) => {
     return Object.entries(Obj).reduce((acc, [key, value]) => {
+        if (Array.isArray(value)) {
+            value.forEach((val) => {
+                acc.append(key, val)
+            })
+            return acc
+        }
         acc.append(key, value)
         return acc
     }, new FormData())
 }
 
 export const getResponseErrorMessage = (body: any, defaultMessage?: string): string => {
-    if (typeof body.message === 'object') {
-        return body.message[Object.keys(body.message)[0]] || defaultMessage || 'Failed to submit form'
+    if (body.message) {
+        if (typeof body.message === 'object') return body.message[Object.keys(body.message)[0]] || defaultMessage || 'Failed to submit form'
+        return body.message
     }
-    return body.message || body[Object.keys(body)[0]][0] || defaultMessage || 'Failed to submit form'
+    if (body[Object.keys(body)[0]]) {
+        if (typeof body[Object.keys(body)[0]] === 'string') return defaultMessage || 'Failed to submit form'
+        return body[Object.keys(body)[0]][0] || defaultMessage || 'Failed to submit form'
+    }
+    return defaultMessage || 'Failed to submit form'
 }

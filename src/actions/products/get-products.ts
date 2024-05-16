@@ -9,7 +9,6 @@ export const getProducts = async () => {
         headers: getRequestHeaders()
     })
     const body = await response.json()
-    console.log({ body })
 
     if (!response.ok || !body.count) {
         throw new Error(body.message || 'Failed to get product');
@@ -24,7 +23,6 @@ export const getOneProduct = async (item: string) => {
         headers: getRequestHeaders()
     })
     const body = await response.json()
-    console.log({ body })
 
     if (!response.ok || !body.id) {
         return null

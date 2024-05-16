@@ -10,7 +10,6 @@ function CustomMultiSelectInput({ placeholder, label, name, id, autoComplete, er
     const [options, setOptions] = React.useState<SelectInputSchema[]>(data || (nested ? initialNestedData : initialData))
 
     const defaulSelected = options.find(option => option.value == defaultValue) as SelectInputSchema
-    console.log({ defaulSelected })
     const [selected, setSelected] = React.useState<SelectInputSchema[]>(defaulSelected ? [defaulSelected] : [])
     const [selectedParent, setSelectedParent] = React.useState<SelectInputSchema | null>(null)
     const [computedValue, setComputedValue] = React.useState<string | null>(null)
@@ -92,7 +91,7 @@ function CustomMultiSelectInput({ placeholder, label, name, id, autoComplete, er
         // REF IS USED TO DETECT CLICK OUTSIDE THE DROPDOWN PARENT DIV ELEMENT TO TRIGGER CLOSE DROPDOWN
         // SELECT REF IS USED TO OPEN AND CLOSE THE DROPDOWN
         <div ref={ref}>
-            <input type="text" id={id} name={name} value={selected[0]?.value} hidden />
+            <input type="text" id={id} name={name} value={selected[0]?.value} hidden onChange={() => { }} />
             <p className='self-start capitalize'>{label}</p>
             <details ref={selectRef} className={`dropdown bg-white rounded-[30px] m-0 p-0 border w-full hover:bg-white outline-none `}>
                 {/* SUMMARY HOLDS SELECTED COMPUTED VALUE OR PLACEHOLDER IF THERE IS NO SELECTED VALUE */}

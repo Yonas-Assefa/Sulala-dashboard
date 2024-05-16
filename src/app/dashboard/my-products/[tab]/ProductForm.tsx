@@ -16,8 +16,9 @@ import { useFormState } from 'react-dom'
 type Props = {
     categoryLists: any
     initialValue: any
+    tab: string
 }
-function ProductForm({ categoryLists, initialValue }: Props) {
+function ProductForm({ categoryLists, initialValue, tab }: Props) {
 
     const [formState, action] = useFormState(
         createProduct,
@@ -43,6 +44,8 @@ function ProductForm({ categoryLists, initialValue }: Props) {
 
     return (
         <form action={action} className='flex flex-col gap-4'>
+            <input type="text" name="tab" id="tab" value={tab} onChange={() => { }} hidden />
+            <input type="text" name="item" id="item" value={initialValue?.id} onChange={() => { }} hidden />
             <div className='grid grid-cols-3 gap-6'>
                 <div className='col-span-2 flex flex-col gap-5 bg-tertiary rounded-[30px] p-8'>
                     <h3 className='font-semibold text-xl'>General Info</h3>

@@ -70,11 +70,17 @@ export const createProductSchema = z.object({
     price: z.number().min(1, 'Price must be at least 1'),
     discounted_price: z.number().min(0, 'Discounted price must be at least 0'),
     category: z.number().min(1, 'Please choose at least one category'),
-    images: z.any()
-        .refine(imageRefine.existFn, imageRefine.existMg)
-        .refine(imageRefine.acceptFn, imageRefine.acceptMg),
+    images: z.array(
+        z.any()
+            .refine(imageRefine.existFn, imageRefine.existMg)
+            .refine(imageRefine.acceptFn, imageRefine.acceptMg),
+    ),
     // .refine(imageRefine.maxsizeFn, imageRefine.maxsizeMg),
     // inventory: z.string().transform(transformToNumber).refine(isFiniteNumber, { message: 'Invalid inventory number' }),
     inventory: z.number().min(1, 'Quantity must be at least 1'),
     status: z.nativeEnum(ProductStatus),
+})
+
+export const updateProductSchema = createProductSchema.partial().extend({
+    id: z.number().min(1, 'Invalid product id'),
 })

@@ -31,7 +31,7 @@ async function page({ params: { tab }, searchParams: { item } }: Props) {
                 </div>
                 <h2 className='capitalize'>{tab} Product</h2>
             </div>
-            <ProductForm categoryLists={categoryLists} initialValue={product} />
+            <ProductForm categoryLists={categoryLists} initialValue={product} tab={tab} />
         </div>
     )
 }
