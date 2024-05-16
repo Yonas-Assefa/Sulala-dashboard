@@ -17,6 +17,7 @@ export const CONFIRM_PHONE = `${VENDOR_BASE_URL}confirm_phonenumber_login/`;
 export const VERIFY_EMAIL = `${VENDOR_BASE_URL}verify-email/`;
 export const CREATE_PASSWORD = `${VENDOR_BASE_URL}set-password/`;
 export const SHOP_ACCOUNT = `${VENDOR_BASE_URL}shop_account_setup/`;
+export const GET_VENDOR_ACCOUNT = `${VENDOR_BASE_URL}get_vendor_profile/`;
 
 // CATEGORY URLS
 export const CATEGORIES = `${BASE_URL}categories/`;

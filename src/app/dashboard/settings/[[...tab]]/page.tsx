@@ -1,4 +1,3 @@
-'use client'
 import Link from 'next/link'
 import React from 'react'
 import PersonalInfo from '../components/PersonalInfo/page'
@@ -7,6 +6,7 @@ import BillingInfo from '../components/BillingInfo/page'
 import LogoutModal from '../components/modals/LogoutModal'
 import ChangePasswordModal from '../components/modals/ChangePasswordModal'
 import CreatePaymentMethodModal from '../components/modals/createPaymentMethodModal'
+import { getPersonalInfo } from '@/actions/settings/get-personal-info'
 
 type Props = {
     params: {
@@ -14,8 +14,9 @@ type Props = {
     }
 }
 
-function SettingsPage({ params: { tab } }: Props) {
+async function SettingsPage({ params: { tab } }: Props) {
     const activeTab = tab ? tab[0] : 'personal-info'
+    const personalInfo = await getPersonalInfo()
     return (
         <>
             <LogoutModal />
@@ -35,7 +36,7 @@ function SettingsPage({ params: { tab } }: Props) {
                 {/* TAB CONTENTS HERE */}
                 {
                     activeTab == 'personal-info' ?
-                        <PersonalInfo /> :
+                        <PersonalInfo data={personalInfo} /> :
                         activeTab == 'shop-info' ?
                             <ShopInfo /> :
                             activeTab == 'billing-info' ?

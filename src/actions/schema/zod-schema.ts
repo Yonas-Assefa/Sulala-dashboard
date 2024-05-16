@@ -84,3 +84,11 @@ export const createProductSchema = z.object({
 export const updateProductSchema = createProductSchema.partial().extend({
     id: z.number().min(1, 'Invalid product id'),
 })
+
+export const personalInfoSettingSchema = z.object({
+    first_name: z.string().min(2, 'First name must be at least 2 characters long'),
+    last_name: z.string().min(2, 'Last name must be at least 2 characters long'),
+    email: z.string().email(),
+    phone_number: z.string().transform(phoneTransform),
+    address: z.string().min(1, 'Address must be at least 1 character long'),
+})
