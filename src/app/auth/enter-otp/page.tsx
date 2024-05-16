@@ -1,4 +1,4 @@
-import OTPInput from '@/components/OTPInput'
+import OTPInput from '@/components/common/form/OTPInput'
 import React, { ElementRef, useEffect } from 'react'
 import EnterOtpForm from './EnterOtpForm'
 import { redirect } from 'next/navigation'
