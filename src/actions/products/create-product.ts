@@ -1,14 +1,16 @@
 'use server'
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
-import { CREATE_PASSWORD, } from '../config/urls';
+import { CREATE_PASSWORD, PRODUCTS, } from '../config/urls';
 import { createPasswordSchema, createProductSchema, } from '../schema/zod-schema';
-import { getBrowserCookie, getRequestHeaders } from '../utils/helper';
+import { changeObjToFormData, getBrowserCookie, getMultiPartRequestHeaders, getRequestHeaders, getResponseErrorMessage } from '../utils/helper';
+import { revalidatePath } from 'next/cache';
 
 export const createProduct = async (
     formState: FormState,
     formData: FormData
 ) => {
     try {
+        console.log({ status: formData.get('status') })
         const data = createProductSchema.parse({
             title: formData.get('product_name'),
             description: formData.get('description'),
@@ -19,22 +21,23 @@ export const createProduct = async (
             inventory: +(formData.get('quality') || 0),
             status: formData.get('status'),
         });
-        const response = await fetch(CREATE_PASSWORD, {
-            method: 'PATCH',
-            headers: getRequestHeaders(),
-            body: JSON.stringify(data),
+        const response = await fetch(PRODUCTS, {
+            method: 'POST',
+            headers: getMultiPartRequestHeaders(),
+            body: changeObjToFormData(data),
         });
 
         const body = await response.json()
+        console.log({ body })
         if (!response.ok || !body.success) {
-            console.log({ body })
-            const message = body.message || body[Object.keys(body)[0]][0] || 'Failed to create password';
-            throw new Error(message || 'Failed to create password');
+            const message = getResponseErrorMessage(body)
+            throw new Error(message || 'Failed to submit form');
         }
 
-        const successMessage = 'Password created successfully!'
+        const successMessage = 'Product created successfully!'
 
-        const redirectUrl = '/auth/setup-account'
+        const redirectUrl = '/dashboard/my-products'
+        revalidatePath('/dashboard/my-products')
 
         return toFormState('SUCCESS', successMessage, redirectUrl);
     } catch (error) {

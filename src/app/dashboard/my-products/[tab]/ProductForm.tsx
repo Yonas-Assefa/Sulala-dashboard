@@ -34,10 +34,10 @@ function ProductForm({ categoryLists }: Props) {
     })
 
     const productStatusOptions = [
-        { label: 'New', value: 'New' },
-        { label: 'Active', value: 'Active' },
-        { label: 'Draft', value: 'Draft' },
-        { label: 'Archived', value: 'Archived' },
+        { label: 'New', value: 'NEW' },
+        { label: 'Active', value: 'ACTIVE' },
+        { label: 'Draft', value: 'DRAFT' },
+        { label: 'Archived', value: 'ARCHIVED' },
     ]
 
     return (

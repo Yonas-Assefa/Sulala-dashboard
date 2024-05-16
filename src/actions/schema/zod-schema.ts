@@ -59,10 +59,10 @@ export const setupAccountLastStepSchema = z.object({
 // ("DRAFT", "Draft"),
 // ("ARCHIVED", "Archived"),
 enum ProductStatus {
-    NEW = 'New',
-    ACTIVE = 'Active',
-    DRAFT = 'Draft',
-    ARCHIVED = 'Archived',
+    NEW = 'NEW',
+    ACTIVE = 'ACTIVE',
+    DRAFT = 'DRAFT',
+    ARCHIVED = 'ARCHIVED',
 }
 export const createProductSchema = z.object({
     title: z.string({ message: 'Product title is a required field' }).min(1, { message: 'Product name must be at least 1 character long' }),

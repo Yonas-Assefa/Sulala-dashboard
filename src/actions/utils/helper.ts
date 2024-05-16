@@ -170,3 +170,10 @@ export const changeObjToFormData = (Obj: object) => {
         return acc
     }, new FormData())
 }
+
+export const getResponseErrorMessage = (body: any, defaultMessage?: string): string => {
+    if (typeof body.message === 'object') {
+        return body.message[Object.keys(body.message)[0]] || defaultMessage || 'Failed to submit form'
+    }
+    return body.message || body[Object.keys(body)[0]][0] || defaultMessage || 'Failed to submit form'
+}
