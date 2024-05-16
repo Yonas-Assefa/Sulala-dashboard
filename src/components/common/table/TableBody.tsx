@@ -5,12 +5,16 @@ import TableBadge from './TableBadge'
 import TableActions from './TableActions'
 import TableDropDown from './TableDropDown'
 import { formatNumber } from '@/utils/priceFormatter.util'
+import { formatPiece } from '@/utils/pieceFormatter.util'
 
 type Props = {
     tableSchema: TableSchema
     mockData: Record<string, any>[]
+    reference: Record<string, any> | undefined
 }
-function TableBody({ tableSchema, mockData }: Props) {
+const NEXT_BACKEND_BASE_URL = process.env.NEXT_BACKEND_BASE_URL
+
+function TableBody({ tableSchema, mockData, reference }: Props) {
     return (
         <tbody>
             {
@@ -25,6 +29,10 @@ function TableBody({ tableSchema, mockData }: Props) {
                             {
                                 tableSchema.schema.map((schema) => {
                                     const product_key = product[schema.key as keyof typeof product];
+                                    const image_obj = product[schema.image_key as keyof typeof product]
+                                    const image_base_url = NEXT_BACKEND_BASE_URL?.endsWith('/') ? NEXT_BACKEND_BASE_URL.slice(0, -1) : NEXT_BACKEND_BASE_URL
+                                    const image_link = `${image_base_url}${Array.isArray(image_obj) ? image_obj[0] : image_obj}`
+                                    console.log({ image_link, product, image_key: schema })
                                     return (
                                         <td key={schema.key}>
                                             {schema.badge ?
@@ -35,8 +43,10 @@ function TableBody({ tableSchema, mockData }: Props) {
                                                     <TableDropDown items={product_key} label={schema.key} last_items={last_items} /> :
 
                                                     <div className="flex flex-row items-center">
-                                                        {schema.image && <img src={product[schema.image_key as keyof typeof product]} alt="" />}
-                                                        <p>{schema.type == 'money' ? formatNumber(product_key) : product_key}</p>
+                                                        {schema.image && <img src={image_link} alt="" />}
+                                                        {!schema.referenced ?
+                                                            (<p>{schema.type == 'money' ? formatNumber(product_key) : schema.type == 'pieces' ? formatPiece(product_key) : product_key}</p>)
+                                                            : <p>{reference?.[schema.reference_key!]?.find(({ value }: { value: string | number }) => value == product_key)?.label}</p>}
                                                     </div>
                                             }
                                         </td>

@@ -12,8 +12,8 @@ export const getProducts = async () => {
     console.log({ body })
 
     if (!response.ok || !body.count) {
-        throw new Error(body.message || 'Failed to resend OTP');
+        throw new Error(body.message || 'Failed to create product');
     }
 
-    return body.data
+    return body
 }

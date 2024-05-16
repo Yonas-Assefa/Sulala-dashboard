@@ -12,9 +12,10 @@ type Props = {
     tableSchema: TableSchema
     data: Data
     sortData: SortSchema
+    reference?: Record<string, any>
 }
 
-function Table({ filterData, tableSchema, data, sortData }: Props) {
+function Table({ filterData, tableSchema, data, sortData, reference }: Props) {
     return (
         <>
             <DeleteProductModal />
@@ -28,7 +29,7 @@ function Table({ filterData, tableSchema, data, sortData }: Props) {
                 </div>
                 <table className="table">
                     <TableHead tableSchema={tableSchema} allItemIds={data.map(prod => prod.id + '')} />
-                    <TableBody mockData={data} tableSchema={tableSchema} />
+                    <TableBody mockData={data} tableSchema={tableSchema} reference={reference} />
                 </table>
             </div>
         </>
