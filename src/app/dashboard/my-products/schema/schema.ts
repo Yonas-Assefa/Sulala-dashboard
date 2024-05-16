@@ -23,11 +23,11 @@ export const productTableSchema: TableSchema = {
             type: 'number',
         },
         {
-            key: 'item_name',
+            key: 'title',
             title: 'Item',
             type: 'string',
             image: true,
-            image_key: 'item_image',
+            image_key: 'images',
         },
         {
             key: 'status',

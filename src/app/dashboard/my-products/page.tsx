@@ -4,9 +4,12 @@ import Table from '@/components/common/table/Table'
 import ProductHead from './components/ProductHead'
 import { productData, productsFilterData, productsSortData } from './schema/data'
 import { productTableSchema } from './schema/schema'
+import { getProducts } from '@/actions/products/get-products'
 
-function page() {
+async function page() {
 
+    const products = await getProducts()
+    console.log({ products })
     return (
         <>
             <ImportProductsModal />
