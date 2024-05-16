@@ -1,4 +1,4 @@
-import Footer from "@/components/Footer";
+import Footer from "@/components/common/ui/Footer";
 import Header from "@/components/SulalaLogo";
 import Link from "next/link";
 import React from "react";
