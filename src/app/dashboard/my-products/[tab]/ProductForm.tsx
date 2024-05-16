@@ -8,15 +8,16 @@ import TextInput from '@/components/common/form/TextInput'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import { useRedirectRoute } from '@/hooks/useRedirectRoute'
 import { useToastMessage } from '@/hooks/useToastMessage'
+import { constructImageUrl } from '@/utils/constructImageUrl'
 import { EMPTY_FORM_STATE } from '@/utils/formStateHelper'
 import React from 'react'
 import { useFormState } from 'react-dom'
 
 type Props = {
     categoryLists: any
+    initialValue: any
 }
-function ProductForm({ categoryLists }: Props) {
-
+function ProductForm({ categoryLists, initialValue }: Props) {
 
     const [formState, action] = useFormState(
         createProduct,
@@ -46,23 +47,23 @@ function ProductForm({ categoryLists }: Props) {
                 <div className='col-span-2 flex flex-col gap-5 bg-tertiary rounded-[30px] p-8'>
                     <h3 className='font-semibold text-xl'>General Info</h3>
                     <div className='grid grid-cols-2 max-w-[1300px] gap-5'>
-                        <TextInput id='product_name' name='product_name' error={formState.fieldErrors?.title?.[0]} placeholder='Enter product name' label='Title' />
-                        <TextInput id='quality' name='quality' type='number' placeholder='Enter Quality' label='Quality' error={formState.fieldErrors?.inventory?.[0]} />
+                        <TextInput id='product_name' name='product_name' error={formState.fieldErrors?.title?.[0]} placeholder='Enter product name' label='Title' defaultValue={initialValue?.title} />
+                        <TextInput id='quality' name='quality' type='number' placeholder='Enter Quality' label='Quality' error={formState.fieldErrors?.inventory?.[0]} defaultValue={initialValue?.inventory} />
                         <div className="col-span-2">
-                            <TextAreaInput id='description' name='description' placeholder='Text' label='Description' error={formState.fieldErrors?.description?.[0]} />
+                            <TextAreaInput id='description' name='description' placeholder='Text' label='Description' error={formState.fieldErrors?.description?.[0]} defaultValue={initialValue?.description} />
                         </div>
-                        <TextInput id='price' name='price' type='number' placeholder='Enter price' label='Price' error={formState.fieldErrors?.price?.[0]} />
-                        <TextInput id='discount' name='discount' type='number' defaultValue='0' placeholder='Enter discount in %' label='Discount' error={formState.fieldErrors?.discounted_price?.[0]} />
+                        <TextInput id='price' name='price' type='number' placeholder='Enter price' label='Price' error={formState.fieldErrors?.price?.[0]} defaultValue={initialValue?.price} />
+                        <TextInput id='discount' name='discount' type='number' defaultValue={initialValue?.discounted_price || 0} placeholder='Enter discount in %' label='Discount' error={formState.fieldErrors?.discounted_price?.[0]} />
                         <div className="col-span-2">
-                            <ImageListSelector id='product_images' name='product_images' multi error={formState.fieldErrors?.images?.[0]} />
+                            <ImageListSelector id='product_images' name='product_images' multi error={formState.fieldErrors?.images?.[0]} defaultValues={constructImageUrl(initialValue?.images) as string[]} />
                         </div>
                     </div>
                 </div>
                 <div className='col-span-1 bg-white flex flex-col gap-8'>
-                    <RadioInput label='Status' id='status' name='status' options={productStatusOptions} error={formState.fieldErrors?.status?.[0]} />
+                    <RadioInput label='Status' id='status' name='status' options={productStatusOptions} error={formState.fieldErrors?.status?.[0]} defaultValue={initialValue?.status} />
                     <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
                         <h3 className='font-semibold text-xl'>Product organization</h3>
-                        <SelectInput id='category' name='category' label='Category' data={data} error={formState.fieldErrors?.category?.[0]} />
+                        <SelectInput id='category' name='category' label='Category' data={data} error={formState.fieldErrors?.category?.[0]} defaultValue={initialValue?.category} />
                     </div>
                     <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
                         <h3 className='font-semibold text-xl'>Product promotion</h3>

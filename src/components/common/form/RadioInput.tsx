@@ -11,10 +11,11 @@ type Props = {
     name?: string
     error?: string
     options: RadioInputOptions[]
+    defaultValue?: string
 }
 
-function RadioInput({ id, label, name, error, options }: Props) {
-    const [selected, setSelected] = React.useState<string | null>(null)
+function RadioInput({ id, label, name, error, options, defaultValue }: Props) {
+    const [selected, setSelected] = React.useState<string | null>(defaultValue || null)
 
     return (
         <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
@@ -27,7 +28,7 @@ function RadioInput({ id, label, name, error, options }: Props) {
                             name={name}
                             id={option.value}
                             onChange={() => setSelected(option.value)}
-                            checked={selected === option.value}
+                            checked={selected?.toLowerCase() == option.value?.toLowerCase()}
                             value={option.value}
                             className={`radio radio-success ${error ? 'border-danger' : 'border-secondary'}`} />
                         <p className={`${error ? 'text-danger' : 'text-black'}`}>{option.label}</p>

@@ -3,20 +3,25 @@ import React from 'react'
 import { notFound } from 'next/navigation'
 import ProductForm from './ProductForm'
 import { getCategories } from '@/actions/common/get-categories'
+import { getOneProduct } from '@/actions/products/get-products'
 
 type Props = {
     params: {
         tab: string
+    },
+    searchParams: {
+        item: string
     }
 }
 
-async function page({ params: { tab } }: Props) {
+async function page({ params: { tab }, searchParams: { item } }: Props) {
 
     if (!['add', 'edit'].includes(tab)) {
         return notFound()
     }
 
     const categoryLists = await getCategories()
+    const product = item ? await getOneProduct(item) : null
 
     return (
         <div className='text-black flex flex-col w-full h-full p-8 gap-10 overflow-y-scroll'>
@@ -26,7 +31,7 @@ async function page({ params: { tab } }: Props) {
                 </div>
                 <h2 className='capitalize'>{tab} Product</h2>
             </div>
-            <ProductForm categoryLists={categoryLists} />
+            <ProductForm categoryLists={categoryLists} initialValue={product} />
         </div>
     )
 }

@@ -6,10 +6,12 @@ import initialData from '@/constants/select-input.placeholder.json'
 import initialNestedData from '@/constants/select-input-nested.placeholder.json'
 import { useDetectClickOutside } from 'react-detect-click-outside';
 
-function CustomMultiSelectInput({ placeholder, label, name, id, autoComplete, error, multi = false, nested = false, withImage = false, data, ...props }: CustomSelectInputProps) {
+function CustomMultiSelectInput({ placeholder, label, name, id, autoComplete, error, multi = false, nested = false, withImage = false, data, defaultValue, }: CustomSelectInputProps) {
     const [options, setOptions] = React.useState<SelectInputSchema[]>(data || (nested ? initialNestedData : initialData))
 
-    const [selected, setSelected] = React.useState<SelectInputSchema[]>([])
+    const defaulSelected = options.find(option => option.value == defaultValue) as SelectInputSchema
+    console.log({ defaulSelected })
+    const [selected, setSelected] = React.useState<SelectInputSchema[]>(defaulSelected ? [defaulSelected] : [])
     const [selectedParent, setSelectedParent] = React.useState<SelectInputSchema | null>(null)
     const [computedValue, setComputedValue] = React.useState<string | null>(null)
     const selectRef = React.useRef<HTMLDetailsElement>(null)

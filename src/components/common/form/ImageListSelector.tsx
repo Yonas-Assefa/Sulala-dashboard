@@ -8,9 +8,10 @@ type Props = {
     error?: string
     id?: string
     name?: string
+    defaultValues?: string[]
 }
 
-function ImageListSelector({ multi = false, label, error, name, id }: Props) {
+function ImageListSelector({ multi = false, label, error, name, id, defaultValues }: Props) {
     const [fileList, setFileList] = React.useState<File[]>([]);
     const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -28,10 +29,12 @@ function ImageListSelector({ multi = false, label, error, name, id }: Props) {
         setFileList(fileList.concat(selectedFiles));
     };
 
+    console.log({ defaultValues })
+
     return (
         <div className='flex flex-col gap-1'>
             <p>{label || 'Images'}</p>
-            {fileList.length == 0 ?
+            {(fileList.length == 0 && defaultValues?.length == 0) ?
                 <label htmlFor={id} className={`flex flex-col items-center justify-center gap-5 cursor-pointer w-full p-4 border rounded-[30px] border-dashed h-[300px] select-none ${error ? 'border-danger bg-dangerlight' : 'bg-white'}`}>
                     <img src="/icons/image.svg" alt="" />
                     <div className='flex flex-col justify-center items-center text-secondary'>
@@ -44,6 +47,16 @@ function ImageListSelector({ multi = false, label, error, name, id }: Props) {
                     </div>
                 </label> : multi ?
                     <div className='flex flex-wrap gap-3'>
+                        {
+                            defaultValues?.map((url, index) => (
+                                <div key={index} className='bg-[#d9d9d9] block h-[180px] aspect-square rounded-[20px] relative'>
+                                    <ImageUnselectButton handleClick={() => {
+                                        setFileList((prevFile) => prevFile.filter((_, i) => i !== index))
+                                    }} />
+                                    <img src={url} alt="" className='w-full h-full rounded-[20px]' />
+                                </div>
+                            ))
+                        }
                         {
                             fileList.map((file, index) => (
                                 <div key={index} className='bg-[#d9d9d9] block h-[180px] aspect-square rounded-[20px] relative'>
