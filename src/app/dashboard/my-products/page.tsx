@@ -6,6 +6,7 @@ import { productData, productsFilterData, productsSortData } from './schema/data
 import { productTableSchema } from './schema/schema'
 import { getProducts } from '@/actions/products/get-products'
 import { getCategories } from '@/actions/common/get-categories'
+import { deleteProduct } from '@/actions/products/delete-product'
 
 async function page() {
 
@@ -24,7 +25,14 @@ async function page() {
                 {/* HEADER FOR MY PRODUCTS */}
                 <ProductHead />
 
-                <Table data={products.results} filterData={productsFilterData} tableSchema={productTableSchema} sortData={productsSortData} reference={{ categories }} />
+                <Table
+                    data={products.results}
+                    filterData={productsFilterData}
+                    tableSchema={productTableSchema}
+                    sortData={productsSortData}
+                    reference={{ categories }}
+                    deleteAction={deleteProduct}
+                />
 
             </div >
         </>

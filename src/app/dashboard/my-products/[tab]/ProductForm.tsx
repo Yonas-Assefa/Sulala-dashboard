@@ -1,5 +1,5 @@
 'use client'
-import { createProduct } from '@/actions/products/create-product'
+import { createUpdateProduct } from '@/actions/products/create-update-product'
 import ImageListSelector from '@/components/common/form/ImageListSelector'
 import RadioInput from '@/components/common/form/RadioInput'
 import SelectInput from '@/components/common/form/SelectInput'
@@ -21,7 +21,7 @@ type Props = {
 function ProductForm({ categoryLists, initialValue, tab }: Props) {
 
     const [formState, action] = useFormState(
-        createProduct,
+        createUpdateProduct,
         EMPTY_FORM_STATE
     );
 
@@ -58,7 +58,7 @@ function ProductForm({ categoryLists, initialValue, tab }: Props) {
                         <TextInput id='price' name='price' type='number' placeholder='Enter price' label='Price' error={formState.fieldErrors?.price?.[0]} defaultValue={initialValue?.price} />
                         <TextInput id='discount' name='discount' type='number' defaultValue={initialValue?.discounted_price || 0} placeholder='Enter discount in %' label='Discount' error={formState.fieldErrors?.discounted_price?.[0]} />
                         <div className="col-span-2">
-                            <ImageListSelector id='product_images' name='product_images' multi error={formState.fieldErrors?.images?.[0]} defaultValues={constructImageUrl(initialValue?.images) as string[]} />
+                            <ImageListSelector id='product_images' name='product_images' multi error={formState.fieldErrors?.images?.[0]} defaultValues={constructImageUrl(initialValue?.images || []) as string[]} />
                         </div>
                     </div>
                 </div>

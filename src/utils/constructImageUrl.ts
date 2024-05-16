@@ -20,7 +20,12 @@ export const constructImageUrl = <ReturnOne extends boolean>(
         return Array.isArray(image_obj) ? `${image_base_url}${image_obj[0]}` : `${image_base_url}${image_obj}` as ReturnTypeBasedOnReturnOne<ReturnOne, string | string[]>;
     }
 
-    return Array.isArray(image_obj)
-        ? image_obj.map((image) => `${image_base_url}${image}`) as ReturnTypeBasedOnReturnOne<ReturnOne, string | string[]>
-        : `${image_base_url}${image_obj}` as ReturnTypeBasedOnReturnOne<ReturnOne, string | string[]>;
+    if (Array.isArray(image_obj)) {
+        if (image_obj[0] == undefined) {
+            return [] as any;
+        }
+        return image_obj.map((image) => `${image_base_url}${image}`) as ReturnTypeBasedOnReturnOne<ReturnOne, string | string[]>
+    }
+
+    return `${image_base_url}${image_obj}` as ReturnTypeBasedOnReturnOne<ReturnOne, string | string[]>;
 };

@@ -12,6 +12,7 @@ type Props = {
 }
 
 function ImageListSelector({ multi = false, label, error, name, id, defaultValues }: Props) {
+    console.log({ defaultValues })
     const [fileList, setFileList] = React.useState<(File | string)[]>(defaultValues || []);
     const inputRef = React.useRef<HTMLInputElement>(null);
 

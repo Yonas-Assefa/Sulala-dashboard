@@ -5,7 +5,7 @@ import { createProductSchema, updateProductSchema, } from '../schema/zod-schema'
 import { changeObjToFormData, getBrowserCookie, getMultiPartRequestHeaders, getRequestHeaders, getResponseErrorMessage } from '../utils/helper';
 import { revalidatePath } from 'next/cache';
 
-export const createProduct = async (
+export const createUpdateProduct = async (
     formState: FormState,
     formData: FormData
 ) => {
@@ -23,18 +23,9 @@ export const createProduct = async (
 
         const tab = formData.get('tab')
 
-        if (tab == 'add') {
-            Object.assign(dataToBeParsed, { images: formData.get('product_images'), })
-        } else {
-            const allImages = formData.getAll('product_images')?.filter((image) => image instanceof File && image.size > 0)
-            console.log({ allImages })
-            // const images = formData.get('product_images') as FileList | null
-            // if (images && 'size' in images && typeof images.size == 'number' && images.size > 0) {
-            //     Object.assign(dataToBeParsed, { images: formData.get('product_images') })
-            // }
-            if (allImages.length > 0) {
-                Object.assign(dataToBeParsed, { images: allImages })
-            }
+        const allImages = formData.getAll('product_images')?.filter((image) => image instanceof File && image.size > 0)
+        if (allImages.length > 0) {
+            Object.assign(dataToBeParsed, { images: allImages })
         }
 
         const data = tab == 'add' ?

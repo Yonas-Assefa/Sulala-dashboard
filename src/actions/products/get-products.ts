@@ -10,7 +10,7 @@ export const getProducts = async () => {
     })
     const body = await response.json()
 
-    if (!response.ok || !body.count) {
+    if (!response.ok || !body.results) {
         throw new Error(body.message || 'Failed to get product');
     }
 
