@@ -5,13 +5,16 @@ import React from 'react'
 import Cropper, { ReactCropperElement } from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import { useCreateQueryString } from '@/hooks/useCreateQueryString';
+import SecondaryButton from '../ui/SecondaryButton';
 
 type Props = {
     handleCropChange: (event: any) => void
     rawImage: string | undefined
+    saveCrop: () => void
+    cancelCrop: () => void
 }
 
-function CropImageModal({ handleCropChange, rawImage }: Props) {
+function CropImageModal({ handleCropChange, rawImage, saveCrop, cancelCrop }: Props) {
     const cropperRef = React.useRef<ReactCropperElement>(null);
 
     const onCrop = () => {
@@ -35,8 +38,11 @@ function CropImageModal({ handleCropChange, rawImage }: Props) {
                         crop={onCrop}
                         ref={cropperRef}
                     />
-                    <form method="dialog" className='flex w-full flex-col'>
-                        <PrimaryButton name='Save' />
+                    <form method="dialog" className='flex w-full flex-col gap-3'>
+                        <PrimaryButton name='Save' handleClick={saveCrop} />
+                    </form>
+                    <form method="dialog">
+                        <SecondaryButton name='Cancel' handleClick={cancelCrop} />
                     </form>
                 </div>
             </div>

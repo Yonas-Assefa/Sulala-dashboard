@@ -2,6 +2,7 @@
 import React from 'react'
 import CropImageModal from '../modal/CropImageModal'
 import { openModal } from '@/utils/openModal'
+import { dataURLtoFile } from '@/utils/convertDataURLtoFile'
 
 type Props = {
     error?: string | undefined
@@ -11,10 +12,30 @@ type Props = {
 
 function ProfileImagePicker({ error, name, id }: Props) {
     const [image, setImage] = React.useState<string | undefined>()
+    const [imageTem, setImageTem] = React.useState<string | undefined>()
     const [rawImage, setRawImage] = React.useState<string | undefined>()
+    const inputRef = React.useRef<HTMLInputElement>(null);
+
+    React.useEffect(() => {
+        if (inputRef.current) {
+            const dataTransfer = new DataTransfer();
+            const file = dataURLtoFile(image, 'image.png');
+            dataTransfer.items.add(file);
+            inputRef.current.files = dataTransfer.files;
+        }
+    }, [image])
 
     const handleCropChange = (event: HTMLCanvasElement["toDataURL"]) => {
         setImage(event)
+    }
+
+    const cancelCrop = () => {
+        setImage(imageTem)
+        setImageTem(undefined)
+    }
+
+    const saveCrop = () => {
+        setImageTem(undefined)
     }
 
     const handleDeleteImage = () => {
@@ -23,6 +44,7 @@ function ProfileImagePicker({ error, name, id }: Props) {
     }
 
     const handleRawImage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setImageTem(image)
         const selectedFiles = Array.from(event.target.files as Iterable<File> | ArrayLike<File>);
         const uploadedImages = selectedFiles.map((file) => URL.createObjectURL(file));
         setRawImage(uploadedImages[0]);
@@ -31,7 +53,7 @@ function ProfileImagePicker({ error, name, id }: Props) {
 
     return (
         <>
-            <CropImageModal handleCropChange={handleCropChange} rawImage={rawImage} />
+            <CropImageModal saveCrop={saveCrop} cancelCrop={cancelCrop} handleCropChange={handleCropChange} rawImage={rawImage} />
             <div className='flex flex-row gap-4 items-center'>
                 {!image ?
                     <label htmlFor={id} className='flex flex-row gap-4 items-center cursor-pointer' >
@@ -54,7 +76,7 @@ function ProfileImagePicker({ error, name, id }: Props) {
                         </div>
                     </div>
                 }
-                <input type="file" name={name} id={id} className='hidden' accept='image/*' onChange={handleRawImage} />
+                <input ref={inputRef} type="file" name={name} id={id} className='hidden' accept='image/*' onChange={handleRawImage} />
             </div>
             {error && <span className="text-xs text-danger">
                 {error}

@@ -13,6 +13,7 @@ type Props = {
     disabled?: boolean
     type?: 'submit' | 'reset' | 'button'
     ref?: React.RefObject<HTMLButtonElement>
+    className?: string
 }
 
 const paddings = {
@@ -23,7 +24,7 @@ const paddings = {
     xlg: 'px-[300px]'
 }
 
-function PrimaryButton({ padding, name, handleClick, modal, ref, href, type, disabled = false }: Props) {
+function PrimaryButton({ padding, name, handleClick, className, modal, ref, href, type, disabled = false }: Props) {
 
     const { pending } = useFormStatus();
 
@@ -37,10 +38,21 @@ function PrimaryButton({ padding, name, handleClick, modal, ref, href, type, dis
         }
     }
 
+    const props = {}
+    if (handleButtonClick && type !== 'submit') {
+        Object.assign(props, { onClick: handleButtonClick })
+    }
+    if (type) {
+        Object.assign(props, { type })
+    }
+    if (ref) {
+        Object.assign(props, { ref })
+    }
+
     if (href) {
         return (
             <Link href={href}
-                className={`btn rounded-[40px] disabled:bg-secondary border-0 disabled:text-white disabled:cursor-not-allowed text-white bg-primary hover:bg-primary/80 ${padding && paddings[padding]} ${(disabled || pending) && 'bg-secondary hover:bg-secondary border-0 text-white cursor-not-allowed'}`}
+                className={`btn rounded-[40px] disabled:bg-secondary border-0 disabled:text-white disabled:cursor-not-allowed text-white bg-primary  hover:bg-primary/80 ${padding && paddings[padding]} ${(disabled || pending) && 'bg-secondary hover:bg-secondary border-0 text-white cursor-not-allowed'}`}
                 onClick={handleButtonClick}
             >
                 {
@@ -53,11 +65,9 @@ function PrimaryButton({ padding, name, handleClick, modal, ref, href, type, dis
     }
     else return (
         <button
-            type={type || 'button'}
-            className={`btn rounded-[40px] disabled:bg-secondary border-0 disabled:text-white disabled:cursor-not-allowed text-white bg-primary hover:bg-primary/80 ${padding && paddings[padding]}`}
-            onClick={type !== 'submit' ? handleButtonClick : undefined}
+            className={`btn rounded-[40px] disabled:bg-secondary border-0 disabled:text-white disabled:cursor-not-allowed text-white bg-primary hover:bg-primary/80 ${padding && paddings[padding]} ${className}`}
             disabled={disabled || pending}
-            ref={ref}
+            {...props}
         >
             {
                 pending ? <span className="loading loading-spinner loading-md text-primary"></span> :
