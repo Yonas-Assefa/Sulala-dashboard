@@ -147,7 +147,8 @@ export const shopInfoSettingSchema = z.object({
 })
 
 export const billingInfoSettingSchema = z.object({
-    card_holder_name: z.string(),
+    card_holder_name: z.string()
+        .min(1, 'Card holder name must be at least 1 character long'),
     card_number: z.string()
         .refine(cardNumberRefine.Fn, cardNumberRefine.Opt),
     expiry_date: z.string()
