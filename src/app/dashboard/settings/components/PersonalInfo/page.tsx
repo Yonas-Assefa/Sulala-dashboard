@@ -13,7 +13,10 @@ import { updatePersonalInfo } from '@/actions/settings/update-personal-info'
 type Props = {
     data: any
 }
-async function PersonalInfo({ data }: Props) {
+
+function PersonalInfo({ data }: Props) {
+
+    console.log({ data })
 
     const [formState, action] = useFormState(
         updatePersonalInfo,
@@ -26,13 +29,13 @@ async function PersonalInfo({ data }: Props) {
     return (
         <form action={action} className='mt-4 w-full flex flex-col gap-8'>
             <div className='grid grid-cols-2 max-w-[1300px] gap-5'>
-                <TextInput id='first-name' placeholder='First name' label='First name' defaultValue={data.first_name} />
-                <TextInput id='last-name' placeholder='Last name' label='Last name' defaultValue={data.last_name} />
+                <TextInput id='first_name' name='first_name' placeholder='First name' label='First name' defaultValue={data.first_name} error={formState?.fieldErrors?.first_name?.[0]} />
+                <TextInput id='last_name' name='last_name' placeholder='Last name' label='Last name' defaultValue={data.last_name} error={formState?.fieldErrors?.last_name?.[0]} />
                 <div className='flex flex-col gap-0 w-full items-center'>
-                    <PhoneNumberInput defaultValue={data.phone_number} />
+                    <PhoneNumberInput defaultValue={data.phone_number} error={formState?.fieldErrors?.phone_number?.[0]} />
                 </div>
-                <TextInput id='email' placeholder='Email' label='Email' defaultValue={data.email} />
-                <TextInput id='address' placeholder='Address' label='Address' />
+                <TextInput id='email' name='email' placeholder='Email' label='Email' defaultValue={data.email} error={formState?.fieldErrors?.email?.[0]} />
+                <TextInput id='address' name='address' placeholder='Address' label='Address' error={formState?.fieldErrors?.address?.[0]} />
             </div>
 
             <div className='flex flex-col items-start py-4 gap-8'>

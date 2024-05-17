@@ -3,6 +3,7 @@ import React, { ElementRef } from 'react'
 import countries from '@/constants/countries.json'
 import ResetButton from '../ui/ResetButton'
 import { getUserLocation } from '@/utils/getUserLocation'
+import { splitPhoneNumber } from '@/utils/splitPhoneNumber'
 
 function PhoneNumberInput({ error, defaultValue }: { error?: string, defaultValue?: string }) {
     type CountryCode = {
@@ -12,10 +13,12 @@ function PhoneNumberInput({ error, defaultValue }: { error?: string, defaultValu
         flag: string
     }
 
-    const initialValue = defaultValue?.split(' ')
+    const initialValue = splitPhoneNumber(defaultValue)
+    const initialPhoneNumber = initialValue.phoneNumber
+    const initialCountryCode = countries.find((country: CountryCode) => country.dial_code === initialValue.countryPhoneCode)
 
-    const [phone, setPhone] = React.useState('')
-    const [countryCode, setCountryCode] = React.useState<CountryCode>()
+    const [phone, setPhone] = React.useState(initialPhoneNumber)
+    const [countryCode, setCountryCode] = React.useState<CountryCode | undefined>(initialCountryCode)
     const phoneInputRef = React.useRef<ElementRef<'input'>>(null)
     const countryCodeRef = React.useRef<ElementRef<'details'>>(null)
     const [filterCountry, setFilterCountry] = React.useState('')
@@ -35,11 +38,13 @@ function PhoneNumberInput({ error, defaultValue }: { error?: string, defaultValu
 
     // GET USER LOCATION AND SET DEFAULT COUNTRY DIAL CODE
     React.useEffect(() => {
-        getUserLocation()
-            .then(data => {
-                const country = countries.find((country: CountryCode) => country.code === data.country_code)
-                setCountryCode(country)
-            })
+        if (!initialCountryCode) {
+            getUserLocation()
+                .then(data => {
+                    const country = countries.find((country: CountryCode) => country.code === data.country_code)
+                    setCountryCode(country)
+                })
+        }
     }, [])
 
     const handlePhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {

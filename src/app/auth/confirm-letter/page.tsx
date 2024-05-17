@@ -1,4 +1,5 @@
 'use client'
+import BackButton from '@/components/common/ui/BackButton'
 import React, { ElementRef, useEffect } from 'react'
 
 type Props = {
@@ -7,7 +8,6 @@ type Props = {
     }
 }
 function ConfirmationLetter({ searchParams: { email } }: Props) {
-    const submitBtn = React.useRef<ElementRef<'button'>>(null)
     const [counter, setCounter] = React.useState(30)
 
     useEffect(() => {
@@ -20,9 +20,7 @@ function ConfirmationLetter({ searchParams: { email } }: Props) {
     return (
         <div className='text-black w-10/12 h-4/5 px-6 flex flex-col justify-evenly pb-8 items-center'>
             <div className='flex w-full'>
-                <button className='bg-tertiary hover:bg-primary/20 p-2 rounded-full btn border-0'>
-                    <img src="/icons/arrow-left.svg" alt="" className='w-[30px]' />
-                </button>
+                <BackButton />
             </div>
             {/* SIGN IN HEADER */}
             <div className='flex flex-col gap-6'>
