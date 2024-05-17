@@ -1,28 +1,24 @@
 'use server'
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
-import { UPDATE_SHOP_ACCOUNT, } from '../config/urls';
-import { personalInfoSettingSchema, shopInfoSettingSchema, } from '../schema/zod-schema';
+import { UPDATE_BILLING_ACCOUNT, } from '../config/urls';
+import { billingInfoSettingSchema, } from '../schema/zod-schema';
 import { getRequestHeaders, getResponseErrorMessage } from '../utils/helper';
 import { revalidatePath } from 'next/cache';
 
-export const updateShopInfo = async (
+export const updateBillingInfo = async (
     formState: FormState,
     formData: FormData
 ) => {
     try {
 
-        const data = shopInfoSettingSchema.parse({
-            shop_name: formData.get('shop_name'),
-            description: formData.get('shop_description'),
-            categories: formData.getAll('categories'),
-            legal_address: formData.get('legal_address'),
-            website: formData.get('website'),
-            instagram: formData.get('instagram'),
-            facebook: formData.get('facebook'),
-            profile_image: formData.get('profile_image'),
+        const data = billingInfoSettingSchema.parse({
+            card_holder_name: formData.get('card_holder_name'),
+            card_number: formData.get('card_number'),
+            expiry_date: formData.get('expiry_date'),
+            cvv: formData.get('cvv'),
         });
 
-        const response = await fetch(UPDATE_SHOP_ACCOUNT, {
+        const response = await fetch(UPDATE_BILLING_ACCOUNT, {
             method: 'PATCH',
             headers: getRequestHeaders(),
             body: JSON.stringify(data),
@@ -34,7 +30,7 @@ export const updateShopInfo = async (
             throw new Error(message || 'Failed to submit form');
         }
 
-        const successMessage = body.message || 'Successfully updated shop info';
+        const successMessage = body.message || 'Successfully updated billing info';
 
         revalidatePath('/dashboard/settings')
 
