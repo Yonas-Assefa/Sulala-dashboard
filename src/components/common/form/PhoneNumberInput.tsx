@@ -4,13 +4,15 @@ import countries from '@/constants/countries.json'
 import ResetButton from '../ui/ResetButton'
 import { getUserLocation } from '@/utils/getUserLocation'
 
-function PhoneNumberInput({ error }: { error?: string }) {
+function PhoneNumberInput({ error, defaultValue }: { error?: string, defaultValue?: string }) {
     type CountryCode = {
         name: string,
         dial_code: string,
         code: string,
         flag: string
     }
+
+    const initialValue = defaultValue?.split(' ')
 
     const [phone, setPhone] = React.useState('')
     const [countryCode, setCountryCode] = React.useState<CountryCode>()
