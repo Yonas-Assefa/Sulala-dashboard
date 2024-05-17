@@ -12,6 +12,7 @@ export function middleware(request: NextRequest) {
         pathname.startsWith('/auth') &&
         !pathname.includes('/create-password') &&
         !pathname.includes('/setup-account') &&
+        !pathname.includes('/confirm-letter') &&
         !pathname.includes('/setup-complete')) {
         return NextResponse.redirect(new URL('/dashboard/settings', request.url))
     }

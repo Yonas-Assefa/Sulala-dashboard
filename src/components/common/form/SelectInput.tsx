@@ -6,7 +6,7 @@ import initialData from '@/constants/select-input.placeholder.json'
 import initialNestedData from '@/constants/select-input-nested.placeholder.json'
 import { useDetectClickOutside } from 'react-detect-click-outside';
 
-function CustomMultiSelectInput({ placeholder, label, name, id, autoComplete, error, multi = false, nested = false, withImage = false, data, defaultValue, }: CustomSelectInputProps) {
+function CustomMultiSelectInput({ placeholder, label, name, id, autoComplete, error, multi = false, nested = false, withImage = false, data, defaultValue, searchable = false }: CustomSelectInputProps) {
     const [options, setOptions] = React.useState<SelectInputSchema[]>(data || (nested ? initialNestedData : initialData))
 
     const defaulSelected = options.find(option => option.value == defaultValue) as SelectInputSchema
@@ -15,6 +15,7 @@ function CustomMultiSelectInput({ placeholder, label, name, id, autoComplete, er
     const [computedValue, setComputedValue] = React.useState<string | null>(null)
     const selectRef = React.useRef<HTMLDetailsElement>(null)
     const [open, setOpen] = React.useState(false)
+    const [search, setSearch] = React.useState('')
 
     const openDropdown = () => {
         selectRef.current?.setAttribute('open', 'true')
@@ -87,6 +88,15 @@ function CustomMultiSelectInput({ placeholder, label, name, id, autoComplete, er
         }
     }, [selected])
 
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearch(e.target.value)
+        if (e.target.value) {
+            setOptions(options.filter(option => option.label.toLowerCase().includes(e.target.value.toLowerCase())))
+        } else {
+            setOptions(data || (nested ? initialNestedData : initialData))
+        }
+    }
+
     return (
         // REF IS USED TO DETECT CLICK OUTSIDE THE DROPDOWN PARENT DIV ELEMENT TO TRIGGER CLOSE DROPDOWN
         // SELECT REF IS USED TO OPEN AND CLOSE THE DROPDOWN
@@ -103,6 +113,10 @@ function CustomMultiSelectInput({ placeholder, label, name, id, autoComplete, er
                 </summary >
                 {/* DROPDOWN LIST STARTS FROM HERE */}
                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 my-3 border-2 shadow rounded-box w-full bg-white">
+                    {
+                        searchable &&
+                        <input type="text" name={`search-${id}`} id={`search-${id}`} placeholder={`Search ${label?.toLowerCase() || '...'}`} className='bg-white border m-2 p-1 rounded-[10px] w-11/12' value={search} onChange={handleSearch} />
+                    }
                     {/* IF THERE IS SELECTED PARENT, THE FOLLOWING COMPONENT APPEARS WITH TITLE OF SELECTED PARENT AND BACK BUTTON */}
                     {selectedParent &&
                         <li

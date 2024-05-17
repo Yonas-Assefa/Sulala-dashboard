@@ -32,7 +32,13 @@ function PersonalInfo({ data }: Props) {
                 <div className='flex flex-col gap-0 w-full items-center'>
                     <PhoneNumberInput defaultValue={data.phone_number} error={formState?.fieldErrors?.phone_number?.[0]} />
                 </div>
-                <TextInput id='email' name='email' placeholder='Email' label='Email' defaultValue={data.email} error={formState?.fieldErrors?.email?.[0]} />
+                <div className='w-full flex flex-col relative'>
+                    <TextInput id='email' name='email' placeholder='Email' label='Email' defaultValue={data.email} error={formState?.fieldErrors?.email?.[0]} />
+                    <div className='flex self-end flex-row gap-1 absolute -bottom-5 '>
+                        <img src={data.email_verified == false ? "/icons/alert.svg" : "/icons/verified.svg"} alt="" className='w-[15px] aspect-square' />
+                        <p className={`text-[13px] font-semibold italic ${data.email_verified == false ? 'text-danger' : 'text-primary'}`}>{data.email_verified == false ? 'email not verified' : 'email verified'}</p>
+                    </div>
+                </div>
                 <TextInput id='address' name='address' placeholder='Address' label='Address' error={formState?.fieldErrors?.address?.[0]} />
             </div>
 

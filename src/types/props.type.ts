@@ -28,6 +28,7 @@ export type CustomSelectInputProps = BaseInputProps & {
     withImage?: boolean
     options?: string[]
     data?: SelectInputSchema[]
+    searchable?: boolean
 }
 
 export type CustomRadioInputProps = {

@@ -31,6 +31,7 @@ export const CATEGORIES = `${BASE_URL}categories/`;
 
 // PRODUCT URLS
 export const PRODUCTS = `${BASE_URL}products/`;
+export const PRODUCT_TAGS = `${BASE_URL}product_tags/`;
 
 // OTHERS
 export const INSTAGRAM_BASE_URL = 'https://www.instagram.com/'
