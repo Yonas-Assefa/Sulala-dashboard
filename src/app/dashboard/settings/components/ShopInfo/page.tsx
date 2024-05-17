@@ -1,10 +1,25 @@
+'use client'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import TextAreaInput from '@/components/common/form/TextAreaInput'
 import TextInput from '@/components/common/form/TextInput'
 import React from 'react'
 import ProfileImagePicker from '@/components/common/form/ProfileImagePicker'
+import { updatePersonalInfo } from '@/actions/settings/update-personal-info'
+import { useRedirectRoute } from '@/hooks/useRedirectRoute'
+import { useToastMessage } from '@/hooks/useToastMessage'
+import { EMPTY_FORM_STATE } from '@/utils/formStateHelper'
+import { useFormState } from 'react-dom'
 
 function ShopInfo() {
+
+    const [formState, action] = useFormState(
+        updatePersonalInfo,
+        EMPTY_FORM_STATE
+    );
+
+    useToastMessage(formState);
+    useRedirectRoute(formState);
+
     return (
         <div className='mt-4 w-full flex flex-col gap-8'>
             <ProfileImagePicker />

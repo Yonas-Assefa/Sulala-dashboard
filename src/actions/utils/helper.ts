@@ -64,6 +64,45 @@ export const imageRefine = {
     maxsizeMg: `Max file size is 5MB.`
 }
 
+function luhnCheck(cardNumber: string) {
+    let sum = 0;
+    let shouldDouble = false;
+    for (let i = cardNumber.length - 1; i >= 0; i--) {
+        let digit = parseInt(cardNumber[i], 10);
+        if (shouldDouble) {
+            digit *= 2;
+            if (digit > 9) {
+                digit -= 9;
+            }
+        }
+        sum += digit;
+        shouldDouble = !shouldDouble;
+    }
+    return sum % 10 === 0;
+}
+
+export const cardNumberRefine = {
+    Fn: (val: string) => {
+        const sanitized = val.replace(/\D/g, '');
+
+        if (sanitized.length < 13 || sanitized.length > 19) {
+            return false;
+        }
+
+        if (!luhnCheck(sanitized)) {
+            return false;
+        }
+
+        const visaRegex = /^4[0-9]{12}(?:[0-9]{3})?$/; // Visa: Starts with 4
+        const mastercardRegex = /^5[1-5][0-9]{14}$/; // Mastercard: Starts with 51-55
+
+        return visaRegex.test(sanitized) || mastercardRegex.test(sanitized);
+    },
+    Opt: {
+        message: 'Invalid card number. Must be a valid Visa or Mastercard number.',
+    }
+}
+
 export const isFiniteNumber = (value: unknown): value is number => {
     return typeof value === 'number' && isFinite(value);
 };

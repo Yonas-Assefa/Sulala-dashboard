@@ -16,8 +16,6 @@ type Props = {
 
 function PersonalInfo({ data }: Props) {
 
-    console.log({ data })
-
     const [formState, action] = useFormState(
         updatePersonalInfo,
         EMPTY_FORM_STATE

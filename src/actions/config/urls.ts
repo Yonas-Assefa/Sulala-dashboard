@@ -18,10 +18,16 @@ export const VERIFY_EMAIL = `${VENDOR_BASE_URL}verify-email/`;
 export const CREATE_PASSWORD = `${VENDOR_BASE_URL}set-password/`;
 export const SHOP_ACCOUNT = `${VENDOR_BASE_URL}shop_account_setup/`;
 export const GET_VENDOR_ACCOUNT = `${VENDOR_BASE_URL}get_vendor_profile/`;
+export const GET_SHOP_ACCOUNT = `${VENDOR_BASE_URL}get_vendor_profile/`;
 export const UPDATE_VENDOR_ACCOUNT = `${VENDOR_BASE_URL}update_profile/`;
+export const GET_BILLING_ACCOUNT = `${VENDOR_BASE_URL}get_vendor_profile/`;
 
 // CATEGORY URLS
 export const CATEGORIES = `${BASE_URL}categories/`;
 
 // PRODUCT URLS
 export const PRODUCTS = `${BASE_URL}products/`;
+
+// OTHERS
+export const INSTAGRAM_BASE_URL = 'https://www.instagram.com/'
+export const FACEBOOK_BASE_URL = 'https://www.facebook.com/'
