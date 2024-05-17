@@ -155,8 +155,6 @@ export const makeRequestWithCookie = async (url: string, data: object, method: T
 
 export const setBrowserCookie = (response: Response) => {
     const cookieArray = response.headers.getSetCookie() || [];
-    const cookieString = response.headers.get('Set-Cookie') || '';
-    // const accessTokenArray = cookieString.find((cookie: string) => cookie.includes('access='))?.split('; ')
     for (const cookie of cookieArray) {
         const cookieProps = cookie.split('; ')
         const [key, value] = cookieProps[0].split('=')
@@ -173,6 +171,14 @@ export const setBrowserCookie = (response: Response) => {
             expires: new Date(expires || ''),
         })
     }
+}
+
+
+export const clearBrowserCookie = () => {
+    const cookieArray = cookies().getAll()
+    cookieArray.forEach((cookie) => {
+        cookies().delete(cookie.name)
+    })
 }
 
 export const getBrowserCookie = () => {

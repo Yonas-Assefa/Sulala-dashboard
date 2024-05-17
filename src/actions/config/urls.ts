@@ -23,6 +23,7 @@ export const UPDATE_VENDOR_ACCOUNT = `${VENDOR_BASE_URL}update_profile/`;
 export const UPDATE_SHOP_ACCOUNT = `${VENDOR_BASE_URL}update_profile/`;
 export const UPDATE_BILLING_ACCOUNT = `${VENDOR_BASE_URL}update_profile/`;
 export const CHANGE_PASSWORD = `${VENDOR_BASE_URL}update_profile/`;
+export const LOGOUT = `${VENDOR_BASE_URL}update_profile/`;
 export const GET_BILLING_ACCOUNT = `${VENDOR_BASE_URL}get_vendor_profile/`;
 
 // CATEGORY URLS
