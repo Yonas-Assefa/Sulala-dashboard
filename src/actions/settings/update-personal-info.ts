@@ -33,10 +33,9 @@ export const updatePersonalInfo = async (
 
         const successMessage = body.message || 'Successfully updated personal info';
 
-        const redirectUrl = body.message.toLowerCase().includes('please verify the new email address') ?
+        const redirectUrl = body?.message?.toLowerCase().includes('please verify the new email address') ?
             `/auth/confirm-letter?email=${data.email}` : undefined;
         revalidatePath('/dashboard/settings')
-        console.log({ redirectUrl, bool: body.message.toLowerCase().includes('please verify the new email address') })
 
         return toFormState('SUCCESS', successMessage, redirectUrl);
     } catch (error) {
