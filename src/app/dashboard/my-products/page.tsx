@@ -4,9 +4,19 @@ import Table from '@/components/common/table/Table'
 import ProductHead from './components/ProductHead'
 import { productData, productsFilterData, productsSortData } from './schema/data'
 import { productTableSchema } from './schema/schema'
+import { getProducts } from '@/actions/products/get-products'
+import { getCategories } from '@/actions/common/get-categories'
+import { deleteProduct } from '@/actions/products/delete-product'
 
-function page() {
+async function page() {
 
+    const products = await getProducts()
+    const categories = (await getCategories()).map((category: any) => {
+        return {
+            label: category.name,
+            value: category.id
+        }
+    })
     return (
         <>
             <ImportProductsModal />
@@ -15,7 +25,14 @@ function page() {
                 {/* HEADER FOR MY PRODUCTS */}
                 <ProductHead />
 
-                <Table data={productData} filterData={productsFilterData} tableSchema={productTableSchema} sortData={productsSortData} />
+                <Table
+                    data={products.results}
+                    filterData={productsFilterData}
+                    tableSchema={productTableSchema}
+                    sortData={productsSortData}
+                    reference={{ categories }}
+                    deleteAction={deleteProduct}
+                />
 
             </div >
         </>

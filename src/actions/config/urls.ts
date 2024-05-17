@@ -20,3 +20,6 @@ export const SHOP_ACCOUNT = `${VENDOR_BASE_URL}shop_account_setup/`;
 
 // CATEGORY URLS
 export const CATEGORIES = `${BASE_URL}categories/`;
+
+// PRODUCT URLS
+export const PRODUCTS = `${BASE_URL}products/`;

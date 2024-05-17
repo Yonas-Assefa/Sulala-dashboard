@@ -1,25 +1,38 @@
+'use client'
 import React from 'react'
 import ImageUnselectButton from '../ui/ImageUnselectButton'
 
 type Props = {
     multi?: boolean
     label?: string
+    error?: string
+    id?: string
+    name?: string
+    defaultValues?: string[]
 }
 
-function ImageListSelector({ multi = false, label }: Props) {
-    const [images, setImages] = React.useState<string[]>([])
+function ImageListSelector({ multi = false, label, error, name, id, defaultValues }: Props) {
+    console.log({ defaultValues })
+    const [fileList, setFileList] = React.useState<(File | string)[]>(defaultValues || []);
+    const inputRef = React.useRef<HTMLInputElement>(null);
+
+    React.useEffect(() => {
+        if (inputRef.current) {
+            const dataTransfer = new DataTransfer();
+            fileList.forEach((file) => typeof file !== 'string' && dataTransfer.items.add(file));
+            inputRef.current.files = dataTransfer.files;
+        }
+    }, [fileList]);
 
     const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFiles = Array.from(event.target.files as Iterable<File> | ArrayLike<File>);
-        const uploadedImages = selectedFiles.map((file) => URL.createObjectURL(file));
-        setImages((prevImages) => [...prevImages, ...uploadedImages]);
+        setFileList(fileList.concat(selectedFiles));
     };
-
     return (
         <div className='flex flex-col gap-1'>
             <p>{label || 'Images'}</p>
-            {images.length == 0 ?
-                <label htmlFor="image" className='flex flex-col items-center justify-center gap-5 cursor-pointer w-full bg-white p-4 border rounded-[30px] border-dashed h-[300px]'>
+            {fileList.length == 0 ?
+                <label htmlFor={id} className={`flex flex-col items-center justify-center gap-5 cursor-pointer w-full p-4 border rounded-[30px] border-dashed h-[300px] select-none ${error ? 'border-danger bg-dangerlight' : 'bg-white'}`}>
                     <img src="/icons/image.svg" alt="" />
                     <div className='flex flex-col justify-center items-center text-secondary'>
                         <p>Upload upto 8 images. JPEG, PNG</p>
@@ -32,16 +45,16 @@ function ImageListSelector({ multi = false, label }: Props) {
                 </label> : multi ?
                     <div className='flex flex-wrap gap-3'>
                         {
-                            images.map((image, index) => (
+                            fileList.map((file, index) => (
                                 <div key={index} className='bg-[#d9d9d9] block h-[180px] aspect-square rounded-[20px] relative'>
                                     <ImageUnselectButton handleClick={() => {
-                                        setImages((prevImages) => prevImages.filter((_, i) => i !== index))
+                                        setFileList((prevFile) => prevFile.filter((_, i) => i !== index))
                                     }} />
-                                    <img src={image} alt="" className='w-full h-full rounded-[20px]' />
+                                    <img src={typeof file == 'string' ? file : URL.createObjectURL(file)} alt="" className='w-full h-full rounded-[20px]' />
                                 </div>
                             ))
                         }
-                        <label htmlFor='image' className='bg-[#ffffff] cursor-pointer block h-[180px] aspect-square rounded-[20px]'>
+                        <label htmlFor={id} className='bg-[#ffffff] cursor-pointer block h-[180px] aspect-square rounded-[20px]'>
                             <div className='w-full h-full flex justify-center items-center'>
                                 <img src="/icons/image.svg" alt="" className='w-[30px] aspect-square' />
                             </div>
@@ -49,11 +62,25 @@ function ImageListSelector({ multi = false, label }: Props) {
                     </div> :
                     <div className='w-full'>
                         <div className='bg-[#d9d9d9] block rounded-[20px] relative'>
-                            <ImageUnselectButton handleClick={() => setImages([])} />
-                            <img src={images[0]} alt="" className='w-full h-full rounded-[20px]' />
+                            <ImageUnselectButton handleClick={() => setFileList([])} />
+                            <img src={typeof fileList[0] == 'string' ? fileList[0] : URL.createObjectURL(fileList[0])} alt="" className='w-full h-full rounded-[20px]' />
                         </div>
                     </div>}
-            <input type="file" name="" id="image" className='hidden' onChange={handleImageUpload} multiple={multi} accept='image/*' />
+            <input
+                type="file"
+                ref={inputRef}
+                name={name}
+                id={id}
+                data-testid="uploader"
+                onChange={handleImageUpload}
+                multiple={multi}
+                accept='image/*'
+                hidden
+            />
+
+            {error && <span className="text-xs text-danger">
+                {error}
+            </span>}
         </div>
     )
 }

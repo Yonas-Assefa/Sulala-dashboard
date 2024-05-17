@@ -1,7 +1,7 @@
 'use client'
-import { signIn } from '@/actions/signin'
-import SignInWithEmail from '@/components/SignInWithEmail'
-import SignInWithPhone from '@/components/SignInWithPhone'
+import { signIn } from '@/actions/auth/signin'
+import AuthWithEmail from '@/components/AuthWithEmail'
+import AuthWithPhone from '@/components/AuthWithPhone'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import SecondaryButton from '@/components/common/ui/SecondaryButton'
 import { useRedirectRoute } from '@/hooks/useRedirectRoute'
@@ -28,8 +28,8 @@ function SignInForm({ by }: SignInProps) {
         <form action={action} className='flex flex-col gap-6 w-full px-10'>
             {/* SIGN IN INPUT */}
             {by !== 'email' ?
-                <SignInWithPhone error={formState.fieldErrors?.phone_number?.[0]} /> :
-                <SignInWithEmail emailError={formState.fieldErrors?.email?.[0]} passwordError={formState.fieldErrors?.password?.[0]} />
+                <AuthWithPhone error={formState.fieldErrors?.phone_number?.[0]} /> :
+                <AuthWithEmail emailError={formState.fieldErrors?.email?.[0]} passwordError={formState.fieldErrors?.password?.[0]} />
             }
 
             <input type='text' hidden name='by' value={by} />

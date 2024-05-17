@@ -1,5 +1,5 @@
 'use client'
-import { verifyEmail } from '@/actions/verify-email'
+import { verifyEmail } from '@/actions/auth/verify-email'
 import { FormState } from '@/utils/formStateHelper'
 import pushNotification from '@/utils/pushNotification.util'
 import { redirect, useRouter } from 'next/navigation'

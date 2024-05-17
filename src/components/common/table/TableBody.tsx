@@ -5,12 +5,16 @@ import TableBadge from './TableBadge'
 import TableActions from './TableActions'
 import TableDropDown from './TableDropDown'
 import { formatNumber } from '@/utils/priceFormatter.util'
+import { formatPiece } from '@/utils/pieceFormatter.util'
+import { constructImageUrl } from '@/utils/constructImageUrl'
 
 type Props = {
     tableSchema: TableSchema
     mockData: Record<string, any>[]
+    reference: Record<string, any> | undefined
 }
-function TableBody({ tableSchema, mockData }: Props) {
+
+function TableBody({ tableSchema, mockData, reference }: Props) {
     return (
         <tbody>
             {
@@ -34,9 +38,16 @@ function TableBody({ tableSchema, mockData }: Props) {
                                                 schema.dropdown ?
                                                     <TableDropDown items={product_key} label={schema.key} last_items={last_items} /> :
 
-                                                    <div className="flex flex-row items-center">
-                                                        {schema.image && <img src={product[schema.image_key as keyof typeof product]} alt="" />}
-                                                        <p>{schema.type == 'money' ? formatNumber(product_key) : product_key}</p>
+                                                    <div className="flex flex-row gap-3 items-center">
+                                                        {
+                                                            schema.image &&
+                                                            <div className=' w-[30px] h-[40px]  bg-red-600 content-stretch overflow-hidden'>
+                                                                <img src={constructImageUrl(product[schema.image_key as keyof typeof product], true)} alt="" className='h-full conten' />
+                                                            </div>
+                                                        }
+                                                        {!schema.referenced ?
+                                                            (<p>{schema.type == 'money' ? formatNumber(product_key) : schema.type == 'pieces' ? formatPiece(product_key) : product_key}</p>)
+                                                            : <p>{reference?.[schema.reference_key!]?.find(({ value }: { value: string | number }) => value == product_key)?.label}</p>}
                                                     </div>
                                             }
                                         </td>

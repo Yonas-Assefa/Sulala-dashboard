@@ -6,7 +6,7 @@ type Props = {
     passwordError?: string
     takePassword?: boolean
 }
-function SignInWithEmail({ takePassword = true, emailError, passwordError }: Props) {
+function AuthWithEmail({ takePassword = true, emailError, passwordError }: Props) {
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
     const [showPassword, setShowPassword] = React.useState(false)
@@ -93,4 +93,4 @@ function SignInWithEmail({ takePassword = true, emailError, passwordError }: Pro
     )
 }
 
-export default SignInWithEmail
+export default AuthWithEmail

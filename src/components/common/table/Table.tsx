@@ -6,18 +6,21 @@ import TableSort from './TableSort'
 import TableHead from './TableHead'
 import TableBody from './TableBody'
 import { Data, SortSchema, FilterData, TableSchema } from '../../../types/table.type'
+import NoItemsFound from '../ui/NoItemsFound'
 
 type Props = {
     filterData: FilterData
     tableSchema: TableSchema
     data: Data
     sortData: SortSchema
+    reference?: Record<string, any>
+    deleteAction?: any
 }
 
-function Table({ filterData, tableSchema, data, sortData }: Props) {
+function Table({ filterData, tableSchema, data, sortData, reference, deleteAction }: Props) {
     return (
         <>
-            <DeleteProductModal />
+            <DeleteProductModal deleteAction={deleteAction} />
             <div className="overflow-x-auto border rounded-[20px]">
                 <div className='flex justify-between p-3 items-center'>
                     <div className='flex items-center gap-4'>
@@ -28,7 +31,11 @@ function Table({ filterData, tableSchema, data, sortData }: Props) {
                 </div>
                 <table className="table">
                     <TableHead tableSchema={tableSchema} allItemIds={data.map(prod => prod.id + '')} />
-                    <TableBody mockData={data} tableSchema={tableSchema} />
+                    {
+                        data.length > 0 ?
+                            <TableBody mockData={data} tableSchema={tableSchema} reference={reference} /> :
+                            <NoItemsFound />
+                    }
                 </table>
             </div>
         </>

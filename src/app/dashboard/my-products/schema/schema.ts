@@ -4,6 +4,7 @@ export const productBadgeColorSchema = {
     active: 'bg-[#edfbe6] text-[#1d7941]',
     archived: 'bg-[#f6f6f6] text-[#52565d]',
     draft: 'bg-[#fef6d0] text-[#43464c]',
+    new: 'bg-[#f0f5ff] text-[#1e3a8a]',
 }
 
 export const productTableSchema: TableSchema = {
@@ -23,11 +24,11 @@ export const productTableSchema: TableSchema = {
             type: 'number',
         },
         {
-            key: 'item_name',
+            key: 'title',
             title: 'Item',
             type: 'string',
             image: true,
-            image_key: 'item_image',
+            image_key: 'images',
         },
         {
             key: 'status',
@@ -37,24 +38,26 @@ export const productTableSchema: TableSchema = {
             schema_colors: productBadgeColorSchema,
         },
         {
-            key: 'upload_date',
+            key: 'uploadDate',
             title: 'Upload date',
             type: 'date',
         },
         {
             key: 'price',
             title: 'Price',
-            type: 'string',
+            type: 'money',
         },
         {
-            key: 'quantity',
+            key: 'inventory',
             title: 'Quantity',
-            type: 'number',
+            type: 'pieces',
         },
         {
             key: 'category',
             title: 'Category',
             type: 'string',
+            referenced: true,
+            reference_key: 'categories'
         },
     ]
 }

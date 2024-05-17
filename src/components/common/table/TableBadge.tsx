@@ -27,8 +27,8 @@ function TableBadge({ product_key, schema, last_items }: Prop) {
     return (
         <div className='flex'>
             <details className={`dropdown ${!last_items ? 'dropdown-bottom' : 'dropdown-top'}`} ref={selectRef}>
-                <summary className={`flex relative gap-1 flex-row items-center p-2 cursor-pointer rounded-[30px] px-3 ${schema.schema_colors?.[product_key as keyof typeof schema.schema_colors]}`}>
-                    <p className='capitalize'>{product_key.replace('_', ' ')}</p>
+                <summary className={`flex relative gap-1 flex-row items-center p-2 cursor-pointer rounded-[30px] px-3 ${schema.schema_colors?.[product_key.toLocaleLowerCase() as keyof typeof schema.schema_colors]}`}>
+                    <p className='capitalize'>{product_key.replace('_', ' ').toLocaleLowerCase()}</p>
                     <img src="/icons/chevron-down.svg" className='w-[20px] aspect-auto' alt="" />
 
                 </summary>
@@ -40,7 +40,7 @@ function TableBadge({ product_key, schema, last_items }: Prop) {
                                     <div className='flex flex-row justify-between gap-2 items-center cursor-pointer' key={color}>
                                         {/* {product_key === color && <input type="checkbox" defaultChecked className="checkbox checkbox-xs checkbox-success" />} */}
                                         <p>{color.replace('_', ' ')}</p>
-                                        {product_key === color && <img src="/icons/check.svg" alt="" />}
+                                        {product_key.toLocaleLowerCase() === color && <img src="/icons/check.svg" alt="" />}
                                     </div>
                                 )
                             })

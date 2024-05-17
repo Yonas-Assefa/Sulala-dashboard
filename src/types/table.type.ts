@@ -9,6 +9,8 @@ type Schema = {
     tooltips?: string | undefined;
     dropdown?: boolean | undefined;
     dropdown_data?: { label: string, data: Record<string, string>[] } | undefined;
+    referenced?: boolean | undefined;
+    reference_key?: string | undefined;
 }
 
 type FilterData = string[]

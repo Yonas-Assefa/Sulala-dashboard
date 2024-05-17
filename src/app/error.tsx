@@ -1,18 +1,15 @@
+'use client'
 import React from 'react'
-import SideBarNav from './dashboard/components/SideBarNav';
-import { isAuthenticated } from '@/actions/utils/helper';
-import Link from 'next/link';
 
-function NotFoundPage() {
+function error() {
     return (
         <div className='w-screen h-screen flex flex-row'>
-            {isAuthenticated() && <SideBarNav />}
             <div className='bg-white flex-grow'>
                 <div className='w-full h-full flex justify-between flex-col items-center'>
                     <div className='flex flex-col justify-center items-center w-full h-full'>
-                        <h1 className='text-4xl font-semibold text-primary'>404 - Page Not Found</h1>
+                        <h1 className='text-4xl font-semibold text-danger'>500 - Internal Server Error</h1>
                         <div className='flex flex-row justify-between gap-5'>
-                            <Link href={'/dashboard/settings'} className='text-primary font-semibold hover:underline'>Redirect to dashboard?</Link>
+                            <a href='mailto:support@sulala.com' className='text-primary font-semibold hover:underline'>Please contact support team!</a>
                         </div>
                         <img src='/sulala-logo.svg' className='w-[100px] opacity-15 absolute' />
                     </div>
@@ -22,4 +19,4 @@ function NotFoundPage() {
     )
 }
 
-export default NotFoundPage
+export default error

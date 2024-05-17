@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { confirmPasswordRefine, fileRefine, phoneTransform } from '../utils/helper';
+import { confirmPasswordRefine, fileRefine, imageRefine, isFiniteNumber, phoneTransform, transformToNumber } from '../utils/helper';
 
 export const phoneAuthSchema = z.object({
     phone_number: z.string().transform(phoneTransform)
@@ -54,6 +54,33 @@ export const setupAccountLastStepSchema = z.object({
     // .refine(fileRefine.maxsizeFn, fileRefine.maxsizeMg),
 })
 
-// export const setupAccountThreeSchema = z.object({
-//     phone_number: z.string().transform(phoneTransform),
-// })
+// ("NEW", "New"),
+// ("ACTIVE", "Active"),
+// ("DRAFT", "Draft"),
+// ("ARCHIVED", "Archived"),
+enum ProductStatus {
+    NEW = 'NEW',
+    ACTIVE = 'ACTIVE',
+    DRAFT = 'DRAFT',
+    ARCHIVED = 'ARCHIVED',
+}
+export const createProductSchema = z.object({
+    title: z.string({ message: 'Product title is a required field' }).min(1, { message: 'Product name must be at least 1 character long' }),
+    description: z.string().min(1, 'Description must be at least 1 character long'),
+    price: z.number().min(1, 'Price must be at least 1'),
+    discounted_price: z.number().min(0, 'Discounted price must be at least 0'),
+    category: z.number().min(1, 'Please choose at least one category'),
+    images: z.array(
+        z.any()
+            .refine(imageRefine.existFn, imageRefine.existMg)
+            .refine(imageRefine.acceptFn, imageRefine.acceptMg),
+    ),
+    // .refine(imageRefine.maxsizeFn, imageRefine.maxsizeMg),
+    // inventory: z.string().transform(transformToNumber).refine(isFiniteNumber, { message: 'Invalid inventory number' }),
+    inventory: z.number().min(1, 'Quantity must be at least 1'),
+    status: z.nativeEnum(ProductStatus),
+})
+
+export const updateProductSchema = createProductSchema.partial().extend({
+    id: z.number().min(1, 'Invalid product id'),
+})

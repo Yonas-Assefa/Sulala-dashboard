@@ -1,9 +1,8 @@
-import { getCategories } from '@/actions/get-categories'
-import SetupAccountForm from '@/components/SetupAccountForm'
+import { getCategories } from '@/actions/common/get-categories'
+import SetupAccountForm from './SetupAccountForm'
 import BackButton from '@/components/common/ui/BackButton'
 import ProgressBar from '@/components/common/ui/ProgressBar'
-import { useCreateQueryString } from '@/hooks/useCreateQueryString'
-import { notFound, redirect } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import React from 'react'
 
 type Props = {
