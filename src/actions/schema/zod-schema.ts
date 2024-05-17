@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { cardNumberRefine, confirmPasswordRefine, fileRefine, imageRefine, isFiniteNumber, phoneTransform, transformToNumber } from '../utils/helper';
+import { IMAGE_TYPES, PDF_TYPES, cardNumberRefine, confirmPasswordRefine, fileRefine, isFiniteNumber, phoneTransform, transformToNumber } from '../utils/helper';
 import { FACEBOOK_BASE_URL, INSTAGRAM_BASE_URL } from '../config/urls';
 
 export const phoneAuthSchema = z.object({
@@ -60,14 +60,24 @@ export const setupAccountLastStepSchema = z.object({
     category: z.number()
         .min(1, 'Please choose at least one category'),
     certificates: z.any()
-        .refine(fileRefine.existFn, fileRefine.existMg)
-        .refine(fileRefine.acceptFn, fileRefine.acceptMg),
-    // .refine(fileRefine.maxsizeFn, fileRefine.maxsizeMg),
+        .refine(
+            fileRefine.existFn,
+            fileRefine.existMg
+        )
+        .refine(
+            fileRefine.acceptFn(PDF_TYPES.concat(IMAGE_TYPES)),
+            fileRefine.acceptMg('pdf and image')
+        ),
 
     tax_forms: z.any()
-        .refine(fileRefine.existFn, fileRefine.existMg)
-        .refine(fileRefine.acceptFn, fileRefine.acceptMg),
-    // .refine(fileRefine.maxsizeFn, fileRefine.maxsizeMg),
+        .refine(
+            fileRefine.existFn,
+            fileRefine.existMg
+        )
+        .refine(
+            fileRefine.acceptFn(PDF_TYPES.concat(IMAGE_TYPES)),
+            fileRefine.acceptMg('pdf and image')
+        ),
 })
 
 // ("NEW", "New"),
@@ -93,11 +103,15 @@ export const createProductSchema = z.object({
         .min(1, 'Please choose at least one category'),
     images: z.array(
         z.any()
-            .refine(imageRefine.existFn, imageRefine.existMg)
-            .refine(imageRefine.acceptFn, imageRefine.acceptMg),
+            .refine(
+                fileRefine.existFn,
+                fileRefine.existMg
+            )
+            .refine(
+                fileRefine.acceptFn(IMAGE_TYPES),
+                fileRefine.acceptMg('image')
+            ),
     ),
-    // .refine(imageRefine.maxsizeFn, imageRefine.maxsizeMg),
-    // inventory: z.string().transform(transformToNumber).refine(isFiniteNumber, { message: 'Invalid inventory number' }),
     inventory: z.number()
         .min(1, 'Quantity must be at least 1'),
     status: z.nativeEnum(ProductStatus),
@@ -142,8 +156,14 @@ export const shopInfoSettingSchema = z.object({
         .url({ message: 'Invalid facebook url' })
         .startsWith(FACEBOOK_BASE_URL, { message: 'Url must be a facebook url' }),
     profile_image: z.any()
-        .refine(imageRefine.existFn, imageRefine.existMg)
-        .refine(imageRefine.acceptFn, imageRefine.acceptMg),
+        .refine(
+            fileRefine.existFn,
+            fileRefine.existMg
+        )
+        .refine(
+            fileRefine.acceptFn(IMAGE_TYPES),
+            fileRefine.acceptMg('image')
+        ),
 })
 
 export const billingInfoSettingSchema = z.object({
@@ -183,8 +203,14 @@ export const promoCampaignSchema = z.object({
     end_time: z.string()
         .regex(/^\d{2}:\d{2} (AM)|(PM)$/, 'Invalid time format'),
     banner: z.any()
-        .refine(imageRefine.existFn, imageRefine.existMg)
-        .refine(imageRefine.acceptFn, imageRefine.acceptMg),
+        .refine(
+            fileRefine.existFn,
+            fileRefine.existMg
+        )
+        .refine(
+            fileRefine.acceptFn(IMAGE_TYPES),
+            fileRefine.acceptMg('image')
+        ),
     budgeting: z.string()
         .min(1, 'Budgeting must be at least 1 character long'),
     budget: z.number()

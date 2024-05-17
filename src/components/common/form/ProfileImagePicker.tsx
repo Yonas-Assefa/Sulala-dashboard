@@ -57,8 +57,8 @@ function ProfileImagePicker({ error, name, id }: Props) {
             <div className='flex flex-row gap-4 items-center'>
                 {!image ?
                     <label htmlFor={id} className='flex flex-row gap-4 items-center cursor-pointer' >
-                        <div className={`bg-tertiary cursor-pointer w-[6vw] min-w-[50px] flex justify-center items-center aspect-square rounded-full ${error && 'border-danger border'}`}>
-                            <img src="/icons/camera.svg" alt="" />
+                        <div className={`cursor-pointer w-[6vw] min-w-[50px] flex justify-center items-center aspect-square rounded-full ${error ? 'border-danger border bg-dangerlight' : 'bg-tertiary'}`}>
+                            <img src={error ? '/icons/camera-red.svg' : '/icons/camera.svg'} alt="" />
                         </div>
                         <div className='flex flex-col gap-2'>
                             <p className={`font-semibold ${error ? 'text-danger' : 'text-primary'}`}>Add photo</p>

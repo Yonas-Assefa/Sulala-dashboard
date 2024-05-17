@@ -39,8 +39,8 @@ function PersonalInfo({ data }: Props) {
             <div className='flex flex-col items-start py-4 gap-8'>
                 <PrimaryButton padding={'md'} name='Save' type='submit' />
                 <div className='flex flex-col gap-3'>
-                    <SecondaryButton padding={'sm'} name='Change password' modal='change_password_setting_modal' />
-                    <SecondaryButton padding={'xsm'} name='Log out' modal='logout_setting_modal' />
+                    <SecondaryButton padding={'sm'} name='Change password' modal='change_password_setting_modal' type='button' />
+                    <SecondaryButton padding={'xsm'} name='Log out' modal='logout_setting_modal' type='button' />
                 </div>
             </div>
         </form>

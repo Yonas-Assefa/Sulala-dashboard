@@ -29,11 +29,11 @@ export const confirmPasswordRefine = {
     }
 }
 
-const MAX_FILE_SIZE = 5000000;
-const PDF_TYPES = [
+export const MAX_FILE_SIZE = 5000000;
+export const PDF_TYPES = [
     ".pdf", "application/pdf"
 ];
-const IMAGE_TYPES = [
+export const IMAGE_TYPES = [
     ".jpg", ".jpeg", ".png", "image/*", "image/jpeg", "image/png"
 ];
 
@@ -44,24 +44,10 @@ export const fileRefine = {
         else return true;
     },
     existMg: "Please update or add new file.",
-    acceptFn: (file: any) => PDF_TYPES.includes(file?.type),
-    acceptMg: "only pdf files are accepted.",
-    maxsizeFn: (file: any) => file.size <= MAX_FILE_SIZE,
-    maxsizeMg: `Max file size is 5MB.`
-}
-
-export const imageRefine = {
-    existFn: (file: any) => {
-        if (file.size === 0 || file.name === undefined) return false;
-        else return true;
-    },
-    existMg: "Please update or add new file.",
-    acceptFn: (file: any) => {
-        return IMAGE_TYPES.includes(file?.type)
-    },
-    acceptMg: "only images files are accepted.",
-    maxsizeFn: (file: any) => file.size <= MAX_FILE_SIZE,
-    maxsizeMg: `Max file size is 5MB.`
+    acceptFn: (accept: string[]) => (file: any) => accept.includes(file?.type),
+    acceptMg: (acceptType: string) => `only ${acceptType} files are accepted.`,
+    maxsizeFn: (maxSize: number) => (file: any) => file.size <= maxSize,
+    maxsizeMg: (maxSize: number) => `Max file size is ${maxSize}MB.`
 }
 
 function luhnCheck(cardNumber: string) {
