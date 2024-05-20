@@ -1,6 +1,7 @@
 'use server'
 
 import { GET_BILLING_ACCOUNT } from "../config/urls"
+import { billingMapper } from "../mapper/billing-mapper"
 import { getRequestHeaders } from "../utils/helper"
 
 export const getBillingInfo = async () => {
@@ -14,5 +15,5 @@ export const getBillingInfo = async () => {
         throw new Error(body.message || 'Failed to get billing info');
     }
 
-    return body.data
+    return billingMapper(body.data)
 }
