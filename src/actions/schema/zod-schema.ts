@@ -115,13 +115,12 @@ export const createProductSchema = z.object({
     inventory: z.number()
         .min(1, 'Quantity must be at least 1'),
     status: z.nativeEnum(ProductStatus),
+    tags: z.array(z.string()),
 })
 
 export const updateProductSchema = createProductSchema
     .partial()
     .extend({
-        id: z.number()
-            .min(1, 'Invalid product id'),
     })
 
 export const personalInfoSettingSchema = z.object({

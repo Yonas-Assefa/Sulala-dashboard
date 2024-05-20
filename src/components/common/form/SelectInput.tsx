@@ -2,15 +2,30 @@
 import { SelectInputSchema } from '@/types/input-field.type'
 import { CustomSelectInputProps } from '@/types/props.type'
 import React, { useEffect } from 'react'
-import initialData from '@/constants/select-input.placeholder.json'
-import initialNestedData from '@/constants/select-input-nested.placeholder.json'
+// import initialData from '@/constants/select-input.placeholder.json'
+// import initialNestedData from '@/constants/select-input-nested.placeholder.json'
 import { useDetectClickOutside } from 'react-detect-click-outside';
 
-function CustomMultiSelectInput({ placeholder, label, name, id, autoComplete, error, multi = false, nested = false, withImage = false, data, defaultValue, searchable = false }: CustomSelectInputProps) {
-    const [options, setOptions] = React.useState<SelectInputSchema[]>(data || (nested ? initialNestedData : initialData))
 
-    const defaulSelected = options.find(option => option.value == defaultValue) as SelectInputSchema
-    const [selected, setSelected] = React.useState<SelectInputSchema[]>(defaulSelected ? [defaulSelected] : [])
+function NoItemPlaceholder() {
+    return (
+        <div className='bg-tertiary/50 hover:cursor-pointer hover:bg-tertiary p-3 select-none flex flex-row justify-center gap-2 text-center font-semibold text-secondary'>
+            <img src='/icons/inbox.svg' className='w-[20px] opacity-30' />
+            <p>There is no item to select here</p>
+        </div>
+    )
+}
+
+function CustomMultiSelectInput({ placeholder, label, name, id, error, multi = false, nested = false, withImage = false, data, defaultValue, searchable = false }: CustomSelectInputProps) {
+    const [options, setOptions] = React.useState<SelectInputSchema[]>(data || [])
+
+    const defaultSelected = typeof defaultValue === 'string' ?
+        [options.find(option => option.value == defaultValue)] as SelectInputSchema[] :
+        Array.isArray(defaultValue) ? defaultValue as SelectInputSchema[] :
+            typeof defaultValue === 'object' ? [defaultValue as SelectInputSchema] : []
+
+    console.log({ defaultSelected, data })
+    const [selected, setSelected] = React.useState<Omit<SelectInputSchema, 'options'>[]>(defaultSelected)
     const [selectedParent, setSelectedParent] = React.useState<SelectInputSchema | null>(null)
     const [computedValue, setComputedValue] = React.useState<string | null>(null)
     const selectRef = React.useRef<HTMLDetailsElement>(null)
@@ -44,18 +59,23 @@ function CustomMultiSelectInput({ placeholder, label, name, id, autoComplete, er
                 // IF NESTED SET TO TRUE, AND SELECTED PARENT IS NOT NULL, SET SELECT CHILD
                 if (selectedParent) {
                     const selectedChildValue = options.find(option => option.value === value) as SelectInputSchema
+                    console.log({ selectedChildValue })
                     if (multi) {
                         // IF MULTI SELECT IS TRUE, ADD OR REMOVE THE SELECTED CHILD TO THE SELECTED ARRAY
-                        if (selected.find(item => item.value === selectedChildValue?.value)) {
-                            setSelected(selected.filter(item => item.value !== selectedChildValue?.value))
+                        if (selected.find(item => item.value == selectedChildValue?.value)) {
+                            setSelected(selected.filter(item => item.value != selectedChildValue?.value))
                         } else if (selectedChildValue) {
                             setSelected([...selected, selectedChildValue])
                         }
                     } else {
                         // IF MULTI SELECT IS FALSE, SET THE SELECTED CHILD TO THE SELECTED ARRAY AS THE ONLY ITEM
-                        setSelected([selectedChildValue])
+                        if (selected.find(item => item.value == selectedChildValue?.value)) {
+                            setSelected(selected.filter(item => item.value != selectedChildValue?.value))
+                        } else {
+                            setSelected([selectedChildValue])
+                        }
                         setSelectedParent(null)
-                        setOptions(initialNestedData)
+                        setOptions(data || [])
                         closeDropdown()
                     }
                 }
@@ -93,7 +113,7 @@ function CustomMultiSelectInput({ placeholder, label, name, id, autoComplete, er
         if (e.target.value) {
             setOptions(options.filter(option => option.label.toLowerCase().includes(e.target.value.toLowerCase())))
         } else {
-            setOptions(data || (nested ? initialNestedData : initialData))
+            setOptions(data || [])
         }
     }
 
@@ -101,7 +121,12 @@ function CustomMultiSelectInput({ placeholder, label, name, id, autoComplete, er
         // REF IS USED TO DETECT CLICK OUTSIDE THE DROPDOWN PARENT DIV ELEMENT TO TRIGGER CLOSE DROPDOWN
         // SELECT REF IS USED TO OPEN AND CLOSE THE DROPDOWN
         <div ref={ref}>
-            <input type="text" id={id} name={name} value={selected[0]?.value} hidden onChange={() => { }} />
+            {/* <input type="text" id={id} name={name} value={multi ? selected.map(s => s.value) : selected[0]?.value} hidden onChange={() => { }} /> */}
+            {
+                selected.map((item, i) => (
+                    <input type="text" id={id} name={name} value={item.value} key={i} hidden onChange={() => { }} />
+                ))
+            }
             <p className='self-start capitalize'>{label}</p>
             <details ref={selectRef} className={`dropdown bg-white rounded-[30px] m-0 p-0 border w-full hover:bg-white outline-none `}>
                 {/* SUMMARY HOLDS SELECTED COMPUTED VALUE OR PLACEHOLDER IF THERE IS NO SELECTED VALUE */}
@@ -122,7 +147,7 @@ function CustomMultiSelectInput({ placeholder, label, name, id, autoComplete, er
                         <li
                             onClick={() => {
                                 setSelectedParent(null)
-                                setOptions(initialNestedData)
+                                setOptions(data || [])
                             }}
                         >
                             <div className={`form-control w-full flex flex-row justify-between rounded-none border-b`}>
@@ -134,26 +159,28 @@ function CustomMultiSelectInput({ placeholder, label, name, id, autoComplete, er
                         </li>}
                     {/* DROPDOWN VALUE GOES HERE */}
                     {
-                        options.map((option, i) => {
-                            return (
-                                <li
-                                    onClick={() => handleSelect(option.value)}
-                                    key={option.value}
-                                >
-                                    <div className={`form-control w-full flex flex-row justify-between rounded-none ${options.length !== i + 1 && 'border-b'}`}>
-                                        {/* IF DROPDOWN IS SET TO HAVE IMAGE INIT, IT WILL BE DISPLAYED HERE */}
-                                        {
-                                            withImage && <img src={option?.image} alt="" />
-                                        }
-                                        <label htmlFor='1' className="label-text cursor-pointer label w-full flex justify-between text-black text-md">
-                                            {option.label}
-                                        </label>
-                                        {/* IF THIS ITEM IS IN SELECTED ITEMS LIST, CHECK MARK WILL APPEAR */}
-                                        {selected.find((item => item.value === option.value)) && <img src="/icons/check.svg" alt="" />}
-                                    </div>
-                                </li>
-                            )
-                        })
+                        options?.length == 0 ?
+                            (<NoItemPlaceholder />) : options.map((option, i) => {
+                                return (
+                                    <li
+                                        onClick={() => handleSelect(option.value)}
+                                        key={option.value}
+                                    >
+                                        <div className={`form-control w-full flex flex-row justify-between rounded-none ${options.length !== i + 1 && 'border-b'}`}>
+                                            {/* IF DROPDOWN IS SET TO HAVE IMAGE INIT, IT WILL BE DISPLAYED HERE */}
+                                            {
+                                                withImage && <img src={option?.image} alt="" />
+                                            }
+                                            <label htmlFor='1' className="label-text cursor-pointer label w-full flex justify-between text-black text-md">
+                                                {option.label}
+                                            </label>
+                                            {/* IF THIS ITEM IS IN SELECTED ITEMS LIST, CHECK MARK WILL APPEAR */}
+                                            {(nested && !selectedParent) ? <img src="/icons/chevron-right.svg" alt="" /> :
+                                                ((nested && selectedParent) || (!nested && !selectedParent)) && selected.find((item => item.value === option.value)) && <img src="/icons/check.svg" alt="" />}
+                                        </div>
+                                    </li>
+                                )
+                            })
                     }
                 </ul>
             </details>

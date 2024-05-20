@@ -45,9 +45,21 @@ function TableBody({ tableSchema, mockData, reference }: Props) {
                                                                 <img src={constructImageUrl(product[schema.image_key as keyof typeof product], true)} alt="" className='h-full conten' />
                                                             </div>
                                                         }
-                                                        {!schema.referenced ?
+                                                        {!schema.breadcrumb ?
                                                             (<p>{schema.type == 'money' ? formatNumber(product_key) : schema.type == 'pieces' ? formatPiece(product_key) : product_key}</p>)
-                                                            : <p>{reference?.[schema.reference_key!]?.find(({ value }: { value: string | number }) => value == product_key)?.label}</p>}
+                                                            : <div className="max-w-xs text-sm breadcrumbs">
+                                                                <ul className='bg-tertiary p-1 rounded-md drop-shadow-sm hover:cursor-pointer'>
+                                                                    {
+                                                                        Array.isArray(product_key) ? product_key.map((item, index) => {
+                                                                            return (
+                                                                                <li key={index} className='text-xs text-back'>
+                                                                                    <p >{item}</p>
+                                                                                </li>
+                                                                            )
+                                                                        }) : <li>{product_key}</li>
+                                                                    }
+                                                                </ul>
+                                                            </div>}
                                                     </div>
                                             }
                                         </td>

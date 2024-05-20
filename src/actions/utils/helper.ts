@@ -218,3 +218,20 @@ export const getResponseErrorMessage = (body: any, defaultMessage?: string): str
     }
     return defaultMessage || 'Failed to submit form'
 }
+
+export const formatCategory = (categories: any[]) => {
+    return categories.map((category: any) => {
+        const data = {
+            label: category.name,
+            value: category.id
+        }
+        if (category.subcategories) {
+            const options = category.subcategories.map((subcategory: any) => ({
+                label: subcategory.name,
+                value: subcategory.id
+            }))
+            Object.assign(data, { options })
+        }
+        return data
+    })
+}

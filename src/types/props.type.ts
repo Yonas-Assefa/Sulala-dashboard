@@ -9,7 +9,7 @@ type BaseInputProps = {
     autoComplete?: string
     error?: string
     value?: string,
-    defaultValue?: string,
+    defaultValue?: string | { value: string, label: string } | { value: string, label: string }[] | null
     setValue?: (value: string) => void
 }
 

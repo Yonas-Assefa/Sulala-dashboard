@@ -11,12 +11,7 @@ import { deleteProduct } from '@/actions/products/delete-product'
 async function page() {
 
     const products = await getProducts()
-    const categories = (await getCategories()).map((category: any) => {
-        return {
-            label: category.name,
-            value: category.id
-        }
-    })
+    const categories = await getCategories()
     return (
         <>
             <ImportProductsModal />
@@ -26,7 +21,7 @@ async function page() {
                 <ProductHead />
 
                 <Table
-                    data={products.results}
+                    data={products}
                     filterData={productsFilterData}
                     tableSchema={productTableSchema}
                     sortData={productsSortData}
