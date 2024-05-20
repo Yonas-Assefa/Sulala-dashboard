@@ -1,30 +1,31 @@
 'use server'
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
-import { UPDATE_BILLING_ACCOUNT, } from '../config/urls';
+import { ADD_BILLING_INFO, } from '../config/urls';
 import { billingInfoSettingSchema, } from '../schema/zod-schema';
 import { getRequestHeaders, getResponseErrorMessage } from '../utils/helper';
 import { revalidatePath } from 'next/cache';
 
-export const updateBillingInfo = async (
+export const createBillingInfo = async (
     formState: FormState,
     formData: FormData
 ) => {
     try {
 
         const data = billingInfoSettingSchema.parse({
-            card_holder_name: formData.get('card_holder_name'),
+            account_holder_name: formData.get('card_holder_name'),
             card_number: formData.get('card_number'),
-            expiry_date: formData.get('expiry_date'),
-            cvv: formData.get('cvv'),
+            expiration_date: formData.get('expiry_date'),
+            cvc: formData.get('cvc'),
         });
 
-        const response = await fetch(UPDATE_BILLING_ACCOUNT, {
-            method: 'PATCH',
+        const response = await fetch(ADD_BILLING_INFO, {
+            method: 'POST',
             headers: getRequestHeaders(),
             body: JSON.stringify(data),
         });
 
         const body = await response.json()
+        console.log({ body })
         if (!response.ok || !body.success) {
             const message = getResponseErrorMessage(body)
             throw new Error(message || 'Failed to submit form');
@@ -32,7 +33,7 @@ export const updateBillingInfo = async (
 
         const successMessage = body.message || 'Successfully updated billing info';
 
-        revalidatePath('/dashboard/settings')
+        revalidatePath('/dashboard/settings/billing-info')
 
         return toFormState('SUCCESS', successMessage);
     } catch (error) {

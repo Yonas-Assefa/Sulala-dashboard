@@ -56,7 +56,6 @@ export const productTableSchema: TableSchema = {
             key: 'category',
             title: 'Category',
             type: 'string',
-            breadcrumb: true,
         },
     ]
 }

@@ -7,7 +7,10 @@ import { getRequestHeaders } from "../utils/helper"
 export const getBillingInfo = async () => {
     const response = await fetch(GET_BILLING_ACCOUNT, {
         method: 'GET',
-        headers: getRequestHeaders()
+        headers: getRequestHeaders(),
+        next: {
+            tags: ['billing']
+        }
     })
     const body = await response.json()
 

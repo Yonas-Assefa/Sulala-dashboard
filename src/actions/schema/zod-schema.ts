@@ -166,13 +166,14 @@ export const shopInfoSettingSchema = z.object({
 })
 
 export const billingInfoSettingSchema = z.object({
-    card_holder_name: z.string()
+    account_holder_name: z.string()
         .min(1, 'Card holder name must be at least 1 character long'),
     card_number: z.string()
         .refine(cardNumberRefine.Fn, cardNumberRefine.Opt),
-    expiry_date: z.string()
-        .regex(/^\d{2}\/\d{2}$/, 'Invalid expiry date format'),
-    cvv: z.string()
+    expiration_date: z.string()
+        // .regex(/^\d{2}\/\d{2}$/, 'Invalid expiry date format'),
+        .regex(/^\d{4}-\d{2}-\d{2}$/, 'Invalid expiry date format'),
+    cvc: z.string()
         .length(3, 'CVV must be a three digit number')
         .regex(/^\d+$/, 'CVV must be a three digit number'),
 })

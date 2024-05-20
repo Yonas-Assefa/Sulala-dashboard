@@ -1,3 +1,4 @@
+import { deleteBillingInfo } from '@/actions/settings/delete-billing-info'
 import { setPrimaryBilling } from '@/actions/settings/set-primary-billing'
 import { useRedirectRoute } from '@/hooks/useRedirectRoute'
 import { useToastMessage } from '@/hooks/useToastMessage'
@@ -17,14 +18,28 @@ function BillingInfoCard({ isPrimary, card_number, id }: Props) {
         EMPTY_FORM_STATE
     );
 
+    const [deleteFormState, deleteAction] = useFormState(
+        deleteBillingInfo,
+        EMPTY_FORM_STATE
+    );
+
     useToastMessage(formState);
     useRedirectRoute(formState);
+
+    useToastMessage(deleteFormState);
+    useRedirectRoute(deleteFormState);
 
     const handleSetPrimary = () => {
         if (isPrimary) return
         const formData = new FormData()
         formData.append('billing_id', id.toString())
         action(formData)
+    }
+
+    const handleDelete = () => {
+        const formData = new FormData()
+        formData.append('billing_id', id.toString())
+        deleteAction(formData)
     }
 
     return (
@@ -52,9 +67,11 @@ function BillingInfoCard({ isPrimary, card_number, id }: Props) {
                             </button>
                         </li>
                         <li className=''>
-                            <a>
+                            <button
+                                onClick={handleDelete}
+                            >
                                 Delete
-                            </a>
+                            </button>
                         </li>
                     </ul>
                 </div>

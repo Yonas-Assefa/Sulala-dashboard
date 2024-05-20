@@ -9,17 +9,19 @@ type BaseInputProps = {
     autoComplete?: string
     error?: string
     value?: string,
-    defaultValue?: string | { value: string, label: string } | { value: string, label: string }[] | null
+    defaultValue?: string
     setValue?: (value: string) => void
 }
 
 export type TextInputProps = BaseInputProps & {
     type?: 'text' | 'email' | 'password' | 'number'
+    dynamicPlaceholder?: RegExp
 }
 
-export type SelectInputProps = BaseInputProps & {
+export type SelectInputProps = Omit<BaseInputProps, 'defaultValue'> & {
     multi?: boolean
     options?: string[]
+    defaultValue?: string | { value: string, label: string } | { value: string, label: string }[] | null
 }
 
 export type CustomSelectInputProps = BaseInputProps & {

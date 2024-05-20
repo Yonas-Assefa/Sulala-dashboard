@@ -6,7 +6,7 @@ export const productMapper = async (data: any) => {
         return data.map((product: any) => {
             return {
                 ...product,
-                category: getCategoryLabel(categories, product.category, true),
+                category: categories.find((category: any) => (category.options.map((o: any) => o.value)).includes(product.category))?.label,
             }
         })
     } else {
