@@ -14,6 +14,8 @@ function CreatePaymentMethodModal() {
         EMPTY_FORM_STATE
     );
 
+    const [cardNumber, setCardNumber] = React.useState('');
+
     useToastMessage(formState);
     useRedirectRoute(formState);
 
@@ -26,10 +28,10 @@ function CreatePaymentMethodModal() {
                     <h3 className="font-bold text-xl text-black text-center font-serif">Add new card</h3>
                 </div>
                 <div className="px-5 flex flex-col gap-3 mt-4">
-                    <TextInput id='card_holder_name' label='Cardholder name' name='card_holder_name' placeholder='Enter name' error={formState?.fieldErrors?.card_holder_name?.[0]} />
+                    <TextInput id='card_holder_name' label='Cardholder name' name='card_holder_name' placeholder='Enter name' error={formState?.fieldErrors?.account_holder_name?.[0]} />
                     <TextInput id='card_number' label='Card number' name='card_number' placeholder='Enter card number' error={formState?.fieldErrors?.card_number?.[0]} />
                     <div className='grid grid-cols-2 gap-3'>
-                        <TextInput id='expiry_date' label='Expiration date' name='expiry_date' placeholder='YYYY-MM-DD' error={formState?.fieldErrors?.expiry_date?.[0]} />
+                        <TextInput id='expiry_date' label='Expiration date' name='expiry_date' placeholder='YYYY-MM-DD' error={formState?.fieldErrors?.expiration_date?.[0]} />
                         <TextInput id='cvc' label='CVC' name='cvc' placeholder='***' error={formState?.fieldErrors?.cvc?.[0]} />
                     </div>
                     <PrimaryButton name='Add' type='submit' />
