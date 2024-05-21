@@ -15,6 +15,7 @@
         }
     ],
     "input": {
+        "id": "budget",
         "label": "Budget",
         "placeholder": "Enter your budget",
         "type": "text"

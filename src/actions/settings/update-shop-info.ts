@@ -23,7 +23,6 @@ export const updateShopInfo = async (
             profile_photo: formData.get('profile_image'),
         });
 
-        console.log({ cleanedData })
         const data = shopInfoSettingSchema.parse(cleanedData);
 
         const response = await fetch(UPDATE_SHOP_ACCOUNT, {
@@ -33,7 +32,6 @@ export const updateShopInfo = async (
         });
 
         const body = await response.json()
-        console.log({ body, data })
         if (!response.ok || !body.success) {
             const message = getResponseErrorMessage(body)
             throw new Error(message || 'Failed to submit form');

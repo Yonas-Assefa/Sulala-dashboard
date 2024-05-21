@@ -1,5 +1,4 @@
 export const changeLocaleToISO = (val: unknown) => {
-    console.log({ val })
     if (isLocalString(val)) {
         return (new Date(val as string)).toISOString()
     }

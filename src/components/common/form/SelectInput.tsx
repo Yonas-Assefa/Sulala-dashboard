@@ -24,7 +24,6 @@ function CustomMultiSelectInput({ setValue, placeholder, label, name, id, error,
         Array.isArray(defaultValue) ? defaultValue as SelectInputSchema[] :
             typeof defaultValue === 'object' ? [defaultValue as SelectInputSchema] : []
 
-    console.log({ defaultSelected, data })
     const [selected, setSelected] = React.useState<Omit<SelectInputSchema, 'options'>[]>(defaultSelected)
     const [selectedParent, setSelectedParent] = React.useState<SelectInputSchema | null>(null)
     const [computedValue, setComputedValue] = React.useState<string | null>(null)
@@ -59,7 +58,6 @@ function CustomMultiSelectInput({ setValue, placeholder, label, name, id, error,
                 // IF NESTED SET TO TRUE, AND SELECTED PARENT IS NOT NULL, SET SELECT CHILD
                 if (selectedParent) {
                     const selectedChildValue = options.find(option => option.value === value) as SelectInputSchema
-                    console.log({ selectedChildValue })
                     if (multi) {
                         // IF MULTI SELECT IS TRUE, ADD OR REMOVE THE SELECTED CHILD TO THE SELECTED ARRAY
                         if (selected.find(item => item.value == selectedChildValue?.value)) {

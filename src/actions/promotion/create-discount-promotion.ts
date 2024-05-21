@@ -22,7 +22,7 @@ export const createDiscountPromotion = async (
             start_date: formData.get('start_datetime'),
             end_date: formData.get('end_datetime'),
             budgeting: formData.get('budgeting'),
-            budget: +(formData.get('budgeting-child') || 0),
+            budget: +(formData.get('budget') || 0),
         }
 
         const item_type = formData.get('item_type')
@@ -55,6 +55,7 @@ export const createDiscountPromotion = async (
             })
         }
 
+        console.log({ dataToBeParsed })
         const data = createPromoCampaingSchema.parse(dataToBeParsed)
 
         const response = await fetch(PROMOTIONS, {
@@ -64,9 +65,9 @@ export const createDiscountPromotion = async (
         });
 
         const body = await response.json()
-        console.log({ body, ok: response.ok, success: body.success })
-        if (!response.ok || !body.success) {
-            // if (!body.success) {
+        console.log({ body })
+        // if (!response.ok || !body.success) {
+        if (!body.success) {
             const message = getResponseErrorMessage(body)
             throw new Error(message || 'Failed to submit form');
         }

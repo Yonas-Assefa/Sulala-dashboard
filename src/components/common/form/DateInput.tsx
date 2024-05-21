@@ -41,7 +41,6 @@ function DateInput({ label, setValue, id, name, error }: Props) {
     const createDateTime = () => {
         if (!date || !time) return ''
         const dateTime = new Date(`${date}T${time}:00`)
-        console.log({ dateTime, toString: dateTime.toLocaleString(), date, time })
         return dateTime.toLocaleString()
     }
 

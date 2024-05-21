@@ -29,10 +29,8 @@ export const deleteBillingInfo = async (
         });
 
         if (!response.ok) {
-            console.log('not ok')
             throw new Error('Failed to submit form');
         }
-        console.log('ok')
         const successMessage = 'Successfully deleted payment method';
 
         revalidateTag('billing')

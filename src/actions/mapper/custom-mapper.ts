@@ -13,7 +13,6 @@ export const customMapper = async ({ data, opt }: Args) => {
                 Object.assign(convertedObj, { [meta.to]: item[meta.from] })
             }
         })
-        console.log({ convertedObj })
         return convertedObj
     }
     if (Array.isArray(data)) {

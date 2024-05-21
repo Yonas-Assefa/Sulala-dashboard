@@ -244,14 +244,18 @@ export const promoCampaignBannerSchema = promoCampaignSchema.extend({
 })
 
 export const createPromoCampaingSchema = z.object({
-    promotion_type: z.string()
+    promotion_type: z.string({
+        message: 'Promotion type is a required field'
+    })
         .refine(
             (val) => PROMOTION_ENUM.includes(val),
             {
                 message: 'Invalid promotion type'
             }
         ),
-    promotional_discount_type: z.string()
+    promotional_discount_type: z.string({
+        message: 'Promotional discount type is a required field'
+    })
         .refine(
             (val) => DISCOUNT_ENUM.includes(val),
             {
@@ -306,7 +310,9 @@ export const createPromoCampaingSchema = z.object({
                 message: 'End date must be in the future'
             }
         ),
-    budgeting: z.string()
+    budgeting: z.string({
+        message: 'Budgeting type is a required field'
+    })
         .refine(
             (val) => BUDGETING_ENUM.includes(val),
             {
