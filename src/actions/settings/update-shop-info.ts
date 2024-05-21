@@ -2,7 +2,7 @@
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { UPDATE_SHOP_ACCOUNT, } from '../config/urls';
 import { personalInfoSettingSchema, shopInfoSettingSchema, } from '../schema/zod-schema';
-import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders, getResponseErrorMessage } from '../utils/helper';
+import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders, getResponseErrorMessage, removeNullAndUndefined } from '../utils/helper';
 import { revalidatePath } from 'next/cache';
 
 export const updateShopInfo = async (
@@ -11,7 +11,8 @@ export const updateShopInfo = async (
 ) => {
     try {
 
-        const data = shopInfoSettingSchema.parse({
+
+        const cleanedData = removeNullAndUndefined({
             name: formData.get('shop_name'),
             description: formData.get('description'),
             category: +(formData.get('categories') || 0),
@@ -21,6 +22,9 @@ export const updateShopInfo = async (
             facebook: formData.get('facebook'),
             profile_photo: formData.get('profile_image'),
         });
+
+        console.log({ cleanedData })
+        const data = shopInfoSettingSchema.parse(cleanedData);
 
         const response = await fetch(UPDATE_SHOP_ACCOUNT, {
             method: 'PATCH',

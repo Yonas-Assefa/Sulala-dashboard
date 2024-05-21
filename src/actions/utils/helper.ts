@@ -89,6 +89,20 @@ export const cardNumberRefine = {
     }
 }
 
+export const removeNullAndUndefined = (obj: Record<string, any>) => {
+    return Object.fromEntries(
+        Object.entries(obj).filter(([_, v]) => {
+            if (Array.isArray(v)) {
+                return v.length > 0
+            }
+            if (v instanceof File) {
+                return v.size > 0
+            }
+            return v !== null && v !== undefined
+        })
+    );
+};
+
 export const isFiniteNumber = (value: unknown): value is number => {
     return typeof value === 'number' && isFinite(value);
 };

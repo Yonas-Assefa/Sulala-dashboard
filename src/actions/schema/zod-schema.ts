@@ -161,7 +161,7 @@ export const shopInfoSettingSchema = z.object({
             fileRefine.acceptFn(IMAGE_TYPES),
             fileRefine.acceptMg('image')
         ),
-})
+}).partial()
 
 export const billingInfoSettingSchema = z.object({
     account_holder_name: z.string()
