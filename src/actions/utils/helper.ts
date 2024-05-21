@@ -29,11 +29,11 @@ export const confirmPasswordRefine = {
     }
 }
 
-const MAX_FILE_SIZE = 5000000;
-const PDF_TYPES = [
+export const MAX_FILE_SIZE = 5000000;
+export const PDF_TYPES = [
     ".pdf", "application/pdf"
 ];
-const IMAGE_TYPES = [
+export const IMAGE_TYPES = [
     ".jpg", ".jpeg", ".png", "image/*", "image/jpeg", "image/png"
 ];
 
@@ -44,24 +44,49 @@ export const fileRefine = {
         else return true;
     },
     existMg: "Please update or add new file.",
-    acceptFn: (file: any) => PDF_TYPES.includes(file?.type),
-    acceptMg: "only pdf files are accepted.",
-    maxsizeFn: (file: any) => file.size <= MAX_FILE_SIZE,
-    maxsizeMg: `Max file size is 5MB.`
+    acceptFn: (accept: string[]) => (file: any) => accept.includes(file?.type),
+    acceptMg: (acceptType: string) => `only ${acceptType} files are accepted.`,
+    maxsizeFn: (maxSize: number) => (file: any) => file.size <= maxSize,
+    maxsizeMg: (maxSize: number) => `Max file size is ${maxSize}MB.`
 }
 
-export const imageRefine = {
-    existFn: (file: any) => {
-        if (file.size === 0 || file.name === undefined) return false;
-        else return true;
+function luhnCheck(cardNumber: string) {
+    let sum = 0;
+    let shouldDouble = false;
+    for (let i = cardNumber.length - 1; i >= 0; i--) {
+        let digit = parseInt(cardNumber[i], 10);
+        if (shouldDouble) {
+            digit *= 2;
+            if (digit > 9) {
+                digit -= 9;
+            }
+        }
+        sum += digit;
+        shouldDouble = !shouldDouble;
+    }
+    return sum % 10 === 0;
+}
+
+export const cardNumberRefine = {
+    Fn: (val: string) => {
+        const sanitized = val.replace(/\D/g, '');
+
+        if (sanitized.length < 13 || sanitized.length > 19) {
+            return false;
+        }
+
+        if (!luhnCheck(sanitized)) {
+            return false;
+        }
+
+        const visaRegex = /^4[0-9]{12}(?:[0-9]{3})?$/; // Visa: Starts with 4
+        const mastercardRegex = /^5[1-5][0-9]{14}$/; // Mastercard: Starts with 51-55
+
+        return visaRegex.test(sanitized) || mastercardRegex.test(sanitized);
     },
-    existMg: "Please update or add new file.",
-    acceptFn: (file: any) => {
-        return IMAGE_TYPES.includes(file?.type)
-    },
-    acceptMg: "only images files are accepted.",
-    maxsizeFn: (file: any) => file.size <= MAX_FILE_SIZE,
-    maxsizeMg: `Max file size is 5MB.`
+    Opt: {
+        message: 'Invalid card number. Must be a valid Visa or Mastercard number.',
+    }
 }
 
 export const isFiniteNumber = (value: unknown): value is number => {
@@ -116,8 +141,6 @@ export const makeRequestWithCookie = async (url: string, data: object, method: T
 
 export const setBrowserCookie = (response: Response) => {
     const cookieArray = response.headers.getSetCookie() || [];
-    const cookieString = response.headers.get('Set-Cookie') || '';
-    // const accessTokenArray = cookieString.find((cookie: string) => cookie.includes('access='))?.split('; ')
     for (const cookie of cookieArray) {
         const cookieProps = cookie.split('; ')
         const [key, value] = cookieProps[0].split('=')
@@ -134,6 +157,14 @@ export const setBrowserCookie = (response: Response) => {
             expires: new Date(expires || ''),
         })
     }
+}
+
+
+export const clearBrowserCookie = () => {
+    const cookieArray = cookies().getAll()
+    cookieArray.forEach((cookie) => {
+        cookies().delete(cookie.name)
+    })
 }
 
 export const getBrowserCookie = () => {
@@ -186,4 +217,21 @@ export const getResponseErrorMessage = (body: any, defaultMessage?: string): str
         return body[Object.keys(body)[0]][0] || defaultMessage || 'Failed to submit form'
     }
     return defaultMessage || 'Failed to submit form'
+}
+
+export const formatCategory = (categories: any[]) => {
+    return categories.map((category: any) => {
+        const data = {
+            label: category.name,
+            value: category.id
+        }
+        if (category.subcategories) {
+            const options = category.subcategories.map((subcategory: any) => ({
+                label: subcategory.name,
+                value: subcategory.id
+            }))
+            Object.assign(data, { options })
+        }
+        return data
+    })
 }

@@ -15,10 +15,11 @@ import { useFormState } from 'react-dom'
 
 type Props = {
     categoryLists: any
+    productTags: any
     initialValue: any
     tab: string
 }
-function ProductForm({ categoryLists, initialValue, tab }: Props) {
+function ProductForm({ categoryLists, productTags, initialValue, tab }: Props) {
 
     const [formState, action] = useFormState(
         createUpdateProduct,
@@ -28,12 +29,7 @@ function ProductForm({ categoryLists, initialValue, tab }: Props) {
     useToastMessage(formState);
     useRedirectRoute(formState);
 
-    const data = categoryLists?.map((category: any) => {
-        return {
-            label: category.name,
-            value: category.id
-        }
-    })
+    const data = categoryLists
 
     const productStatusOptions = [
         { label: 'New', value: 'NEW' },
@@ -47,18 +43,20 @@ function ProductForm({ categoryLists, initialValue, tab }: Props) {
             <input type="text" name="tab" id="tab" value={tab} onChange={() => { }} hidden />
             <input type="text" name="item" id="item" value={initialValue?.id} onChange={() => { }} hidden />
             <div className='grid grid-cols-3 gap-6'>
-                <div className='col-span-2 flex flex-col gap-5 bg-tertiary rounded-[30px] p-8'>
-                    <h3 className='font-semibold text-xl'>General Info</h3>
-                    <div className='grid grid-cols-2 max-w-[1300px] gap-5'>
-                        <TextInput id='product_name' name='product_name' error={formState.fieldErrors?.title?.[0]} placeholder='Enter product name' label='Title' defaultValue={initialValue?.title} />
-                        <TextInput id='quality' name='quality' type='number' placeholder='Enter Quality' label='Quality' error={formState.fieldErrors?.inventory?.[0]} defaultValue={initialValue?.inventory} />
-                        <div className="col-span-2">
-                            <TextAreaInput id='description' name='description' placeholder='Text' label='Description' error={formState.fieldErrors?.description?.[0]} defaultValue={initialValue?.description} />
-                        </div>
-                        <TextInput id='price' name='price' type='number' placeholder='Enter price' label='Price' error={formState.fieldErrors?.price?.[0]} defaultValue={initialValue?.price} />
-                        <TextInput id='discount' name='discount' type='number' defaultValue={initialValue?.discounted_price || 0} placeholder='Enter discount in %' label='Discount' error={formState.fieldErrors?.discounted_price?.[0]} />
-                        <div className="col-span-2">
-                            <ImageListSelector id='product_images' name='product_images' multi error={formState.fieldErrors?.images?.[0]} defaultValues={constructImageUrl(initialValue?.images || []) as string[]} />
+                <div className='col-span-2'>
+                    <div className="flex flex-col gap-5 p-8 bg-tertiary rounded-[30px]">
+                        <h3 className='font-semibold text-xl'>General Info</h3>
+                        <div className='grid grid-cols-2 max-w-[1300px] gap-5'>
+                            <TextInput id='product_name' name='product_name' error={formState.fieldErrors?.title?.[0]} placeholder='Enter product name' label='Title' defaultValue={initialValue?.title} />
+                            <TextInput id='quality' name='quality' type='number' placeholder='Enter Quality' label='Quality' error={formState.fieldErrors?.inventory?.[0]} defaultValue={initialValue?.inventory} />
+                            <div className="col-span-2">
+                                <TextAreaInput id='description' name='description' placeholder='Text' label='Description' error={formState.fieldErrors?.description?.[0]} defaultValue={initialValue?.description} />
+                            </div>
+                            <TextInput id='price' name='price' type='number' placeholder='Enter price' label='Price' error={formState.fieldErrors?.price?.[0]} defaultValue={initialValue?.price} />
+                            <TextInput id='discount' name='discount' type='number' defaultValue={initialValue?.discounted_price || 0} placeholder='Enter discount in %' label='Discount' error={formState.fieldErrors?.discounted_price?.[0]} />
+                            <div className="col-span-2">
+                                <ImageListSelector id='product_images' name='product_images' multi error={formState.fieldErrors?.images?.[0]} defaultValues={constructImageUrl(initialValue?.images || []) as string[]} />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -66,12 +64,13 @@ function ProductForm({ categoryLists, initialValue, tab }: Props) {
                     <RadioInput label='Status' id='status' name='status' options={productStatusOptions} error={formState.fieldErrors?.status?.[0]} defaultValue={initialValue?.status} />
                     <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
                         <h3 className='font-semibold text-xl'>Product organization</h3>
-                        <SelectInput id='category' name='category' label='Category' data={data} error={formState.fieldErrors?.category?.[0]} defaultValue={initialValue?.category} />
+                        <SelectInput id='category' name='category' label='Category' data={data} nested error={formState.fieldErrors?.category?.[0]} defaultValue={initialValue?.category} />
                     </div>
                     <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
                         <h3 className='font-semibold text-xl'>Product promotion</h3>
                         <SelectInput id='campaign' label='Promo campaign (optional)' multi={false} nested={true} />
-                        <TextAreaInput id='description' placeholder='Enter tags for the product' label='Tags' />
+                        {/* <TextAreaInput id='description' placeholder='Enter tags for the product' label='Tags' /> */}
+                        <SelectInput searchable id='product_tag' name='product_tag' label='Tags' data={productTags} error={formState.fieldErrors?.tags?.[0]} defaultValue={initialValue?.tags} multi />
                     </div>
                 </div>
             </div>

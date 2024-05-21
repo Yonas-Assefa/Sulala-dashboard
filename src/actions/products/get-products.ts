@@ -1,6 +1,8 @@
 'use server'
 
+import { getCategories } from "../common/get-categories"
 import { PRODUCTS } from "../config/urls"
+import { productMapper } from "../mapper/product-mapper"
 import { getRequestHeaders, makeRequest } from "../utils/helper"
 
 export const getProducts = async () => {
@@ -14,7 +16,7 @@ export const getProducts = async () => {
         throw new Error(body.message || 'Failed to get product');
     }
 
-    return body
+    return await productMapper(body.results)
 }
 
 export const getOneProduct = async (item: string) => {
@@ -27,6 +29,6 @@ export const getOneProduct = async (item: string) => {
     if (!response.ok || !body.id) {
         return null
     }
-
-    return body
+    console.log({ body: await productMapper(body) })
+    return await productMapper(body)
 }

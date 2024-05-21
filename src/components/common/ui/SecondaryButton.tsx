@@ -29,18 +29,25 @@ function SecondaryButton({ href, name, padding, modal, type, handleClick }: Prop
             openModal(modal)
         }
     }
+    const props = {}
+
+    if (handleButtonClick) {
+        Object.assign(props, { onClick: handleButtonClick })
+    }
+    if (type) {
+        Object.assign(props, { type })
+    }
 
     if (href) {
         return (
-            <Link href={href} className={`btn w-full rounded-[40px] bg-[#f6f6f6] hover:bg-primary/20 border-0 text-black ${padding && paddings[padding]}`}>
+            <Link href={href} className={`btn w-full rounded-[40px] bg-[#f6f6f6] hover:bg-secondary/40 border-0 text-black ${padding && paddings[padding]}`}>
                 {name}
             </Link>
         )
     } else {
         return (<button
-            onClick={handleButtonClick}
-            className={`btn w-full rounded-[40px] bg-[#f6f6f6] hover:bg-primary/20 border-0 text-black ${padding && paddings[padding]}`}
-            type={type || 'button'}
+            className={`btn w-full rounded-[40px] bg-[#f6f6f6] hover:bg-secondary/40 border-0 text-black ${padding && paddings[padding]}`}
+            {...props}
         >
             {name}
         </button>)

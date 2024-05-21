@@ -56,8 +56,6 @@ export const productTableSchema: TableSchema = {
             key: 'category',
             title: 'Category',
             type: 'string',
-            referenced: true,
-            reference_key: 'categories'
         },
     ]
 }

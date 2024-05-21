@@ -29,12 +29,7 @@ function SetupAccountStageTwo({ formState, categoryLists, show }: { formState: F
     const { campany_name, sales_category, address, setSalesCategory, setAddress, setCompanyName } = useCounterStore(
         (state) => state,
     )
-    const data = categoryLists?.map((category: any) => {
-        return {
-            label: category.name,
-            value: category.id
-        }
-    })
+    const data = categoryLists
     return (
         <section className={`flex flex-col gap-5 w-full items-stretch ${!show && 'hidden'}`}>
             <TextInput value={campany_name} setValue={setCompanyName} label="What's your company name?" placeholder='Enter your company name' id='company_name' name='company_name' error={formState.fieldErrors?.name?.[0]} />

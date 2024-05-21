@@ -2,7 +2,7 @@
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { PRODUCTS, } from '../config/urls';
 import { createProductSchema, updateProductSchema, } from '../schema/zod-schema';
-import { changeObjToFormData, getBrowserCookie, getMultiPartRequestHeaders, getRequestHeaders, getResponseErrorMessage } from '../utils/helper';
+import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders, getResponseErrorMessage } from '../utils/helper';
 import { revalidatePath } from 'next/cache';
 
 export const createUpdateProduct = async (
@@ -19,6 +19,7 @@ export const createUpdateProduct = async (
             category: +(formData.get('category') || 0),
             inventory: +(formData.get('quality') || 0),
             status: formData.get('status'),
+            tags: formData.getAll('product_tag'),
         }
 
         const tab = formData.get('tab')
@@ -32,14 +33,8 @@ export const createUpdateProduct = async (
             createProductSchema.parse(dataToBeParsed) :
             updateProductSchema.parse({
                 ...dataToBeParsed,
-                id: +(formData.get('item') || 0)
             });
         const item_id = +(formData.get('item') || 0)
-
-        if ('id' in data) {
-            const { id, ...rest } = data
-            Object.assign(data, rest)
-        }
 
         const URL = tab == 'add' ? PRODUCTS : `${PRODUCTS}${item_id}/`
         const METHOD = tab == 'add' ? 'POST' : 'PATCH'

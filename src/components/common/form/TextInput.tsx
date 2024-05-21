@@ -2,7 +2,7 @@
 import { TextInputProps } from '@/types/props.type'
 import React from 'react'
 
-function TextInput({ value, setValue, id, placeholder, label, name, autoComplete, error, type = 'text', defaultValue }: TextInputProps) {
+function TextInput({ value, setValue, id, placeholder, label, name, autoComplete, error, type = 'text', defaultValue, dynamicPlaceholder = /\d{2}\.\d{2}\.\d{4}/ }: TextInputProps) {
     const inputArgs = {}
     if (value) {
         Object.assign(inputArgs, { value })

@@ -1,7 +1,7 @@
 'use server'
 
 import { CATEGORIES } from "../config/urls"
-import { getRequestHeaders, makeRequest } from "../utils/helper"
+import { formatCategory, getRequestHeaders, makeRequest } from "../utils/helper"
 
 export const getCategories = async () => {
     const response = await fetch(CATEGORIES, {
@@ -10,9 +10,10 @@ export const getCategories = async () => {
     })
     const body = await response.json()
 
-    if (!response.ok || !body.success) {
+    if (!response.ok || !body.results) {
         throw new Error(body.message || 'Failed to resend OTP');
     }
-
-    return body.data
+    const formatedCategory = formatCategory(body.results)
+    console.log({ formatedCategory, rawData: body.results })
+    return formatedCategory
 }

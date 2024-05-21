@@ -2,6 +2,7 @@ import OTPInput from '@/components/common/form/OTPInput'
 import React, { ElementRef, useEffect } from 'react'
 import EnterOtpForm from './EnterOtpForm'
 import { redirect } from 'next/navigation'
+import BackButton from '@/components/common/ui/BackButton'
 
 type Props = {
     searchParams: {
@@ -19,9 +20,7 @@ function EnterOTP({ searchParams: { phone: rawPhone, action } }: Props) {
         <div className='text-black w-10/12 h-3/5 px-6 flex flex-col justify-evenly gap-5 items-center'>
             {/* BACK BUTTON */}
             <div className='flex w-full mb-4'>
-                <button className='bg-tertiary hover:bg-primary/20 p-2 rounded-full btn border-0'>
-                    <img src="/icons/arrow-left.svg" alt="" className='w-[30px]' />
-                </button>
+                <BackButton />
             </div>
             {/* SIGN IN HEADER */}
             <div className='flex flex-col gap-3'>

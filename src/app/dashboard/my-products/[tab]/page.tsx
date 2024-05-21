@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import ProductForm from './ProductForm'
 import { getCategories } from '@/actions/common/get-categories'
 import { getOneProduct } from '@/actions/products/get-products'
+import { getProductTags } from '@/actions/common/get-product-tags'
 
 type Props = {
     params: {
@@ -21,6 +22,7 @@ async function page({ params: { tab }, searchParams: { item } }: Props) {
     }
 
     const categoryLists = await getCategories()
+    const productTags = await getProductTags()
     const product = item ? await getOneProduct(item) : null
 
     return (
@@ -31,7 +33,7 @@ async function page({ params: { tab }, searchParams: { item } }: Props) {
                 </div>
                 <h2 className='capitalize'>{tab} Product</h2>
             </div>
-            <ProductForm categoryLists={categoryLists} initialValue={product} tab={tab} />
+            <ProductForm categoryLists={categoryLists} productTags={productTags} initialValue={product} tab={tab} />
         </div>
     )
 }
