@@ -1,4 +1,5 @@
 import { getCategories } from "../common/get-categories"
+import { BASE_URL } from "../config/urls"
 
 export const productMapper = async (data: any) => {
     const categories = await getCategories()
@@ -7,13 +8,15 @@ export const productMapper = async (data: any) => {
             return {
                 ...product,
                 category: categories.find((category: any) => (category.options.map((o: any) => o.value)).includes(product.category))?.label,
+                images: product.images?.[0] ? `${BASE_URL}${product.images?.[0]}` : ''
             }
         })
     } else {
         return {
             ...data,
             category: getSubCategory(categories, data.category),
-            tags: data.tags.map((tag: any) => ({ label: tag.name, value: tag.id }))
+            tags: data.tags.map((tag: any) => ({ label: tag.name, value: tag.id })),
+            images: data.images?.[0] ? `${BASE_URL}${data.images?.[0]}` : ''
         }
     }
 }

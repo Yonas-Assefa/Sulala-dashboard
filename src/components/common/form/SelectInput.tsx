@@ -16,7 +16,7 @@ function NoItemPlaceholder() {
     )
 }
 
-function CustomMultiSelectInput({ placeholder, label, name, id, error, multi = false, nested = false, withImage = false, data, defaultValue, searchable = false }: CustomSelectInputProps) {
+function CustomMultiSelectInput({ setValue, placeholder, label, name, id, error, multi = false, nested = false, withImage = false, data, defaultValue, searchable = false }: CustomSelectInputProps) {
     const [options, setOptions] = React.useState<SelectInputSchema[]>(data || [])
 
     const defaultSelected = typeof defaultValue === 'string' ?
@@ -103,8 +103,10 @@ function CustomMultiSelectInput({ placeholder, label, name, id, error, multi = f
     useEffect(() => {
         if (selected.length === 0) {
             setComputedValue('')
+            if (setValue) setValue('')
         } else {
             setComputedValue(selected.map(item => item.label).join(', '))
+            if (setValue) setValue(selected.map(item => item.label).join(', '))
         }
     }, [selected])
 
@@ -169,7 +171,7 @@ function CustomMultiSelectInput({ placeholder, label, name, id, error, multi = f
                                         <div className={`form-control w-full flex flex-row justify-between rounded-none ${options.length !== i + 1 && 'border-b'}`}>
                                             {/* IF DROPDOWN IS SET TO HAVE IMAGE INIT, IT WILL BE DISPLAYED HERE */}
                                             {
-                                                withImage && <img src={option?.image} alt="" />
+                                                withImage && <img src={option?.image} alt="" className='max-w-[20px] max-h-[20px' />
                                             }
                                             <label htmlFor='1' className="label-text cursor-pointer label w-full flex justify-between text-black text-md">
                                                 {option.label}

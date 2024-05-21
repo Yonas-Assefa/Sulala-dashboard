@@ -9,6 +9,7 @@ export type SelectInputSchema = {
 }
 
 export type InputMeta = {
+    id: string
     type: 'select' | 'text',
     placeholder: string
     options?: string[]
@@ -19,7 +20,7 @@ export type RadioInputOptions = {
     id: string
     label: string
     value: string
-    input?: InputMeta
+    input?: InputMeta | InputMeta[]
 }
 
 export type RadioInputSchema = RadioInputOptions & {

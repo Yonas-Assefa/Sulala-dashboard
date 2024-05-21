@@ -1,0 +1,22 @@
+{
+    "id": "budgeting",
+    "label": "Budgeting",
+    "value": "budgeting",
+    "options": [
+        {
+            "id": "DAILY",
+            "label": "Daily",
+            "value": "DAILY"
+        },
+        {
+            "id": "WEEKLY",
+            "label": "Weekly",
+            "value": "WEEKLY"
+        }
+    ],
+    "input": {
+        "label": "Budget",
+        "placeholder": "Enter your budget",
+        "type": "text"
+    }
+}

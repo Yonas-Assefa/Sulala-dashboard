@@ -1,16 +1,11 @@
-'use client'
 import React from 'react'
-import Link from 'next/link'
 import CreateCampaignModal from './components/modals/CreateCampaignModal'
 import Table from '@/components/common/table/Table'
 import { promotionData, promotionFilterData, promotionSortData } from './schema/data'
 import { promotionTableSchema } from './schema/schema'
-import { useCreateQueryString } from '@/hooks/useCreateQueryString'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
 
 function page() {
-    const { createQueryString } = useCreateQueryString()
-
     return (
         <>
             <CreateCampaignModal />

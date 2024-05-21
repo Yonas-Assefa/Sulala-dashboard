@@ -37,6 +37,9 @@ export const CATEGORIES = `${API_URL}categories/`;
 export const PRODUCTS = `${API_URL}products/`;
 export const PRODUCT_TAGS = `${API_URL}product_tags/`;
 
+// PROMOTION URLS
+export const PROMOTIONS = `${API_URL}promotions/`;
+
 // OTHERS
 export const INSTAGRAM_BASE_URL = 'https://www.instagram.com/'
 export const FACEBOOK_BASE_URL = 'https://www.facebook.com/'
