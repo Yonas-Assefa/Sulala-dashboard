@@ -35,7 +35,11 @@ function ProductDiscountAdsForm({ products }: Props) {
     const [startDate, setStartDate] = React.useState<string>('')
     const [endDate, setEndDate] = React.useState<string>('')
     const [promoDiscountType, setPromoDiscountType] = React.useState<any>()
+    const [discount, setDiscount] = React.useState<any>()
+    const [limitedPrice, setLimitedPrice] = React.useState<any>()
+    const [cartTotal, setCartTotal] = React.useState<any>()
     const [budgeting, setBudgeting] = React.useState<any>()
+    const [budget, setBudget] = React.useState<any>()
     const [banners, setBanners] = React.useState<(File | string)[]>([])
 
     const [formState, action] = useFormState(
