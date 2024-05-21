@@ -136,12 +136,10 @@ export const personalInfoSettingSchema = z.object({
 })
 
 export const shopInfoSettingSchema = z.object({
-    shop_name: z.string()
+    name: z.string()
         .min(1, 'Shop name must be at least 1 character long'),
-    categories: z.array(
-        z.number()
-            .min(1, 'Please choose at least one category')
-    ),
+    category: z.number()
+        .min(1, 'Please choose at least one category'),
     legal_address: z.string()
         .min(1, 'Address must be at least 1 character long'),
     website: z.string()
@@ -154,7 +152,7 @@ export const shopInfoSettingSchema = z.object({
     facebook: z.string()
         .url({ message: 'Invalid facebook url' })
         .startsWith(FACEBOOK_BASE_URL, { message: 'Url must be a facebook url' }),
-    profile_image: z.any()
+    profile_photo: z.any()
         .refine(
             fileRefine.existFn,
             fileRefine.existMg

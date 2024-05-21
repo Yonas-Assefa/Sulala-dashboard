@@ -2,7 +2,7 @@
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { UPDATE_SHOP_ACCOUNT, } from '../config/urls';
 import { personalInfoSettingSchema, shopInfoSettingSchema, } from '../schema/zod-schema';
-import { getRequestHeaders, getResponseErrorMessage } from '../utils/helper';
+import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders, getResponseErrorMessage } from '../utils/helper';
 import { revalidatePath } from 'next/cache';
 
 export const updateShopInfo = async (
@@ -12,23 +12,24 @@ export const updateShopInfo = async (
     try {
 
         const data = shopInfoSettingSchema.parse({
-            shop_name: formData.get('shop_name'),
-            description: formData.get('shop_description'),
-            categories: formData.getAll('categories'),
+            name: formData.get('shop_name'),
+            description: formData.get('description'),
+            category: +(formData.get('categories') || 0),
             legal_address: formData.get('legal_address'),
             website: formData.get('website'),
             instagram: formData.get('instagram'),
             facebook: formData.get('facebook'),
-            profile_image: formData.get('profile_image'),
+            profile_photo: formData.get('profile_image'),
         });
 
         const response = await fetch(UPDATE_SHOP_ACCOUNT, {
             method: 'PATCH',
-            headers: getRequestHeaders(),
-            body: JSON.stringify(data),
+            headers: getMultiPartRequestHeaders(),
+            body: changeObjToFormData(data),
         });
 
         const body = await response.json()
+        console.log({ body, data })
         if (!response.ok || !body.success) {
             const message = getResponseErrorMessage(body)
             throw new Error(message || 'Failed to submit form');

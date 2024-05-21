@@ -8,6 +8,8 @@ import ChangePasswordModal from '../components/modals/ChangePasswordModal'
 import CreatePaymentMethodModal from '../components/modals/createPaymentMethodModal'
 import { getPersonalInfo } from '@/actions/settings/get-personal-info'
 import { getBillingInfo } from '@/actions/settings/get-billing-info'
+import { getCategories } from '@/actions/common/get-categories'
+import { getShopInfo } from '@/actions/settings/get-shop-info'
 
 type Props = {
     params: {
@@ -19,6 +21,9 @@ async function SettingsPage({ params: { tab } }: Props) {
     const activeTab = tab ? tab[0] : 'personal-info'
     const personalInfo = await getPersonalInfo()
     const billings = await getBillingInfo()
+    const categories = await getCategories()
+    const shopInfo = await getShopInfo()
+
     return (
         <>
             <LogoutModal />
@@ -40,7 +45,7 @@ async function SettingsPage({ params: { tab } }: Props) {
                     activeTab == 'personal-info' ?
                         <PersonalInfo data={personalInfo} /> :
                         activeTab == 'shop-info' ?
-                            <ShopInfo /> :
+                            <ShopInfo categories={categories} shopInfo={shopInfo} /> :
                             activeTab == 'billing-info' ?
                                 <BillingInfo billings={billings} /> :
                                 null

@@ -1,7 +1,7 @@
 'use client'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import SecondaryButton from '@/components/common/ui/SecondaryButton'
-import { openModal } from '@/utils/openModal'
+import { openModal } from '@/lib/modals'
 import Link from 'next/link'
 import React from 'react'
 

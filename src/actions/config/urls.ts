@@ -3,8 +3,9 @@ import { loadEnvConfig } from '@next/env'
 const projectDir = process.cwd()
 loadEnvConfig(projectDir)
 
-const BASE_URL = process.env.BASE_URL!;
-const VENDOR_BASE_URL = `${BASE_URL}vendors/`
+export const BASE_URL = process.env.BACKEND_BASE_URL!;
+const API_URL = `${BASE_URL}api/v1/`;
+const VENDOR_BASE_URL = `${API_URL}vendors/`
 
 // VENDOR BASED URLS
 export const SIGNUP_URL = `${VENDOR_BASE_URL}register/`;
@@ -18,9 +19,9 @@ export const VERIFY_EMAIL = `${VENDOR_BASE_URL}verify-email/`;
 export const CREATE_PASSWORD = `${VENDOR_BASE_URL}set-password/`;
 export const SHOP_ACCOUNT = `${VENDOR_BASE_URL}shop_account_setup/`;
 export const GET_VENDOR_ACCOUNT = `${VENDOR_BASE_URL}get_vendor_profile/`;
-export const GET_SHOP_ACCOUNT = `${VENDOR_BASE_URL}get_vendor_profile/`;
+export const GET_SHOP_ACCOUNT = `${VENDOR_BASE_URL}get_shop_info/`;
 export const UPDATE_VENDOR_ACCOUNT = `${VENDOR_BASE_URL}update_profile/`;
-export const UPDATE_SHOP_ACCOUNT = `${VENDOR_BASE_URL}update_profile/`;
+export const UPDATE_SHOP_ACCOUNT = `${VENDOR_BASE_URL}update_shop_info/`;
 export const UPDATE_BILLING_ACCOUNT = `${VENDOR_BASE_URL}update_profile/`;
 export const ADD_BILLING_INFO = `${VENDOR_BASE_URL}add_payment_method/`;
 export const DELETE_BILLING_INFO = `${VENDOR_BASE_URL}delete_payment_method/`;
@@ -30,11 +31,11 @@ export const LOGOUT = `${VENDOR_BASE_URL}update_profile/`;
 export const GET_BILLING_ACCOUNT = `${VENDOR_BASE_URL}get_payment_method/`;
 
 // CATEGORY URLS
-export const CATEGORIES = `${BASE_URL}categories/`;
+export const CATEGORIES = `${API_URL}categories/`;
 
 // PRODUCT URLS
-export const PRODUCTS = `${BASE_URL}products/`;
-export const PRODUCT_TAGS = `${BASE_URL}product_tags/`;
+export const PRODUCTS = `${API_URL}products/`;
+export const PRODUCT_TAGS = `${API_URL}product_tags/`;
 
 // OTHERS
 export const INSTAGRAM_BASE_URL = 'https://www.instagram.com/'
