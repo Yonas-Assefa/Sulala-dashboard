@@ -9,9 +9,10 @@ type Props = {
     id?: string
     name?: string
     defaultValues?: string[]
+    setValue?: (val: (File | string)[]) => void
 }
 
-function ImageListSelector({ multi = false, label, error, name, id, defaultValues }: Props) {
+function ImageListSelector({ multi = false, label, error, name, id, defaultValues, setValue }: Props) {
     const [fileList, setFileList] = React.useState<(File | string)[]>(defaultValues || []);
     const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -20,6 +21,9 @@ function ImageListSelector({ multi = false, label, error, name, id, defaultValue
             const dataTransfer = new DataTransfer();
             fileList.forEach((file) => typeof file !== 'string' && dataTransfer.items.add(file));
             inputRef.current.files = dataTransfer.files;
+        }
+        if (setValue) {
+            setValue(fileList)
         }
     }, [fileList]);
 

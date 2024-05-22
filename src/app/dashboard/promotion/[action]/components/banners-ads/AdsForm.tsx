@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import SummaryDescription from '../common/SummaryDescription'
 import GeneralInfoCard from './GeneralInfoCard'

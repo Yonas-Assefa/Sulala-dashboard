@@ -1,11 +1,11 @@
-'use client'
 import BackButton from '@/components/common/ui/BackButton'
-import Link from 'next/link'
 import React from 'react'
 import DiscountAdsForm from './components/discount-ads/AdsForm'
 import BannerAdsForm from './components/banners-ads/AdsForm'
-import { useCreateQueryString } from '@/hooks/useCreateQueryString'
 import { getAction, getItemType, getTab } from './utils/helper.util'
+import Tab from './components/common/Tab'
+import { getProducts } from '@/actions/products/get-products'
+import { customMapper } from '@/actions/mapper/custom-mapper'
 
 type Props = {
     params: {
@@ -17,12 +17,19 @@ type Props = {
     }
 }
 
-function page({ params: { action: actionType }, searchParams: { tab: tabType, type } }: Props) {
-    const { createQueryString } = useCreateQueryString()
+async function page({ params: { action: actionType }, searchParams: { tab: tabType, type } }: Props) {
 
     const item = getItemType(type)
     const tab = getTab(tabType, type)
     const action = getAction(actionType)
+
+    const products = await customMapper({
+        data: (await getProducts()),
+        opt: [
+            { from: 'id', to: 'value' },
+            { from: 'title', to: 'label' },
+            { from: 'images', to: 'image', converter: (image: unknown) => Array.isArray(image) ? image[0] : image }]
+    })
 
     return (
         <div className='text-black flex flex-col w-full h-full p-8 gap-10  overflow-y-scroll'>
@@ -32,15 +39,10 @@ function page({ params: { action: actionType }, searchParams: { tab: tabType, ty
                 </div>
                 <h2 className='capitalize'>{action} promo campaign</h2>
             </div>
-            <div className='box-content border-b-2 border-secondary'>
-                <div className="self-start font-medium flex flex-row">
-                    <Link href={createQueryString('tab', 'discounts-ads')} className={`tab capitalize border-b-2 px-6 -mb-[1px] ${tab == 'discounts-ads' ? 'text-primary border-primary' : 'text-secondary border-transparent'}`}>{item} discounting promotion</Link>
-                    <Link href={createQueryString('tab', 'banner-ads')} className={`tab capitalize border-b-2 px-6 -mb-[1px] ${tab == 'banner-ads' ? 'text-primary border-primary' : 'text-secondary border-transparent'}`}>Banner ads</Link>
-                </div>
-            </div>
+            <Tab item={item} tab={tab} />
             {
                 tab === 'discounts-ads' ?
-                    <DiscountAdsForm /> :
+                    <DiscountAdsForm products={products} /> :
                     tab === 'banner-ads' ?
                         <BannerAdsForm /> : null
             }

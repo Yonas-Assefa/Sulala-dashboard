@@ -1,6 +1,7 @@
 'use server'
 
 import { GET_SHOP_ACCOUNT } from "../config/urls"
+import { shopMapper } from "../mapper/shop-mapper"
 import { getRequestHeaders } from "../utils/helper"
 
 export const getShopInfo = async () => {
@@ -14,5 +15,5 @@ export const getShopInfo = async () => {
         throw new Error(body.message || 'Failed to get shop info');
     }
 
-    return body.data
+    return shopMapper(body.data)
 }

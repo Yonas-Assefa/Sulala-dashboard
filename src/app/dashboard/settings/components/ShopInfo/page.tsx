@@ -11,8 +11,13 @@ import { EMPTY_FORM_STATE } from '@/utils/formStateHelper'
 import { useFormState } from 'react-dom'
 import { updateShopInfo } from '@/actions/settings/update-shop-info'
 import SocialMediaInput from '@/components/common/form/SocialMediaInput'
+import CustomMultiSelectInput from '@/components/common/form/SelectInput'
 
-function ShopInfo() {
+type Props = {
+    categories: any
+    shopInfo: any
+}
+function ShopInfo({ categories, shopInfo }: Props) {
 
     const [formState, action] = useFormState(
         updateShopInfo,
@@ -24,22 +29,22 @@ function ShopInfo() {
 
     return (
         <form action={action} className='mt-4 w-full flex flex-col gap-8'>
-            <ProfileImagePicker id='profile_image' name='profile_image' error={formState?.fieldErrors?.profile_image?.[0]} />
+            <ProfileImagePicker id='profile_image' name='profile_image' error={formState?.fieldErrors?.profile_photo?.[0]} defaultValue={shopInfo.profile_photo} />
             <div className='grid grid-cols-2 max-w-[1300px] gap-5'>
-                <TextInput id='shop_name' name='shop_name' placeholder='Shop name' label='Shop name' error={formState?.fieldErrors?.shop_name?.[0]} />
-                <TextInput id='categories' name='categories' placeholder='Categories' label='Categories' error={formState?.fieldErrors?.categories?.[0]} />
-                <TextInput id='legal_address' name='legal_address' placeholder='Legal Address' label='Legal Address' error={formState?.fieldErrors?.legal_address?.[0]} />
-                <TextInput id='website' name='website' placeholder='Website' label='Website' error={formState?.fieldErrors?.website?.[0]} />
+                <TextInput id='shop_name' name='shop_name' placeholder='Shop name' label='Shop name' error={formState?.fieldErrors?.name?.[0]} defaultValue={shopInfo.name} />
+                <CustomMultiSelectInput id='categories' name='categories' placeholder='Categories' label='Categories' error={formState?.fieldErrors?.category?.[0]} data={categories} defaultValue={shopInfo.category} />
+                <TextInput id='legal_address' name='legal_address' placeholder='Legal Address' label='Legal Address' error={formState?.fieldErrors?.legal_address?.[0]} defaultValue={shopInfo.legal_address} />
+                <TextInput id='website' name='website' placeholder='Website' label='Website' error={formState?.fieldErrors?.website?.[0]} defaultValue={shopInfo.website} />
                 <div className="col-span-2">
-                    <TextAreaInput id='description' name='description' placeholder='Text' label='Shop description' error={formState?.fieldErrors?.description?.[0]} />
+                    <TextAreaInput id='description' name='description' placeholder='Text' label='Shop description' error={formState?.fieldErrors?.description?.[0]} defaultValue={shopInfo.description} />
                 </div>
             </div>
 
             <div className='max-w-[400px] flex flex-col items-start gap-5'>
                 <h5 className='font-[500] text-lg'>Social links</h5>
                 <div className='flex flex-col gap-4'>
-                    <SocialMediaInput socialMedia='instagram' error={formState?.fieldErrors?.instagram?.[0]} />
-                    <SocialMediaInput socialMedia='facebook' error={formState?.fieldErrors?.facebook?.[0]} />
+                    <SocialMediaInput socialMedia='instagram' error={formState?.fieldErrors?.instagram?.[0]} defaultValue={shopInfo.instagram} />
+                    <SocialMediaInput socialMedia='facebook' error={formState?.fieldErrors?.facebook?.[0]} defaultValue={shopInfo.facebook} />
                 </div>
                 <div className='mt-5'>
                     <PrimaryButton padding={'md'} name='Save' type='submit' />

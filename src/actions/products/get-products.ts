@@ -29,6 +29,5 @@ export const getOneProduct = async (item: string) => {
     if (!response.ok || !body.id) {
         return null
     }
-    console.log({ body: await productMapper(body) })
     return await productMapper(body)
 }

@@ -1,6 +1,6 @@
 'use client'
 import { useCreateQueryString } from '@/hooks/useCreateQueryString'
-import { openModal } from '@/utils/openModal'
+import { openModal } from '@/lib/modals'
 import Link from 'next/link'
 import React from 'react'
 

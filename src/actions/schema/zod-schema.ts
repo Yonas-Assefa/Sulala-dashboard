@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { IMAGE_TYPES, PDF_TYPES, cardNumberRefine, confirmPasswordRefine, fileRefine, isFiniteNumber, phoneTransform, transformToNumber } from '../utils/helper';
 import { FACEBOOK_BASE_URL, INSTAGRAM_BASE_URL } from '../config/urls';
+import { PROMOTION_ENUM, DISCOUNT_ENUM, DESTINATION_ENUM, BUDGETING_ENUM } from '@/app/dashboard/promotion/[action]/data/discount-contants';
 
 export const phoneAuthSchema = z.object({
     phone_number: z.string()
@@ -136,12 +137,10 @@ export const personalInfoSettingSchema = z.object({
 })
 
 export const shopInfoSettingSchema = z.object({
-    shop_name: z.string()
+    name: z.string()
         .min(1, 'Shop name must be at least 1 character long'),
-    categories: z.array(
-        z.number()
-            .min(1, 'Please choose at least one category')
-    ),
+    category: z.number()
+        .min(1, 'Please choose at least one category'),
     legal_address: z.string()
         .min(1, 'Address must be at least 1 character long'),
     website: z.string()
@@ -154,7 +153,7 @@ export const shopInfoSettingSchema = z.object({
     facebook: z.string()
         .url({ message: 'Invalid facebook url' })
         .startsWith(FACEBOOK_BASE_URL, { message: 'Url must be a facebook url' }),
-    profile_image: z.any()
+    profile_photo: z.any()
         .refine(
             fileRefine.existFn,
             fileRefine.existMg
@@ -163,7 +162,7 @@ export const shopInfoSettingSchema = z.object({
             fileRefine.acceptFn(IMAGE_TYPES),
             fileRefine.acceptMg('image')
         ),
-})
+}).partial()
 
 export const billingInfoSettingSchema = z.object({
     account_holder_name: z.string()
@@ -242,4 +241,108 @@ export const promoCampaignBannerSchema = promoCampaignSchema.extend({
         .min(1, 'Discount type must be at least 1 character long'),
     discount_amount: z.number()
         .min(1, 'Discount must be at least 1'),
+})
+
+export const createPromoCampaingSchema = z.object({
+    promotion_type: z.string({
+        message: 'Promotion type is a required field'
+    })
+        .refine(
+            (val) => PROMOTION_ENUM.includes(val),
+            {
+                message: 'Invalid promotion type'
+            }
+        ),
+    promotional_discount_type: z.string({
+        message: 'Promotional discount type is a required field'
+    })
+        .refine(
+            (val) => DISCOUNT_ENUM.includes(val),
+            {
+                message: 'Invalid discount type'
+            }
+        ),
+    discount: z.number({ message: 'Discount must be a number' })
+        .min(1, 'Discount must be at least 1').optional(),
+    cart_total: z.number({ message: 'Cart total must be a number' })
+        .min(1, 'Cart total must be at least 1').optional(),
+    limited_price: z.number()
+        .min(1, 'Limited price must be at least 1').optional(),
+    name: z.string()
+        .min(1, 'Campaign name must be at least 1 character long'),
+    start_date: z.string()
+        .refine(
+            (val) => {
+                try {
+                    new Date(val)
+                    return true
+                } catch (error) {
+                    return false
+                }
+            },
+            {
+                message: 'Please provide a valid date'
+            }
+        )
+        .refine(
+            (val) => new Date(val) > new Date(),
+            {
+                message: 'Start date must be in the future'
+            }
+        ),
+    end_date: z.string()
+        .refine(
+            (val) => {
+                try {
+                    new Date(val)
+                    return true
+                } catch (error) {
+                    return false
+                }
+            },
+            {
+                message: 'Please provide a valid date'
+            }
+        )
+        .refine(
+            (val) => new Date(val) > new Date(),
+            {
+                message: 'End date must be in the future'
+            }
+        ),
+    budgeting: z.string({
+        message: 'Budgeting type is a required field'
+    })
+        .refine(
+            (val) => BUDGETING_ENUM.includes(val),
+            {
+                message: 'Invalid budgeting type'
+            }
+        ),
+    budget: z.number({ message: 'Budget must be a number' })
+        .min(1, 'Budget must be at least 1'),
+    products: z.array(
+        z.number()
+            .min(1, 'Please choose at least one product')
+    ).nonempty({
+        message: 'Please choose at least one product'
+    }).optional(),
+    services: z.array(
+        z.number()
+            .min(1, 'Please choose at least one service')
+    ).nonempty({
+        message: 'Please choose at least one service'
+    }).optional(),
+    description: z.string()
+        .min(5, 'Description must be at least 5 character long'),
+    ad_files: z.any()
+        .refine(
+            fileRefine.existFn,
+            fileRefine.existMg
+        )
+        .refine(
+            fileRefine.acceptFn(IMAGE_TYPES),
+            fileRefine.acceptMg('image')
+        ).optional(),
+
 })

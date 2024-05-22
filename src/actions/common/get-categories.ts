@@ -14,6 +14,5 @@ export const getCategories = async () => {
         throw new Error(body.message || 'Failed to resend OTP');
     }
     const formatedCategory = formatCategory(body.results)
-    console.log({ formatedCategory, rawData: body.results })
     return formatedCategory
 }

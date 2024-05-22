@@ -4,7 +4,7 @@ import React from 'react'
 import { Actions } from '../../../types/table.type'
 import { usePathname } from 'next/navigation'
 import { useCreateQueryString } from '@/hooks/useCreateQueryString'
-import { openModal } from '@/utils/openModal'
+import { openModal } from '@/lib/modals'
 
 type Props = Actions & {
     product_id: string
