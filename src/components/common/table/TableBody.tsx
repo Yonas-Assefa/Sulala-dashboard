@@ -1,5 +1,5 @@
 import React from 'react'
-import { TableSchema } from '../../../types/table.type'
+import { ActionOptions, TableSchema } from '../../../types/table.type'
 import TableCheckbox from './TableCheckbox'
 import TableBadge from './TableBadge'
 import TableActions from './TableActions'
@@ -10,9 +10,10 @@ import { formatPiece } from '@/utils/pieceFormatter.util'
 type Props = {
     tableSchema: TableSchema
     mockData: Record<string, any>[]
+    actionOptions?: ActionOptions
 }
 
-function TableBody({ tableSchema, mockData }: Props) {
+function TableBody({ tableSchema, mockData, actionOptions }: Props) {
     return (
         <tbody>
             {
@@ -70,8 +71,9 @@ function TableBody({ tableSchema, mockData }: Props) {
                                     promote={tableSchema.include.actions.promote}
                                     delete={tableSchema.include.actions.delete}
                                     edit={tableSchema.include.actions.edit}
-                                    product_id={product.id}
+                                    product={product}
                                     toggle={tableSchema.include.actions.toggle}
+                                    actionOptions={actionOptions}
                                 />
                             }
                         </tr>

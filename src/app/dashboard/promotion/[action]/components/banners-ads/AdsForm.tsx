@@ -19,8 +19,9 @@ import { formatNumber as priceFormatter } from '@/utils/priceFormatter.util'
 type Props = {
     products: any
     itemType: string
+    promotion: any
 }
-function BannerAdsForm({ itemType, products }: Props) {
+function BannerAdsForm({ itemType, products, promotion }: Props) {
 
     const [campaignName, setCampaignName] = React.useState<string>()
     const [destinationType, setDestinationType] = React.useState<string>()
@@ -40,6 +41,8 @@ function BannerAdsForm({ itemType, products }: Props) {
     useToastMessage(formState);
     useRedirectRoute(formState);
 
+    console.log({ promotion })
+
     return (
         <div className='grid grid-cols-3 gap-6'>
             <form action={action} className='col-span-2 flex flex-col gap-5 bg-white'>
@@ -51,6 +54,7 @@ function BannerAdsForm({ itemType, products }: Props) {
                         <TextInput
                             id='campaign_name'
                             name='campaign_name'
+                            defaultValue={promotion.campaign_name}
                             value={campaignName}
                             setValue={setCampaignName}
                             placeholder='Enter campaign name'

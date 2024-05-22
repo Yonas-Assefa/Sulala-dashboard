@@ -24,13 +24,14 @@ export type SelectInputProps = Omit<BaseInputProps, 'defaultValue'> & {
     defaultValue?: string | { value: string, label: string } | { value: string, label: string }[] | null
 }
 
-export type CustomSelectInputProps = BaseInputProps & {
+export type CustomSelectInputProps = Omit<BaseInputProps, 'defaultValue'> & {
     multi?: boolean
     nested?: boolean
     withImage?: boolean
     options?: string[]
     data?: SelectInputSchema[]
     searchable?: boolean
+    defaultValue: string | number | string[] | number[]
 }
 
 export type CustomRadioInputProps = {

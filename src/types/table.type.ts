@@ -21,6 +21,13 @@ type Actions = {
     toggle: boolean;
 }
 
+type ActionOptions = {
+    [action: string]: {
+        searchParams?: { key: string, value?: string, fromItem?: { itemKey?: string, valueDict?: { key: string, value: string }[] } }[],
+        params?: { absolute?: boolean, value: string }
+    }
+}
+
 type TableSchema = {
     include: {
         checkbox: boolean;
@@ -38,4 +45,4 @@ type SortData = {
 
 type SortSchema = SortData[]
 
-export type { Schema, FilterData, TableSchema, Actions, Data, SortData, SortSchema }
+export type { Schema, FilterData, TableSchema, Actions, Data, SortData, SortSchema, ActionOptions }
