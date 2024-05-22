@@ -1,7 +1,7 @@
 'use server'
 
 import { FormState, toFormState } from "@/utils/formStateHelper"
-import { UPDATE_SHOP_ACCOUNT } from "../config/urls"
+import { UPDATE_SHOP_ACCOUNT } from "../../config/urls"
 import { shopMapper } from "../mapper/shop-mapper"
 import { getMultiPartRequestHeaders, getRequestHeaders } from "../../lib/helper"
 

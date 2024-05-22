@@ -1,6 +1,6 @@
 'use server'
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
-import { CHANGE_PASSWORD, } from '../config/urls';
+import { CHANGE_PASSWORD, } from '../../config/urls';
 import { changePasswordSettingSchema, } from '../schema/zod-schema';
 import { getRequestHeaders, getResponseErrorMessage } from '../../lib/helper';
 import { revalidatePath } from 'next/cache';

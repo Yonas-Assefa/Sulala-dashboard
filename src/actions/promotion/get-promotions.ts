@@ -1,6 +1,6 @@
 'use server'
 
-import { PROMOTIONS } from "../config/urls"
+import { PROMOTIONS } from "../../config/urls"
 import { promotionMapper } from "../mapper/promotion-mapper"
 import { getRequestHeaders } from "../../lib/helper"
 

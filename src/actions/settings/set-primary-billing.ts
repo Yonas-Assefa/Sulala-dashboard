@@ -1,6 +1,6 @@
 'use server'
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
-import { SET_PRIMARY_BILLING, } from '../config/urls';
+import { SET_PRIMARY_BILLING, } from '../../config/urls';
 import { billingInfoSettingSchema, } from '../schema/zod-schema';
 import { getRequestHeaders, getResponseErrorMessage } from '../../lib/helper';
 import { revalidatePath } from 'next/cache';

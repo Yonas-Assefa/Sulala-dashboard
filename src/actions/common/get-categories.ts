@@ -1,6 +1,6 @@
 'use server'
 
-import { CATEGORIES } from "../config/urls"
+import { CATEGORIES } from "../../config/urls"
 import { formatCategory, getRequestHeaders, makeRequest } from "../../lib/helper"
 
 export const getCategories = async () => {

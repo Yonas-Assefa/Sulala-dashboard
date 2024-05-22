@@ -1,7 +1,7 @@
 'use server'
 
 import { getCategories } from "../common/get-categories"
-import { PRODUCTS } from "../config/urls"
+import { PRODUCTS } from "../../config/urls"
 import { productMapper } from "../mapper/product-mapper"
 import { getRequestHeaders, makeRequest } from "../../lib/helper"
 

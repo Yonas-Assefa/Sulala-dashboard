@@ -1,6 +1,6 @@
 'use server'
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
-import { DELETE_BILLING_INFO, } from '../config/urls';
+import { DELETE_BILLING_INFO, } from '../../config/urls';
 import { getRequestHeaders, getResponseErrorMessage } from '../../lib/helper';
 import { revalidatePath, revalidateTag } from 'next/cache';
 

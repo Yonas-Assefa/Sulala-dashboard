@@ -1,6 +1,6 @@
 'use server'
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
-import { PROMOTIONS, } from '../config/urls';
+import { PROMOTIONS, } from '../../config/urls';
 import { createPromoCampaingSchema, } from '../schema/zod-schema';
 import { changeObjToFormData, getMultiPartRequestHeaders, getResponseErrorMessage } from '../../lib/helper';
 import { revalidatePath } from 'next/cache';

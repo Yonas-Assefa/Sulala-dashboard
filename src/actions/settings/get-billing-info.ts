@@ -1,6 +1,6 @@
 'use server'
 
-import { GET_BILLING_ACCOUNT } from "../config/urls"
+import { GET_BILLING_ACCOUNT } from "../../config/urls"
 import { billingMapper } from "../mapper/billing-mapper"
 import { getRequestHeaders } from "../../lib/helper"
 

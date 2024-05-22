@@ -1,6 +1,6 @@
 'use server'
 
-import { PRODUCT_TAGS } from "../config/urls"
+import { PRODUCT_TAGS } from "../../config/urls"
 import { getRequestHeaders, makeRequest } from "../../lib/helper"
 
 export const getProductTags = async () => {

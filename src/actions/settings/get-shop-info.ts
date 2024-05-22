@@ -1,6 +1,6 @@
 'use server'
 
-import { GET_SHOP_ACCOUNT } from "../config/urls"
+import { GET_SHOP_ACCOUNT } from "../../config/urls"
 import { shopMapper } from "../mapper/shop-mapper"
 import { getRequestHeaders } from "../../lib/helper"
 
