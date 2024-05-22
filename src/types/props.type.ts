@@ -47,6 +47,8 @@ export type CustomRadioInputProps = {
     childValue?: any
     childSetValue?: any
     childOptions?: any
+    childDefaultValue?: any
+    defaultValue?: string
 }
 
 type AcceptFileFormate = 'image/*' | 'audio/*' | 'video/*' | 'application/pdf' | 'application/msword' | '.pdf' | '.jpeg' | '.png' | '.jpg' | '.doc' | '.docx' | '.xls' | '.xlsx' | '.csv' | '.txt'

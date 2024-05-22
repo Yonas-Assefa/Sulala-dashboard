@@ -54,7 +54,7 @@ function BannerAdsForm({ itemType, products, promotion }: Props) {
                         <TextInput
                             id='campaign_name'
                             name='campaign_name'
-                            defaultValue={promotion.campaign_name}
+                            defaultValue={promotion?.campaign_name}
                             value={campaignName}
                             setValue={setCampaignName}
                             placeholder='Enter campaign name'
@@ -64,12 +64,14 @@ function BannerAdsForm({ itemType, products, promotion }: Props) {
                         <div className="grid grid-cols-2">
                             <DateInput
                                 setValue={setStartDate}
+                                defaultValue={promotion?.start_date}
                                 label='Start date & time'
                                 id='start_datetime'
                                 name='start_datetime'
                                 error={formState?.fieldErrors?.start_date?.[0]} />
                             <DateInput
                                 setValue={setEndDate}
+                                defaultValue={promotion?.end_date}
                                 label='End date & time'
                                 id='end_datetime'
                                 name='end_datetime'
@@ -96,6 +98,7 @@ function BannerAdsForm({ itemType, products, promotion }: Props) {
                             name={'destination_type'}
                             setValue={setDestinationType}
                             value={destinationType}
+                            defaultValue={promotion?.destination_type}
                             error={formState?.fieldErrors?.promotional_discount_type?.[0]}
                             childError={{
                                 products: formState?.fieldErrors?.products?.[0],
@@ -112,6 +115,9 @@ function BannerAdsForm({ itemType, products, promotion }: Props) {
                             childOptions={{
                                 products: products
                             }}
+                            childDefaultValue={{
+                                products: promotion?.products
+                            }}
                         />
                     </div>
                 </div>
@@ -126,10 +132,12 @@ function BannerAdsForm({ itemType, products, promotion }: Props) {
                             name={'budgeting'}
                             setValue={setBudgeting}
                             value={budgeting}
+                            defaultValue={promotion?.budgeting}
                             error={formState?.fieldErrors?.budgeting?.[0]}
                             childError={{ budget: formState?.fieldErrors?.budget?.[0] }}
                             childSetValue={{ budget: setBudget }}
                             childValue={{ budget: budget }}
+                            childDefaultValue={{ budget: promotion?.budget }}
                         />
                     </div>
                 </div>

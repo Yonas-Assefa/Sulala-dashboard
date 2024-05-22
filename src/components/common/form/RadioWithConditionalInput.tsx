@@ -30,6 +30,7 @@ function CustomRadioWithConditionalInput({
     name,
     setValue: emitChange,
     value: extVal,
+    defaultValue,
     inputForEach,
     showLabel,
     id,
@@ -38,9 +39,10 @@ function CustomRadioWithConditionalInput({
     childError,
     childSetValue,
     childValue,
-    childOptions
+    childOptions,
+    childDefaultValue
 }: Props) {
-    const [input, setInput] = React.useState<string>();
+    const [input, setInput] = React.useState<string>(defaultValue || '');
 
     if (!isRadioInputSchema(data)) {
         throw new Error('Invalid RadioInputSchema');
@@ -84,6 +86,11 @@ function CustomRadioWithConditionalInput({
                                     if (childSetValue[input.id]) {
                                         Object.assign(props, {
                                             setValue: childSetValue[input.id]
+                                        })
+                                    }
+                                    if (childDefaultValue[input.id]) {
+                                        Object.assign(props, {
+                                            defaultValue: childDefaultValue[input.id]
                                         })
                                     }
 
@@ -135,6 +142,11 @@ function CustomRadioWithConditionalInput({
                             if (childSetValue[input.id]) {
                                 Object.assign(props, {
                                     setValue: childSetValue[input.id]
+                                })
+                            }
+                            if (childDefaultValue[input.id]) {
+                                Object.assign(props, {
+                                    defaultValue: childDefaultValue[input.id]
                                 })
                             }
 
