@@ -37,7 +37,8 @@ function CustomRadioWithConditionalInput({
     error,
     childError,
     childSetValue,
-    childValue
+    childValue,
+    childOptions
 }: Props) {
     const [input, setInput] = React.useState<string>();
 
@@ -69,7 +70,7 @@ function CustomRadioWithConditionalInput({
                         <div className={`w-full check grid grid-cols-2 gap-4`}>
                             {
                                 convertToArray(radioInput.input).map((input) => {
-                                    const props = {}
+                                    const props = { ...input.props }
                                     if (childError[input.id]) {
                                         Object.assign(props, {
                                             error: childError[input.id]
@@ -86,16 +87,23 @@ function CustomRadioWithConditionalInput({
                                         })
                                     }
 
+                                    if (input.type == 'select') {
+                                        return (
+                                            <CustomMultiSelectInput
+                                                label={input.label}
+                                                data={childOptions[input.id]}
+                                                key={input.id}
+                                                placeholder={input.placeholder}
+                                                id={input.id}
+                                                name={input.id}
+                                                {...props}
+                                            />)
+                                    }
                                     return (
                                         <TextInput
                                             key={input.id}
                                             label={input.label}
                                             placeholder={input.placeholder}
-                                            error={
-                                                Array.isArray(childError[input.id]) ?
-                                                    childError[input.id][0] :
-                                                    childError[input.id]
-                                            }
                                             name={input.id}
                                             id={input.id}
                                             {...props}
@@ -113,7 +121,7 @@ function CustomRadioWithConditionalInput({
                     {
                         convertToArray(data.input).map((input) => {
 
-                            const props = {}
+                            const props = { ...input.props }
                             if (childError[input.id]) {
                                 Object.assign(props, {
                                     error: childError[input.id]
@@ -130,16 +138,24 @@ function CustomRadioWithConditionalInput({
                                 })
                             }
 
+                            if (input.type == 'select') {
+                                return (
+                                    <CustomMultiSelectInput
+                                        label={input.label}
+                                        data={childOptions[input.id]}
+                                        key={input.id}
+                                        placeholder={input.placeholder}
+                                        id={input.id}
+                                        name={input.id}
+                                        {...props}
+                                    />)
+                            }
+
                             return (
                                 <TextInput
                                     key={input.id}
                                     label={input.label}
                                     placeholder={input.placeholder}
-                                    error={
-                                        Array.isArray(childError[input.id]) ?
-                                            childError[input.id][0] :
-                                            childError[input.id]
-                                    }
                                     name={input.id}
                                     id={input.id}
                                     {...props}

@@ -8,14 +8,12 @@ import CustomRadioWithConditionalInput from '@/components/common/form/RadioWithC
 import CustomMultiSelectInput from '@/components/common/form/SelectInput'
 import TextAreaInput from '@/components/common/form/TextAreaInput'
 import TextInput from '@/components/common/form/TextInput'
-import { useSearchParams } from 'next/navigation'
-import { getItemType } from '../../utils/helper.util'
 import { formatNumber as priceFormatter } from '@/utils/priceFormatter.util'
 import { formatNumber as percentFormatter } from '@/utils/percentFormatter.util'
 import promotionDiscountOptions from '../../data/promotional-discount-type.json'
 import budgetingOptions from '../../data/budgeting.json'
 import { BUDGETING_TYPE_CHOICES, DISCOUNT_TYPE_CHOICES } from '../../data/discount-contants'
-import { createDiscountPromotion } from '@/actions/promotion/create-discount-promotion'
+import { createPromotion } from '@/actions/promotion/create-promotion'
 import { useRedirectRoute } from '@/hooks/useRedirectRoute'
 import { useToastMessage } from '@/hooks/useToastMessage'
 import { EMPTY_FORM_STATE } from '@/utils/formStateHelper'
@@ -24,12 +22,10 @@ import { formatPiece } from '@/utils/pieceFormatter.util'
 
 type Props = {
     products: any
-
+    itemType: string
 }
-function ProductDiscountAdsForm({ products }: Props) {
+function ProductDiscountAdsForm({ products, itemType }: Props) {
 
-    const searchParams = useSearchParams()
-    const itemType = getItemType(searchParams.get('type'))
     const [campaignName, setCampaignName] = React.useState<string>('')
     const [item, setItem] = React.useState<string>('')
     const [description, setDescription] = React.useState<string>('')
@@ -44,7 +40,7 @@ function ProductDiscountAdsForm({ products }: Props) {
     const [banners, setBanners] = React.useState<(File | string)[]>([])
 
     const [formState, action] = useFormState(
-        createDiscountPromotion,
+        createPromotion,
         EMPTY_FORM_STATE
     );
 
@@ -55,18 +51,51 @@ function ProductDiscountAdsForm({ products }: Props) {
         <div className='grid grid-cols-3 gap-6'>
             <form action={action} className='col-span-2 flex flex-col gap-5 bg-white'>
                 <div className='flex flex-col gap-5 bg-tertiary rounded-[30px] p-8'>
+                    <input type="text" hidden value='DISCOUNT' name='promotion_type' id='promotion_type' onChange={() => { }} />
                     <input type="text" hidden value={itemType} name='item_type' id='item_type' onChange={() => { }} />
                     <h3 className='font-semibold text-xl'>General Info</h3>
                     <div className='max-w-[1300px] gap-5 flex flex-col'>
-                        <TextInput id='campaign_name' name='campaign_name' value={campaignName} setValue={setCampaignName} placeholder='Enter campaign name' label='Campaign name' error={formState?.fieldErrors?.name?.[0]} />
-                        <CustomMultiSelectInput data={products} value={item} setValue={setItem} id={itemType} name={itemType} label={`${itemType}s list`} placeholder={`Select ${itemType}s`} multi withImage={true} error={formState?.fieldErrors?.[`${itemType}s`]?.[0]} />
+                        <TextInput
+                            id='campaign_name'
+                            name='campaign_name'
+                            value={campaignName}
+                            setValue={setCampaignName}
+                            placeholder='Enter campaign name'
+                            label='Campaign name'
+                            error={formState?.fieldErrors?.name?.[0]} />
+                        <CustomMultiSelectInput
+                            data={products}
+                            value={item}
+                            setValue={setItem}
+                            id={itemType}
+                            name={itemType}
+                            label={`${itemType}s list`}
+                            placeholder={`Select ${itemType}s`}
+                            multi
+                            withImage={true}
+                            error={formState?.fieldErrors?.[`${itemType}s`]?.[0]} />
                         <TextAreaInput value={description} setValue={setDescription} id='description' name='description' placeholder='Enter description/promotional quotes' label='Description/Promotional quotes' error={formState?.fieldErrors?.description?.[0]} />
                         <div className="grid grid-cols-2">
-                            <DateInput setValue={setStartDate} label='Start date & time' id='start_datetime' name='start_datetime' error={formState?.fieldErrors?.start_date?.[0]} />
-                            <DateInput setValue={setEndDate} label='End date & time' id='end_datetime' name='end_datetime' error={formState?.fieldErrors?.end_date?.[0]} />
+                            <DateInput
+                                setValue={setStartDate}
+                                label='Start date & time'
+                                id='start_datetime'
+                                name='start_datetime'
+                                error={formState?.fieldErrors?.start_date?.[0]} />
+                            <DateInput
+                                setValue={setEndDate}
+                                label='End date & time'
+                                id='end_datetime'
+                                name='end_datetime'
+                                error={formState?.fieldErrors?.end_date?.[0]} />
                         </div>
                         <div className="col-span-2">
-                            <ImageListSelector setValue={setBanners} label='Banner Ads' id='ad_files' name='ad_files' error={formState?.fieldErrors?.ad_files?.[0]} />
+                            <ImageListSelector
+                                setValue={setBanners}
+                                label='Banner Ads'
+                                id='ad_files'
+                                name='ad_files'
+                                error={formState?.fieldErrors?.ad_files?.[0]} />
                         </div>
                     </div>
                 </div>
@@ -120,26 +149,59 @@ function ProductDiscountAdsForm({ products }: Props) {
                     </div>
                 </div>
                 <div className="flex flex-row">
-                    <PrimaryButton padding={'md'} name='Pay & Schedule' type='submit' />
+                    <PrimaryButton
+                        padding={'md'}
+                        name='Pay & Schedule'
+                        type='submit' />
                 </div>
 
             </form>
             <div className='col-span-1 bg-white flex flex-col gap-8'>
                 <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
                     <h3 className='font-semibold text-xl'>Summary</h3>
-                    <SummaryDescription title='Campaign name' description={campaignName} />
-                    <SummaryDescription title={itemType} description={item} />
-                    <SummaryDescription title='Description' description={description} />
-                    <SummaryDescription title='Start date & time' description={startDate} />
-                    <SummaryDescription title='End date & time' description={endDate} />
-                    <SummaryDescription title='Banner' description={banners.find(b => b instanceof File) ? 'unuploaded' : banners.length > 0 ? 'uploaded.' : 'no file selected'} />
-                    <SummaryDescription title='Promotional discount type' description={DISCOUNT_TYPE_CHOICES.find(ele => ele.value == promoDiscountType)?.label} />
-                    {promoDiscountType === 'PERCENTAGE_OFF' && <SummaryDescription title='Discount amount' description={percentFormatter(+(discount) / 100 || 0)} />}
-                    {promoDiscountType === 'LIMITED_PRICE' && <SummaryDescription title='Limited price' description={priceFormatter(+(limitedPrice) || 0)} />}
-                    {promoDiscountType === 'PERCENTAGE_OFF_THE_MINIMUM_CART_SIZE' && <SummaryDescription title='Total carts' description={formatPiece((+cartTotal) || 0)} />}
+                    <SummaryDescription
+                        title='Campaign name'
+                        description={campaignName} />
+                    <SummaryDescription
+                        title={itemType}
+                        description={item} />
+                    <SummaryDescription
+                        title='Description'
+                        description={description} />
+                    <SummaryDescription
+                        title='Start date & time'
+                        description={startDate} />
+                    <SummaryDescription
+                        title='End date & time'
+                        description={endDate} />
+                    <SummaryDescription
+                        title='Banner'
+                        description={banners.find(b => b instanceof File) ? 'unuploaded' : banners.length > 0 ? 'uploaded.' : 'no file selected'} />
+                    <SummaryDescription
+                        title='Promotional discount type'
+                        description={DISCOUNT_TYPE_CHOICES.find(ele => ele.value == promoDiscountType)?.label} />
+                    {
+                        promoDiscountType === 'PERCENTAGE_OFF' &&
+                        <SummaryDescription
+                            title='Discount amount'
+                            description={percentFormatter(+(discount) / 100 || 0)} />}
+                    {
+                        promoDiscountType === 'LIMITED_PRICE' &&
+                        <SummaryDescription
+                            title='Limited price'
+                            description={priceFormatter(+(limitedPrice) || 0)} />}
+                    {
+                        promoDiscountType === 'PERCENTAGE_OFF_THE_MINIMUM_CART_SIZE' &&
+                        <SummaryDescription
+                            title='Total carts'
+                            description={formatPiece((+cartTotal) || 0)} />}
                     {/* <SummaryDescription title='Destination' description='List of products' /> */}
-                    <SummaryDescription title='Budgeting' description={BUDGETING_TYPE_CHOICES.find(ele => ele.value == budgeting)?.label} />
-                    <SummaryDescription title='Budget' description={priceFormatter(+(budget || 0))} />
+                    <SummaryDescription
+                        title='Budgeting'
+                        description={BUDGETING_TYPE_CHOICES.find(ele => ele.value == budgeting)?.label} />
+                    <SummaryDescription
+                        title='Budget'
+                        description={priceFormatter(+(budget || 0))} />
                 </div>
             </div>
         </div>

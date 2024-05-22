@@ -261,7 +261,7 @@ export const createPromoCampaingSchema = z.object({
             {
                 message: 'Invalid discount type'
             }
-        ),
+        ).optional(),
     discount: z.number({ message: 'Discount must be a number' })
         .min(1, 'Discount must be at least 1').optional(),
     cart_total: z.number({ message: 'Cart total must be a number' })
@@ -334,7 +334,7 @@ export const createPromoCampaingSchema = z.object({
         message: 'Please choose at least one service'
     }).optional(),
     description: z.string()
-        .min(5, 'Description must be at least 5 character long'),
+        .min(5, 'Description must be at least 5 character long').optional(),
     ad_files: z.any()
         .refine(
             fileRefine.existFn,
@@ -343,6 +343,15 @@ export const createPromoCampaingSchema = z.object({
         .refine(
             fileRefine.acceptFn(IMAGE_TYPES),
             fileRefine.acceptMg('image')
+        ).optional(),
+    destination_type: z.string({
+        message: 'Destination type is a required field'
+    })
+        .refine(
+            (val) => DESTINATION_ENUM.includes(val),
+            {
+                message: 'Invalid destination type'
+            }
         ).optional(),
 
 })
