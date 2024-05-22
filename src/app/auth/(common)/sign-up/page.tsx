@@ -1,6 +1,6 @@
 import { SignupProps } from '@/types/props.type'
 import React from 'react'
-import PhoneEmailTab from '../components/PhoneEmailTab'
+import PhoneEmailTab from '../../components/PhoneEmailTab'
 import SignUpForm from './SignUpForm'
 
 function SignUp({ searchParams: { by } }: SignupProps) {
