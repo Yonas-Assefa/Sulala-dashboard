@@ -2,7 +2,7 @@
 
 import { FormState, toFormState } from "@/utils/formStateHelper"
 import { LOGOUT } from "../config/urls"
-import { clearBrowserCookie, getRequestHeaders, } from "../utils/helper"
+import { clearBrowserCookie, getRequestHeaders, } from "../../lib/helper"
 import { redirect } from "next/navigation"
 
 export const logout = async (

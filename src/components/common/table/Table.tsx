@@ -13,11 +13,10 @@ type Props = {
     tableSchema: TableSchema
     data: Data
     sortData: SortSchema
-    reference?: Record<string, any>
     deleteAction?: any
 }
 
-function Table({ filterData, tableSchema, data, sortData, reference, deleteAction }: Props) {
+function Table({ filterData, tableSchema, data, sortData, deleteAction }: Props) {
     return (
         <>
             <DeleteProductModal deleteAction={deleteAction} />
@@ -33,7 +32,7 @@ function Table({ filterData, tableSchema, data, sortData, reference, deleteActio
                     <TableHead tableSchema={tableSchema} allItemIds={data.map(prod => prod.id + '')} />
                     {
                         data.length > 0 ?
-                            <TableBody mockData={data} tableSchema={tableSchema} reference={reference} /> :
+                            <TableBody mockData={data} tableSchema={tableSchema} /> :
                             <NoItemsFound />
                     }
                 </table>

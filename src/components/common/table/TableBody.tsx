@@ -6,15 +6,13 @@ import TableActions from './TableActions'
 import TableDropDown from './TableDropDown'
 import { formatNumber } from '@/utils/priceFormatter.util'
 import { formatPiece } from '@/utils/pieceFormatter.util'
-import { constructImageUrl } from '@/utils/constructImageUrl'
 
 type Props = {
     tableSchema: TableSchema
     mockData: Record<string, any>[]
-    reference: Record<string, any> | undefined
 }
 
-function TableBody({ tableSchema, mockData, reference }: Props) {
+function TableBody({ tableSchema, mockData }: Props) {
     return (
         <tbody>
             {
@@ -41,8 +39,8 @@ function TableBody({ tableSchema, mockData, reference }: Props) {
                                                     <div className="flex flex-row gap-3 items-center">
                                                         {
                                                             schema.image &&
-                                                            <div className=' w-[30px] h-[40px]  bg-red-600 content-stretch overflow-hidden'>
-                                                                <img src={constructImageUrl(product[schema.image_key as keyof typeof product], true)} alt="" className='h-full conten' />
+                                                            <div className=' w-[30px] h-[40px] content-stretch flex flex-col justify-center'>
+                                                                <img src={product[schema.image_key as keyof typeof product]} alt="" className='max-w-[30px] max-h-[30px]' />
                                                             </div>
                                                         }
                                                         {!schema.breadcrumb ?

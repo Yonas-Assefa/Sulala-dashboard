@@ -2,7 +2,7 @@
 
 import { GET_SHOP_ACCOUNT } from "../config/urls"
 import { shopMapper } from "../mapper/shop-mapper"
-import { getRequestHeaders } from "../utils/helper"
+import { getRequestHeaders } from "../../lib/helper"
 
 export const getShopInfo = async () => {
     const response = await fetch(GET_SHOP_ACCOUNT, {

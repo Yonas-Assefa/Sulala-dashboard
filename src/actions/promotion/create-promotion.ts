@@ -2,7 +2,7 @@
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { PROMOTIONS, } from '../config/urls';
 import { createPromoCampaingSchema, } from '../schema/zod-schema';
-import { changeObjToFormData, getMultiPartRequestHeaders, getResponseErrorMessage } from '../utils/helper';
+import { changeObjToFormData, getMultiPartRequestHeaders, getResponseErrorMessage } from '../../lib/helper';
 import { revalidatePath } from 'next/cache';
 
 export const createPromotion = async (

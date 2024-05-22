@@ -1,7 +1,7 @@
 'use server'
 
 import { PRODUCT_TAGS } from "../config/urls"
-import { getRequestHeaders, makeRequest } from "../utils/helper"
+import { getRequestHeaders, makeRequest } from "../../lib/helper"
 
 export const getProductTags = async () => {
     const response = await fetch(PRODUCT_TAGS, {

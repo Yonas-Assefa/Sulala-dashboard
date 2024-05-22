@@ -2,7 +2,7 @@
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { EMAIL_SIGNIN_URL, PHONE_SIGNIN_URL } from '../config/urls';
 import { emailSignInSchema, phoneAuthSchema } from '../schema/zod-schema';
-import { getPhoneNumber } from '../utils/helper';
+import { getPhoneNumber } from '../../lib/helper';
 
 export const signIn = async (
     formState: FormState,
