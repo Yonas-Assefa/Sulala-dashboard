@@ -66,7 +66,6 @@ export const createPromotion = async (
             }
         }
 
-        console.log({ dataToBeParsed })
         const data = createPromoCampaingSchema.parse(dataToBeParsed)
 
         const response = await fetch(PROMOTIONS, {
@@ -76,7 +75,6 @@ export const createPromotion = async (
         });
 
         const body = await response.json()
-        console.log({ body })
         if (!response.ok || !body.success) {
             // if (!body.success) {
             const message = getResponseErrorMessage(body)

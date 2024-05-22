@@ -49,7 +49,6 @@ function TableActions({ edit, delete: deleteItem, promote, product, toggle, acti
                         }
                     }
                 })
-                console.log({ searchParams })
                 link = link + createQueryString(searchParams)
             } else {
                 link = link + createQueryString([{ key: 'item', value: product.id }, { key: 'type', value: 'product' }])

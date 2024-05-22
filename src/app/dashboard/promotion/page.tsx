@@ -9,7 +9,7 @@ import { getPromotions } from '@/actions/promotion/get-promotions'
 async function page() {
 
     const promotions = await getPromotions()
-    console.log({ promotions })
+
     return (
         <>
             <CreateCampaignModal />
