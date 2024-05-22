@@ -27,11 +27,33 @@ async function page() {
 
                 {/* <PromotionCampaignTable /> */}
                 <Table
-                    // data={promotionData}
                     data={promotions}
                     filterData={promotionFilterData}
                     tableSchema={promotionTableSchema}
                     sortData={promotionSortData}
+                    actionOptions={{
+                        edit: {
+                            searchParams: [
+                                {
+                                    key: 'tab',
+                                    fromItem: {
+                                        itemKey: 'promotion_type',
+                                        valueDict: [
+                                            { key: 'DISCOUNT', value: 'discounts-ads' },
+                                            { key: 'BANNER', value: 'banner-ads' },
+                                        ]
+                                    }
+                                },
+                                { key: 'type', value: 'product' },
+                                {
+                                    key: 'item',
+                                    fromItem: {
+                                        itemKey: 'id'
+                                    }
+                                },
+                            ]
+                        }
+                    }}
                 />
 
             </div >

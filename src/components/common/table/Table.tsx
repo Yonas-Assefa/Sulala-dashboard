@@ -5,7 +5,7 @@ import TableSearch from './TableSearch'
 import TableSort from './TableSort'
 import TableHead from './TableHead'
 import TableBody from './TableBody'
-import { Data, SortSchema, FilterData, TableSchema } from '../../../types/table.type'
+import { Data, SortSchema, FilterData, TableSchema, ActionOptions } from '../../../types/table.type'
 import NoItemsFound from '../ui/NoItemsFound'
 
 type Props = {
@@ -14,9 +14,10 @@ type Props = {
     data: Data
     sortData: SortSchema
     deleteAction?: any
+    actionOptions?: ActionOptions
 }
 
-function Table({ filterData, tableSchema, data, sortData, deleteAction }: Props) {
+function Table({ filterData, tableSchema, data, sortData, deleteAction, actionOptions }: Props) {
     return (
         <>
             <DeleteProductModal deleteAction={deleteAction} />
@@ -32,7 +33,7 @@ function Table({ filterData, tableSchema, data, sortData, deleteAction }: Props)
                     <TableHead tableSchema={tableSchema} allItemIds={data.map(prod => prod.id + '')} />
                     {
                         data.length > 0 ?
-                            <TableBody mockData={data} tableSchema={tableSchema} /> :
+                            <TableBody mockData={data} tableSchema={tableSchema} actionOptions={actionOptions} /> :
                             <NoItemsFound />
                     }
                 </table>

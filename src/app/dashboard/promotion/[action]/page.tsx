@@ -6,6 +6,7 @@ import { getAction, getItemType, getTab } from './utils/helper.util'
 import Tab from './components/common/Tab'
 import { getProducts } from '@/actions/products/get-products'
 import { customMapper } from '@/actions/mapper/custom-mapper'
+import { getOnePromotion } from '@/actions/promotion/get-promotions'
 
 type Props = {
     params: {
@@ -14,10 +15,11 @@ type Props = {
     searchParams: {
         type: string
         tab: string
+        item: string
     }
 }
 
-async function page({ params: { action: actionType }, searchParams: { tab: tabType, type } }: Props) {
+async function page({ params: { action: actionType }, searchParams: { tab: tabType, type, item: item_id } }: Props) {
 
     const item = getItemType(type)
     const tab = getTab(tabType, type)
@@ -31,6 +33,9 @@ async function page({ params: { action: actionType }, searchParams: { tab: tabTy
             { from: 'images', to: 'image', converter: (image: unknown) => Array.isArray(image) ? image[0] : image }]
     })
 
+    const promotion = action == 'edit' ?
+        await getOnePromotion(item_id) : null
+
     return (
         <div className='text-black flex flex-col w-full h-full p-8 gap-10  overflow-y-scroll'>
             <div className='flex flex-row font-semibold justify-start items-center gap-6 text-3xl font-serif'>
@@ -39,12 +44,12 @@ async function page({ params: { action: actionType }, searchParams: { tab: tabTy
                 </div>
                 <h2 className='capitalize'>{action} promo campaign</h2>
             </div>
-            <Tab item={item} tab={tab} />
+            {action == 'add' && <Tab item={item} tab={tab} />}
             {
                 tab === 'discounts-ads' ?
-                    <DiscountAdsForm products={products} itemType={item} /> :
+                    <DiscountAdsForm products={products} promotion={promotion} itemType={item} /> :
                     tab === 'banner-ads' ?
-                        <BannerAdsForm products={products} itemType={item} /> : null
+                        <BannerAdsForm products={products} promotion={promotion} itemType={item} /> : null
             }
         </div>
     )

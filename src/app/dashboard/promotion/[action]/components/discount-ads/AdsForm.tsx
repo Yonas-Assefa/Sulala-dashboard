@@ -19,12 +19,14 @@ import { useToastMessage } from '@/hooks/useToastMessage'
 import { EMPTY_FORM_STATE } from '@/utils/formStateHelper'
 import { useFormState } from 'react-dom'
 import { formatPiece } from '@/utils/pieceFormatter.util'
+import { convertToArray } from '@/utils/convertObjToArray'
 
 type Props = {
     products: any
     itemType: string
+    promotion: any
 }
-function ProductDiscountAdsForm({ products, itemType }: Props) {
+function ProductDiscountAdsForm({ products, itemType, promotion }: Props) {
 
     const [campaignName, setCampaignName] = React.useState<string>('')
     const [item, setItem] = React.useState<string>('')
@@ -47,6 +49,8 @@ function ProductDiscountAdsForm({ products, itemType }: Props) {
     useToastMessage(formState);
     useRedirectRoute(formState);
 
+    console.log({ promotion })
+
     return (
         <div className='grid grid-cols-3 gap-6'>
             <form action={action} className='col-span-2 flex flex-col gap-5 bg-white'>
@@ -59,6 +63,7 @@ function ProductDiscountAdsForm({ products, itemType }: Props) {
                             id='campaign_name'
                             name='campaign_name'
                             value={campaignName}
+                            defaultValue={promotion?.campaign_name}
                             setValue={setCampaignName}
                             placeholder='Enter campaign name'
                             label='Campaign name'
@@ -70,20 +75,32 @@ function ProductDiscountAdsForm({ products, itemType }: Props) {
                             id={itemType}
                             name={itemType}
                             label={`${itemType}s list`}
+                            defaultValue={promotion?.[`${itemType}s`]}
+                            // defaultValue={[9, 10]}
                             placeholder={`Select ${itemType}s`}
                             multi
                             withImage={true}
                             error={formState?.fieldErrors?.[`${itemType}s`]?.[0]} />
-                        <TextAreaInput value={description} setValue={setDescription} id='description' name='description' placeholder='Enter description/promotional quotes' label='Description/Promotional quotes' error={formState?.fieldErrors?.description?.[0]} />
+                        <TextAreaInput
+                            value={description}
+                            setValue={setDescription}
+                            defaultValue={promotion?.description}
+                            id='description'
+                            name='description'
+                            placeholder='Enter description/promotional quotes' label='Description/Promotional quotes'
+                            error={formState?.fieldErrors?.description?.[0]}
+                        />
                         <div className="grid grid-cols-2">
                             <DateInput
                                 setValue={setStartDate}
+                                defaultValue={promotion?.start_date}
                                 label='Start date & time'
                                 id='start_datetime'
                                 name='start_datetime'
                                 error={formState?.fieldErrors?.start_date?.[0]} />
                             <DateInput
                                 setValue={setEndDate}
+                                defaultValue={promotion?.end_date}
                                 label='End date & time'
                                 id='end_datetime'
                                 name='end_datetime'
@@ -92,6 +109,7 @@ function ProductDiscountAdsForm({ products, itemType }: Props) {
                         <div className="col-span-2">
                             <ImageListSelector
                                 setValue={setBanners}
+                                defaultValues={convertToArray(promotion?.ad_files)}
                                 label='Banner Ads'
                                 id='ad_files'
                                 name='ad_files'
@@ -110,6 +128,7 @@ function ProductDiscountAdsForm({ products, itemType }: Props) {
                             name={'promo_discount_type'}
                             setValue={setPromoDiscountType}
                             value={promoDiscountType}
+                            defaultValue={promotion?.promotional_discount_type}
                             error={formState?.fieldErrors?.promotional_discount_type?.[0]}
                             childError={{
                                 discount: formState?.fieldErrors?.discount?.[0],
@@ -127,6 +146,11 @@ function ProductDiscountAdsForm({ products, itemType }: Props) {
                                     limitedPrice,
                                 cart_total: cartTotal
                             }}
+                            childDefaultValue={{
+                                discount: promotion?.discount,
+                                limited_price: promotion?.limitedPrice,
+                                cart_total: promotion?.cartTotal
+                            }}
                         />
                     </div>
                 </div>
@@ -141,10 +165,12 @@ function ProductDiscountAdsForm({ products, itemType }: Props) {
                             name={'budgeting'}
                             setValue={setBudgeting}
                             value={budgeting}
+                            defaultValue={promotion?.budgeting}
                             error={formState?.fieldErrors?.budgeting?.[0]}
                             childError={{ budget: formState?.fieldErrors?.budget?.[0] }}
                             childSetValue={{ budget: setBudget }}
                             childValue={{ budget: budget }}
+                            childDefaultValue={{ budget: promotion?.budget }}
                         />
                     </div>
                 </div>

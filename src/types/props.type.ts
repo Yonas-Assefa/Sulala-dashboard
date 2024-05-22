@@ -24,13 +24,14 @@ export type SelectInputProps = Omit<BaseInputProps, 'defaultValue'> & {
     defaultValue?: string | { value: string, label: string } | { value: string, label: string }[] | null
 }
 
-export type CustomSelectInputProps = BaseInputProps & {
+export type CustomSelectInputProps = Omit<BaseInputProps, 'defaultValue'> & {
     multi?: boolean
     nested?: boolean
     withImage?: boolean
     options?: string[]
     data?: SelectInputSchema[]
     searchable?: boolean
+    defaultValue: string | number | string[] | number[]
 }
 
 export type CustomRadioInputProps = {
@@ -46,6 +47,8 @@ export type CustomRadioInputProps = {
     childValue?: any
     childSetValue?: any
     childOptions?: any
+    childDefaultValue?: any
+    defaultValue?: string
 }
 
 type AcceptFileFormate = 'image/*' | 'audio/*' | 'video/*' | 'application/pdf' | 'application/msword' | '.pdf' | '.jpeg' | '.png' | '.jpg' | '.doc' | '.docx' | '.xls' | '.xlsx' | '.csv' | '.txt'
