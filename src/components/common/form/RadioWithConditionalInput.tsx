@@ -4,6 +4,7 @@ import TextInput from './TextInput';
 import CustomMultiSelectInput from './SelectInput';
 import { RadioInputSchema } from '@/types/input-field.type';
 import { CustomRadioInputProps as Props } from '@/types/props.type';
+import { convertToArray } from '@/utils/convertObjToArray';
 
 const isRadioInputOptions = (obj: any): obj is RadioInputOptions => {
     return (
@@ -25,37 +26,31 @@ const isRadioInputSchema = (obj: any): obj is RadioInputSchema => {
     );
 };
 
-function CustomRadioWithConditionalInput({ name, setValue: emitChange, value: extVal, inputForEach, showLabel, id, data, error, childError }: Props) {
+function CustomRadioWithConditionalInput({
+    name,
+    setValue: emitChange,
+    value: extVal,
+    inputForEach,
+    showLabel,
+    id,
+    data,
+    error,
+    childError,
+    childSetValue,
+    childValue
+}: Props) {
     const [input, setInput] = React.useState<string>();
 
     if (!isRadioInputSchema(data)) {
         throw new Error('Invalid RadioInputSchema');
     }
 
-    const props = {
-        parentProps: {},
-        childProps: {},
-    };
+    const props = {};
 
     if (emitChange) {
-        Object.assign(props.parentProps, {
-            onClick: (e: React.ChangeEvent<HTMLInputElement>) => emitChange(
-                (previousValue: any) => ({
-                    ...previousValue,
-                    parent_value: e.target.id,
-                    child_value: inputForEach ? '' : previousValue?.child_value,
-                })
-            ),
-            value: extVal?.parent_value,
-        });
-        Object.assign(props.childProps, {
-            setValue: (value: string) => emitChange(
-                (previousValue: any) => ({
-                    ...previousValue,
-                    child_value: value,
-                })
-            ),
-            value: extVal?.child_value,
+        Object.assign(props, {
+            onClick: (e: React.ChangeEvent<HTMLInputElement>) => emitChange(e.target.id),
+            value: extVal,
         });
     }
 
@@ -66,15 +61,32 @@ function CustomRadioWithConditionalInput({ name, setValue: emitChange, value: ex
                 <div className='flex flex-col gap-3' key={radioInput.id}>
                     {/* LABEL FOR EACH RADIO BUTTON */}
                     <label htmlFor={radioInput.id} className={`flex flex-row gap-2 items-center cursor-pointer`}>
-                        <input {...props.parentProps} type="radio" name={name} onChange={() => setInput(radioInput.id)} checked={radioInput.id == input} id={radioInput.id} className={`radio ${error ? 'radio-error border-danger' : 'radio-success border-secondary'}`} />
+                        <input {...props} type="radio" name={name} onChange={() => setInput(radioInput.id)} checked={radioInput.id == input} id={radioInput.id} className={`radio ${error ? 'radio-error border-danger' : 'radio-success border-secondary'}`} />
                         <span className='capitalize'>{radioInput.label}</span>
                     </label>
                     {inputForEach && radioInput?.input && radioInput.id == input &&
                         // INPUT FOR EACH RADIO BUTTON
                         <div className={`w-full check grid grid-cols-2 gap-4`}>
                             {
-                                Array.isArray(radioInput.input) ?
-                                    radioInput.input.map((input) => (
+                                convertToArray(radioInput.input).map((input) => {
+                                    const props = {}
+                                    if (childError[input.id]) {
+                                        Object.assign(props, {
+                                            error: childError[input.id]
+                                        })
+                                    }
+                                    if (childValue[input.id]) {
+                                        Object.assign(props, {
+                                            value: childValue[input.id]
+                                        })
+                                    }
+                                    if (childSetValue[input.id]) {
+                                        Object.assign(props, {
+                                            setValue: childSetValue[input.id]
+                                        })
+                                    }
+
+                                    return (
                                         <TextInput
                                             key={input.id}
                                             label={input.label}
@@ -86,22 +98,10 @@ function CustomRadioWithConditionalInput({ name, setValue: emitChange, value: ex
                                             }
                                             name={input.id}
                                             id={input.id}
-                                            {...props.childProps}
+                                            {...props}
                                         />
-                                    ))
-                                    :
-                                    <TextInput
-                                        label={radioInput.input.label}
-                                        placeholder={radioInput.input.placeholder}
-                                        error={
-                                            Array.isArray(childError[radioInput.input.id]) ?
-                                                childError[radioInput.input.id][0] :
-                                                childError[radioInput.input.id]
-                                        }
-                                        name={radioInput.input.id}
-                                        id={radioInput.input.id}
-                                        {...props.childProps}
-                                    />
+                                    )
+                                })
                             }
                         </div>
                     }
@@ -111,8 +111,26 @@ function CustomRadioWithConditionalInput({ name, setValue: emitChange, value: ex
                 // INPUT FOR WHOLE CHECKBOX
                 <div className='w-full check grid grid-cols-2 gap-4'>
                     {
-                        Array.isArray(data.input) ?
-                            data.input.map((input) => (
+                        convertToArray(data.input).map((input) => {
+
+                            const props = {}
+                            if (childError[input.id]) {
+                                Object.assign(props, {
+                                    error: childError[input.id]
+                                })
+                            }
+                            if (childValue[input.id]) {
+                                Object.assign(props, {
+                                    value: childValue[input.id]
+                                })
+                            }
+                            if (childSetValue[input.id]) {
+                                Object.assign(props, {
+                                    setValue: childSetValue[input.id]
+                                })
+                            }
+
+                            return (
                                 <TextInput
                                     key={input.id}
                                     label={input.label}
@@ -124,22 +142,10 @@ function CustomRadioWithConditionalInput({ name, setValue: emitChange, value: ex
                                     }
                                     name={input.id}
                                     id={input.id}
-                                    {...props.childProps}
+                                    {...props}
                                 />
-                            ))
-                            :
-                            <TextInput
-                                label={data.input.label}
-                                placeholder={data.input.placeholder}
-                                error={
-                                    Array.isArray(childError[data.input.id]) ?
-                                        childError[data.input.id][0] :
-                                        childError[data.input.id]
-                                }
-                                name={data.input.id}
-                                id={data.input.id}
-                                {...props.childProps}
-                            />
+                            )
+                        })
                     }
                 </div>
             }

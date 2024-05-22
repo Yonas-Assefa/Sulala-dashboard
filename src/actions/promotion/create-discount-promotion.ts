@@ -15,8 +15,6 @@ export const createDiscountPromotion = async (
         const dataToBeParsed = {
             promotion_type: 'DISCOUNT',
             promotional_discount_type: formData.get('promo_discount_type'),
-            // limited_price: +(formData.get('discount') || 0),
-            // destination_type: formData.get('price'),
             description: formData.get('description'),
             name: formData.get('campaign_name'),
             start_date: formData.get('start_datetime'),
@@ -66,8 +64,8 @@ export const createDiscountPromotion = async (
 
         const body = await response.json()
         console.log({ body })
-        // if (!response.ok || !body.success) {
-        if (!body.success) {
+        if (!response.ok || !body.success) {
+            // if (!body.success) {
             const message = getResponseErrorMessage(body)
             throw new Error(message || 'Failed to submit form');
         }

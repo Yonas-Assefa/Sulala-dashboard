@@ -20,6 +20,7 @@ import { useRedirectRoute } from '@/hooks/useRedirectRoute'
 import { useToastMessage } from '@/hooks/useToastMessage'
 import { EMPTY_FORM_STATE } from '@/utils/formStateHelper'
 import { useFormState } from 'react-dom'
+import { formatPiece } from '@/utils/pieceFormatter.util'
 
 type Props = {
     products: any
@@ -34,12 +35,12 @@ function ProductDiscountAdsForm({ products }: Props) {
     const [description, setDescription] = React.useState<string>('')
     const [startDate, setStartDate] = React.useState<string>('')
     const [endDate, setEndDate] = React.useState<string>('')
-    const [promoDiscountType, setPromoDiscountType] = React.useState<any>()
+    const [promoDiscountType, setPromoDiscountType] = React.useState<string>('')
     const [discount, setDiscount] = React.useState<any>()
     const [limitedPrice, setLimitedPrice] = React.useState<any>()
     const [cartTotal, setCartTotal] = React.useState<any>()
-    const [budgeting, setBudgeting] = React.useState<any>()
-    const [budget, setBudget] = React.useState<any>()
+    const [budgeting, setBudgeting] = React.useState<string>()
+    const [budget, setBudget] = React.useState<string>()
     const [banners, setBanners] = React.useState<(File | string)[]>([])
 
     const [formState, action] = useFormState(
@@ -72,13 +73,50 @@ function ProductDiscountAdsForm({ products }: Props) {
                 <div className='flex flex-col gap-5 bg-tertiary rounded-[30px] p-8'>
                     <h3 className='font-semibold text-xl'>Promotional discount type</h3>
                     <div className='max-w-[1300px] gap-6 flex flex-col'>
-                        <CustomRadioWithConditionalInput data={promotionDiscountOptions} inputForEach={true} key={'promo-discount-type'} id={'promo_discount_type'} name={'promo_discount_type'} setValue={setPromoDiscountType} value={promoDiscountType} error={formState?.fieldErrors?.promotional_discount_type?.[0]} childError={formState?.fieldErrors} />
+                        <CustomRadioWithConditionalInput
+                            data={promotionDiscountOptions}
+                            inputForEach={true}
+                            key={'promo-discount-type'}
+                            id={'promo_discount_type'}
+                            name={'promo_discount_type'}
+                            setValue={setPromoDiscountType}
+                            value={promoDiscountType}
+                            error={formState?.fieldErrors?.promotional_discount_type?.[0]}
+                            childError={{
+                                discount: formState?.fieldErrors?.discount?.[0],
+                                limited_price: formState?.fieldErrors?.limited_price?.[0],
+                                cart_total: formState?.fieldErrors?.cart_total?.[0]
+                            }}
+                            childSetValue={{
+                                discount: setDiscount,
+                                limited_price: setLimitedPrice,
+                                cart_total: setCartTotal
+                            }}
+                            childValue={{
+                                discount: discount,
+                                limited_price:
+                                    limitedPrice,
+                                cart_total: cartTotal
+                            }}
+                        />
                     </div>
                 </div>
                 <div className='flex flex-col gap-5 bg-tertiary rounded-[30px] p-8'>
                     <h3 className='font-semibold text-xl'>Budgeting</h3>
                     <div className='max-w-[1300px] gap-6 flex flex-col'>
-                        <CustomRadioWithConditionalInput data={budgetingOptions} inputForEach={false} key={'budgeting'} id={'budgeting'} name={'budgeting'} setValue={setBudgeting} value={budgeting} error={formState?.fieldErrors?.budgeting?.[0]} childError={formState?.fieldErrors} />
+                        <CustomRadioWithConditionalInput
+                            data={budgetingOptions}
+                            inputForEach={false}
+                            key={'budgeting'}
+                            id={'budgeting'}
+                            name={'budgeting'}
+                            setValue={setBudgeting}
+                            value={budgeting}
+                            error={formState?.fieldErrors?.budgeting?.[0]}
+                            childError={{ budget: formState?.fieldErrors?.budget?.[0] }}
+                            childSetValue={{ budget: setBudget }}
+                            childValue={{ budget: budget }}
+                        />
                     </div>
                 </div>
                 <div className="flex flex-row">
@@ -95,11 +133,13 @@ function ProductDiscountAdsForm({ products }: Props) {
                     <SummaryDescription title='Start date & time' description={startDate} />
                     <SummaryDescription title='End date & time' description={endDate} />
                     <SummaryDescription title='Banner' description={banners.find(b => b instanceof File) ? 'unuploaded' : banners.length > 0 ? 'uploaded.' : 'no file selected'} />
-                    <SummaryDescription title='Promotional discount type' description={DISCOUNT_TYPE_CHOICES.find(ele => ele.value == promoDiscountType?.parent_value)?.label} />
-                    <SummaryDescription title='Discount amount' description={percentFormatter(+(promoDiscountType?.child_value) / 100 || 0)} />
+                    <SummaryDescription title='Promotional discount type' description={DISCOUNT_TYPE_CHOICES.find(ele => ele.value == promoDiscountType)?.label} />
+                    {promoDiscountType === 'PERCENTAGE_OFF' && <SummaryDescription title='Discount amount' description={percentFormatter(+(discount) / 100 || 0)} />}
+                    {promoDiscountType === 'LIMITED_PRICE' && <SummaryDescription title='Limited price' description={priceFormatter(+(limitedPrice) || 0)} />}
+                    {promoDiscountType === 'PERCENTAGE_OFF_THE_MINIMUM_CART_SIZE' && <SummaryDescription title='Total carts' description={formatPiece((+cartTotal) || 0)} />}
                     {/* <SummaryDescription title='Destination' description='List of products' /> */}
-                    <SummaryDescription title='Budgeting' description={BUDGETING_TYPE_CHOICES.find(ele => ele.value == budgeting?.parent_value)?.label} />
-                    <SummaryDescription title='Budget' description={priceFormatter(+(budgeting?.child_value || 0))} />
+                    <SummaryDescription title='Budgeting' description={BUDGETING_TYPE_CHOICES.find(ele => ele.value == budgeting)?.label} />
+                    <SummaryDescription title='Budget' description={priceFormatter(+(budget || 0))} />
                 </div>
             </div>
         </div>
