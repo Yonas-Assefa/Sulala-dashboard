@@ -26,7 +26,16 @@ async function page() {
                     filterData={productsFilterData}
                     tableSchema={productTableSchema}
                     sortData={productsSortData}
-                    deleteAction={deleteProduct}
+                    actionOptions={
+                        {
+                            delete: {
+                                action: deleteProduct,
+                                formData: [
+                                    { formDataKey: 'item_id', searchKey: 'item' },
+                                ]
+                            }
+                        }
+                    }
                 />
 
             </div >

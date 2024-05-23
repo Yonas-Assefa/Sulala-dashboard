@@ -24,17 +24,17 @@ type Actions = {
 }
 
 type ActionOptions = {
-    edit: {
+    edit?: {
         searchParams?: { key: string, value?: string, fromItem?: { itemKey?: string, valueDict?: { key: string, value: string }[] } }[],
         params?: { absolute?: boolean, value: string }
     },
-    toggle: {
+    toggle?: {
         action: (formData: FormData) => Promise<FormState>
         key: string
         active: string
         formData: { formDataKey: string, itemKey: string }[]
     },
-    delete: {
+    delete?: {
         action: (formData: FormData) => Promise<FormState>
         formData: { formDataKey: string, searchKey: string }[]
     }

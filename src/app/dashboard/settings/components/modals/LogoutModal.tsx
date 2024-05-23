@@ -1,20 +1,27 @@
 'use client'
 import { logout } from '@/actions/common/logout';
-import ModalDeleteButton from '@/components/common/modal/ModalDeleteButton';
 import { useRedirectRoute } from '@/hooks/useRedirectRoute';
 import { useToastMessage } from '@/hooks/useToastMessage';
+import { closeModal } from '@/lib/modals';
 import { EMPTY_FORM_STATE } from '@/utils/formStateHelper';
-import React from 'react'
+import React, { useState, useTransition } from 'react'
 import { useFormState } from 'react-dom';
 
 function LogoutModal() {
-    const [formState, action] = useFormState(
-        logout,
-        EMPTY_FORM_STATE
-    );
+    const [formState, setFormState] = useState(EMPTY_FORM_STATE)
+    const [isPending, startTransition] = useTransition();
 
     useToastMessage(formState);
     useRedirectRoute(formState);
+
+    const handleLogout = async () => {
+        startTransition(async () => {
+            const response = await logout(formState, new FormData())
+            setFormState(response || EMPTY_FORM_STATE)
+            closeModal('logout_setting_modal')
+        });
+
+    }
 
     return (
         <dialog id="logout_setting_modal" className='modal'>
@@ -23,9 +30,13 @@ function LogoutModal() {
                     <h3 className="font-bold text-xl text-black text-center font-serif">Log out?</h3>
                 </div>
                 <div className="px-5 flex flex-col gap-3 my-4">
-                    <form action={action}>
-                        <ModalDeleteButton />
-                    </form>
+                    <button
+                        onClick={handleLogout}
+                        className="btn w-full rounded-[40px] bg-[#f6f6f6] hover:bg-primary/20 border-0 text-red-600 "
+                        type='submit'
+                    >
+                        {isPending ? <span className="loading loading-spinner loading-md text-primary"></span> : 'Yes'}
+                    </button>
                     <form method="dialog">
                         <button className="btn modal-backdrop w-full rounded-[40px] bg-[#f6f6f6] hover:bg-primary/20 border-0 text-black">
                             Cancel
