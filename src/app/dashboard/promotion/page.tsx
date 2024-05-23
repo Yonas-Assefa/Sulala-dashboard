@@ -6,6 +6,7 @@ import { promotionTableSchema } from './schema/schema'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import { getPromotions } from '@/actions/promotion/get-promotions'
 import { updatePromotionStatus } from '@/actions/promotion/update-promotion-status'
+import { deletePromotion } from '@/actions/promotion/delete-promotion'
 
 async function page() {
 
@@ -61,6 +62,12 @@ async function page() {
                             formData: [
                                 { formDataKey: 'status', itemKey: 'status' },
                                 { formDataKey: 'item_id', itemKey: 'id' },
+                            ]
+                        },
+                        delete: {
+                            action: deletePromotion,
+                            formData: [
+                                { formDataKey: 'item_id', searchKey: 'item' },
                             ]
                         }
                     }}

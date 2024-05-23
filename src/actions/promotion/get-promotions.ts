@@ -3,6 +3,7 @@
 import { PROMOTIONS } from "../../config/urls"
 import { promotionMapper } from "../mapper/promotion-mapper"
 import { getRequestHeaders } from "../../lib/helper"
+import { notFound } from "next/navigation"
 
 export const getPromotions = async () => {
     const response = await fetch(PROMOTIONS, {
@@ -25,6 +26,9 @@ export const getOnePromotion = async (promotion_id: string) => {
     const body = await response.json()
 
     if (!response.ok || !body.data) {
+        if (response.status === 404) {
+            notFound()
+        }
         throw new Error(body.message || 'Failed to get promotions');
     }
     return promotionMapper(body.data)

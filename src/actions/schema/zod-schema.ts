@@ -284,12 +284,13 @@ export const createPromoCampaingSchema = z.object({
                 message: 'Please provide a valid date'
             }
         )
-        .refine(
-            (val) => new Date(val) > new Date(),
-            {
-                message: 'Start date must be in the future'
-            }
-        ),
+    // .refine(
+    //     (val) => new Date(val) > new Date(),
+    //     {
+    //         message: 'Start date must be in the future'
+    //     }
+    // )
+    ,
     end_date: z.string()
         .refine(
             (val) => {
@@ -304,12 +305,13 @@ export const createPromoCampaingSchema = z.object({
                 message: 'Please provide a valid date'
             }
         )
-        .refine(
-            (val) => new Date(val) > new Date(),
-            {
-                message: 'End date must be in the future'
-            }
-        ),
+    // .refine(
+    //     (val) => new Date(val) > new Date(),
+    //     {
+    //         message: 'End date must be in the future'
+    //     }
+    // )
+    ,
     budgeting: z.string({
         message: 'Budgeting type is a required field'
     })

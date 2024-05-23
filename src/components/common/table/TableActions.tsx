@@ -67,7 +67,7 @@ function TableActions({ edit, delete: deleteItem, promote, product, toggle, acti
         return pathname + '/edit/' + createQueryString([{ key: 'item', value: product.id }, { key: 'type', value: 'product' }])
     }
 
-    const handleTogle = () => {
+    const handleToogle = () => {
         if (toggle && actionOptions?.toggle) {
             const formData = new FormData()
             const toInclude = actionOptions.toggle.formData || []
@@ -94,7 +94,7 @@ function TableActions({ edit, delete: deleteItem, promote, product, toggle, acti
                         <div className='flex flex-row gap-2'>
                             <input
                                 checked={product[actionOptions.toggle?.key as string] == actionOptions.toggle?.active}
-                                onChange={handleTogle}
+                                onChange={handleToogle}
                                 type="checkbox"
                                 className="toggle [--tglbg:lightgray] checked:[--tglbg:green] bg-white hover:bg-white border-[#d3d3d3] checked:border-[#218000]" />
                         </div>
