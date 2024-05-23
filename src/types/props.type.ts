@@ -31,7 +31,7 @@ export type CustomSelectInputProps = Omit<BaseInputProps, 'defaultValue'> & {
     options?: string[]
     data?: SelectInputSchema[]
     searchable?: boolean
-    defaultValue: string | number | string[] | number[]
+    defaultValue?: string | number | string[] | number[]
 }
 
 export type CustomRadioInputProps = {

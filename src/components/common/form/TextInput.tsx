@@ -9,8 +9,14 @@ function TextInput({ value, setValue, id, placeholder, label, name, autoComplete
     }
     if (setValue) {
         Object.assign(inputArgs, { onChange: (e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value) })
-        if (defaultValue) setValue(defaultValue)
     }
+
+    React.useEffect(() => {
+        if (setValue && defaultValue) {
+            setValue(defaultValue)
+        }
+    }, [])
+
     return (
         <label htmlFor={id} >
             <p className='self-start text-black'>{label}</p>

@@ -1,10 +1,13 @@
 'use client'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import { Actions, ActionOptions } from '../../../types/table.type'
 import { usePathname } from 'next/navigation'
 import { useCreateQueryString } from '@/hooks/useCreateQueryString'
 import { openModal } from '@/lib/modals'
+import { useToastMessage } from '@/hooks/useToastMessage'
+import { EMPTY_FORM_STATE, FormState } from '@/utils/formStateHelper'
+import { useRedirectRoute } from '@/hooks/useRedirectRoute'
 
 type Props = Actions & {
     product: any
@@ -12,7 +15,11 @@ type Props = Actions & {
 }
 function TableActions({ edit, delete: deleteItem, promote, product, toggle, actionOptions }: Props) {
     const { createQueryString } = useCreateQueryString()
+    const [formState, setFormState] = useState(EMPTY_FORM_STATE)
     const pathname = usePathname()
+
+    useToastMessage(formState)
+    useRedirectRoute(formState)
 
     const getEditLink = () => {
         let link: string
@@ -60,13 +67,36 @@ function TableActions({ edit, delete: deleteItem, promote, product, toggle, acti
         return pathname + '/edit/' + createQueryString([{ key: 'item', value: product.id }, { key: 'type', value: 'product' }])
     }
 
+    const handleTogle = () => {
+        if (toggle && actionOptions?.toggle) {
+            const formData = new FormData()
+            const toInclude = actionOptions.toggle.formData || []
+            toInclude.map(fd => {
+                formData.append(
+                    fd.formDataKey,
+                    product[fd.itemKey]
+                )
+            })
+            actionOptions.toggle.action(formData)
+                .then((res: FormState) => {
+                    console.log({ res })
+                    setFormState(res)
+
+                })
+        }
+    }
+
     return (
         <td>
             <div className='flex flex-row gap-4'>
                 <div className='flex flex-row gap-2'>
-                    {toggle &&
+                    {toggle && actionOptions?.toggle &&
                         <div className='flex flex-row gap-2'>
-                            <input type="checkbox" className="toggle [--tglbg:lightgray] checked:[--tglbg:green] bg-white hover:bg-white border-[#d3d3d3] checked:border-[#218000]" />
+                            <input
+                                checked={product[actionOptions.toggle?.key as string] == actionOptions.toggle?.active}
+                                onChange={handleTogle}
+                                type="checkbox"
+                                className="toggle [--tglbg:lightgray] checked:[--tglbg:green] bg-white hover:bg-white border-[#d3d3d3] checked:border-[#218000]" />
                         </div>
                     }
                     {edit &&

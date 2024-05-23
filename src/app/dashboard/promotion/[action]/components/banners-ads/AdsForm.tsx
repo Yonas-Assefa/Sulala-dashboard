@@ -8,20 +8,20 @@ import TextInput from '@/components/common/form/TextInput'
 import CustomRadioWithConditionalInput from '@/components/common/form/RadioWithConditionalInput'
 import budgetingOptions from '../../data/budgeting.json'
 import destinationOptions from '../../data/destination.json'
-import { createPromotion } from '@/actions/promotion/create-promotion'
+import { createUpdatePromotion } from '@/actions/promotion/create-update-promotion'
 import { useRedirectRoute } from '@/hooks/useRedirectRoute'
 import { useToastMessage } from '@/hooks/useToastMessage'
 import { EMPTY_FORM_STATE } from '@/utils/formStateHelper'
 import { useFormState } from 'react-dom'
 import { BUDGETING_TYPE_CHOICES, DESTINATION_TYPE_CHOICES } from '../../data/discount-contants'
 import { formatNumber as priceFormatter } from '@/utils/priceFormatter.util'
+import { useParams, useSearchParams } from 'next/navigation'
 
 type Props = {
     products: any
-    itemType: string
     promotion: any
 }
-function BannerAdsForm({ itemType, products, promotion }: Props) {
+function BannerAdsForm({ products, promotion }: Props) {
 
     const [campaignName, setCampaignName] = React.useState<string>()
     const [destinationType, setDestinationType] = React.useState<string>()
@@ -33,8 +33,14 @@ function BannerAdsForm({ itemType, products, promotion }: Props) {
     const [startDate, setStartDate] = React.useState<string>('')
     const [endDate, setEndDate] = React.useState<string>('')
 
+    const searchParams = useSearchParams()
+    const itemType = searchParams.get('type')?.toString() || ''
+
+    const params = useParams()
+    const actionType = params.action
+
     const [formState, action] = useFormState(
-        createPromotion,
+        createUpdatePromotion,
         EMPTY_FORM_STATE
     );
 
@@ -49,6 +55,8 @@ function BannerAdsForm({ itemType, products, promotion }: Props) {
                 <div className='flex flex-col gap-5 bg-tertiary rounded-[30px] p-8'>
                     <input type="text" hidden value='BANNER' name='promotion_type' id='promotion_type' onChange={() => { }} />
                     <input type="text" hidden value={itemType} name='item_type' id='item_type' onChange={() => { }} />
+                    <input type="text" hidden value={actionType} name='action_type' id='action_type' onChange={() => { }} />
+                    <input type="text" hidden value={promotion?.id} name='item_id' id='item_id' onChange={() => { }} />
                     <h3 className='font-semibold text-xl'>General Info</h3>
                     <div className='max-w-[1300px] gap-5 flex flex-col'>
                         <TextInput

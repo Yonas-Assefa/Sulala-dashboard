@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 type Props = {
     id?: string
@@ -22,6 +22,12 @@ function TextAreaInput({ id, name, label, placeholder, error, defaultValue, setV
     if (setValue) {
         Object.assign(props, { onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => setValue(e.target.value) })
     }
+
+    useEffect(() => {
+        if (setValue && defaultValue) {
+            setValue(defaultValue)
+        }
+    }, [])
     return (
         <div className=''>
             <label htmlFor={id} className='self-start'>{label}</label>

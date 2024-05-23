@@ -5,6 +5,7 @@ import { promotionData, promotionFilterData, promotionSortData } from './schema/
 import { promotionTableSchema } from './schema/schema'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import { getPromotions } from '@/actions/promotion/get-promotions'
+import { updatePromotionStatus } from '@/actions/promotion/update-promotion-status'
 
 async function page() {
 
@@ -51,6 +52,15 @@ async function page() {
                                         itemKey: 'id'
                                     }
                                 },
+                            ]
+                        },
+                        toggle: {
+                            action: updatePromotionStatus,
+                            key: 'status',
+                            active: 'ACTIVE',
+                            formData: [
+                                { formDataKey: 'status', itemKey: 'status' },
+                                { formDataKey: 'item_id', itemKey: 'id' },
                             ]
                         }
                     }}

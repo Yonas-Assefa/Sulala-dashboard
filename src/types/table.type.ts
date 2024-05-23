@@ -22,9 +22,15 @@ type Actions = {
 }
 
 type ActionOptions = {
-    [action: string]: {
+    edit: {
         searchParams?: { key: string, value?: string, fromItem?: { itemKey?: string, valueDict?: { key: string, value: string }[] } }[],
         params?: { absolute?: boolean, value: string }
+    },
+    toggle: {
+        action: any
+        key: string
+        active: string
+        formData: { formDataKey: string, itemKey: string }[]
     }
 }
 

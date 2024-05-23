@@ -5,7 +5,7 @@ import { createPromoCampaingSchema, } from '../schema/zod-schema';
 import { changeObjToFormData, getMultiPartRequestHeaders, getResponseErrorMessage } from '../../lib/helper';
 import { revalidatePath } from 'next/cache';
 
-export const createPromotion = async (
+export const createUpdatePromotion = async (
     formState: FormState,
     formData: FormData
 ) => {
@@ -68,20 +68,29 @@ export const createPromotion = async (
 
         const data = createPromoCampaingSchema.parse(dataToBeParsed)
 
-        const response = await fetch(PROMOTIONS, {
-            method: 'POST',
+        const action = formData.get('action_type')
+        const item_id = formData.get('item_id')
+
+        const METHOD = action === 'add' ? 'POST' : 'PATCH'
+        const URL = action === 'add' ? PROMOTIONS : `${PROMOTIONS}${item_id}/`
+
+        console.log({ METHOD, URL })
+        const response = await fetch(URL, {
+            method: METHOD,
             headers: getMultiPartRequestHeaders(),
             body: changeObjToFormData(data),
         });
 
         const body = await response.json()
-        if (!response.ok || !body.success) {
-            // if (!body.success) {
+        // if (!response.ok || !body.success) {
+        if (!body.success) {
             const message = getResponseErrorMessage(body)
             throw new Error(message || 'Failed to submit form');
         }
 
-        const successMessage = 'Promotion created successfully!'
+        const successMessage = action === 'add' ?
+            'Promotion created successfully!' :
+            'Promotion updated successfully!'
         const redirectUrl = '/dashboard/promotion'
         revalidatePath('/dashboard/promotion')
 
