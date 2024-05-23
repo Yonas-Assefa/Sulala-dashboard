@@ -13,14 +13,13 @@ type Props = {
     tableSchema: TableSchema
     data: Data
     sortData: SortSchema
-    deleteAction?: any
     actionOptions?: ActionOptions
 }
 
-function Table({ filterData, tableSchema, data, sortData, deleteAction, actionOptions }: Props) {
+function Table({ filterData, tableSchema, data, sortData, actionOptions }: Props) {
     return (
         <>
-            <DeleteProductModal deleteAction={deleteAction} />
+            <DeleteProductModal deleteAction={actionOptions?.delete} />
             <div className="overflow-x-auto border rounded-[20px]">
                 <div className='flex justify-between p-3 items-center'>
                     <div className='flex items-center gap-4'>

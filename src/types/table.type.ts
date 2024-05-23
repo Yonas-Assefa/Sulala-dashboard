@@ -1,3 +1,5 @@
+import { FormState } from "@/utils/formStateHelper";
+
 type Schema = {
     key: string;
     title: string;
@@ -22,15 +24,19 @@ type Actions = {
 }
 
 type ActionOptions = {
-    edit: {
+    edit?: {
         searchParams?: { key: string, value?: string, fromItem?: { itemKey?: string, valueDict?: { key: string, value: string }[] } }[],
         params?: { absolute?: boolean, value: string }
     },
-    toggle: {
-        action: any
+    toggle?: {
+        action: (formData: FormData) => Promise<FormState>
         key: string
         active: string
         formData: { formDataKey: string, itemKey: string }[]
+    },
+    delete?: {
+        action: (formData: FormData) => Promise<FormState>
+        formData: { formDataKey: string, searchKey: string }[]
     }
 }
 

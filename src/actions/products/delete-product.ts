@@ -5,12 +5,11 @@ import { changeObjToFormData, getBrowserCookie, getMultiPartRequestHeaders, getR
 import { revalidatePath } from 'next/cache';
 
 export const deleteProduct = async (
-    formState: FormState,
     formData: FormData
 ) => {
     try {
 
-        const item_id = +(formData.get('item') || 0)
+        const item_id = +(formData.get('item_id') || 0)
         if (!item_id) {
             throw new Error('Invalid product id');
         }

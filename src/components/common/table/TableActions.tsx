@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useOptimistic, useState, useTransition } from 'react'
 import { Actions, ActionOptions } from '../../../types/table.type'
 import { usePathname } from 'next/navigation'
 import { useCreateQueryString } from '@/hooks/useCreateQueryString'
@@ -17,6 +17,19 @@ function TableActions({ edit, delete: deleteItem, promote, product, toggle, acti
     const { createQueryString } = useCreateQueryString()
     const [formState, setFormState] = useState(EMPTY_FORM_STATE)
     const pathname = usePathname()
+    const [toggleValue, setToggleValue] = useState({
+        checked: product[actionOptions?.toggle?.key as string] == actionOptions?.toggle?.active
+    })
+    const [optimisticToggleValue, addOptimisticToggleValue] = useOptimistic(
+        toggleValue,
+        (state, newOptimisticValue: boolean) => {
+            return {
+                ...state,
+                checked: newOptimisticValue
+            }
+        }
+    );
+    const [isPending, startTransition] = useTransition();
 
     useToastMessage(formState)
     useRedirectRoute(formState)
@@ -67,23 +80,32 @@ function TableActions({ edit, delete: deleteItem, promote, product, toggle, acti
         return pathname + '/edit/' + createQueryString([{ key: 'item', value: product.id }, { key: 'type', value: 'product' }])
     }
 
-    const handleTogle = () => {
-        if (toggle && actionOptions?.toggle) {
-            const formData = new FormData()
-            const toInclude = actionOptions.toggle.formData || []
-            toInclude.map(fd => {
-                formData.append(
-                    fd.formDataKey,
-                    product[fd.itemKey]
-                )
-            })
-            actionOptions.toggle.action(formData)
-                .then((res: FormState) => {
-                    console.log({ res })
-                    setFormState(res)
+    React.useEffect(() => {
+        console.log({ message: toggleValue })
+        console.log({ optimisticMessages: optimisticToggleValue })
+    }, [toggleValue, optimisticToggleValue])
 
+    const handleToogle = async () => {
+        addOptimisticToggleValue(!toggleValue.checked)
+        startTransition(async () => {
+            if (toggle && actionOptions?.toggle) {
+                const formData = new FormData()
+                const toInclude = actionOptions.toggle.formData || []
+                toInclude.map(fd => {
+                    formData.append(
+                        fd.formDataKey,
+                        product[fd.itemKey]
+                    )
                 })
-        }
+                actionOptions.toggle.action(formData)
+                    .then((res: FormState) => {
+                        setFormState(res)
+                        if (res.status === 'SUCCESS') {
+                            setToggleValue({ checked: !toggleValue.checked })
+                        }
+                    })
+            }
+        })
     }
 
     return (
@@ -93,10 +115,11 @@ function TableActions({ edit, delete: deleteItem, promote, product, toggle, acti
                     {toggle && actionOptions?.toggle &&
                         <div className='flex flex-row gap-2'>
                             <input
-                                checked={product[actionOptions.toggle?.key as string] == actionOptions.toggle?.active}
-                                onChange={handleTogle}
+                                checked={optimisticToggleValue.checked}
+                                disabled={isPending}
+                                onChange={handleToogle}
                                 type="checkbox"
-                                className="toggle [--tglbg:lightgray] checked:[--tglbg:green] bg-white hover:bg-white border-[#d3d3d3] checked:border-[#218000]" />
+                                className="transition-all toggle [--tglbg:lightgray] checked:[--tglbg:green] bg-white hover:bg-white border-[#d3d3d3] checked:border-[#218000]" />
                         </div>
                     }
                     {edit &&

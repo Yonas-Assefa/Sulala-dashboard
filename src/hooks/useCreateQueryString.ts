@@ -47,6 +47,45 @@ export const useCreateQueryString = () => {
         [searchParams]
     );
 
+    const deleteQueryString = React.useCallback(
+        (nameOrParams: string | string[]) => {
+            const params = new URLSearchParams(searchParams.toString());
 
-    return { createQueryString, searchParams, createQueryStringAndPush };
+            if (Array.isArray(nameOrParams)) {
+                nameOrParams.forEach((key) => {
+                    params.delete(key);
+                });
+            } else if (typeof nameOrParams === 'string') {
+                params.delete(nameOrParams);
+            } else {
+                throw new Error('Invalid arguments. Either provide a key or an array of keys.');
+            }
+
+            return '?' + params.toString();
+        },
+        [searchParams]
+    );
+
+    const deleteQueryStringAndPush = React.useCallback(
+        (nameOrParams: string | string[]) => {
+            const params = new URLSearchParams(searchParams.toString());
+
+            if (Array.isArray(nameOrParams)) {
+                nameOrParams.forEach((key) => {
+                    params.delete(key);
+                });
+            } else if (typeof nameOrParams === 'string') {
+                params.delete(nameOrParams);
+            } else {
+                throw new Error('Invalid arguments. Either provide a key or an array of keys.');
+            }
+
+            const queryParam = '?' + params.toString();
+            router.push(pathname + queryParam);
+        },
+        [searchParams]
+    );
+
+
+    return { createQueryString, searchParams, createQueryStringAndPush, deleteQueryString, deleteQueryStringAndPush };
 }

@@ -4,6 +4,7 @@ import { getCategories } from "../common/get-categories"
 import { PRODUCTS } from "../../config/urls"
 import { productMapper } from "../mapper/product-mapper"
 import { getRequestHeaders, makeRequest } from "../../lib/helper"
+import { notFound } from "next/navigation"
 
 export const getProducts = async () => {
     const response = await fetch(PRODUCTS, {
@@ -27,6 +28,9 @@ export const getOneProduct = async (item: string) => {
     const body = await response.json()
 
     if (!response.ok || !body.id) {
+        if (response.status === 404) {
+            notFound()
+        }
         return null
     }
     return await productMapper(body)

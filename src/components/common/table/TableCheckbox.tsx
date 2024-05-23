@@ -17,7 +17,7 @@ function TableCheckbox({ item_id, isHeader, items_id }: Props) {
     if (!isHeader) {
         isChecked = selected_items.includes(item_id + '')
     } else {
-        isChecked = selected_items?.length === items_id?.length
+        isChecked = selected_items?.length !== 0 && selected_items?.length === items_id?.length
     }
 
     const handleClick = () => {
