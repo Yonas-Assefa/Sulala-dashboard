@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import TextInput from './TextInput';
 import CustomMultiSelectInput from './SelectInput';
 import { RadioInputSchema } from '@/types/input-field.type';
@@ -25,6 +25,70 @@ const isRadioInputSchema = (obj: any): obj is RadioInputSchema => {
         obj.options.every(isRadioInputOptions)
     );
 };
+
+type ChildInputProps = {
+    childDefaultValue: any,
+    childError: any,
+    childOptions: any,
+    childSetValue: any,
+    childValue: any,
+    input: any
+}
+
+function ChildInput({ childDefaultValue, childError, childOptions, childSetValue, childValue, input }: ChildInputProps) {
+    const props = { ...input.props }
+
+    // IF CHILD ERROR EXIST WITH INPUT ID, IT ASSIGNS IT TO THE INPUT
+    if (childError[input.id]) {
+        Object.assign(props, {
+            error: childError[input.id]
+        })
+    }
+
+    // IF CHILD VALUE EXIST WITH INPUT ID, IT ASSIGNS IT TO THE INPUT
+    if (childValue[input.id]) {
+        Object.assign(props, {
+            value: childValue[input.id]
+        })
+    }
+
+    // IF CHILD SET-VALUE EXIST WITH INPUT ID, IT ASSIGNS IT TO THE INPUT
+    if (childSetValue[input.id]) {
+        Object.assign(props, {
+            setValue: childSetValue[input.id]
+        })
+    }
+
+    React.useEffect(() => {
+        // SETS THE DEFUALT VALUE FOR INPUT ON INITIAL
+        if (childDefaultValue[input.id]) {
+            childSetValue[input.id](childDefaultValue[input.id])
+        }
+    }, [])
+
+    if (input.type == 'select') {
+        return (
+            <CustomMultiSelectInput
+                label={input.label}
+                data={childOptions[input.id]}
+                key={input.id}
+                placeholder={input.placeholder}
+                id={input.id}
+                name={input.id}
+                {...props}
+            />)
+    }
+    return (
+        <TextInput
+            key={input.id}
+            label={input.label}
+            placeholder={input.placeholder}
+            name={input.id}
+            id={input.id}
+            {...props}
+        />
+    )
+}
 
 function CustomRadioWithConditionalInput({
     name,
@@ -57,6 +121,12 @@ function CustomRadioWithConditionalInput({
         });
     }
 
+    useEffect(() => {
+        if (defaultValue && emitChange) {
+            emitChange(defaultValue)
+        }
+    }, [])
+
     return (
         <div className='flex flex-col gap-5'>
             {showLabel && <p className="font-semibold">{data.label}</p>}
@@ -71,52 +141,16 @@ function CustomRadioWithConditionalInput({
                         // INPUT FOR EACH RADIO BUTTON
                         <div className={`w-full check grid grid-cols-2 gap-4`}>
                             {
-                                convertToArray(radioInput.input).map((input) => {
-                                    const props = { ...input.props }
-                                    if (childError[input.id]) {
-                                        Object.assign(props, {
-                                            error: childError[input.id]
-                                        })
-                                    }
-                                    if (childValue[input.id]) {
-                                        Object.assign(props, {
-                                            value: childValue[input.id]
-                                        })
-                                    }
-                                    if (childSetValue[input.id]) {
-                                        Object.assign(props, {
-                                            setValue: childSetValue[input.id]
-                                        })
-                                    }
-                                    if (childDefaultValue[input.id]) {
-                                        Object.assign(props, {
-                                            defaultValue: childDefaultValue[input.id]
-                                        })
-                                    }
-
-                                    if (input.type == 'select') {
-                                        return (
-                                            <CustomMultiSelectInput
-                                                label={input.label}
-                                                data={childOptions[input.id]}
-                                                key={input.id}
-                                                placeholder={input.placeholder}
-                                                id={input.id}
-                                                name={input.id}
-                                                {...props}
-                                            />)
-                                    }
-                                    return (
-                                        <TextInput
-                                            key={input.id}
-                                            label={input.label}
-                                            placeholder={input.placeholder}
-                                            name={input.id}
-                                            id={input.id}
-                                            {...props}
-                                        />
-                                    )
-                                })
+                                convertToArray(radioInput.input).map((input) =>
+                                (<ChildInput
+                                    childDefaultValue={childDefaultValue}
+                                    childError={childError}
+                                    childOptions={childOptions}
+                                    childSetValue={childSetValue}
+                                    childValue={childValue}
+                                    input={input}
+                                />)
+                                )
                             }
                         </div>
                     }
@@ -126,54 +160,15 @@ function CustomRadioWithConditionalInput({
                 // INPUT FOR WHOLE CHECKBOX
                 <div className='w-full check grid grid-cols-2 gap-4'>
                     {
-                        convertToArray(data.input).map((input) => {
-
-                            const props = { ...input.props }
-                            if (childError[input.id]) {
-                                Object.assign(props, {
-                                    error: childError[input.id]
-                                })
-                            }
-                            if (childValue[input.id]) {
-                                Object.assign(props, {
-                                    value: childValue[input.id]
-                                })
-                            }
-                            if (childSetValue[input.id]) {
-                                Object.assign(props, {
-                                    setValue: childSetValue[input.id]
-                                })
-                            }
-                            if (childDefaultValue[input.id]) {
-                                Object.assign(props, {
-                                    defaultValue: childDefaultValue[input.id]
-                                })
-                            }
-
-                            if (input.type == 'select') {
-                                return (
-                                    <CustomMultiSelectInput
-                                        label={input.label}
-                                        data={childOptions[input.id]}
-                                        key={input.id}
-                                        placeholder={input.placeholder}
-                                        id={input.id}
-                                        name={input.id}
-                                        {...props}
-                                    />)
-                            }
-
-                            return (
-                                <TextInput
-                                    key={input.id}
-                                    label={input.label}
-                                    placeholder={input.placeholder}
-                                    name={input.id}
-                                    id={input.id}
-                                    {...props}
-                                />
-                            )
-                        })
+                        convertToArray(data.input).map((input) => (
+                            <ChildInput
+                                childDefaultValue={childDefaultValue}
+                                childError={childError}
+                                childOptions={childOptions}
+                                childSetValue={childSetValue}
+                                childValue={childValue}
+                                input={input}
+                            />))
                     }
                 </div>
             }

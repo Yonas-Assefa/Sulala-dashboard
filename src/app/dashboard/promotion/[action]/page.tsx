@@ -47,9 +47,9 @@ async function page({ params: { action: actionType }, searchParams: { tab: tabTy
             {action == 'add' && <Tab item={item} tab={tab} />}
             {
                 tab === 'discounts-ads' ?
-                    <DiscountAdsForm products={products} promotion={promotion} itemType={item} /> :
+                    <DiscountAdsForm products={products} promotion={promotion} /> :
                     tab === 'banner-ads' ?
-                        <BannerAdsForm products={products} promotion={promotion} itemType={item} /> : null
+                        <BannerAdsForm products={products} promotion={promotion} /> : null
             }
         </div>
     )

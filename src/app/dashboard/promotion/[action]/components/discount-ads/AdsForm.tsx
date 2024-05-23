@@ -13,20 +13,20 @@ import { formatNumber as percentFormatter } from '@/utils/percentFormatter.util'
 import promotionDiscountOptions from '../../data/promotional-discount-type.json'
 import budgetingOptions from '../../data/budgeting.json'
 import { BUDGETING_TYPE_CHOICES, DISCOUNT_TYPE_CHOICES } from '../../data/discount-contants'
-import { createPromotion } from '@/actions/promotion/create-promotion'
+import { createUpdatePromotion } from '@/actions/promotion/create-update-promotion'
 import { useRedirectRoute } from '@/hooks/useRedirectRoute'
 import { useToastMessage } from '@/hooks/useToastMessage'
 import { EMPTY_FORM_STATE } from '@/utils/formStateHelper'
 import { useFormState } from 'react-dom'
 import { formatPiece } from '@/utils/pieceFormatter.util'
 import { convertToArray } from '@/utils/convertObjToArray'
+import { useParams, useSearchParams } from 'next/navigation'
 
 type Props = {
     products: any
-    itemType: string
     promotion: any
 }
-function ProductDiscountAdsForm({ products, itemType, promotion }: Props) {
+function ProductDiscountAdsForm({ products, promotion }: Props) {
 
     const [campaignName, setCampaignName] = React.useState<string>('')
     const [item, setItem] = React.useState<string>('')
@@ -41,13 +41,21 @@ function ProductDiscountAdsForm({ products, itemType, promotion }: Props) {
     const [budget, setBudget] = React.useState<string>()
     const [banners, setBanners] = React.useState<(File | string)[]>([])
 
+    const searchParams = useSearchParams()
+    const itemType = searchParams.get('type')?.toString() || ''
+
+    const params = useParams()
+    const actionType = params.action
+
     const [formState, action] = useFormState(
-        createPromotion,
+        createUpdatePromotion,
         EMPTY_FORM_STATE
     );
 
     useToastMessage(formState);
     useRedirectRoute(formState);
+
+    console.log({ promotion })
 
     return (
         <div className='grid grid-cols-3 gap-6'>
@@ -55,6 +63,8 @@ function ProductDiscountAdsForm({ products, itemType, promotion }: Props) {
                 <div className='flex flex-col gap-5 bg-tertiary rounded-[30px] p-8'>
                     <input type="text" hidden value='DISCOUNT' name='promotion_type' id='promotion_type' onChange={() => { }} />
                     <input type="text" hidden value={itemType} name='item_type' id='item_type' onChange={() => { }} />
+                    <input type="text" hidden value={actionType} name='action_type' id='action_type' onChange={() => { }} />
+                    <input type="text" hidden value={promotion?.id} name='item_id' id='item_id' onChange={() => { }} />
                     <h3 className='font-semibold text-xl'>General Info</h3>
                     <div className='max-w-[1300px] gap-5 flex flex-col'>
                         <TextInput
