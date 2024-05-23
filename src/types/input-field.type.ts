@@ -13,7 +13,8 @@ export type InputMeta = {
     type: 'select' | 'text',
     placeholder: string
     options?: string[]
-    label: string
+    label: string,
+    props?: object
 }
 
 export type RadioInputOptions = {

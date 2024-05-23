@@ -1,8 +1,8 @@
 'use server'
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
-import { CREATE_PASSWORD, } from '../config/urls';
+import { CREATE_PASSWORD, } from '../../config/urls';
 import { createPasswordSchema, } from '../schema/zod-schema';
-import { getBrowserCookie, getRequestHeaders } from '../utils/helper';
+import { getBrowserCookie, getRequestHeaders } from '../../lib/helper';
 
 export const createPassword = async (
     formState: FormState,

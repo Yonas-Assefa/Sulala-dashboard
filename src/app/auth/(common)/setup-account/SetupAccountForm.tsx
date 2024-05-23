@@ -1,9 +1,5 @@
 'use client'
 import React from 'react'
-import TextInput from '../../../components/common/form/TextInput'
-import FileInput from '../../../components/common/form/FileInput'
-import CustomMultiSelectInput from '../../../components/common/form/SelectInput'
-import PrimaryButton from '../../../components/common/ui/PrimaryButton'
 import { useFormState } from 'react-dom'
 import { setupAccount } from '@/actions/auth/setup-account'
 import { EMPTY_FORM_STATE, FormState } from '@/utils/formStateHelper'
@@ -11,6 +7,10 @@ import { useToastMessage } from '@/hooks/useToastMessage'
 import { useRedirectRoute } from '@/hooks/useRedirectRoute'
 import { useCreateQueryString } from '@/hooks/useCreateQueryString'
 import { useCounterStore } from '@/providers/setup-account-store-provider'
+import FileInput from '@/components/common/form/FileInput'
+import CustomMultiSelectInput from '@/components/common/form/SelectInput'
+import TextInput from '@/components/common/form/TextInput'
+import PrimaryButton from '@/components/common/ui/PrimaryButton'
 
 function SetupAccountStageOne({ formState, show }: { formState: FormState, show: boolean }) {
     const { first_name, last_name, email, setFirstName, setLastName, setEmail } = useCounterStore(

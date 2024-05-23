@@ -12,6 +12,7 @@ async function page() {
 
     const products = await getProducts()
     const categories = await getCategories()
+
     return (
         <>
             <ImportProductsModal />
@@ -25,7 +26,6 @@ async function page() {
                     filterData={productsFilterData}
                     tableSchema={productTableSchema}
                     sortData={productsSortData}
-                    reference={{ categories }}
                     deleteAction={deleteProduct}
                 />
 

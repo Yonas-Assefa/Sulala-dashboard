@@ -1,8 +1,8 @@
 'use server'
 
-import { GET_BILLING_ACCOUNT } from "../config/urls"
+import { GET_BILLING_ACCOUNT } from "../../config/urls"
 import { billingMapper } from "../mapper/billing-mapper"
-import { getRequestHeaders } from "../utils/helper"
+import { getRequestHeaders } from "../../lib/helper"
 
 export const getBillingInfo = async () => {
     const response = await fetch(GET_BILLING_ACCOUNT, {

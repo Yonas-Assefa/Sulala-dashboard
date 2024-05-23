@@ -8,7 +8,6 @@ import TextInput from '@/components/common/form/TextInput'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import { useRedirectRoute } from '@/hooks/useRedirectRoute'
 import { useToastMessage } from '@/hooks/useToastMessage'
-import { constructImageUrl } from '@/utils/constructImageUrl'
 import { EMPTY_FORM_STATE } from '@/utils/formStateHelper'
 import React from 'react'
 import { useFormState } from 'react-dom'
@@ -55,7 +54,7 @@ function ProductForm({ categoryLists, productTags, initialValue, tab }: Props) {
                             <TextInput id='price' name='price' type='number' placeholder='Enter price' label='Price' error={formState.fieldErrors?.price?.[0]} defaultValue={initialValue?.price} />
                             <TextInput id='discount' name='discount' type='number' defaultValue={initialValue?.discounted_price || 0} placeholder='Enter discount in %' label='Discount' error={formState.fieldErrors?.discounted_price?.[0]} />
                             <div className="col-span-2">
-                                <ImageListSelector id='product_images' name='product_images' multi error={formState.fieldErrors?.images?.[0]} defaultValues={constructImageUrl(initialValue?.images || []) as string[]} />
+                                <ImageListSelector id='product_images' name='product_images' multi error={formState.fieldErrors?.images?.[0]} defaultValues={initialValue?.images} />
                             </div>
                         </div>
                     </div>

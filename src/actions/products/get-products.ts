@@ -1,9 +1,9 @@
 'use server'
 
 import { getCategories } from "../common/get-categories"
-import { PRODUCTS } from "../config/urls"
+import { PRODUCTS } from "../../config/urls"
 import { productMapper } from "../mapper/product-mapper"
-import { getRequestHeaders, makeRequest } from "../utils/helper"
+import { getRequestHeaders, makeRequest } from "../../lib/helper"
 
 export const getProducts = async () => {
     const response = await fetch(PRODUCTS, {

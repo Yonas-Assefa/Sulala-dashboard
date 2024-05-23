@@ -19,12 +19,21 @@ function NoItemPlaceholder() {
 function CustomMultiSelectInput({ setValue, placeholder, label, name, id, error, multi = false, nested = false, withImage = false, data, defaultValue, searchable = false }: CustomSelectInputProps) {
     const [options, setOptions] = React.useState<SelectInputSchema[]>(data || [])
 
-    const defaultSelected = typeof defaultValue === 'string' ?
+    const defaultSelected = (typeof defaultValue === 'string' || typeof defaultValue === 'number') ?
         [options.find(option => option.value == defaultValue)] as SelectInputSchema[] :
-        Array.isArray(defaultValue) ? defaultValue as SelectInputSchema[] :
+        Array.isArray(defaultValue) ? (
+            defaultValue.length == 0 ? [] :
+                defaultValue.map(val => {
+                    if (typeof val == 'string' || typeof val == 'number') {
+                        return options.find(option => option.value == val)
+                    } else {
+                        return val
+                    }
+                })
+        ) :
             typeof defaultValue === 'object' ? [defaultValue as SelectInputSchema] : []
 
-    const [selected, setSelected] = React.useState<Omit<SelectInputSchema, 'options'>[]>(defaultSelected)
+    const [selected, setSelected] = React.useState<Omit<SelectInputSchema, 'options'>[]>(defaultSelected as SelectInputSchema[])
     const [selectedParent, setSelectedParent] = React.useState<SelectInputSchema | null>(null)
     const [computedValue, setComputedValue] = React.useState<string | null>(null)
     const selectRef = React.useRef<HTMLDetailsElement>(null)

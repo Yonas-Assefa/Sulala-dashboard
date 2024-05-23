@@ -6,11 +6,36 @@ type Props = {
     id?: string
     name?: string
     error?: string
+    defaultValue?: string
 }
 
-function DateInput({ label, setValue, id, name, error }: Props) {
-    const [time, setTime] = React.useState<string>('')
-    const [date, setDate] = React.useState<string>('')
+const extractDateAndTime = (dateTime: string | undefined) => {
+    const inputString = (new Date(dateTime || '')).toLocaleString();
+
+    if (inputString == 'Invalid Date') return { time: '', date: '' }
+
+    const [datePart, timePart] = inputString.split(",");
+
+    const [month, day, year] = datePart.trim().split("/");
+    const formattedDate = `${year.padStart(4, "0")}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+
+    const timeComponents = timePart.trim().split(":");
+    let hour = parseInt(timeComponents[0]);
+    const minute = timeComponents[1];
+    if (timeComponents[2].toLowerCase() === "pm" && hour != 12) {
+        hour += 12;
+    }
+    const formattedTime = `${minute.padStart(2, "0")}:${hour.toString().padStart(2, "0")}`;
+
+    return {
+        time: formattedTime,
+        date: formattedDate,
+    }
+}
+
+function DateInput({ label, setValue, id, name, error, defaultValue }: Props) {
+    const [time, setTime] = React.useState<string>(extractDateAndTime(defaultValue)?.time)
+    const [date, setDate] = React.useState<string>(extractDateAndTime(defaultValue)?.date)
 
     const dateInputRef = React.useRef<HTMLInputElement>(null);
     const timeInputRef = React.useRef<HTMLInputElement>(null);

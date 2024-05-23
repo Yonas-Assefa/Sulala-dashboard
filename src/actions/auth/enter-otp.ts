@@ -1,9 +1,9 @@
 'use server'
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
-import { CONFIRM_PHONE, VERIFY_PHONE } from '../config/urls';
+import { CONFIRM_PHONE, VERIFY_PHONE } from '../../config/urls';
 import { otpVerificationSchema } from '../schema/zod-schema';
 import { cookies } from 'next/headers';
-import { makeRequest, setBrowserCookie } from '../utils/helper';
+import { makeRequest, setBrowserCookie } from '../../lib/helper';
 
 export const enterOtp = async (
     formState: FormState,

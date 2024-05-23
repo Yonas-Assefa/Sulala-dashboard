@@ -1,8 +1,8 @@
 'use server'
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
-import { UPDATE_SHOP_ACCOUNT, } from '../config/urls';
+import { UPDATE_SHOP_ACCOUNT, } from '../../config/urls';
 import { personalInfoSettingSchema, shopInfoSettingSchema, } from '../schema/zod-schema';
-import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders, getResponseErrorMessage, removeNullAndUndefined } from '../utils/helper';
+import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders, getResponseErrorMessage, removeNullAndUndefined } from '../../lib/helper';
 import { revalidatePath } from 'next/cache';
 
 export const updateShopInfo = async (

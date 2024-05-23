@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import ImageUnselectButton from '../ui/ImageUnselectButton'
+import { convertToArray } from '@/utils/convertObjToArray'
 
 type Props = {
     multi?: boolean
@@ -13,7 +14,7 @@ type Props = {
 }
 
 function ImageListSelector({ multi = false, label, error, name, id, defaultValues, setValue }: Props) {
-    const [fileList, setFileList] = React.useState<(File | string)[]>(defaultValues || []);
+    const [fileList, setFileList] = React.useState<(File | string)[]>(convertToArray(defaultValues));
     const inputRef = React.useRef<HTMLInputElement>(null);
 
     React.useEffect(() => {

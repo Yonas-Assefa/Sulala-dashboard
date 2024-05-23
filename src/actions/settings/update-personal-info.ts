@@ -1,8 +1,8 @@
 'use server'
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
-import { UPDATE_VENDOR_ACCOUNT, } from '../config/urls';
+import { UPDATE_VENDOR_ACCOUNT, } from '../../config/urls';
 import { personalInfoSettingSchema, } from '../schema/zod-schema';
-import { getRequestHeaders, getResponseErrorMessage } from '../utils/helper';
+import { getRequestHeaders, getResponseErrorMessage } from '../../lib/helper';
 import { revalidatePath } from 'next/cache';
 
 export const updatePersonalInfo = async (

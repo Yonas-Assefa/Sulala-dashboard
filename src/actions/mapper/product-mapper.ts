@@ -1,5 +1,5 @@
 import { getCategories } from "../common/get-categories"
-import { BASE_URL } from "../config/urls"
+import { BASE_URL } from "../../config/urls"
 
 export const productMapper = async (data: any) => {
     const categories = await getCategories()

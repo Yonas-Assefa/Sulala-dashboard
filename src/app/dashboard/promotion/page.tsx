@@ -4,8 +4,12 @@ import Table from '@/components/common/table/Table'
 import { promotionData, promotionFilterData, promotionSortData } from './schema/data'
 import { promotionTableSchema } from './schema/schema'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
+import { getPromotions } from '@/actions/promotion/get-promotions'
 
-function page() {
+async function page() {
+
+    const promotions = await getPromotions()
+
     return (
         <>
             <CreateCampaignModal />
@@ -22,7 +26,35 @@ function page() {
                 </div>
 
                 {/* <PromotionCampaignTable /> */}
-                <Table data={promotionData} filterData={promotionFilterData} tableSchema={promotionTableSchema} sortData={promotionSortData} />
+                <Table
+                    data={promotions}
+                    filterData={promotionFilterData}
+                    tableSchema={promotionTableSchema}
+                    sortData={promotionSortData}
+                    actionOptions={{
+                        edit: {
+                            searchParams: [
+                                {
+                                    key: 'tab',
+                                    fromItem: {
+                                        itemKey: 'promotion_type',
+                                        valueDict: [
+                                            { key: 'DISCOUNT', value: 'discounts-ads' },
+                                            { key: 'BANNER', value: 'banner-ads' },
+                                        ]
+                                    }
+                                },
+                                { key: 'type', value: 'product' },
+                                {
+                                    key: 'item',
+                                    fromItem: {
+                                        itemKey: 'id'
+                                    }
+                                },
+                            ]
+                        }
+                    }}
+                />
 
             </div >
         </>

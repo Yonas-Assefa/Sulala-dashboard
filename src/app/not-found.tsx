@@ -1,6 +1,6 @@
 import React from 'react'
 import SideBarNav from './dashboard/components/SideBarNav';
-import { isAuthenticated } from '@/actions/utils/helper';
+import { isAuthenticated } from '@/lib/helper';
 import Link from 'next/link';
 
 function NotFoundPage() {

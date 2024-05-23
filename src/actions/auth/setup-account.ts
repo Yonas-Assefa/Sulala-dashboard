@@ -1,8 +1,8 @@
 'use server'
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
-import { SETUP_URL, SHOP_ACCOUNT } from '../config/urls';
+import { SETUP_URL, SHOP_ACCOUNT } from '../../config/urls';
 import { setupAccountFirstStepSchema, setupAccountLastStepSchema } from '../schema/zod-schema';
-import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders } from '../utils/helper';
+import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders } from '../../lib/helper';
 
 export const setupAccount = async (
     formState: FormState,
