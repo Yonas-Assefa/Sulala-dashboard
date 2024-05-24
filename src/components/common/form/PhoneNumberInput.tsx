@@ -77,13 +77,13 @@ function PhoneNumberInput({ error, defaultValue }: { error?: string, defaultValu
     };
 
     return (
-        <>
+        <div className='flex flex-col gap-3 w-full'>
             <label htmlFor="phone-number" className='self-start'>Phone number</label>
             <div className='w-full'>
                 <div className={`flex items-center gap-0 border rounded-[40px] w-full ${error ? 'bg-dangerlight border-danger' : 'focus-within:border-primary'}`}>
                     <details className="dropdown relative bg-transparent h-full" ref={countryCodeRef}>
                         {/* DISPLAYING COUNTRY FLAG, AND COUNTRY DIAL CODE */}
-                        <summary className='min-w-[80px] bordered bg-transparent h-full select-none cursor-pointer flex gap-1 items-center justify-center px-5'>
+                        <summary className='min-w-[80px] py-3 bordered bg-transparent h-full select-none cursor-pointer flex gap-1 items-center justify-center px-5'>
                             <span>{countryCode?.flag}</span>
                             <p>{countryCode?.dial_code}</p>
                             <img src="/icons/chevron-down.svg" className='w-[15px] ml-2' alt="" />
@@ -132,7 +132,7 @@ function PhoneNumberInput({ error, defaultValue }: { error?: string, defaultValu
                 </span>}
             </div>
 
-        </>
+        </div>
     )
 }
 
