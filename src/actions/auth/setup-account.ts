@@ -55,7 +55,6 @@ export const setupAccount = async (
         const redirectUrl = body?.message?.toLowerCase().includes('please verify the new email address') ?
             `/auth/confirm-letter?email=${data.email}` : stage !== 'three' ? `/auth/setup-account?stage=${stage == 'one' ? 'two' : 'three'}` : `/auth/setup-complete?email=${formData.get('email')}`;
 
-        console.log({ redirectUrl })
         return toFormState('INFO', successMessage, redirectUrl);
     } catch (error) {
         return fromErrorToFormState(error);

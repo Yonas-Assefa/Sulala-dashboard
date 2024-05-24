@@ -12,10 +12,6 @@ function FileInput({ label, name, error, accept, id, ...props }: FileInputProps)
         setFile(e.target.files?.[0])
     }
 
-    setInterval(() => {
-        console.log({ file })
-    }, 1000)
-
     React.useEffect(() => {
         if (inputRef.current) {
             const dataTransfer = new DataTransfer();

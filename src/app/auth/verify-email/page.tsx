@@ -2,8 +2,17 @@
 import { verifyEmail } from '@/actions/auth/verify-email'
 import { FormState } from '@/utils/formStateHelper'
 import pushNotification from '@/utils/pushNotification.util'
+import { Metadata } from 'next'
 import { redirect, useRouter } from 'next/navigation'
 import React from 'react'
+
+export const metadata: Metadata = {
+  title: 'Sulala | Auth Verify Email',
+  description: 'Verify your email address to get started with Sulala.',
+  icons: [
+    '/sulala-logo.svg',
+  ]
+};
 
 type Props = {
   searchParams: {

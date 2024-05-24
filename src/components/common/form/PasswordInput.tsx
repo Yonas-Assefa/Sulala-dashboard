@@ -19,7 +19,7 @@ function PasswordInput({ label, placeholder, name, id, showLabel, error }: Props
     }
 
     return (
-        <div>
+        <div className='flex flex-col gap-3'>
             {showLabel && <label htmlFor={id} className='self-start text-black'>{label}</label>}
             <div className={`flex items-center px-3 justify-between gap-0 border rounded-[40px] w-full ${error ? 'border-danger bg-dangerlight' : 'focus-within:border-primary'}`}>
 

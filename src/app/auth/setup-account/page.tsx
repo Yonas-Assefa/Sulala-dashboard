@@ -4,6 +4,15 @@ import BackButton from '@/components/common/ui/BackButton'
 import ProgressBar from '@/components/common/ui/ProgressBar'
 import { redirect } from 'next/navigation'
 import React from 'react'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Sulala | Auth Setup Account',
+  description: 'Setup your Sulala account to start buying and selling goods and services.',
+  icons: [
+    '/sulala-logo.svg',
+  ]
+};
 
 type Props = {
   searchParams: {

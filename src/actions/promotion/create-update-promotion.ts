@@ -74,7 +74,6 @@ export const createUpdatePromotion = async (
         const METHOD = action === 'add' ? 'POST' : 'PATCH'
         const URL = action === 'add' ? PROMOTIONS : `${PROMOTIONS}${item_id}/`
 
-        console.log({ METHOD, URL })
         const response = await fetch(URL, {
             method: METHOD,
             headers: getMultiPartRequestHeaders(),

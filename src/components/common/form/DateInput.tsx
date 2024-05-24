@@ -76,8 +76,6 @@ function DateInput({ label, setValue, id, name, error, defaultValue }: Props) {
         }
     }, [date, time])
 
-    console.log({ date, time })
-
     return (
         <div>
             <p>{label}</p>

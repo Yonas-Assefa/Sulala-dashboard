@@ -1,6 +1,15 @@
 'use client'
 import BackButton from '@/components/common/ui/BackButton'
-import React, { ElementRef, useEffect } from 'react'
+import { Metadata } from 'next';
+import React, { useEffect } from 'react'
+
+export const metadata: Metadata = {
+    title: 'Sulala | Auth Confirmation Letter',
+    description: 'Confirm your email address to get started with Sulala.',
+    icons: [
+        '/sulala-logo.svg',
+    ]
+};
 
 type Props = {
     searchParams: {

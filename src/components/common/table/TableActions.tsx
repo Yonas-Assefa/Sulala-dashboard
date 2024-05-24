@@ -80,11 +80,6 @@ function TableActions({ edit, delete: deleteItem, promote, product, toggle, acti
         return pathname + '/edit/' + createQueryString([{ key: 'item', value: product.id }, { key: 'type', value: 'product' }])
     }
 
-    React.useEffect(() => {
-        console.log({ message: toggleValue })
-        console.log({ optimisticMessages: optimisticToggleValue })
-    }, [toggleValue, optimisticToggleValue])
-
     const handleToogle = async () => {
         addOptimisticToggleValue(!toggleValue.checked)
         startTransition(async () => {
