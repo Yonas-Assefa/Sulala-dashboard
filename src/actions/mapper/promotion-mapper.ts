@@ -2,7 +2,6 @@ import { BASE_URL } from "@/config/urls"
 import { changeISOToLocaleDate } from "@/utils/dateFormatter.util"
 
 export const promotionMapper = (data: any) => {
-    console.log({ data })
     if (Array.isArray(data)) {
         return data.map((promotion: any) => {
             return {

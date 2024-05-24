@@ -3,7 +3,6 @@ import { TextInputProps } from '@/types/props.type'
 import React from 'react'
 
 function TextInput({ value: otVal, setValue: emitVal, id, placeholder, label, name, autoComplete, error, type = 'text', defaultValue, required }: TextInputProps) {
-    console.log({ defaultValue })
     const [value, setValue] = React.useState(defaultValue || otVal || '')
 
     React.useEffect(() => {

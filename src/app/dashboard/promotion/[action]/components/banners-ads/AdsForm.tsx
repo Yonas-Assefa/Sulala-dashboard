@@ -47,8 +47,6 @@ function BannerAdsForm({ products, promotion }: Props) {
     useToastMessage(formState);
     useRedirectRoute(formState);
 
-    console.log({ promotion })
-
     return (
         <div className='grid grid-cols-3 gap-6'>
             <form action={action} className='col-span-2 flex flex-col gap-5 bg-white'>
