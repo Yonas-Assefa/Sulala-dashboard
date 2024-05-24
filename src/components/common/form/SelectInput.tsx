@@ -16,7 +16,7 @@ function NoItemPlaceholder() {
     )
 }
 
-function CustomMultiSelectInput({ setValue, placeholder, label, name, id, error, multi = false, nested = false, withImage = false, data, defaultValue, searchable = false }: CustomSelectInputProps) {
+function SelectInput({ setValue, placeholder, label, name, id, error, multi = false, nested = false, withImage = false, data, defaultValue, searchable = false, required }: CustomSelectInputProps) {
     const [options, setOptions] = React.useState<SelectInputSchema[]>(data || [])
 
     const defaultSelected = (typeof defaultValue === 'string' || typeof defaultValue === 'number') ?
@@ -133,14 +133,21 @@ function CustomMultiSelectInput({ setValue, placeholder, label, name, id, error,
     return (
         // REF IS USED TO DETECT CLICK OUTSIDE THE DROPDOWN PARENT DIV ELEMENT TO TRIGGER CLOSE DROPDOWN
         // SELECT REF IS USED TO OPEN AND CLOSE THE DROPDOWN
-        <div ref={ref}>
+        <div ref={ref} className='flex flex-col w-full gap-3'>
             {/* <input type="text" id={id} name={name} value={multi ? selected.map(s => s.value) : selected[0]?.value} hidden onChange={() => { }} /> */}
             {
                 selected.map((item, i) => (
                     <input type="text" id={id} name={name} value={item.value} key={i} hidden onChange={() => { }} />
                 ))
             }
-            <p className='self-start capitalize'>{label}</p>
+            <p className='self-start capitalize'>
+                {label}
+                {
+                    required &&
+                    <span className='text-danger'>*&nbsp;
+                        <sup className='text-xs opacity-70'>(required)</sup></span>
+                }
+            </p>
             <details ref={selectRef} className={`dropdown bg-white rounded-[30px] m-0 p-0 border w-full hover:bg-white outline-none `}>
                 {/* SUMMARY HOLDS SELECTED COMPUTED VALUE OR PLACEHOLDER IF THERE IS NO SELECTED VALUE */}
                 <summary className={`flex items-center overflow-hidden px-3 justify-between gap-0 rounded-[40px] w-full cursor-pointer input select-none focus:outline-none ${computedValue ? 'text-black' : 'text-gray-400'} ${error ? 'border-danger bg-dangerlight' : 'focus-within:border-primary bg-transparent'}`}
@@ -204,4 +211,4 @@ function CustomMultiSelectInput({ setValue, placeholder, label, name, id, error,
     )
 }
 
-export default CustomMultiSelectInput
+export default SelectInput

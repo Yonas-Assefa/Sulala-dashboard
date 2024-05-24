@@ -23,7 +23,7 @@ export const createUpdatePromotion = async (
         const ad_files = formData.get('ad_files')
 
         if (ad_files && ad_files instanceof File && ad_files?.size > 0) {
-            Object.assign(dataToBeParsed, { ad_files })
+            Object.assign(dataToBeParsed, { files: ad_files })
         }
 
         const promotion_type = formData.get('promotion_type')
@@ -81,6 +81,7 @@ export const createUpdatePromotion = async (
         });
 
         const body = await response.json()
+        console.log({ body, data })
         // if (!response.ok || !body.success) {
         if (!body.success) {
             const message = getResponseErrorMessage(body)

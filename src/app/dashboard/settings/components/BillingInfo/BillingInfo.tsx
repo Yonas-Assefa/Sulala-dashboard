@@ -2,6 +2,7 @@
 import React from 'react'
 import BillingInfoCard from './BillingInfoCard'
 import { openModal } from '@/lib/modals'
+import NoItemsFound from '@/components/common/ui/NoItemsFound'
 
 type Props = {
     billings: any
@@ -14,9 +15,14 @@ function BillingInfo({ billings }: Props) {
                 <h4 className='font-[500]'>Payment methods</h4>
 
                 {
-                    Array.isArray(billings) && billings.map((billing, index) => (
-                        <BillingInfoCard key={index} isPrimary={billing.primary} card_number={billing.card_number} id={billing.id} />
-                    ))
+                    Array.isArray(billings) && (
+                        billings.length !== 0 ? billings.map((billing, index) => (
+                            <BillingInfoCard key={index} isPrimary={billing.primary} card_number={billing.card_number} id={billing.id} />
+                        ))
+                            : <div className='p-1 bg-tertiary border '>
+                                <p className='text-sm text-black/50 font-serif'>No billing info found!</p>
+                            </div>
+                    )
                 }
 
 

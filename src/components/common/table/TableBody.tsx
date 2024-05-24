@@ -45,7 +45,7 @@ function TableBody({ tableSchema, mockData, actionOptions }: Props) {
                                                             </div>
                                                         }
                                                         {!schema.breadcrumb ?
-                                                            (<p>{schema.type == 'money' ? formatNumber(product_key) : schema.type == 'pieces' ? formatPiece(product_key) : product_key}</p>)
+                                                            (<p className='capitalize'>{schema.type == 'money' ? formatNumber(product_key) : schema.type == 'pieces' ? formatPiece(product_key) : (product_key + '').toLowerCase()}</p>)
                                                             : <div className="max-w-xs text-sm breadcrumbs">
                                                                 <ul className='bg-tertiary p-1 rounded-md drop-shadow-sm hover:cursor-pointer'>
                                                                     {

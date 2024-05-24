@@ -2,7 +2,7 @@
 import { TextInputProps } from '@/types/props.type'
 import React from 'react'
 
-function TextInput({ value: otVal, setValue: emitVal, id, placeholder, label, name, autoComplete, error, type = 'text', defaultValue, dynamicPlaceholder = /\d{2}\.\d{2}\.\d{4}/ }: TextInputProps) {
+function TextInput({ value: otVal, setValue: emitVal, id, placeholder, label, name, autoComplete, error, type = 'text', defaultValue, required }: TextInputProps) {
     console.log({ defaultValue })
     const [value, setValue] = React.useState(defaultValue || otVal || '')
 
@@ -25,7 +25,14 @@ function TextInput({ value: otVal, setValue: emitVal, id, placeholder, label, na
 
     return (
         <label htmlFor={id} className='flex flex-col gap-3'>
-            <p className='self-start text-black'>{label}</p>
+            <p className='self-start text-black'>
+                {label}
+                {
+                    required &&
+                    <span className='text-danger'>*&nbsp;
+                        <sup className='text-xs opacity-70'>(required)</sup></span>
+                }
+            </p>
             <div className={`flex items-center px-3 justify-between gap-0 border rounded-[40px] w-full ${error ? 'bg-dangerlight border-danger' : 'bg-white focus-within:border-primary'}`}>
                 <input
                     id={id}
