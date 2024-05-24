@@ -25,7 +25,7 @@ function ForgotPassword() {
             </div>
             <form action={action} className='flex flex-col gap-6 w-full px-10'>
                 {/* SIGN IN INPUT */}
-                <AuthWithEmail takePassword={false} />
+                <AuthWithEmail takePassword={false} emailError={formState?.fieldErrors?.email?.[0]} />
                 <div className='flex flex-col gap-3 w-full items-center'>
                     <div className='w-full flex flex-col'>
                         <PrimaryButton name='Continue' type='submit' />
