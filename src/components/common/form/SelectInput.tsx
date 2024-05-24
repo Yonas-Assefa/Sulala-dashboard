@@ -1,6 +1,7 @@
 'use client'
 import { SelectInputSchema } from '@/types/input-field.type'
 import { CustomSelectInputProps } from '@/types/props.type'
+import Image from 'next/image';
 import React, { useEffect } from 'react'
 // import initialData from '@/constants/select-input.placeholder.json'
 // import initialNestedData from '@/constants/select-input-nested.placeholder.json'
@@ -189,7 +190,7 @@ function SelectInput({ setValue, placeholder, label, name, id, error, multi = fa
                                         <div className={`form-control w-full flex flex-row justify-between rounded-none ${options.length !== i + 1 && 'border-b'}`}>
                                             {/* IF DROPDOWN IS SET TO HAVE IMAGE INIT, IT WILL BE DISPLAYED HERE */}
                                             {
-                                                withImage && <img src={option?.image} alt="" className='max-w-[20px] max-h-[20px' />
+                                                withImage && <Image width={100} height={100} src={option?.image || ''} alt="" className='max-w-[20px] max-h-[20px' />
                                             }
                                             <label htmlFor='1' className="label-text cursor-pointer label w-full flex justify-between text-black text-md">
                                                 {option.label}
