@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.35.1",
+    "dayjs": "^1.11.11",
     "intl-tel-input": "^21.2.8",
     "libphonenumber-js": "^1.10.62",
     "lodash": "^4.17.21",

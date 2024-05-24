@@ -1,4 +1,5 @@
 'use client'
+import dayjs from 'dayjs'
 import React from 'react'
 type Props = {
     label: string
@@ -10,28 +11,24 @@ type Props = {
 }
 
 const extractDateAndTime = (dateTime: string | undefined) => {
-    const inputString = (new Date(dateTime || '')).toLocaleString();
-
-    if (inputString == 'Invalid Date') return { time: '', date: '' }
-
-    const [datePart, timePart] = inputString.split(",");
-
-    const [month, day, year] = datePart.trim().split("/");
-    const formattedDate = `${year.padStart(4, "0")}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
-
-    const timeComponents = timePart.trim().split(":");
-    let hour = parseInt(timeComponents[0]);
-    const minute = timeComponents[1];
-    if (timeComponents[2].toLowerCase() === "pm" && hour != 12) {
-        hour += 12;
+    if (!dateTime) {
+        return { time: '', date: '' };
     }
-    const formattedTime = `${minute.padStart(2, "0")}:${hour.toString().padStart(2, "0")}`;
+
+    const parsedDate = dayjs(dateTime);
+
+    if (!parsedDate.isValid()) {
+        return { time: '', date: '' };
+    }
+
+    const formattedDate = parsedDate.format('YYYY-MM-DD');
+    const formattedTime = parsedDate.format('HH:mm');
 
     return {
         time: formattedTime,
         date: formattedDate,
-    }
-}
+    };
+};
 
 function DateInput({ label, setValue, id, name, error, defaultValue }: Props) {
     const [time, setTime] = React.useState<string>(extractDateAndTime(defaultValue)?.time)

@@ -3,13 +3,15 @@ import { TextInputProps } from '@/types/props.type'
 import React from 'react'
 
 function TextInput({ value: otVal, setValue: emitVal, id, placeholder, label, name, autoComplete, error, type = 'text', defaultValue, dynamicPlaceholder = /\d{2}\.\d{2}\.\d{4}/ }: TextInputProps) {
+    console.log({ defaultValue })
     const [value, setValue] = React.useState(defaultValue || otVal || '')
 
     React.useEffect(() => {
         if (setValue && defaultValue) {
             setValue(defaultValue)
+            emitVal && emitVal(defaultValue)
         }
-    }, [])
+    }, [defaultValue])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
