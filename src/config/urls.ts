@@ -27,7 +27,7 @@ export const ADD_BILLING_INFO = `${VENDOR_BASE_URL}add_payment_method/`;
 export const DELETE_BILLING_INFO = `${VENDOR_BASE_URL}delete_payment_method/`;
 export const SET_PRIMARY_BILLING = `${VENDOR_BASE_URL}set_payment_method_primary/`;
 export const CHANGE_PASSWORD = `${VENDOR_BASE_URL}update_profile/`;
-export const LOGOUT = `${VENDOR_BASE_URL}update_profile/`;
+export const LOGOUT = `${API_URL}logout/`;
 export const GET_BILLING_ACCOUNT = `${VENDOR_BASE_URL}get_payment_method/`;
 
 // CATEGORY URLS

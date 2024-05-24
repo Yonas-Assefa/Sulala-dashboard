@@ -6,10 +6,23 @@ import ResetButton from '../ui/ResetButton'
 function FileInput({ label, name, error, accept, id, ...props }: FileInputProps) {
 
     const [file, setFile] = React.useState<File | null | undefined>(null)
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
     const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFile(e.target.files?.[0])
     }
+
+    setInterval(() => {
+        console.log({ file })
+    }, 1000)
+
+    React.useEffect(() => {
+        if (inputRef.current) {
+            const dataTransfer = new DataTransfer();
+            file instanceof File && dataTransfer.items.add(file);
+            inputRef.current.files = dataTransfer.files;
+        }
+    }, [file]);
 
     const acceptFilesList = accept.map((fileType, index) => {
         const filteredFileType = fileType.replace('.', '').toUpperCase()
@@ -40,6 +53,7 @@ function FileInput({ label, name, error, accept, id, ...props }: FileInputProps)
                 </label>
                 <input
                     type="file"
+                    ref={inputRef}
                     id={id || 'file-1'}
                     name={name || 'text-input'}
                     onChange={handleFile}

@@ -2,7 +2,8 @@
 'use client'
 
 import { type ReactNode, createContext, useRef, useContext } from 'react'
-import { type StoreApi, useStore } from 'zustand'
+import { type StoreApi, useStore, create } from 'zustand'
+import { persist } from "zustand/middleware";
 
 import {
     type SetupStore,

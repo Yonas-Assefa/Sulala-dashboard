@@ -34,11 +34,15 @@ function PasswordInput({ label, placeholder, name, id, showLabel, error }: Props
                 />
                 {showPassword ?
                     <button
-                        onClick={toggleShowHidePassword}>
+                        onClick={toggleShowHidePassword}
+                        type='button'
+                    >
                         <img src="/opened-eye.svg" alt="" className='mr-0 stroke-emerald-500' />
                     </button> :
                     <button
-                        onClick={toggleShowHidePassword}>
+                        onClick={toggleShowHidePassword}
+                        type='button'
+                    >
                         <img src="/closed-eye.svg" alt="" className='mr-0 stroke-emerald-500' />
                     </button>
                 }

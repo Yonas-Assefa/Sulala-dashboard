@@ -20,7 +20,11 @@ function CustomMultiSelectInput({ setValue, placeholder, label, name, id, error,
     const [options, setOptions] = React.useState<SelectInputSchema[]>(data || [])
 
     const defaultSelected = (typeof defaultValue === 'string' || typeof defaultValue === 'number') ?
-        [options.find(option => option.value == defaultValue)] as SelectInputSchema[] :
+        (
+            options.find(option => option.value == defaultValue) ?
+                [options.find(option => option.value == defaultValue)] as SelectInputSchema[]
+                : []
+        ) :
         Array.isArray(defaultValue) ? (
             defaultValue.length == 0 ? [] :
                 defaultValue.map(val => {

@@ -1,4 +1,5 @@
 'use client'
+import { useCounterStore } from '@/providers/setup-account-store-provider'
 import { notFound } from 'next/navigation'
 import React from 'react'
 
@@ -11,6 +12,14 @@ type Props = {
 function SetupComplete({ searchParams: { email } }: Props) {
 
   if (!email) notFound()
+
+  const { completeStage } = useCounterStore(
+    (state) => state,
+  )
+
+  React.useEffect(() => {
+    completeStage()
+  }, [])
 
   return (
     <div className='text-black w-9/12 flex flex-col gap-5 items-center'>
