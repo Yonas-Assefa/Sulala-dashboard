@@ -2,6 +2,7 @@
 import React from 'react'
 import ImageUnselectButton from '../ui/ImageUnselectButton'
 import { convertToArray } from '@/utils/convertObjToArray'
+import Image from 'next/image'
 
 type Props = {
     multi?: boolean
@@ -54,7 +55,7 @@ function ImageListSelector({ multi = false, label, error, name, id, defaultValue
                                     <ImageUnselectButton handleClick={() => {
                                         setFileList((prevFile) => prevFile.filter((_, i) => i !== index))
                                     }} />
-                                    <img src={typeof file == 'string' ? file : URL.createObjectURL(file)} alt="" className='w-full h-full rounded-[20px]' />
+                                    <Image width={100} height={100} src={typeof file == 'string' ? file : URL.createObjectURL(file)} alt="" className='w-full h-full rounded-[20px]' />
                                 </div>
                             ))
                         }
@@ -67,7 +68,7 @@ function ImageListSelector({ multi = false, label, error, name, id, defaultValue
                     <div className='w-full'>
                         <div className='bg-[#d9d9d9] block rounded-[20px] relative'>
                             <ImageUnselectButton handleClick={() => setFileList([])} />
-                            <img src={typeof fileList[0] == 'string' ? fileList[0] : URL.createObjectURL(fileList[0])} alt="" className='w-full h-full rounded-[20px]' />
+                            <Image width={100} height={100} src={typeof fileList[0] == 'string' ? fileList[0] : URL.createObjectURL(fileList[0])} alt="" className='w-full h-full rounded-[20px]' />
                         </div>
                     </div>}
             <input

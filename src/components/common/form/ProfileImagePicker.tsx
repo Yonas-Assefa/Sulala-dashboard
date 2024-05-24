@@ -8,6 +8,7 @@ import { useFormState } from 'react-dom'
 import { EMPTY_FORM_STATE } from '@/utils/formStateHelper'
 import { useToastMessage } from '@/hooks/useToastMessage'
 import { useRedirectRoute } from '@/hooks/useRedirectRoute'
+import Image from 'next/image'
 
 type Props = {
     error?: string | undefined
@@ -86,7 +87,7 @@ function ProfileImagePicker({ error, name, id, defaultValue }: Props) {
                         </div>
                     </label> :
                     <div className='flex flex-row gap-4 items-center'>
-                        <img src={image.value} alt="" className='rounded-full aspect-square  w-[6vw] min-w-[50px]' />
+                        <Image width={100} height={100} src={image.value} alt="" className='rounded-full aspect-square  w-[6vw] min-w-[50px]' />
                         <div className='flex flex-row gap-2'>
                             <label htmlFor={id} className='text-primary font-semibold cursor-pointer'>Change photo</label>
                             <button type='button' className='text-danger font-semibold' onClick={handleDeleteImage}>Delete photo</button>
