@@ -2,6 +2,8 @@ import Footer from "@/components/common/ui/Footer";
 import SulalaLogo from "@/components/SulalaLogo";
 import React from "react";
 import { Metadata } from "next";
+import landingImage from '@/../public/landing.png'
+import Image from "next/image";
 
 export const metadata: Metadata = {
     title: 'Sulala | Auth',
@@ -15,7 +17,8 @@ export default function AuthPageLayout({ children }: Readonly<{ children: React.
     return (
         <div className='w-screen h-screen bg-blue-500 flex flex-row'>
             <div className='w-9/12'>
-                <img src="/landing.png" alt="" className='w-full h-full' />
+                {/* <img src="/landing.png" alt="" className='w-full h-full' /> */}
+                <Image src={landingImage} alt="" className='w-full h-full' />
             </div>
             <div className='bg-white w-3/12 min-w-[600px]'>
                 <div className='w-full h-full flex justify-between flex-col items-center'>
