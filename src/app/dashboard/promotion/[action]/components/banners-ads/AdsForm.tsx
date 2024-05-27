@@ -50,7 +50,7 @@ function BannerAdsForm({ products, promotion }: Props) {
     useRedirectRoute(formState);
 
     return (
-        <div className='grid grid-cols-3 gap-6'>
+        <div className='flex flex-col gap-3 md:grid md:grid-cols-3 md:gap-6'>
             <form action={action} className='col-span-2 flex flex-col gap-5 bg-white'>
                 <div className='flex flex-col gap-5 bg-tertiary rounded-[30px] p-8'>
                     <input type="text" hidden value='BANNER' name='promotion_type' id='promotion_type' onChange={() => { }} />
@@ -69,7 +69,7 @@ function BannerAdsForm({ products, promotion }: Props) {
                             label='Campaign name'
                             error={formState?.fieldErrors?.name?.[0]} />
                         {/* <TextAreaInput id='description' placeholder='Enter description/promotional quotes' label='Description/Promotional quotes'   /> */}
-                        <div className="grid grid-cols-2">
+                        <div className="grid grid-cols-1 md:grid-cols-2">
                             <DateInput
                                 setValue={setStartDate}
                                 defaultValue={promotion?.start_date}
@@ -155,7 +155,7 @@ function BannerAdsForm({ products, promotion }: Props) {
                         />
                     </div>
                 </div>
-                <div className="flex flex-row">
+                <div className="flex flex-row fixed bottom-0 md:relative p-2 md:p-0">
                     <PrimaryButton padding={'md'} name='Pay & Schedule' type='submit' />
                 </div>
 

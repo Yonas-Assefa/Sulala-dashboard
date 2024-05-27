@@ -12,9 +12,9 @@ function Tab({ tab, item }: Props) {
 
     return (
         <div className='box-content border-b-2 border-secondary'>
-            <div className="self-start font-medium flex flex-row">
-                <Link href={createQueryString('tab', 'discounts-ads')} className={`tab capitalize border-b-2 px-6 -mb-[1px] ${tab == 'discounts-ads' ? 'text-primary border-primary' : 'text-secondary border-transparent'}`}>{item} discounting promotion</Link>
-                <Link href={createQueryString('tab', 'banner-ads')} className={`tab capitalize border-b-2 px-6 -mb-[1px] ${tab == 'banner-ads' ? 'text-primary border-primary' : 'text-secondary border-transparent'}`}>Banner ads</Link>
+            <div className="md:self-start font-sm md:font-medium md:flex md:flex-row grid grid-cols-2">
+                <Link href={createQueryString('tab', 'discounts-ads')} className={`tab overflow-hidden md:overflow-auto capitalize md:border-b-2 md:px-6 -mb-[1px] ${tab == 'discounts-ads' ? 'md:text-primary md:border-primary text-tertiary bg-primary md:bg-transparent' : 'md:text-secondary md:border-transparent text-primary bg-tertiary md:bg-transparent'}`}>{item} discounting promotion</Link>
+                <Link href={createQueryString('tab', 'banner-ads')} className={`tab capitalize md:border-b-2 md:px-6 -mb-[1px] ${tab == 'banner-ads' ? 'md:text-primary md:border-primary text-tertiary bg-primary md:bg-transparent' : 'md:text-secondary md:border-transparent text-primary bg-tertiary md:bg-transparent'}`}>Banner ads</Link>
             </div>
         </div>
     )

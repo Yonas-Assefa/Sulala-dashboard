@@ -146,7 +146,7 @@ function CustomRadioWithConditionalInput({
                     </label>
                     {inputForEach && radioInput?.input && radioInput.id == input &&
                         // INPUT FOR EACH RADIO BUTTON
-                        <div className={`w-full check grid grid-cols-2 gap-4`}>
+                        <div className={`w-full check grid grid-cols-1 md:grid-cols-2 gap-4`}>
                             {
                                 convertToArray(radioInput.input).map((input) =>
                                 (<ChildInput
@@ -165,7 +165,7 @@ function CustomRadioWithConditionalInput({
             ))}
             {!inputForEach && data?.input && input &&
                 // INPUT FOR WHOLE CHECKBOX
-                <div className='w-full check grid grid-cols-2 gap-4'>
+                <div className='w-full check grid grid-cols-1 md:grid-cols-2 gap-4'>
                     {
                         convertToArray(data.input).map((input) => (
                             <ChildInput

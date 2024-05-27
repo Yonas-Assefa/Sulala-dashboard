@@ -15,8 +15,7 @@ export const getCategories = async () => {
         if (response.status === 404) {
             notFound()
         }
-        // throw new Error(body.message || 'Failed to getch categories');
-        return []
+        throw new Error(body.message || 'Failed to getch categories');
     }
     const formatedCategory = formatCategory(body.results)
     return formatedCategory

@@ -15,10 +15,10 @@ export const getPromotions = async () => {
     })
     const body = await response.json()
 
-    if (!response.ok || !body.data) {
+    if (!response.ok || !body.results) {
         throw new Error(body.message || 'Failed to get promotions');
     }
-    return promotionMapper(body.data)
+    return promotionMapper(body.results)
 }
 
 export const getOnePromotion = async (promotion_id: string) => {

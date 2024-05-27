@@ -41,11 +41,11 @@ function ProductForm({ categoryLists, productTags, initialValue, tab }: Props) {
         <form action={action} className='flex flex-col gap-4'>
             <input type="text" name="tab" id="tab" value={tab} onChange={() => { }} hidden />
             <input type="text" name="item" id="item" value={initialValue?.id} onChange={() => { }} hidden />
-            <div className='grid grid-cols-3 gap-6'>
+            <div className='flex flex-col gap-3 md:grid md:grid-cols-3 md:gap-6'>
                 <div className='col-span-2'>
                     <div className="flex flex-col gap-5 p-8 bg-tertiary rounded-[30px]">
                         <h3 className='font-semibold text-xl'>General Info</h3>
-                        <div className='grid grid-cols-2 max-w-[1300px] gap-5'>
+                        <div className='flex flex-col md:grid md:grid-cols-2 max-w-[1300px] gap-5'>
                             <TextInput id='product_name' name='product_name' error={formState.fieldErrors?.title?.[0]} placeholder='Enter product name' label='Title' defaultValue={initialValue?.title} />
                             <TextInput id='quality' name='quality' type='number' placeholder='Enter Quality' label='Quality' error={formState.fieldErrors?.inventory?.[0]} defaultValue={initialValue?.inventory} />
                             <div className="col-span-2">
