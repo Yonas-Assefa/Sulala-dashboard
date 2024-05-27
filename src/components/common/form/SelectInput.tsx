@@ -2,11 +2,11 @@
 import { SelectInputSchema } from '@/types/input-field.type'
 import { CustomSelectInputProps } from '@/types/props.type'
 import Image from 'next/image';
-import React, { useEffect } from 'react'
+import React, { useDeferredValue, useEffect } from 'react'
 // import initialData from '@/constants/select-input.placeholder.json'
 // import initialNestedData from '@/constants/select-input-nested.placeholder.json'
 import { useDetectClickOutside } from 'react-detect-click-outside';
-
+import { motion } from 'framer-motion'
 
 function NoItemPlaceholder() {
     return (
@@ -123,11 +123,13 @@ function SelectInput({ setValue, placeholder, label, name, id, error, multi = fa
     }, [selected])
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value
         setSearch(e.target.value)
-        if (e.target.value) {
-            setOptions(options.filter(option => option.label.toLowerCase().includes(e.target.value.toLowerCase())))
+        if (value) {
+            const filteredOptions = (multi && !selectedParent) ? data?.filter(option => option.label.toLowerCase().includes(value.toLowerCase())) : options.filter(option => option.label.toLowerCase().includes(value.toLowerCase()))
+            setOptions(filteredOptions || [])
         } else {
-            setOptions(data || [])
+            setOptions(multi && !selectedParent ? data || [] : data?.find(option => option.value === selectedParent?.value)?.options || [])
         }
     }
 
@@ -160,8 +162,9 @@ function SelectInput({ setValue, placeholder, label, name, id, error, multi = fa
                 {/* DROPDOWN LIST STARTS FROM HERE */}
                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 my-3 border-2 shadow rounded-box w-full bg-white">
                     {
-                        searchable &&
-                        <input type="text" name={`search-${id}`} id={`search-${id}`} placeholder={`Search ${label?.toLowerCase() || '...'}`} className='bg-white border m-2 p-1 rounded-[10px] w-11/12' value={search} onChange={handleSearch} />
+                        // searchable &&
+                        true &&
+                        <input type="text" name={`search-${id}`} id={`search-${id}`} placeholder={`Search ${label?.toLowerCase()}...`} className='bg-primary/10 border m-2 p-1 rounded-[10px] w-11/12 focus:border-primary selection:bg-primary selection:text-tertiary caret-primary' value={search} onChange={handleSearch} />
                     }
                     {/* IF THERE IS SELECTED PARENT, THE FOLLOWING COMPONENT APPEARS WITH TITLE OF SELECTED PARENT AND BACK BUTTON */}
                     {selectedParent &&
@@ -197,7 +200,7 @@ function SelectInput({ setValue, placeholder, label, name, id, error, multi = fa
                                             </label>
                                             {/* IF THIS ITEM IS IN SELECTED ITEMS LIST, CHECK MARK WILL APPEAR */}
                                             {(nested && !selectedParent) ? <img src="/icons/chevron-right.svg" alt="" /> :
-                                                ((nested && selectedParent) || (!nested && !selectedParent)) && selected.find((item => item.value === option.value)) && <img src="/icons/check.svg" alt="" />}
+                                                ((nested && selectedParent) || (!nested && !selectedParent)) && selected.find((item => item.value === option.value)) && <img src="/icons/check.svg" alt="" className='w-[20px]' />}
                                         </div>
                                     </li>
                                 )

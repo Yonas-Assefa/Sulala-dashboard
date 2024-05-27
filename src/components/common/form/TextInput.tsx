@@ -38,7 +38,7 @@ function TextInput({ value: otVal, setValue: emitVal, id, placeholder, label, na
                     type={type}
                     placeholder={placeholder || 'Type here'}
                     name={name || 'text-input'}
-                    className='input w-full max-w-xs bg-transparent focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none'
+                    className='input w-full max-w-xs bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none'
                     autoComplete={autoComplete || 'false'}
                     value={value}
                     onChange={handleChange}

@@ -1,3 +1,4 @@
+'use client'
 import { useRedirectRoute } from '@/hooks/useRedirectRoute'
 import { useToastMessage } from '@/hooks/useToastMessage'
 import { EMPTY_FORM_STATE, FormState } from '@/utils/formStateHelper'
@@ -7,7 +8,7 @@ import { useFormState, useFormStatus } from 'react-dom'
 type Props = {
     initialValue: number
     buttonLabel: string
-    buttonFunction: () => Promise<any>
+    buttonFunction?: () => Promise<any>
 }
 
 function Counter({ initialValue = 30, buttonFunction, buttonLabel }: Props) {
@@ -23,7 +24,7 @@ function Counter({ initialValue = 30, buttonFunction, buttonLabel }: Props) {
 
     const handleClick = async () => {
         setPending(true)
-        await buttonFunction()
+        buttonFunction && await buttonFunction()
         setCounter(initialValue)
         setPending(false)
     }
