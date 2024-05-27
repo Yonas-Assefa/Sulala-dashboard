@@ -3,7 +3,7 @@ import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateH
 import { UPDATE_SHOP_ACCOUNT, } from '../../config/urls';
 import { personalInfoSettingSchema, shopInfoSettingSchema, } from '../schema/zod-schema';
 import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders, getResponseErrorMessage, removeNullAndUndefined } from '../../lib/helper';
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 
 export const updateShopInfo = async (
     formState: FormState,
@@ -40,6 +40,7 @@ export const updateShopInfo = async (
         const successMessage = body.message || 'Successfully updated shop info';
 
         revalidatePath('/dashboard/settings')
+        revalidateTag('shop-info-detail')
 
         return toFormState('SUCCESS', successMessage);
     } catch (error) {

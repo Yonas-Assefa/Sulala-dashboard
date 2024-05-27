@@ -21,7 +21,7 @@ function ConfirmationLetter({ searchParams: { email } }: Props) {
 
 
     const counterFunction = async () => {
-        console.log('Resend email')
+        return Promise.resolve()
     }
 
     return (
@@ -39,7 +39,7 @@ function ConfirmationLetter({ searchParams: { email } }: Props) {
                     {/* SIGN UP LINK */}
                     <div className='flex flex-col gap-3 w-full items-center'>
 
-                        <Counter initialValue={30} buttonLabel='Send new email' />
+                        <Counter initialValue={30} buttonLabel='Send new email' buttonFunction={counterFunction} />
                     </div>
                 </div>
             </div>

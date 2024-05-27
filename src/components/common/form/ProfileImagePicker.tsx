@@ -106,12 +106,18 @@ function ProfileImagePicker({ error, name, id, defaultValue }: Props) {
                             </div>
                         </div>
                     </label> :
-                    <div className='flex flex-row gap-4 items-center'>
+                    <div className='flex flex-row gap-4 items-center relative'>
                         <Image width={100} height={100} src={image.value} alt="" className='rounded-full aspect-square  w-[6vw] min-w-[50px]' />
                         <div className='flex flex-row gap-2'>
                             <label htmlFor={id} className='text-primary font-semibold cursor-pointer'>Change photo</label>
                             <button type='button' className='text-danger font-semibold' onClick={handleRemoveImage}>Delete photo</button>
                         </div>
+                        {/* {
+                            image.value && image.value?.startsWith('data:image/') &&
+                            <div className='flex flex-row gap-2 right-0 justify-end absolute bottom-5 tooltip tooltip-bottom tooltip-open hover:cursor-pointer tooltip-error' data-tip='⚠️ &nbsp;profile not saved!'>
+                                <img src={"/icons/alert.svg"} alt="" className='w-[15px] aspect-square' />
+                            </div>
+                        } */}
                     </div>
                 }
                 <input ref={inputRef} type="file" name={name} id={id} className='hidden' accept='image/*' onChange={handleRawImage} />

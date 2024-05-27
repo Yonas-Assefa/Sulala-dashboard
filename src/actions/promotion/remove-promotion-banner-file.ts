@@ -15,15 +15,12 @@ export const removePromotionBannerFile = async (
             file_path: formData.get('file_path'),
         }
 
-        console.log({ data })
-
         const response = await fetch(REMOVE_PROMOTION_FILE, {
             method: 'PATCH',
             headers: getRequestHeaders(),
             body: JSON.stringify(data),
         });
 
-        console.log({ body: await response.json() })
         if (!response.ok) {
             if (response.status === 404) {
                 throw new Error('Promotion file not found');
