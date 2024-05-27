@@ -26,7 +26,7 @@ function PersonalInfo({ data }: Props) {
 
     return (
         <form action={action} className='mt-4 w-full flex flex-col gap-8'>
-            <div className='grid grid-cols-2 max-w-[1300px] gap-5'>
+            <div className='grid grid-cols-1 md:grid-cols-2 max-w-[1300px] gap-5'>
                 <TextInput id='first_name' name='first_name' placeholder='First name' label='First name' defaultValue={data.first_name} error={formState?.fieldErrors?.first_name?.[0]} />
                 <TextInput id='last_name' name='last_name' placeholder='Last name' label='Last name' defaultValue={data.last_name} error={formState?.fieldErrors?.last_name?.[0]} />
                 <div className='flex flex-col gap-0 w-full items-center'>

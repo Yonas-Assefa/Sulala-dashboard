@@ -106,9 +106,9 @@ function ProfileImagePicker({ error, name, id, defaultValue }: Props) {
                             </div>
                         </div>
                     </label> :
-                    <div className='flex flex-row gap-4 items-center relative'>
-                        <Image width={100} height={100} src={image.value} alt="" className='rounded-full aspect-square  w-[6vw] min-w-[50px]' />
-                        <div className='flex flex-row gap-2'>
+                    <div className='flex flex-row gap-4 items-center  w-full md:w-auto justify-between md:justify-start relative'>
+                        <Image width={100} height={100} src={image.value} alt="" className='rounded-full aspect-square w-[20vw]  md:w-[6vw] min-w-[50px]' />
+                        <div className='flex md:flex-row flex-col gap-2'>
                             <label htmlFor={id} className='text-primary font-semibold cursor-pointer'>Change photo</label>
                             <button type='button' className='text-danger font-semibold' onClick={handleRemoveImage}>Delete photo</button>
                         </div>
