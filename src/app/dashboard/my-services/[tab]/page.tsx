@@ -33,7 +33,7 @@ function page({ params: { tab } }: Props) {
                 <div className='col-span-2 flex flex-col gap-5 bg-tertiary rounded-[30px] p-8'>
                     <h3 className='font-semibold text-xl'>General Info</h3>
                     <div className='grid grid-cols-2 max-w-[1300px] gap-5'>
-                        <TextInput id='service-name' placeholder='Enter service name' label='Title' />
+                        <TextInput id='service-name' placeholder='Enter service name' label='Title' required />
                         <TextInput id='price' placeholder='Enter price' label='Price' />
                         <div className="col-span-2">
                             <TextAreaInput id='description' placeholder='Text' label='Description' />

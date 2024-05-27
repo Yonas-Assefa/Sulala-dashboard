@@ -9,10 +9,10 @@ export const logout = async (
     formState: FormState,
     formData: FormData
 ) => {
-    // await fetch(LOGOUT, {
-    //     method: 'POST',
-    //     headers: getRequestHeaders()
-    // })
+    await fetch(LOGOUT, {
+        method: 'POST',
+        headers: getRequestHeaders()
+    })
 
     clearBrowserCookie()
 

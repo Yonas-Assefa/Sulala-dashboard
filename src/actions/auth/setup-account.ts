@@ -3,6 +3,7 @@ import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateH
 import { SETUP_URL, SHOP_ACCOUNT } from '../../config/urls';
 import { setupAccountFirstStepSchema, setupAccountLastStepSchema } from '../schema/zod-schema';
 import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders } from '../../lib/helper';
+import { redirect } from 'next/navigation';
 
 export const setupAccount = async (
     formState: FormState,
@@ -10,6 +11,10 @@ export const setupAccount = async (
 ) => {
     try {
         const stage = formData.get('stage')?.toString()
+
+        if (stage === 'two') {
+            return toFormState('INFO', 'Account setup 2/3', '/auth/setup-account?stage=three');
+        }
 
         const data: { phone_number?: string, email?: string } = {}
 

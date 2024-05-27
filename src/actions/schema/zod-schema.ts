@@ -337,7 +337,7 @@ export const createPromoCampaingSchema = z.object({
     }).optional(),
     description: z.string()
         .min(5, 'Description must be at least 5 character long').optional(),
-    ad_files: z.any()
+    files: z.any()
         .refine(
             fileRefine.existFn,
             fileRefine.existMg

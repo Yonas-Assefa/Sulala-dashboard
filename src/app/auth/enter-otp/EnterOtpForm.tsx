@@ -46,7 +46,7 @@ function EnterOtpForm({ phone, action: authAction }: Props) {
             <input type="text" name="otp" id="otp" hidden value={otp.join('')} />
             <input type="text" name="action" id="action" hidden value={authAction} />
             <div className='flex flex-col gap-3 w-full items-center'>
-                <Counter initialValue={0} buttonLabel='Send new code' buttonFunction={counterFunction} />
+                <Counter initialValue={30} buttonLabel='Send new code' buttonFunction={counterFunction} />
                 <div className='flex flex-col w-full'>
                     <PrimaryButton name='Confirm' type='submit' ref={submitBtn} disabled={disabled} />
                 </div>

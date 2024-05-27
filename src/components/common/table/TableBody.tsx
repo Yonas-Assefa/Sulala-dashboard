@@ -6,6 +6,7 @@ import TableActions from './TableActions'
 import TableDropDown from './TableDropDown'
 import { formatNumber } from '@/utils/priceFormatter.util'
 import { formatPiece } from '@/utils/pieceFormatter.util'
+import Image from 'next/image'
 
 type Props = {
     tableSchema: TableSchema
@@ -41,11 +42,11 @@ function TableBody({ tableSchema, mockData, actionOptions }: Props) {
                                                         {
                                                             schema.image &&
                                                             <div className=' w-[30px] h-[40px] content-stretch flex flex-col justify-center'>
-                                                                <img src={product[schema.image_key as keyof typeof product]} alt="" className='max-w-[30px] max-h-[30px]' />
+                                                                <Image width={100} height={100} src={product[schema.image_key as keyof typeof product]} alt="" className='max-w-[30px] max-h-[30px]' />
                                                             </div>
                                                         }
                                                         {!schema.breadcrumb ?
-                                                            (<p>{schema.type == 'money' ? formatNumber(product_key) : schema.type == 'pieces' ? formatPiece(product_key) : product_key}</p>)
+                                                            (<p className='capitalize'>{schema.type == 'money' ? formatNumber(product_key) : schema.type == 'pieces' ? formatPiece(product_key) : (product_key + '').toLowerCase()}</p>)
                                                             : <div className="max-w-xs text-sm breadcrumbs">
                                                                 <ul className='bg-tertiary p-1 rounded-md drop-shadow-sm hover:cursor-pointer'>
                                                                     {

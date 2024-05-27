@@ -4,7 +4,7 @@ import React from 'react'
 function Footer() {
     return (
         <div className='text-[#a2a6ac] p-8'>
-            Have a question? <Link href={'/contact'} className='text-primary font-semibold'>Contact support</Link>
+            Have a question? <Link href={'/support/contact'} className='text-primary font-semibold'>Contact support</Link>
         </div>
     )
 }

@@ -11,6 +11,7 @@ type BaseInputProps = {
     value?: string,
     defaultValue?: string
     setValue?: (value: string) => void
+    required?: boolean
 }
 
 export type TextInputProps = BaseInputProps & {

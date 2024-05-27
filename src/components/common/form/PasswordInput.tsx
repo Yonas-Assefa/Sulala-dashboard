@@ -19,7 +19,7 @@ function PasswordInput({ label, placeholder, name, id, showLabel, error }: Props
     }
 
     return (
-        <div>
+        <div className='flex flex-col gap-3'>
             {showLabel && <label htmlFor={id} className='self-start text-black'>{label}</label>}
             <div className={`flex items-center px-3 justify-between gap-0 border rounded-[40px] w-full ${error ? 'border-danger bg-dangerlight' : 'focus-within:border-primary'}`}>
 
@@ -34,11 +34,15 @@ function PasswordInput({ label, placeholder, name, id, showLabel, error }: Props
                 />
                 {showPassword ?
                     <button
-                        onClick={toggleShowHidePassword}>
+                        onClick={toggleShowHidePassword}
+                        type='button'
+                    >
                         <img src="/opened-eye.svg" alt="" className='mr-0 stroke-emerald-500' />
                     </button> :
                     <button
-                        onClick={toggleShowHidePassword}>
+                        onClick={toggleShowHidePassword}
+                        type='button'
+                    >
                         <img src="/closed-eye.svg" alt="" className='mr-0 stroke-emerald-500' />
                     </button>
                 }

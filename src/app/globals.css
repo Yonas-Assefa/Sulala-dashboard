@@ -35,10 +35,11 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
-  -webkit-box-outline-color: transparent;
+  -webkit-box-outline-color: inherit;
   outline: none;
   border: 0;
-  border-color: white;
+  border-color: inherit !important;
+  background-color: #fff;
 }
 
 input:-webkit-autofill {

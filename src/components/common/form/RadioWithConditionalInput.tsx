@@ -59,6 +59,13 @@ function ChildInput({ childDefaultValue, childError, childOptions, childSetValue
         })
     }
 
+    // IF CHILD DEFAULT VALUE EXIST WITH INPUT ID, IT ASSIGNS IT TO THE INPUT   
+    if (childDefaultValue[input.id]) {
+        Object.assign(props, {
+            defaultValue: childDefaultValue[input.id]
+        })
+    }
+
     React.useEffect(() => {
         // SETS THE DEFUALT VALUE FOR INPUT ON INITIAL
         if (childDefaultValue[input.id]) {

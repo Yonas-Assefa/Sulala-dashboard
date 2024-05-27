@@ -32,8 +32,10 @@ function DeleteModal({ deleteAction }: Props) {
             })
             const response = await deleteAction?.action(formData)
             setFormState(response || EMPTY_FORM_STATE)
-            deleteQueryStringAndPush('item')
-            closeModal('delete_item_table_modal')
+            if (response?.status === 'SUCCESS') {
+                deleteQueryStringAndPush('item')
+                closeModal('delete_item_table_modal')
+            }
         });
     }
 

@@ -4,8 +4,10 @@ import PasswordInput from '@/components/common/form/PasswordInput'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import { useRedirectRoute } from '@/hooks/useRedirectRoute';
 import { useToastMessage } from '@/hooks/useToastMessage';
+import { closeModal } from '@/lib/modals';
 import { EMPTY_FORM_STATE } from '@/utils/formStateHelper';
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDetectClickOutside } from 'react-detect-click-outside';
 import { useFormState } from 'react-dom';
 
 function ChangePasswordModal() {
@@ -16,6 +18,12 @@ function ChangePasswordModal() {
 
     useToastMessage(formState);
     useRedirectRoute(formState);
+
+    useEffect(() => {
+        if (formState.status === 'SUCCESS') {
+            closeModal('change_password_setting_modal')
+        }
+    }, [formState.status])
 
     return (
         <dialog id="change_password_setting_modal" className='modal'>

@@ -2,6 +2,15 @@ import { SignupProps } from '@/types/props.type'
 import React from 'react'
 import PhoneEmailTab from '../components/PhoneEmailTab'
 import SignInForm from './SignInForm'
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Sulala | Auth Sign In',
+  description: 'Sign in to your Sulala account',
+  icons: [
+    '/sulala-logo.svg',
+  ]
+};
 
 function SignIn({ searchParams: { by } }: SignupProps) {
 

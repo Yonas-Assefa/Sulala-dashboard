@@ -1,3 +1,4 @@
+import { createJSONStorage, persist } from 'zustand/middleware'
 import { createStore } from 'zustand/vanilla'
 
 export type SetupState = {
@@ -7,7 +8,7 @@ export type SetupState = {
     campany_name: string
     sales_category: string
     address: string
-    stage: 'one' | 'two' | 'three'
+    stage: 'one' | 'two' | 'three' | 'finished'
 }
 
 export type SetupActions = {
@@ -19,6 +20,8 @@ export type SetupActions = {
     setSalesCategory: (sales_category: string) => void
     setAddress: (address: string) => void
     setCompanyName: (campany_name: string) => void
+    resetStore: () => void,
+    completeStage: () => void
 }
 
 export type SetupStore = SetupState & SetupActions
@@ -48,31 +51,41 @@ export const defaultInitState: SetupState = {
 export const createSetupStore = (
     initState: SetupState = defaultInitState,
 ) => {
-    return createStore<SetupStore>()((set) => ({
-        ...initState,
-        nextStage: () => set((state) => {
-            if (state.stage === 'one') {
-                return { stage: 'two' }
-            }
-            if (state.stage === 'two') {
-                return { stage: 'three' }
-            }
-            return state
-        }),
-        previousStage: () => set((state) => {
-            if (state.stage === 'three') {
-                return { ...state, stage: 'two' }
-            }
-            if (state.stage === 'two') {
-                return { ...state, stage: 'one' }
-            }
-            return state
-        }),
-        setFirstName: (first_name: string) => set({ first_name }),
-        setLastName: (last_name: string) => set({ last_name }),
-        setEmail: (email: string) => set({ email }),
-        setSalesCategory: (sales_category: string) => set({ sales_category }),
-        setAddress: (address: string) => set({ address }),
-        setCompanyName: (campany_name: string) => set({ campany_name }),
-    }))
+    return createStore<SetupStore>()(
+        persist(
+            (set) => ({
+                ...initState,
+                nextStage: () => set((state) => {
+                    if (state.stage === 'one') {
+                        return { stage: 'two' }
+                    }
+                    if (state.stage === 'two') {
+                        return { stage: 'three' }
+                    }
+                    return state
+                }),
+                previousStage: () => set((state) => {
+                    if (state.stage === 'three') {
+                        return { ...state, stage: 'two' }
+                    }
+                    if (state.stage === 'two') {
+                        return { ...state, stage: 'one' }
+                    }
+                    return state
+                }),
+                setFirstName: (first_name: string) => set({ first_name }),
+                setLastName: (last_name: string) => set({ last_name }),
+                setEmail: (email: string) => set({ email }),
+                setSalesCategory: (sales_category: string) => set({ sales_category }),
+                setAddress: (address: string) => set({ address }),
+                setCompanyName: (campany_name: string) => set({ campany_name }),
+                resetStore: () => set(defaultInitState),
+                completeStage: () => set({ stage: 'finished' }),
+            }),
+            {
+                name: 'setup-account',
+                storage: createJSONStorage(() => sessionStorage),
+            },
+        )
+    )
 }

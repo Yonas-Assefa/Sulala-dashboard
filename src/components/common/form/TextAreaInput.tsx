@@ -12,9 +12,10 @@ type Props = {
     error?: string
     onClear?: () => void
     defaultValue?: string
+    required?: boolean
 }
 
-function TextAreaInput({ id, name, label, placeholder, error, defaultValue, setValue, value }: Props) {
+function TextAreaInput({ id, name, label, placeholder, error, defaultValue, setValue, value, required }: Props) {
     const props = {}
     if (value) {
         Object.assign(props, { value })
@@ -29,8 +30,15 @@ function TextAreaInput({ id, name, label, placeholder, error, defaultValue, setV
         }
     }, [])
     return (
-        <div className=''>
-            <label htmlFor={id} className='self-start'>{label}</label>
+        <div className='flex flex-col gap-3'>
+            <label htmlFor={id} className='self-start'>
+                {label}
+                {
+                    required &&
+                    <span className='text-danger'>*&nbsp;
+                        <sup className='text-xs opacity-70'>(required)</sup></span>
+                }
+            </label>
             <textarea
                 name={name}
                 id={id}

@@ -33,7 +33,7 @@ function SideBarNav() {
             </div>
             <div className='m-6 flex flex-row gap-3 items-center text-black font-semibold'>
                 <img src="/icons/whatsup-logo.svg" alt="whatsup icon" className='h-[30px] aspect-square' />
-                <Link href={'/contact'}>Contact support</Link>
+                <Link href={'/support/contact'}>Contact support</Link>
             </div>
         </nav>
     )

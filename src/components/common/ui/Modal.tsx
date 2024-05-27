@@ -15,8 +15,10 @@ type Props = {
     className?: string
 }
 
-function Modal({ children, id, className }: Props) {
-    const ref = useDetectClickOutside({ onTriggered: () => closeModal(id) });
+function Modal({ children, id, className = 'w-11/12 max-w-sm bg-white px-0' }: Props) {
+    const ref = useDetectClickOutside({
+        onTriggered: () => closeModal(id),
+    });
 
     return (
         <dialog id={id} className='modal'>

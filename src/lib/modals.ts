@@ -10,3 +10,7 @@ export const openModal = (modalId: string) => {
 export const closeModal = (modalId: string) => {
     document.getElementById<ModalMethods>(modalId)?.close()
 }
+
+export const isModalOpen = (modalId: string) => {
+    return document.getElementById(modalId)?.open
+}

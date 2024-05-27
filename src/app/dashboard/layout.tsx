@@ -1,8 +1,15 @@
-import Footer from "@/components/common/ui/Footer";
-import Header from "@/components/SulalaLogo";
-import Link from "next/link";
 import React from "react";
 import SideBarNav from "./components/SideBarNav";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: 'Sulala | Dashboard',
+    description: 'Sulala is market place.',
+    icons: [
+        '/sulala-logo.svg',
+    ]
+};
+
 
 export default function DashboardLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
