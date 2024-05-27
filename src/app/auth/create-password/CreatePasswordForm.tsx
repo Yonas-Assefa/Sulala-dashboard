@@ -18,7 +18,7 @@ function CreatePasswordForm() {
     useRedirectRoute(formState);
 
     return (
-        <form action={action} className='flex flex-col gap-6 w-full px-10'>
+        <form action={action} className='flex flex-col gap-6 w-full md:px-10'>
             {/* SIGN IN INPUT */}
 
             <div className='flex flex-col gap-3 w-full items-center'>
