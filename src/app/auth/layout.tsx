@@ -16,11 +16,11 @@ export const metadata: Metadata = {
 export default function AuthPageLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
         <div className='w-screen h-screen bg-blue-500 flex flex-row'>
-            <div className='w-9/12'>
+            <div className='w-9/12 md:block hidden'>
                 {/* <img src="/landing.png" alt="" className='w-full h-full' /> */}
                 <Image src={landingImage} alt="" className='w-full h-full' />
             </div>
-            <div className='bg-white w-3/12 min-w-[600px]'>
+            <div className='bg-white md:w-3/12 overflow-y-scroll w-full md:min-w-[600px]'>
                 <div className='w-full h-full flex justify-between flex-col items-center'>
                     <SulalaLogo />
                     {children}
