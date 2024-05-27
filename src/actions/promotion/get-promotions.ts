@@ -8,7 +8,10 @@ import { notFound } from "next/navigation"
 export const getPromotions = async () => {
     const response = await fetch(PROMOTIONS, {
         method: 'GET',
-        headers: getRequestHeaders()
+        headers: getRequestHeaders(),
+        next: {
+            tags: ['promotions']
+        }
     })
     const body = await response.json()
 
@@ -21,7 +24,10 @@ export const getPromotions = async () => {
 export const getOnePromotion = async (promotion_id: string) => {
     const response = await fetch(`${PROMOTIONS}${promotion_id}/`, {
         method: 'GET',
-        headers: getRequestHeaders()
+        headers: getRequestHeaders(),
+        next: {
+            tags: [`promotion-detail-${promotion_id}`]
+        }
     })
     const body = await response.json()
 

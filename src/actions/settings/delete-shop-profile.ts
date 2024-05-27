@@ -6,7 +6,6 @@ import { shopMapper } from "../mapper/shop-mapper"
 import { getMultiPartRequestHeaders, getRequestHeaders } from "../../lib/helper"
 
 export const deleteShopProfile = async (
-    formState: FormState,
     formData: FormData
 ) => {
 
