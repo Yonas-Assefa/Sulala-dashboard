@@ -23,7 +23,7 @@ function EnterOTP({ searchParams: { phone: rawPhone, action } }: Props) {
             </div>
             {/* SIGN IN HEADER */}
             <div className='flex flex-col gap-3'>
-                <h1 className='text-[40px] font-serif font-semibold self-start'>Enter code</h1>
+                <h1 className='text-3xl md:text-[40px] font-serif font-semibold self-start'>Enter code</h1>
                 <p className='text-gray-500'>We send a verification code on the following phone number: &nbsp;
                     <span className='text-primary font-semibold'>{phone}</span>
                 </p>
