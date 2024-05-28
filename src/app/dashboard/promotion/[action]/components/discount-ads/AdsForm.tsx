@@ -21,6 +21,7 @@ import { useFormState } from 'react-dom'
 import { formatPiece } from '@/utils/pieceFormatter.util'
 import { convertToArray } from '@/utils/convertObjToArray'
 import { useParams, useSearchParams } from 'next/navigation'
+import { removePromotionBannerFile } from '@/actions/promotion/remove-promotion-banner-file'
 
 type Props = {
     products: any
@@ -56,7 +57,7 @@ function ProductDiscountAdsForm({ products, promotion }: Props) {
     useRedirectRoute(formState);
 
     return (
-        <div className='grid grid-cols-3 gap-6'>
+        <div className='flex flex-col gap-3 md:grid md:grid-cols-3 md:gap-6'>
             <form action={action} className='col-span-2 flex flex-col gap-5 bg-white'>
                 <div className='flex flex-col gap-5 bg-tertiary rounded-[30px] p-8'>
                     <input type="text" hidden value='DISCOUNT' name='promotion_type' id='promotion_type' onChange={() => { }} />
@@ -96,7 +97,7 @@ function ProductDiscountAdsForm({ products, promotion }: Props) {
                             placeholder='Enter description/promotional quotes' label='Description/Promotional quotes'
                             error={formState?.fieldErrors?.description?.[0]}
                         />
-                        <div className="grid grid-cols-2">
+                        <div className="grid grid-cols-1 md:grid-cols-2">
                             <DateInput
                                 setValue={setStartDate}
                                 defaultValue={promotion?.start_date}
@@ -119,7 +120,12 @@ function ProductDiscountAdsForm({ products, promotion }: Props) {
                                 label='Banner Ads'
                                 id='ad_files'
                                 name='ad_files'
-                                error={formState?.fieldErrors?.ad_files?.[0]} />
+                                error={formState?.fieldErrors?.ad_files?.[0]}
+                                onDelete={{
+                                    action: removePromotionBannerFile,
+                                    formData: [{ key: 'item_id', value: promotion?.id }, { key: 'file_path', value: promotion?.deconstructed_ad_files }],
+                                }}
+                            />
                         </div>
                     </div>
                 </div>
@@ -180,7 +186,7 @@ function ProductDiscountAdsForm({ products, promotion }: Props) {
                         />
                     </div>
                 </div>
-                <div className="flex flex-row">
+                <div className="flex flex-row fixed bottom-0 md:relative p-2 md:p-0">
                     <PrimaryButton
                         padding={'md'}
                         name='Pay & Schedule'

@@ -21,7 +21,7 @@ function ConfirmationLetter({ searchParams: { email } }: Props) {
 
 
     const counterFunction = async () => {
-        console.log('Resend email')
+        return Promise.resolve()
     }
 
     return (
@@ -31,7 +31,7 @@ function ConfirmationLetter({ searchParams: { email } }: Props) {
             </div>
             {/* SIGN IN HEADER */}
             <div className='flex flex-col gap-6'>
-                <h1 className='text-[40px] font-serif font-semibold self-start'>The confirmation letter has been sent</h1>
+                <h1 className='text-4xl md:text-[40px] text-center font-serif font-semibold self-start'>The confirmation letter has been sent</h1>
                 <p className='text-gray-500'>Check the &nbsp; <span className='text-primary font-semibold'>{email}</span> &nbsp;
                     mailbox to which the registration confirmation email was sent.
                 </p>

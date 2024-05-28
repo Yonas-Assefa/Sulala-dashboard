@@ -40,6 +40,7 @@ export const PRODUCT_TAGS = `${API_URL}product_tags/`;
 
 // PROMOTION URLS
 export const PROMOTIONS = `${API_URL}promotions/`;
+export const REMOVE_PROMOTION_FILE = `${API_URL}remove_promotion_file/`;
 
 // OTHERS
 export const INSTAGRAM_BASE_URL = 'https://www.instagram.com/'

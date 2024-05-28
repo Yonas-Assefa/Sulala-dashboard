@@ -42,7 +42,7 @@ async function page({ params: { action: actionType }, searchParams: { tab: tabTy
                 <div className='mt-4' >
                     <BackButton />
                 </div>
-                <h2 className='capitalize'>{action} promo campaign</h2>
+                <h2 className='capitalize text-2xl md:text-3xl'>{action} promo campaign</h2>
             </div>
             {action == 'add' && <Tab item={item} tab={tab} />}
             {

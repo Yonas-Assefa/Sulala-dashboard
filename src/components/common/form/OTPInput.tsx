@@ -60,14 +60,14 @@ function OTPInput({ submitBtn, setDisabled, otp, setOTP }: Props) {
 
 
     return (
-        <div className='flex flex-row gap-0 w-full items-center my-8 justify-between'>
+        <div className='flex flex-row gap-3 md:gap-0 w-full items-center my-8 justify-between'>
             {
                 Array.from({ length: 6 }).map((_, index) => {
                     return <input
                         key={index}
                         type='text'
                         name={`input${index + 1}`}
-                        className='w-14 h-14 border-2 border-gray-300 bg-white focus:border-primary rounded-full text-center text-2xl'
+                        className='md:w-14 md:h-14 h-10 w-10 border-2 border-gray-300 bg-white focus:border-primary rounded-full text-center text-2xl'
                         maxLength={1}
                         pattern="\d*"
                         ref={eval(`input${index + 1}`)}

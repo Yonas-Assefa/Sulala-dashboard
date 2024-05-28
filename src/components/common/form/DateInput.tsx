@@ -76,7 +76,7 @@ function DateInput({ label, setValue, id, name, error, defaultValue }: Props) {
     return (
         <div>
             <p>{label}</p>
-            <div className='flex flex-row p-2 gap-2 w-full flex-wrap'>
+            <div className='flex flex-col md:flex-row p-2 gap-2 w-full flex-wrap'>
                 <input type="text" name={name} id={id} hidden value={(new Date(`${date || '2020-01-01'}T${time || '00:00'}:00`))?.toISOString()} />
                 <label htmlFor={`${name}-date`} className={`border rounded-[30px] py-2 px-4 flex flex-row justify-between gap-3 ${error ? 'bg-dangerlight border-danger' : 'bg-white'}`}>
                     <input onFocus={openDateDropdown} ref={dateInputRef} type="date" name={`${name}-date`} id={`${name}-date`} className='bg-transparent border-0 outline-none max-w-[150px]' placeholder='DD.MM.YYYY' {...props.dateProps} />

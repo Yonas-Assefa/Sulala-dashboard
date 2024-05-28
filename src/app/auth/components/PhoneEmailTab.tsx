@@ -6,7 +6,7 @@ import React from 'react'
 function PhoneEmailTab() {
     const { createQueryString, searchParams } = useCreateQueryString()
     return (
-        <div className='flex tabs gap-4 w-full px-10' role='tablist'>
+        <div className='flex tabs gap-4 w-full md:px-10 md:text-md text-sm' role='tablist'>
             <Link href={createQueryString('by', 'phone')}
                 className={`w-1/2 p-2 text-center ${searchParams.get('by') !== 'email' && 'text-primary border-b-2 border-primary'}`}
             >

@@ -4,8 +4,9 @@ import React from 'react'
 import Cropper, { ReactCropperElement } from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import SecondaryButton from '../ui/SecondaryButton';
-import { closeModal } from '@/lib/modals';
+import { closeModal, isModalOpen } from '@/lib/modals';
 import Modal from '../ui/Modal';
+import { useDetectClickOutside } from 'react-detect-click-outside';
 
 type Props = {
     handleCropChange: (event: any) => void
@@ -33,24 +34,26 @@ function CropImageModal({ handleCropChange, rawImage, saveCrop, cancelCrop }: Pr
     }
 
     return (
-        <Modal id='crop_image_setting_modal' className='w-11/12 max-w-sm bg-white px-0'>
-            <div className='border-b-2 border-gray-200 pb-3'>
-                <h3 className="font-bold text-xl text-black text-center font-serif">Crop your photo</h3>
+        <dialog id='crop_image_setting_modal' className='modal'>
+            <div className={`modal-box w-11/12 max-w-sm bg-white px-0`}>
+                <div className='border-b-2 border-gray-200 pb-3'>
+                    <h3 className="font-bold text-xl text-black text-center font-serif">Crop your photo</h3>
+                </div>
+                <div className="px-5 flex flex-col gap-3 mt-4">
+                    <Cropper
+                        src={rawImage}
+                        style={{ height: 400, width: "100%" }}
+                        // Cropper.js options
+                        initialAspectRatio={9 / 9}
+                        guides={false}
+                        crop={onCrop}
+                        ref={cropperRef}
+                    />
+                    <PrimaryButton name='Save' handleClick={handleSave} type='button' />
+                    <SecondaryButton name='Cancel' handleClick={handleCancel} type='button' />
+                </div>
             </div>
-            <div className="px-5 flex flex-col gap-3 mt-4">
-                <Cropper
-                    src={rawImage}
-                    style={{ height: 400, width: "100%" }}
-                    // Cropper.js options
-                    initialAspectRatio={9 / 9}
-                    guides={false}
-                    crop={onCrop}
-                    ref={cropperRef}
-                />
-                <PrimaryButton name='Save' handleClick={handleSave} type='button' />
-                <SecondaryButton name='Cancel' handleClick={handleCancel} type='button' />
-            </div>
-        </Modal>
+        </dialog>
     )
 }
 

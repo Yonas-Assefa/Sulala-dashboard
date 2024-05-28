@@ -3,8 +3,16 @@ type ModalMethods = {
     close: () => void
 }
 
-export const openModal = (modalId: string) => {
+export const openModal = async (modalId: string, withPromise?: boolean) => {
     document.getElementById<ModalMethods>(modalId)?.showModal()
+    if (!withPromise) return
+
+    const confirmBtn = document.getElementById(modalId + '_confirm')
+    const cancelBtn = document.getElementById(modalId + '_cancel')
+    return new Promise((resolve, reject) => {
+        confirmBtn?.addEventListener('click', () => resolve(true))
+        cancelBtn?.addEventListener('click', () => resolve(false))
+    })
 }
 
 export const closeModal = (modalId: string) => {

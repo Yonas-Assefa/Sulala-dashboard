@@ -10,6 +10,11 @@ const nextConfig = {
             }
         ],
     },
+    experimental: {
+        serverActions: {
+            allowedOrigins: ["h4zz2kw9-3000.euw.devtunnels.ms"]
+        }
+    }
 };
 
 export default nextConfig;

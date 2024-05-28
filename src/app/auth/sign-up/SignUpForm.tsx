@@ -25,7 +25,7 @@ function SignUpForm({ by }: SignUpProps) {
     useRedirectRoute(formState);
 
     return (
-        <form action={action} className='flex flex-col gap-6 w-full px-10'>
+        <form action={action} className='flex flex-col gap-6 w-full md:px-10'>
             {/* SIGN IN INPUT */}
             {by !== 'email' ?
                 <AuthWithPhone error={formState.fieldErrors?.phone_number?.[0]} /> :

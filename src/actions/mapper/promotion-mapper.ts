@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/config/urls"
+import { constructImageUrl, deconstructImageUrl } from "@/lib/images"
 import { changeISOToLocaleDate } from "@/utils/dateFormatter.util"
 
 export const promotionMapper = (data: any) => {
@@ -12,7 +12,8 @@ export const promotionMapper = (data: any) => {
                 start_date: changeISOToLocaleDate({ val: promotion.start_date, useDash: true }),
                 end_date: changeISOToLocaleDate({ val: promotion.end_date, useDash: true }),
                 impressions: promotion.impressions || 0,
-                ad_files: promotion.ad_files?.[0] ? `${BASE_URL}${promotion.ad_files?.[0]}` : ''
+                ad_files: constructImageUrl(promotion.ad_files, true),
+                deconstructed_ad_files: deconstructImageUrl(promotion.ad_files?.[0])
             }
         })
     } else {
@@ -21,7 +22,8 @@ export const promotionMapper = (data: any) => {
             number_of_clicks: data.noc,
             campaign_name: data.name,
             amount_spend: 0,
-            ad_files: data.ad_files?.[0] ? `${BASE_URL}${data.ad_files?.[0]}` : ''
+            ad_files: constructImageUrl(data.ad_files, true),
+            deconstructed_ad_files: deconstructImageUrl(data.ad_files?.[0]),
         }
     }
 }

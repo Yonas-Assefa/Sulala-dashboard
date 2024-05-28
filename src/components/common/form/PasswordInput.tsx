@@ -28,7 +28,7 @@ function PasswordInput({ label, placeholder, name, id, showLabel, error }: Props
                     name={name}
                     type={showPassword ? 'text' : 'password'}
                     placeholder={placeholder || 'Type here'}
-                    className='input text-black w-full max-w-xs bg-transparent focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none'
+                    className='input text-black w-full max-w-xs bg-transparent focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none selection:bg-primary selection:text-tertiary caret-primary'
                     // className="input w-full max-w-xs bg-white rounded-r-[30px] focus:border-0 focus:outline-none"
                     autoComplete='false'
                 />

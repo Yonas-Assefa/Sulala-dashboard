@@ -91,7 +91,9 @@ export const createUpdatePromotion = async (
             'Promotion created successfully!' :
             'Promotion updated successfully!'
         const redirectUrl = '/dashboard/promotion'
+
         revalidatePath('/dashboard/promotion')
+        revalidatePath('/dashboard/promotion/edit')
 
         return toFormState('SUCCESS', successMessage, redirectUrl);
     } catch (error) {

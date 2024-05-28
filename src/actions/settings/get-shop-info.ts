@@ -7,7 +7,11 @@ import { getRequestHeaders } from "../../lib/helper"
 export const getShopInfo = async () => {
     const response = await fetch(GET_SHOP_ACCOUNT, {
         method: 'GET',
-        headers: getRequestHeaders()
+        headers: getRequestHeaders(),
+        cache: 'no-cache',
+        next: {
+            tags: ['shop-info-detail']
+        }
     })
     const body = await response.json()
 

@@ -27,7 +27,9 @@ export default function RootLayout({
       <body className={inter.className} suppressHydrationWarning>
         <ToastContainer hideProgressBar={true} newestOnTop={false} draggable className='select-none' />
         <Suspense fallback={<PageSuspense />}>
-          <CounterStoreProvider>{children}</CounterStoreProvider>
+          <CounterStoreProvider>
+            {children}
+          </CounterStoreProvider>
         </Suspense>
       </body>
     </html>
