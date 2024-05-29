@@ -1,6 +1,6 @@
 'use client'
 import { useCounterStore } from '@/providers/setup-account-store-provider'
-import { notFound } from 'next/navigation'
+import { notFound, useRouter } from 'next/navigation'
 import React from 'react'
 
 type Props = {
@@ -16,9 +16,14 @@ function SetupComplete({ searchParams: { email } }: Props) {
   const { completeStage } = useCounterStore(
     (state) => state,
   )
+  const router = useRouter()
 
   React.useEffect(() => {
     completeStage()
+    setTimeout(() => {
+      router.push('/dashboard/settings/shop-info')
+    }, 2000)
+
   }, [])
 
   return (

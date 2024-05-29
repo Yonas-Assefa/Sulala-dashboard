@@ -1,25 +1,35 @@
 'use client'
-import React from 'react'
+import React, { ElementRef } from 'react'
 import SulalaLogo from "@/components/SulalaLogo";
 import Link from 'next/link';
 import routes from './sideBarRoutes';
 import { usePathname } from 'next/navigation';
+import { useDetectClickOutside } from 'react-detect-click-outside';
 
 function SideBarNav() {
 
     const pathname = usePathname()
+    const menuRef = React.useRef<ElementRef<'input'>>(null)
+
+    const ref = useDetectClickOutside({
+        onTriggered: () => {
+            if (menuRef.current && menuRef.current.checked) {
+                menuRef.current.checked = false
+            }
+        }
+    })
 
     return (
-        <nav className='md:min-w-[300px] z-50 drop-shadow-lg group md:h-full bg-tertiary fixed md:relative md:w-auto w-full h-auto md:flex flex-col justify-between'>
+        <nav ref={ref} className='md:min-w-[300px] z-50 drop-shadow-lg group md:h-full bg-tertiary fixed md:relative md:w-auto w-full h-auto md:flex flex-col justify-between'>
             <div>
                 <div className='flex flex-row justify-between items-center'>
                     <SulalaLogo />
-                    <div className='m-2 p-1 md:hidden bg-primary rounded-sm'>
-                        <input type="checkbox" className='peer' hidden name="nav_bar" id="nav_bar" />
+                    <div className='m-2 p-1 md:hidden bg-primary md:bg-transparent rounded-sm'>
+                        <input ref={menuRef} type="checkbox" className='peer' hidden name="nav_bar" id="nav_bar" />
                         <label htmlFor="nav_bar" className=' p-1 flex flex-col gap-1'>
-                            <div className="bg-tertiary h-[2px] w-[25px] group-has-[:checked]:rotate-45 group-has-[:checked]:translate-y-[6px] transition-all" />
-                            <div className="bg-tertiary h-[2px] w-[25px] group-has-[:checked]:invisible" />
-                            <div className="bg-tertiary h-[2px] w-[25px] group-has-[:checked]:-rotate-45 group-has-[:checked]:-translate-y-[6px] transition-all" />
+                            <div className="bg-tertiary md:bg-primary h-[2px] md:h-[3px] w-[25px] md:w-[18px] group-has-[:checked]:rotate-45 md:rotate-45 md:-translate-y-[2px] group-has-[:checked]:translate-y-[6px] md:group-has-[:checked]:translate-y-[9px] transition-all" />
+                            <div className="bg-tertiary md:bg-primary md:hidden h-[2px] w-[25px] group-has-[:checked]:invisible" />
+                            <div className="bg-tertiary md:bg-primary h-[2px] md:h-[3px] w-[25px] md:w-[18px] group-has-[:checked]:-rotate-45 md:-rotate-45 md:translate-y-[2px] group-has-[:checked]:-translate-y-[6px] md:group-has-[:checked]:-translate-y-[9px] transition-all" />
                         </label>
                     </div>
                 </div>

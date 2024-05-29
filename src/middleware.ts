@@ -16,11 +16,6 @@ export function middleware(request: NextRequest) {
     !pathname.includes("/setup-complete")
   ) {
     return NextResponse.redirect(new URL("/dashboard/settings", request.url));
-  } else if (
-    isAuthenticated() &&
-    pathname.startsWith("/auth") &&
-    pathname.includes("/setup-account")
-  ) {
   }
 }
 

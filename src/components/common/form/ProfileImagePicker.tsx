@@ -22,6 +22,7 @@ function ProfileImagePicker({ error, name, id, defaultValue }: Props) {
     const [image, setImage] = React.useState<{ dataUrl: boolean, value: string | undefined }>({ dataUrl: false, value: defaultValue })
     const [imageTem, setImageTem] = React.useState<{ dataUrl: boolean, value: string | undefined }>()
     const [rawImage, setRawImage] = React.useState<string | undefined>()
+    const [saved, setSaved] = React.useState<boolean>(true)
     const inputRef = React.useRef<HTMLInputElement>(null);
     const [isPending, startTransition] = React.useTransition();
 
@@ -41,6 +42,7 @@ function ProfileImagePicker({ error, name, id, defaultValue }: Props) {
 
     const handleCropChange = (event: HTMLCanvasElement["toDataURL"]) => {
         setImage({ dataUrl: true, value: event.toString() })
+        setSaved(false)
     }
 
     const cancelCrop = () => {
@@ -88,6 +90,12 @@ function ProfileImagePicker({ error, name, id, defaultValue }: Props) {
             })
     }
 
+    React.useEffect(() => {
+        if (formState.status === 'SUCCESS') {
+            setSaved(true)
+        }
+    }, [formState])
+
     return (
         <>
             <ImageDeleteModal isPending={isPending} />
@@ -106,15 +114,15 @@ function ProfileImagePicker({ error, name, id, defaultValue }: Props) {
                             </div>
                         </div>
                     </label> :
-                    <div className='flex flex-row gap-4 items-center  w-full md:w-auto justify-between md:justify-start relative'>
-                        <Image width={100} height={100} src={image.value} alt="" className='rounded-full aspect-square w-[20vw]  md:w-[6vw] min-w-[50px]' />
+                    <div className='flex flex-row gap-4 items-center  w-full md:w-auto justify-start relative'>
+                        <Image width={100} height={100} src={image.value} alt="" className='rounded-full aspect-square w-[30vw]  md:w-[6vw] min-w-[50px]' />
                         <div className='flex md:flex-row flex-col gap-2'>
                             <label htmlFor={id} className='text-primary font-semibold cursor-pointer'>Change photo</label>
                             <button type='button' className='text-danger font-semibold' onClick={handleRemoveImage}>Delete photo</button>
                         </div>
                         {/* {
-                            image.value && image.value?.startsWith('data:image/') &&
-                            <div className='flex flex-row gap-2 right-0 justify-end absolute bottom-5 tooltip tooltip-bottom tooltip-open hover:cursor-pointer tooltip-error' data-tip='⚠️ &nbsp;profile not saved!'>
+                            !saved &&
+                            <div className='flex flex-row gap-2 right-0 justify-end relative md:absolute bottom-5 tooltip tooltip-bottom tooltip-hover hover:cursor-pointer tooltip-error' data-tip='⚠️ &nbsp;profile not saved!'>
                                 <img src={"/icons/alert.svg"} alt="" className='w-[15px] aspect-square' />
                             </div>
                         } */}

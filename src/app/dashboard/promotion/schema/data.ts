@@ -72,16 +72,16 @@ export const promotionData: PromotionDataItem[] = [
 export const promotionSortData = [
     {
         label: 'Date',
-        value: 'date'
+        value: 'start_date'
     },
     {
         label: 'Product title',
-        value: 'product_title'
+        value: 'name'
     },
     {
-        label: 'Created',
-        value: 'created'
+        label: 'Created at',
+        value: 'created_at'
     }
 ]
 
-export const promotionFilterData = ['all', 'active', 'draft', 'archived']
+export const promotionFilterData = ['all', 'active', 'completed', 'paused']

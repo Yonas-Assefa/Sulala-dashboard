@@ -249,3 +249,57 @@ export const formatCategory = (categories: any[]) => {
         return data
     })
 }
+
+export const buildUrlWithParams = (url: string, params = {}) => {
+    const queryString = Object.entries(params)
+        .filter(([_, value]) => !['undefined', 'null', undefined, null, ''].includes(value?.toString()?.toLowerCase() as string))
+        .map(([key, value]) => `${key}=${encodeURIComponent(value as string)}`)
+        .join('&');
+    if (!queryString) {
+        return url;
+    }
+    return `${url}?${queryString}`;
+};
+
+type TFetch = {
+    url: string,
+    method: TRequestMethod,
+    data?: object,
+    headers?: object,
+    params?: object,
+    cache?: RequestCache,
+    next?: {
+        tags: string[]
+    }
+}
+export const Fetch = async (args: TFetch) => {
+    const { url, method, data, headers, params, cache, next } = args
+    const requestUrl = params ? buildUrlWithParams(url, params) : url
+
+    const options = {}
+
+    if (method) {
+        Object.assign(options, { method })
+    }
+
+    if (headers) {
+        Object.assign(options, { headers })
+    }
+
+    if (data) {
+        Object.assign(options, { body: method === 'GET' ? undefined : JSON.stringify(data) })
+    }
+
+    if (cache) {
+        Object.assign(options, { cache })
+    }
+
+    if (next) {
+        Object.assign(options, { next })
+    }
+
+    const response = await fetch(requestUrl, {
+        ...options,
+    })
+    return response
+}

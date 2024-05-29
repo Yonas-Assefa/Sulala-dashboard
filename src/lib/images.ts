@@ -6,14 +6,14 @@ export const constructImageUrl = (arg: string | string[], returnOne: boolean) =>
             return ''
         }
         if (returnOne) {
-            return `${cleanUrl(BASE_URL)}${cleanUrl(arg[0])}`
+            return finalImageCleanup(`${cleanUrl(BASE_URL)}${cleanUrl(arg[0])}`)
         }
-        return arg.map((url) => `${cleanUrl(BASE_URL)}${cleanUrl(url)}`)
+        return arg.map((url) => finalImageCleanup(`${cleanUrl(BASE_URL)}${cleanUrl(url)}`))
     }
     if (!arg) {
         return ''
     }
-    return `${cleanUrl(BASE_URL)}${cleanUrl(arg)}`
+    return finalImageCleanup(`${cleanUrl(BASE_URL)}${cleanUrl(arg)}`)
 }
 
 export const deconstructImageUrl = (url: string) => {
@@ -23,7 +23,7 @@ export const deconstructImageUrl = (url: string) => {
     return url.replace(`${cleanUrl(BASE_URL)}`, '/')
 }
 
-const cleanUrl = (url: string) => {
+const cleanUrl = (url: string, end?: boolean) => {
     let cleanedUrl = url
     if (cleanedUrl.startsWith('/')) {
         cleanedUrl = cleanedUrl.slice(1)
@@ -32,4 +32,12 @@ const cleanUrl = (url: string) => {
         cleanedUrl = `${cleanedUrl}/`
     }
     return cleanedUrl
+}
+
+const finalImageCleanup = (url: string) => {
+    const uid = `?uid=${new Date().getTime()}`
+    if (url.endsWith('/')) {
+        return url.slice(0, url.length - 1) + uid
+    }
+    return url + uid
 }

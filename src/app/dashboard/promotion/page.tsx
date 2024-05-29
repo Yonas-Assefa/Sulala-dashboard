@@ -7,10 +7,13 @@ import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import { getPromotions } from '@/actions/promotion/get-promotions'
 import { updatePromotionStatus } from '@/actions/promotion/update-promotion-status'
 import { deletePromotion } from '@/actions/promotion/delete-promotion'
+import { TableProps as Props } from '@/types/props.type'
+import { changeObjToFormData } from '@/lib/helper'
 
-async function page() {
 
-    const promotions = await getPromotions()
+async function page({ searchParams: { search, filter, sort, sort_by } }: Props) {
+
+    const promotions = await getPromotions(changeObjToFormData({ search, filter, sort, sort_by }))
 
     return (
         <>
@@ -19,7 +22,7 @@ async function page() {
 
                 {/* HEADER FOR MY PRODUCTS */}
                 <div className='flex flex-row justify-between'>
-                    <h1 className='text-2xl md:text-5xl font-semibold font-serif'>Promotion campaigns</h1>
+                    <h1 className='text-2xl md:text-4xl font-semibold font-serif'>Promotion campaigns</h1>
                     <div className='flex flex-row gap-3 items-center md:relative absolute bottom-0 right-0 p-5 md:p-0 z-20 drop-shadow-lg md:drop-shadow-none'>
                         <div className=''>
                             <PrimaryButton name='Create campaign' modal='create_campaign_modal' />
@@ -69,6 +72,9 @@ async function page() {
                             formData: [
                                 { formDataKey: 'item_id', searchKey: 'item' },
                             ]
+                        },
+                        search: {
+                            action: getPromotions,
                         }
                     }}
                 />

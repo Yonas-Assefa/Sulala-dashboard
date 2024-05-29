@@ -43,7 +43,7 @@ function BillingInfoCard({ isPrimary, card_number, id }: Props) {
     }
 
     return (
-        <div className='border rounded-[40px] flex flex-row justify-between p-3 w-[500px]'>
+        <div className='border rounded-[40px] flex flex-row justify-between p-3 w-[300px] md:w-[500px]'>
             <div className='flex flex-row gap-2'>
                 <img src="/icons/mastercard.svg" alt="" />
                 <span>••••</span>

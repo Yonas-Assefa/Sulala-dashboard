@@ -20,11 +20,11 @@ function Table({ filterData, tableSchema, data, sortData, actionOptions }: Props
     return (
         <>
             <DeleteProductModal deleteAction={actionOptions?.delete} />
-            <div className="overflow-x-auto border rounded-[20px]">
+            <div className="overflow-x-scroll min-w-[900px] border rounded-[20px]">
                 <div className='flex justify-between p-3 items-center'>
                     <div className='flex items-center gap-4'>
                         <TableFilter filterData={filterData} />
-                        <TableSearch />
+                        <TableSearch action={actionOptions?.search?.action} />
                     </div>
                     <TableSort sortData={sortData} />
                 </div>

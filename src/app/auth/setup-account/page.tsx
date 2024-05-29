@@ -5,6 +5,8 @@ import ProgressBar from '@/components/common/ui/ProgressBar'
 import { redirect } from 'next/navigation'
 import React from 'react'
 import { Metadata } from 'next'
+import { getShopInfo } from '@/actions/settings/get-shop-info'
+import { pushWarningNotification } from '@/utils/pushNotification.util'
 
 export const metadata: Metadata = {
   title: 'Sulala | Auth Setup Account',
@@ -20,9 +22,16 @@ type Props = {
   }
 }
 async function SetupAccount({ searchParams: { stage: activeStage } }: Props) {
+  const shopInfo = await getShopInfo()
+  if (shopInfo.certificates && Array.isArray(shopInfo.certificates) && shopInfo.certificates.length > 0) {
+    redirect('/dashboard/settings/shop-info')
+  }
+
+
   if (!['one', 'two', 'three'].includes(activeStage)) {
     return redirect('/auth/setup-account?stage=one')
   }
+
 
   const categoryLists = await getCategories()
   return (

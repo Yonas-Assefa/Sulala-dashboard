@@ -9,7 +9,7 @@ function ProductHead() {
 
     return (
         <div className='flex flex-col md:flex-row justify-between'>
-            <h1 className='text-2xl md:text-5xl font-semibold font-serif'>My Products</h1>
+            <h1 className='text-2xl md:text-4xl font-semibold font-serif'>My Products</h1>
             <div className='flex flex-row md:gap-3'>
                 <div className='fixed md:relative bottom-0 drop-shadow-lg md:drop-shadow-none right-0 p-3 md:p-0 z-20'>
                     <SecondaryButton name='Import' modal='import_products_modal' padding='sm' />

@@ -4,6 +4,7 @@ import { useToastMessage } from '@/hooks/useToastMessage'
 import { closeModal } from '@/lib/modals'
 import { EMPTY_FORM_STATE, FormState } from '@/utils/formStateHelper'
 import { revalidatePath } from 'next/cache'
+import { handleClientScriptLoad } from 'next/script'
 import React, { useState, useTransition } from 'react'
 
 type Props = {
@@ -11,6 +12,10 @@ type Props = {
 }
 
 function ImageDeleteModal({ isPending }: Props) {
+
+    const handleClickOutside = () => {
+        closeModal('image_delete_modal', true)
+    }
 
     return (
         <dialog id="image_delete_modal" className='modal'>
@@ -37,6 +42,8 @@ function ImageDeleteModal({ isPending }: Props) {
                         Cancel
                     </button>
                 </div>
+            </div>
+            <div className="modal-backdrop" onClick={handleClickOutside}>
             </div>
         </dialog>
     )

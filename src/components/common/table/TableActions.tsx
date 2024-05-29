@@ -119,12 +119,12 @@ function TableActions({ edit, delete: deleteItem, promote, product, toggle, acti
                     }
                     {edit &&
                         <Link href={getEditLink()}>
-                            <img src="/icons/edit.svg" alt="" />
+                            <img src="/icons/edit.svg" alt="" className='min-w-[20px]' />
                         </Link>
                     }
                     {deleteItem &&
                         <Link href={createQueryString([{ key: 'item', value: product.id }])} onClick={() => openModal('delete_item_table_modal')}>
-                            <img src="/icons/delete.svg" alt="" />
+                            <img src="/icons/delete.svg" alt="" className='min-w-[20px]' />
                         </Link>
                     }
                 </div>
