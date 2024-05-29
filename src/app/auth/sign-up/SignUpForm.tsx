@@ -1,51 +1,60 @@
-'use client'
-import { signUp } from '@/actions/auth/signup'
-import AuthWithEmail from '@/components/AuthWithEmail'
-import AuthWithPhone from '@/components/AuthWithPhone'
-import PrimaryButton from '@/components/common/ui/PrimaryButton'
-import SecondaryButton from '@/components/common/ui/SecondaryButton'
-import { useRedirectRoute } from '@/hooks/useRedirectRoute'
-import { useToastMessage } from '@/hooks/useToastMessage'
-import { EMPTY_FORM_STATE } from '@/utils/formStateHelper'
-import React from 'react'
-import { useFormState } from 'react-dom'
+"use client";
+import { signUp } from "@/actions/auth/signup";
+import AuthWithEmail from "@/components/AuthWithEmail";
+import AuthWithPhone from "@/components/AuthWithPhone";
+import PrimaryButton from "@/components/common/ui/PrimaryButton";
+import SecondaryButton from "@/components/common/ui/SecondaryButton";
+import { useRedirectRoute } from "@/hooks/useRedirectRoute";
+import { useToastMessage } from "@/hooks/useToastMessage";
+import { EMPTY_FORM_STATE } from "@/utils/formStateHelper";
+import React from "react";
+import { useFormState } from "react-dom";
+import { signIn } from "next-auth/react";
 
 type SignUpProps = {
-    by: "phone" | "email" | undefined
-}
+  by: "phone" | "email" | undefined;
+};
 
 function SignUpForm({ by }: SignUpProps) {
+  const [formState, action] = useFormState(signUp, EMPTY_FORM_STATE);
 
-    const [formState, action] = useFormState(
-        signUp,
-        EMPTY_FORM_STATE
-    );
+  useToastMessage(formState);
+  useRedirectRoute(formState);
 
-    useToastMessage(formState);
-    useRedirectRoute(formState);
+  return (
+    <form action={action} className="flex flex-col gap-6 w-full md:px-10">
+      {/* SIGN IN INPUT */}
+      {by !== "email" ? (
+        <AuthWithPhone error={formState.fieldErrors?.phone_number?.[0]} />
+      ) : (
+        <AuthWithEmail
+          emailError={formState.fieldErrors?.email?.[0]}
+          takePassword={false}
+        />
+      )}
 
-    return (
-        <form action={action} className='flex flex-col gap-6 w-full md:px-10'>
-            {/* SIGN IN INPUT */}
-            {by !== 'email' ?
-                <AuthWithPhone error={formState.fieldErrors?.phone_number?.[0]} /> :
-                <AuthWithEmail emailError={formState.fieldErrors?.email?.[0]} takePassword={false} />}
+      <input type="text" hidden name="by" value={by} />
 
-            <input type='text' hidden name='by' value={by} />
+      {/* SIGN UP LINK */}
+      <div className="flex flex-col gap-3 w-full items-center">
+        <div className="w-full flex flex-col">
+          <PrimaryButton name="Continue" type="submit" />
+        </div>
 
-            {/* SIGN UP LINK */}
-            <div className='flex flex-col gap-3 w-full items-center'>
-                <div className='w-full flex flex-col'>
-                    <PrimaryButton name='Continue' type='submit' />
-                </div>
-
-
-                <p className='text-[#70757f]'>Already have an account?</p>
-                <SecondaryButton name='Sign in' href={'/auth/sign-in'} />
-
-            </div>
-        </form>
-    )
+        <p className="text-[#70757f]">Already have an account?</p>
+        <SecondaryButton name="Sign in" href={"/auth/sign-in"} />
+        <div>or</div>
+        <SecondaryButton
+          type="button"
+          name="continue with google"
+          padding="sm"
+          handleClick={() => {
+            signIn("google");
+          }}
+        ></SecondaryButton>
+      </div>
+    </form>
+  );
 }
 
-export default SignUpForm
+export default SignUpForm;
