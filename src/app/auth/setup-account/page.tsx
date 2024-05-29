@@ -22,15 +22,16 @@ type Props = {
   }
 }
 async function SetupAccount({ searchParams: { stage: activeStage } }: Props) {
-  if (!['one', 'two', 'three'].includes(activeStage)) {
-    return redirect('/auth/setup-account?stage=one')
-  }
-
-
   const shopInfo = await getShopInfo()
   if (shopInfo.certificates && Array.isArray(shopInfo.certificates) && shopInfo.certificates.length > 0) {
     redirect('/dashboard/settings/shop-info')
   }
+
+
+  if (!['one', 'two', 'three'].includes(activeStage)) {
+    return redirect('/auth/setup-account?stage=one')
+  }
+
 
   const categoryLists = await getCategories()
   return (
