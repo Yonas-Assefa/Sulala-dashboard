@@ -21,7 +21,6 @@ export function middleware(request: NextRequest) {
     pathname.startsWith("/auth") &&
     pathname.includes("/setup-account")
   ) {
-    return NextResponse.redirect(new URL("/auth/setup-account/", request.url));
   }
 }
 

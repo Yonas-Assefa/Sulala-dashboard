@@ -3,6 +3,7 @@ import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 import { signIn } from "@/actions/auth/signin";
 import { googleSingIn } from "@/actions/auth/google-sign-in";
+import { redirect } from "next/navigation";
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_ID!;
 const GOOGLE_CLEINT_SECRET = process.env.GOOGLE_SECRET!;
@@ -24,9 +25,10 @@ const authOption: NextAuthOptions = {
       }
       const login = await googleSingIn(account.access_token as string);
       console.log("login respose: ", login);
-      console.log("account: ", account);
-
       return true;
+    },
+    async redirect({ url, baseUrl }) {
+      return `${baseUrl}/auth/setup-account/`;
     },
   },
 };

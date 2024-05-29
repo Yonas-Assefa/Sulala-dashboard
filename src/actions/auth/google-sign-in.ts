@@ -6,8 +6,8 @@ import {
   fromErrorToFormState,
   toFormState,
 } from "@/utils/formStateHelper";
-import { EMAIL_SIGNIN_URL, PHONE_SIGNIN_URL } from "../../config/urls";
-import { emailSignInSchema, phoneAuthSchema } from "../schema/zod-schema";
+
+import { redirect } from "next/navigation";
 export const googleSingIn = async (accessToken: string) => {
   try {
     const response = await fetch(GOOGLE_SIGNIN_URL, {
@@ -26,9 +26,12 @@ export const googleSingIn = async (accessToken: string) => {
     setBrowserCookie(response);
 
     const successMessage = "Signin successful!.";
+    console.log("signin success");
 
-    const redirectUrl = "/auth/setup-account";
+    redirect("/auth/account-setup");
 
-    return toFormState("SUCCESS", successMessage, redirectUrl);
-  } catch (error) {}
+    return toFormState("SUCCESS", successMessage);
+  } catch (error) {
+    return fromErrorToFormState(error);
+  }
 };
