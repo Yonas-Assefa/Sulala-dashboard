@@ -6,7 +6,7 @@ function ServiceHead() {
 
     return (
         <div className='flex flex-col md:flex-row justify-between'>
-            <h1 className='text-2xl md:text-5xl font-semibold font-serif'>My Services</h1>
+            <h1 className='text-2xl md:text-4xl font-semibold font-serif'>My Services</h1>
             <div className='flex flex-row md:gap-3 items-center'>
                 <div className='flex flex-row gap-4 text-black/50 md:text-black'>
                     <img src="/icons/clock.svg" alt="" />

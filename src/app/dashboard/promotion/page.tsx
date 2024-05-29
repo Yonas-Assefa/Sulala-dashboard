@@ -19,7 +19,7 @@ async function page() {
 
                 {/* HEADER FOR MY PRODUCTS */}
                 <div className='flex flex-row justify-between'>
-                    <h1 className='text-2xl md:text-5xl font-semibold font-serif'>Promotion campaigns</h1>
+                    <h1 className='text-2xl md:text-4xl font-semibold font-serif'>Promotion campaigns</h1>
                     <div className='flex flex-row gap-3 items-center md:relative absolute bottom-0 right-0 p-5 md:p-0 z-20 drop-shadow-lg md:drop-shadow-none'>
                         <div className=''>
                             <PrimaryButton name='Create campaign' modal='create_campaign_modal' />

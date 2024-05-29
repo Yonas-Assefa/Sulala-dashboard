@@ -8,7 +8,7 @@ function SignUp({ searchParams: { by } }: SignupProps) {
   return (
     <div className='text-black w-10/12 flex flex-col gap-5 items-center'>
       {/* SIGN IN HEADER */}
-      <h1 className='text-[50px] font-serif font-semibold'>Sign up</h1>
+      <h1 className='text-3xl md:text-5xl font-serif font-semibold'>Sign up</h1>
 
       {/* SIGN IN OPTIONS */}
       <PhoneEmailTab />
