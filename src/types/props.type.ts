@@ -65,3 +65,12 @@ export type SignupProps = {
         by: 'phone' | 'email' | undefined
     }
 }
+
+export type TableProps = {
+    searchParams: {
+        search: string | undefined
+        filter: string | undefined
+        sort: string | undefined
+        sort_by: string | undefined
+    }
+}

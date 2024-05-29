@@ -14,9 +14,9 @@ export const metadata: Metadata = {
 export default function DashboardLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
         <>
-            <div className='w-screen h-screen bg-red-700 flex md:flex-row flex-col'>
+            <div className='w-screen h-screen overflow-hidden flex md:flex-row flex-col'>
                 <SideBarNav />
-                <div className='bg-white flex-grow'>
+                <div className='bg-white overflow-y-scroll flex-grow'>
                     <div className='w-full h-full mt-8 flex justify-between flex-col items-center'>
                         {children}
                     </div>

@@ -1,24 +1,20 @@
 export const billingMapper = async (data: any) => {
+    function convert(item: any) {
+        return {
+            id: item.id,
+            holder_name: item.account_holder_name,
+            type: item.type,
+            primary: item.is_default,
+            card_number: item.card_number,
+            cvc: item.cvc,
+            expiry_date: item.expiration_date,
+        }
+    }
     if (Array.isArray(data)) {
         return data.map((billing: any) => {
-            return {
-                id: billing.id,
-                holder_name: billing.account_holder_name,
-                type: billing.type,
-                primary: billing.is_default,
-                card_number: billing.card_number,
-                cvc: billing.cvc,
-                expiry_date: billing.expiration_date,
-            }
+            return convert(billing)
         })
     } else {
-        return {
-            holder_name: data.account_holder_name,
-            type: data.type,
-            primary: data.is_default,
-            card_number: data.card_number,
-            cvc: data.cvc,
-            expiry_date: data.expiration_date,
-        }
+        return convert(data)
     }
 }

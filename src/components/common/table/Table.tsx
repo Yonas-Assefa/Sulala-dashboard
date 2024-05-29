@@ -24,7 +24,7 @@ function Table({ filterData, tableSchema, data, sortData, actionOptions }: Props
                 <div className='flex justify-between p-3 items-center'>
                     <div className='flex items-center gap-4'>
                         <TableFilter filterData={filterData} />
-                        <TableSearch />
+                        <TableSearch action={actionOptions?.search?.action} />
                     </div>
                     <TableSort sortData={sortData} />
                 </div>

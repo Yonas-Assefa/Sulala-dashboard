@@ -5,7 +5,7 @@ import { FilterData } from '../../../types/table.type'
 import { useCreateQueryString } from '@/hooks/useCreateQueryString'
 
 type Props = {
-    filterData: FilterData
+    filterData: FilterData,
 }
 
 function TableFilter({ filterData }: Props) {

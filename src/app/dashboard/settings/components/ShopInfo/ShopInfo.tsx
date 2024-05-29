@@ -27,6 +27,8 @@ function ShopInfo({ categories, shopInfo }: Props) {
     useToastMessage(formState);
     useRedirectRoute(formState);
 
+    console.log({ shopInfo })
+
     return (
         <form action={action} className='mt-4 w-full flex flex-col gap-8'>
             <ProfileImagePicker id='profile_image' name='profile_image' error={formState?.fieldErrors?.profile_photo?.[0]} defaultValue={shopInfo.profile_photo} />

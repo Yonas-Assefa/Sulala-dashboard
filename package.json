@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.35.1",
+    "@types/lodash": "^4.17.4",
     "dayjs": "^1.11.11",
     "framer-motion": "^11.2.6",
     "intl-tel-input": "^21.2.8",

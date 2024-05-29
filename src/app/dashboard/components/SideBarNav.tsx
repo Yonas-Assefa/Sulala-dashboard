@@ -24,12 +24,12 @@ function SideBarNav() {
             <div>
                 <div className='flex flex-row justify-between items-center'>
                     <SulalaLogo />
-                    <div className='m-2 p-1 md:hidden bg-primary rounded-sm'>
+                    <div className='m-2 p-1 md:hidden bg-primary md:bg-transparent rounded-sm'>
                         <input ref={menuRef} type="checkbox" className='peer' hidden name="nav_bar" id="nav_bar" />
                         <label htmlFor="nav_bar" className=' p-1 flex flex-col gap-1'>
-                            <div className="bg-tertiary h-[2px] w-[25px] group-has-[:checked]:rotate-45 group-has-[:checked]:translate-y-[6px] transition-all" />
-                            <div className="bg-tertiary h-[2px] w-[25px] group-has-[:checked]:invisible" />
-                            <div className="bg-tertiary h-[2px] w-[25px] group-has-[:checked]:-rotate-45 group-has-[:checked]:-translate-y-[6px] transition-all" />
+                            <div className="bg-tertiary md:bg-primary h-[2px] md:h-[3px] w-[25px] md:w-[18px] group-has-[:checked]:rotate-45 md:rotate-45 md:-translate-y-[2px] group-has-[:checked]:translate-y-[6px] md:group-has-[:checked]:translate-y-[9px] transition-all" />
+                            <div className="bg-tertiary md:bg-primary md:hidden h-[2px] w-[25px] group-has-[:checked]:invisible" />
+                            <div className="bg-tertiary md:bg-primary h-[2px] md:h-[3px] w-[25px] md:w-[18px] group-has-[:checked]:-rotate-45 md:-rotate-45 md:translate-y-[2px] group-has-[:checked]:-translate-y-[6px] md:group-has-[:checked]:-translate-y-[9px] transition-all" />
                         </label>
                     </div>
                 </div>

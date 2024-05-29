@@ -7,10 +7,13 @@ import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import { getPromotions } from '@/actions/promotion/get-promotions'
 import { updatePromotionStatus } from '@/actions/promotion/update-promotion-status'
 import { deletePromotion } from '@/actions/promotion/delete-promotion'
+import { TableProps as Props } from '@/types/props.type'
+import { changeObjToFormData } from '@/lib/helper'
 
-async function page() {
 
-    const promotions = await getPromotions()
+async function page({ searchParams: { search, filter, sort, sort_by } }: Props) {
+
+    const promotions = await getPromotions(changeObjToFormData({ search, filter, sort, sort_by }))
 
     return (
         <>
@@ -69,6 +72,9 @@ async function page() {
                             formData: [
                                 { formDataKey: 'item_id', searchKey: 'item' },
                             ]
+                        },
+                        search: {
+                            action: getPromotions,
                         }
                     }}
                 />

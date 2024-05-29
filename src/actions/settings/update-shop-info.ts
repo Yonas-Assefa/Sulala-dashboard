@@ -24,6 +24,7 @@ export const updateShopInfo = async (
         });
 
         const data = shopInfoSettingSchema.parse(cleanedData);
+        console.log({ data })
 
         const response = await fetch(UPDATE_SHOP_ACCOUNT, {
             method: 'PATCH',

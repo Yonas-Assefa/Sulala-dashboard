@@ -37,6 +37,9 @@ type ActionOptions = {
     delete?: {
         action: (formData: FormData) => Promise<FormState>
         formData: { formDataKey: string, searchKey: string }[]
+    },
+    search?: {
+        action: (formData: FormData) => Promise<FormState>
     }
 }
 
