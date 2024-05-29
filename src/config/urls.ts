@@ -1,11 +1,11 @@
-import { loadEnvConfig } from '@next/env'
+import { loadEnvConfig } from "@next/env";
 
-const projectDir = process.cwd()
-loadEnvConfig(projectDir)
+const projectDir = process.cwd();
+loadEnvConfig(projectDir);
 
 export const BASE_URL = process.env.BACKEND_BASE_URL!;
 const API_URL = `${BASE_URL}api/v1/`;
-const VENDOR_BASE_URL = `${API_URL}vendors/`
+const VENDOR_BASE_URL = `${API_URL}vendors/`;
 
 // VENDOR BASED URLS
 export const SIGNUP_URL = `${VENDOR_BASE_URL}register/`;
@@ -30,6 +30,7 @@ export const SET_PRIMARY_BILLING = `${VENDOR_BASE_URL}set_payment_method_primary
 export const CHANGE_PASSWORD = `${VENDOR_BASE_URL}change_password/`;
 export const LOGOUT = `${API_URL}logout/`;
 export const GET_BILLING_ACCOUNT = `${VENDOR_BASE_URL}get_payment_method/`;
+export const GOOGLE_SIGNIN_URL = `${VENDOR_BASE_URL}google_signin_signup_vendor/`;
 
 // CATEGORY URLS
 export const CATEGORIES = `${API_URL}categories/`;
@@ -42,6 +43,11 @@ export const PRODUCT_TAGS = `${API_URL}product_tags/`;
 export const PROMOTIONS = `${API_URL}promotions/`;
 export const REMOVE_PROMOTION_FILE = `${API_URL}remove_promotion_file/`;
 
+//ORDERS URLS
+export const ORDERS_URL = `${API_URL}orders/`;
+
+//SHOP URLS
+export const SHOP_REVENUE_URL = `https://sulala.com/api/v1/vendors/shops/revenue/`;
 // OTHERS
-export const INSTAGRAM_BASE_URL = 'https://www.instagram.com/'
-export const FACEBOOK_BASE_URL = 'https://www.facebook.com/'
+export const INSTAGRAM_BASE_URL = "https://www.instagram.com/";
+export const FACEBOOK_BASE_URL = "https://www.facebook.com/";
