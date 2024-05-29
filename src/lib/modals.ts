@@ -15,7 +15,7 @@ export const openModal = async (modalId: string, withPromise?: boolean) => {
     })
 }
 
-export const closeModal = (modalId: string, withPromise: boolean) => {
+export const closeModal = (modalId: string, withPromise?: boolean) => {
     if (!isModalOpen(modalId)) return
     if (withPromise) {
         const cancelBtn = document.getElementById(modalId + '_cancel')

@@ -8,7 +8,8 @@ export const productMapper = async (data: any) => {
     function convert(item: any) {
         return {
             ...item,
-            category: getSubCategory(categories, item.category),
+            category: getSubCategory(categories, item.category)?.label,
+            category_value: getSubCategory(categories, item.category)?.value,
             tags: item.tags.map((tag: any) => ({ label: tag.name, value: tag.id })),
             images: constructImageUrl(item.images?.[0], true),
             deconstructed_images: deconstructImageUrl(item.images?.[0])
@@ -27,5 +28,6 @@ export const productMapper = async (data: any) => {
 const getSubCategory = (categories: any, id: number) => {
     const category = categories.find((category: any) => (category.options.map((o: any) => o.value)).includes(id))
     const subCategory = category ? category.options.find((o: any) => o.value === id) : null
-    return subCategory
+    console.log({ category, subCategory, categories, })
+    return subCategory || category || { label: 'No category', value: 0 }
 }
