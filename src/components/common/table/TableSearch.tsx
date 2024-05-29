@@ -18,53 +18,52 @@ function TableSearch({ action }: Props) {
         setValue(e.target.value)
     }
 
-    const handleSearch = () => {
-        startTransition(async () => {
-            // createQueryStringAndPush('search', value)
-            const formData = new FormData()
-            formData.append('search', value)
-            formData.append('search_type', 'table_search')
-            const searchResult = await action?.(formData)
-            if (searchResult && Array.isArray(searchResult)) {
-                console.log({ searchResult })
-                setSearchResult(searchResult)
-            }
-        })
-    }
+    // const handleSearch = () => {
+    //     if (search == undefined && value == '') setSearchResult([])
+    //     startTransition(async () => {
+    //         const formData = new FormData()
+    //         formData.append('search', value)
+    //         formData.append('search_type', 'table_search')
+    //         const searchResult = await action?.(formData)
+    //         if (searchResult && Array.isArray(searchResult)) {
+    //             setSearchResult(searchResult)
+    //         }
+    //     })
+    // }
 
-    const handleSearchResultClick = (value: string) => {
-        setSearchResult([])
-        createQueryStringAndPush('search', value)
-    }
+    // const handleSearchResultClick = (value: string) => {
+    //     setSearchResult([])
+    //     createQueryStringAndPush('search', value)
+    // }
 
     const handleSearchEnterClick = () => {
         setSearchResult([])
         createQueryStringAndPush('search', value)
     }
 
-    const debouncedSearch = debounce(handleSearch, 2000)
+    // const debouncedSearch = debounce(handleSearch, 2000)
 
-    React.useEffect(() => {
-        debouncedSearch()
-    }, [value])
+    // React.useEffect(() => {
+    //     debouncedSearch()
+    // }, [value])
 
-    React.useEffect(() => {
-        setValue(search || '')
-    }, [search])
+    // React.useEffect(() => {
+    //     setValue(search || '')
+    // }, [search])
 
     return (
         <div className='relative'>
-            <form action={handleSearchEnterClick} className="border flex flex-row gap-1 p-1 rounded-[30px] relative">
+            <form action={handleSearchEnterClick} className="border flex flex-row gap-1 p-1 rounded-[30px] relative focus-within:border-primary">
                 <img src="/icons/search.svg" alt="" />
                 <input
                     onChange={handleChange}
                     value={value}
                     type="text"
-                    className='bg-white outline-none border-0 focus:outline-none focus:border-0'
+                    className='bg-white outline-none border-0 focus:outline-none'
                     placeholder='Seach my products' />
                 {isPending && <span className="loading loading-dots loading-xs text-primary/80 absolute right-2 top-2"></span>}
             </form>
-            <div tabIndex={0} className={`absolute z-20 menu p-0 mt-2 shadow bg-white border rounded-box w-full ${searchResult.length > 0 ? 'block' : 'hidden'}`}>
+            {/* <div tabIndex={0} className={`absolute z-20 menu p-0 mt-2 shadow bg-white border rounded-box w-full ${searchResult.length > 0 ? 'block' : 'hidden'}`}>
                 <ul className='w-full'>
                     {
                         searchResult.map((item) => {
@@ -81,7 +80,7 @@ function TableSearch({ action }: Props) {
                         })
                     }
                 </ul>
-            </div>
+            </div> */}
         </div>
 
     )
