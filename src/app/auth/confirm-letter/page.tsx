@@ -1,7 +1,11 @@
 'use client';
+import { resendVerificationLink } from '@/actions/auth/resend-verification-link';
 import { getPersonalInfo } from '@/actions/settings/get-personal-info';
 import BackButton from '@/components/common/ui/BackButton'
 import Counter from '@/components/common/ui/Counter';
+import { useRedirectRoute } from '@/hooks/useRedirectRoute';
+import { useToastMessage } from '@/hooks/useToastMessage';
+import { EMPTY_FORM_STATE } from '@/utils/formStateHelper';
 import { Metadata } from 'next';
 import { redirect, useRouter } from 'next/navigation';
 import React from 'react'
@@ -22,6 +26,7 @@ type Props = {
 
 function ConfirmationLetter({ searchParams: { email } }: Props) {
     const router = useRouter()
+    const [formState, setFormState] = React.useState(EMPTY_FORM_STATE)
 
     const checkEmailVerification = async () => {
         const personalInfo = await getPersonalInfo()
@@ -30,6 +35,9 @@ function ConfirmationLetter({ searchParams: { email } }: Props) {
             router.push('/auth/create-password')
         }
     }
+
+    useToastMessage(formState)
+    useRedirectRoute(formState)
 
     React.useEffect(() => {
         const interval = setInterval(() => {
@@ -40,7 +48,17 @@ function ConfirmationLetter({ searchParams: { email } }: Props) {
 
 
     const counterFunction = async () => {
-        return Promise.resolve()
+        let personalInfo: any
+        try {
+            personalInfo = await getPersonalInfo()
+        } catch (error) {
+            console.error(error)
+        }
+        resendVerificationLink({ email: personalInfo?.email || email })
+            .then((res) => {
+                setFormState(res)
+
+            })
     }
 
     return (
@@ -58,7 +76,7 @@ function ConfirmationLetter({ searchParams: { email } }: Props) {
                     {/* SIGN UP LINK */}
                     <div className='flex flex-col gap-3 w-full items-center'>
 
-                        <Counter initialValue={30} buttonLabel='Send new email' />
+                        <Counter initialValue={30} buttonLabel='Send new email' buttonFunction={counterFunction} />
                     </div>
                 </div>
             </div>
