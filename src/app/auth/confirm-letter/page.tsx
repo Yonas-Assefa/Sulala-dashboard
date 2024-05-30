@@ -42,7 +42,7 @@ function ConfirmationLetter({ searchParams: { email } }: Props) {
     React.useEffect(() => {
         const interval = setInterval(() => {
             checkEmailVerification()
-        }, 5000)
+        }, 30000)
         return () => clearInterval(interval)
     }, [])
 
