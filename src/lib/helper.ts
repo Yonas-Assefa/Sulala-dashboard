@@ -155,7 +155,6 @@ export const makeRequestWithCookie = async (url: string, data: object, method: T
 
 export const setBrowserCookie = (response: Response) => {
     const cookieArray = response.headers.getSetCookie() || [];
-    console.log({ cookieArray })
     for (const cookie of cookieArray) {
         const cookieProps = cookie.split('; ')
         const [key, value] = cookieProps[0].split('=')

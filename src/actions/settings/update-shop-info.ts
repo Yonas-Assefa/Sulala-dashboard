@@ -32,7 +32,6 @@ export const updateShopInfo = async (
         });
 
         const body = await response.json()
-        console.log({ body })
         if (!response.ok || !body.success) {
             const message = getResponseErrorMessage(body)
             throw new Error(message || 'Failed to submit form');

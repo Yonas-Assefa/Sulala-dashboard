@@ -37,8 +37,6 @@ function ProductForm({ categoryLists, productTags, initialValue, tab }: Props) {
         { label: 'Archived', value: 'ARCHIVED' },
     ]
 
-    console.log({ initialValue })
-
     return (
         <form action={action} className='flex flex-col gap-4'>
             <input type="text" name="tab" id="tab" value={tab} onChange={() => { }} hidden />

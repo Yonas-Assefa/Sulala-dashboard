@@ -7,7 +7,6 @@ function TextInput({ value: otVal, disabled, setValue: emitVal, id, placeholder,
 
     React.useEffect(() => {
         if (setValue && defaultValue) {
-            console.log("value set")
             setValue(defaultValue)
             emitVal && emitVal(defaultValue)
         }

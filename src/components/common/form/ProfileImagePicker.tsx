@@ -16,9 +16,10 @@ type Props = {
     name?: string
     id?: string
     defaultValue?: string
+    disabled?: boolean
 }
 
-function ProfileImagePicker({ error, name, id, defaultValue }: Props) {
+function ProfileImagePicker({ error, name, id, defaultValue, disabled }: Props) {
     const [image, setImage] = React.useState<{ dataUrl: boolean, value: string | undefined }>({ dataUrl: false, value: defaultValue })
     const [imageTem, setImageTem] = React.useState<{ dataUrl: boolean, value: string | undefined }>()
     const [rawImage, setRawImage] = React.useState<string | undefined>()
@@ -116,10 +117,11 @@ function ProfileImagePicker({ error, name, id, defaultValue }: Props) {
                     </label> :
                     <div className='flex flex-row gap-4 items-center  w-full md:w-auto justify-start relative'>
                         <Image width={100} height={100} src={image.value} alt="" className='rounded-full aspect-square w-[30vw]  md:w-[6vw] min-w-[50px]' />
-                        <div className='flex md:flex-row flex-col gap-2'>
+                        {!disabled ? <div className='flex md:flex-row flex-col gap-2'>
                             <label htmlFor={id} className='text-primary font-semibold cursor-pointer'>Change photo</label>
                             <button type='button' className='text-danger font-semibold' onClick={handleRemoveImage}>Delete photo</button>
-                        </div>
+                        </div> :
+                            <p className='text-black/40 font-semibold cursor-not-allowed truncate'>Readonly! Edit and delete is not allowed</p>}
                         {/* {
                             !saved &&
                             <div className='flex flex-row gap-2 right-0 justify-end relative md:absolute bottom-5 tooltip tooltip-bottom tooltip-hover hover:cursor-pointer tooltip-error' data-tip='⚠️ &nbsp;profile not saved!'>

@@ -15,7 +15,6 @@ import { deleteProduct } from "@/actions/products/delete-product";
 async function page() {
   const products = await getProducts();
   const categories = await getCategories();
-  console.log("products: ", products);
 
   return (
     <>

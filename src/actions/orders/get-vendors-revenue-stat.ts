@@ -13,6 +13,5 @@ export const getVendorsRevenueStas = async () => {
     throw new Error(shopRevenueBody.message || "Failed to get shop revenue");
   }
 
-  console.log("shop stata: ", shopRevenueBody);
   return shopRevenueBody.result;
 };

@@ -28,10 +28,12 @@ export default async function DashboardLayout({ children }: Readonly<{ children:
         redirect('/auth/setup-account?stage=one')
     }
 
+    console.log({ personalInfo, is_superuser: personalInfo?.is_superuser })
+
     return (
         <>
             <div className='w-screen h-screen overflow-hidden flex md:flex-row flex-col'>
-                <SideBarNav />
+                <SideBarNav isSuperUser={personalInfo?.is_superuser} />
                 <div className='bg-white overflow-y-scroll flex-grow'>
                     <div className='w-full h-full mt-8 flex justify-between flex-col items-center'>
                         {children}

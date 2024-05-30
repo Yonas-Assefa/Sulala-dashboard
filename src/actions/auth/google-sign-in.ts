@@ -18,7 +18,6 @@ export const googleSingIn = async (accessToken: string) => {
       },
       body: JSON.stringify({ access_token: accessToken }),
     });
-    console.log(response);
 
     const body = await response.json();
     if (!response.ok || !body.success) {
@@ -27,7 +26,6 @@ export const googleSingIn = async (accessToken: string) => {
     setBrowserCookie(response);
 
     const successMessage = "Signin successful!.";
-    console.log("signin success");
 
     redirect("/auth/account-setup");
 

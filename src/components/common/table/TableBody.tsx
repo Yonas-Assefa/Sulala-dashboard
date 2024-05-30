@@ -75,6 +75,7 @@ function TableBody({ tableSchema, mockData, actionOptions }: Props) {
                                     product={product}
                                     toggle={tableSchema.include.actions.toggle}
                                     actionOptions={actionOptions}
+                                    detail={tableSchema.include.actions.detail}
                                 />
                             }
                         </tr>
