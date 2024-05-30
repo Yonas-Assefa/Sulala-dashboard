@@ -35,18 +35,18 @@ const routes = [
         protected: false
     },
     {
+        icon: '/icons/truck.svg',
+        activeIcon: '/icons/whatshot_active.svg',
+        name: 'Drivers',
+        path: '/dashboard/drivers?filter=all'
+    },
+    {
         icon: '/icons/command.svg',
         activeIcon: '/icons/command_active.svg',
         name: 'Manage Shops',
         path: '/dashboard/manage?filter=pending',
         protected: true
     },
-    // {
-    //     icon: '/icons/truck.svg',
-    //     activeIcon: '/icons/whatshot_active.svg',
-    //     name: 'Drivers',
-    //     path: '/dashboard/drivers?filter=all'
-    // },
 ]
 
 export default routes

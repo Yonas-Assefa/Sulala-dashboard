@@ -22,7 +22,7 @@ async function page({ searchParams: { search, filter, sort, sort_by } }: Props) 
 
                 {/* HEADER FOR MY PRODUCTS */}
                 <div className='flex flex-row justify-between'>
-                    <h1 className='text-2xl md:text-4xl font-semibold font-serif'>Approve / Reject </h1>
+                    <h1 className='text-2xl md:text-4xl font-semibold font-serif'>Manage shops </h1>
                 </div>
 
                 {/* <PromotionCampaignTable /> */}
