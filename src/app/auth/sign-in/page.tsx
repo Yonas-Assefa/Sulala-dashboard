@@ -4,6 +4,7 @@ import PhoneEmailTab from "../components/PhoneEmailTab";
 import SignInForm from "./SignInForm";
 import { Metadata } from "next";
 import { signIn } from "next-auth/react";
+import { handleGoogleSignIn } from "@/actions/auth/ggoleSigninHelper";
 
 export const metadata: Metadata = {
   title: "Sulala | Auth Sign In",
@@ -32,9 +33,7 @@ function SignIn({ searchParams: { by } }: SignupProps) {
         </button>
         <button
           className="btn border-0 h-100px aspect-square bg-[#f6f6f6] rounded-full hover:bg-primary/20"
-          onClick={() => {
-            signIn("google");
-          }}
+          onClick={handleGoogleSignIn}
         >
           <img src="/googlelogo.svg" alt="" />
         </button>
