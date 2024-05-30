@@ -21,7 +21,7 @@ async function page() {
       <ImportProductsModal />
       <div className="text-black flex flex-col w-full h-full p-8 gap-10">
         {/* HEADER FOR MY PRODUCTS */}
-        <ProductHead />
+        <ProductHead exportData={products} />
 
         <Table
           data={products}

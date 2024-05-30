@@ -1,11 +1,25 @@
 'use client'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import SecondaryButton from '@/components/common/ui/SecondaryButton'
-import { openModal } from '@/lib/modals'
-import Link from 'next/link'
+import { pushSuccessNotification } from '@/utils/pushNotification.util';
+import { mkConfig, generateCsv, download } from "export-to-csv";
 import React from 'react'
 
-function ProductHead() {
+const csvFileName = `products-${new Date().getTime()}`;
+const csvConfig = mkConfig({ useKeysAsHeaders: true, filename: csvFileName });
+
+type Props = {
+    exportData: any[]
+}
+function ProductHead({ exportData }: Props) {
+
+    const cleanedExportData = exportData.map((data) => ({ ...data, tags: data.tags.map((tag: any) => tag.label).filter((tag: any) => tag).join(', ') }))
+
+    const downloadCsv = () => {
+        const csv = generateCsv(csvConfig)(cleanedExportData);
+        download(csvConfig)(csv)
+        pushSuccessNotification(`Downloaded CSV file as ${csvFileName}.csv`)
+    }
 
     return (
         <div className='flex flex-col md:flex-row justify-between'>
@@ -15,7 +29,7 @@ function ProductHead() {
                     <SecondaryButton name='Import' modal='import_products_modal' padding='sm' />
                 </div>
                 <div className='fixed md:relative bottom-14 md:bottom-0 drop-shadow-lg md:drop-shadow-none right-0 p-3 md:p-0 z-20'>
-                    <SecondaryButton name='Export' href='' padding='sm' />
+                    <SecondaryButton handleClick={downloadCsv} name='Export' href='' padding='sm' />
                 </div>
                 <div className='fixed md:relative bottom-28 md:bottom-0 drop-shadow-lg md:drop-shadow-none right-0 p-3 md:p-0 z-20'>
                     <PrimaryButton name='Add Product' href='/dashboard/my-products/add' />
