@@ -67,11 +67,11 @@ function VendorDetailForm({ initialData }: Props) {
                     <div className='flex flex-col gap-3'>
                         <div className='flex flex-row gap-1'>
                             <input type="radio" name="status" id='approve' className="radio radio-warning" onChange={handleStatusChange} checked={status == 'APPROVE'} />
-                            <label htmlFor="approve" className='cursor-pointer'>Approve</label>
+                            <label htmlFor="approve" className={`cursor-pointer ${status == 'APPROVE' && 'font-semibold text-warning drop-shadow-md'}`}>Approve</label>
                         </div>
                         <div className='flex flex-row gap-1'>
                             <input type="radio" name="status" id='reject' className="radio radio-error" onChange={handleStatusChange} checked={status == 'REJECT'} />
-                            <label htmlFor="reject" className='cursor-pointer'>Reject</label>
+                            <label htmlFor="reject" className={`cursor-pointer ${status == 'REJECT' && 'font-semibold text-error drop-shadow-md'}`}>Reject</label>
                         </div>
                     </div>
                     <div className=''>
