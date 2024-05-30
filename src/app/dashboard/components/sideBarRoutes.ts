@@ -36,7 +36,7 @@ const routes = [
     },
     {
         icon: '/icons/truck.svg',
-        activeIcon: '/icons/whatshot_active.svg',
+        activeIcon: '/icons/truck_active.svg',
         name: 'Drivers',
         path: '/dashboard/drivers?filter=all'
     },
