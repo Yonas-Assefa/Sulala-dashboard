@@ -15,9 +15,16 @@ export const metadata: Metadata = {
 
 export default async function DashboardLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
-    const shopInfo = await getShopInfo()
-    if (shopInfo.certificates && Array.isArray(shopInfo.certificates) && shopInfo.certificates.length == 0) {
-        redirect('/auth/setup-account')
+    try {
+        const shopInfo = await getShopInfo()
+        if (shopInfo.certificates && Array.isArray(shopInfo.certificates) && shopInfo.certificates.length == 0) {
+            redirect('/auth/setup-account?stage=one')
+        }
+    } catch (error: unknown) {
+        if (error && typeof error == 'object' && 'message' in error && typeof error.message == 'string' && error.message.includes("don't have a shop")) {
+            console.error('Please set up your shop to start buying and selling goods and services.')
+            redirect('/auth/setup-account?stage=one')
+        }
     }
 
     return (

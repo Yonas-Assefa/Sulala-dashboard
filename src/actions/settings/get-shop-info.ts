@@ -15,6 +15,7 @@ export const getShopInfo = async () => {
     })
     const body = await response.json()
 
+    console.log({ body })
     if (!response.ok || !body.success) {
         throw new Error(body.message || 'Failed to get shop info');
     }
