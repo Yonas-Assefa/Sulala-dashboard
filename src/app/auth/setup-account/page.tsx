@@ -6,6 +6,7 @@ import { redirect } from 'next/navigation'
 import React from 'react'
 import { Metadata } from 'next'
 import { getShopInfo } from '@/actions/settings/get-shop-info'
+import { getPersonalInfo } from '@/actions/settings/get-personal-info'
 
 export const metadata: Metadata = {
   title: 'Sulala | Auth Setup Account',
@@ -39,6 +40,7 @@ async function SetupAccount({ searchParams: { stage: activeStage } }: Props) {
 
 
   const categoryLists = await getCategories()
+  const personalInfo = await getPersonalInfo()
   return (
     <div className='text-black w-10/12 flex flex-col gap-5 items-center'>
       {activeStage != 'one' && <BackButton />}
@@ -54,7 +56,7 @@ async function SetupAccount({ searchParams: { stage: activeStage } }: Props) {
 
       <div className='flex flex-col gap-6 w-full md:px-10'>
         {/* SIGN IN INPUT */}
-        <SetupAccountForm activeStage={activeStage} categoryLists={categoryLists} />
+        <SetupAccountForm personalInfo={personalInfo} activeStage={activeStage} categoryLists={categoryLists} />
       </div>
 
     </div >

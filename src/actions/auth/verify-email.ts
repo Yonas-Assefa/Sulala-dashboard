@@ -16,7 +16,7 @@ export const verifyEmail = async ({ confirmation_token, vendor_id }: VerifyEmail
         if (!response.ok || !body.success) {
             if (body.message === 'Email already verified') {
                 const successMessage = 'Email already verified!'
-                const redirectUrl = '/auth/create-password'
+                const redirectUrl = '/auth/continue-with-phone'
                 return toFormState('SUCCESS', successMessage, redirectUrl);
             }
             const redirectUrl = '/auth/sign-in'
@@ -29,7 +29,7 @@ export const verifyEmail = async ({ confirmation_token, vendor_id }: VerifyEmail
 
         const successMessage = 'Verification successful!'
 
-        const redirectUrl = '/auth/create-password'
+        const redirectUrl = '/auth/continue-with-phone'
 
         return toFormState('SUCCESS', successMessage, redirectUrl);
     } catch (error) {
