@@ -4,7 +4,8 @@ import BackButton from '@/components/common/ui/BackButton'
 import Counter from '@/components/common/ui/Counter';
 import { Metadata } from 'next';
 import { redirect, useRouter } from 'next/navigation';
-import React from 'react'
+import React, { useEffect } from 'react'
+import { isMobile } from 'mobile-device-detect';
 
 // export const metadata: Metadata = {
 //     title: 'Sulala | Auth Confirmation Letter',
@@ -23,25 +24,11 @@ type Props = {
 function ConfirmationLetter({ searchParams: { email } }: Props) {
     const router = useRouter()
 
-    const checkEmailVerification = async () => {
-        const personalInfo = await getPersonalInfo()
-        console.log({ personalInfo })
-        if (personalInfo?.email_verified && !personalInfo?.is_password_set && personalInfo?.email && !personalInfo?.phone_verified) {
+    useEffect(() => {
+        if (!isMobile) {
             router.push('/auth/create-password')
         }
-    }
-
-    React.useEffect(() => {
-        const interval = setInterval(() => {
-            checkEmailVerification()
-        }, 5000)
-        return () => clearInterval(interval)
     }, [])
-
-
-    const counterFunction = async () => {
-        return Promise.resolve()
-    }
 
     return (
         <div className='text-black w-10/12 h-4/5 px-6 flex flex-col justify-evenly pb-8 items-center'>
@@ -50,15 +37,20 @@ function ConfirmationLetter({ searchParams: { email } }: Props) {
             </div>
             {/* SIGN IN HEADER */}
             <div className='flex flex-col gap-6'>
-                <h1 className='text-4xl md:text-[40px] text-center font-serif font-semibold self-start'>The confirmation letter has been sent</h1>
-                <p className='text-gray-500'>Check the &nbsp; <span className='text-primary font-semibold'>{email}</span> &nbsp;
-                    mailbox to which the registration confirmation email was sent.
+                <p className='text-gray-500'>Check your computer to proceed with the registration process. You can also use your phone to complete the registration process.
                 </p>
-                <div className='flex flex-col gap-6 w-full'>
+                <div className='flex flex-col gap-3 w-full'>
                     {/* SIGN UP LINK */}
                     <div className='flex flex-col gap-3 w-full items-center'>
-
-                        <Counter initialValue={30} buttonLabel='Send new email' />
+                        <img src="/icons/pc.svg" alt="" className='w-[200px]' />
+                    </div>
+                    <div className='w-full flex justify-center flex-row'>
+                        <button className='flex flex-row gap-3 text-primary' onClick={() => {
+                            router.push('/auth/create-password')
+                        }}>
+                            <img src="/icons/phone.svg" alt="" />
+                            <p>proceed with your phone?</p>
+                        </button>
                     </div>
                 </div>
             </div>

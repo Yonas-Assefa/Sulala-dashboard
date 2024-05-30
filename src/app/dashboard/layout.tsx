@@ -1,8 +1,8 @@
 import React from "react";
 import SideBarNav from "./components/SideBarNav";
 import { Metadata } from "next";
-import { getShopInfo } from "@/actions/settings/get-shop-info";
 import { redirect } from "next/navigation";
+import { getPersonalInfo } from "@/actions/settings/get-personal-info";
 
 export const metadata: Metadata = {
     title: 'Sulala | Dashboard',
@@ -15,16 +15,17 @@ export const metadata: Metadata = {
 
 export default async function DashboardLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
-    try {
-        const shopInfo = await getShopInfo()
-        if (shopInfo.certificates && Array.isArray(shopInfo.certificates) && shopInfo.certificates.length == 0) {
-            redirect('/auth/setup-account?stage=one')
-        }
-    } catch (error: unknown) {
-        if (error && typeof error == 'object' && 'message' in error && typeof error.message == 'string' && error.message.includes("don't have a shop")) {
-            console.error('Please set up your shop to start buying and selling goods and services.')
-            redirect('/auth/setup-account?stage=one')
-        }
+    const personalInfo = await getPersonalInfo()
+    if (!personalInfo?.email_verified) {
+        redirect('/auth/verify-email')
+    }
+    if (!personalInfo?.is_password_set && personalInfo?.email && !personalInfo?.phone_verified) {
+        redirect('/auth/create-password')
+    }
+    if (personalInfo.shops && Array.isArray(personalInfo.shops) && personalInfo.shops.length > 0) {
+        console.info('shop info set up')
+    } else {
+        redirect('/auth/setup-account?stage=one')
     }
 
     return (

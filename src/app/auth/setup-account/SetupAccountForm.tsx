@@ -11,10 +11,8 @@ import FileInput from '@/components/common/form/FileInput'
 import CustomMultiSelectInput from '@/components/common/form/SelectInput'
 import TextInput from '@/components/common/form/TextInput'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
-import { createSetupStore } from '@/stores/setup-account'
-import { redirect } from 'next/navigation'
 
-function SetupAccountStageOne({ formState, show }: { formState: FormState, show: boolean }) {
+function SetupAccountStageOne({ formState, show, personalInfo }: { formState: FormState, show: boolean, personalInfo: any }) {
     const { first_name, last_name, email, setFirstName, setLastName, setEmail } = useCounterStore(
         (state) => state,
     )
@@ -22,7 +20,7 @@ function SetupAccountStageOne({ formState, show }: { formState: FormState, show:
         <section className={`flex flex-col gap-5 w-full items-stretch ${!show && 'hidden'}`}>
             <TextInput defaultValue={first_name} value={first_name} setValue={setFirstName} label="What's your first name?" placeholder='Enter your first name' id='first_name' name='first_name' error={formState.fieldErrors?.first_name?.[0]} />
             <TextInput defaultValue={last_name} value={last_name} setValue={setLastName} label="What's your last name?" placeholder='Enter your last name' id='last_name' name='last_name' error={formState.fieldErrors?.last_name?.[0]} />
-            <TextInput defaultValue={email} value={email} setValue={setEmail} label="What's your email address?" placeholder='Enter your email address' id='email' name='email' error={formState.fieldErrors?.email?.[0]} />
+            <TextInput defaultValue={personalInfo?.email || email} disabled={personalInfo?.email?.length > 0} value={email} setValue={setEmail} label="What's your email address?" placeholder='Enter your email address' id='email' name='email' error={formState.fieldErrors?.email?.[0]} />
         </section>
     )
 }
@@ -63,7 +61,7 @@ function SetupAccountStageThree({ formState, show }: { formState: FormState, sho
     )
 }
 
-function SetupAccountForm({ categoryLists, activeStage }: { categoryLists: any, activeStage: string }) {
+function SetupAccountForm({ categoryLists, activeStage, personalInfo }: { categoryLists: any, personalInfo: any, activeStage: string }) {
 
     const { createQueryStringAndPush } = useCreateQueryString()
 
@@ -82,7 +80,7 @@ function SetupAccountForm({ categoryLists, activeStage }: { categoryLists: any, 
 
     return (
         <form action={action}>
-            <SetupAccountStageOne formState={formState} show={activeStage === 'one'} />
+            <SetupAccountStageOne formState={formState} show={activeStage === 'one'} personalInfo={personalInfo} />
             <SetupAccountStageTwo formState={formState} categoryLists={categoryLists} show={activeStage === 'two'} />
             <SetupAccountStageThree formState={formState} show={activeStage === 'three'} />
             <input type="text" name="stage" id="stage" hidden value={activeStage} />

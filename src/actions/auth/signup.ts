@@ -2,7 +2,7 @@
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { SIGNUP_URL } from '../../config/urls';
 import { emailSignUpSchema, phoneAuthSchema } from '../schema/zod-schema';
-import { getPhoneNumber } from '../../lib/helper';
+import { getPhoneNumber, setBrowserCookie } from '../../lib/helper';
 
 export const signUp = async (
     formState: FormState,
@@ -40,6 +40,8 @@ export const signUp = async (
         if (!response.ok || !body.success) {
             throw new Error(body.message || 'Failed to sign up');
         }
+
+        setBrowserCookie(response)
 
         const successMessage = (by == 'email') ?
             'Check your email for the verification link' :
