@@ -6,7 +6,6 @@ import { redirect } from 'next/navigation'
 import React from 'react'
 import { Metadata } from 'next'
 import { getShopInfo } from '@/actions/settings/get-shop-info'
-import { pushWarningNotification } from '@/utils/pushNotification.util'
 
 export const metadata: Metadata = {
   title: 'Sulala | Auth Setup Account',
@@ -22,9 +21,15 @@ type Props = {
   }
 }
 async function SetupAccount({ searchParams: { stage: activeStage } }: Props) {
-  const shopInfo = await getShopInfo()
-  if (shopInfo.certificates && Array.isArray(shopInfo.certificates) && shopInfo.certificates.length > 0) {
-    redirect('/dashboard/settings/shop-info')
+  try {
+    const shopInfo = await getShopInfo()
+    if (shopInfo.certificates && Array.isArray(shopInfo.certificates) && shopInfo.certificates.length > 0) {
+      redirect('/dashboard/settings/shop-info')
+    }
+  } catch (error: unknown) {
+    if (error && typeof error == 'object' && 'message' in error && typeof error.message == 'string' && error.message.includes("don't have a shop")) {
+      console.info('Please set up your shop to start buying and selling goods and services.')
+    }
   }
 
 
