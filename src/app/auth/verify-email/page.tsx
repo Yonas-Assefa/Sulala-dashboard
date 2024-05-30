@@ -9,12 +9,11 @@ type Props = {
   searchParams: {
     vendor_id: string
     confirmation_token: string
-  },
-  pathname: string
+  }
 
 }
 
-async function VerifyEmail({ searchParams: { confirmation_token, vendor_id }, pathname }: Props) {
+async function VerifyEmail({ searchParams: { confirmation_token, vendor_id } }: Props) {
 
   // const checkEmailVerification = async () => {
   //   const personalInfo = await getPersonalInfo()
