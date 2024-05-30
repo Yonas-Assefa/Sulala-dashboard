@@ -49,7 +49,7 @@ function ProductForm({ categoryLists, productTags, initialValue, tab }: Props) {
                         <h3 className='font-semibold text-xl'>General Info</h3>
                         <div className='flex flex-col md:grid md:grid-cols-2 max-w-[1300px] gap-5'>
                             <TextInput id='product_name' name='product_name' error={formState.fieldErrors?.title?.[0]} placeholder='Enter product name' label='Title' defaultValue={initialValue?.title} />
-                            <TextInput id='quality' name='quality' type='number' placeholder='Enter Quality' label='Quality' error={formState.fieldErrors?.inventory?.[0]} defaultValue={initialValue?.inventory} />
+                            <TextInput id='quantity' name='quantity' type='number' placeholder='Enter Quantity' label='Quantity' error={formState.fieldErrors?.inventory?.[0]} defaultValue={initialValue?.inventory} />
                             <div className="col-span-2">
                                 <TextAreaInput id='description' name='description' placeholder='Text' label='Description' error={formState.fieldErrors?.description?.[0]} defaultValue={initialValue?.description} />
                             </div>
