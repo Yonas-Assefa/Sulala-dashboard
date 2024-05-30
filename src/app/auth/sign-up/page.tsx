@@ -11,7 +11,7 @@ function SignUp({ searchParams: { by } }: SignupProps) {
   return (
     <div className="text-black w-10/12 flex flex-col gap-5 items-center">
       {/* SIGN IN HEADER */}
-      <h1 className='text-3xl md:text-5xl font-serif font-semibold'>Sign up</h1>
+      <h1 className="text-[50px] font-serif font-semibold">Sign up</h1>
 
       {/* SIGN IN OPTIONS */}
       <PhoneEmailTab />
@@ -26,7 +26,12 @@ function SignUp({ searchParams: { by } }: SignupProps) {
         <button className="btn border-0 h-100px aspect-square bg-[#f6f6f6] rounded-full hover:bg-primary/20">
           <img src="/applelogo.svg" alt="" />
         </button>
-        <button className="btn border-0 h-100px aspect-square bg-[#f6f6f6] rounded-full hover:bg-primary/20">
+        <button
+          className="btn border-0 h-100px aspect-square bg-[#f6f6f6] rounded-full hover:bg-primary/20"
+          onClick={() => {
+            signIn("google");
+          }}
+        >
           <img src="/googlelogo.svg" alt="" />
         </button>
       </div>

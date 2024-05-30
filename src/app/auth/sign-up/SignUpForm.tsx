@@ -43,15 +43,6 @@ function SignUpForm({ by }: SignUpProps) {
 
         <p className="text-[#70757f]">Already have an account?</p>
         <SecondaryButton name="Sign in" href={"/auth/sign-in"} />
-        <div>or</div>
-        <SecondaryButton
-          type="button"
-          name="continue with google"
-          padding="sm"
-          handleClick={() => {
-            signIn("google");
-          }}
-        ></SecondaryButton>
       </div>
     </form>
   );

@@ -1,23 +1,21 @@
-import { SignupProps } from '@/types/props.type'
-import React from 'react'
-import PhoneEmailTab from '../components/PhoneEmailTab'
-import SignInForm from './SignInForm'
-import { Metadata } from 'next';
+import { SignupProps } from "@/types/props.type";
+import React from "react";
+import PhoneEmailTab from "../components/PhoneEmailTab";
+import SignInForm from "./SignInForm";
+import { Metadata } from "next";
+import { signIn } from "next-auth/react";
 
 export const metadata: Metadata = {
-  title: 'Sulala | Auth Sign In',
-  description: 'Sign in to your Sulala account',
-  icons: [
-    '/sulala-logo.svg',
-  ]
+  title: "Sulala | Auth Sign In",
+  description: "Sign in to your Sulala account",
+  icons: ["/sulala-logo.svg"],
 };
 
 function SignIn({ searchParams: { by } }: SignupProps) {
-
   return (
-    <div className='text-black w-10/12 flex flex-col gap-5 items-center'>
+    <div className="text-black w-10/12 flex flex-col gap-5 items-center">
       {/* SIGN IN HEADER */}
-      <h1 className='text-3xl md:text-5xl font-serif font-semibold'>Sign in</h1>
+      <h1 className="text-3xl md:text-5xl font-serif font-semibold">Sign in</h1>
 
       {/* SIGN IN OPTIONS */}
       <PhoneEmailTab />
@@ -25,16 +23,24 @@ function SignIn({ searchParams: { by } }: SignupProps) {
       {/* FORM */}
       <SignInForm by={by} />
 
-
       <div className="divider"></div>
 
       {/* SOCIAL SIGN UP */}
-      <div className='flex gap-4'>
-        <button className='btn border-0 h-100px aspect-square bg-[#f6f6f6] rounded-full hover:bg-primary/20'><img src="/applelogo.svg" alt="" /></button>
-        <button className='btn border-0 h-100px aspect-square bg-[#f6f6f6] rounded-full hover:bg-primary/20'><img src="/googlelogo.svg" alt="" /></button>
+      <div className="flex gap-4">
+        <button className="btn border-0 h-100px aspect-square bg-[#f6f6f6] rounded-full hover:bg-primary/20">
+          <img src="/applelogo.svg" alt="" />
+        </button>
+        <button
+          className="btn border-0 h-100px aspect-square bg-[#f6f6f6] rounded-full hover:bg-primary/20"
+          onClick={() => {
+            signIn("google");
+          }}
+        >
+          <img src="/googlelogo.svg" alt="" />
+        </button>
       </div>
-    </div >
-  )
+    </div>
+  );
 }
 
-export default SignIn
+export default SignIn;
