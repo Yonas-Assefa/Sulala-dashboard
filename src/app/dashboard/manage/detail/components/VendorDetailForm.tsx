@@ -2,6 +2,7 @@
 import DateInput from '@/components/common/form/DateInput'
 import ProfileImagePicker from '@/components/common/form/ProfileImagePicker'
 import RadioInput from '@/components/common/form/RadioInput'
+import TextAreaInput from '@/components/common/form/TextAreaInput'
 import TextInput from '@/components/common/form/TextInput'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import React from 'react'
@@ -73,6 +74,7 @@ function VendorDetailForm({ initialData }: Props) {
                             <input type="radio" name="status" id='reject' className="radio radio-error" onChange={handleStatusChange} checked={status == 'REJECT'} />
                             <label htmlFor="reject" className={`cursor-pointer ${status == 'REJECT' && 'font-semibold text-error drop-shadow-md'}`}>Reject</label>
                         </div>
+                        {status == 'REJECT' && <TextAreaInput label='Reason' placeholder='Type here' required />}
                     </div>
                     <div className=''>
                         <PrimaryButton disabled={!status?.length} padding='md' />

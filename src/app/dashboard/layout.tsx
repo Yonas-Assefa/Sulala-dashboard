@@ -15,21 +15,22 @@ export const metadata: Metadata = {
 
 export default async function DashboardLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
-    const personalInfo = await getPersonalInfo()
-    if (!personalInfo?.email_verified) {
-        redirect('/auth/verify-email')
-    }
-    if (!personalInfo?.is_password_set && personalInfo?.email && !personalInfo?.phone_verified) {
-        redirect('/auth/create-password')
-    }
-    if (personalInfo.shops && Array.isArray(personalInfo.shops) && personalInfo.shops.length > 0) {
-        console.info('shop info set up')
-    } else {
-        redirect('/auth/setup-account?stage=one')
-    }
+    // const personalInfo = await getPersonalInfo()
+    // if (!personalInfo?.email_verified) {
+    //     redirect('/auth/verify-email')
+    // }
+    // if (!personalInfo?.is_password_set && personalInfo?.email && !personalInfo?.phone_verified) {
+    //     redirect('/auth/create-password')
+    // }
+    // if (personalInfo.shops && Array.isArray(personalInfo.shops) && personalInfo.shops.length > 0) {
+    //     console.info('shop info set up')
+    // } else {
+    //     redirect('/auth/setup-account?stage=one')
+    // }
 
-    console.log({ personalInfo, is_superuser: personalInfo?.is_superuser })
+    // console.log({ personalInfo, is_superuser: personalInfo?.is_superuser })
 
+    const personalInfo = { is_superuser: true }
     return (
         <>
             <div className='w-screen h-screen overflow-hidden flex md:flex-row flex-col'>

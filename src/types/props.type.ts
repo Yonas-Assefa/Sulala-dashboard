@@ -58,7 +58,11 @@ type AcceptFileFormate = 'image/*' | 'audio/*' | 'video/*' | 'application/pdf' |
 export type FileInputProps = Pick<BaseInputProps, 'label' | 'name' | 'error' | 'id'> & {
     accept: AcceptFileFormate[]
     handleFile: ChangeEventHandler<HTMLInputElement>
-    file: FileList | null
+    file: FileList | null,
+    sizeLimit?: {
+        value: number
+        unit: 'KB' | 'MB' | 'GB' | 'TB'
+    }
 }
 
 export type SignupProps = {

@@ -38,7 +38,7 @@ function SideBarNav({ isSuperUser }: Props) {
                 </div>
                 <ul className="group-has-[:checked]:flex hidden transition-all md:flex flex-col list-none peer-has-[checked]:hidden">
                     {
-                        routes.filter(route => !route.protected || isSuperUser || true).map((route) => {
+                        routes.filter(route => !route.protected || isSuperUser).map((route) => {
                             const isActive = pathname.includes(route.path.split('?')[0])
                             return (
                                 <Link href={route.path} key={route.name}>
