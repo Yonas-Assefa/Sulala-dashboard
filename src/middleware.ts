@@ -13,6 +13,8 @@ export function middleware(request: NextRequest) {
     !pathname.includes("/create-password") &&
     !pathname.includes("/setup-account") &&
     !pathname.includes("/confirm-letter") &&
+    !pathname.includes("/verify-email") &&
+    !pathname.includes("/approval") &&
     !pathname.includes("/continue-with-phone") &&
     !pathname.includes("/setup-complete")
   ) {

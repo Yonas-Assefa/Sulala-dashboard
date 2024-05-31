@@ -2,7 +2,7 @@
 
 import { PROMOTIONS } from "../../config/urls"
 import { promotionMapper } from "../mapper/promotion-mapper"
-import { Fetch, getRequestHeaders } from "../../lib/helper"
+import { Fetch, getRequestHeaders, getResponseErrorMessage } from "../../lib/helper"
 import { notFound } from "next/navigation"
 
 type Args = {
@@ -39,7 +39,7 @@ export const getPromotions = async (formData: FormData) => {
     const body = await response.json()
 
     if (!response.ok || !body.results) {
-        throw new Error(body.message || 'Failed to get promotions');
+        throw new Error(getResponseErrorMessage(body.message) || 'Failed to get promotions');
     }
     return promotionMapper({ data: body.results, tableSearch: search_type == 'table_search' })
 }

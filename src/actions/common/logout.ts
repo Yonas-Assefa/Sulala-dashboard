@@ -5,10 +5,7 @@ import { LOGOUT } from "../../config/urls"
 import { clearBrowserCookie, getRequestHeaders, } from "../../lib/helper"
 import { redirect } from "next/navigation"
 
-export const logout = async (
-    formState: FormState,
-    formData: FormData
-) => {
+export const logout = async () => {
     await fetch(LOGOUT, {
         method: 'POST',
         headers: getRequestHeaders()

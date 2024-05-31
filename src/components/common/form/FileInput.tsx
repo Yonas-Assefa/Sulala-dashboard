@@ -2,8 +2,9 @@
 import { FileInputProps } from '@/types/props.type'
 import React from 'react'
 import ResetButton from '../ui/ResetButton'
+import { formatFileSize } from '@/utils/filesizeFormatter.util'
 
-function FileInput({ label, name, error, accept, id, ...props }: FileInputProps) {
+function FileInput({ label, name, error, accept, id, sizeLimit }: FileInputProps) {
 
     const [file, setFile] = React.useState<File | null | undefined>(null)
     const inputRef = React.useRef<HTMLInputElement>(null);
@@ -59,7 +60,10 @@ function FileInput({ label, name, error, accept, id, ...props }: FileInputProps)
                 <div className={`w-full flex flex-row justify-between ${!file && 'hidden'}`}>
                     <div className={`flex flex-row gap-5 `}>
                         <img src={error ? "/icons/file-red.svg" : "/icons/file-green.svg"} alt="" />
-                        <p className={`font-semibold ${error ? 'text-danger' : 'text-black'}`}>{file?.name}</p>
+                        <div className='flex items-center gap-1'>
+                            <p className={`font-semibold ${error ? 'text-danger' : 'text-black'}`}>{file?.name}</p>
+                            {file && sizeLimit && <sub className={`text-xs font-semibold ${(formatFileSize(file.size).value > sizeLimit.value && ['MB', 'GB', 'TB'].includes(formatFileSize(file.size)?.unit)) ? 'text-danger/70' : 'text-primary/70 '}`}>({formatFileSize(file.size).text})</sub>}
+                        </div>
                     </div>
                     <ResetButton handleClear={() => setFile(null)} show />
                 </div>

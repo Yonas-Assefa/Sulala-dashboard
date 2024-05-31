@@ -17,8 +17,8 @@ function ImportProductsModal() {
                     <h3 className="font-bold text-xl text-black text-center font-serif">Import</h3>
                 </div>
                 <div className="px-5 flex flex-col gap-3 mt-4">
-                    <FileInput label='Please attach the csv file' handleFile={handleFile} file={file} accept={['.csv']} />
-                    <PrimaryButton name='Import' disabled={file?.length == undefined} />
+                    <FileInput label='Please attach the csv file' handleFile={handleFile} file={file} accept={['.csv']} sizeLimit={{ value: 5, unit: 'MB' }} />
+                    <PrimaryButton name='Import' disabled={!file} />
                 </div>
             </div>
             <form method="dialog" className="modal-backdrop">

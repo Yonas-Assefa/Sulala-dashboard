@@ -3,7 +3,7 @@ import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateH
 import { CONFIRM_PHONE, VERIFY_PHONE } from '../../config/urls';
 import { otpVerificationSchema } from '../schema/zod-schema';
 import { cookies } from 'next/headers';
-import { makeRequest, setBrowserCookie } from '../../lib/helper';
+import { getResponseErrorMessage, makeRequest, setBrowserCookie } from '../../lib/helper';
 
 export const enterOtp = async (
     formState: FormState,
@@ -24,7 +24,7 @@ export const enterOtp = async (
         const body = await response.json()
 
         if (!response.ok || !body.success) {
-            throw new Error(body.message || 'Failed to verify phone number');
+            throw new Error(getResponseErrorMessage(body) || 'Failed to verify phone number');
         }
 
         setBrowserCookie(response)

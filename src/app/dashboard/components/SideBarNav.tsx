@@ -5,8 +5,12 @@ import Link from 'next/link';
 import routes from './sideBarRoutes';
 import { usePathname } from 'next/navigation';
 import { useDetectClickOutside } from 'react-detect-click-outside';
+import SideBarOptions from './SideBarOptions';
 
-function SideBarNav() {
+type Props = {
+    isSuperUser: boolean
+}
+function SideBarNav({ isSuperUser }: Props) {
 
     const pathname = usePathname()
     const menuRef = React.useRef<ElementRef<'input'>>(null)
@@ -35,7 +39,7 @@ function SideBarNav() {
                 </div>
                 <ul className="group-has-[:checked]:flex hidden transition-all md:flex flex-col list-none peer-has-[checked]:hidden">
                     {
-                        routes.map((route) => {
+                        routes.filter(route => isSuperUser ? route.protected : !route.protected).map((route) => {
                             const isActive = pathname.includes(route.path.split('?')[0])
                             return (
                                 <Link href={route.path} key={route.name}>
@@ -44,6 +48,7 @@ function SideBarNav() {
                                         <h6>
                                             {route.name}
                                         </h6>
+                                        {route.protected && <img src="/icons/key.svg" alt="" width='10px' />}
                                     </li>
                                 </Link>
                             )
@@ -51,9 +56,12 @@ function SideBarNav() {
                     }
                 </ul>
             </div>
-            <div className='m-6 hidden md:flex flex-row gap-3 items-center text-black font-semibold'>
-                <img src="/icons/whatsup-logo.svg" alt="whatsup icon" className='h-[30px] aspect-square' />
-                <Link href={'/support/contact'}>Contact support</Link>
+            <div className='flex md:flex-row md:gap-3 items-center'>
+                <div className='m-6 hidden md:flex flex-row gap-3 items-center text-black font-semibold'>
+                    <img src="/icons/whatsup-logo.svg" alt="whatsup icon" className='h-[30px] aspect-square' />
+                    <Link href={'/support/contact'}>Contact support</Link>
+                </div>
+                <SideBarOptions />
             </div>
         </nav>
     )

@@ -12,7 +12,6 @@ async function CreatePassword() {
 
   try {
     const personalInfo = await getPersonalInfo()
-    console.log({ personalInfo })
     if (personalInfo?.is_password_set) {
       redirect('/dashboard/settings')
     }

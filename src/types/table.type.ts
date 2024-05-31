@@ -17,10 +17,11 @@ type Schema = {
 type FilterData = string[]
 
 type Actions = {
-    edit: boolean;
-    delete: boolean;
-    promote: boolean;
-    toggle: boolean;
+    edit?: boolean;
+    delete?: boolean;
+    promote?: boolean;
+    toggle?: boolean;
+    detail?: boolean;
 }
 
 type ActionOptions = {

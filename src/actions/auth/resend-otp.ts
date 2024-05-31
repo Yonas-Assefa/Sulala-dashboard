@@ -3,7 +3,7 @@ import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateH
 import { CONFIRM_PHONE, RESEND_OTP, VERIFY_PHONE } from '../../config/urls';
 import { otpVerificationSchema, resendOtpSchema } from '../schema/zod-schema';
 import { cookies } from 'next/headers';
-import { makeRequest, setBrowserCookie } from '../../lib/helper';
+import { getResponseErrorMessage, makeRequest, setBrowserCookie } from '../../lib/helper';
 
 export const resendOtp = async ({ phone_number }: { phone_number: string }) => {
     try {
@@ -16,7 +16,7 @@ export const resendOtp = async ({ phone_number }: { phone_number: string }) => {
         const body = await response.json()
 
         if (!response.ok || !body.success) {
-            throw new Error(body.message || 'Failed to resend OTP');
+            throw new Error(getResponseErrorMessage(body) || 'Failed to resend OTP');
         }
 
         setBrowserCookie(response)

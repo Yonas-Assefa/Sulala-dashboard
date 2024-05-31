@@ -30,7 +30,6 @@ function ConfirmationLetter({ searchParams: { email } }: Props) {
 
     const checkEmailVerification = async () => {
         const personalInfo = await getPersonalInfo()
-        console.log({ personalInfo })
         if (personalInfo?.email_verified && !personalInfo?.is_password_set && personalInfo?.email && !personalInfo?.phone_verified) {
             router.push('/auth/create-password')
         }

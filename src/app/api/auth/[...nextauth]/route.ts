@@ -24,7 +24,6 @@ const authOption: NextAuthOptions = {
         throw new Error("Sign up error");
       }
       const login = await googleSingIn(account.access_token as string);
-      console.log("login respose: ", login);
       return true;
     },
     async redirect({ url, baseUrl }) {

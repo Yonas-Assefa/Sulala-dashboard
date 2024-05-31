@@ -13,7 +13,7 @@ type Props = Actions & {
     product: any
     actionOptions?: ActionOptions
 }
-function TableActions({ edit, delete: deleteItem, promote, product, toggle, actionOptions }: Props) {
+function TableActions({ edit, detail, delete: deleteItem, promote, product, toggle, actionOptions }: Props) {
     const { createQueryString } = useCreateQueryString()
     const [formState, setFormState] = useState(EMPTY_FORM_STATE)
     const pathname = usePathname()
@@ -80,6 +80,10 @@ function TableActions({ edit, delete: deleteItem, promote, product, toggle, acti
         return pathname + '/edit/' + createQueryString([{ key: 'item', value: product.id }, { key: 'type', value: 'product' }])
     }
 
+    const getDetailLink = () => {
+        return pathname + '/detail/' + createQueryString([{ key: 'item', value: product.id }, { key: 'type', value: 'product' }])
+    }
+
     const handleToogle = async () => {
         addOptimisticToggleValue(!toggleValue.checked)
         startTransition(async () => {
@@ -118,12 +122,18 @@ function TableActions({ edit, delete: deleteItem, promote, product, toggle, acti
                         </div>
                     }
                     {edit &&
-                        <Link href={getEditLink()}>
+                        <Link href={getEditLink()} className='tooltip' data-tip='edit item'>
                             <img src="/icons/edit.svg" alt="" className='min-w-[20px]' />
                         </Link>
                     }
+                    {detail &&
+                        <Link href={getDetailLink()} onClick={() => openModal('view_item_table_modal')} className='tooltip' data-tip='see detail'>
+                            <img src="/icons/file-minus.svg" alt="" className='min-w-[20px]' />
+                        </Link>
+
+                    }
                     {deleteItem &&
-                        <Link href={createQueryString([{ key: 'item', value: product.id }])} onClick={() => openModal('delete_item_table_modal')}>
+                        <Link href={createQueryString([{ key: 'item', value: product.id }])} onClick={() => openModal('delete_item_table_modal')} className='tooltip' data-tip='delete item'>
                             <img src="/icons/delete.svg" alt="" className='min-w-[20px]' />
                         </Link>
                     }

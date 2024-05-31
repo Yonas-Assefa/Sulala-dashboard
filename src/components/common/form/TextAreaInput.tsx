@@ -36,7 +36,8 @@ function TextAreaInput({ id, name, label, placeholder, error, defaultValue, setV
                 {
                     required &&
                     <span className='text-danger'>*&nbsp;
-                        <sup className='text-xs opacity-70'>(required)</sup></span>
+                        {/* <sup className='text-xs opacity-70'>(required)</sup> */}
+                    </span>
                 }
             </label>
             <textarea

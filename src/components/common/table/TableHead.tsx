@@ -35,6 +35,10 @@ function TableHead({ tableSchema, allItemIds }: Props) {
                     tableSchema.include.checkbox &&
                     <TableDelete />
                 }
+                {tableSchema.include.actions &&
+                    tableSchema.include.actions.detail &&
+                    <th>Actions</th>
+                }
             </tr>
         </thead>
     )

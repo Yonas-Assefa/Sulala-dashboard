@@ -3,7 +3,7 @@
 import { getCategories } from "../common/get-categories"
 import { PRODUCTS } from "../../config/urls"
 import { productMapper } from "../mapper/product-mapper"
-import { getRequestHeaders, makeRequest } from "../../lib/helper"
+import { getRequestHeaders, getResponseErrorMessage, makeRequest } from "../../lib/helper"
 import { notFound } from "next/navigation"
 
 export const getProducts = async () => {
@@ -31,7 +31,7 @@ export const getOneProduct = async (item: string) => {
         if (response.status === 404) {
             notFound()
         }
-        return null
+        throw new Error(getResponseErrorMessage(body) || 'Failed to get product');
     }
     return await productMapper(body)
 }

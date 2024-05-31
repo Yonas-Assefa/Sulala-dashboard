@@ -28,6 +28,5 @@ export const productMapper = async (data: any) => {
 const getSubCategory = (categories: any, id: number) => {
     const category = categories.find((category: any) => (category.options.map((o: any) => o.value)).includes(id))
     const subCategory = category ? category.options.find((o: any) => o.value === id) : null
-    console.log({ category, subCategory, categories, })
     return subCategory || category || { label: 'No category', value: 0 }
 }

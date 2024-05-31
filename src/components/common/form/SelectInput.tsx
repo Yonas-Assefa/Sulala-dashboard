@@ -19,7 +19,6 @@ function NoItemPlaceholder() {
 
 function SelectInput({ setValue, placeholder, label, name, id, error, multi = false, nested = false, withImage = false, data, defaultValue, searchable = false, required }: CustomSelectInputProps) {
     const [options, setOptions] = React.useState<SelectInputSchema[]>(data || [])
-    console.log({ defaultValue })
 
     const defaultSelected = (typeof defaultValue === 'string' || typeof defaultValue === 'number') ?
         (
@@ -39,7 +38,6 @@ function SelectInput({ setValue, placeholder, label, name, id, error, multi = fa
         ) :
             typeof defaultValue === 'object' ? [defaultValue as SelectInputSchema] : []
 
-    console.log({ defaultSelected })
 
     const [selected, setSelected] = React.useState<Omit<SelectInputSchema, 'options'>[]>(defaultSelected as SelectInputSchema[])
     const [selectedParent, setSelectedParent] = React.useState<SelectInputSchema | null>(null)
