@@ -1,7 +1,7 @@
 'use server'
 import { fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { VERIFY_EMAIL } from '../../config/urls';
-import { makeRequest, setBrowserCookie } from '../../lib/helper';
+import { getResponseErrorMessage, makeRequest, setBrowserCookie } from '../../lib/helper';
 
 type VerifyEmailArgs = {
     vendor_id: string
@@ -20,7 +20,7 @@ export const verifyEmail = async ({ confirmation_token, vendor_id }: VerifyEmail
                 return toFormState('SUCCESS', successMessage, redirectUrl);
             }
             const redirectUrl = '/auth/sign-in'
-            const failedMessage = body.message || 'Failed to verify email address'
+            const failedMessage = getResponseErrorMessage(body) || 'Failed to verify email address'
             return toFormState('ERROR', failedMessage, redirectUrl);
             // throw new Error(body.message || 'Failed to verify emial address');
         }

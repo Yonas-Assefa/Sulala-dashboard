@@ -52,3 +52,8 @@ export const SHOP_REVENUE_URL = `https://sulala.com/api/v1/vendors/shops/revenue
 // OTHERS
 export const INSTAGRAM_BASE_URL = "https://www.instagram.com/";
 export const FACEBOOK_BASE_URL = "https://www.facebook.com/";
+
+// ADMIN URLS
+export const GET_PENDING_SHOPS = `${VENDOR_BASE_URL}review_vendor_registration/`;
+export const APPROVE_SHOPS = `${VENDOR_BASE_URL}approve_vendor_registration/`;
+export const REJECT_SHOPS = `${VENDOR_BASE_URL}reject_vendor_registration/`;

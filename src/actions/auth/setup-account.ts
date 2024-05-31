@@ -2,7 +2,7 @@
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { SETUP_URL, SHOP_ACCOUNT } from '../../config/urls';
 import { setupAccountFirstStepSchema, setupAccountLastStepSchema } from '../schema/zod-schema';
-import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders } from '../../lib/helper';
+import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders, getResponseErrorMessage } from '../../lib/helper';
 import { redirect } from 'next/navigation';
 
 export const setupAccount = async (
@@ -47,7 +47,7 @@ export const setupAccount = async (
         })
         const body = await response.json()
         if (!response.ok || !body.success) {
-            throw new Error(body.message || 'Failed to submit form');
+            throw new Error(getResponseErrorMessage(body) || 'Failed to submit form');
         }
 
         const successMessage = stage == 'one' ? 'Account setup 1/3' : 'Account setup 3/3';

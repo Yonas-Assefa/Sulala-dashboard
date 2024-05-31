@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default async function DashboardLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
-    // const personalInfo = await getPersonalInfo()
+    const personalInfo = await getPersonalInfo()
     // if (!personalInfo?.email_verified) {
     //     redirect('/auth/verify-email')
     // }
@@ -28,9 +28,6 @@ export default async function DashboardLayout({ children }: Readonly<{ children:
     //     redirect('/auth/setup-account?stage=one')
     // }
 
-    // console.log({ personalInfo, is_superuser: personalInfo?.is_superuser })
-
-    const personalInfo = { is_superuser: true }
     return (
         <>
             <div className='w-screen h-screen overflow-hidden flex md:flex-row flex-col'>

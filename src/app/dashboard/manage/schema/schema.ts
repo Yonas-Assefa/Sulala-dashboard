@@ -8,14 +8,14 @@ export const promotionBadgeColorSchema = {
 
 export const promotionTableSchema: TableSchema = {
   include: {
-    checkbox: true,
+    checkbox: false,
     actions: {
       detail: true,
     },
   },
   schema: [
     {
-      key: "vender_name",
+      key: "vendor_name",
       title: "Vendor Name",
       type: "string",
     },
@@ -25,17 +25,12 @@ export const promotionTableSchema: TableSchema = {
       type: "string",
     },
     {
-      key: "status",
-      title: "Status",
-      type: "badge",
-    },
-    {
-      key: "vendor_phone_number",
+      key: "phone_number",
       title: "Phone Number",
       type: "string",
     },
     {
-      key: "vendor_address",
+      key: "shop_address",
       title: "Address",
       type: "string",
     },

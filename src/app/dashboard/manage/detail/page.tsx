@@ -6,6 +6,7 @@ import { customMapper } from '@/actions/mapper/custom-mapper'
 import { getOnePromotion } from '@/actions/promotion/get-promotions'
 import VendorDetailForm from './components/VendorDetailForm'
 import { Metadata } from 'next'
+import { getOnePendingShop } from '@/actions/manage-shops/get-pending-shops'
 
 type Props = {
     searchParams: {
@@ -23,24 +24,9 @@ export const metadata: Metadata = {
     ]
 };
 
-async function page({ }: Props) {
+async function page({ searchParams: { item } }: Props) {
 
-    const vendorDetail = {
-        name: 'John Doe',
-        email: 'johndoe@gmail.com',
-        phone: '08012345678',
-        address: '123, John Doe Street, Lagos',
-        status: 'PENDING',
-        date: '12/12/2021',
-        time: '12:00 PM',
-        createdAt: '2024-05-30T13:00:13+0000',
-        id: '123456',
-        shopName: 'John Doe Shop',
-        shopCategory: 'Fashion',
-        shopAddress: '123, John Doe Street, Lagos',
-        shopPhone: '08012345678',
-
-    }
+    const vendorDetail = await getOnePendingShop(item)
 
     return (
         <div className='text-black flex flex-col w-full h-full p-8 gap-10  overflow-y-scroll'>

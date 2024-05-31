@@ -2,7 +2,7 @@
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { CREATE_PASSWORD, } from '../../config/urls';
 import { createPasswordSchema, } from '../schema/zod-schema';
-import { getBrowserCookie, getRequestHeaders } from '../../lib/helper';
+import { getBrowserCookie, getRequestHeaders, getResponseErrorMessage } from '../../lib/helper';
 
 export const createPassword = async (
     formState: FormState,
@@ -21,8 +21,7 @@ export const createPassword = async (
 
         const body = await response.json()
         if (!response.ok || !body.success) {
-            const message = body.message || body[Object.keys(body)[0]][0] || 'Failed to create password';
-            throw new Error(message || 'Failed to create password');
+            throw new Error(getResponseErrorMessage(body) || 'Failed to create password');
         }
 
         const successMessage = 'Password created successfully!'

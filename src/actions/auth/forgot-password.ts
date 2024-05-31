@@ -2,7 +2,7 @@
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { FORGOT_PASSWORD } from '../../config/urls';
 import { emailSignUpSchema } from '../schema/zod-schema';
-import { setBrowserCookie } from '../../lib/helper';
+import { getResponseErrorMessage, setBrowserCookie } from '../../lib/helper';
 
 export const forgotPassword = async (
     formState: FormState,
@@ -24,7 +24,7 @@ export const forgotPassword = async (
 
         const body = await response.json()
         if (!response.ok || !body.success) {
-            throw new Error(body.message || 'Failed to submit form');
+            throw new Error(getResponseErrorMessage(body) || 'Failed to submit form');
         }
 
         const successMessage = 'Check your email for the verification code'

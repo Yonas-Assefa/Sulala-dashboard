@@ -357,3 +357,23 @@ export const createPromoCampaingSchema = z.object({
         ).optional(),
 
 })
+
+
+export const approveRejectShopsSchema = z.object({
+    status: z.string({
+        message: 'Status type is a required field'
+    })
+        .refine(
+            (val) => ["REJECT", "APPROVE"].includes(val),
+            {
+                message: 'Invalid status type'
+            }
+        ),
+
+    reason: z.string({
+        message: 'Reason type is a required field for reject status'
+    })
+        .min(5, { message: "Minimun of 5 character long reason is required" })
+        .optional(),
+})
+

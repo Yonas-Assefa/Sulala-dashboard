@@ -16,9 +16,12 @@ export const constructImageUrl = (arg: string | string[], returnOne: boolean) =>
     return finalImageCleanup(`${cleanUrl(BASE_URL)}${cleanUrl(arg)}`)
 }
 
-export const deconstructImageUrl = (url: string) => {
+export const deconstructImageUrl = (url: string | string[]): string => {
     if (!url) {
         return ''
+    }
+    if (Array.isArray(url)) {
+        return deconstructImageUrl(url[0])
     }
     return url.replace(`${cleanUrl(BASE_URL)}`, '/')
 }

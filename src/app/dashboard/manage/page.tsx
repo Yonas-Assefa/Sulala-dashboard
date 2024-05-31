@@ -1,20 +1,15 @@
 import React from 'react'
-import CreateCampaignModal from './components/modals/CreateCampaignModal'
 import Table from '@/components/common/table/Table'
-import { promotionData, promotionFilterData, promotionSortData } from './schema/data'
+import { promotionFilterData, promotionSortData } from './schema/data'
 import { promotionTableSchema } from './schema/schema'
-import PrimaryButton from '@/components/common/ui/PrimaryButton'
-import { getPromotions } from '@/actions/promotion/get-promotions'
-import { updatePromotionStatus } from '@/actions/promotion/update-promotion-status'
-import { deletePromotion } from '@/actions/promotion/delete-promotion'
 import { TableProps as Props } from '@/types/props.type'
 import { changeObjToFormData } from '@/lib/helper'
-import { promotionData as reviews } from './schema/data'
+import { getPendingShops } from '@/actions/manage-shops/get-pending-shops'
 
 
 async function page({ searchParams: { search, filter, sort, sort_by } }: Props) {
 
-    // const promotions = await getPromotions(changeObjToFormData({ search, filter, sort, sort_by }))
+    const pendingShops: any = await getPendingShops(changeObjToFormData({ search, filter, sort, sort_by }))
 
     return (
         <>
@@ -27,14 +22,12 @@ async function page({ searchParams: { search, filter, sort, sort_by } }: Props) 
 
                 {/* <PromotionCampaignTable /> */}
                 <Table
-                    data={reviews}
+                    data={pendingShops}
                     filterData={promotionFilterData}
                     tableSchema={promotionTableSchema}
                     sortData={promotionSortData}
                     actionOptions={{
-                        search: {
-                            action: getPromotions,
-                        }
+
                     }}
                 />
 

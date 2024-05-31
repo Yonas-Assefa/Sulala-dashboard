@@ -2,7 +2,7 @@
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { EMAIL_SIGNIN_URL, PHONE_SIGNIN_URL } from '../../config/urls';
 import { emailSignInSchema, phoneAuthSchema } from '../schema/zod-schema';
-import { getPhoneNumber, setBrowserCookie } from '../../lib/helper';
+import { getPhoneNumber, getResponseErrorMessage, setBrowserCookie } from '../../lib/helper';
 
 export const signIn = async (
     formState: FormState,
@@ -41,7 +41,7 @@ export const signIn = async (
             if (body.message == 'Password not set. set password') {
                 return toFormState('ERROR', 'Create password to continue', `/auth/create-password`);
             }
-            throw new Error(body.message || 'Failed to signin');
+            throw new Error(getResponseErrorMessage(body) || 'Failed to signin');
         }
 
         setBrowserCookie(response)
