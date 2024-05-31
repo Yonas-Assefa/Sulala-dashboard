@@ -16,7 +16,7 @@ function LogoutModal() {
 
     const handleLogout = async () => {
         startTransition(async () => {
-            const response = await logout(formState, new FormData())
+            const response = await logout()
             setFormState(response || EMPTY_FORM_STATE)
             closeModal('logout_setting_modal')
         });
