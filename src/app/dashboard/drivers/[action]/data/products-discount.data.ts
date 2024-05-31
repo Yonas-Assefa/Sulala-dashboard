@@ -1,14 +1,14 @@
-type RadioInputOptions = {
+type RadioInputOptions_ = {
     id: string
     label: string
     value: string
 }
 
-type RadioInput = Omit<RadioInputOptions, 'value'> & {
+type RadioInput_ = Omit<RadioInputOptions, 'value'> & {
     options: RadioInputOptions[]
 }
 
-const radioInputs: RadioInput = {
+const radioInputs_: RadioInput_ = {
     id: 'daily_budgeting',
     label: 'Daily budgeting',
     options: [

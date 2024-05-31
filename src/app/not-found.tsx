@@ -2,11 +2,13 @@ import React from 'react'
 import SideBarNav from './dashboard/components/SideBarNav';
 import { isAuthenticated } from '@/lib/helper';
 import Link from 'next/link';
+import { getPersonalInfo } from '@/actions/settings/get-personal-info';
 
-function NotFoundPage() {
+async function NotFoundPage() {
+    const personalInfo = await getPersonalInfo()
     return (
         <div className='w-screen h-screen flex flex-row'>
-            {isAuthenticated() && <SideBarNav />}
+            {isAuthenticated() && <SideBarNav isSuperUser={personalInfo?.is_superuser} />}
             <div className='bg-white flex-grow'>
                 <div className='w-full h-full flex justify-between flex-col items-center'>
                     <div className='flex flex-col justify-center items-center w-full h-full'>
