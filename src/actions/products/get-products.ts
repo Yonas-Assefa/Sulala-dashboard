@@ -3,13 +3,26 @@
 import { getCategories } from "../common/get-categories"
 import { PRODUCTS } from "../../config/urls"
 import { productMapper } from "../mapper/product-mapper"
-import { getRequestHeaders, getResponseErrorMessage, makeRequest } from "../../lib/helper"
+import { Fetch, getRequestHeaders, getResponseErrorMessage, makeRequest } from "../../lib/helper"
 import { notFound } from "next/navigation"
+import { getFilterSortOrdering } from "@/lib/table"
 
-export const getProducts = async () => {
-    const response = await fetch(PRODUCTS, {
+export const getProducts = async (formData?: FormData) => {
+    const { search, status, ordering, page } = getFilterSortOrdering(formData)
+
+    const response = await Fetch({
+        url: PRODUCTS,
         method: 'GET',
-        headers: getRequestHeaders()
+        headers: getRequestHeaders(),
+        next: {
+            tags: ['products']
+        },
+        params: {
+            search,
+            status,
+            ordering,
+            page
+        }
     })
     const body = await response.json()
 

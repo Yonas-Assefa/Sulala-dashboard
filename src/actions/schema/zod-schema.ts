@@ -79,6 +79,16 @@ export const setupAccountLastStepSchema = z.object({
             fileRefine.acceptFn(PDF_TYPES.concat(IMAGE_TYPES)),
             fileRefine.acceptMg('pdf and image')
         ),
+    profile_photo: z.any()
+        .refine(
+            fileRefine.existFn,
+            fileRefine.existMg
+        )
+        .refine(
+            fileRefine.acceptFn(IMAGE_TYPES),
+            fileRefine.acceptMg('image')
+        )
+        .optional(),
 })
 
 // ("NEW", "New"),

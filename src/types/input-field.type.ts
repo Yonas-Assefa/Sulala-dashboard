@@ -2,9 +2,11 @@ export type SelectInputSchema = {
     value: string
     label: string
     image?: string
+    disabled?: boolean
     options?: {
         value: string
         label: string
+        disabled?: boolean
     }[]
 }
 

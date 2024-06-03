@@ -2,9 +2,9 @@ import BackButton from '@/components/common/ui/BackButton'
 import React from 'react'
 import { notFound } from 'next/navigation'
 import ProductForm from './ProductForm'
-import { getCategories } from '@/actions/common/get-categories'
 import { getOneProduct } from '@/actions/products/get-products'
 import { getProductTags } from '@/actions/common/get-product-tags'
+import { getSubCategories } from '@/actions/common/get-subcategories'
 
 type Props = {
     params: {
@@ -21,7 +21,7 @@ async function page({ params: { tab }, searchParams: { item } }: Props) {
         return notFound()
     }
 
-    const categoryLists = await getCategories()
+    const subcategoryLists = await getSubCategories()
     const productTags = await getProductTags()
     const product = item ? await getOneProduct(item) : null
 
@@ -33,7 +33,7 @@ async function page({ params: { tab }, searchParams: { item } }: Props) {
                 </div>
                 <h2 className='capitalize text-2xl md:text-3xl'>{tab} Product</h2>
             </div>
-            <ProductForm categoryLists={categoryLists} productTags={productTags} initialValue={product} tab={tab} />
+            <ProductForm categoryLists={subcategoryLists} productTags={productTags} initialValue={product} tab={tab} />
         </div>
     )
 }

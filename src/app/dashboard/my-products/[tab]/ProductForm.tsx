@@ -63,7 +63,7 @@ function ProductForm({ categoryLists, productTags, initialValue, tab }: Props) {
                     <RadioInput label='Status' id='status' name='status' options={productStatusOptions} error={formState.fieldErrors?.status?.[0]} defaultValue={initialValue?.status} />
                     <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
                         <h3 className='font-semibold text-xl'>Product organization</h3>
-                        <SelectInput id='category' name='category' label='Category' data={data} nested error={formState.fieldErrors?.category?.[0]} defaultValue={initialValue?.category_value} />
+                        <SelectInput id='category' name='category' label='Category' data={data} error={formState.fieldErrors?.category?.[0]} defaultValue={initialValue?.category_value} />
                     </div>
                     <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
                         <h3 className='font-semibold text-xl'>Product promotion</h3>
