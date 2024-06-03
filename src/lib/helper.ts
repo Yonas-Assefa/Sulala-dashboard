@@ -40,7 +40,7 @@ export const IMAGE_TYPES = [
 
 export const fileRefine = {
     existFn: (file: any) => {
-        if (file.size === 0 || file.name === undefined) return false;
+        if (!file || file.size === 0 || file.name === undefined) return false;
         else return true;
     },
     existMg: "Please update or add new file.",

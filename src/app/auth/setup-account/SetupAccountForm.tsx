@@ -11,6 +11,7 @@ import FileInput from '@/components/common/form/FileInput'
 import CustomMultiSelectInput from '@/components/common/form/SelectInput'
 import TextInput from '@/components/common/form/TextInput'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
+import ProfileImagePicker from '@/components/common/form/ProfileImagePicker'
 
 function SetupAccountStageOne({ formState, show, personalInfo }: { formState: FormState, show: boolean, personalInfo: any }) {
     const { first_name, last_name, email, setFirstName, setLastName, setEmail } = useCounterStore(
@@ -54,6 +55,7 @@ function SetupAccountStageThree({ formState, show }: { formState: FormState, sho
 
     return (
         <section className={`flex flex-col gap-5 w-full items-start ${!show && 'hidden'}`}>
+            <ProfileImagePicker id='profile_image' name='profile_image' error={formState?.fieldErrors?.profile_photo?.[0]} />
             <h4 className='font-semibold'>Please upload documents</h4>
             <FileInput label='Please attach the certificates' handleFile={handleCertificate} file={certificate} accept={['.pdf', 'image/*']} id='certificate' name='certificate' error={formState.fieldErrors?.certificates?.[0]} />
             <FileInput label='Please attach the tax section' handleFile={handleTaxForm} file={taxForm} accept={['.pdf', 'image/*']} id='tax_form' name='tax_form' error={formState.fieldErrors?.tax_forms?.[0]} />
