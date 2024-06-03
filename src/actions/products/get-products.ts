@@ -5,18 +5,10 @@ import { PRODUCTS } from "../../config/urls"
 import { productMapper } from "../mapper/product-mapper"
 import { Fetch, getRequestHeaders, getResponseErrorMessage, makeRequest } from "../../lib/helper"
 import { notFound } from "next/navigation"
+import { getFilterSortOrdering } from "@/lib/table"
 
 export const getProducts = async (formData?: FormData) => {
-    const search = formData?.get('search') || ''
-    const filter = (formData?.get('filter') || '').toString()?.toUpperCase()
-    const status = filter == 'ALL' ? '' : filter
-
-    const sort_by = formData?.get('sort_by') || ''
-    const sort = formData?.get('sort') || ''
-
-    let ordering = ''
-    if (sort_by && sort_by == 'oldest') ordering += '-'
-    if (sort) ordering += sort
+    const { search, status, ordering, page } = getFilterSortOrdering(formData)
 
     const response = await Fetch({
         url: PRODUCTS,
@@ -29,6 +21,7 @@ export const getProducts = async (formData?: FormData) => {
             search,
             status,
             ordering,
+            page
         }
     })
     const body = await response.json()

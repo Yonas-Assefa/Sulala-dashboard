@@ -7,6 +7,7 @@ import TableHead from './TableHead'
 import TableBody from './TableBody'
 import { Data, SortSchema, FilterData, TableSchema, ActionOptions } from '../../../types/table.type'
 import NoItemsFound from '../ui/NoItemsFound'
+import TablePagination from './TablePagination'
 
 type Props = {
     filterData: FilterData
@@ -18,7 +19,7 @@ type Props = {
 
 function Table({ filterData, tableSchema, data, sortData, actionOptions }: Props) {
     return (
-        <>
+        <div>
             <DeleteProductModal deleteAction={actionOptions?.delete} />
             <div className="overflow-x-scroll min-w-[900px] border rounded-[20px]">
                 <div className='flex justify-between p-3 items-center'>
@@ -37,7 +38,8 @@ function Table({ filterData, tableSchema, data, sortData, actionOptions }: Props
                     }
                 </table>
             </div>
-        </>
+            <TablePagination />
+        </div>
     )
 }
 

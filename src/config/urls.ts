@@ -35,6 +35,7 @@ export const GOOGLE_SIGNIN_URL = `${VENDOR_BASE_URL}google_signin_signup_vendor/
 
 // CATEGORY URLS
 export const CATEGORIES = `${API_URL}categories/`;
+export const SUBCATEGORIES = `${API_URL}get_category_by_shop/`;
 
 // PRODUCT URLS
 export const PRODUCTS = `${API_URL}products/`;
