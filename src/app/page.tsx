@@ -5,7 +5,6 @@ import Marquee from "react-fast-marquee";
 import { Button } from 'primereact/button';
 import { Carousel } from 'primereact/carousel';
 import { useEffect, useState } from "react";
-import PrimaryButton from "@/components/common/ui/PrimaryButton";
 
 const responsiveOptions = [
   {
