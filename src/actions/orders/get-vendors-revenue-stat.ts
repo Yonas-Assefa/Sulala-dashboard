@@ -9,10 +9,9 @@ export const getVendorsRevenueStas = async () => {
   });
 
   const shopRevenueBody = await shopRevenueResponse.json();
-  if (!shopRevenueResponse.ok || !shopRevenueBody.result) {
+  if (!shopRevenueResponse || !shopRevenueBody.data) {
     throw new Error(shopRevenueBody.message || "Failed to get shop revenue");
   }
 
-  console.log("shop stata: ", shopRevenueBody);
-  return shopRevenueBody.result;
+  return shopRevenueBody.data;
 };
