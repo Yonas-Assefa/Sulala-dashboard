@@ -126,11 +126,16 @@ function SelectInput({ setValue, placeholder, label, name, id, error, multi = fa
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value
         setSearch(e.target.value)
+        console.log({ value })
         if (value) {
             const filteredOptions = (multi && !selectedParent) ? data?.filter(option => option.label.toLowerCase().includes(value.toLowerCase())) : options.filter(option => option.label.toLowerCase().includes(value.toLowerCase()))
             setOptions(filteredOptions || [])
         } else {
-            setOptions(multi && !selectedParent ? data || [] : data?.find(option => option.value === selectedParent?.value)?.options || [])
+            if (multi) {
+                setOptions(!selectedParent ? data || [] : data?.find(option => option.value === selectedParent?.value)?.options || [])
+            } else {
+                setOptions(data || [])
+            }
         }
     }
 
@@ -186,9 +191,10 @@ function SelectInput({ setValue, placeholder, label, name, id, error, multi = fa
                     {
                         options?.length == 0 ?
                             (<NoItemPlaceholder />) : options.map((option, i) => {
+                                const disabled = option.disabled
                                 return (
                                     <li
-                                        onClick={() => handleSelect(option.value)}
+                                        onClick={() => !disabled && handleSelect(option.value)}
                                         key={option.value}
                                     >
                                         <div className={`form-control w-full flex flex-row justify-between rounded-none ${options.length !== i + 1 && 'border-b'}`}>
@@ -196,7 +202,7 @@ function SelectInput({ setValue, placeholder, label, name, id, error, multi = fa
                                             {
                                                 withImage && <Image width={100} height={100} src={option?.image || ''} alt="" className='max-w-[20px] max-h-[20px' />
                                             }
-                                            <label htmlFor='1' className="label-text cursor-pointer label w-full flex justify-between text-black text-md">
+                                            <label htmlFor='1' className={`label-text label w-full flex justify-between text-black text-md ${disabled ? 'opacity-50 cursor-not-allowed' : 'opacity-100 cursor-pointer'}`}>
                                                 {option.label}
                                             </label>
                                             {/* IF THIS ITEM IS IN SELECTED ITEMS LIST, CHECK MARK WILL APPEAR */}
