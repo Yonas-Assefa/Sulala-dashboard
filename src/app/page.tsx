@@ -230,9 +230,9 @@ export default function Home() {
             </ul>
           </div>
         </div>
-        <div className="flex flex-row justify-center gap-3 p-3 border-t border-white/10 w-full">
+        <div className="flex flex-row justify-center items-center gap-3 p-3 border-t border-white/10 w-full">
           <img src="/sulala-logo-white.svg" alt="" className="w-6" />
-          <p className="font-thin font-serif text-xs md:text-sm">sulala.com All copy right reserved 2024.</p>
+          <p className="font-thin font-serif text-xs md:text-sm">sulala.com all copy right reserved 2024.</p>
         </div>
       </footer>
     </div>
