@@ -96,15 +96,15 @@ export const productData: ProductDataItem[] = [
 export const productsSortData = [
     {
         label: 'Date',
-        value: 'date'
+        value: 'uploadDate'
     },
     {
         label: 'Product title',
-        value: 'product_title'
+        value: 'title'
     },
     {
-        label: 'Created',
-        value: 'created'
+        label: 'Price',
+        value: 'price'
     }
 ]
 
