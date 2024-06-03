@@ -112,7 +112,7 @@ export default function Home() {
             <p className="text-lg md:text-xl font-normal font-mono">Unlock a world of opportunities by joining our thriving community, where you can effortlessly trade and manage your exceptional range of products, reaching customers across the globe. </p>
           </div>
           <div>
-            <SecondaryButton name="Get Started" padding="md" />
+            <SecondaryButton name="Get Started" href="/auth/sign-up" padding="md" />
           </div>
         </div>
         <div className="h-full absolute z-10 md:relative md:z-auto opacity-20 md:opacity-100 bg-gradient-to-l from-black/60 to-black/0 flex flex-col justify-center">
