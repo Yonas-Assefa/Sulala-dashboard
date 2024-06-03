@@ -131,11 +131,7 @@ function SelectInput({ setValue, placeholder, label, name, id, error, multi = fa
             const filteredOptions = (multi && !selectedParent) ? data?.filter(option => option.label.toLowerCase().includes(value.toLowerCase())) : options.filter(option => option.label.toLowerCase().includes(value.toLowerCase()))
             setOptions(filteredOptions || [])
         } else {
-            if (multi) {
-                setOptions(!selectedParent ? data || [] : data?.find(option => option.value === selectedParent?.value)?.options || [])
-            } else {
-                setOptions(data || [])
-            }
+            setOptions(!selectedParent ? data || [] : data?.find(option => option.value === selectedParent?.value)?.options || [])
         }
     }
 
