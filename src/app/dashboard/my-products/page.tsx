@@ -10,9 +10,11 @@ import { productTableSchema } from "./schema/schema";
 import { getProducts } from "@/actions/products/get-products";
 import { deleteProduct } from "@/actions/products/delete-product";
 import ExportProductsModal from "./components/modals/ExportProductsModal";
+import { TableProps as Props } from '@/types/props.type'
+import { changeObjToFormData } from "@/lib/helper";
 
-async function page() {
-  const products = await getProducts();
+async function page({ searchParams: { search, filter, sort, sort_by } }: Props) {
+  const products = await getProducts(changeObjToFormData({ search, filter, sort, sort_by }));
 
   return (
     <>

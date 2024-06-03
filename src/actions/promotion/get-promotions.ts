@@ -4,22 +4,15 @@ import { PROMOTIONS } from "../../config/urls"
 import { promotionMapper } from "../mapper/promotion-mapper"
 import { Fetch, getRequestHeaders, getResponseErrorMessage } from "../../lib/helper"
 import { notFound } from "next/navigation"
+import { getFilterSortOrdering } from "@/lib/table"
 
 type Args = {
     search: string | undefined
 }
 
 export const getPromotions = async (formData: FormData) => {
-    const search = formData.get('search') || ''
-    const filter = (formData.get('filter') || '').toString()?.toUpperCase()
-    const status = filter == 'ALL' ? '' : filter
+    const { search, status, ordering, page } = getFilterSortOrdering(formData)
 
-    const sort_by = formData.get('sort_by') || ''
-    const sort = formData.get('sort') || ''
-
-    let ordering = ''
-    if (sort_by && sort_by == 'oldest') ordering += '-'
-    if (sort) ordering += sort
 
     const search_type = formData.get('search_type') || ''
 
@@ -34,6 +27,7 @@ export const getPromotions = async (formData: FormData) => {
             search,
             status,
             ordering,
+            page,
         }
     })
     const body = await response.json()

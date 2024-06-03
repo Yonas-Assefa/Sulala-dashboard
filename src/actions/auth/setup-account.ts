@@ -2,7 +2,7 @@
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { SETUP_URL, SHOP_ACCOUNT } from '../../config/urls';
 import { setupAccountFirstStepSchema, setupAccountLastStepSchema } from '../schema/zod-schema';
-import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders, getResponseErrorMessage } from '../../lib/helper';
+import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders, getResponseErrorMessage, removeNullAndUndefined } from '../../lib/helper';
 import { redirect } from 'next/navigation';
 
 export const setupAccount = async (
@@ -26,13 +26,16 @@ export const setupAccount = async (
             });
             Object.assign(data, { ...ZodObj })
         } else {
-            const ZodObj = setupAccountLastStepSchema.parse({
+            const cleanedData = removeNullAndUndefined({
                 name: formData.get('company_name'),
                 category: +(formData.get('sale_category') || 0),
                 legal_address: formData.get('address'),
                 certificates: formData.get('certificate'),
                 tax_forms: formData.get('tax_form'),
-            });
+                profile_photo: formData.get('profile_image'),
+            })
+            console.log({ cleanedData, profilePhoto: formData.get('profile_image') })
+            const ZodObj = setupAccountLastStepSchema.parse(cleanedData);
             Object.assign(data, { ...ZodObj })
         }
 

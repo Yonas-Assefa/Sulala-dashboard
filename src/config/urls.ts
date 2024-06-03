@@ -35,6 +35,7 @@ export const GOOGLE_SIGNIN_URL = `${VENDOR_BASE_URL}google_signin_signup_vendor/
 
 // CATEGORY URLS
 export const CATEGORIES = `${API_URL}categories/`;
+export const SUBCATEGORIES = `${API_URL}get_category_by_shop/`;
 
 // PRODUCT URLS
 export const PRODUCTS = `${API_URL}products/`;
@@ -57,4 +58,4 @@ export const FACEBOOK_BASE_URL = "https://www.facebook.com/";
 export const GET_PENDING_SHOPS = `${VENDOR_BASE_URL}review_vendor_registration/`;
 export const APPROVE_SHOPS = `${VENDOR_BASE_URL}approve_vendor_registration/`;
 export const REJECT_SHOPS = `${VENDOR_BASE_URL}reject_vendor_registration/`;
-export const ACCEPT_SHOP_APPROVAL = `${VENDOR_BASE_URL}verify-email/`;
+export const ACCEPT_SHOP_APPROVAL = `${VENDOR_BASE_URL}account-access-link/`;
