@@ -5,6 +5,7 @@ import Marquee from "react-fast-marquee";
 import { Button } from 'primereact/button';
 import { Carousel } from 'primereact/carousel';
 import { useEffect, useState } from "react";
+import PrimaryButton from "@/components/common/ui/PrimaryButton";
 
 const responsiveOptions = [
   {
@@ -59,7 +60,7 @@ export default function Home() {
   type ScrollDirection = 'going-up' | 'going-down' | 'at-top' | 'at-bottom';
   let oldScrollY = 0;
 
-  const [direction, setDirection] = useState<ScrollDirection>('going-up');
+  const [direction, setDirection] = useState<ScrollDirection>('at-top');
 
   useEffect(() => {
     window.addEventListener('scroll', controlDirection);
@@ -168,7 +169,7 @@ export default function Home() {
       </section>
 
 
-      <section className="h-screen w-screen bg-tertiary flex justify-between flex-col">
+      <section className="h-auto w-auto bg-tertiary flex justify-between flex-col">
         <div className="h-2/3 flex flex-col justify-center">
           <h4 className="text-primary p-4 font-semibold text-3xl font-serif">What our clients say</h4>
           <Carousel value={customers} numVisible={3} numScroll={3} responsiveOptions={responsiveOptions} className="custom-carousel" circular
@@ -177,57 +178,62 @@ export default function Home() {
         <div>
           <h4 className="text-primary p-4 font-semibold text-3xl font-serif">Our partners</h4>
           <Marquee className="w-full" autoFill >
-            <img src="/sulala-logo.svg" alt="" className="p-3 h-[100px]" />
+            <img src="/sulala-logo.svg" alt="" className="p-3 h-[100px] mx-8" />
           </Marquee>
         </div>
+        {/* <div className="w-full flex flex-row justify-center m-8">
+          <div>
+            <PrimaryButton name="Get Started today" href="/auth/sign-up?by=email" padding="md" />
+          </div>
+        </div> */}
       </section>
 
       <footer className="bg-primary w-full flex flex-col items-center">
         <div className="grid grid-cols-5 p-4 md:w-2/3">
           <div>
-            <h4 className="text-white font-semibold text-sm md:text-lg font-serif">Sulala</h4>
+            <h4 className="text-white font-semibold text-xs md:text-lg font-serif">Sulala</h4>
             <ul className="flex flex-col gap-2">
-              <li className="text-white text-xs md:text-sm">About us</li>
-              <li className="text-white text-xs md:text-sm">Contact us</li>
-              <li className="text-white text-xs md:text-sm">Terms and conditions</li>
+              <li className="text-white text-[7px] md:text-sm">About us</li>
+              <li className="text-white text-[7px] md:text-sm">Contact us</li>
+              <li className="text-white text-[7px] md:text-sm">Terms and conditions</li>
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-semibold text-sm md:text-lg font-serif">Sulala</h4>
+            <h4 className="text-white font-semibold text-xs md:text-lg font-serif">Sulala</h4>
             <ul className="flex flex-col gap-2">
-              <li className="text-white text-xs md:text-sm">About us</li>
-              <li className="text-white text-xs md:text-sm">Contact us</li>
-              <li className="text-white text-xs md:text-sm">Terms and conditions</li>
+              <li className="text-white text-[7px] md:text-sm">About us</li>
+              <li className="text-white text-[7px] md:text-sm">Contact us</li>
+              <li className="text-white text-[7px] md:text-sm">Terms and conditions</li>
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-semibold text-sm md:text-lg font-serif">Sulala</h4>
+            <h4 className="text-white font-semibold text-xs md:text-lg font-serif">Sulala</h4>
             <ul className="flex flex-col gap-2">
-              <li className="text-white text-xs md:text-sm">About us</li>
-              <li className="text-white text-xs md:text-sm">Contact us</li>
-              <li className="text-white text-xs md:text-sm">Terms and conditions</li>
+              <li className="text-white text-[7px] md:text-sm">About us</li>
+              <li className="text-white text-[7px] md:text-sm">Contact us</li>
+              <li className="text-white text-[7px] md:text-sm">Terms and conditions</li>
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-semibold text-sm md:text-lg font-serif">Sulala</h4>
+            <h4 className="text-white font-semibold text-xs md:text-lg font-serif">Sulala</h4>
             <ul className="flex flex-col gap-2">
-              <li className="text-white text-xs md:text-sm">About us</li>
-              <li className="text-white text-xs md:text-sm">Contact us</li>
-              <li className="text-white text-xs md:text-sm">Terms and conditions</li>
+              <li className="text-white text-[7px] md:text-sm">About us</li>
+              <li className="text-white text-[7px] md:text-sm">Contact us</li>
+              <li className="text-white text-[7px] md:text-sm">Terms and conditions</li>
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-semibold text-sm md:text-lg font-serif">Sulala</h4>
+            <h4 className="text-white font-semibold text-xs md:text-lg font-serif">Sulala</h4>
             <ul className="flex flex-col gap-2">
-              <li className="text-white text-xs md:text-sm">About us</li>
-              <li className="text-white text-xs md:text-sm">Contact us</li>
-              <li className="text-white text-xs md:text-sm">Terms and conditions</li>
+              <li className="text-white text-[7px] md:text-sm">About us</li>
+              <li className="text-white text-[7px] md:text-sm">Contact us</li>
+              <li className="text-white text-[7px] md:text-sm">Terms and conditions</li>
             </ul>
           </div>
         </div>
-        <div className="flex flex-row justify-end gap-3 p-3">
+        <div className="flex flex-row justify-center gap-3 p-3 border-t border-white/10 w-full">
           <img src="/sulala-logo-white.svg" alt="" className="w-6" />
-          <p className="font-thin font-serif">sulala.com All copy right reserved 2024.</p>
+          <p className="font-thin font-serif text-xs md:text-sm">sulala.com All copy right reserved 2024.</p>
         </div>
       </footer>
     </div>
