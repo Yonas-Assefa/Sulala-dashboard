@@ -1,0 +1,45 @@
+{
+    "Index": {
+        "title": "Hello world!"
+    },
+    "dashboard_metadata": {
+        "title": "Sulala | Dashboard",
+        "description": "Sulala is market place."
+    },
+    "auth": {
+        "signin": "Sign in"
+    },
+    "side_bar": {
+        "contact_support": "Contact support"
+    },
+    "dashboard": {
+        "settings": "Settings",
+        "personal_info": "Personal Info",
+        "shop_info": "Shop Info",
+        "billing_info": "Billing Info"
+    },
+    "commons": {
+        "email": "Email",
+        "password": "Password",
+        "first_name": "First Name",
+        "last_name": "Last Name",
+        "shop_name": "Shop Name",
+        "shop_url": "Shop URL",
+        "phone": "Phone",
+        "phone_number": "Phone Number",
+        "address": "Address",
+        "city": "City",
+        "state": "State",
+        "zip": "Zip",
+        "country": "Country",
+        "card_number": "Card Number",
+        "expiration_date": "Expiration Date",
+        "cvv": "CVV",
+        "email_verified": "Email Verified",
+        "email_not_verified": "Email Not Verified",
+        "submit": "Submit",
+        "cancel": "Cancel",
+        "change_password": "Change Password",
+        "log_out": "Log Out"
+    }
+}

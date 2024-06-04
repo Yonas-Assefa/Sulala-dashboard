@@ -1,17 +1,23 @@
 'use client'
 import { logout } from '@/actions/common/logout'
-import { useParams } from 'next/navigation'
+import { useParams, usePathname, useRouter } from 'next/navigation'
 import React from 'react'
 
 function SideBarOptions() {
     const [isPending, startTransition] = React.useTransition()
     const { lang } = useParams()
+    const router = useRouter()
+    const pathname = usePathname()
 
     const handleLogoutClick = async () => {
         startTransition(async () => {
             await logout()
         })
     }
+
+    //   const handleLangChange = (e) => {
+    //     router.push(pathname, { locale: e.target.value });
+    //   };
     return (
         <div className="md:dropdown md:dropdown-top dropdown-end w-full md:w-auto">
             <div tabIndex={0} role="button" className="p-2 hidden md:block">
