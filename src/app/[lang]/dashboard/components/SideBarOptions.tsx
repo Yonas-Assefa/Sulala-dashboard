@@ -22,7 +22,7 @@ function SideBarOptions() {
                     {/* LANGUAGE */}
                     <button className="swap bg-white hover:bg-primary text-primary hover:text-white rounded-lg p-2 aspect-square">
                         <div className={lang == 'en' ? 'swap-on' : 'swap-off'}>EN</div>
-                        <div className={lang == 'fr' ? 'swap-on' : 'swap-off'}>FR</div>
+                        <div className={lang == 'ar' ? 'swap-on' : 'swap-off'}>AR</div>
                     </button>
                     {/* THEME */}
                     <label className="swap swap-rotate bg-white hover:bg-primary fill-primary hover:fill-white rounded-lg p-2 aspect-square">
