@@ -15,8 +15,12 @@ export const pathnames = {
     '/': '/',
     '/dashboard': '/dashboard',
     '/dashboard/settings': '/dashboard/settings',
+    '/settings': '/dashboard/settings',
     '/auth': '/auth',
     '/auth/sign-in': '/auth/sign-in',
+    '/auth/sign-up': '/auth/sign-up',
+    '/sign-in': '/auth/sign-in',
+    '/sign-up': '/auth/sign-up',
 
     // // If locales use different paths, you can
     // // specify each external path per locale.

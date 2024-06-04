@@ -1,6 +1,18 @@
 {
-    "Index": {
-        "title": "Hello world!"
+    "Landing": {
+        "sulala": "Sulala",
+        "signin": "Sign in",
+        "register": "Register",
+        "hero_title": "Discover the Premier Marketplace for Animals and Dairy Products",
+        "hero_description": "Unlock a world of opportunities by joining our thriving community, where you can effortlessly trade and manage your exceptional range of products, reaching customers across the globe.",
+        "hero_button": "Get Started",
+        "what_we_provide": "What we provide...",
+        "orders": "Orders",
+        "products": "Products",
+        "services": "Services",
+        "promotions": "Promotions",
+        "drivers": "Drivers",
+        "copyright": "Copyright © 2024 Sulala, All rights reserved."
     },
     "DashboardMetadata": {
         "title": "Sulala | Dashboard",
