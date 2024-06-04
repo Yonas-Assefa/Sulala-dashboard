@@ -39,6 +39,7 @@ export const SUBCATEGORIES = `${API_URL}get_category_by_shop/`;
 
 // PRODUCT URLS
 export const PRODUCTS = `${API_URL}products/`;
+export const PRODUCTS_IMPORT = `${API_URL}products/import-csv/`;
 export const PRODUCT_TAGS = `${API_URL}product_tags/`;
 
 // PROMOTION URLS

@@ -13,10 +13,24 @@ type Props = {
 function ExportProductsModal({ exportData }: Props) {
     const [csvFileName, setCsvFileName] = React.useState(`products_(${new Date().toLocaleDateString()}).csv`);
 
+    console.log({ exportData })
 
-    const cleanedExportData = exportData.map((data) => ({ ...data, tags: data.tags.map((tag: any) => tag.label).filter((tag: any) => tag).join(', ') }))
+    const prepareExportData = (data: any[]) => {
+        return data.map((item) => {
+            return {
+                category: item.category_value,
+                title: item.title,
+                price: item.price,
+                discounted_price: item.discounted_price,
+                description: item.description,
+                inventory: item.inventory,
+                status: item.status,
+            }
+        })
+    }
 
     const downloadCsv = () => {
+        const cleanedExportData = prepareExportData(exportData);
         const trimmedFileName = csvFileName.endsWith('.csv') ? csvFileName.slice(0, -4) : csvFileName;
         const csvConfig = mkConfig({ useKeysAsHeaders: true, filename: trimmedFileName });
         const csv = generateCsv(csvConfig)(cleanedExportData);

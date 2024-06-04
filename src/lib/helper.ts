@@ -47,7 +47,7 @@ export const fileRefine = {
     acceptFn: (accept: string[]) => (file: any) => accept.includes(file?.type),
     acceptMg: (acceptType: string) => `only ${acceptType} files are accepted.`,
     maxsizeFn: (maxSize: number) => (file: any) => file.size <= maxSize,
-    maxsizeMg: (maxSize: number) => `Max file size is ${maxSize}MB.`
+    maxsizeMg: (maxSize: number) => `Max file size is ${maxSize}MB.`,
 }
 
 function luhnCheck(cardNumber: string) {

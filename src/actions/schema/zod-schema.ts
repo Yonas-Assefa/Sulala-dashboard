@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { zcsv } from 'zod-csv';
 import { IMAGE_TYPES, PDF_TYPES, cardNumberRefine, confirmPasswordRefine, fileRefine, isFiniteNumber, phoneTransform, transformToNumber } from '../../lib/helper';
 import { FACEBOOK_BASE_URL, INSTAGRAM_BASE_URL } from '../../config/urls';
 import { PROMOTION_ENUM, DISCOUNT_ENUM, DESTINATION_ENUM, BUDGETING_ENUM } from '@/app/dashboard/promotion/[action]/data/discount-contants';
@@ -387,3 +388,14 @@ export const approveRejectShopsSchema = z.object({
         .optional(),
 })
 
+export const importProductsSchema = z.object({
+    csv_file: z.any()
+        .refine(
+            fileRefine.existFn,
+            fileRefine.existMg
+        )
+        .refine(
+            fileRefine.acceptFn([".csv", 'text/csv',]),
+            fileRefine.acceptMg('csv')
+        )
+})

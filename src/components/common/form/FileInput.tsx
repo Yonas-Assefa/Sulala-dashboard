@@ -4,13 +4,14 @@ import React from 'react'
 import ResetButton from '../ui/ResetButton'
 import { formatFileSize } from '@/utils/filesizeFormatter.util'
 
-function FileInput({ label, name, error, accept, id, sizeLimit }: FileInputProps) {
+function FileInput({ label, name, error, accept, id, sizeLimit, handleFile: emitValue, setValue }: FileInputProps) {
 
     const [file, setFile] = React.useState<File | null | undefined>(null)
     const inputRef = React.useRef<HTMLInputElement>(null);
 
     const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFile(e.target.files?.[0])
+        emitValue && emitValue(e)
     }
 
     React.useEffect(() => {
@@ -18,6 +19,7 @@ function FileInput({ label, name, error, accept, id, sizeLimit }: FileInputProps
             const dataTransfer = new DataTransfer();
             file instanceof File && dataTransfer.items.add(file);
             inputRef.current.files = dataTransfer.files;
+            setValue && setValue(file || null)
         }
     }, [file]);
 
