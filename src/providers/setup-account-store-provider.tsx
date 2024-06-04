@@ -1,4 +1,3 @@
-// src/providers/counter-store-provider.tsx
 'use client'
 
 import { type ReactNode, createContext, useRef, useContext } from 'react'
@@ -11,37 +10,37 @@ import {
     initSetupStore,
 } from '@/stores/setup-account'
 
-export const CounterStoreContext = createContext<StoreApi<SetupStore> | null>(
+export const SetupAccountStoreContext = createContext<StoreApi<SetupStore> | null>(
     null,
 )
 
-export interface CounterStoreProviderProps {
+export interface SetupAccountStoreProviderProps {
     children: ReactNode
 }
 
-export const CounterStoreProvider = ({
+export const SetupAccountStoreProvider = ({
     children,
-}: CounterStoreProviderProps) => {
+}: SetupAccountStoreProviderProps) => {
     const storeRef = useRef<StoreApi<SetupStore>>()
     if (!storeRef.current) {
         storeRef.current = createSetupStore(initSetupStore())
     }
 
     return (
-        <CounterStoreContext.Provider value={storeRef.current}>
+        <SetupAccountStoreContext.Provider value={storeRef.current}>
             {children}
-        </CounterStoreContext.Provider>
+        </SetupAccountStoreContext.Provider>
     )
 }
 
-export const useCounterStore = <T,>(
+export const useSetupAccountStore = <T,>(
     selector: (store: SetupStore) => T,
 ): T => {
-    const counterStoreContext = useContext(CounterStoreContext)
+    const setupAccountStoreContext = useContext(SetupAccountStoreContext)
 
-    if (!counterStoreContext) {
-        throw new Error(`useCounterStore must be use within CounterStoreProvider`)
+    if (!setupAccountStoreContext) {
+        throw new Error(`useSetupAccountStore must be use within SetupAccountStoreProvider`)
     }
 
-    return useStore(counterStoreContext, selector)
+    return useStore(setupAccountStoreContext, selector)
 }

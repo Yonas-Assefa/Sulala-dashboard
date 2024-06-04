@@ -6,7 +6,7 @@ import { EMPTY_FORM_STATE, FormState } from '@/utils/formStateHelper'
 import { useToastMessage } from '@/hooks/useToastMessage'
 import { useRedirectRoute } from '@/hooks/useRedirectRoute'
 import { useCreateQueryString } from '@/hooks/useCreateQueryString'
-import { useCounterStore } from '@/providers/setup-account-store-provider'
+import { useSetupAccountStore } from '@/providers/setup-account-store-provider'
 import FileInput from '@/components/common/form/FileInput'
 import CustomMultiSelectInput from '@/components/common/form/SelectInput'
 import TextInput from '@/components/common/form/TextInput'
@@ -14,7 +14,7 @@ import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import ProfileImagePicker from '@/components/common/form/ProfileImagePicker'
 
 function SetupAccountStageOne({ formState, show, personalInfo }: { formState: FormState, show: boolean, personalInfo: any }) {
-    const { first_name, last_name, email, setFirstName, setLastName, setEmail } = useCounterStore(
+    const { first_name, last_name, email, setFirstName, setLastName, setEmail } = useSetupAccountStore(
         (state) => state,
     )
     return (
@@ -27,7 +27,7 @@ function SetupAccountStageOne({ formState, show, personalInfo }: { formState: Fo
 }
 
 function SetupAccountStageTwo({ formState, categoryLists, show }: { formState: FormState, categoryLists: any, show: boolean }) {
-    const { campany_name, sales_category, address, setSalesCategory, setAddress, setCompanyName } = useCounterStore(
+    const { campany_name, sales_category, address, setSalesCategory, setAddress, setCompanyName } = useSetupAccountStore(
         (state) => state,
     )
     const data = categoryLists

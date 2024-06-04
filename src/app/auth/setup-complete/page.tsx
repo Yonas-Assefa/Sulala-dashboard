@@ -1,6 +1,6 @@
 'use client'
 import { clearCookie } from '@/actions/common/clear-cookie'
-import { useCounterStore } from '@/providers/setup-account-store-provider'
+import { useSetupAccountStore } from '@/providers/setup-account-store-provider'
 import { notFound, useRouter } from 'next/navigation'
 import React from 'react'
 
