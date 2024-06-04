@@ -1,9 +1,11 @@
 'use client'
 import { logout } from '@/actions/common/logout'
+import { useParams } from 'next/navigation'
 import React from 'react'
 
 function SideBarOptions() {
     const [isPending, startTransition] = React.useTransition()
+    const { lang } = useParams()
 
     const handleLogoutClick = async () => {
         startTransition(async () => {
@@ -18,11 +20,10 @@ function SideBarOptions() {
             <div tabIndex={0} className="dropdown-content z-[1] bg-tertiary menu p-2 md:shadow md:drop-shadow-lg rounded-box hidden group-has-[:checked]:block md:block">
                 <div className='flex flex-row items-center justify-end gap-3 px-4'>
                     {/* LANGUAGE */}
-                    <label className="swap bg-white hover:bg-primary text-primary hover:text-white rounded-lg p-2 aspect-square">
-                        <input type="checkbox" />
-                        <div className="swap-on">EN</div>
-                        <div className="swap-off">FR</div>
-                    </label>
+                    <button className="swap bg-white hover:bg-primary text-primary hover:text-white rounded-lg p-2 aspect-square">
+                        <div className={lang == 'en' ? 'swap-on' : 'swap-off'}>EN</div>
+                        <div className={lang == 'fr' ? 'swap-on' : 'swap-off'}>FR</div>
+                    </button>
                     {/* THEME */}
                     <label className="swap swap-rotate bg-white hover:bg-primary fill-primary hover:fill-white rounded-lg p-2 aspect-square">
                         <input type="checkbox" />

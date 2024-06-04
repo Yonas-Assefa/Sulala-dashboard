@@ -69,7 +69,8 @@ export type FileInputProps = Pick<BaseInputProps, 'label' | 'name' | 'error' | '
 export type SignupProps = {
     searchParams: {
         by: 'phone' | 'email' | undefined
-    }
+    },
+    params: { lang: string }
 }
 
 export type TableProps = {

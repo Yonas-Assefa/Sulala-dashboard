@@ -9,7 +9,7 @@ export async function i18nMiddleware(request: NextRequest) {
         (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
     )
     console.log({ pathnameHasLocale, pathname })
-    if (pathnameHasLocale) return NextResponse.next()
+    if (pathnameHasLocale) return
 
     const locale = locales[0]
     request.nextUrl.pathname = `/${locale}${pathname}`

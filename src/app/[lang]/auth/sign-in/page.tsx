@@ -5,6 +5,7 @@ import SignInForm from "./SignInForm";
 import { Metadata } from "next";
 import { signIn } from "next-auth/react";
 import { handleGoogleSignIn } from "@/actions/auth/ggoleSigninHelper";
+import { getDictionary } from "../../dictionaries";
 
 export const metadata: Metadata = {
   title: "Sulala | Auth Sign In",
@@ -12,11 +13,12 @@ export const metadata: Metadata = {
   icons: ["/sulala-logo.svg"],
 };
 
-function SignIn({ searchParams: { by } }: SignupProps) {
+async function SignIn({ searchParams: { by }, params: { lang } }: SignupProps) {
+  const dict = await getDictionary(lang)
   return (
     <div className="text-black w-10/12 flex flex-col gap-5 items-center">
       {/* SIGN IN HEADER */}
-      <h1 className="text-3xl md:text-5xl font-serif font-semibold">Sign in</h1>
+      <h1 className="text-3xl md:text-5xl font-serif font-semibold">{dict.auth.signin}</h1>
 
       {/* SIGN IN OPTIONS */}
       <PhoneEmailTab />
