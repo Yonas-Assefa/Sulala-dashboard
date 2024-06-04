@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from 'react'
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PageSuspense from "@/components/common/ui/PageSuspense";
@@ -17,13 +17,19 @@ export const metadata: Metadata = {
   ]
 };
 
+export async function generateStaticParams() {
+  return [{ lang: 'en-US' }, { lang: 'de' }]
+}
+
 export default function RootLayout({
-  children,
+  children, params
 }: Readonly<{
   children: React.ReactNode;
+  params: { lang: string };
 }>) {
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={params.lang} dir={params.lang === "ar" ? "rtl" : "ltr"} suppressHydrationWarning>
       <body className={inter.className} suppressHydrationWarning>
         <ToastContainer hideProgressBar={true} newestOnTop={false} draggable className='select-none' />
         <Suspense fallback={<PageSuspense />}>

@@ -3,9 +3,8 @@ import React from "react";
 import PhoneEmailTab from "../components/PhoneEmailTab";
 import SignInForm from "./SignInForm";
 import { Metadata } from "next";
-import { signIn } from "next-auth/react";
 import { handleGoogleSignIn } from "@/actions/auth/ggoleSigninHelper";
-import { getDictionary } from "../../dictionaries";
+import { getDictionary } from "@/i18n/dictionaries";
 
 export const metadata: Metadata = {
   title: "Sulala | Auth Sign In",

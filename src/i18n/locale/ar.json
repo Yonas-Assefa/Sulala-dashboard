@@ -1,0 +1,33 @@
+{
+    "auth": {
+        "signin": "تسجيل الدخول"
+    },
+    "side_bar": {
+        "contact_support": "اتصل بالدعم"
+    },
+    "dashboard": {
+        "settings": "إعدادات",
+        "personal_info": "معلومات شخصية",
+        "shop_info": "معلومات المتجر",
+        "billing_info": "معلومات الفواتير"
+    },
+    "commons": {
+        "email": "بريد إلكتروني",
+        "password": "كلمة المرور",
+        "first_name": "الاسم الأول",
+        "last_name": "اسم العائلة",
+        "shop_name": "اسم المحل",
+        "phone": "هاتف",
+        "phone_number": "رقم التليفون",
+        "address": "عنوان",
+        "card_number": "رقم البطاقة",
+        "expiration_date": "تاريخ انتهاء الصلاحية",
+        "cvv": "CVV",
+        "email_verified": "تم التحقق من البريد الإلكتروني",
+        "email_not_verified": "لم يتم التحقق من البريد الإلكتروني",
+        "submit": "يُقدِّم",
+        "cancel": "يلغي",
+        "change_password": "تغيير كلمة المرور",
+        "log_out": "تسجيل خروج"
+    }
+}

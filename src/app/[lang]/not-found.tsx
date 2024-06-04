@@ -2,7 +2,7 @@ import React from 'react'
 import { isAuthenticated } from '@/lib/helper';
 import Link from 'next/link';
 import { getPersonalInfo } from '@/actions/settings/get-personal-info';
-import SideBarNav from './[lang]/dashboard/components/SideBarNav';
+import SideBarNav from './dashboard/components/SideBarNav';
 
 async function NotFoundPage() {
     const personalInfo = await getPersonalInfo()

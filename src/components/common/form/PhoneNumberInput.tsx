@@ -5,7 +5,7 @@ import ResetButton from '../ui/ResetButton'
 import { getUserLocation } from '@/utils/getUserLocation'
 import { splitPhoneNumber } from '@/utils/splitPhoneNumber'
 
-function PhoneNumberInput({ error, defaultValue }: { error?: string, defaultValue?: string }) {
+function PhoneNumberInput({ error, defaultValue, label }: { error?: string, defaultValue?: string, label?: string }) {
     type CountryCode = {
         name: string,
         dial_code: string,
@@ -23,6 +23,7 @@ function PhoneNumberInput({ error, defaultValue }: { error?: string, defaultValu
     const countryCodeRef = React.useRef<ElementRef<'details'>>(null)
     const [filterCountry, setFilterCountry] = React.useState('')
     const deferredFilterCountry = useDeferredValue(filterCountry)
+
 
     // CLOSE DROPDOWN WHEN CLICKED OUTSIDE
     React.useEffect(() => {
@@ -79,7 +80,7 @@ function PhoneNumberInput({ error, defaultValue }: { error?: string, defaultValu
 
     return (
         <div className='flex flex-col gap-3 w-full'>
-            <label htmlFor="phone-number" className='self-start'>Phone number</label>
+            <label htmlFor="phone-number" className='self-start'>{label || 'Phone number'}</label>
             <div className='w-full'>
                 <div className={`flex items-center gap-0 border rounded-[40px] w-full ${error ? 'bg-dangerlight border-danger' : 'focus-within:border-primary'}`}>
                     <details className="dropdown relative bg-transparent h-full" ref={countryCodeRef}>
