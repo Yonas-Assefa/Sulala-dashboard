@@ -141,7 +141,7 @@ function ImportProductsModal() {
                     <FileInput id='csv' name='csv' label='Please attach the csv file' setValue={handleFile} accept={['.csv']} sizeLimit={{ value: 5, unit: 'MB' }} error={formState.status == 'ERROR' && formState.message} />
                     <PrimaryButton name='Import' disabled={!file || isDisabled} handleClick={handleFileUpload} isPending={isPending} />
                 </div>
-                {file && <div className='w-full flex justify-center flex-row pt-2 gap-2 items-center opacity-80'>
+                {file && <div className='w-full flex justify-center flex-row pt-2 gap-2 items-center opacity-60'>
                     <img src="/icons/alert.svg" alt="" className='w-[15px]' />
                     <p className='text-danger text-xs'>Images will not be included!</p>
                 </div>}
