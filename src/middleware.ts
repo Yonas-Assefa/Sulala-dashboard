@@ -1,25 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
+import { authMiddleware } from "./middleware/authMiddleware";
+import { i18nMiddleware } from "./middleware/i18nMiddleware";
 
-export function middleware(request: NextRequest) {
-  const isAuthenticated = () => {
-    return !!request.cookies.get("access");
-  };
-  const pathname = request.nextUrl.pathname;
-  if (!isAuthenticated() && pathname.startsWith("/dashboard")) {
-    return NextResponse.redirect(new URL("/auth/sign-in", request.url));
-  } else if (
-    isAuthenticated() &&
-    pathname.startsWith("/auth") &&
-    !pathname.includes("/create-password") &&
-    !pathname.includes("/setup-account") &&
-    !pathname.includes("/confirm-letter") &&
-    !pathname.includes("/verify-email") &&
-    !pathname.includes("/approval") &&
-    !pathname.includes("/continue-with-phone") &&
-    !pathname.includes("/setup-complete")
-  ) {
-    return NextResponse.redirect(new URL("/dashboard/settings", request.url));
+const middlewares = [
+  i18nMiddleware,
+  authMiddleware,
+];
+
+export async function middleware(request: NextRequest) {
+  for (const fn of middlewares) {
+    const response = await fn(request);
+    if (response) return response;
   }
+
+  return NextResponse.next();
 }
 
 export const config = {
