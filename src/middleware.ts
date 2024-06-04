@@ -17,5 +17,9 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: "/:path*",
+  matcher: [
+    '/((?!_next/).*auth/.*)',
+    '/((?!_next/).*dashboard/.*)',
+  ],
+
 };
