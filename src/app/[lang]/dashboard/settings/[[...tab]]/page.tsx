@@ -25,7 +25,7 @@ async function SettingsPage({ params: { tab, lang } }: Props) {
     const billings = await getBillingInfo()
     const categories = await getCategories()
     const shopInfo = await getShopInfo()
-    const t = await getTranslations('dashboard');
+    const t = await getTranslations('Dashboard');
 
     return (
         <>

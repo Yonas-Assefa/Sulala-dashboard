@@ -2,23 +2,23 @@
     "Index": {
         "title": "الدخول"
     },
-    "dashboard_metadata": {
+    "DashboardMetadata": {
         "title": "سولالا | لوحة القيادة",
         "description": "Sulala هو مكان السوق."
     },
-    "auth": {
+    "Auth": {
         "signin": "تسجيل الدخول"
     },
-    "side_bar": {
+    "SideBar": {
         "contact_support": "اتصل بالدعم"
     },
-    "dashboard": {
+    "Dashboard": {
         "settings": "إعدادات",
         "personal_info": "معلومات شخصية",
         "shop_info": "معلومات المتجر",
         "billing_info": "معلومات الفواتير"
     },
-    "commons": {
+    "Commons": {
         "email": "بريد إلكتروني",
         "password": "كلمة المرور",
         "first_name": "الاسم الأول",
@@ -35,6 +35,7 @@
         "submit": "يُقدِّم",
         "cancel": "يلغي",
         "change_password": "تغيير كلمة المرور",
-        "log_out": "تسجيل خروج"
+        "log_out": "تسجيل خروج",
+        "sulala": "سولالا"
     }
 }

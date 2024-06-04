@@ -5,8 +5,8 @@ import { Metadata } from "next";
 import { getPersonalInfo } from "@/actions/settings/get-personal-info";
 import { getTranslations } from 'next-intl/server';
 
-export async function generateMetadata({ params: { locale } }) {
-    const t = await getTranslations({ locale, namespace: 'dashboard_metadata' });
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+    const t = await getTranslations({ locale, namespace: 'DashboardMetadata' });
 
     return {
         title: t('title'),
@@ -16,14 +16,6 @@ export async function generateMetadata({ params: { locale } }) {
         ]
     };
 }
-
-// export const metadata: Metadata = {
-//     title: 'Sulala | Dashboard',
-//     description: 'Sulala is market place.',
-//     icons: [
-//         '/sulala-logo.svg',
-//     ]
-// };
 
 
 export default async function DashboardLayout({ children }: Readonly<{ children: React.ReactNode }>) {

@@ -2,23 +2,23 @@
     "Index": {
         "title": "Hello world!"
     },
-    "dashboard_metadata": {
+    "DashboardMetadata": {
         "title": "Sulala | Dashboard",
         "description": "Sulala is market place."
     },
-    "auth": {
+    "Auth": {
         "signin": "Sign in"
     },
-    "side_bar": {
+    "SideBar": {
         "contact_support": "Contact support"
     },
-    "dashboard": {
+    "Dashboard": {
         "settings": "Settings",
         "personal_info": "Personal Info",
         "shop_info": "Shop Info",
         "billing_info": "Billing Info"
     },
-    "commons": {
+    "Commons": {
         "email": "Email",
         "password": "Password",
         "first_name": "First Name",
@@ -40,6 +40,7 @@
         "submit": "Submit",
         "cancel": "Cancel",
         "change_password": "Change Password",
-        "log_out": "Log Out"
+        "log_out": "Log Out",
+        "sulala": "Sulala"
     }
 }

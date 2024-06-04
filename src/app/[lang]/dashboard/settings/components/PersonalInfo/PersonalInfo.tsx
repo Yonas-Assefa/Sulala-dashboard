@@ -9,7 +9,6 @@ import { useToastMessage } from '@/hooks/useToastMessage'
 import { EMPTY_FORM_STATE } from '@/utils/formStateHelper'
 import { useFormState } from 'react-dom'
 import { updatePersonalInfo } from '@/actions/settings/update-personal-info'
-import { useParams } from 'next/navigation'
 import { useTranslations } from 'next-intl';
 
 type Props = {
@@ -26,9 +25,7 @@ function PersonalInfo({ data }: Props) {
     useToastMessage(formState);
     useRedirectRoute(formState);
 
-    const { lang } = useParams()
-
-    const t = useTranslations('commons');
+    const t = useTranslations('Commons');
 
     return (
         <form action={action} className='mt-4 w-full flex flex-col gap-8'>

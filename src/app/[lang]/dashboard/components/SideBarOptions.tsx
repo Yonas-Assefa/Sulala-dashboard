@@ -1,7 +1,8 @@
 'use client'
 import { logout } from '@/actions/common/logout'
-import { useParams, usePathname, useRouter } from 'next/navigation'
+import { useParams, usePathname } from 'next/navigation'
 import React from 'react'
+import { useRouter, pathnames } from '@/i18n/navigation';
 
 function SideBarOptions() {
     const [isPending, startTransition] = React.useTransition()
@@ -15,9 +16,10 @@ function SideBarOptions() {
         })
     }
 
-    //   const handleLangChange = (e) => {
-    //     router.push(pathname, { locale: e.target.value });
-    //   };
+    const handleLangChange = (lang: 'en' | 'ar') => {
+        router.push('/dashboard/settings', { locale: lang });
+    };
+
     return (
         <div className="md:dropdown md:dropdown-top dropdown-end w-full md:w-auto">
             <div tabIndex={0} role="button" className="p-2 hidden md:block">
@@ -26,7 +28,7 @@ function SideBarOptions() {
             <div tabIndex={0} className="dropdown-content z-[1] bg-tertiary menu p-2 md:shadow md:drop-shadow-lg rounded-box hidden group-has-[:checked]:block md:block">
                 <div className='flex flex-row items-center justify-end gap-3 px-4'>
                     {/* LANGUAGE */}
-                    <button className="swap bg-white hover:bg-primary text-primary hover:text-white rounded-lg p-2 aspect-square">
+                    <button className="swap bg-white hover:bg-primary text-primary hover:text-white rounded-lg p-2 aspect-square" onClick={() => handleLangChange(lang == 'en' ? 'ar' : 'en')}>
                         <div className={lang == 'en' ? 'swap-on' : 'swap-off'}>EN</div>
                         <div className={lang == 'ar' ? 'swap-on' : 'swap-off'}>AR</div>
                     </button>

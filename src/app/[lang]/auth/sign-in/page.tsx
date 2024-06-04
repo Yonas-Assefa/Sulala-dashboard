@@ -4,7 +4,7 @@ import PhoneEmailTab from "../components/PhoneEmailTab";
 import SignInForm from "./SignInForm";
 import { Metadata } from "next";
 import { handleGoogleSignIn } from "@/actions/auth/ggoleSigninHelper";
-import { getDictionary } from "@/i18n/dictionaries";
+import { useTranslations } from 'next-intl';
 
 export const metadata: Metadata = {
   title: "Sulala | Auth Sign In",
@@ -12,12 +12,13 @@ export const metadata: Metadata = {
   icons: ["/sulala-logo.svg"],
 };
 
-async function SignIn({ searchParams: { by }, params: { lang } }: SignupProps) {
-  const dict = await getDictionary(lang)
+function SignIn({ searchParams: { by }, params: { lang } }: SignupProps) {
+  const t = useTranslations('Auth');
+
   return (
     <div className="text-black w-10/12 flex flex-col gap-5 items-center">
       {/* SIGN IN HEADER */}
-      <h1 className="text-3xl md:text-5xl font-serif font-semibold">{dict.auth.signin}</h1>
+      <h1 className="text-3xl md:text-5xl font-serif font-semibold">{t('signin')}</h1>
 
       {/* SIGN IN OPTIONS */}
       <PhoneEmailTab />
