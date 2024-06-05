@@ -92,35 +92,35 @@ export default function Landing({ params: { lang } }: Props) {
               <img src="/icons/shopping_bag_active.svg" alt="" className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]" />
               <div className="w-full md:w-2/3">
                 <h6 className="text-primary text-lg font-semibold font-serif">{t('orders')}</h6>
-                <p className="text-black text-sm italic">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla vero laboriosam nemo inventore.</p>
+                <p className="text-black text-sm italic">{t('orders_description')}</p>
               </div>
             </li>
             <li className="flex flex-row gap-2">
               <img src="/icons/storefront_active.svg" alt="" className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]" />
               <div className="w-full md:w-2/3">
                 <h6 className="text-primary text-lg font-semibold font-serif">{t('products')}</h6>
-                <p className="text-black text-sm italic">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla vero laboriosam nemo inventore.</p>
+                <p className="text-black text-sm italic">{t('products_description')}</p>
               </div>
             </li>
             <li className="flex flex-row gap-2">
               <img src="/icons/medical_services_active.svg" alt="" className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]" />
               <div className="w-full md:w-2/3">
                 <h6 className="text-primary text-lg font-semibold font-serif">{t('services')}</h6>
-                <p className="text-black text-sm italic">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla vero laboriosam nemo inventore.</p>
+                <p className="text-black text-sm italic">{t('services_description')}</p>
               </div>
             </li>
             <li className="flex flex-row gap-2">
               <img src="/icons/whatshot_active.svg" alt="" className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]" />
               <div className="w-full md:w-2/3">
                 <h6 className="text-primary text-lg font-semibold font-serif">{t('promotions')}</h6>
-                <p className="text-black text-sm italic">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla vero laboriosam nemo inventore.</p>
+                <p className="text-black text-sm italic">{t('promotions_description')}</p>
               </div>
             </li>
             <li className="flex flex-row gap-2">
               <img src="/icons/command_active.svg" alt="" className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]" />
               <div className="w-full md:w-2/3">
                 <h6 className="text-primary text-lg font-semibold font-serif">{t('drivers')}</h6>
-                <p className="text-black text-sm italic">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla vero laboriosam nemo inventore.</p>
+                <p className="text-black text-sm italic">{t('drivers_description')}</p>
               </div>
             </li>
           </ul>
@@ -129,49 +129,60 @@ export default function Landing({ params: { lang } }: Props) {
 
       <footer className="bg-primary w-full flex flex-col items-center">
         <div className="grid grid-cols-5 p-4 md:w-2/3">
-          <div>
-            <h4 className="text-white font-semibold text-xs md:text-lg font-serif">Sulala</h4>
-            <ul className="flex flex-col gap-2">
-              <li className="text-white text-[7px] md:text-sm">About us</li>
-              <li className="text-white text-[7px] md:text-sm">Contact us</li>
-              <li className="text-white text-[7px] md:text-sm">Terms and conditions</li>
+          <div className="flex flex-col gap-3">
+            <h4 className="text-white underline font-semibold text-xs md:text-md font-serif">Increase your productivity</h4>
+            <ul className="flex flex-col gap-1">
+              <li className="text-white text-[7px] md:text-[10px] italic">Streamline Your Workflow</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">Automate Your Online Presence</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">Increase Your Average Order Value</li>
             </ul>
           </div>
-          <div>
-            <h4 className="text-white font-semibold text-xs md:text-lg font-serif">Sulala</h4>
-            <ul className="flex flex-col gap-2">
-              <li className="text-white text-[7px] md:text-sm">About us</li>
-              <li className="text-white text-[7px] md:text-sm">Contact us</li>
-              <li className="text-white text-[7px] md:text-sm">Terms and conditions</li>
+          <div className="flex flex-col gap-3">
+            <h4 className="text-white underline font-semibold text-xs md:text-md font-serif">Promote your products</h4>
+            <ul className="flex flex-col gap-1">
+              <li className="text-white text-[7px] md:text-[10px] italic">Get Your Brand in the Headlines</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">Craft product descriptions</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">Utilize marketplace analytics</li>
             </ul>
           </div>
-          <div>
-            <h4 className="text-white font-semibold text-xs md:text-lg font-serif">Sulala</h4>
-            <ul className="flex flex-col gap-2">
-              <li className="text-white text-[7px] md:text-sm">About us</li>
-              <li className="text-white text-[7px] md:text-sm">Contact us</li>
-              <li className="text-white text-[7px] md:text-sm">Terms and conditions</li>
+          <div className="flex flex-col gap-3">
+            <h4 className="text-white underline font-semibold text-xs md:text-md font-serif">Track your delivery progress</h4>
+            <ul className="flex flex-col gap-1">
+              <li className="text-white text-[7px] md:text-[10px] italic">Real-Time Tracking</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">Transparency Throughout Transit</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">Multiple Tracking Options</li>
             </ul>
           </div>
-          <div>
-            <h4 className="text-white font-semibold text-xs md:text-lg font-serif">Sulala</h4>
-            <ul className="flex flex-col gap-2">
-              <li className="text-white text-[7px] md:text-sm">About us</li>
-              <li className="text-white text-[7px] md:text-sm">Contact us</li>
-              <li className="text-white text-[7px] md:text-sm">Terms and conditions</li>
+          <div className="flex flex-col gap-3">
+            <h4 className="text-white underline font-semibold text-xs md:text-md font-serif">Connect with buyers</h4>
+            <ul className="flex flex-col gap-1">
+              <li className="text-white text-[7px] md:text-[10px] italic">Personalized Customer Service</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">Community Building</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">Build Your Brand Story</li>
             </ul>
           </div>
-          <div>
-            <h4 className="text-white font-semibold text-xs md:text-lg font-serif">Sulala</h4>
-            <ul className="flex flex-col gap-2">
-              <li className="text-white text-[7px] md:text-sm">About us</li>
-              <li className="text-white text-[7px] md:text-sm">Contact us</li>
-              <li className="text-white text-[7px] md:text-sm">Terms and conditions</li>
+          <div className="flex flex-col gap-3">
+            <h4 className="text-white underline font-semibold text-xs md:text-md font-serif">Get support</h4>
+            <ul className="flex flex-col gap-1">
+              <li className="text-white text-[7px] md:text-[10px] italic">Dedicated Help Center</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">24/7 Customer Support</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">Community Forum Support</li>
             </ul>
           </div>
         </div>
+        <div className="flex flex-row gap-6 justify-center my-3 w-full">
+          <img src="/icons/social_media/facebook.svg" alt="" className="bg-white rounded-full aspect-square p-1 drop-shadow-lg w-[25px] cursor-pointer hover:scale-110 transition-all" />
+          <img src="/icons/social_media/instagram.svg" alt="" className="bg-white rounded-full aspect-square p-1 drop-shadow-lg w-[25px] cursor-pointer hover:scale-110 transition-all" />
+          <img src="/icons/social_media/telegram.svg" alt="" className="bg-white rounded-full aspect-square p-1 drop-shadow-lg w-[25px] cursor-pointer hover:scale-110 transition-all" />
+          <img src="/icons/social_media/email.svg" alt="" className="bg-white rounded-full aspect-square p-1 drop-shadow-lg w-[25px] cursor-pointer hover:scale-110 transition-all" />
+          <img src="/icons/social_media/youtube.svg" alt="" className="bg-white rounded-full aspect-square p-1 drop-shadow-lg w-[25px] cursor-pointer hover:scale-110 transition-all" />
+        </div>
+        <div className="flex flex-row gap-6 justify-center w-full my-3 text-sm text-white bg-primary">
+          <p>English</p>
+          <p>عربي</p>
+        </div>
         <div className="flex flex-row justify-center items-center gap-3 p-3 border-t border-white/10 w-full">
-          {/* <img src="/sulala-logo-white.svg" alt="" className="w-6" /> */}
+          <img src="/sulala-logo-white.svg" alt="" className="w-6" />
           {/* <p className="font-thin font-serif text-xs md:text-sm">sulala.com</p> */}
           <p className="font-thin font-serif text-xs md:text-sm">{t('copyright')}</p>
         </div>

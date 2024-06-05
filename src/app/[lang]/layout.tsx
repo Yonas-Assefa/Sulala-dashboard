@@ -9,22 +9,27 @@ import { SetupAccountStoreProvider } from '@/providers/setup-account-store-provi
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { LOCALES } from "@/i18n/config";
+import { getTranslations } from 'next-intl/server';
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Sulala",
-  description: "Sulala is a platform for selling and buying goods and services.",
-  icons: [
-    '/sulala-logo.svg',
-  ]
-};
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  const t = await getTranslations({ locale, namespace: 'LandingMetadata' });
+
+  return {
+    title: t('title'),
+    description: t('description'),
+    icons: [
+      '/sulala-logo.svg',
+    ]
+  };
+}
 
 export async function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }));
 }
 
-export default async function RootLayout({
+export default async function AppLayout({
   children, params
 }: Readonly<{
   children: React.ReactNode;

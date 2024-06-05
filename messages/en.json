@@ -8,15 +8,24 @@
         "hero_button": "Get Started",
         "what_we_provide": "What we provide...",
         "orders": "Orders",
+        "orders_description": "Track your order status in real-time, easily reorder frequently purchased items",
         "products": "Products",
+        "products_description": "Browse a wide selection of high-quality products, filter and search for products by category, brand, or price",
         "services": "Services",
+        "services_description": "Enjoy hassle-free returns and exchanges, add and edit your payment methods",
         "promotions": "Promotions",
+        "promotions_description": "Save money with exclusive discounts and coupons, receive notifications about sales and promotions",
         "drivers": "Drivers",
+        "drivers_description": "Manage your delivery addresses, track your orders on a map, and rate your driver",
         "copyright": "Copyright © 2024 Sulala, All rights reserved."
     },
     "DashboardMetadata": {
         "title": "Sulala | Dashboard",
         "description": "Sulala is market place."
+    },
+    "LandingMetadata": {
+        "title": "Sulala",
+        "description": "Sulala is a platform for selling and buying goods and services."
     },
     "Auth": {
         "signin": "Sign in"
