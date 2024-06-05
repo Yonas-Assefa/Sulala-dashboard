@@ -18,7 +18,7 @@ function OrdersTable({ tableType }: { tableType: string }) {
           {/* head */}
           <thead className="text-black bg-secondary/10">
             <tr className="border-secondary/30">
-            <th>№</th>
+              <th>№</th>
               <th>Order number</th>
               <th>Status</th>
               <th>Date</th>
@@ -46,46 +46,44 @@ function OrdersTable({ tableType }: { tableType: string }) {
                           src="/icons/chevron-down.svg"
                           className="w-[20px] aspect-auto"
                           alt=""
-                        />              
+                        />
                       </div>
                     </td>
                     <td>{item.date}</td>
                     <td>{item.price}</td>
                     <td>{item.fee}</td>
                     <td className="flex justify-start items-center">
-                     
-                        <div className="dropdown dropdown-bottom dropdown-end">
-                          <div
-                            tabIndex={0}
-                            role="button"
-                            className="bg-white flex flex-row"
-                          >
-                            <p>{item.items} Items</p>
-                            <img
-                              src="/icons/chevron-down.svg"
-                              className="w-[20px] aspect-auto"
-                              alt=""
-                            />
-                          </div>
-                          <div
-                            tabIndex={0}
-                            className="dropdown-content border rounded-xl z-[1] menu p-4 gap-4 shadow bg-white w-72 text-ellipsis overflow-hidden"
-                          >
-                            <p className="text-black font-semibold">Items</p>
-                            <div className="flex flex-col gap-4 w-64">
-                              <div className="flex flex-row items-center gap-3">
-                                <img src="/images/milktake-silver.svg" alt="" />
-                                <p className="truncate">
-                                  Pet, Horse & Cattle Shampooooo
-                                </p>
-                              </div>
-                              <div className="flex flex-row items-center gap-3">
-                                <img src="/images/milktake-silver.svg" alt="" />
-                                <p>Pet, Horse & Cattle Shampoo</p>
-                              </div>
+                      <div className="dropdown dropdown-bottom dropdown-end">
+                        <div
+                          tabIndex={0}
+                          role="button"
+                          className="bg-white flex flex-row"
+                        >
+                          <p>{item.items} Items</p>
+                          <img
+                            src="/icons/chevron-down.svg"
+                            className="w-[20px] aspect-auto"
+                            alt=""
+                          />
+                        </div>
+                        <div
+                          tabIndex={0}
+                          className="dropdown-content border rounded-xl z-[1] menu p-4 gap-4 shadow bg-white w-72 text-ellipsis overflow-hidden"
+                        >
+                          <p className="text-black font-semibold">Items</p>
+                          <div className="flex flex-col gap-4 w-64">
+                            <div className="flex flex-row items-center gap-3">
+                              <img src="/images/milktake-silver.svg" alt="" />
+                              <p className="truncate">
+                                Pet, Horse & Cattle Shampooooo
+                              </p>
                             </div>
-                          </div> 
-                        
+                            <div className="flex flex-row items-center gap-3">
+                              <img src="/images/milktake-silver.svg" alt="" />
+                              <p>Pet, Horse & Cattle Shampoo</p>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </td>
                   </tr>
