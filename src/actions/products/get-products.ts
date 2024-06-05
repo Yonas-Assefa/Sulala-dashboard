@@ -8,6 +8,8 @@ import { notFound } from "next/navigation"
 import { getFilterSortOrdering } from "@/lib/table"
 
 export const getProducts = async (formData?: FormData) => {
+    // TEMP
+    return []
     const { search, status, ordering, page } = getFilterSortOrdering(formData)
 
     const response = await Fetch({
@@ -34,6 +36,8 @@ export const getProducts = async (formData?: FormData) => {
 }
 
 export const getOneProduct = async (item: string) => {
+    // TEMP
+    return {}
     const response = await fetch(`${PRODUCTS}${item}/`, {
         method: 'GET',
         headers: getRequestHeaders()

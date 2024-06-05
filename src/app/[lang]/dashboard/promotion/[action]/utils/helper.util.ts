@@ -41,5 +41,5 @@ export const getTab = (tab: unknown, type: any) => {
     if (tab && tab === TabType.discountsAds || tab === TabType.bannerAds) {
         return tab
     }
-    return redirect('?tab=discounts-ads&type=' + type as any)
+    return redirect('/dashboard/promotion/add?tab=discounts-ads&type=' + type as any)
 }

@@ -5,6 +5,8 @@ import { CATEGORIES } from "../../config/urls"
 import { formatCategory, getRequestHeaders, makeRequest } from "../../lib/helper"
 
 export const getCategories = async () => {
+    // TEMP
+    return {}
     const response = await fetch(CATEGORIES, {
         method: 'GET',
         headers: getRequestHeaders()

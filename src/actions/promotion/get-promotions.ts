@@ -16,6 +16,9 @@ export const getPromotions = async (formData: FormData) => {
 
     const search_type = formData.get('search_type') || ''
 
+    // TEMP
+    return []
+
     const response = await Fetch({
         url: PROMOTIONS,
         method: 'GET',
@@ -39,6 +42,10 @@ export const getPromotions = async (formData: FormData) => {
 }
 
 export const getOnePromotion = async (promotion_id: string) => {
+
+    // TEMP
+    return {}
+
     const response = await fetch(`${PROMOTIONS}${promotion_id}/`, {
         method: 'GET',
         headers: getRequestHeaders(),
