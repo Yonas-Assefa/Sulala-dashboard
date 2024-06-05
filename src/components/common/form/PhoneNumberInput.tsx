@@ -4,6 +4,7 @@ import countries from '@/constants/countries.json'
 import ResetButton from '../ui/ResetButton'
 import { getUserLocation } from '@/utils/getUserLocation'
 import { splitPhoneNumber } from '@/utils/splitPhoneNumber'
+import { useTranslations } from 'next-intl'
 
 function PhoneNumberInput({ error, defaultValue, label }: { error?: string, defaultValue?: string, label?: string }) {
     type CountryCode = {
@@ -23,6 +24,8 @@ function PhoneNumberInput({ error, defaultValue, label }: { error?: string, defa
     const countryCodeRef = React.useRef<ElementRef<'details'>>(null)
     const [filterCountry, setFilterCountry] = React.useState('')
     const deferredFilterCountry = useDeferredValue(filterCountry)
+
+    const t = useTranslations('Commons')
 
 
     // CLOSE DROPDOWN WHEN CLICKED OUTSIDE
@@ -120,7 +123,7 @@ function PhoneNumberInput({ error, defaultValue, label }: { error?: string, defa
                             type="text"
                             id='phone_number'
                             name='phone_number'
-                            placeholder="Enter phone number"
+                            placeholder={t('enter_phone_number')}
                             className="input w-full bg-transparent border-0 outline-0 rounded-r-[30px] focus:border-0 focus:outline-none"
                             onChange={handlePhoneNumber}
                             value={phone}

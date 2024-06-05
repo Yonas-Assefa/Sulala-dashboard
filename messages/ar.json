@@ -150,9 +150,20 @@
         "description": "وصف",
         "banner": "راية",
         "budgeting": "الميزانية",
+        "budget": "ميزانية",
         "not_uploaded": "لم يتم تحميلها",
         "uploaded": "تم الرفع",
-        "no_file_selected": "لم يتم اختيار اي ملف"
+        "no_file_selected": "لم يتم اختيار اي ملف",
+        "destination": "وجهة",
+        "lists_of_products": "قوائم المنتجات",
+        "lists_of_services": "قوائم الخدمات",
+        "shops": "محلات"
+    },
+    "Products": {
+        "my_products": "منتجاتي",
+        "add_product": "أضف منتج",
+        "export": "يصدّر",
+        "import": "يستورد"
     },
     "Commons": {
         "instagram_link": "رابط الانستقرام",
@@ -197,7 +208,17 @@
         "maximum_size_20_mb": "الحد الأقصى للحجم 20 ميجابايت",
         "upload": "رفع",
         "no_description": "بدون وصف",
-        "image_not_saved": "لم يتم حفظ الصورة!"
+        "image_not_saved": "لم يتم حفظ الصورة!",
+        "destination": "وجهة",
+        "lists_of_products": "قوائم المنتجات",
+        "lists_of_services": "قوائم الخدمات",
+        "shops": "محلات",
+        "products_list": "قائمة المنتجات",
+        "services_list": "قائمة الخدمات",
+        "select_products": "حدد المنتجات",
+        "select_services": "حدد الخدمات",
+        "enter_phone_number": "أدخل رقم الهاتف",
+        "no_items_found_here": "لم يتم العثور على أي عناصر هنا!"
     },
     "Error": {
         "trouble_loading_page": "عذرًا، نواجه بعض المشاكل في تحميل الصفحة الآن",

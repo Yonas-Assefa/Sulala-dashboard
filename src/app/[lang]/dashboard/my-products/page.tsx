@@ -15,7 +15,6 @@ import { changeObjToFormData } from "@/lib/helper";
 
 async function page({ searchParams: { search, filter, sort, sort_by } }: Props) {
   const products = await getProducts(changeObjToFormData({ search, filter, sort, sort_by }));
-
   return (
     <>
       <ImportProductsModal />

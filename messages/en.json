@@ -150,9 +150,20 @@
         "description": "Description",
         "banner": "Banner",
         "budgeting": "Budgeting",
+        "budget": "Budget",
         "not_uploaded": "Not uploaded",
         "uploaded": "Uploaded",
-        "no_file_selected": "No file selected"
+        "no_file_selected": "No file selected",
+        "destination": "Destination",
+        "lists_of_products": "Lists of Products",
+        "lists_of_services": "Lists of Services",
+        "shops": "Shops"
+    },
+    "Products": {
+        "my_products": "My Products",
+        "add_product": "Add Product",
+        "export": "Export",
+        "import": "Import"
     },
     "Commons": {
         "instagram_link": "Instagram link",
@@ -197,7 +208,17 @@
         "maximum_size_20_mb": "Maximum size 20 MB",
         "upload": "Upload",
         "no_description": "No Description",
-        "image_not_saved": "Image not saved!"
+        "image_not_saved": "Image not saved!",
+        "destination": "Destination",
+        "lists_of_products": "Lists of Products",
+        "lists_of_services": "Lists of Services",
+        "shops": "Shops",
+        "products_list": "Products List",
+        "services_list": "Services List",
+        "select_products": "Select Products",
+        "select_services": "Select Services",
+        "enter_phone_number": "Enter Phone Number",
+        "no_items_found_here": "No items found here!"
     },
     "Error": {
         "trouble_loading_page": "We're sorry, we're having some trouble loading the page right now",
