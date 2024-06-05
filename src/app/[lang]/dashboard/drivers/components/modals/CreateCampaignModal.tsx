@@ -1,7 +1,6 @@
 'use client'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
-import Link from 'next/link'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { usePathname } from '@/i18n/navigation'
 import React from 'react'
 
 function CreateCampaignModal() {

@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import React, { useEffect, useOptimistic, useState, useTransition } from 'react'
 import { Actions, ActionOptions } from '../../../types/table.type'
-import { usePathname } from 'next/navigation'
+import { usePathname } from '@/i18n/navigation'
 import { useCreateQueryString } from '@/hooks/useCreateQueryString'
 import { openModal } from '@/lib/modals'
 import { useToastMessage } from '@/hooks/useToastMessage'

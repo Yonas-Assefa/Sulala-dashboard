@@ -3,7 +3,7 @@ import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateH
 import { SETUP_URL, SHOP_ACCOUNT } from '../../config/urls';
 import { setupAccountFirstStepSchema, setupAccountLastStepSchema } from '../schema/zod-schema';
 import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders, getResponseErrorMessage, removeNullAndUndefined } from '../../lib/helper';
-import { redirect } from 'next/navigation';
+import { redirect } from '@/i18n/navigation';
 
 export const setupAccount = async (
     formState: FormState,

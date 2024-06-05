@@ -1,6 +1,6 @@
-import { notFound } from 'next/navigation';
 import { getRequestConfig } from 'next-intl/server';
 import { LOCALES } from './i18n/config';
+import { notFound } from 'next/navigation';
 
 const locales = LOCALES as string[];
 

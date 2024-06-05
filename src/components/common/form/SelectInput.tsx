@@ -1,18 +1,19 @@
 'use client'
 import { SelectInputSchema } from '@/types/input-field.type'
 import { CustomSelectInputProps } from '@/types/props.type'
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import React, { useDeferredValue, useEffect } from 'react'
+import React, { useEffect } from 'react'
 // import initialData from '@/constants/select-input.placeholder.json'
 // import initialNestedData from '@/constants/select-input-nested.placeholder.json'
 import { useDetectClickOutside } from 'react-detect-click-outside';
-import { motion } from 'framer-motion'
 
 function NoItemPlaceholder() {
+    const t = useTranslations('Commons')
     return (
         <div className='bg-tertiary/50 hover:cursor-pointer hover:bg-tertiary p-3 select-none flex flex-row justify-center gap-2 text-center font-semibold text-secondary'>
             <img src='/icons/inbox.svg' className='w-[20px] opacity-30' />
-            <p>There is no item to select here</p>
+            <p>{t('there_is_no_item_to_select_here')}</p>
         </div>
     )
 }
@@ -45,6 +46,8 @@ function SelectInput({ setValue, placeholder, label, name, id, error, multi = fa
     const selectRef = React.useRef<HTMLDetailsElement>(null)
     const [open, setOpen] = React.useState(false)
     const [search, setSearch] = React.useState('')
+
+    const t = useTranslations('Commons')
 
     const openDropdown = () => {
         selectRef.current?.setAttribute('open', 'true')
@@ -150,7 +153,7 @@ function SelectInput({ setValue, placeholder, label, name, id, error, multi = fa
                 {
                     required &&
                     <span className='text-danger'>*&nbsp;
-                        <sup className='text-xs opacity-70'>(required)</sup></span>
+                        <sup className='text-xs opacity-70'>{t('(required)')}</sup></span>
                 }
             </p>
             <details ref={selectRef} className={`dropdown bg-white rounded-[30px] m-0 p-0 border w-full hover:bg-white outline-none `}>
@@ -166,7 +169,7 @@ function SelectInput({ setValue, placeholder, label, name, id, error, multi = fa
                     {
                         // searchable &&
                         true &&
-                        <input type="text" name={`search-${id}`} id={`search-${id}`} placeholder={`Search ${label?.toLowerCase()}...`} className='bg-primary/10 border m-2 p-1 rounded-[10px] w-11/12 focus:border-primary selection:bg-primary selection:text-tertiary caret-primary' value={search} onChange={handleSearch} />
+                        <input type="text" name={`search-${id}`} id={`search-${id}`} placeholder={`${t('search')} ${label?.toLowerCase()}...`} className='bg-primary/10 border m-2 p-1 rounded-[10px] w-11/12 focus:border-primary selection:bg-primary selection:text-tertiary caret-primary' value={search} onChange={handleSearch} />
                     }
                     {/* IF THERE IS SELECTED PARENT, THE FOLLOWING COMPONENT APPEARS WITH TITLE OF SELECTED PARENT AND BACK BUTTON */}
                     {selectedParent &&

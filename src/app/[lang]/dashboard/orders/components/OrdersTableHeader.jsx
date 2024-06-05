@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams } from "@/i18n/navigation";
 
 function OrdersTableHeader() {
   const searchParams = useSearchParams();
@@ -14,9 +14,8 @@ function OrdersTableHeader() {
               <Link
                 href={`?filter=${filter}`}
                 role="tab"
-                className={`tab capitalize rounded-[30px] bg-white text-black ${
-                  searchParams.get("filter") === filter ? "tab-active" : ""
-                } bg-white text-black`}
+                className={`tab capitalize rounded-[30px] bg-white text-black ${searchParams.get("filter") === filter ? "tab-active" : ""
+                  } bg-white text-black`}
               >
                 {filter}
               </Link>

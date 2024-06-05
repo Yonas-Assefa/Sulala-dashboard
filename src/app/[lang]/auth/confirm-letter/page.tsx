@@ -7,7 +7,7 @@ import { useRedirectRoute } from '@/hooks/useRedirectRoute';
 import { useToastMessage } from '@/hooks/useToastMessage';
 import { EMPTY_FORM_STATE } from '@/utils/formStateHelper';
 import { Metadata } from 'next';
-import { redirect, useRouter } from 'next/navigation';
+import { redirect, useRouter } from '@/i18n/navigation';
 import React from 'react'
 
 // export const metadata: Metadata = {

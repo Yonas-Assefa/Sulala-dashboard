@@ -130,43 +130,43 @@ export default function Landing({ params: { lang } }: Props) {
       <footer className="bg-primary w-full flex flex-col items-center">
         <div className="grid grid-cols-5 p-4 md:w-2/3">
           <div className="flex flex-col gap-3">
-            <h4 className="text-white underline font-semibold text-xs md:text-md font-serif">Increase your productivity</h4>
+            <h4 className="text-white underline font-semibold text-xs md:text-md font-serif">{t('increase_your_productivity')}</h4>
             <ul className="flex flex-col gap-1">
-              <li className="text-white text-[7px] md:text-[10px] italic">Streamline Your Workflow</li>
-              <li className="text-white text-[7px] md:text-[10px] italic">Automate Your Online Presence</li>
-              <li className="text-white text-[7px] md:text-[10px] italic">Increase Your Average Order Value</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">{t('streamline_your_operations')}</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">{t('automate_your_sales')}</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">{t('increase_your_average_order_value')}</li>
             </ul>
           </div>
           <div className="flex flex-col gap-3">
-            <h4 className="text-white underline font-semibold text-xs md:text-md font-serif">Promote your products</h4>
+            <h4 className="text-white underline font-semibold text-xs md:text-md font-serif">{t('promote_your_products')}</h4>
             <ul className="flex flex-col gap-1">
-              <li className="text-white text-[7px] md:text-[10px] italic">Get Your Brand in the Headlines</li>
-              <li className="text-white text-[7px] md:text-[10px] italic">Craft product descriptions</li>
-              <li className="text-white text-[7px] md:text-[10px] italic">Utilize marketplace analytics</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">{t('get_your_branding_in_the_headlines')}</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">{t('craft_your_marketing_strategy')}</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">{t('utilize_marketplace_analytics')}</li>
             </ul>
           </div>
           <div className="flex flex-col gap-3">
-            <h4 className="text-white underline font-semibold text-xs md:text-md font-serif">Track your delivery progress</h4>
+            <h4 className="text-white underline font-semibold text-xs md:text-md font-serif">{t('track_your_delivery')}</h4>
             <ul className="flex flex-col gap-1">
-              <li className="text-white text-[7px] md:text-[10px] italic">Real-Time Tracking</li>
-              <li className="text-white text-[7px] md:text-[10px] italic">Transparency Throughout Transit</li>
-              <li className="text-white text-[7px] md:text-[10px] italic">Multiple Tracking Options</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">{t('real_time_order_tracking')}</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">{t('transparent_delivery_process')}</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">{t('multiple_payment_options')}</li>
             </ul>
           </div>
           <div className="flex flex-col gap-3">
-            <h4 className="text-white underline font-semibold text-xs md:text-md font-serif">Connect with buyers</h4>
+            <h4 className="text-white underline font-semibold text-xs md:text-md font-serif">{t('connect_with_buyers')}</h4>
             <ul className="flex flex-col gap-1">
-              <li className="text-white text-[7px] md:text-[10px] italic">Personalized Customer Service</li>
-              <li className="text-white text-[7px] md:text-[10px] italic">Community Building</li>
-              <li className="text-white text-[7px] md:text-[10px] italic">Build Your Brand Story</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">{t('personalized_customer_service')}</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">{t('community_building')}</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">{t('build_your_brand_story')}</li>
             </ul>
           </div>
           <div className="flex flex-col gap-3">
-            <h4 className="text-white underline font-semibold text-xs md:text-md font-serif">Get support</h4>
+            <h4 className="text-white underline font-semibold text-xs md:text-md font-serif">{t('get_support')}</h4>
             <ul className="flex flex-col gap-1">
-              <li className="text-white text-[7px] md:text-[10px] italic">Dedicated Help Center</li>
-              <li className="text-white text-[7px] md:text-[10px] italic">24/7 Customer Support</li>
-              <li className="text-white text-[7px] md:text-[10px] italic">Community Forum Support</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">{t('dedicated_help_center')}</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">{t('24/7_customer_support')}</li>
+              <li className="text-white text-[7px] md:text-[10px] italic">{t('community_forums')}</li>
             </ul>
           </div>
         </div>

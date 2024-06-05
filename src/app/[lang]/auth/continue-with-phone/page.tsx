@@ -3,7 +3,7 @@ import { getPersonalInfo } from '@/actions/settings/get-personal-info';
 import BackButton from '@/components/common/ui/BackButton'
 import Counter from '@/components/common/ui/Counter';
 import { Metadata } from 'next';
-import { redirect, useRouter } from 'next/navigation';
+import { redirect, useRouter } from '@/i18n/navigation';
 import React, { useEffect } from 'react'
 import { isMobile } from 'mobile-device-detect';
 

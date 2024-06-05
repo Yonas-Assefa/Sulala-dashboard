@@ -1,8 +1,9 @@
 'use client'
 import { logout } from '@/actions/common/logout'
-import { useParams, usePathname } from 'next/navigation'
+import { usePathname } from '@/i18n/navigation'
 import React from 'react'
-import { useRouter, pathnames } from '@/i18n/navigation';
+import { useRouter } from '@/i18n/navigation';
+import { useParams } from 'next/navigation';
 
 function SideBarOptions() {
     const [isPending, startTransition] = React.useTransition()

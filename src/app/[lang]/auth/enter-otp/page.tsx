@@ -1,6 +1,6 @@
 import React from 'react'
 import EnterOtpForm from './EnterOtpForm'
-import { redirect } from 'next/navigation'
+import { redirect } from '@/i18n/navigation'
 import BackButton from '@/components/common/ui/BackButton'
 
 type Props = {

@@ -3,6 +3,7 @@ import { setPrimaryBilling } from '@/actions/settings/set-primary-billing'
 import { useRedirectRoute } from '@/hooks/useRedirectRoute'
 import { useToastMessage } from '@/hooks/useToastMessage'
 import { EMPTY_FORM_STATE } from '@/utils/formStateHelper'
+import { useTranslations } from 'next-intl'
 import React from 'react'
 import { useFormState } from 'react-dom'
 
@@ -29,6 +30,8 @@ function BillingInfoCard({ isPrimary, card_number, id }: Props) {
     useToastMessage(deleteFormState);
     useRedirectRoute(deleteFormState);
 
+    const t = useTranslations('Settings.BillingInfo');
+
     const handleSetPrimary = () => {
         if (isPrimary) return
         const formData = new FormData()
@@ -49,7 +52,7 @@ function BillingInfoCard({ isPrimary, card_number, id }: Props) {
                 <span>••••</span>
                 <span>{card_number?.slice(card_number.length - 4, card_number.length)}</span>
                 {isPrimary && <div className="badge badge-warning gap-2 bg-[#fbe46f] p-3">
-                    Primary
+                    {t('primary')}
                 </div>}
             </div>
             <div className='self-end justify-self-end mr-1 -mb-1'>
@@ -63,14 +66,14 @@ function BillingInfoCard({ isPrimary, card_number, id }: Props) {
                                 onClick={handleSetPrimary}
                                 className={`${isPrimary && 'text-secondary hover:cursor-not-allowed'}`}
                             >
-                                Set as primary
+                                {t('set_as_primary')}
                             </button>
                         </li>
                         <li className=''>
                             <button
                                 onClick={handleDelete}
                             >
-                                Delete
+                                {t('delete')}
                             </button>
                         </li>
                     </ul>

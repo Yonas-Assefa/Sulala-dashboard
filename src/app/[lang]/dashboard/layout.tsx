@@ -1,7 +1,7 @@
 import React from "react";
 import SideBarNav from "./components/SideBarNav";
 import { Metadata } from "next";
-// import { redirect } from "next/navigation";
+// import { redirect } from "@/i18n/navigation";
 import { getPersonalInfo } from "@/actions/settings/get-personal-info";
 import { getTranslations } from 'next-intl/server';
 

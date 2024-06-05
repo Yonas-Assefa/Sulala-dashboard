@@ -10,6 +10,7 @@ import { useToastMessage } from '@/hooks/useToastMessage'
 import { useRedirectRoute } from '@/hooks/useRedirectRoute'
 import Image from 'next/image'
 import ImageDeleteModal from './ImageDeleteModal'
+import { useTranslations } from 'next-intl'
 
 type Props = {
     error?: string | undefined
@@ -31,6 +32,8 @@ function ProfileImagePicker({ error, name, id, defaultValue, disabled }: Props) 
 
     useToastMessage(formState);
     useRedirectRoute(formState);
+
+    const t = useTranslations('Commons')
 
     React.useEffect(() => {
         if (inputRef.current && image.dataUrl) {
@@ -108,20 +111,20 @@ function ProfileImagePicker({ error, name, id, defaultValue, disabled }: Props) 
                             <img src={error ? '/icons/camera-red.svg' : '/icons/camera.svg'} alt="" />
                         </div>
                         <div className='flex flex-col gap-2'>
-                            <p className={`font-semibold ${error ? 'text-danger' : 'text-primary'}`}>Add photo</p>
+                            <p className={`font-semibold ${error ? 'text-danger' : 'text-primary'}`}>{t('add_photo')}</p>
                             <div className='text-secondary flex flex-col gap-0'>
-                                <span>JPEG, PNG</span>
-                                <span>Max 20 MB</span>
+                                <span>{t('jpeg,_png')}</span>
+                                <span>{t('max_20_mb')}</span>
                             </div>
                         </div>
                     </label> :
                     <div className='flex flex-row gap-4 items-center  w-full md:w-auto justify-start relative'>
                         <Image width={100} height={100} src={image.value} alt="" className='rounded-full aspect-square w-[30vw]  md:w-[6vw] min-w-[50px]' />
                         {!disabled ? <div className='flex md:flex-row flex-col gap-2'>
-                            <label htmlFor={id} className='text-primary font-semibold cursor-pointer'>Change photo</label>
-                            <button type='button' className='text-danger font-semibold' onClick={handleRemoveImage}>Delete photo</button>
+                            <label htmlFor={id} className='text-primary font-semibold cursor-pointer'>{t('change_photo')}</label>
+                            <button type='button' className='text-danger font-semibold' onClick={handleRemoveImage}>{t('delete_photo')}</button>
                         </div> :
-                            <p className='text-black/40 font-semibold cursor-not-allowed truncate'>Readonly! Edit and delete is not allowed</p>}
+                            <p className='text-black/40 font-semibold cursor-not-allowed truncate'>{t('readonly')}</p>}
                         {/* {
                             !saved &&
                             <div className='flex flex-row gap-2 right-0 justify-end relative md:absolute bottom-5 tooltip tooltip-bottom tooltip-hover hover:cursor-pointer tooltip-error' data-tip='⚠️ &nbsp;profile not saved!'>

@@ -1,7 +1,7 @@
 import { getPersonalInfo } from '@/actions/settings/get-personal-info'
 import CreatePasswordForm from './CreatePasswordForm'
 import React from 'react'
-import { redirect } from 'next/navigation'
+import { redirect } from '@/i18n/navigation'
 
 async function CreatePassword() {
 

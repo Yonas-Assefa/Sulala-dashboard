@@ -4,9 +4,8 @@ import React from 'react'
 import Cropper, { ReactCropperElement } from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import SecondaryButton from '../ui/SecondaryButton';
-import { closeModal, isModalOpen } from '@/lib/modals';
-import Modal from '../ui/Modal';
-import { useDetectClickOutside } from 'react-detect-click-outside';
+import { closeModal } from '@/lib/modals';
+import { useTranslations } from 'next-intl';
 
 type Props = {
     handleCropChange: (event: any) => void
@@ -17,6 +16,7 @@ type Props = {
 
 function CropImageModal({ handleCropChange, rawImage, saveCrop, cancelCrop }: Props) {
     const cropperRef = React.useRef<ReactCropperElement>(null);
+    const t = useTranslations('Commons')
 
     const onCrop = () => {
         const cropper = cropperRef.current?.cropper;
@@ -37,7 +37,7 @@ function CropImageModal({ handleCropChange, rawImage, saveCrop, cancelCrop }: Pr
         <dialog id='crop_image_setting_modal' className='modal'>
             <div className={`modal-box w-11/12 max-w-sm bg-white px-0`}>
                 <div className='border-b-2 border-gray-200 pb-3'>
-                    <h3 className="font-bold text-xl text-black text-center font-serif">Crop your photo</h3>
+                    <h3 className="font-bold text-xl text-black text-center font-serif">{t('crop_your_photo')}</h3>
                 </div>
                 <div className="px-5 flex flex-col gap-3 mt-4">
                     <Cropper
@@ -49,8 +49,8 @@ function CropImageModal({ handleCropChange, rawImage, saveCrop, cancelCrop }: Pr
                         crop={onCrop}
                         ref={cropperRef}
                     />
-                    <PrimaryButton name='Save' handleClick={handleSave} type='button' />
-                    <SecondaryButton name='Cancel' handleClick={handleCancel} type='button' />
+                    <PrimaryButton name={t('save')} handleClick={handleSave} type='button' />
+                    <SecondaryButton name={t('cancel')} handleClick={handleCancel} type='button' />
                 </div>
             </div>
         </dialog>

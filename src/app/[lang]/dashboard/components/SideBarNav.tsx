@@ -3,9 +3,10 @@ import React, { ElementRef } from 'react'
 import SulalaLogo from "@/components/SulalaLogo";
 import Link from 'next/link';
 import routes from './sideBarRoutes';
-import { usePathname } from 'next/navigation';
+import { usePathname } from '@/i18n/navigation';
 import { useDetectClickOutside } from 'react-detect-click-outside';
 import SideBarOptions from './SideBarOptions';
+import { useTranslations } from 'next-intl';
 
 type Props = {
     isSuperUser: boolean
@@ -14,6 +15,7 @@ function SideBarNav({ isSuperUser }: Props) {
 
     const pathname = usePathname()
     const menuRef = React.useRef<ElementRef<'input'>>(null)
+    const t = useTranslations('SideBar')
 
     const ref = useDetectClickOutside({
         onTriggered: () => {
@@ -46,7 +48,7 @@ function SideBarNav({ isSuperUser }: Props) {
                                     <li className={`flex gap-3 p-4 ${!isActive ? 'bg-transparent text-[#52565D]' : 'bg-primary text-white'}`} key={route.name}>
                                         <img src={isActive ? route.activeIcon : route.icon} alt="" />
                                         <h6>
-                                            {route.name}
+                                            {t(route.name)}
                                         </h6>
                                         {route.protected && <img src="/icons/key.svg" alt="" width='10px' />}
                                     </li>
@@ -59,7 +61,7 @@ function SideBarNav({ isSuperUser }: Props) {
             <div className='flex md:flex-row md:gap-3 items-center'>
                 <div className='m-6 hidden md:flex flex-row gap-3 items-center text-black font-semibold'>
                     <img src="/icons/whatsup-logo.svg" alt="whatsup icon" className='h-[30px] aspect-square' />
-                    <Link href={'/support/contact'}>Contact support</Link>
+                    <Link href={'/support/contact'}>{t('contact_support')}</Link>
                 </div>
                 <SideBarOptions />
             </div>

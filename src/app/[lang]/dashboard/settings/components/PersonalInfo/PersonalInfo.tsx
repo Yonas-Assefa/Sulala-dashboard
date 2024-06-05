@@ -25,7 +25,7 @@ function PersonalInfo({ data }: Props) {
     useToastMessage(formState);
     useRedirectRoute(formState);
 
-    const t = useTranslations('Commons');
+    const t = useTranslations('Settings.PersonalInfo');
 
     return (
         <form action={action} className='mt-4 w-full flex flex-col gap-8'>

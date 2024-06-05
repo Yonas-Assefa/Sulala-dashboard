@@ -1,8 +1,9 @@
 'use client'
 import { clearCookie } from '@/actions/common/clear-cookie'
 import { useSetupAccountStore } from '@/providers/setup-account-store-provider'
-import { notFound, useRouter } from 'next/navigation'
+import { useRouter } from '@/i18n/navigation'
 import React from 'react'
+import { notFound } from 'next/navigation'
 
 type Props = {
   searchParams: {

@@ -1,9 +1,8 @@
 'use server'
 
-import { GET_PENDING_SHOPS } from "../../config/urls"
-import { promotionMapper } from "../mapper/promotion-mapper"
-import { getRequestHeaders } from "../../lib/helper"
 import { notFound } from "next/navigation"
+import { GET_PENDING_SHOPS } from "../../config/urls"
+import { getRequestHeaders } from "../../lib/helper"
 import { manageShopsMapper } from "../mapper/manage-shop-mapper"
 
 export const getPendingShops = async (formData: FormData) => {
