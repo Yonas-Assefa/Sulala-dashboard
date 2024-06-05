@@ -200,49 +200,49 @@ function ProductDiscountAdsForm({ products, promotion }: Props) {
             </form>
             <div className='col-span-1 bg-white flex flex-col gap-8'>
                 <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
-                    <h3 className='font-semibold text-xl'>Summary</h3>
+                    <h3 className='font-semibold text-xl'>{t('summary')}</h3>
                     <SummaryDescription
-                        title='Campaign name'
+                        title={t('campaign_name')}
                         description={campaignName} />
                     <SummaryDescription
-                        title={itemType}
+                        title={t(itemType == 'product' ? 'product' : 'service')}
                         description={item} />
                     <SummaryDescription
-                        title='Description'
+                        title={t('description')}
                         description={description} />
                     <SummaryDescription
-                        title='Start date & time'
+                        title={t('start_date_&_time')}
                         description={startDate} />
                     <SummaryDescription
-                        title='End date & time'
+                        title={t('end_date_&_time')}
                         description={endDate} />
                     <SummaryDescription
-                        title='Banner'
-                        description={banners.find(b => b instanceof File) ? 'unuploaded' : banners.length > 0 ? 'uploaded.' : 'no file selected'} />
+                        title={t('banner')}
+                        description={banners.find(b => b instanceof File) ? t('not_uploaded') : banners.length > 0 ? t('uploaded') : t('no_file_selected')} />
                     <SummaryDescription
-                        title='Promotional discount type'
+                        title={t('promotional_discount_type')}
                         description={DISCOUNT_TYPE_CHOICES.find(ele => ele.value == promoDiscountType)?.label} />
                     {
                         promoDiscountType === 'PERCENTAGE_OFF' &&
                         <SummaryDescription
-                            title='Discount amount'
+                            title={t('budgeting')}
                             description={percentFormatter(+(discount) / 100 || 0)} />}
                     {
                         promoDiscountType === 'LIMITED_PRICE' &&
                         <SummaryDescription
-                            title='Limited price'
+                            title={t('budget')}
                             description={priceFormatter(+(limitedPrice) || 0)} />}
                     {
                         promoDiscountType === 'PERCENTAGE_OFF_THE_MINIMUM_CART_SIZE' &&
                         <SummaryDescription
-                            title='Total carts'
+                            title={t('end_date_&_time')}
                             description={formatPiece((+cartTotal) || 0)} />}
                     {/* <SummaryDescription title='Destination' description='List of products' /> */}
                     <SummaryDescription
-                        title='Budgeting'
+                        title={t('end_date_&_time')}
                         description={BUDGETING_TYPE_CHOICES.find(ele => ele.value == budgeting)?.label} />
                     <SummaryDescription
-                        title='Budget'
+                        title={t('end_date_&_time')}
                         description={priceFormatter(+(budget || 0))} />
                 </div>
             </div>

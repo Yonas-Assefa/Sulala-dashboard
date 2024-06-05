@@ -146,11 +146,13 @@
         "enter_cart_total": "Enter Cart Total",
         "pay_&_schedule": "Pay & Schedule",
         "summary": "Summary",
-        "no_description": "No Description",
         "product": "Product",
         "description": "Description",
         "banner": "Banner",
-        "budgeting": "Budgeting"
+        "budgeting": "Budgeting",
+        "not_uploaded": "Not uploaded",
+        "uploaded": "Uploaded",
+        "no_file_selected": "No file selected"
     },
     "Commons": {
         "instagram_link": "Instagram link",
@@ -194,6 +196,7 @@
         "upload_upto_8_images": "Upload upto 8 images. JPEG, PNG",
         "maximum_size_20_mb": "Maximum size 20 MB",
         "upload": "Upload",
+        "no_description": "No Description",
         "image_not_saved": "Image not saved!"
     },
     "Error": {

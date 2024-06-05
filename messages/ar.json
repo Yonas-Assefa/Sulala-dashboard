@@ -146,11 +146,13 @@
         "enter_cart_total": "أدخل إجمالي العربة",
         "pay_&_schedule": "الدفع والجدول الزمني",
         "summary": "ملخص",
-        "no_description": "بدون وصف",
         "product": "منتج",
         "description": "وصف",
         "banner": "راية",
-        "budgeting": "الميزانية"
+        "budgeting": "الميزانية",
+        "not_uploaded": "لم يتم تحميلها",
+        "uploaded": "تم الرفع",
+        "no_file_selected": "لم يتم اختيار اي ملف"
     },
     "Commons": {
         "instagram_link": "رابط الانستقرام",
@@ -194,6 +196,7 @@
         "upload_upto_8_images": "تحميل ما يصل إلى 8 صور. جبيغ، بابوا نيو غينيا",
         "maximum_size_20_mb": "الحد الأقصى للحجم 20 ميجابايت",
         "upload": "رفع",
+        "no_description": "بدون وصف",
         "image_not_saved": "لم يتم حفظ الصورة!"
     },
     "Error": {
