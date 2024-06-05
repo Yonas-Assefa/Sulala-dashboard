@@ -177,6 +177,24 @@
         "daily": "Daily",
         "weekly": "Weekly",
         "budget": "Budget",
-        "enter_your_budget": "Enter your budget"
+        "enter_your_budget": "Enter your budget",
+        "promotional_discount_type": "Promotional Discount Type",
+        "percentage_off": "Percentage Off",
+        "one_plus_one": "One Plus One",
+        "limited_price": "Limited Price",
+        "percentage_off_the_minimum_cart_size": "Percentage Off the Minimum Cart Size",
+        "free_shipping": "Free Shipping",
+        "none": "None",
+        "discount_amount": "Discount Amount %",
+        "enter_discount_amount": "Enter Discount Amount",
+        "price": "Price",
+        "enter_limited_price": "Enter Limited Price",
+        "cart_total": "Cart Total",
+        "enter_cart_total": "Enter Cart Total"
+    },
+    "Error": {
+        "trouble_loading_page": "We're sorry, we're having some trouble loading the page right now",
+        "we_are_working_on_it": "We're working on a fix and will get things back to normal as soon as possible!",
+        "try_refreshing_the_page": "In the meantime, you can try refreshing the page later."
     }
 }

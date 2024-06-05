@@ -134,7 +134,7 @@ function ProductDiscountAdsForm({ products, promotion }: Props) {
                     </div>
                 </div>
                 <div className='flex flex-col gap-5 bg-tertiary rounded-[30px] p-8'>
-                    <h3 className='font-semibold text-xl'>Promotional discount type</h3>
+                    <h3 className='font-semibold text-xl'>{t('promotional_discount_type')}</h3>
                     <div className='max-w-[1300px] gap-6 flex flex-col'>
                         <CustomRadioWithConditionalInput
                             data={promotionDiscountOptions}

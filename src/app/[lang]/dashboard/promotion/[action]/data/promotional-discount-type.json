@@ -1,62 +1,62 @@
 {
     "id": "promo_discount_type",
-    "label": "Promotional discount type",
+    "label": "promotional_discount_type",
     "value": "promotional_discount_type",
     "options": [
         {
             "id": "PERCENTAGE_OFF",
-            "label": "Percentage Off",
+            "label": "percentage_off",
             "value": "PERCENTAGE_OFF",
             "input": {
                 "id": "discount",
-                "label": "Discount amount %",
-                "placeholder": "Enter discount amount",
+                "label": "discount_amount",
+                "placeholder": "enter_discount_amount",
                 "type": "text"
             }
         },
         {
             "id": "ONE_PLUS_ONE",
-            "label": "One plus one",
+            "label": "one_plus_one",
             "value": "ONE_PLUS_ONE"
         },
         {
             "id": "LIMITED_PRICE",
-            "label": "Limited price",
+            "label": "limited_price",
             "value": "LIMITED_PRICE",
             "input": {
                 "id": "limited_price",
-                "label": "Price",
-                "placeholder": "Enter limited price",
+                "label": "price",
+                "placeholder": "enter_limited_price",
                 "type": "text"
             }
         },
         {
             "id": "PERCENTAGE_OFF_THE_MINIMUM_CART_SIZE",
-            "label": "Percentage off the minimum cart size",
+            "label": "percentage_off_the_minimum_cart_size",
             "value": "PERCENTAGE_OFF_THE_MINIMUM_CART_SIZE",
             "input": [
                 {
                     "id": "discount",
-                    "label": "Discount amount",
-                    "placeholder": "Enter discount",
+                    "label": "discount_amount",
+                    "placeholder": "enter_discount_amount",
                     "type": "text"
                 },
                 {
                     "id": "cart_total",
-                    "label": "Cart total",
-                    "placeholder": "Enter cart total",
+                    "label": "cart_total",
+                    "placeholder": "enter_cart_total",
                     "type": "text"
                 }
             ]
         },
         {
             "id": "FREE_SHIPPING",
-            "label": "Free shipping",
+            "label": "free_shipping",
             "value": "FREE_SHIPPING"
         },
         {
             "id": "NONE",
-            "label": "None",
+            "label": "none",
             "value": "NONE"
         }
     ]

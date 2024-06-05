@@ -177,6 +177,24 @@
         "daily": "يوميًا",
         "weekly": "أسبوعي",
         "budget": "ميزانية",
-        "enter_your_budget": "أدخل ميزانيتك"
+        "enter_your_budget": "أدخل ميزانيتك",
+        "promotional_discount_type": "نوع الخصم الترويجي",
+        "percentage_off": "النسبة المئوية معطلة",
+        "one_plus_one": "واحد زائد واحد",
+        "limited_price": "سعر محدود",
+        "percentage_off_the_minimum_cart_size": "النسبة المئوية للحجم الأدنى لعربة التسوق",
+        "free_shipping": "ًالشحن مجانا",
+        "none": "لا أحد",
+        "discount_amount": "مقدار الخصم",
+        "enter_discount_amount": "أدخل مبلغ الخصم",
+        "price": "سعر",
+        "enter_limited_price": "أدخل السعر المحدود",
+        "cart_total": "إجمالي العربة",
+        "enter_cart_total": "أدخل إجمالي العربة"
+    },
+    "Error": {
+        "trouble_loading_page": "عذرًا، نواجه بعض المشاكل في تحميل الصفحة الآن",
+        "we_are_working_on_it": "نحن نعمل على حل المشكلة وسنعيد الأمور إلى طبيعتها في أقرب وقت ممكن!",
+        "try_refreshing_the_page": "وفي هذه الأثناء، يمكنك محاولة تحديث الصفحة لاحقًا."
     }
 }
