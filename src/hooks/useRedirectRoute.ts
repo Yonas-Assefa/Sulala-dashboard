@@ -11,7 +11,7 @@ export const useRedirectRoute = (formState: FormState) => {
             ["SUCCESS", "INFO", "ERROR"].includes(formState.status) &&
             formState.redirectUrl &&
             pathname !== formState.redirectUrl) {
-            router.push(formState.redirectUrl);
+            router.push(formState.redirectUrl as any);
         }
     }, [formState.redirectUrl]);
 }

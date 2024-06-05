@@ -52,7 +52,7 @@ function PrimaryButton({ padding, name, handleClick, className, modal, ref, href
 
     if (href) {
         return (
-            <Link href={href}
+            <Link href={href as any}
                 className={`btn rounded-[40px] disabled:bg-secondary border-0 disabled:text-white disabled:cursor-not-allowed text-white bg-primary  hover:bg-primary/80 ${padding && paddings[padding]} ${(disabled || pending) && 'bg-secondary hover:bg-secondary border-0 text-white cursor-not-allowed'}`}
                 onClick={handleButtonClick}
             >

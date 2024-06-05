@@ -1,23 +1,14 @@
 'use client'
 import { logout } from '@/actions/common/logout';
-import { useRedirectRoute } from '@/hooks/useRedirectRoute';
-import { useToastMessage } from '@/hooks/useToastMessage';
 import { closeModal } from '@/lib/modals';
-import { EMPTY_FORM_STATE } from '@/utils/formStateHelper';
-import React, { useState, useTransition } from 'react'
-import { useFormState } from 'react-dom';
+import React, { useTransition } from 'react'
 
 function LogoutModal() {
-    const [formState, setFormState] = useState(EMPTY_FORM_STATE)
     const [isPending, startTransition] = useTransition();
-
-    useToastMessage(formState);
-    useRedirectRoute(formState);
 
     const handleLogout = async () => {
         startTransition(async () => {
             const response = await logout()
-            setFormState(response || EMPTY_FORM_STATE)
             closeModal('logout_setting_modal')
         });
 

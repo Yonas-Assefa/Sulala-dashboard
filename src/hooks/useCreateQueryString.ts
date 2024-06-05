@@ -43,7 +43,7 @@ export const useCreateQueryString = () => {
             }
 
             const queryParam = '?' + params.toString();
-            router.push(pathname + queryParam);
+            router.push(pathname + queryParam as any);
         },
         [searchParams]
     );
@@ -82,7 +82,7 @@ export const useCreateQueryString = () => {
             }
 
             const queryParam = '?' + params.toString();
-            router.push(pathname + queryParam);
+            router.push(pathname + queryParam as any);
         },
         [searchParams]
     );

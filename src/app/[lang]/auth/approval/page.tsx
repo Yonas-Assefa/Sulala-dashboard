@@ -34,7 +34,7 @@ async function VerifyEmail({ searchParams: { approval_token, vendor_id } }: Prop
     if (formState.status === 'SUCCESS') {
       pushNotification(formState.message, 'success')
       if (formState.redirectUrl) {
-        router.push(formState.redirectUrl)
+        router.push(formState.redirectUrl as any)
       }
     } else {
       pushNotification(formState.message, 'error')
