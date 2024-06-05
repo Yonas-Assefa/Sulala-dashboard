@@ -4,6 +4,7 @@ const projectDir = process.cwd();
 loadEnvConfig(projectDir);
 
 export const BASE_URL = process.env.BACKEND_BASE_URL!;
+export const FRONTEND_BASE_URL = process.env.FRONTEND_BASE_URL!;
 const API_URL = `${BASE_URL}api/v1/`;
 const VENDOR_BASE_URL = `${API_URL}vendors/`;
 

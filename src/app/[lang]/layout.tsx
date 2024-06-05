@@ -21,7 +21,11 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     description: t('description'),
     icons: [
       '/sulala-logo.svg',
-    ]
+    ],
+    openGraph: {
+      images: ['/sulala-logo.svg'],
+      title: t('title')
+    },
   };
 }
 
