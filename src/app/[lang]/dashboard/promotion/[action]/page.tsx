@@ -7,6 +7,7 @@ import Tab from './components/common/Tab'
 import { getProducts } from '@/actions/products/get-products'
 import { customMapper } from '@/actions/mapper/custom-mapper'
 import { getOnePromotion } from '@/actions/promotion/get-promotions'
+import { getTranslations } from 'next-intl/server'
 
 type Props = {
     params: {
@@ -25,6 +26,8 @@ async function page({ params: { action: actionType }, searchParams: { tab: tabTy
     const tab = getTab(tabType, type)
     const action = getAction(actionType)
 
+    const t = await getTranslations('Promotion')
+
     const products = await customMapper({
         data: (await getProducts()),
         opt: [
@@ -42,7 +45,7 @@ async function page({ params: { action: actionType }, searchParams: { tab: tabTy
                 <div className='mt-4' >
                     <BackButton />
                 </div>
-                <h2 className='capitalize text-2xl md:text-3xl'>{action} promo campaign</h2>
+                <h2 className='capitalize text-2xl md:text-3xl'>{t(action == 'add' ? 'add_promotion_campaign' : 'edit_promotion_campaign')}</h2>
             </div>
             {action == 'add' && <Tab item={item} tab={tab} />}
             {

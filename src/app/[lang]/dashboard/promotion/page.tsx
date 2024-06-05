@@ -9,11 +9,13 @@ import { updatePromotionStatus } from '@/actions/promotion/update-promotion-stat
 import { deletePromotion } from '@/actions/promotion/delete-promotion'
 import { TableProps as Props } from '@/types/props.type'
 import { changeObjToFormData } from '@/lib/helper'
+import { getTranslations } from 'next-intl/server'
 
 
 async function page({ searchParams: { search, filter, sort, sort_by } }: Props) {
 
     const promotions = await getPromotions(changeObjToFormData({ search, filter, sort, sort_by }))
+    const t = await getTranslations('Promotion')
 
     return (
         <>
@@ -22,10 +24,10 @@ async function page({ searchParams: { search, filter, sort, sort_by } }: Props) 
 
                 {/* HEADER FOR MY PRODUCTS */}
                 <div className='flex flex-row justify-between'>
-                    <h1 className='text-2xl md:text-4xl font-semibold font-serif'>Promotion campaigns</h1>
+                    <h1 className='text-2xl md:text-4xl font-semibold font-serif'>{t('promotion_campaigns')}</h1>
                     <div className='flex flex-row gap-3 items-center md:relative absolute bottom-0 right-0 p-5 md:p-0 z-20 drop-shadow-lg md:drop-shadow-none'>
                         <div className=''>
-                            <PrimaryButton name='Create campaign' modal='create_campaign_modal' />
+                            <PrimaryButton name={t('create_campaign')} modal='create_campaign_modal' />
                         </div>
                     </div>
                 </div>

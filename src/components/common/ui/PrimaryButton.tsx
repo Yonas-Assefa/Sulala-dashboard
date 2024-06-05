@@ -1,6 +1,6 @@
 'use client'
 import { openModal } from '@/lib/modals'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import React from 'react'
 import { useFormStatus } from 'react-dom'
 

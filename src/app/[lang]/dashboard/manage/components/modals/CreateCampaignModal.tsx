@@ -46,7 +46,7 @@ function CreateCampaignModal() {
                             })
                         }
                     </div>
-                    <PrimaryButton name='Continue' href={`${pathname}/add?type=${type}`} disabled={!type} />
+                    <PrimaryButton name='Continue' href={`${pathname}/add?type=${type}&tab=discounts-ads`} disabled={!type} />
                 </div>
             </div>
             <form method="dialog" className="modal-backdrop">

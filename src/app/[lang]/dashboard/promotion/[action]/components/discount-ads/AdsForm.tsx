@@ -22,6 +22,7 @@ import { formatPiece } from '@/utils/pieceFormatter.util'
 import { convertToArray } from '@/utils/convertObjToArray'
 import { useParams, useSearchParams } from 'next/navigation'
 import { removePromotionBannerFile } from '@/actions/promotion/remove-promotion-banner-file'
+import { useTranslations } from 'next-intl'
 
 type Props = {
     products: any
@@ -41,6 +42,8 @@ function ProductDiscountAdsForm({ products, promotion }: Props) {
     const [budgeting, setBudgeting] = React.useState<string>()
     const [budget, setBudget] = React.useState<string>()
     const [banners, setBanners] = React.useState<(File | string)[]>([])
+
+    const t = useTranslations('Promotion')
 
     const searchParams = useSearchParams()
     const itemType = searchParams.get('type')?.toString() || ''
@@ -64,7 +67,7 @@ function ProductDiscountAdsForm({ products, promotion }: Props) {
                     <input type="text" hidden value={itemType} name='item_type' id='item_type' onChange={() => { }} />
                     <input type="text" hidden value={actionType} name='action_type' id='action_type' onChange={() => { }} />
                     <input type="text" hidden value={promotion?.id} name='item_id' id='item_id' onChange={() => { }} />
-                    <h3 className='font-semibold text-xl'>General Info</h3>
+                    <h3 className='font-semibold text-xl'>{t('general_info')}</h3>
                     <div className='max-w-[1300px] gap-5 flex flex-col'>
                         <TextInput
                             id='campaign_name'
@@ -72,8 +75,8 @@ function ProductDiscountAdsForm({ products, promotion }: Props) {
                             value={campaignName}
                             defaultValue={promotion?.campaign_name}
                             setValue={setCampaignName}
-                            placeholder='Enter campaign name'
-                            label='Campaign name'
+                            placeholder={t('enter_campaign_name')}
+                            label={t('campaign_name')}
                             error={formState?.fieldErrors?.name?.[0]} />
                         <CustomMultiSelectInput
                             data={products}
@@ -81,10 +84,10 @@ function ProductDiscountAdsForm({ products, promotion }: Props) {
                             setValue={setItem}
                             id={itemType}
                             name={itemType}
-                            label={`${itemType}s list`}
+                            label={t(itemType == 'product' ? 'products_list' : 'services_list')}
                             defaultValue={promotion?.[`${itemType}s`]}
                             // defaultValue={[9, 10]}
-                            placeholder={`Select ${itemType}s`}
+                            placeholder={t(itemType == 'product' ? 'select_products' : 'select_services')}
                             multi
                             withImage={true}
                             error={formState?.fieldErrors?.[`${itemType}s`]?.[0]} />
@@ -94,21 +97,22 @@ function ProductDiscountAdsForm({ products, promotion }: Props) {
                             defaultValue={promotion?.description}
                             id='description'
                             name='description'
-                            placeholder='Enter description/promotional quotes' label='Description/Promotional quotes'
+                            placeholder={t('enter_description/promotional_quote')}
+                            label={t('description/promotional_quote')}
                             error={formState?.fieldErrors?.description?.[0]}
                         />
                         <div className="grid grid-cols-1 md:grid-cols-2">
                             <DateInput
                                 setValue={setStartDate}
                                 defaultValue={promotion?.start_date}
-                                label='Start date & time'
+                                label={t('start_date_&_time')}
                                 id='start_datetime'
                                 name='start_datetime'
                                 error={formState?.fieldErrors?.start_date?.[0]} />
                             <DateInput
                                 setValue={setEndDate}
                                 defaultValue={promotion?.end_date}
-                                label='End date & time'
+                                label={t('end_date_&_time')}
                                 id='end_datetime'
                                 name='end_datetime'
                                 error={formState?.fieldErrors?.end_date?.[0]} />
@@ -117,7 +121,7 @@ function ProductDiscountAdsForm({ products, promotion }: Props) {
                             <ImageListSelector
                                 setValue={setBanners}
                                 defaultValues={convertToArray(promotion?.ad_files)}
-                                label='Banner Ads'
+                                label={t('banner_ads')}
                                 id='ad_files'
                                 name='ad_files'
                                 error={formState?.fieldErrors?.ad_files?.[0]}
@@ -167,7 +171,7 @@ function ProductDiscountAdsForm({ products, promotion }: Props) {
                     </div>
                 </div>
                 <div className='flex flex-col gap-5 bg-tertiary rounded-[30px] p-8'>
-                    <h3 className='font-semibold text-xl'>Budgeting</h3>
+                    <h3 className='font-semibold text-xl'>{t('budgeting')}</h3>
                     <div className='max-w-[1300px] gap-6 flex flex-col'>
                         <CustomRadioWithConditionalInput
                             data={budgetingOptions}
@@ -189,7 +193,7 @@ function ProductDiscountAdsForm({ products, promotion }: Props) {
                 <div className="flex flex-row fixed bottom-0 md:relative p-2 md:p-0">
                     <PrimaryButton
                         padding={'md'}
-                        name='Pay & Schedule'
+                        name={t('pay_&_schedule')}
                         type='submit' />
                 </div>
 

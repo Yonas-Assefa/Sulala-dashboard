@@ -1,11 +1,13 @@
 'use client'
 import PrimaryButton from '@/components/common/ui/PrimaryButton'
 import { usePathname } from '@/i18n/navigation'
+import { useTranslations } from 'next-intl'
 import React from 'react'
 
 function CreateCampaignModal() {
     const pathname = usePathname()
     const [type, setType] = React.useState<'service' | 'product'>()
+    const t = useTranslations('Promotion')
 
     type PromotionType = {
         id: 'service' | 'product'
@@ -15,11 +17,11 @@ function CreateCampaignModal() {
     const promotions: PromotionType[] = [
         {
             id: 'service',
-            name: 'Promote services',
+            name: 'promote_services',
         },
         {
             id: 'product',
-            name: 'Promote products',
+            name: 'promote_products',
         }
     ]
 
@@ -27,7 +29,7 @@ function CreateCampaignModal() {
         <dialog id="create_campaign_modal" className='modal'>
             <div className="modal-box w-11/12 max-w-sm bg-white px-0">
                 <div className='border-b-2 border-gray-200 pb-3'>
-                    <h3 className="font-bold text-xl text-black text-center font-serif">Create campaign</h3>
+                    <h3 className="font-bold text-xl text-black text-center font-serif">{t('create_campaign')}</h3>
                 </div>
                 <div className="px-5 flex flex-col gap-3 mt-4">
                     <div className='flex flex-col gap-4 my-2'>
@@ -40,13 +42,13 @@ function CreateCampaignModal() {
                                             checked={type == promotion.id}
                                             onChange={() => setType(promotion.id)}
                                         />
-                                        <p className='text-black font-semibold'>{promotion.name}</p>
+                                        <p className='text-black font-semibold'>{t(promotion.name)}</p>
                                     </label>
                                 )
                             })
                         }
                     </div>
-                    <PrimaryButton name='Continue' href={`${pathname}/add?type=${type}`} disabled={!type} />
+                    <PrimaryButton name={t('continue')} href={`${pathname}/add?type=${type}`} disabled={!type} />
                 </div>
             </div>
             <form method="dialog" className="modal-backdrop">
