@@ -5,8 +5,6 @@ import { SUBCATEGORIES } from "../../config/urls"
 import { formatCategory, getRequestHeaders, makeRequest } from "../../lib/helper"
 
 export const getSubCategories = async () => {
-    // TEMP
-    return []
     const response = await fetch(SUBCATEGORIES, {
         method: 'GET',
         headers: getRequestHeaders()

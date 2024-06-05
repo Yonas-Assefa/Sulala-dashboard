@@ -5,8 +5,7 @@ import { shopMapper } from "../mapper/shop-mapper"
 import { getRequestHeaders } from "../../lib/helper"
 
 export const getShopInfo = async () => {
-    // TEMP
-    return {}
+
     const response = await fetch(GET_SHOP_ACCOUNT, {
         method: 'GET',
         headers: getRequestHeaders(),
