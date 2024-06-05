@@ -3,13 +3,15 @@ import { logout } from '@/actions/common/logout'
 import { usePathname } from '@/i18n/navigation'
 import React from 'react'
 import { useRouter } from '@/i18n/navigation';
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 
 function SideBarOptions() {
     const [isPending, startTransition] = React.useTransition()
     const { lang } = useParams()
     const router = useRouter()
     const pathname = usePathname()
+
+    const searchParams = useSearchParams()
 
     const handleLogoutClick = async () => {
         startTransition(async () => {
@@ -18,7 +20,7 @@ function SideBarOptions() {
     }
 
     const handleLangChange = (lang: 'en' | 'ar') => {
-        router.push('/dashboard/settings', { locale: lang });
+        router.push(pathname + '?' + searchParams.toString() as any, { locale: lang });
     };
 
     return (
