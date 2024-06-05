@@ -5,7 +5,6 @@ import { useToastMessage } from '@/hooks/useToastMessage';
 import { closeModal } from '@/lib/modals';
 import { EMPTY_FORM_STATE } from '@/utils/formStateHelper';
 import React, { useState, useTransition } from 'react'
-import { useFormState } from 'react-dom';
 
 function LogoutModal() {
     const [formState, setFormState] = useState(EMPTY_FORM_STATE)
@@ -17,7 +16,6 @@ function LogoutModal() {
     const handleLogout = async () => {
         startTransition(async () => {
             const response = await logout()
-            setFormState(response || EMPTY_FORM_STATE)
             closeModal('logout_setting_modal')
         });
 
