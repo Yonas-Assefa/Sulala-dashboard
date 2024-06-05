@@ -7,6 +7,7 @@ import { useToastMessage } from '@/hooks/useToastMessage'
 import { closeModal } from '@/lib/modals'
 import { EMPTY_FORM_STATE, toFormState } from '@/utils/formStateHelper'
 import { pushWarningNotification } from '@/utils/pushNotification.util'
+import { useTranslations } from 'next-intl'
 import React from 'react'
 import { usePapaParse } from 'react-papaparse';
 
@@ -21,6 +22,8 @@ function ImportProductsModal() {
 
     useToastMessage(formState);
     useRedirectRoute(formState)
+
+    const t = useTranslations('Products')
 
     const { readString } = usePapaParse();
 
@@ -108,7 +111,7 @@ function ImportProductsModal() {
         <dialog id="import_products_modal" className='modal'>
             <div className="modal-box w-11/12 max-w-sm bg-white px-0">
                 <div className='border-b-2 border-gray-200 pb-3'>
-                    <h3 className="font-bold text-xl text-black text-center font-serif">Import</h3>
+                    <h3 className="font-bold text-xl text-black text-center font-serif">{t('import')}</h3>
                 </div>
                 {file && file?.size > 0 && <button className='underline text-primary text-xs px-4' onClick={() => setShowPreview(!showPreview)}>{showPreview ? 'hide' : 'show'} preview</button>}
                 {
@@ -138,8 +141,8 @@ function ImportProductsModal() {
                     )
                 }
                 <div className="px-5 flex flex-col gap-3 mt-4">
-                    <FileInput id='csv' name='csv' label='Please attach the csv file' setValue={handleFile} accept={['.csv']} sizeLimit={{ value: 5, unit: 'MB' }} error={formState.status == 'ERROR' && formState.message} />
-                    <PrimaryButton name='Import' disabled={!file || isDisabled} handleClick={handleFileUpload} isPending={isPending} />
+                    <FileInput id='csv' name='csv' label={t('please_attach_the_csv_file')} setValue={handleFile} accept={['.csv']} sizeLimit={{ value: 5, unit: 'MB' }} error={formState.status == 'ERROR' && formState.message} />
+                    <PrimaryButton name={t('import')} disabled={!file || isDisabled} handleClick={handleFileUpload} isPending={isPending} />
                 </div>
                 {file && <div className='w-full flex justify-center flex-row pt-2 gap-2 items-center opacity-60'>
                     <img src="/icons/alert.svg" alt="" className='w-[15px]' />

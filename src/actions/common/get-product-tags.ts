@@ -5,6 +5,8 @@ import { PRODUCT_TAGS } from "../../config/urls"
 import { getRequestHeaders, makeRequest } from "../../lib/helper"
 
 export const getProductTags = async () => {
+    // TEMP
+    return []
     const response = await fetch(PRODUCT_TAGS, {
         method: 'GET',
         headers: getRequestHeaders()

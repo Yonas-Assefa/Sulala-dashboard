@@ -163,7 +163,14 @@
         "my_products": "منتجاتي",
         "add_product": "أضف منتج",
         "export": "يصدّر",
-        "import": "يستورد"
+        "import": "يستورد",
+        "export_to_csv": "تصدير إلى CSV",
+        "file_name": "اسم الملف",
+        "products": "منتجات",
+        "downloaded_csv_file": "تم تنزيل ملف CSV باسم",
+        "please_attach_the_csv_file": "يرجى إرفاق ملف CSV",
+        "csv_file_max_5_mb": "ملف CSV، الحد الأقصى 5 ميغابايت",
+        "upload": "رفع"
     },
     "Commons": {
         "instagram_link": "رابط الانستقرام",

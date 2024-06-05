@@ -163,7 +163,14 @@
         "my_products": "My Products",
         "add_product": "Add Product",
         "export": "Export",
-        "import": "Import"
+        "import": "Import",
+        "export_to_csv": "Export to CSV",
+        "file_name": "File Name",
+        "products": "Products",
+        "downloaded_csv_file": "Downloaded CSV file as",
+        "please_attach_the_csv_file": "Please attach the CSV file",
+        "csv_file_max_5_mb": "CSV file, Maximum 5 MB",
+        "upload": "Upload"
     },
     "Commons": {
         "instagram_link": "Instagram link",
