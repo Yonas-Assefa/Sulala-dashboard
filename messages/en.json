@@ -190,7 +190,11 @@
         "price": "Price",
         "enter_limited_price": "Enter Limited Price",
         "cart_total": "Cart Total",
-        "enter_cart_total": "Enter Cart Total"
+        "enter_cart_total": "Enter Cart Total",
+        "upload_upto_8_images": "Upload upto 8 images. JPEG, PNG",
+        "maximum_size_20_mb": "Maximum size 20 MB",
+        "upload": "Upload",
+        "image_not_saved": "Image not saved!"
     },
     "Error": {
         "trouble_loading_page": "We're sorry, we're having some trouble loading the page right now",

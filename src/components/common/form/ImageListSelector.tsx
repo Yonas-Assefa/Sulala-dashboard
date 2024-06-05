@@ -9,6 +9,7 @@ import ImageDeleteModal from './ImageDeleteModal'
 import { EMPTY_FORM_STATE, FormState } from '@/utils/formStateHelper'
 import { useToastMessage } from '@/hooks/useToastMessage'
 import { useRedirectRoute } from '@/hooks/useRedirectRoute'
+import { useTranslations } from 'next-intl'
 
 type Props = {
     multi?: boolean
@@ -38,6 +39,8 @@ function ImageListSelector({
     const inputRef = React.useRef<HTMLInputElement>(null);
     const [formState, setFormState] = React.useState(EMPTY_FORM_STATE)
     const [isPending, startTransition] = React.useTransition();
+
+    const t = useTranslations('Commons')
 
     useToastMessage(formState);
     useRedirectRoute(formState);
@@ -97,7 +100,7 @@ function ImageListSelector({
             <div className='flex flex-row gap-2'>
                 <p>{label || 'Images'}</p>
                 {!multi && fileList?.length > 0 && fileList[0] instanceof File &&
-                    <div className='flex flex-row gap-2 justify-end tooltip tooltip-top tooltip-hover hover:cursor-pointer tooltip-error animate-pulse' data-tip='⚠️ &nbsp;image not saved!'>
+                    <div className='flex flex-row gap-2 justify-end tooltip tooltip-top tooltip-hover hover:cursor-pointer tooltip-error animate-pulse' data-tip={`⚠️  ${t('image_not_saved')}`}>
                         <img src={"/icons/alert.svg"} alt="" className='w-[15px] aspect-square' />
                     </div>
                 }
@@ -106,12 +109,12 @@ function ImageListSelector({
                 <label htmlFor={id} className={`flex flex-col items-center justify-center gap-5 cursor-pointer w-full p-4 border rounded-[30px] border-dashed h-[300px] select-none ${error ? 'border-danger bg-dangerlight' : 'bg-white'}`}>
                     <img src="/icons/image.svg" alt="" />
                     <div className='flex flex-col justify-center items-center text-secondary'>
-                        <p>Upload upto 8 images. JPEG, PNG</p>
-                        <p>Maximum size 20 MB</p>
+                        <p>{t('upload_upto_8_images')}</p>
+                        <p>{t('maximum_size_20_mb')}</p>
                     </div>
                     <div className='flex gap-2'>
                         <img src="/icons/upload.svg" alt="" className='w-[15px]' />
-                        <p className='text-primary font-semibold'>Upload</p>
+                        <p className='text-primary font-semibold'>{t('upload')}</p>
                     </div>
                 </label> : multi ?
                     <div className='flex flex-wrap gap-3'>

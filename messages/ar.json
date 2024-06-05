@@ -190,7 +190,11 @@
         "price": "سعر",
         "enter_limited_price": "أدخل السعر المحدود",
         "cart_total": "إجمالي العربة",
-        "enter_cart_total": "أدخل إجمالي العربة"
+        "enter_cart_total": "أدخل إجمالي العربة",
+        "upload_upto_8_images": "تحميل ما يصل إلى 8 صور. جبيغ، بابوا نيو غينيا",
+        "maximum_size_20_mb": "الحد الأقصى للحجم 20 ميجابايت",
+        "upload": "رفع",
+        "image_not_saved": "لم يتم حفظ الصورة!"
     },
     "Error": {
         "trouble_loading_page": "عذرًا، نواجه بعض المشاكل في تحميل الصفحة الآن",
