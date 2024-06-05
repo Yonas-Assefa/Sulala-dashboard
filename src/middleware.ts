@@ -2,19 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { authMiddleware } from "./middleware/authMiddleware";
 import { i18nMiddleware } from "./middleware/i18nMiddleware";
 
-import createMiddleware from 'next-intl/middleware';
-import { LOCALES } from "./i18n/config";
-
-const nextIntlMiddleware = createMiddleware({
-  locales: LOCALES,
-
-  defaultLocale: 'ar'
-});
-
 const middlewares = [
-  // i18nMiddleware,
   authMiddleware,
-  nextIntlMiddleware
+  i18nMiddleware,
 ];
 
 

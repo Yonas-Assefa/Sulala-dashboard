@@ -1,17 +1,11 @@
 
-import { LOCALES } from "@/i18n/config";
-import { NextRequest, NextResponse } from "next/server";
+import { DEFAULT_LOCALE, LOCALES } from '@/i18n/config';
+import createMiddleware from 'next-intl/middleware';
 
-export async function i18nMiddleware(request: NextRequest) {
-    const { pathname } = request.nextUrl
-    console.log({ pathname })
-    const pathnameHasLocale = LOCALES.some(
-        (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-    )
-    console.log({ pathnameHasLocale, pathname })
-    if (pathnameHasLocale) return
+const i18nMiddleware = createMiddleware({
+    locales: LOCALES,
 
-    const locale = LOCALES[0]
-    request.nextUrl.pathname = `/${locale}${pathname}`
-    return NextResponse.redirect(request.nextUrl)
-}
+    defaultLocale: DEFAULT_LOCALE,
+});
+
+export { i18nMiddleware };
