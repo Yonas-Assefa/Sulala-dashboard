@@ -8,7 +8,7 @@ function LogoutModal() {
 
     const handleLogout = async () => {
         startTransition(async () => {
-            const response = await logout()
+            await logout()
             closeModal('logout_setting_modal')
         });
 

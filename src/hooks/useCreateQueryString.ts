@@ -1,5 +1,4 @@
-import { usePathname } from "@/i18n/navigation";
-import { useRouter } from "@/i18n/navigation";
+import { usePathname, useRouter } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import React from "react";
 

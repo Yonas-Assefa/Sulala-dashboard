@@ -7,13 +7,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import PageSuspense from "@/components/common/ui/PageSuspense";
 import { SetupAccountStoreProvider } from '@/providers/setup-account-store-provider'
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 import { LOCALES } from "@/i18n/config";
 import { getTranslations } from 'next-intl/server';
 
 const inter = Inter({ subsets: ["latin"] });
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+
   const t = await getTranslations({ locale, namespace: 'LandingMetadata' });
 
   return {
@@ -21,7 +22,11 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     description: t('description'),
     icons: [
       '/sulala-logo.svg',
-    ]
+    ],
+    openGraph: {
+      images: ['/sulala-logo.svg'],
+      title: t('title')
+    },
   };
 }
 
@@ -35,6 +40,7 @@ export default async function AppLayout({
   children: React.ReactNode;
   params: { lang: string };
 }>) {
+  unstable_setRequestLocale(params.lang);
   const messages = await getMessages();
 
   return (

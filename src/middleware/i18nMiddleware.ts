@@ -1,10 +1,10 @@
-import { LOCALES } from '@/i18n/config';
+import { DEFAULT_LOCALE, LOCALES } from '@/i18n/config';
 import createMiddleware from 'next-intl/middleware';
 
 const i18nMiddleware = createMiddleware({
     locales: LOCALES,
 
-    defaultLocale: 'ar'
+    defaultLocale: DEFAULT_LOCALE,
 });
 
-export { i18nMiddleware }
+export { i18nMiddleware };
