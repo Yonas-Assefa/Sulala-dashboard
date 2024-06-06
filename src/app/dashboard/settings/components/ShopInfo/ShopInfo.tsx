@@ -32,7 +32,7 @@ function ShopInfo({ categories, shopInfo }: Props) {
             <ProfileImagePicker id='profile_image' name='profile_image' error={formState?.fieldErrors?.profile_photo?.[0]} defaultValue={shopInfo.profile_photo} />
             <div className='md:grid flex flex-col md:grid-cols-2 max-w-[1300px] gap-5'>
                 <TextInput id='shop_name' name='shop_name' placeholder='Shop name' label='Shop name' error={formState?.fieldErrors?.name?.[0]} defaultValue={shopInfo.name} />
-                <CustomMultiSelectInput id='categories' name='categories' placeholder='Categories' label='Categories' error={formState?.fieldErrors?.category?.[0]} data={categories} defaultValue={shopInfo.category} />
+                <CustomMultiSelectInput id='categories' name='categories' placeholder='Categories' label='Categories' error={formState?.fieldErrors?.category?.[0]} data={categories} defaultValue={shopInfo.category} multi />
                 <TextInput id='legal_address' name='legal_address' placeholder='Legal Address' label='Legal Address' error={formState?.fieldErrors?.legal_address?.[0]} defaultValue={shopInfo.legal_address} />
                 <TextInput id='website' name='website' placeholder='Website' label='Website' error={formState?.fieldErrors?.website?.[0]} defaultValue={shopInfo.website} />
                 <div className="col-span-2">
