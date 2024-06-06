@@ -17,8 +17,10 @@ type Props = {
     productTags: any
     initialValue: any
     tab: string
+    animals: any
+    brands: any
 }
-function ProductForm({ categoryLists, productTags, initialValue, tab }: Props) {
+function ProductForm({ categoryLists, productTags, initialValue, tab, animals, brands }: Props) {
 
     const [formState, action] = useFormState(
         createUpdateProduct,
@@ -67,8 +69,8 @@ function ProductForm({ categoryLists, productTags, initialValue, tab }: Props) {
                     </div>
                     <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
                         <h3 className='font-semibold text-xl'>Animal and Branding</h3>
-                        <SelectInput searchable id='animal' name='animal' label='Animals' multi={true} nested={true} />
-                        <SelectInput searchable id='brand' name='brand' label='Brand' data={productTags} error={formState.fieldErrors?.tags?.[0]} defaultValue={initialValue?.tags} multi />
+                        <SelectInput searchable id='animal' name='animal' label='Animals' data={animals} multi={true} />
+                        <SelectInput searchable id='brand' name='brand' label='Brand' data={brands} error={formState.fieldErrors?.tags?.[0]} defaultValue={initialValue?.tags} multi />
                     </div>
                     <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
                         <h3 className='font-semibold text-xl'>Product promotion</h3>

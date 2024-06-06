@@ -37,6 +37,12 @@ export const GOOGLE_SIGNIN_URL = `${VENDOR_BASE_URL}google_signin_signup_vendor/
 export const CATEGORIES = `${API_URL}categories/`;
 export const SUBCATEGORIES = `${API_URL}get_category_by_shop/`;
 
+// ANIMAL URLS
+export const GET_ANIMALS = `${API_URL}get_all_animal_species_for_product_search/`;
+
+// BRAND URLS
+export const GET_BRANDS = `${API_URL}brands/`;
+
 // PRODUCT URLS
 export const PRODUCTS = `${API_URL}products/`;
 export const PRODUCT_TAGS = `${API_URL}product_tags/`;
