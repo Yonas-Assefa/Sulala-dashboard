@@ -11,7 +11,6 @@ export const getBrands = async () => {
         headers: getRequestHeaders()
     })
     const body = await response.json()
-    console.log({ body })
     if (!response.ok || !body.results) {
         if (response.status === 404) {
             notFound()

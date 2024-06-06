@@ -10,7 +10,6 @@ export const getSubCategories = async () => {
         headers: getRequestHeaders()
     })
     const body = await response.json()
-    console.log({ body })
     if (!response.ok || !body.data) {
         if (response.status === 404) {
             notFound()

@@ -11,7 +11,6 @@ export const getAnimals = async () => {
         headers: getRequestHeaders()
     })
     const body = await response.json()
-    console.log({ body })
     if (!response.ok || !body.success) {
         if (response.status === 404) {
             notFound()

@@ -4,15 +4,15 @@ import { BASE_URL } from "../../config/urls";
 export const shopMapper = async (data: any) => {
   const categories = await getCategories();
   if (Array.isArray(data)) {
-    return data.map((billing: any) => {
+    return data.map((shop: any) => {
       return {
-        ...billing,
+        ...shop,
         profile_photo:
-          billing.profile_photo?.length > 0
-            ? `${BASE_URL}${billing.profile_photo}`
+          shop.profile_photo?.length > 0
+            ? `${BASE_URL}${shop.profile_photo}`
             : undefined,
-        category: categories.find(
-          (category) => category.value === billing.category
+        categories: categories.filter(
+          (category) => shop.categories.includes(category.value)
         ),
       };
     });
@@ -23,7 +23,9 @@ export const shopMapper = async (data: any) => {
         data.profile_photo?.length > 0
           ? `${BASE_URL}${data.profile_photo}`
           : undefined,
-      category: categories.find((category) => category.value === data.category),
+      categories: categories.filter(
+        (category) => data.categories.includes(category.value)
+      ),
     };
   }
 };

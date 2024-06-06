@@ -20,6 +20,7 @@ export const createUpdateProduct = async (
             inventory: +(formData.get('quantity') || 0),
             status: formData.get('status'),
             tags: formData.getAll('product_tag'),
+            // brand: 
         }
 
         const tab = formData.get('tab')

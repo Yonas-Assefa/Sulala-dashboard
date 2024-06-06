@@ -58,7 +58,7 @@ export const setupAccountLastStepSchema = z.object({
         .min(1, 'Company name must be at least 1 character long'),
     legal_address: z.string()
         .min(1, 'Address must be at least 1 character long'),
-    category: z.array(
+    categories: z.array(
         z.number()
             .min(1, 'Please choose at least one category')
     ),
@@ -151,7 +151,7 @@ export const personalInfoSettingSchema = z.object({
 export const shopInfoSettingSchema = z.object({
     name: z.string()
         .min(1, 'Shop name must be at least 1 character long'),
-    category: z.array(
+    categories: z.array(
         z.number()
             .min(1, 'Please choose at least one category'),
     ),

@@ -28,13 +28,12 @@ export const setupAccount = async (
         } else {
             const cleanedData = removeNullAndUndefined({
                 name: formData.get('company_name'),
-                category: formData.getAll('sale_category').map((category) => +category),
+                categories: formData.getAll('sale_category').map((category) => +category),
                 legal_address: formData.get('address'),
                 certificates: formData.get('certificate'),
                 tax_forms: formData.get('tax_form'),
                 profile_photo: formData.get('profile_image'),
             })
-            console.log({ cleanedData, profilePhoto: formData.get('profile_image') })
             const ZodObj = setupAccountLastStepSchema.parse(cleanedData);
             Object.assign(data, { ...ZodObj })
         }

@@ -15,7 +15,7 @@ export const updateShopInfo = async (
         const cleanedData = removeNullAndUndefined({
             name: formData.get('shop_name'),
             description: formData.get('description'),
-            category: formData.getAll('categories').map((category) => +category),
+            categories: formData.getAll('categories').map((category) => +category),
             legal_address: formData.get('legal_address'),
             website: formData.get('website'),
             instagram: formData.get('instagram'),
