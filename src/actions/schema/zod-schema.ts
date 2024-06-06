@@ -58,8 +58,10 @@ export const setupAccountLastStepSchema = z.object({
         .min(1, 'Company name must be at least 1 character long'),
     legal_address: z.string()
         .min(1, 'Address must be at least 1 character long'),
-    category: z.number()
-        .min(1, 'Please choose at least one category'),
+    category: z.array(
+        z.number()
+            .min(1, 'Please choose at least one category')
+    ),
     certificates: z.any()
         .refine(
             fileRefine.existFn,
@@ -149,20 +151,22 @@ export const personalInfoSettingSchema = z.object({
 export const shopInfoSettingSchema = z.object({
     name: z.string()
         .min(1, 'Shop name must be at least 1 character long'),
-    category: z.number()
-        .min(1, 'Please choose at least one category'),
+    category: z.array(
+        z.number()
+            .min(1, 'Please choose at least one category'),
+    ),
     legal_address: z.string()
         .min(1, 'Address must be at least 1 character long'),
     website: z.string()
-        .url({ message: 'Invalid website url' }),
+        .url({ message: 'Invalid url eg (start like https://**)' }),
     description: z.string()
         .min(1, 'Description must be at least 1 character long'),
     instagram: z.string()
-        .url({ message: 'Invalid instagram url' })
-        .startsWith(INSTAGRAM_BASE_URL, { message: 'Url must be an instagram url' }),
+        .url({ message: 'Invalid url eg (start like https://**)' })
+        .startsWith(INSTAGRAM_BASE_URL, { message: 'Url must be an instagram url eg (https://www.instagram.com/s***)' }),
     facebook: z.string()
-        .url({ message: 'Invalid facebook url' })
-        .startsWith(FACEBOOK_BASE_URL, { message: 'Url must be a facebook url' }),
+        .url({ message: 'Invalid url eg (start like https://**)' })
+        .startsWith(FACEBOOK_BASE_URL, { message: 'Url must be a facebook url eg (https://www.facebook.com/s***)' }),
     profile_photo: z.any()
         .refine(
             fileRefine.existFn,
