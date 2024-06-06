@@ -94,7 +94,10 @@
         "enter_your_legal_address": "أدخل عنوانك القانوني",
         "please_upload_documents": "يرجى تحميل المستندات",
         "please_attach_the_certificates": "يرجى إرفاق الشهادات",
-        "please_attach_the_tax_section": "يرجى إرفاق قسم الضرائب"
+        "please_attach_the_tax_section": "يرجى إرفاق قسم الضرائب",
+        "thank_you": "شكرًا لك!",
+        "moderation_notification_will_be_sent": "سيتم إرسال الإشعار الخاص باجتياز الإشراف على النظام الأساسي إلى {email}.",
+        "it_will_take_48_hr": "يمكن أن يستغرق ما يصل إلى 48 ساعة."
     },
     "SideBar": {
         "contact_support": "اتصل بالدعم",

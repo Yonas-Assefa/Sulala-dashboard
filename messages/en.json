@@ -94,7 +94,10 @@
         "enter_your_legal_address": "Enter your legal address",
         "please_upload_documents": "Please upload documents",
         "please_attach_the_certificates": "Please attach the certificates",
-        "please_attach_the_tax_section": "Please attach the tax section"
+        "please_attach_the_tax_section": "Please attach the tax section",
+        "thank_you": "Thank you!",
+        "moderation_notification_will_be_sent": "The notification about passing moderation on the platform will be sent to {email}.",
+        "it_will_take_48_hr": "It could take up to 48 hours."
     },
     "SideBar": {
         "contact_support": "Contact support",
