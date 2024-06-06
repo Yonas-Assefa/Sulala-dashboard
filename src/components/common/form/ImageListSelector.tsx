@@ -98,7 +98,7 @@ function ImageListSelector({
         <div className='flex flex-col gap-1'>
             <ImageDeleteModal isPending={isPending} />
             <div className='flex flex-row gap-2'>
-                <p>{label || 'Images'}</p>
+                <p>{label || t('images')}</p>
                 {!multi && fileList?.length > 0 && fileList[0] instanceof File &&
                     <div className='flex flex-row gap-2 justify-end tooltip tooltip-top tooltip-hover hover:cursor-pointer tooltip-error animate-pulse' data-tip={`⚠️  ${t('image_not_saved')}`}>
                         <img src={"/icons/alert.svg"} alt="" className='w-[15px] aspect-square' />

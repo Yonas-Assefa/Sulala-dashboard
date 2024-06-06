@@ -162,6 +162,7 @@
     "Products": {
         "my_products": "منتجاتي",
         "add_product": "أضف منتج",
+        "edit_product": "تحرير المنتج",
         "export": "يصدّر",
         "import": "يستورد",
         "export_to_csv": "تصدير إلى CSV",
@@ -170,7 +171,26 @@
         "downloaded_csv_file": "تم تنزيل ملف CSV باسم",
         "please_attach_the_csv_file": "يرجى إرفاق ملف CSV",
         "csv_file_max_5_mb": "ملف CSV، الحد الأقصى 5 ميغابايت",
-        "upload": "رفع"
+        "upload": "رفع",
+        "general_info": "معلومات عامة",
+        "title": "عنوان",
+        "quantity": "كمية",
+        "description": "وصف",
+        "price": "سعر",
+        "discount": "تخفيض",
+        "images": "الصور",
+        "save": "يحفظ",
+        "status": "حالة",
+        "product_organization": "تنظيم المنتج",
+        "category": "فئة",
+        "product_promotion": "الترويج للمنتج",
+        "promo_campaign_(optional)": "الحملة الترويجية (اختياري)",
+        "tags": "العلامات",
+        "enter_product_name": "أدخل اسم المنتج",
+        "enter_quantity": "أدخل الكمية",
+        "enter_description": "أدخل الوصف",
+        "enter_price": "مَشرُوع",
+        "enter_discount_in_%": "أدخل الخصم في٪"
     },
     "Commons": {
         "instagram_link": "رابط الانستقرام",
@@ -225,7 +245,9 @@
         "select_products": "حدد المنتجات",
         "select_services": "حدد الخدمات",
         "enter_phone_number": "أدخل رقم الهاتف",
-        "no_items_found_here": "لم يتم العثور على أي عناصر هنا!"
+        "no_items_found_here": "لم يتم العثور على أي عناصر هنا!",
+        "select_one": "اختر واحدة",
+        "images": "الصور"
     },
     "Error": {
         "trouble_loading_page": "عذرًا، نواجه بعض المشاكل في تحميل الصفحة الآن",

@@ -5,6 +5,7 @@ import ProductForm from './ProductForm'
 import { getOneProduct } from '@/actions/products/get-products'
 import { getProductTags } from '@/actions/common/get-product-tags'
 import { getSubCategories } from '@/actions/common/get-subcategories'
+import { getTranslations } from 'next-intl/server'
 
 type Props = {
     params: {
@@ -25,13 +26,15 @@ async function page({ params: { tab }, searchParams: { item } }: Props) {
     const productTags = await getProductTags()
     const product = item ? await getOneProduct(item) : null
 
+    const t = await getTranslations('Products')
+
     return (
         <div className='text-black flex flex-col w-full h-full p-8 gap-10 overflow-y-scroll'>
             <div className='flex flex-row font-semibold justify-start items-center gap-6 text-3xl font-serif'>
                 <div className='mt-4' >
                     <BackButton />
                 </div>
-                <h2 className='capitalize text-2xl md:text-3xl'>{tab} Product</h2>
+                <h2 className='capitalize text-2xl md:text-3xl'>{t(tab == 'add' ? 'add_product' : 'edit_product')}</h2>
             </div>
             <ProductForm categoryLists={subcategoryLists} productTags={productTags} initialValue={product} tab={tab} />
         </div>

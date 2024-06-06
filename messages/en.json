@@ -162,6 +162,7 @@
     "Products": {
         "my_products": "My Products",
         "add_product": "Add Product",
+        "edit_product": "Edit Product",
         "export": "Export",
         "import": "Import",
         "export_to_csv": "Export to CSV",
@@ -170,7 +171,26 @@
         "downloaded_csv_file": "Downloaded CSV file as",
         "please_attach_the_csv_file": "Please attach the CSV file",
         "csv_file_max_5_mb": "CSV file, Maximum 5 MB",
-        "upload": "Upload"
+        "upload": "Upload",
+        "general_info": "General Info",
+        "title": "Title",
+        "quantity": "Quantity",
+        "description": "Description",
+        "price": "Price",
+        "discount": "Discount",
+        "images": "Images",
+        "save": "Save",
+        "status": "Status",
+        "product_organization": "Product Organization",
+        "category": "Category",
+        "product_promotion": "Product Promotion",
+        "promo_campaign_(optional)": "Promo Campaign (Optional)",
+        "tags": "Tags",
+        "enter_product_name": "Enter Product Name",
+        "enter_quantity": "Enter Quantity",
+        "enter_description": "Enter Description",
+        "enter_price": "Enter Price",
+        "enter_discount_in_%": "Enter Discount in %"
     },
     "Commons": {
         "instagram_link": "Instagram link",
@@ -225,7 +245,9 @@
         "select_products": "Select Products",
         "select_services": "Select Services",
         "enter_phone_number": "Enter Phone Number",
-        "no_items_found_here": "No items found here!"
+        "no_items_found_here": "No items found here!",
+        "select_one": "Select one",
+        "images": "Images"
     },
     "Error": {
         "trouble_loading_page": "We're sorry, we're having some trouble loading the page right now",

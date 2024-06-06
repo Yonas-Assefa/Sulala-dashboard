@@ -161,7 +161,7 @@ function SelectInput({ setValue, placeholder, label, name, id, error, multi = fa
                 <summary className={`flex items-center overflow-hidden px-3 justify-between gap-0 rounded-[40px] w-full cursor-pointer input select-none focus:outline-none ${computedValue ? 'text-black' : 'text-gray-400'} ${error ? 'border-danger bg-dangerlight' : 'focus-within:border-primary bg-transparent'}`}
                 >
 
-                    <p className='truncate'>{computedValue || (placeholder || 'Select one')}</p>
+                    <p className='truncate'>{computedValue || (placeholder || t('select_one'))}</p>
                     <img src="/icons/chevron-down.svg" alt="" className={`transition-all ${open && 'rotate-180'}`} />
                 </summary >
                 {/* DROPDOWN LIST STARTS FROM HERE */}

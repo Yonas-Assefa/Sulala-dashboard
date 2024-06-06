@@ -11,6 +11,7 @@ import { useToastMessage } from '@/hooks/useToastMessage'
 import { EMPTY_FORM_STATE } from '@/utils/formStateHelper'
 import React from 'react'
 import { useFormState } from 'react-dom'
+import { useTranslations } from 'next-intl'
 
 type Props = {
     categoryLists: any
@@ -37,6 +38,8 @@ function ProductForm({ categoryLists, productTags, initialValue, tab }: Props) {
         { label: 'Archived', value: 'ARCHIVED' },
     ]
 
+    const t = useTranslations('Products')
+
     return (
         <form action={action} className='flex flex-col gap-4'>
             <input type="text" name="tab" id="tab" value={tab} onChange={() => { }} hidden />
@@ -44,15 +47,15 @@ function ProductForm({ categoryLists, productTags, initialValue, tab }: Props) {
             <div className='flex flex-col gap-3 md:grid md:grid-cols-3 md:gap-6'>
                 <div className='col-span-2'>
                     <div className="flex flex-col gap-5 p-8 bg-tertiary rounded-[30px]">
-                        <h3 className='font-semibold text-xl'>General Info</h3>
+                        <h3 className='font-semibold text-xl'>{t('general_info')}</h3>
                         <div className='flex flex-col md:grid md:grid-cols-2 max-w-[1300px] gap-5'>
-                            <TextInput id='product_name' name='product_name' error={formState.fieldErrors?.title?.[0]} placeholder='Enter product name' label='Title' defaultValue={initialValue?.title} />
-                            <TextInput id='quantity' name='quantity' type='number' placeholder='Enter Quantity' label='Quantity' error={formState.fieldErrors?.inventory?.[0]} defaultValue={initialValue?.inventory} />
+                            <TextInput id='product_name' name='product_name' error={formState.fieldErrors?.title?.[0]} placeholder={t('enter_product_name')} label={t('title')} defaultValue={initialValue?.title} />
+                            <TextInput id='quantity' name='quantity' type='number' placeholder={t('enter_quantity')} label={t('quantity')} error={formState.fieldErrors?.inventory?.[0]} defaultValue={initialValue?.inventory} />
                             <div className="col-span-2">
-                                <TextAreaInput id='description' name='description' placeholder='Text' label='Description' error={formState.fieldErrors?.description?.[0]} defaultValue={initialValue?.description} />
+                                <TextAreaInput id='description' name='description' placeholder={t('enter_description')} label={t('description')} error={formState.fieldErrors?.description?.[0]} defaultValue={initialValue?.description} />
                             </div>
-                            <TextInput id='price' name='price' type='number' placeholder='Enter price' label='Price' error={formState.fieldErrors?.price?.[0]} defaultValue={initialValue?.price} />
-                            <TextInput id='discount' name='discount' type='number' defaultValue={initialValue?.discounted_price || 0} placeholder='Enter discount in %' label='Discount' error={formState.fieldErrors?.discounted_price?.[0]} />
+                            <TextInput id='price' name='price' type='number' placeholder={t('enter_price')} label={t('price')} error={formState.fieldErrors?.price?.[0]} defaultValue={initialValue?.price} />
+                            <TextInput id='discount' name='discount' type='number' defaultValue={initialValue?.discounted_price || 0} placeholder={t('enter_discount_in_%')} label={t('discount')} error={formState.fieldErrors?.discounted_price?.[0]} />
                             <div className="col-span-2">
                                 <ImageListSelector id='product_images' name='product_images' multi error={formState.fieldErrors?.images?.[0]} defaultValues={initialValue?.images} />
                             </div>
@@ -60,21 +63,21 @@ function ProductForm({ categoryLists, productTags, initialValue, tab }: Props) {
                     </div>
                 </div>
                 <div className='col-span-1 bg-white flex flex-col gap-8'>
-                    <RadioInput label='Status' id='status' name='status' options={productStatusOptions} error={formState.fieldErrors?.status?.[0]} defaultValue={initialValue?.status} />
+                    <RadioInput label={t('status')} id='status' name='status' options={productStatusOptions} error={formState.fieldErrors?.status?.[0]} defaultValue={initialValue?.status} />
                     <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
-                        <h3 className='font-semibold text-xl'>Product organization</h3>
-                        <SelectInput id='category' name='category' label='Category' data={data} error={formState.fieldErrors?.category?.[0]} defaultValue={initialValue?.category_value} />
+                        <h3 className='font-semibold text-xl'>{t('product_organization')}</h3>
+                        <SelectInput id='category' name='category' label={t('category')} data={data} error={formState.fieldErrors?.category?.[0]} defaultValue={initialValue?.category_value} />
                     </div>
                     <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
-                        <h3 className='font-semibold text-xl'>Product promotion</h3>
-                        <SelectInput id='campaign' label='Promo campaign (optional)' multi={false} nested={true} />
+                        <h3 className='font-semibold text-xl'>{t('product_promotion')}</h3>
+                        <SelectInput id='campaign' label={t('promo_campaign_(optional)')} multi={false} nested={true} />
                         {/* <TextAreaInput id='description' placeholder='Enter tags for the product' label='Tags' /> */}
-                        <SelectInput searchable id='product_tag' name='product_tag' label='Tags' data={productTags} error={formState.fieldErrors?.tags?.[0]} defaultValue={initialValue?.tags} multi />
+                        <SelectInput searchable id='product_tag' name='product_tag' label={t('tags')} data={productTags} error={formState.fieldErrors?.tags?.[0]} defaultValue={initialValue?.tags} multi />
                     </div>
                 </div>
             </div>
             <div className="flex flex-row">
-                <PrimaryButton padding={'md'} name='Save' type='submit' />
+                <PrimaryButton padding={'md'} name={t('save')} type='submit' />
             </div>
         </form>
     )
