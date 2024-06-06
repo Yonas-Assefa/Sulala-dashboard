@@ -131,7 +131,12 @@
             "cancel": "يلغي",
             "change_password": "تغيير كلمة المرور",
             "log_out": "تسجيل خروج",
-            "sulala": "سولالا"
+            "sulala": "سولالا",
+            "enter_current_password": "إدخل كلمة السر الحالية",
+            "enter_new_password": "أدخل كلمة المرور الجديدة",
+            "confirm_new_password": "تأكيد كلمة المرور الجديدة",
+            "confirm": "يتأكد",
+            "yes": "نعم"
         },
         "ShopInfo": {
             "shop_name": "اسم المحل",

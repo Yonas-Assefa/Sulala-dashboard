@@ -131,7 +131,12 @@
             "cancel": "Cancel",
             "change_password": "Change Password",
             "log_out": "Log Out",
-            "sulala": "Sulala"
+            "sulala": "Sulala",
+            "enter_current_password": "Enter Current Password",
+            "enter_new_password": "Enter New Password",
+            "confirm_new_password": "Confirm New Password",
+            "confirm": "Confirm",
+            "yes": "Yes"
         },
         "ShopInfo": {
             "shop_name": "Shop Name",
