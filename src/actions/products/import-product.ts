@@ -9,10 +9,8 @@ import { revalidatePath } from "next/cache";
 
 
 export const importProduct = async (formData?: FormData) => {
-    console.log({ formData })
     try {
         const csv_file = formData?.get('csv_file');
-        console.log({ csv_file })
 
         const result = importProductsSchema.parse({ csv_file });
 
@@ -23,7 +21,6 @@ export const importProduct = async (formData?: FormData) => {
         });
 
         const body = await response.json();
-        console.log({ body, result })
         if (!response.ok || !body?.success) {
             throw new Error(getResponseErrorMessage(body) || 'Failed to submit form');
         }

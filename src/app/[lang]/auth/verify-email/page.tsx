@@ -42,14 +42,14 @@ async function VerifyEmail({ searchParams: { confirmation_token, vendor_id } }: 
       router.push('/auth/sign-in')
     }
   }
-  // TEMP
-  // React.useEffect(() => {
-  //   if (!confirmation_token || !vendor_id) {
-  //     pushNotification('Invalid link', 'error')
-  //     redirect('/auth/sign-in')
-  //   }
-  //   parseFormState()
-  // }, [])
+
+  React.useEffect(() => {
+    if (!confirmation_token || !vendor_id) {
+      pushNotification('Invalid link', 'error')
+      redirect('/auth/sign-in')
+    }
+    parseFormState()
+  }, [])
 
   const t = useTranslations('Auth')
 

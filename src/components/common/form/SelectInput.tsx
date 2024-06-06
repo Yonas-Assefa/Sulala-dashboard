@@ -129,7 +129,6 @@ function SelectInput({ setValue, placeholder, label, name, id, error, multi = fa
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value
         setSearch(e.target.value)
-        console.log({ value })
         if (value) {
             const filteredOptions = (multi && !selectedParent) ? data?.filter(option => option.label.toLowerCase().includes(value.toLowerCase())) : options.filter(option => option.label.toLowerCase().includes(value.toLowerCase()))
             setOptions(filteredOptions || [])

@@ -3,8 +3,7 @@ import { authMiddleware } from "./middleware/authMiddleware";
 import { i18nMiddleware } from "./middleware/i18nMiddleware";
 
 const middlewares = [
-  // TEMP
-  // authMiddleware,
+  authMiddleware,
   i18nMiddleware,
 ];
 

@@ -34,7 +34,6 @@ export const setupAccount = async (
                 tax_forms: formData.get('tax_form'),
                 profile_photo: formData.get('profile_image'),
             })
-            console.log({ cleanedData, profilePhoto: formData.get('profile_image') })
             const ZodObj = setupAccountLastStepSchema.parse(cleanedData);
             Object.assign(data, { ...ZodObj })
         }

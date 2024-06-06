@@ -5,8 +5,6 @@ import { getRequestHeaders, makeRequest } from "../../lib/helper"
 
 export const getPersonalInfo = async () => {
 
-    // TEMP
-    return {}
     const response = await fetch(GET_VENDOR_PROFILE, {
         method: 'GET',
         headers: getRequestHeaders()

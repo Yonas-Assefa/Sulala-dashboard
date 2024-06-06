@@ -13,17 +13,16 @@ async function CreatePassword() {
 
   const t = await getTranslations('Auth')
 
-  // TEMP
-  // try {
-  //   const personalInfo = await getPersonalInfo()
-  //   if (personalInfo?.is_password_set) {
-  //     redirect('/dashboard/settings')
-  //   }
-  // } catch (error: unknown) {
-  //   if (isError(error) && error.message.includes('An authentication token is not provided or invalid')) {
-  //     redirect('/auth/sign-in')
-  //   }
-  // }
+  try {
+    const personalInfo = await getPersonalInfo()
+    if (personalInfo?.is_password_set) {
+      redirect('/dashboard/settings')
+    }
+  } catch (error: unknown) {
+    if (isError(error) && error.message.includes('An authentication token is not provided or invalid')) {
+      redirect('/auth/sign-in')
+    }
+  }
 
   return (
     <div className='text-black w-10/12 flex flex-col gap-8 items-center'>

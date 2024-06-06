@@ -25,12 +25,12 @@ type Props = {
 function ConfirmationLetter({ searchParams: { email } }: Props) {
     const router = useRouter()
     const t = useTranslations('Auth')
-    // TEMP
-    // useEffect(() => {
-    //     if (!isMobile) {
-    //         router.push('/auth/create-password')
-    //     }
-    // }, [])
+
+    useEffect(() => {
+        if (!isMobile) {
+            router.push('/auth/create-password')
+        }
+    }, [])
 
     return (
         <div className='text-black w-10/12 h-4/5 px-6 flex flex-col justify-evenly pb-8 items-center'>

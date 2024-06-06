@@ -54,7 +54,6 @@ export const signIn = async (
         const personalInfo = await getPersonalInfo()
         const redirectUrl = personalInfo?.is_superuser ? '/dashboard/manage?filter=pending' :
             ((by == 'email') ? '/dashboard/settings' : `/auth/enter-otp?phone=${data.phone_number}&action=signin`)
-        console.log({ personalInfo, redirectUrl })
 
         return toFormState('SUCCESS', successMessage, redirectUrl);
     } catch (error) {
