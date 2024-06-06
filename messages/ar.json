@@ -48,7 +48,21 @@
         "description": "Sulala هي عبارة عن منصة لبيع وشراء السلع والخدمات."
     },
     "Auth": {
-        "signin": "تسجيل الدخول"
+        "signin": "تسجيل الدخول",
+        "via_email": "عبر البريد الالكتروني",
+        "via_phone_number": "عبر رقم الهاتف",
+        "phone_number": "رقم التليفون",
+        "don't_have_an_account": "ليس لديك حساب؟",
+        "already_have_an_account": "هل لديك حساب؟",
+        "signup": "اشتراك",
+        "have_a_question": "لدي سؤال؟",
+        "contact_support": "اتصل بالدعم",
+        "email_address": "عنوان البريد الإلكتروني",
+        "enter_email_address": "أدخل عنوان البريد الالكتروني",
+        "password": "كلمة المرور",
+        "enter_password": "أدخل كلمة المرور",
+        "forgot_password": "هل نسيت كلمة السر؟",
+        "continue": "يكمل"
     },
     "SideBar": {
         "contact_support": "اتصل بالدعم",
@@ -247,7 +261,8 @@
         "enter_phone_number": "أدخل رقم الهاتف",
         "no_items_found_here": "لم يتم العثور على أي عناصر هنا!",
         "select_one": "اختر واحدة",
-        "images": "الصور"
+        "images": "الصور",
+        "phone_number": "رقم التليفون"
     },
     "Error": {
         "trouble_loading_page": "عذرًا، نواجه بعض المشاكل في تحميل الصفحة الآن",

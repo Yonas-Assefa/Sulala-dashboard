@@ -48,7 +48,21 @@
         "description": "Sulala is a platform for selling and buying goods and services."
     },
     "Auth": {
-        "signin": "Sign in"
+        "signin": "Sign in",
+        "via_email": "via Email",
+        "via_phone_number": "via Phone Number",
+        "phone_number": "Phone Number",
+        "don't_have_an_account": "Don't have an account?",
+        "already_have_an_account": "Already have an account?",
+        "signup": "Sign up",
+        "have_a_question": "Have a question?",
+        "contact_support": "Contact support",
+        "email_address": "Email Address",
+        "enter_email_address": "Enter Email Address",
+        "password": "Password",
+        "enter_password": "Enter Password",
+        "forgot_password": "Forgot Password?",
+        "continue": "Continue"
     },
     "SideBar": {
         "contact_support": "Contact support",
@@ -247,7 +261,8 @@
         "enter_phone_number": "Enter Phone Number",
         "no_items_found_here": "No items found here!",
         "select_one": "Select one",
-        "images": "Images"
+        "images": "Images",
+        "phone_number": "Phone Number"
     },
     "Error": {
         "trouble_loading_page": "We're sorry, we're having some trouble loading the page right now",

@@ -9,7 +9,7 @@ import { useToastMessage } from "@/hooks/useToastMessage";
 import { EMPTY_FORM_STATE } from "@/utils/formStateHelper";
 import React from "react";
 import { useFormState } from "react-dom";
-import { signIn } from "next-auth/react";
+import { useTranslations } from "next-intl";
 
 type SignUpProps = {
   by: "phone" | "email" | undefined;
@@ -20,6 +20,8 @@ function SignUpForm({ by }: SignUpProps) {
 
   useToastMessage(formState);
   useRedirectRoute(formState);
+
+  const t = useTranslations("Auth");
 
   return (
     <form action={action} className="flex flex-col gap-6 w-full md:px-10">
@@ -38,11 +40,11 @@ function SignUpForm({ by }: SignUpProps) {
       {/* SIGN UP LINK */}
       <div className="flex flex-col gap-3 w-full items-center">
         <div className="w-full flex flex-col">
-          <PrimaryButton name="Continue" type="submit" />
+          <PrimaryButton name={t('continue')} type="submit" />
         </div>
 
-        <p className="text-[#70757f]">Already have an account?</p>
-        <SecondaryButton name="Sign in" href={"/auth/sign-in"} />
+        <p className="text-[#70757f]">{t('already_have_an_account')}</p>
+        <SecondaryButton name={t('signin')} href={"/auth/sign-in"} />
       </div>
     </form>
   );

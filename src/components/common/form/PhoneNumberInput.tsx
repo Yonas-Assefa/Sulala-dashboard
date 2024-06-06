@@ -83,7 +83,7 @@ function PhoneNumberInput({ error, defaultValue, label }: { error?: string, defa
 
     return (
         <div className='flex flex-col gap-3 w-full'>
-            <label htmlFor="phone-number" className='self-start'>{label || 'Phone number'}</label>
+            <label htmlFor="phone-number" className='self-start'>{label || t('phone_number')}</label>
             <div className='w-full'>
                 <div className={`flex items-center gap-0 border rounded-[40px] w-full ${error ? 'bg-dangerlight border-danger' : 'focus-within:border-primary'}`}>
                     <details className="dropdown relative bg-transparent h-full" ref={countryCodeRef}>

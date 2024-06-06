@@ -1,10 +1,12 @@
 import Link from 'next/link'
 import React from 'react'
+import { useTranslations } from 'next-intl'
 
 function Footer() {
+    const t = useTranslations('Auth')
     return (
         <div className='text-[#a2a6ac] p-8'>
-            Have a question? <Link href={'/support/contact'} className='text-primary font-semibold'>Contact support</Link>
+            {t('have_a_question')} <Link href={'/support/contact'} className='text-primary font-semibold'>{t('contact_support')}</Link>
         </div>
     )
 }
