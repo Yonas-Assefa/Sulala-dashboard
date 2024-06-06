@@ -129,6 +129,8 @@ export const createProductSchema = z.object({
         .min(1, 'Quantity must be at least 1'),
     status: z.nativeEnum(ProductStatus),
     tags: z.array(z.string()),
+    brand: z.number()
+        .min(1, 'Please choose at least one brand'),
 })
 
 export const updateProductSchema = createProductSchema
