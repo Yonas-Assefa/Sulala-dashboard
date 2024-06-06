@@ -76,7 +76,25 @@
         "we_have_sent_a_verification_code": "نقوم بإرسال رمز التحقق على رقم الهاتف التالي:",
         "send_new_code": "إرسال رمز جديد",
         "confirm": "يتأكد",
-        "enter_email_to_proceed": "أدخل عنوان بريدك الإلكتروني لمتابعة إعادة تعيين كلمة المرور"
+        "enter_email_to_proceed": "أدخل عنوان بريدك الإلكتروني لمتابعة إعادة تعيين كلمة المرور",
+        "setup_your_account": "إنشأ حسابك",
+        "what_is_your_first_name": "ما هو اسمك الأول؟",
+        "enter_your_first_name": "أدخل اسمك الأول",
+        "what_is_your_last_name": "ماهو اسمك الاخير؟",
+        "enter_your_last_name": "أدخل اسمك الأخير",
+        "what_is_your_email_address": "ما هو عنوان البريد الإلكتروني الخاص بك؟",
+        "enter_your_email_address": "أدخل عنوان بريدك الالكتروني",
+        "terms_conditions": "بنود الخدمة وخصوصية السياسة",
+        "you_agree_to_terms_and_conditions": "من خلال التحقق من حسابك، فإنك توافق على",
+        "what_is_your_company_name": "ما هو اسم الشركة الخاصة بك؟",
+        "enter_your_company_name": "أدخل اسم شركتك",
+        "please_choose_categories_for_sale": "الرجاء اختيار فئات للبيع",
+        "choose_categories": "اختر الفئات",
+        "what_is_your_legal_address": "ما هو عنوانك القانوني؟",
+        "enter_your_legal_address": "أدخل عنوانك القانوني",
+        "please_upload_documents": "يرجى تحميل المستندات",
+        "please_attach_the_certificates": "يرجى إرفاق الشهادات",
+        "please_attach_the_tax_section": "يرجى إرفاق قسم الضرائب"
     },
     "SideBar": {
         "contact_support": "اتصل بالدعم",
@@ -276,7 +294,8 @@
         "no_items_found_here": "لم يتم العثور على أي عناصر هنا!",
         "select_one": "اختر واحدة",
         "images": "الصور",
-        "phone_number": "رقم التليفون"
+        "phone_number": "رقم التليفون",
+        "pdf_or_image_file,_maximum_5_mb": "ملف PDF أو صورة، بحد أقصى 5 ميغابايت"
     },
     "Error": {
         "trouble_loading_page": "عذرًا، نواجه بعض المشاكل في تحميل الصفحة الآن",

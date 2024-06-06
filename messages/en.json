@@ -76,7 +76,25 @@
         "we_have_sent_a_verification_code": "We send a verification code on the following phone number:",
         "send_new_code": "Send new code",
         "confirm": "Confirm",
-        "enter_email_to_proceed": "Enter your email address to proceed with password reset"
+        "enter_email_to_proceed": "Enter your email address to proceed with password reset",
+        "setup_your_account": "Setup your account",
+        "what_is_your_first_name": "What is your first name?",
+        "enter_your_first_name": "Enter your first name",
+        "what_is_your_last_name": "What is your last name?",
+        "enter_your_last_name": "Enter your last name",
+        "what_is_your_email_address": "What is your email address?",
+        "enter_your_email_address": "Enter your email address",
+        "terms_conditions": "Terms of Service and Privacy Policy",
+        "you_agree_to_terms_and_conditions": "By verifying your account, you agree",
+        "what_is_your_company_name": "What is your company name?",
+        "enter_your_company_name": "Enter your company name",
+        "please_choose_categories_for_sale": "Please choose categories for sale",
+        "choose_categories": "Choose categories",
+        "what_is_your_legal_address": "What is your legal address?",
+        "enter_your_legal_address": "Enter your legal address",
+        "please_upload_documents": "Please upload documents",
+        "please_attach_the_certificates": "Please attach the certificates",
+        "please_attach_the_tax_section": "Please attach the tax section"
     },
     "SideBar": {
         "contact_support": "Contact support",
@@ -276,7 +294,8 @@
         "no_items_found_here": "No items found here!",
         "select_one": "Select one",
         "images": "Images",
-        "phone_number": "Phone Number"
+        "phone_number": "Phone Number",
+        "pdf_or_image_file,_maximum_5_mb": "PDF or image file, maximum 5 MB"
     },
     "Error": {
         "trouble_loading_page": "We're sorry, we're having some trouble loading the page right now",
