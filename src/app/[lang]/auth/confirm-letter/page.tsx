@@ -9,7 +9,7 @@ import { EMPTY_FORM_STATE } from '@/utils/formStateHelper';
 import { Metadata } from 'next';
 import { redirect, useRouter } from '@/i18n/navigation';
 import React from 'react'
-
+import { useTranslations } from 'next-intl'
 // export const metadata: Metadata = {
 //     title: 'Sulala | Auth Confirmation Letter',
 //     description: 'Confirm your email address to get started with Sulala.',
@@ -45,6 +45,8 @@ function ConfirmationLetter({ searchParams: { email } }: Props) {
         return () => clearInterval(interval)
     }, [])
 
+    const t = useTranslations('Auth')
+
 
     const counterFunction = async () => {
         let personalInfo: any
@@ -67,15 +69,13 @@ function ConfirmationLetter({ searchParams: { email } }: Props) {
             </div>
             {/* SIGN IN HEADER */}
             <div className='flex flex-col gap-6'>
-                <h1 className='text-4xl md:text-[40px] text-center font-serif font-semibold self-start'>The confirmation letter has been sent</h1>
-                <p className='text-gray-500'>Check the &nbsp; <span className='text-primary font-semibold'>{email}</span> &nbsp;
-                    mailbox to which the registration confirmation email was sent.
-                </p>
+                <h1 className='text-4xl md:text-[40px] text-center font-serif font-semibold self-start'>{t('the_confirmation_letter_has_been_sent')}</h1>
+                <p className='text-gray-500'>{t('check_mail_box', { email })}</p>
                 <div className='flex flex-col gap-6 w-full'>
                     {/* SIGN UP LINK */}
                     <div className='flex flex-col gap-3 w-full items-center'>
 
-                        <Counter initialValue={30} buttonLabel='Send new email' buttonFunction={counterFunction} />
+                        <Counter initialValue={30} buttonLabel={t('send_new_email')} buttonFunction={counterFunction} />
                     </div>
                 </div>
             </div>

@@ -64,7 +64,10 @@
         "forgot_password": "Forgot Password?",
         "continue": "Continue",
         "your_shop_has_been_approved": "Your shop has been approved!",
-        "please_hold_tight": "Please hold tight!"
+        "please_hold_tight": "Please hold tight!",
+        "the_confirmation_letter_has_been_sent": "The confirmation letter has been sent to your email address.",
+        "check_mail_box": "Check the {email} mailbox to which the registration confirmation email was sent.",
+        "send_new_email": "Send new email"
     },
     "SideBar": {
         "contact_support": "Contact support",
