@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import React from 'react'
 import PersonalInfo from '../components/PersonalInfo/PersonalInfo'
 import ShopInfo from '../components/ShopInfo/ShopInfo'

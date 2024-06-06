@@ -2,7 +2,7 @@
 import React, { ElementRef } from 'react'
 import PasswordInput from './common/form/PasswordInput'
 import TextInput from './common/form/TextInput'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import { useTranslations } from 'next-intl'
 
 type Props = {

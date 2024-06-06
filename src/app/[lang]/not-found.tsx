@@ -1,6 +1,6 @@
 import React from 'react'
 import { isAuthenticated } from '@/lib/helper';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { getPersonalInfo } from '@/actions/settings/get-personal-info';
 import SideBarNav from './dashboard/components/SideBarNav';
 

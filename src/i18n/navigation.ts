@@ -19,6 +19,10 @@ export const pathnames = {
     '/auth/setup-account?stage=one': '/auth/setup-account?stage=one',
     // '/dashboard/promotion/add?type=product': '/dashboard/promotion/add?type=product',
     // '/dashboard/promotion/add?type=service': '/dashboard/promotion/add?type=service',
+    '/dashboard/orders/items': '/dashboard/orders/items',
+    '/dashboard/orders/services': '/dashboard/orders/services',
+    '/dashboard/settings/personal-info': '/dashboard/settings/personal-info',
+    '/dashboard/settings/billing-info': '/dashboard/settings/billing-info',
 
     '/settings': '/dashboard/settings',
 
@@ -26,6 +30,7 @@ export const pathnames = {
     '/auth/sign-in': '/auth/sign-in',
     '/auth/sign-up': '/auth/sign-up',
     "/auth/account-setup": "/auth/account-setup",
+    '/auth/forgot-password': '/auth/forgot-password',
 
     '/sign-in': '/auth/sign-in',
     '/sign-up': '/auth/sign-up',
