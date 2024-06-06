@@ -304,7 +304,8 @@
         "select_one": "اختر واحدة",
         "images": "الصور",
         "phone_number": "رقم التليفون",
-        "pdf_or_image_file,_maximum_5_mb": "ملف PDF أو صورة، بحد أقصى 5 ميغابايت"
+        "pdf_or_image_file,_maximum_5_mb": "ملف PDF أو صورة، بحد أقصى 5 ميغابايت",
+        "search_countries": "دول البحث"
     },
     "Error": {
         "trouble_loading_page": "عذرًا، نواجه بعض المشاكل في تحميل الصفحة الآن",

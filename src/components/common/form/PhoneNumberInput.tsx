@@ -96,7 +96,7 @@ function PhoneNumberInput({ error, defaultValue, label }: { error?: string, defa
                         <input type="text" id='country_code' name='country_code' hidden value={countryCode?.dial_code} />
                         {/* DROPDOWN OPTION STARTS FROM HERE */}
                         <div tabIndex={0} className="dropdown z-10 absolute menu p-0 mt-4 border-2  shadow rounded-box w-52 bg-white block">
-                            <input type="text" name="search-country" placeholder='Search countries..' className='bg-primary/10 border m-2 p-1 rounded-[10px] w-11/12 focus:border-primary selection:bg-primary selection:text-tertiary caret-primary' value={filterCountry} onChange={handleFilterCountry} id="" />
+                            <input type="text" name="search-country" placeholder={`${t('search_countries')}..`} className='bg-primary/10 border m-2 p-1 rounded-[10px] w-11/12 focus:border-primary selection:bg-primary selection:text-tertiary caret-primary' value={filterCountry} onChange={handleFilterCountry} id="" />
                             <ul className='max-h-[300px] overflow-y-scroll z-[1]'>
                                 {
                                     countries
