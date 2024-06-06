@@ -40,7 +40,7 @@ function SetupAccountStageTwo({ formState, categoryLists, show }: { formState: F
     return (
         <section className={`flex flex-col gap-5 w-full items-stretch ${!show && 'hidden'}`}>
             <TextInput defaultValue={campany_name} value={campany_name} setValue={setCompanyName} label={t('what_is_your_company_name')} placeholder={t('enter_your_company_name')} id='company_name' name='company_name' error={formState.fieldErrors?.name?.[0]} />
-            <CustomMultiSelectInput defaultValue={sales_category} setValue={setSalesCategory} label={t('please_choose_categories_for_sale')} placeholder={t('choose_categories')} id='sale_category' name='sale_category' error={formState.fieldErrors?.category?.[0]} data={data} />
+            <CustomMultiSelectInput defaultValue={sales_category} setValue={setSalesCategory} label={t('please_choose_categories_for_sale')} placeholder={t('choose_categories')} id='sale_category' name='sale_category' error={formState.fieldErrors?.categories?.[0]} data={data} multi />
             <TextInput defaultValue={address} value={address} setValue={setAddress} label={t('what_is_your_legal_address')} placeholder={t('enter_your_legal_address')} id='address' name='address' error={formState.fieldErrors?.legal_address?.[0]} />
         </section>
     )

@@ -60,7 +60,7 @@ export const setupAccountLastStepSchema = z.object({
     legal_address: z.string()
         .min(1, 'Address must be at least 1 character long'),
     categories: z.array(
-        z.number()
+        z.number({ message: 'Please choose at least one category' })
             .min(1, 'Please choose at least one category')
     ),
     certificates: z.any()
