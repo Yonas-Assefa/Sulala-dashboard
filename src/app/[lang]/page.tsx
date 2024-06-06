@@ -7,6 +7,7 @@ type Props = {
     lang: string
   }
 }
+
 export default function Landing({ params: { lang } }: Props) {
   const t = useTranslations('Landing');
 
