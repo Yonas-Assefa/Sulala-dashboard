@@ -245,7 +245,10 @@
         "enter_quantity": "Enter Quantity",
         "enter_description": "Enter Description",
         "enter_price": "Enter Price",
-        "enter_discount_in_%": "Enter Discount in %"
+        "enter_discount_in_%": "Enter Discount in %",
+        "animal_and_branding": "Animal and Branding",
+        "animals": "Animals",
+        "brand": "Brand"
     },
     "Commons": {
         "instagram_link": "Instagram link",

@@ -245,7 +245,10 @@
         "enter_quantity": "أدخل الكمية",
         "enter_description": "أدخل الوصف",
         "enter_price": "مَشرُوع",
-        "enter_discount_in_%": "أدخل الخصم في٪"
+        "enter_discount_in_%": "أدخل الخصم في٪",
+        "animal_and_branding": "الحيوان والعلامات التجارية",
+        "animals": "الحيوانات",
+        "brand": "ماركة"
     },
     "Commons": {
         "instagram_link": "رابط الانستقرام",

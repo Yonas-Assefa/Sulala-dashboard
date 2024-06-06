@@ -67,13 +67,13 @@ function ProductForm({ categoryLists, productTags, initialValue, tab, animals, b
                 <div className='col-span-1 bg-white flex flex-col gap-8'>
                     <RadioInput label={t('status')} id='status' name='status' options={productStatusOptions} error={formState.fieldErrors?.status?.[0]} defaultValue={initialValue?.status} />
                     <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
-                        <h3 className='font-semibold text-xl'>Product organization</h3>
-                        <SelectInput id='category' name='category' label='Category' data={data} error={formState.fieldErrors?.category?.[0]} defaultValue={initialValue?.category_value} nested />
+                        <h3 className='font-semibold text-xl'>{t('product_organization')}</h3>
+                        <SelectInput id='category' name='category' label={t('category')} data={data} error={formState.fieldErrors?.category?.[0]} defaultValue={initialValue?.category_value} nested />
                     </div>
                     <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
-                        <h3 className='font-semibold text-xl'>Animal and Branding</h3>
-                        <SelectInput searchable id='animal' name='animal' label='Animals' data={animals} multi={true} error={formState.fieldErrors?.animals?.[0]} defaultValue={initialValue?.animals} />
-                        <SelectInput searchable id='brand' name='brand' label='Brand' data={brands} error={formState.fieldErrors?.brand?.[0]} defaultValue={initialValue?.brand} multi={false} />
+                        <h3 className='font-semibold text-xl'>{t('animal_and_branding')}</h3>
+                        <SelectInput searchable id='animal' name='animal' label={t('animals')} data={animals} multi={true} error={formState.fieldErrors?.animals?.[0]} defaultValue={initialValue?.animals} />
+                        <SelectInput searchable id='brand' name='brand' label={t('brand')} data={brands} error={formState.fieldErrors?.brand?.[0]} defaultValue={initialValue?.brand} multi={false} />
                     </div>
                     <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
                         <h3 className='font-semibold text-xl'>{t('product_promotion')}</h3>
