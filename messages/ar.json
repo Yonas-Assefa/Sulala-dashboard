@@ -71,7 +71,11 @@
         "check_your_computer": "تحقق من جهاز الكمبيوتر الخاص بك لمتابعة عملية التسجيل. يمكنك أيضًا استخدام هاتفك لإكمال عملية التسجيل.",
         "proceed_with_phone": "المضي قدما مع هاتفك؟",
         "create_password": "إنشاء كلمة المرور",
-        "confirm_password": "تأكيد كلمة المرور"
+        "confirm_password": "تأكيد كلمة المرور",
+        "enter_code": "ادخل الرمز",
+        "we_have_sent_a_verification_code": "نقوم بإرسال رمز التحقق على رقم الهاتف التالي:",
+        "send_new_code": "إرسال رمز جديد",
+        "confirm": "يتأكد"
     },
     "SideBar": {
         "contact_support": "اتصل بالدعم",

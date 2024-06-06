@@ -71,7 +71,11 @@
         "check_your_computer": "Check your computer to proceed with the registration process. You can also use your phone to complete the registration process.",
         "proceed_with_phone": "Proceed with your phone?",
         "create_password": "Create Password",
-        "confirm_password": "Confirm Password"
+        "confirm_password": "Confirm Password",
+        "enter_code": "Enter Code",
+        "we_have_sent_a_verification_code": "We send a verification code on the following phone number:",
+        "send_new_code": "Send new code",
+        "confirm": "Confirm"
     },
     "SideBar": {
         "contact_support": "Contact support",

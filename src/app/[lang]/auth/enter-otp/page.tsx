@@ -2,6 +2,7 @@ import React from 'react'
 import EnterOtpForm from './EnterOtpForm'
 import { redirect } from '@/i18n/navigation'
 import BackButton from '@/components/common/ui/BackButton'
+import { getTranslations } from 'next-intl/server'
 
 type Props = {
     searchParams: {
@@ -10,10 +11,11 @@ type Props = {
     }
 }
 
-function EnterOTP({ searchParams: { phone: rawPhone, action } }: Props) {
+async function EnterOTP({ searchParams: { phone: rawPhone, action } }: Props) {
     const phone = '+' + rawPhone.trim().replace('+', '')
 
     if (!phone) return redirect('/auth/sign-in')
+    const t = await getTranslations('Auth')
 
     return (
         <div className='text-black w-10/12 h-3/5 px-6 flex flex-col justify-evenly gap-5 items-center'>
@@ -23,8 +25,8 @@ function EnterOTP({ searchParams: { phone: rawPhone, action } }: Props) {
             </div>
             {/* SIGN IN HEADER */}
             <div className='flex flex-col gap-3'>
-                <h1 className='text-3xl md:text-[40px] font-serif font-semibold self-start'>Enter code</h1>
-                <p className='text-gray-500'>We send a verification code on the following phone number: &nbsp;
+                <h1 className='text-3xl md:text-[40px] font-serif font-semibold self-start'>{t('enter_code')}</h1>
+                <p className='text-gray-500'>{t('we_have_sent_a_verification_code')} &nbsp;
                     <span className='text-primary font-semibold'>{phone}</span>
                 </p>
                 <EnterOtpForm phone={phone} action={action} />

@@ -10,6 +10,7 @@ import { HiddenInput } from '@/types/common.types'
 import { EMPTY_FORM_STATE, FormState } from '@/utils/formStateHelper'
 import React, { ElementRef } from 'react'
 import { useFormState } from 'react-dom'
+import { useTranslations } from 'next-intl'
 
 type Props = {
     phone: string
@@ -32,6 +33,8 @@ function EnterOtpForm({ phone, action: authAction }: Props) {
     useToastMessage(counterFormState);
     useRedirectRoute(formState);
 
+    const t = useTranslations('Auth')
+
     const counterFunction = async () => {
         const res = await resendOtp({ phone_number: phone })
         setCounterFormState(res)
@@ -46,9 +49,9 @@ function EnterOtpForm({ phone, action: authAction }: Props) {
             <input type="text" name="otp" id="otp" hidden value={otp.join('')} />
             <input type="text" name="action" id="action" hidden value={authAction} />
             <div className='flex flex-col gap-3 w-full items-center'>
-                <Counter initialValue={30} buttonLabel='Send new code' buttonFunction={counterFunction} />
+                <Counter initialValue={30} buttonLabel={t('send_new_code')} buttonFunction={counterFunction} />
                 <div className='flex flex-col w-full'>
-                    <PrimaryButton name='Confirm' type='submit' ref={submitBtn} disabled={disabled} />
+                    <PrimaryButton name={t('confirm')} type='submit' ref={submitBtn} disabled={disabled} />
                 </div>
             </div>
         </form>
