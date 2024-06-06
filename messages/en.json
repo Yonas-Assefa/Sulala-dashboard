@@ -62,7 +62,9 @@
         "password": "Password",
         "enter_password": "Enter Password",
         "forgot_password": "Forgot Password?",
-        "continue": "Continue"
+        "continue": "Continue",
+        "your_shop_has_been_approved": "Your shop has been approved!",
+        "please_hold_tight": "Please hold tight!"
     },
     "SideBar": {
         "contact_support": "Contact support",

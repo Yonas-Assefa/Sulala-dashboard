@@ -4,6 +4,7 @@ import { getPersonalInfo } from '@/actions/settings/get-personal-info'
 import pushNotification from '@/utils/pushNotification.util'
 import { redirect, useRouter } from '@/i18n/navigation'
 import React from 'react'
+import { useTranslations } from 'next-intl'
 
 type Props = {
   searchParams: {
@@ -50,17 +51,19 @@ async function VerifyEmail({ searchParams: { approval_token, vendor_id } }: Prop
     parseFormState()
   }, [])
 
+  const t = useTranslations('Auth')
+
 
   return (
     <div className='text-black w-10/12 flex flex-col gap-5 items-center'>
       {/* SIGN IN HEADER */}
-      <h1 className='text-[30px] font-serif font-semibold'>You shop has been approved!</h1>
+      <h1 className='text-[30px] font-serif font-semibold'>{t('your_shop_has_been_approved')}</h1>
 
 
       <div className='flex'>
         <span className="loading loading-ring loading-lg text-primary"></span>
       </div>
-      <p>Please hold tight!</p>
+      <p>{t('please_hold_tight')}</p>
     </div >
   )
 }

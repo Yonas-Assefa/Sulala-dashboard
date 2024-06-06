@@ -62,7 +62,9 @@
         "password": "كلمة المرور",
         "enter_password": "أدخل كلمة المرور",
         "forgot_password": "هل نسيت كلمة السر؟",
-        "continue": "يكمل"
+        "continue": "يكمل",
+        "your_shop_has_been_approved": "تمت الموافقة على متجرك!",
+        "please_hold_tight": "يرجى التمسك بقوة!"
     },
     "SideBar": {
         "contact_support": "اتصل بالدعم",
