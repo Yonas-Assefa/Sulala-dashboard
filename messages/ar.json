@@ -75,7 +75,8 @@
         "enter_code": "ادخل الرمز",
         "we_have_sent_a_verification_code": "نقوم بإرسال رمز التحقق على رقم الهاتف التالي:",
         "send_new_code": "إرسال رمز جديد",
-        "confirm": "يتأكد"
+        "confirm": "يتأكد",
+        "enter_email_to_proceed": "أدخل عنوان بريدك الإلكتروني لمتابعة إعادة تعيين كلمة المرور"
     },
     "SideBar": {
         "contact_support": "اتصل بالدعم",

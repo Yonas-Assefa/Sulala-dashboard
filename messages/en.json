@@ -75,7 +75,8 @@
         "enter_code": "Enter Code",
         "we_have_sent_a_verification_code": "We send a verification code on the following phone number:",
         "send_new_code": "Send new code",
-        "confirm": "Confirm"
+        "confirm": "Confirm",
+        "enter_email_to_proceed": "Enter your email address to proceed with password reset"
     },
     "SideBar": {
         "contact_support": "Contact support",
