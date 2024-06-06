@@ -1,5 +1,5 @@
 'use client'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/i18n/navigation'
 import React from 'react'
 
 function BackButton({ handleClick }: { handleClick?: () => void }) {

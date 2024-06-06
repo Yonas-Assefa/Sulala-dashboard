@@ -1,0 +1,63 @@
+{
+    "id": "promo_discount_type",
+    "label": "promotional_discount_type",
+    "value": "promotional_discount_type",
+    "options": [
+        {
+            "id": "PERCENTAGE_OFF",
+            "label": "percentage_off",
+            "value": "PERCENTAGE_OFF",
+            "input": {
+                "id": "discount",
+                "label": "discount_amount",
+                "placeholder": "enter_discount_amount",
+                "type": "text"
+            }
+        },
+        {
+            "id": "ONE_PLUS_ONE",
+            "label": "one_plus_one",
+            "value": "ONE_PLUS_ONE"
+        },
+        {
+            "id": "LIMITED_PRICE",
+            "label": "limited_price",
+            "value": "LIMITED_PRICE",
+            "input": {
+                "id": "limited_price",
+                "label": "price",
+                "placeholder": "enter_limited_price",
+                "type": "text"
+            }
+        },
+        {
+            "id": "PERCENTAGE_OFF_THE_MINIMUM_CART_SIZE",
+            "label": "percentage_off_the_minimum_cart_size",
+            "value": "PERCENTAGE_OFF_THE_MINIMUM_CART_SIZE",
+            "input": [
+                {
+                    "id": "discount",
+                    "label": "discount_amount",
+                    "placeholder": "enter_discount_amount",
+                    "type": "text"
+                },
+                {
+                    "id": "cart_total",
+                    "label": "cart_total",
+                    "placeholder": "enter_cart_total",
+                    "type": "text"
+                }
+            ]
+        },
+        {
+            "id": "FREE_SHIPPING",
+            "label": "free_shipping",
+            "value": "FREE_SHIPPING"
+        },
+        {
+            "id": "NONE",
+            "label": "none",
+            "value": "NONE"
+        }
+    ]
+}

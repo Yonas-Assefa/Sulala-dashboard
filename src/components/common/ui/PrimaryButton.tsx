@@ -1,6 +1,6 @@
 'use client'
 import { openModal } from '@/lib/modals'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import React from 'react'
 import { useFormStatus } from 'react-dom'
 
@@ -14,6 +14,7 @@ type Props = {
     type?: 'submit' | 'reset' | 'button'
     ref?: React.RefObject<HTMLButtonElement>
     className?: string
+    isPending?: boolean
 }
 
 const paddings = {
@@ -24,7 +25,7 @@ const paddings = {
     xlg: 'px-[300px]'
 }
 
-function PrimaryButton({ padding, name, handleClick, className, modal, ref, href, type, disabled = false }: Props) {
+function PrimaryButton({ padding, name, handleClick, className, modal, ref, href, type, disabled = false, isPending }: Props) {
 
     const { pending } = useFormStatus();
 
@@ -51,12 +52,12 @@ function PrimaryButton({ padding, name, handleClick, className, modal, ref, href
 
     if (href) {
         return (
-            <Link href={href}
+            <Link href={href as any}
                 className={`btn rounded-[40px] disabled:bg-secondary border-0 disabled:text-white disabled:cursor-not-allowed text-white bg-primary  hover:bg-primary/80 ${padding && paddings[padding]} ${(disabled || pending) && 'bg-secondary hover:bg-secondary border-0 text-white cursor-not-allowed'}`}
                 onClick={handleButtonClick}
             >
                 {
-                    pending ? <span className="loading loading-spinner loading-md text-primary"></span> :
+                    (pending || isPending) ? <span className="loading loading-spinner loading-md text-primary"></span> :
                         (name || 'Continue')
                 }
 
@@ -66,11 +67,11 @@ function PrimaryButton({ padding, name, handleClick, className, modal, ref, href
     else return (
         <button
             className={`btn rounded-[40px] disabled:bg-secondary border-0 disabled:text-white disabled:cursor-not-allowed text-white bg-primary hover:bg-primary/80 ${padding && paddings[padding]} ${className}`}
-            disabled={disabled || pending}
+            disabled={disabled || (pending || isPending)}
             {...props}
         >
             {
-                pending ? <span className="loading loading-spinner loading-md text-primary"></span> :
+                (pending || isPending) ? <span className="loading loading-spinner loading-md text-primary"></span> :
                     (name || 'Continue')
             }
         </button>

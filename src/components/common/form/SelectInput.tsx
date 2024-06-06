@@ -1,18 +1,19 @@
 'use client'
 import { SelectInputSchema } from '@/types/input-field.type'
 import { CustomSelectInputProps } from '@/types/props.type'
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import React, { useDeferredValue, useEffect } from 'react'
+import React, { useEffect } from 'react'
 // import initialData from '@/constants/select-input.placeholder.json'
 // import initialNestedData from '@/constants/select-input-nested.placeholder.json'
 import { useDetectClickOutside } from 'react-detect-click-outside';
-import { motion } from 'framer-motion'
 
 function NoItemPlaceholder() {
+    const t = useTranslations('Commons')
     return (
         <div className='bg-tertiary/50 hover:cursor-pointer hover:bg-tertiary p-3 select-none flex flex-row justify-center gap-2 text-center font-semibold text-secondary'>
             <img src='/icons/inbox.svg' className='w-[20px] opacity-30' />
-            <p>There is no item to select here</p>
+            <p>{t('there_is_no_item_to_select_here')}</p>
         </div>
     )
 }
@@ -45,6 +46,8 @@ function SelectInput({ setValue, placeholder, label, name, id, error, multi = fa
     const selectRef = React.useRef<HTMLDetailsElement>(null)
     const [open, setOpen] = React.useState(false)
     const [search, setSearch] = React.useState('')
+
+    const t = useTranslations('Commons')
 
     const openDropdown = () => {
         selectRef.current?.setAttribute('open', 'true')
@@ -126,7 +129,6 @@ function SelectInput({ setValue, placeholder, label, name, id, error, multi = fa
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value
         setSearch(e.target.value)
-        console.log({ value })
         if (value) {
             const filteredOptions = (multi && !selectedParent) ? data?.filter(option => option.label.toLowerCase().includes(value.toLowerCase())) : options.filter(option => option.label.toLowerCase().includes(value.toLowerCase()))
             setOptions(filteredOptions || [])
@@ -150,7 +152,7 @@ function SelectInput({ setValue, placeholder, label, name, id, error, multi = fa
                 {
                     required &&
                     <span className='text-danger'>*&nbsp;
-                        <sup className='text-xs opacity-70'>(required)</sup></span>
+                        <sup className='text-xs opacity-70'>{t('(required)')}</sup></span>
                 }
             </p>
             <details ref={selectRef} className={`dropdown bg-white rounded-[30px] m-0 p-0 border w-full hover:bg-white outline-none `}>
@@ -158,19 +160,19 @@ function SelectInput({ setValue, placeholder, label, name, id, error, multi = fa
                 <summary className={`flex items-center overflow-hidden px-3 justify-between gap-0 rounded-[40px] w-full cursor-pointer input select-none focus:outline-none ${computedValue ? 'text-black' : 'text-gray-400'} ${error ? 'border-danger bg-dangerlight' : 'focus-within:border-primary bg-transparent'}`}
                 >
 
-                    <p className='truncate'>{computedValue || (placeholder || 'Select one')}</p>
+                    <p className='truncate'>{computedValue || (placeholder || t('select_one'))}</p>
                     <img src="/icons/chevron-down.svg" alt="" className={`transition-all ${open && 'rotate-180'}`} />
                 </summary >
                 {/* DROPDOWN LIST STARTS FROM HERE */}
-                <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 my-3 border-2 shadow rounded-box w-full bg-white">
+                <div tabIndex={0} className="dropdown-content z-[1] menu p-2 my-3 border-2 shadow rounded-box w-full bg-white">
                     {
                         // searchable &&
                         true &&
-                        <input type="text" name={`search-${id}`} id={`search-${id}`} placeholder={`Search ${label?.toLowerCase()}...`} className='bg-primary/10 border m-2 p-1 rounded-[10px] w-11/12 focus:border-primary selection:bg-primary selection:text-tertiary caret-primary' value={search} onChange={handleSearch} />
+                        <input type="text" name={`search-${id}`} id={`search-${id}`} placeholder={`${t('search')} ${label?.toLowerCase()}...`} className='bg-primary/10 border m-2 p-1 rounded-[10px] w-11/12 focus:border-primary selection:bg-primary selection:text-tertiary caret-primary' value={search} onChange={handleSearch} />
                     }
                     {/* IF THERE IS SELECTED PARENT, THE FOLLOWING COMPONENT APPEARS WITH TITLE OF SELECTED PARENT AND BACK BUTTON */}
                     {selectedParent &&
-                        <li
+                        <button
                             onClick={() => {
                                 setSelectedParent(null)
                                 setOptions(data || [])
@@ -182,34 +184,47 @@ function SelectInput({ setValue, placeholder, label, name, id, error, multi = fa
                                     {selectedParent.label}
                                 </label>
                             </div>
-                        </li>}
-                    {/* DROPDOWN VALUE GOES HERE */}
-                    {
-                        options?.length == 0 ?
-                            (<NoItemPlaceholder />) : options.map((option, i) => {
-                                const disabled = option.disabled
-                                return (
-                                    <li
-                                        onClick={() => !disabled && handleSelect(option.value)}
-                                        key={option.value}
-                                    >
-                                        <div className={`form-control w-full flex flex-row justify-between rounded-none ${options.length !== i + 1 && 'border-b'}`}>
-                                            {/* IF DROPDOWN IS SET TO HAVE IMAGE INIT, IT WILL BE DISPLAYED HERE */}
-                                            {
-                                                withImage && <Image width={100} height={100} src={option?.image || ''} alt="" className='max-w-[20px] max-h-[20px' />
-                                            }
-                                            <label htmlFor='1' className={`label-text label w-full flex justify-between text-black text-md ${disabled ? 'opacity-50 cursor-not-allowed' : 'opacity-100 cursor-pointer'}`}>
-                                                {option.label}
-                                            </label>
-                                            {/* IF THIS ITEM IS IN SELECTED ITEMS LIST, CHECK MARK WILL APPEAR */}
-                                            {(nested && !selectedParent) ? <img src="/icons/chevron-right.svg" alt="" /> :
-                                                ((nested && selectedParent) || (!nested && !selectedParent)) && selected.find((item => item.value === option.value)) && <img src="/icons/check.svg" alt="" className='w-[20px]' />}
-                                        </div>
-                                    </li>
-                                )
-                            })
-                    }
-                </ul>
+                        </button>}
+                    <div className='max-h-[300px] overflow-y-scroll block'>
+                        {/* DROPDOWN VALUE GOES HERE */}
+                        {
+                            options?.length == 0 ?
+                                (<NoItemPlaceholder />) : options.map((option, i) => {
+                                    const disabled = option.disabled
+                                    return (
+                                        <li
+                                            onClick={() => !disabled && handleSelect(option.value)}
+                                            key={option.value}
+                                        >
+                                            <div className={`form-control w-full flex flex-row justify-between rounded-none ${options.length !== i + 1 && 'border-b'}`}>
+                                                {/* IF DROPDOWN IS SET TO HAVE IMAGE INIT AND IMAGE SHOW IS ENABLED, IT WILL BE DISPLAYED HERE */}
+                                                {
+                                                    withImage && <Image width={100} height={100} src={option?.image || ''} alt="" className='max-w-[20px] max-h-[20px' />
+                                                }
+                                                <label htmlFor='1' className={`label-text label w-full flex justify-between text-black text-md ${disabled ? 'opacity-50 cursor-not-allowed' : 'opacity-100 cursor-pointer'}`}>
+                                                    {option.label}
+                                                </label>
+                                                {/* IF THIS ITEM IS IN SELECTED ITEMS LIST, CHECK MARK WILL APPEAR */}
+                                                {/* IF THE LIST IS PARENT ELEMENT AND HAS NESTED CHILD ELEMENT IN THEM, CHEVRON RIGHT MARK APPEARS */}
+                                                {(nested && !selectedParent) ? <img src="/icons/chevron-right.svg" alt="" /> :
+                                                    // THIS LINE CHECKS IF NESTED SELECTION IS ALLOWED AND SELECTED PARENT IS NOT NULL, 
+                                                    // OR NESTED SELECTION IS NOT ALLOWED AND SELECTED PARENT IS NULL, 
+                                                    // THEN IT CHECKS THE SELECTED ITEMS LIST EQAULS TO THIS ITEM
+                                                    ((nested && selectedParent) || (!nested && !selectedParent)) && selected.find((item => item.value === option.value)) ?
+                                                        // IF MULTIPLE SELECTION IS ENABLED, CHECKBOX WILL APPEAR
+                                                        // IF MULTIPLE SELECTION IS DISABLED, CHECK MARK WILL APPEAR
+                                                        (multi ? <input type="checkbox" className="checkbox checkbox-success" checked={true} /> : <img src="/icons/check.svg" alt="" className='w-[20px]' />) :
+                                                        // ELSE IF SELECTED ITEM DOES NOT MATCH THIS ITEM, AND IF MULTI IS ENABLED, UNCHECKED CHECKBOX WILL APPEAR
+                                                        // ELSE IF SELECTED ITEM DOES NOT MATCH THIS ITEM, AND IF MULTI IS DISABLED, NOTHING WILL APPEAR
+                                                        (multi ? <input type="checkbox" className="checkbox border-secondary" checked={false} /> : null)
+                                                }
+                                            </div>
+                                        </li>
+                                    )
+                                })
+                        }
+                    </div>
+                </div>
             </details>
             {error && <span className="text-xs text-danger">
                 {error}

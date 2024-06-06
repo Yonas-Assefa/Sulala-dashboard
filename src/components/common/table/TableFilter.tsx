@@ -1,5 +1,5 @@
 'use client'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import React from 'react'
 import { FilterData } from '../../../types/table.type'
 import { useCreateQueryString } from '@/hooks/useCreateQueryString'
@@ -17,7 +17,7 @@ function TableFilter({ filterData }: Props) {
                     const filter_label = filter.replace(/_/g, ' ')
                     const isActive = searchParams.get('filter') === filter || (!searchParams.get('filter') && filter === 'all')
                     return (
-                        <Link key={filter} href={createQueryString('filter', filter)} role="tab" className={`tab capitalize rounded-[30px] bg-white text-black ${isActive ? 'tab-active' : ''} bg-white text-black`}>{filter_label}</Link>
+                        <Link key={filter} href={createQueryString('filter', filter) as any} role="tab" className={`tab capitalize rounded-[30px] bg-white text-black ${isActive ? 'tab-active' : ''} bg-white text-black`}>{filter_label}</Link>
                     )
                 })
             }

@@ -1,10 +1,11 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useTransition } from 'react';
 import TextInput from './TextInput';
 import CustomMultiSelectInput from './SelectInput';
 import { RadioInputSchema } from '@/types/input-field.type';
 import { CustomRadioInputProps as Props } from '@/types/props.type';
 import { convertToArray } from '@/utils/convertObjToArray';
+import { useTranslations } from 'use-intl';
 
 const isRadioInputOptions = (obj: any): obj is RadioInputOptions => {
     return (
@@ -37,6 +38,7 @@ type ChildInputProps = {
 
 function ChildInput({ childDefaultValue, childError, childOptions, childSetValue, childValue, input }: ChildInputProps) {
     const props = { ...input.props }
+    const t = useTranslations('Commons')
 
     // IF CHILD ERROR EXIST WITH INPUT ID, IT ASSIGNS IT TO THE INPUT
     if (childError[input.id]) {
@@ -76,10 +78,10 @@ function ChildInput({ childDefaultValue, childError, childOptions, childSetValue
     if (input.type == 'select') {
         return (
             <CustomMultiSelectInput
-                label={input.label}
+                label={t(input.label)}
                 data={childOptions[input.id]}
                 key={input.id}
-                placeholder={input.placeholder}
+                placeholder={t(input.placeholder)}
                 id={input.id}
                 name={input.id}
                 {...props}
@@ -88,8 +90,8 @@ function ChildInput({ childDefaultValue, childError, childOptions, childSetValue
     return (
         <TextInput
             key={input.id}
-            label={input.label}
-            placeholder={input.placeholder}
+            label={t(input.label)}
+            placeholder={t(input.placeholder)}
             name={input.id}
             id={input.id}
             {...props}
@@ -114,7 +116,7 @@ function CustomRadioWithConditionalInput({
     childDefaultValue
 }: Props) {
     const [input, setInput] = React.useState<string>(defaultValue || '');
-
+    const t = useTranslations('Commons')
     if (!isRadioInputSchema(data)) {
         throw new Error('Invalid RadioInputSchema');
     }
@@ -136,13 +138,13 @@ function CustomRadioWithConditionalInput({
 
     return (
         <div className='flex flex-col gap-5'>
-            {showLabel && <p className="font-semibold">{data.label}</p>}
+            {showLabel && <p className="font-semibold">{t(data.label)}</p>}
             {data.options.map((radioInput) => (
                 <div className='flex flex-col gap-3' key={radioInput.id}>
                     {/* LABEL FOR EACH RADIO BUTTON */}
                     <label htmlFor={radioInput.id} className={`flex flex-row gap-2 items-center cursor-pointer`}>
                         <input {...props} type="radio" name={name} onChange={() => setInput(radioInput.id)} checked={radioInput.id == input} id={radioInput.id} className={`radio ${error ? 'radio-error border-danger' : 'radio-success border-secondary'}`} />
-                        <span className='capitalize'>{radioInput.label}</span>
+                        <span className='capitalize'>{t(radioInput.label)}</span>
                     </label>
                     {inputForEach && radioInput?.input && radioInput.id == input &&
                         // INPUT FOR EACH RADIO BUTTON

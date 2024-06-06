@@ -1,5 +1,5 @@
-import { usePathname, useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "@/i18n/navigation";
+import { useSearchParams } from "next/navigation";
 import React from "react";
 
 export const useCreateQueryString = () => {
@@ -42,7 +42,7 @@ export const useCreateQueryString = () => {
             }
 
             const queryParam = '?' + params.toString();
-            router.push(pathname + queryParam);
+            router.push(pathname + queryParam as any);
         },
         [searchParams]
     );
@@ -81,7 +81,7 @@ export const useCreateQueryString = () => {
             }
 
             const queryParam = '?' + params.toString();
-            router.push(pathname + queryParam);
+            router.push(pathname + queryParam as any);
         },
         [searchParams]
     );

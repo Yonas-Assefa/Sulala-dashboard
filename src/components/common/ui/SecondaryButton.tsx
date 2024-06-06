@@ -1,6 +1,6 @@
 'use client'
 import { openModal } from '@/lib/modals'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import React from 'react'
 
 type Props = {
@@ -40,7 +40,7 @@ function SecondaryButton({ href, name, padding, modal, type, handleClick }: Prop
 
     if (href) {
         return (
-            <Link href={href} className={`btn w-full rounded-[40px] bg-[#f6f6f6] hover:bg-secondary/40 border-0 text-black ${padding && paddings[padding]}`}>
+            <Link href={href as any} className={`btn w-full rounded-[40px] bg-[#f6f6f6] hover:bg-secondary/40 border-0 text-black ${padding && paddings[padding]}`}>
                 {name}
             </Link>
         )

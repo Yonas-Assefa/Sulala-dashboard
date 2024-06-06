@@ -3,7 +3,7 @@
 import { FormState, toFormState } from "@/utils/formStateHelper"
 import { LOGOUT } from "../../config/urls"
 import { clearBrowserCookie, getRequestHeaders, } from "../../lib/helper"
-import { redirect } from "next/navigation"
+import { redirect } from "@/i18n/navigation"
 
 export const logout = async () => {
     await fetch(LOGOUT, {

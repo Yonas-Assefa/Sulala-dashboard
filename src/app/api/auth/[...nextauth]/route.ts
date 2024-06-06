@@ -3,7 +3,7 @@ import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 import { signIn } from "@/actions/auth/signin";
 import { googleSingIn } from "@/actions/auth/google-sign-in";
-import { redirect } from "next/navigation";
+import { redirect } from "@/i18n/navigation";
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_ID!;
 const GOOGLE_CLEINT_SECRET = process.env.GOOGLE_SECRET!;

@@ -1,7 +1,8 @@
 import { z } from 'zod';
+import { zcsv } from 'zod-csv';
 import { IMAGE_TYPES, PDF_TYPES, cardNumberRefine, confirmPasswordRefine, fileRefine, isFiniteNumber, phoneTransform, transformToNumber } from '../../lib/helper';
 import { FACEBOOK_BASE_URL, INSTAGRAM_BASE_URL } from '../../config/urls';
-import { PROMOTION_ENUM, DISCOUNT_ENUM, DESTINATION_ENUM, BUDGETING_ENUM } from '@/app/dashboard/promotion/[action]/data/discount-contants';
+import { PROMOTION_ENUM, DISCOUNT_ENUM, BUDGETING_ENUM, DESTINATION_ENUM } from '@/app/[lang]/dashboard/drivers/[action]/data/discount-contants';
 
 export const phoneAuthSchema = z.object({
     phone_number: z.string()
@@ -58,8 +59,10 @@ export const setupAccountLastStepSchema = z.object({
         .min(1, 'Company name must be at least 1 character long'),
     legal_address: z.string()
         .min(1, 'Address must be at least 1 character long'),
-    category: z.number()
-        .min(1, 'Please choose at least one category'),
+    categories: z.array(
+        z.number({ message: 'Please choose at least one category' })
+            .min(1, 'Please choose at least one category')
+    ),
     certificates: z.any()
         .refine(
             fileRefine.existFn,
@@ -127,6 +130,16 @@ export const createProductSchema = z.object({
         .min(1, 'Quantity must be at least 1'),
     status: z.nativeEnum(ProductStatus),
     tags: z.array(z.string()),
+    brand: z.number()
+        .min(1, 'Please choose at least one brand'),
+    animals: z.array(
+        z.object({
+            id: z.number(),
+            name: z.string(),
+            animal_family: z.string(),
+        })
+    )
+        .min(1, 'Please choose at least one animal'),
 })
 
 export const updateProductSchema = createProductSchema
@@ -149,20 +162,22 @@ export const personalInfoSettingSchema = z.object({
 export const shopInfoSettingSchema = z.object({
     name: z.string()
         .min(1, 'Shop name must be at least 1 character long'),
-    category: z.number()
-        .min(1, 'Please choose at least one category'),
+    categories: z.array(
+        z.number()
+            .min(1, 'Please choose at least one category'),
+    ),
     legal_address: z.string()
         .min(1, 'Address must be at least 1 character long'),
     website: z.string()
-        .url({ message: 'Invalid website url' }),
+        .url({ message: 'Invalid url eg (start like https://**)' }),
     description: z.string()
         .min(1, 'Description must be at least 1 character long'),
     instagram: z.string()
-        .url({ message: 'Invalid instagram url' })
-        .startsWith(INSTAGRAM_BASE_URL, { message: 'Url must be an instagram url' }),
+        .url({ message: 'Invalid url eg (start like https://**)' })
+        .startsWith(INSTAGRAM_BASE_URL, { message: 'Url must be an instagram url eg (https://www.instagram.com/s***)' }),
     facebook: z.string()
-        .url({ message: 'Invalid facebook url' })
-        .startsWith(FACEBOOK_BASE_URL, { message: 'Url must be a facebook url' }),
+        .url({ message: 'Invalid url eg (start like https://**)' })
+        .startsWith(FACEBOOK_BASE_URL, { message: 'Url must be a facebook url eg (https://www.facebook.com/s***)' }),
     profile_photo: z.any()
         .refine(
             fileRefine.existFn,
@@ -387,3 +402,14 @@ export const approveRejectShopsSchema = z.object({
         .optional(),
 })
 
+export const importProductsSchema = z.object({
+    csv_file: z.any()
+        .refine(
+            fileRefine.existFn,
+            fileRefine.existMg
+        )
+        .refine(
+            fileRefine.acceptFn([".csv", 'text/csv',]),
+            fileRefine.acceptMg('csv')
+        )
+})

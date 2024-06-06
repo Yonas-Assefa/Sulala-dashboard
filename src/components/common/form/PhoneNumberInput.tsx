@@ -4,8 +4,9 @@ import countries from '@/constants/countries.json'
 import ResetButton from '../ui/ResetButton'
 import { getUserLocation } from '@/utils/getUserLocation'
 import { splitPhoneNumber } from '@/utils/splitPhoneNumber'
+import { useTranslations } from 'next-intl'
 
-function PhoneNumberInput({ error, defaultValue }: { error?: string, defaultValue?: string }) {
+function PhoneNumberInput({ error, defaultValue, label }: { error?: string, defaultValue?: string, label?: string }) {
     type CountryCode = {
         name: string,
         dial_code: string,
@@ -23,6 +24,9 @@ function PhoneNumberInput({ error, defaultValue }: { error?: string, defaultValu
     const countryCodeRef = React.useRef<ElementRef<'details'>>(null)
     const [filterCountry, setFilterCountry] = React.useState('')
     const deferredFilterCountry = useDeferredValue(filterCountry)
+
+    const t = useTranslations('Commons')
+
 
     // CLOSE DROPDOWN WHEN CLICKED OUTSIDE
     React.useEffect(() => {
@@ -79,7 +83,7 @@ function PhoneNumberInput({ error, defaultValue }: { error?: string, defaultValu
 
     return (
         <div className='flex flex-col gap-3 w-full'>
-            <label htmlFor="phone-number" className='self-start'>Phone number</label>
+            <label htmlFor="phone-number" className='self-start'>{label || t('phone_number')}</label>
             <div className='w-full'>
                 <div className={`flex items-center gap-0 border rounded-[40px] w-full ${error ? 'bg-dangerlight border-danger' : 'focus-within:border-primary'}`}>
                     <details className="dropdown relative bg-transparent h-full" ref={countryCodeRef}>
@@ -92,7 +96,7 @@ function PhoneNumberInput({ error, defaultValue }: { error?: string, defaultValu
                         <input type="text" id='country_code' name='country_code' hidden value={countryCode?.dial_code} />
                         {/* DROPDOWN OPTION STARTS FROM HERE */}
                         <div tabIndex={0} className="dropdown z-10 absolute menu p-0 mt-4 border-2  shadow rounded-box w-52 bg-white block">
-                            <input type="text" name="search-country" placeholder='Search countries..' className='bg-primary/10 border m-2 p-1 rounded-[10px] w-11/12 focus:border-primary selection:bg-primary selection:text-tertiary caret-primary' value={filterCountry} onChange={handleFilterCountry} id="" />
+                            <input type="text" name="search-country" placeholder={`${t('search_countries')}..`} className='bg-primary/10 border m-2 p-1 rounded-[10px] w-11/12 focus:border-primary selection:bg-primary selection:text-tertiary caret-primary' value={filterCountry} onChange={handleFilterCountry} id="" />
                             <ul className='max-h-[300px] overflow-y-scroll z-[1]'>
                                 {
                                     countries
@@ -119,7 +123,7 @@ function PhoneNumberInput({ error, defaultValue }: { error?: string, defaultValu
                             type="text"
                             id='phone_number'
                             name='phone_number'
-                            placeholder="Enter phone number"
+                            placeholder={t('enter_phone_number')}
                             className="input w-full bg-transparent border-0 outline-0 rounded-r-[30px] focus:border-0 focus:outline-none"
                             onChange={handlePhoneNumber}
                             value={phone}

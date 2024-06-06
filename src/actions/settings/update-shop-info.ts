@@ -15,7 +15,7 @@ export const updateShopInfo = async (
         const cleanedData = removeNullAndUndefined({
             name: formData.get('shop_name'),
             description: formData.get('description'),
-            category: +(formData.get('categories') || 0),
+            categories: formData.getAll('categories').map((category) => +category),
             legal_address: formData.get('legal_address'),
             website: formData.get('website'),
             instagram: formData.get('instagram'),
@@ -24,7 +24,6 @@ export const updateShopInfo = async (
         });
 
         const data = shopInfoSettingSchema.parse(cleanedData);
-
         const response = await fetch(UPDATE_SHOP_ACCOUNT, {
             method: 'PATCH',
             headers: getMultiPartRequestHeaders(),

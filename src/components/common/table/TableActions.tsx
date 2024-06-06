@@ -1,8 +1,8 @@
 'use client'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import React, { useEffect, useOptimistic, useState, useTransition } from 'react'
 import { Actions, ActionOptions } from '../../../types/table.type'
-import { usePathname } from 'next/navigation'
+import { usePathname } from '@/i18n/navigation'
 import { useCreateQueryString } from '@/hooks/useCreateQueryString'
 import { openModal } from '@/lib/modals'
 import { useToastMessage } from '@/hooks/useToastMessage'
@@ -122,18 +122,18 @@ function TableActions({ edit, detail, delete: deleteItem, promote, product, togg
                         </div>
                     }
                     {edit &&
-                        <Link href={getEditLink()} className='tooltip' data-tip='edit item'>
+                        <Link href={getEditLink() as any} className='tooltip' data-tip='edit item'>
                             <img src="/icons/edit.svg" alt="" className='min-w-[20px]' />
                         </Link>
                     }
                     {detail &&
-                        <Link href={getDetailLink()} onClick={() => openModal('view_item_table_modal')} className='tooltip' data-tip='see detail'>
+                        <Link href={getDetailLink() as any} onClick={() => openModal('view_item_table_modal')} className='tooltip' data-tip='see detail'>
                             <img src="/icons/file-minus.svg" alt="" className='min-w-[20px]' />
                         </Link>
 
                     }
                     {deleteItem &&
-                        <Link href={createQueryString([{ key: 'item', value: product.id }])} onClick={() => openModal('delete_item_table_modal')} className='tooltip' data-tip='delete item'>
+                        <Link href={createQueryString([{ key: 'item', value: product.id }]) as any} onClick={() => openModal('delete_item_table_modal')} className='tooltip' data-tip='delete item'>
                             <img src="/icons/delete.svg" alt="" className='min-w-[20px]' />
                         </Link>
                     }

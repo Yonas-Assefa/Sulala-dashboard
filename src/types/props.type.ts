@@ -57,18 +57,20 @@ type AcceptFileFormate = 'image/*' | 'audio/*' | 'video/*' | 'application/pdf' |
 
 export type FileInputProps = Pick<BaseInputProps, 'label' | 'name' | 'error' | 'id'> & {
     accept: AcceptFileFormate[]
-    handleFile: ChangeEventHandler<HTMLInputElement>
-    file: FileList | null,
+    handleFile?: ChangeEventHandler<HTMLInputElement>
+    file?: FileList | null,
     sizeLimit?: {
         value: number
         unit: 'KB' | 'MB' | 'GB' | 'TB'
     }
+    setValue?: (value: File | null | undefined) => void
 }
 
 export type SignupProps = {
     searchParams: {
         by: 'phone' | 'email' | undefined
-    }
+    },
+    params: { lang: string }
 }
 
 export type TableProps = {

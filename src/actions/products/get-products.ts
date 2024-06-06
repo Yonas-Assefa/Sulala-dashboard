@@ -1,6 +1,5 @@
 'use server'
 
-import { getCategories } from "../common/get-categories"
 import { PRODUCTS } from "../../config/urls"
 import { productMapper } from "../mapper/product-mapper"
 import { Fetch, getRequestHeaders, getResponseErrorMessage, makeRequest } from "../../lib/helper"
@@ -8,6 +7,7 @@ import { notFound } from "next/navigation"
 import { getFilterSortOrdering } from "@/lib/table"
 
 export const getProducts = async (formData?: FormData) => {
+
     const { search, status, ordering, page } = getFilterSortOrdering(formData)
 
     const response = await Fetch({
@@ -34,6 +34,7 @@ export const getProducts = async (formData?: FormData) => {
 }
 
 export const getOneProduct = async (item: string) => {
+
     const response = await fetch(`${PRODUCTS}${item}/`, {
         method: 'GET',
         headers: getRequestHeaders()

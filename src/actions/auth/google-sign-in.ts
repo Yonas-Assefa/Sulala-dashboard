@@ -8,7 +8,7 @@ import {
   toFormState,
 } from "@/utils/formStateHelper";
 
-import { redirect } from "next/navigation";
+import { redirect } from "@/i18n/navigation";
 export const googleSingIn = async (accessToken: string) => {
   try {
     const response = await fetch(GOOGLE_SIGNIN_URL, {

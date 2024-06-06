@@ -1,5 +1,5 @@
 import { FormState } from "@/utils/formStateHelper";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "@/i18n/navigation";
 import React from "react";
 
 export const useRedirectRoute = (formState: FormState) => {
@@ -11,7 +11,7 @@ export const useRedirectRoute = (formState: FormState) => {
             ["SUCCESS", "INFO", "ERROR"].includes(formState.status) &&
             formState.redirectUrl &&
             pathname !== formState.redirectUrl) {
-            router.push(formState.redirectUrl);
+            router.push(formState.redirectUrl as any);
         }
     }, [formState.redirectUrl]);
 }
