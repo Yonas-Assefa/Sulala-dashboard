@@ -5,6 +5,13 @@ import { createProductSchema, updateProductSchema, } from '../schema/zod-schema'
 import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders, getResponseErrorMessage } from '../../lib/helper';
 import { revalidatePath } from 'next/cache';
 
+const SafeParseJSON = (jsonString: unknown) => {
+    try {
+        return JSON.parse(jsonString as string)
+    } catch (error) {
+        return {}
+    }
+}
 export const createUpdateProduct = async (
     formState: FormState,
     formData: FormData
@@ -21,6 +28,7 @@ export const createUpdateProduct = async (
             status: formData.get('status'),
             tags: formData.getAll('product_tag'),
             brand: +(formData.get('brand') || 0),
+            animals: formData.getAll('animal').map((animal) => SafeParseJSON(animal)),
         }
 
         const tab = formData.get('tab')

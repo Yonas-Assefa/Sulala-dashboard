@@ -131,6 +131,14 @@ export const createProductSchema = z.object({
     tags: z.array(z.string()),
     brand: z.number()
         .min(1, 'Please choose at least one brand'),
+    animals: z.array(
+        z.object({
+            id: z.number(),
+            name: z.string(),
+            animal_family: z.string(),
+        })
+    )
+        .min(1, 'Please choose at least one animal'),
 })
 
 export const updateProductSchema = createProductSchema

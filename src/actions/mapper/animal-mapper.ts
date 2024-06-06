@@ -1,9 +1,9 @@
 export const animalMapper = async (data: any) => {
     function convert(item: any) {
         return {
-            id: item.id,
-            label: item.name,
-            value: item.id,
+            id: JSON.stringify(item),
+            label: `${item.name} (${item.animal_family?.toString()?.toLowerCase()})`,
+            value: JSON.stringify(item),
         };
     }
     if (Array.isArray(data)) {
