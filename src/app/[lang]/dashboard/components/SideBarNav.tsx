@@ -1,7 +1,7 @@
 'use client'
 import React, { ElementRef } from 'react'
 import SulalaLogo from "@/components/SulalaLogo";
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import routes from './sideBarRoutes';
 import { usePathname } from '@/i18n/navigation';
 import { useDetectClickOutside } from 'react-detect-click-outside';
@@ -44,7 +44,7 @@ function SideBarNav({ isSuperUser }: Props) {
                         routes.filter(route => isSuperUser ? route.protected : !route.protected).map((route) => {
                             const isActive = pathname.includes(route.path.split('?')[0])
                             return (
-                                <Link href={route.path} key={route.name}>
+                                <Link href={route.path as any} key={route.name}>
                                     <li className={`flex gap-3 p-4 ${!isActive ? 'bg-transparent text-[#52565D]' : 'bg-primary text-white'}`} key={route.name}>
                                         <img src={isActive ? route.activeIcon : route.icon} alt="" />
                                         <h6>
