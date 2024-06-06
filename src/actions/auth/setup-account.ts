@@ -28,7 +28,7 @@ export const setupAccount = async (
         } else {
             const cleanedData = removeNullAndUndefined({
                 name: formData.get('company_name'),
-                category: +(formData.get('sale_category') || 0),
+                categories: formData.getAll('sale_category').map((category) => +category),
                 legal_address: formData.get('address'),
                 certificates: formData.get('certificate'),
                 tax_forms: formData.get('tax_form'),

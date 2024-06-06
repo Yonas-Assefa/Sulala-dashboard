@@ -6,6 +6,8 @@ import { getOneProduct } from '@/actions/products/get-products'
 import { getProductTags } from '@/actions/common/get-product-tags'
 import { getSubCategories } from '@/actions/common/get-subcategories'
 import { getTranslations } from 'next-intl/server'
+import { getAnimals } from '@/actions/common/get-animals'
+import { getBrands } from '@/actions/common/get-brands'
 
 type Props = {
     params: {
@@ -24,6 +26,8 @@ async function page({ params: { tab }, searchParams: { item } }: Props) {
 
     const subcategoryLists = await getSubCategories()
     const productTags = await getProductTags()
+    const animals = await getAnimals()
+    const brands = await getBrands()
     const product = item ? await getOneProduct(item) : null
 
     const t = await getTranslations('Products')
@@ -36,7 +40,7 @@ async function page({ params: { tab }, searchParams: { item } }: Props) {
                 </div>
                 <h2 className='capitalize text-2xl md:text-3xl'>{t(tab == 'add' ? 'add_product' : 'edit_product')}</h2>
             </div>
-            <ProductForm categoryLists={subcategoryLists} productTags={productTags} initialValue={product} tab={tab} />
+            <ProductForm categoryLists={subcategoryLists} productTags={productTags} initialValue={product} tab={tab} animals={animals} brands={brands} />
         </div>
     )
 }

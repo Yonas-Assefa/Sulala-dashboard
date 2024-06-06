@@ -1,5 +1,6 @@
 import Table from "@/components/common/table/Table";
 import RevenueCard from "../components/RevenueCard";
+import { ordersMapper } from "@/actions/mapper/orders-mapper";
 import {
   orderItemData,
   orderItemFilterData,
@@ -34,7 +35,7 @@ async function Items() {
       {/* ITEMS TABLE */}
       {/* <OrdersTable tableType="items" /> */}
       <Table
-        data={orderItemData}
+        data={orders}
         filterData={orderItemFilterData}
         sortData={orderItemSortData}
         tableSchema={orderItemTableSchema}

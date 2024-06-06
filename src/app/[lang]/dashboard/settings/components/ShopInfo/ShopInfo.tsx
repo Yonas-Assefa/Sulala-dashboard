@@ -34,10 +34,10 @@ function ShopInfo({ categories, shopInfo }: Props) {
         <form action={action} className='mt-4 w-full flex flex-col gap-8'>
             <ProfileImagePicker id='profile_image' name='profile_image' error={formState?.fieldErrors?.profile_photo?.[0]} defaultValue={shopInfo.profile_photo} />
             <div className='md:grid flex flex-col md:grid-cols-2 max-w-[1300px] gap-5'>
-                <TextInput id='shop_name' name='shop_name' placeholder={t('shop_name')} label={t('shop_name')} error={formState?.fieldErrors?.name?.[0]} defaultValue={shopInfo.name} />
-                <CustomMultiSelectInput id='categories' name='categories' placeholder={t('categories')} label={t('categories')} error={formState?.fieldErrors?.category?.[0]} data={categories} defaultValue={shopInfo.category} />
-                <TextInput id='legal_address' name='legal_address' placeholder={t('legal_address')} label={t('legal_address')} error={formState?.fieldErrors?.legal_address?.[0]} defaultValue={shopInfo.legal_address} />
-                <TextInput id='website' name='website' placeholder={t('website')} label={t('website')} error={formState?.fieldErrors?.website?.[0]} defaultValue={shopInfo.website} />
+                <TextInput id='shop_name' name='shop_name' placeholder='Shop name' label='Shop name' error={formState?.fieldErrors?.name?.[0]} defaultValue={shopInfo.name} />
+                <CustomMultiSelectInput id='categories' name='categories' placeholder='Categories' label='Categories' error={formState?.fieldErrors?.category?.[0]} data={categories} defaultValue={shopInfo.category} multi />
+                <TextInput id='legal_address' name='legal_address' placeholder='Legal Address' label='Legal Address' error={formState?.fieldErrors?.legal_address?.[0]} defaultValue={shopInfo.legal_address} />
+                <TextInput id='website' name='website' placeholder='Website' label='Website' error={formState?.fieldErrors?.website?.[0]} defaultValue={shopInfo.website} />
                 <div className="col-span-2">
                     <TextAreaInput id='description' name='description' placeholder={t('shop_description')} label={t('shop_description')} error={formState?.fieldErrors?.description?.[0]} defaultValue={shopInfo.description} />
                 </div>

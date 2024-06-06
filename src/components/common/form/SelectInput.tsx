@@ -164,7 +164,7 @@ function SelectInput({ setValue, placeholder, label, name, id, error, multi = fa
                     <img src="/icons/chevron-down.svg" alt="" className={`transition-all ${open && 'rotate-180'}`} />
                 </summary >
                 {/* DROPDOWN LIST STARTS FROM HERE */}
-                <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 my-3 border-2 shadow rounded-box w-full bg-white">
+                <div tabIndex={0} className="dropdown-content z-[1] menu p-2 my-3 border-2 shadow rounded-box w-full bg-white">
                     {
                         // searchable &&
                         true &&
@@ -172,7 +172,7 @@ function SelectInput({ setValue, placeholder, label, name, id, error, multi = fa
                     }
                     {/* IF THERE IS SELECTED PARENT, THE FOLLOWING COMPONENT APPEARS WITH TITLE OF SELECTED PARENT AND BACK BUTTON */}
                     {selectedParent &&
-                        <li
+                        <button
                             onClick={() => {
                                 setSelectedParent(null)
                                 setOptions(data || [])
@@ -184,34 +184,47 @@ function SelectInput({ setValue, placeholder, label, name, id, error, multi = fa
                                     {selectedParent.label}
                                 </label>
                             </div>
-                        </li>}
-                    {/* DROPDOWN VALUE GOES HERE */}
-                    {
-                        options?.length == 0 ?
-                            (<NoItemPlaceholder />) : options.map((option, i) => {
-                                const disabled = option.disabled
-                                return (
-                                    <li
-                                        onClick={() => !disabled && handleSelect(option.value)}
-                                        key={option.value}
-                                    >
-                                        <div className={`form-control w-full flex flex-row justify-between rounded-none ${options.length !== i + 1 && 'border-b'}`}>
-                                            {/* IF DROPDOWN IS SET TO HAVE IMAGE INIT, IT WILL BE DISPLAYED HERE */}
-                                            {
-                                                withImage && <Image width={100} height={100} src={option?.image || ''} alt="" className='max-w-[20px] max-h-[20px' />
-                                            }
-                                            <label htmlFor='1' className={`label-text label w-full flex justify-between text-black text-md ${disabled ? 'opacity-50 cursor-not-allowed' : 'opacity-100 cursor-pointer'}`}>
-                                                {option.label}
-                                            </label>
-                                            {/* IF THIS ITEM IS IN SELECTED ITEMS LIST, CHECK MARK WILL APPEAR */}
-                                            {(nested && !selectedParent) ? <img src="/icons/chevron-right.svg" alt="" /> :
-                                                ((nested && selectedParent) || (!nested && !selectedParent)) && selected.find((item => item.value === option.value)) && <img src="/icons/check.svg" alt="" className='w-[20px]' />}
-                                        </div>
-                                    </li>
-                                )
-                            })
-                    }
-                </ul>
+                        </button>}
+                    <div className='max-h-[300px] overflow-y-scroll block'>
+                        {/* DROPDOWN VALUE GOES HERE */}
+                        {
+                            options?.length == 0 ?
+                                (<NoItemPlaceholder />) : options.map((option, i) => {
+                                    const disabled = option.disabled
+                                    return (
+                                        <li
+                                            onClick={() => !disabled && handleSelect(option.value)}
+                                            key={option.value}
+                                        >
+                                            <div className={`form-control w-full flex flex-row justify-between rounded-none ${options.length !== i + 1 && 'border-b'}`}>
+                                                {/* IF DROPDOWN IS SET TO HAVE IMAGE INIT AND IMAGE SHOW IS ENABLED, IT WILL BE DISPLAYED HERE */}
+                                                {
+                                                    withImage && <Image width={100} height={100} src={option?.image || ''} alt="" className='max-w-[20px] max-h-[20px' />
+                                                }
+                                                <label htmlFor='1' className={`label-text label w-full flex justify-between text-black text-md ${disabled ? 'opacity-50 cursor-not-allowed' : 'opacity-100 cursor-pointer'}`}>
+                                                    {option.label}
+                                                </label>
+                                                {/* IF THIS ITEM IS IN SELECTED ITEMS LIST, CHECK MARK WILL APPEAR */}
+                                                {/* IF THE LIST IS PARENT ELEMENT AND HAS NESTED CHILD ELEMENT IN THEM, CHEVRON RIGHT MARK APPEARS */}
+                                                {(nested && !selectedParent) ? <img src="/icons/chevron-right.svg" alt="" /> :
+                                                    // THIS LINE CHECKS IF NESTED SELECTION IS ALLOWED AND SELECTED PARENT IS NOT NULL, 
+                                                    // OR NESTED SELECTION IS NOT ALLOWED AND SELECTED PARENT IS NULL, 
+                                                    // THEN IT CHECKS THE SELECTED ITEMS LIST EQAULS TO THIS ITEM
+                                                    ((nested && selectedParent) || (!nested && !selectedParent)) && selected.find((item => item.value === option.value)) ?
+                                                        // IF MULTIPLE SELECTION IS ENABLED, CHECKBOX WILL APPEAR
+                                                        // IF MULTIPLE SELECTION IS DISABLED, CHECK MARK WILL APPEAR
+                                                        (multi ? <input type="checkbox" className="checkbox checkbox-success" checked={true} /> : <img src="/icons/check.svg" alt="" className='w-[20px]' />) :
+                                                        // ELSE IF SELECTED ITEM DOES NOT MATCH THIS ITEM, AND IF MULTI IS ENABLED, UNCHECKED CHECKBOX WILL APPEAR
+                                                        // ELSE IF SELECTED ITEM DOES NOT MATCH THIS ITEM, AND IF MULTI IS DISABLED, NOTHING WILL APPEAR
+                                                        (multi ? <input type="checkbox" className="checkbox border-secondary" checked={false} /> : null)
+                                                }
+                                            </div>
+                                        </li>
+                                    )
+                                })
+                        }
+                    </div>
+                </div>
             </details>
             {error && <span className="text-xs text-danger">
                 {error}

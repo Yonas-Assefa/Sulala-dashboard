@@ -37,7 +37,6 @@ export const signIn = async (
         });
 
         const body = await response.json()
-
         if (!response.ok || !body.success) {
             if (body.message == 'Password not set. set password') {
                 return toFormState('ERROR', 'Create password to continue', `/auth/create-password`);

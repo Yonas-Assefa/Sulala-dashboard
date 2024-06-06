@@ -2,6 +2,7 @@
 
 import { ORDERS_URL } from "@/config/urls";
 import { getRequestHeaders } from "@/lib/helper";
+import { ordersMapper } from "../mapper/orders-mapper";
 
 export const getOrders = async () => {
   const ordersResponse = await fetch(ORDERS_URL, {
@@ -13,5 +14,5 @@ export const getOrders = async () => {
     throw new Error(ordersBody.message || "Failed to get Orders");
   }
 
-  return await ordersBody.results;
+  return await ordersMapper(ordersBody.results);
 };
