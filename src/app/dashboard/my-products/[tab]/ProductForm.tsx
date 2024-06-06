@@ -66,6 +66,11 @@ function ProductForm({ categoryLists, productTags, initialValue, tab }: Props) {
                         <SelectInput id='category' name='category' label='Category' data={data} error={formState.fieldErrors?.category?.[0]} defaultValue={initialValue?.category_value} />
                     </div>
                     <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
+                        <h3 className='font-semibold text-xl'>Animal and Branding</h3>
+                        <SelectInput searchable id='animal' name='animal' label='Animals' multi={true} nested={true} />
+                        <SelectInput searchable id='brand' name='brand' label='Brand' data={productTags} error={formState.fieldErrors?.tags?.[0]} defaultValue={initialValue?.tags} multi />
+                    </div>
+                    <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
                         <h3 className='font-semibold text-xl'>Product promotion</h3>
                         <SelectInput id='campaign' label='Promo campaign (optional)' multi={false} nested={true} />
                         {/* <TextAreaInput id='description' placeholder='Enter tags for the product' label='Tags' /> */}
