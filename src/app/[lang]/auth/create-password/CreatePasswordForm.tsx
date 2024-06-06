@@ -7,6 +7,7 @@ import { useToastMessage } from '@/hooks/useToastMessage';
 import { EMPTY_FORM_STATE } from '@/utils/formStateHelper';
 import React from 'react'
 import { useFormState } from 'react-dom';
+import { useTranslations } from 'next-intl'
 
 function CreatePasswordForm() {
     const [formState, action] = useFormState(
@@ -17,6 +18,8 @@ function CreatePasswordForm() {
     useToastMessage(formState);
     useRedirectRoute(formState);
 
+    const t = useTranslations('Auth')
+
     return (
         <form action={action} className='flex flex-col gap-6 w-full md:px-10'>
             {/* SIGN IN INPUT */}
@@ -25,11 +28,11 @@ function CreatePasswordForm() {
 
 
                 <div className='flex flex-col w-full'>
-                    <PasswordInput error={formState.fieldErrors?.password?.[0]} label='Password' placeholder='Password' name='password' id='password' showLabel={false} />
+                    <PasswordInput error={formState.fieldErrors?.password?.[0]} label={t('password')} placeholder={t('password')} name='password' id='password' showLabel={false} />
                 </div>
 
                 <div className='flex flex-col w-full'>
-                    <PasswordInput error={formState.fieldErrors?.confirm_password?.[0]} label='Confirm Password' placeholder='Confirm Password' name='password_confirm' id='password_confirm' showLabel={false} />
+                    <PasswordInput error={formState.fieldErrors?.confirm_password?.[0]} label={t('confirm_password')} placeholder={t('confirm_password')} name='password_confirm' id='password_confirm' showLabel={false} />
                 </div>
             </div>
 

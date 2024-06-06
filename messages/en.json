@@ -67,7 +67,11 @@
         "please_hold_tight": "Please hold tight!",
         "the_confirmation_letter_has_been_sent": "The confirmation letter has been sent to your email address.",
         "check_mail_box": "Check the {email} mailbox to which the registration confirmation email was sent.",
-        "send_new_email": "Send new email"
+        "send_new_email": "Send new email",
+        "check_your_computer": "Check your computer to proceed with the registration process. You can also use your phone to complete the registration process.",
+        "proceed_with_phone": "Proceed with your phone?",
+        "create_password": "Create Password",
+        "confirm_password": "Confirm Password"
     },
     "SideBar": {
         "contact_support": "Contact support",
