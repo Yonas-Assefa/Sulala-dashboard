@@ -1,12 +1,16 @@
 import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
+import AppleProvider from "next-auth/providers/apple";
 import { signIn } from "@/actions/auth/signin";
 import { googleSingIn } from "@/actions/auth/google-sign-in";
 import { redirect } from "@/i18n/navigation";
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_ID!;
 const GOOGLE_CLEINT_SECRET = process.env.GOOGLE_SECRET!;
+
+const APPLE_CLIENT_ID = process.env.APPLE_ID!;
+const APPLE_SECRET = process.env.APPLE_SECRET!;
 
 const authOption: NextAuthOptions = {
   session: {
@@ -17,6 +21,10 @@ const authOption: NextAuthOptions = {
       clientId: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLEINT_SECRET,
     }),
+    AppleProvider({
+      clientId: APPLE_CLIENT_ID,
+      clientSecret: APPLE_SECRET,
+    })
   ],
   callbacks: {
     async signIn({ account, profile }) {

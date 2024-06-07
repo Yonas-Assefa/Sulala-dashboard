@@ -1,7 +1,7 @@
 import { FRONTEND_BASE_URL } from "@/config/urls";
 
 export const metadata = {
-    metadataBase: new URL(FRONTEND_BASE_URL).origin,
+    metadataBase: new URL(FRONTEND_BASE_URL),
     alternates: {
         canonical: '/',
         languages: {
