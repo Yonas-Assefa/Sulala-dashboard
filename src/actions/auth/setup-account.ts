@@ -48,6 +48,7 @@ export const setupAccount = async (
             body: changeObjToFormData(data),
         })
         const body = await response.json()
+        console.log({ body, stage, data })
         if (!response.ok || !body.success) {
             throw new Error(getResponseErrorMessage(body) || 'Failed to submit form');
         }

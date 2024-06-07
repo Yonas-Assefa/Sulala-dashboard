@@ -13,9 +13,13 @@ export const guardSetupAccount = async (request: NextRequest) => {
     }
 
     const personalInfo = await getPersonalInfo();
+    console.log({ personalInfo })
     const shop = personalInfo?.shops?.[0];
     const stage = request.nextUrl.searchParams.get('stage');
+    const { last_name } = personalInfo;
+    console.log({ stage, last_name, shop })
     if (!shop) {
+        // if (!last_name) {
         if (stage === 'one') {
             return;
         }
