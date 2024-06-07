@@ -13,11 +13,10 @@ export const guardSetupAccount = async (request: NextRequest) => {
     }
 
     const personalInfo = await getPersonalInfo();
-    console.log({ personalInfo })
     const shop = personalInfo?.shops?.[0];
     const stage = request.nextUrl.searchParams.get('stage');
     const { last_name, first_name, email } = personalInfo;
-    console.log({ stage, last_name, shop })
+
     if (!personalInfo?.is_password_set) {
         return NextResponse.redirect(new URL('/auth/create-password', request.url));
     }

@@ -88,10 +88,6 @@ function SetupAccountForm({ categoryLists, activeStage, personalInfo }: { catego
     useToastMessage(formState);
     useRedirectRoute(formState);
 
-    useEffect(() => {
-        console.log({ formState })
-    }, [formState])
-
     const t = useTranslations('Auth')
 
     return (

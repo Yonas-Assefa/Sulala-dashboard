@@ -27,7 +27,6 @@ function ConfirmationLetter({ searchParams: { email } }: Props) {
     const t = useTranslations('Auth')
 
     useEffect(() => {
-        console.log({ isMobile })
         if (!isMobile) {
             router.push('/auth/create-password')
         }
