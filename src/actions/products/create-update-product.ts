@@ -27,11 +27,14 @@ export const createUpdateProduct = async (
             inventory: +(formData.get('quantity') || 0),
             status: formData.get('status'),
             tags: formData.getAll('product_tag'),
-            brand: +(formData.get('brand') || 0),
             animals: formData.getAll('animal').map((animal) => SafeParseJSON(animal)),
         }
 
         const tab = formData.get('tab')
+
+        if (formData.get('brand')) {
+            Object.assign(dataToBeParsed, { brand: formData.get('brand') })
+        }
 
         const allImages = formData.getAll('product_images')?.filter((image) => image instanceof File && image.size > 0)
         if (allImages.length > 0) {
