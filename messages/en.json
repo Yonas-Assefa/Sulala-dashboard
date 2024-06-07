@@ -314,5 +314,14 @@
         "trouble_loading_page": "We're sorry, we're having some trouble loading the page right now",
         "we_are_working_on_it": "We're working on a fix and will get things back to normal as soon as possible!",
         "try_refreshing_the_page": "In the meantime, you can try refreshing the page later."
+    },
+    "Manifest": {
+        "name": "Sulala",
+        "short_name": "Sulala",
+        "description": "Sulala is a platform for selling and buying goods and services."
+    },
+    "OpenGraphImage": {
+        "title": "Sulala",
+        "description": "Your one-stop shop for all your farm needs! From livestock feed and fencing to veterinary supplies and agricultural equipment, Sulala has everything to keep your farm thriving."
     }
 }

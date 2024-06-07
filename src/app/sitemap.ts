@@ -26,67 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       languages: Object.fromEntries(
         locales.map((locale) => [locale, getUrl(pathname, locale)])
       )
-    }
+    },
+    // priority: 0.9
   }));
 }
-
-// export default function sitemap(): MetadataRoute.Sitemap {
-//   return [
-//     {
-//       url: FRONTEND_BASE_URL,
-//       lastModified: new Date(),
-//       alternates: {
-//         languages: {
-//           en: `${FRONTEND_BASE_URL}en`,
-//           ar: `${FRONTEND_BASE_URL}ar`,
-//         },
-//       },
-//       priority: 0.9
-//     },
-//     {
-//       url: `${FRONTEND_BASE_URL}/auth/sign-in`,
-//       lastModified: new Date(),
-//       alternates: {
-//         languages: {
-//           en: `${FRONTEND_BASE_URL}en/auth/sign-in`,
-//           ar: `${FRONTEND_BASE_URL}ar/auth/sign-in`,
-//         },
-//       },
-//       priority: 0.2
-//     },
-//     {
-//       url: `${FRONTEND_BASE_URL}/auth/sign-up`,
-//       lastModified: new Date(),
-//       alternates: {
-//         languages: {
-//           en: `${FRONTEND_BASE_URL}en/auth/sign-up`,
-//           ar: `${FRONTEND_BASE_URL}ar/auth/sign-up`,
-//         },
-//       },
-//       priority: 0.2
-//     },
-//     {
-//       url: `${FRONTEND_BASE_URL}/auth/setup-account`,
-//       lastModified: new Date(),
-//       alternates: {
-//         languages: {
-//           en: `${FRONTEND_BASE_URL}en/auth/setup-account`,
-//           ar: `${FRONTEND_BASE_URL}ar/auth/setup-account`,
-//         },
-//       },
-//       priority: 0.1
-//     },
-//     {
-//       url: `${FRONTEND_BASE_URL}/dashboard/settings`,
-//       lastModified: new Date(),
-//       alternates: {
-//         languages: {
-//           en: `${FRONTEND_BASE_URL}en/dashboard/settings`,
-//           ar: `${FRONTEND_BASE_URL}ar/dashboard/settings`,
-//         },
-//       },
-//       priority: 0.6
-//     },
-
-//   ]
-// }

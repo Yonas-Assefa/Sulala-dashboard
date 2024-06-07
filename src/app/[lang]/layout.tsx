@@ -11,9 +11,9 @@ import { getTranslations } from 'next-intl/server';
 
 const inter = Inter({ subsets: ["latin"] });
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+export async function generateMetadata({ params: { lang } }: { params: { lang: string } }) {
 
-  const t = await getTranslations({ locale, namespace: 'LandingMetadata' });
+  const t = await getTranslations({ lang, namespace: 'LandingMetadata' });
 
   return {
     title: t('title'),
@@ -25,6 +25,8 @@ export async function generateMetadata({ params: { locale } }: { params: { local
       images: ['/sulala-logo.svg'],
       title: t('title')
     },
+    locale: lang,
+    type: 'website',
   };
 }
 
