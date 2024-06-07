@@ -31,6 +31,7 @@ const authOption: NextAuthOptions = {
       if (!account) {
         throw new Error("Sign up error");
       }
+      console.log({ account, profile })
       const login = await googleSingIn(account.access_token as string);
       return true;
     },
