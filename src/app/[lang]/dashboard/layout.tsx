@@ -3,7 +3,7 @@ import SideBarNav from "./components/SideBarNav";
 import { Metadata } from "next";
 // import { redirect } from "@/i18n/navigation";
 import { getPersonalInfo } from "@/actions/settings/get-personal-info";
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
     const t = await getTranslations({ locale, namespace: 'DashboardMetadata' });
@@ -19,7 +19,6 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 
 
 export default async function DashboardLayout({ children, params }: Readonly<{ children: React.ReactNode, params: { lang: string }; }>) {
-    unstable_setRequestLocale(params.lang);
     const personalInfo = await getPersonalInfo()
     // if (!personalInfo?.email_verified) {
     //     redirect('/auth/verify-email')

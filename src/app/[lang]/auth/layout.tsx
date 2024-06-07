@@ -4,7 +4,6 @@ import React from "react";
 import { Metadata } from "next";
 import landingImage from '@/../public/landing.png'
 import Image from "next/image";
-import { unstable_setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 
 export const metadata: Metadata = {
@@ -16,7 +15,6 @@ export const metadata: Metadata = {
 };
 
 export default function AuthPageLayout({ children, params }: Readonly<{ children: React.ReactNode, params: { lang: string } }>) {
-    unstable_setRequestLocale(params.lang);
     return (
         <div className='w-screen h-screen bg-blue-500 flex flex-row'>
             <div className='w-9/12 md:block hidden'>
