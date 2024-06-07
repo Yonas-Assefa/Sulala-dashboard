@@ -256,6 +256,28 @@
         "animals": "Animals",
         "brand": "Brand"
     },
+    "Manage": {
+        "manage_shops": "Manage Shops",
+        "vendor_details": "Vendor Details",
+        "vendor_info": "Vendor Info",
+        "vendor_name": "Vendor Name",
+        "vendor_phone_number": "Vendor Phone Number",
+        "vendor_email": "Vendor Email",
+        "vendor_files": "Vendor Files",
+        "certificate_file": "Certificate File",
+        "tax_file": "Tax File",
+        "vendor_shop_info": "Vendor Shop Info",
+        "vendor_shop_name": "Vendor Shop Name",
+        "vendor_shop_categories": "Vendor Shop Categories",
+        "vendor_shop_registration_date": "Vendor Shop Registration Date",
+        "vendor_address": "Vendor Address",
+        "vendor_approval_action": "Vendor Approval Action",
+        "approve": "Approve",
+        "reject": "Reject",
+        "continue": "Continue",
+        "reason": "Reason",
+        "type_here": "Type here"
+    },
     "Commons": {
         "instagram_link": "Instagram link",
         "facebook_link": "Facebook link",
@@ -314,7 +336,8 @@
         "images": "Images",
         "phone_number": "Phone Number",
         "pdf_or_image_file,_maximum_5_mb": "PDF or image file, maximum 5 MB",
-        "search_countries": "Search countries"
+        "search_countries": "Search countries",
+        "continue": "Continue"
     },
     "Error": {
         "trouble_loading_page": "We're sorry, we're having some trouble loading the page right now",

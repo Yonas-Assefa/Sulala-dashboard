@@ -60,8 +60,8 @@ function TableBody({ tableSchema, mockData, actionOptions }: Props) {
                           {schema.type == "money"
                             ? formatNumber(product_key)
                             : schema.type == "pieces"
-                            ? formatPiece(product_key)
-                            : (product_key + "").toLowerCase()}
+                              ? formatPiece(product_key)
+                              : (product_key + "").toLowerCase()}
                         </p>
                       ) : (
                         <div className="max-w-xs text-sm breadcrumbs">
@@ -90,6 +90,7 @@ function TableBody({ tableSchema, mockData, actionOptions }: Props) {
                 promote={tableSchema.include.actions.promote}
                 delete={tableSchema.include.actions.delete}
                 edit={tableSchema.include.actions.edit}
+                detail={tableSchema.include.actions.detail}
                 product={product}
                 toggle={tableSchema.include.actions.toggle}
                 actionOptions={actionOptions}

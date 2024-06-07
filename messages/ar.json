@@ -256,6 +256,28 @@
         "animals": "الحيوانات",
         "brand": "ماركة"
     },
+    "Manage": {
+        "manage_shops": "إدارة المحلات التجارية",
+        "vendor_details": "تفاصيل البائع",
+        "vendor_info": "معلومات البائع",
+        "vendor_name": "اسم البائع",
+        "vendor_phone_number": "رقم هاتف البائع",
+        "vendor_email": "البريد الإلكتروني للمورد",
+        "vendor_files": "ملفات البائع",
+        "certificate_file": "ملف الشهادة",
+        "tax_file": "الملف الضريبي",
+        "vendor_shop_info": "معلومات متجر البائع",
+        "vendor_shop_name": "اسم متجر البائع",
+        "vendor_shop_categories": "فئات متجر البائع",
+        "vendor_shop_registration_date": "تاريخ تسجيل متجر البائع",
+        "vendor_address": "عنوان البائع",
+        "vendor_approval_action": "إجراء موافقة البائع",
+        "approve": "يعتمد",
+        "reject": "يرفض",
+        "continue": "يكمل",
+        "reason": "سبب",
+        "type_here": "أكتب هنا"
+    },
     "Commons": {
         "instagram_link": "رابط الانستقرام",
         "facebook_link": "رابط الفيسبوك",
@@ -314,7 +336,8 @@
         "images": "الصور",
         "phone_number": "رقم التليفون",
         "pdf_or_image_file,_maximum_5_mb": "ملف PDF أو صورة، بحد أقصى 5 ميغابايت",
-        "search_countries": "دول البحث"
+        "search_countries": "دول البحث",
+        "continue": "يكمل"
     },
     "Error": {
         "trouble_loading_page": "عذرًا، نواجه بعض المشاكل في تحميل الصفحة الآن",

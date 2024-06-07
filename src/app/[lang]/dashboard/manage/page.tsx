@@ -5,11 +5,13 @@ import { promotionTableSchema } from './schema/schema'
 import { TableProps as Props } from '@/types/props.type'
 import { changeObjToFormData } from '@/lib/helper'
 import { getPendingShops } from '@/actions/manage-shops/get-pending-shops'
+import { getTranslations } from 'next-intl/server'
 
 
 async function page({ searchParams: { search, filter, sort, sort_by } }: Props) {
 
     const pendingShops: any = await getPendingShops(changeObjToFormData({ search, filter, sort, sort_by }))
+    const t = await getTranslations('Manage')
 
     return (
         <>
@@ -17,7 +19,7 @@ async function page({ searchParams: { search, filter, sort, sort_by } }: Props) 
 
                 {/* HEADER FOR MY PRODUCTS */}
                 <div className='flex flex-row justify-between'>
-                    <h1 className='text-2xl md:text-4xl font-semibold font-serif'>Manage shops </h1>
+                    <h1 className='text-2xl md:text-4xl font-semibold font-serif'>{t('manage_shops')}</h1>
                 </div>
 
                 {/* <PromotionCampaignTable /> */}

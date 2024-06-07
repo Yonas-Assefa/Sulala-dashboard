@@ -13,6 +13,9 @@ export const guardSetupAccount = async (request: NextRequest) => {
     }
 
     const personalInfo = await getPersonalInfo();
+
+    if (personalInfo?.is_superuser) return NextResponse.redirect(new URL('/dashboard/manage', request.url));
+
     const shop = personalInfo?.shops?.[0];
     const stage = request.nextUrl.searchParams.get('stage');
     const { last_name, first_name, email } = personalInfo;
@@ -51,6 +54,9 @@ export const guardCreatePassword = async (request: NextRequest) => {
     }
 
     const personalInfo = await getPersonalInfo();
+
+    if (personalInfo?.is_superuser) return NextResponse.redirect(new URL('/dashboard/manage', request.url));
+
     if (!personalInfo?.email_verified) {
         return NextResponse.redirect(new URL(`/auth/confirm-letter?email=${personalInfo?.email}'`, request.url));
     } else if (personalInfo?.is_password_set) {
@@ -62,11 +68,22 @@ export const guardCreatePassword = async (request: NextRequest) => {
 
 
 export const guardDashboard = async (request: NextRequest) => {
+    const pathname = request.nextUrl.pathname;
+
     if (!isAuthenticated(request)) {
         return NextResponse.redirect(new URL("/auth/sign-in", request.url));
     }
 
     const personalInfo = await getPersonalInfo();
+
+    if (personalInfo?.is_superuser) {
+        if (pathname.includes('/dashboard/manage')) {
+            return;
+        } else {
+            return NextResponse.redirect(new URL('/dashboard/manage', request.url));
+        }
+    }
+
     if (!personalInfo?.is_password_set) {
         return NextResponse.redirect(new URL('/auth/create-password', request.url));
     } else if (!personalInfo?.shops?.length) {
