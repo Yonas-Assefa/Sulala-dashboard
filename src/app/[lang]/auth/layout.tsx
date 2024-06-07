@@ -4,7 +4,6 @@ import React from "react";
 import { Metadata } from "next";
 import landingImage from '@/../public/landing.png'
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
 import LangSwitch from "../components/LangSwitch";
 import ThemeSwitch from "../components/ThemeSwitch";
 
