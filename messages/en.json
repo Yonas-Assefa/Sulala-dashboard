@@ -100,7 +100,11 @@
         "it_will_take_48_hr": "It could take up to 48 hours.",
         "verifying_email": "Verifying email",
         "unauthorized_title": "Unauthorized!!",
-        "unauthorized_description": "You are not authorized to access this page."
+        "unauthorized_description": "You are not authorized to access this page.",
+        "resend_verification_title": "Resend Verification",
+        "resend_verification_description": "Do you want to resend the verification email?",
+        "yes": "Yes",
+        "cancel": "Cancel"
     },
     "SideBar": {
         "contact_support": "Contact support",

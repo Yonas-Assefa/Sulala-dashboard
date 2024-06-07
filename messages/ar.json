@@ -100,7 +100,11 @@
         "it_will_take_48_hr": "يمكن أن يستغرق ما يصل إلى 48 ساعة.",
         "verifying_email": "التحقق من البريد الإلكتروني",
         "unauthorized_title": "غير مصرح!!",
-        "unauthorized_description": "أنت غير مفوض لدخول هذه الصفحة."
+        "unauthorized_description": "أنت غير مفوض لدخول هذه الصفحة.",
+        "resend_verification_title": "إعادة التحقق",
+        "resend_verification_description": "هل تريد إعادة إرسال رسالة التحقق عبر البريد الإلكتروني؟",
+        "yes": "نعم",
+        "cancel": "يلغي"
     },
     "SideBar": {
         "contact_support": "اتصل بالدعم",

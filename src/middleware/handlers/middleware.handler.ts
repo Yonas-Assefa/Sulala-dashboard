@@ -51,7 +51,9 @@ export const guardCreatePassword = async (request: NextRequest) => {
     }
 
     const personalInfo = await getPersonalInfo();
-    if (personalInfo?.is_password_set) {
+    if (!personalInfo?.email_verified) {
+        return NextResponse.redirect(new URL(`/auth/confirm-letter?email=${personalInfo?.email}'`, request.url));
+    } else if (personalInfo?.is_password_set) {
         return NextResponse.redirect(new URL('/dashboard/settings', request.url));
     } else {
         return;
