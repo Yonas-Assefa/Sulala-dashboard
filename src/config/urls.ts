@@ -1,7 +1,7 @@
-import { loadEnvConfig } from "@next/env";
+// import { loadEnvConfig } from "@next/env";
 
-const projectDir = process.cwd();
-loadEnvConfig(projectDir);
+// const projectDir = process.cwd();
+// loadEnvConfig(projectDir);
 
 export const BASE_URL = process.env.BACKEND_BASE_URL!;
 export const FRONTEND_BASE_URL = process.env.FRONTEND_BASE_URL!;

@@ -98,7 +98,9 @@
         "thank_you": "شكرًا لك!",
         "moderation_notification_will_be_sent": "سيتم إرسال الإشعار الخاص باجتياز الإشراف على النظام الأساسي إلى {email}.",
         "it_will_take_48_hr": "يمكن أن يستغرق ما يصل إلى 48 ساعة.",
-        "verifying_email": "التحقق من البريد الإلكتروني"
+        "verifying_email": "التحقق من البريد الإلكتروني",
+        "unauthorized_title": "غير مصرح!!",
+        "unauthorized_description": "أنت غير مفوض لدخول هذه الصفحة."
     },
     "SideBar": {
         "contact_support": "اتصل بالدعم",

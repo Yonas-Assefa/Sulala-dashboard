@@ -98,7 +98,9 @@
         "thank_you": "Thank you!",
         "moderation_notification_will_be_sent": "The notification about passing moderation on the platform will be sent to {email}.",
         "it_will_take_48_hr": "It could take up to 48 hours.",
-        "verifying_email": "Verifying email"
+        "verifying_email": "Verifying email",
+        "unauthorized_title": "Unauthorized!!",
+        "unauthorized_description": "You are not authorized to access this page."
     },
     "SideBar": {
         "contact_support": "Contact support",
