@@ -50,7 +50,7 @@ export const guardCreatePassword = async (request: NextRequest) => {
 }
 
 
-export const guardDashboardSettings = async (request: NextRequest) => {
+export const guardDashboard = async (request: NextRequest) => {
     if (!isAuthenticated(request)) {
         return NextResponse.redirect(new URL("/auth/sign-in", request.url));
     }
@@ -58,6 +58,8 @@ export const guardDashboardSettings = async (request: NextRequest) => {
     const personalInfo = await getPersonalInfo();
     if (!personalInfo?.shops?.length) {
         return NextResponse.redirect(new URL('/auth/setup-account', request.url));
+    } else if (!personalInfo?.has_onboarded) {
+        return NextResponse.redirect(new URL(`/auth/setup-complete?email=${personalInfo?.email}`, request.url));
     } else {
         return;
     }

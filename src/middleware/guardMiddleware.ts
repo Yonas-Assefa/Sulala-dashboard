@@ -1,6 +1,6 @@
 import { getPersonalInfo } from "@/actions/settings/get-personal-info";
 import { NextRequest, NextResponse } from "next/server";
-import { guardSetupAccount, guardCreatePassword, guardDashboardSettings, guardManageShop } from "./handlers/middleware.handler";
+import { guardSetupAccount, guardCreatePassword, guardDashboard, guardManageShop } from "./handlers/middleware.handler";
 
 export async function guardMiddleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
@@ -8,7 +8,7 @@ export async function guardMiddleware(request: NextRequest) {
     // GET WHERE THE USER IS
     const isAtSetupAccount = pathname.includes('/auth/setup-account');
     const isAtCreatePassword = pathname.includes('/auth/create-password');
-    const isAtDashboardSettings = pathname.includes('/dashboard/settings');
+    const isAtDashboard = pathname.includes('/dashboard');
     const isAtManageShop = pathname.includes('/dashboard/manage');
 
     // GUARD IMPLEMENTATION
@@ -16,8 +16,8 @@ export async function guardMiddleware(request: NextRequest) {
         return guardSetupAccount(request);
     } else if (isAtCreatePassword) {
         return guardCreatePassword(request);
-    } else if (isAtDashboardSettings) {
-        return guardDashboardSettings(request);
+    } else if (isAtDashboard) {
+        return guardDashboard(request);
     } else if (isAtManageShop) {
         return guardManageShop(request);
     } else {
