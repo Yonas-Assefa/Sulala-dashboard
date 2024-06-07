@@ -139,7 +139,8 @@ export const createProductSchema = z.object({
             animal_family: z.string(),
         })
     )
-        .min(1, 'Please choose at least one animal'),
+        // .min(1, 'Please choose at least one animal')
+        .optional(),
 })
 
 export const updateProductSchema = createProductSchema

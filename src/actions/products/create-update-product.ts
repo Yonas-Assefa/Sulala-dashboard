@@ -33,7 +33,11 @@ export const createUpdateProduct = async (
         const tab = formData.get('tab')
 
         if (formData.get('brand')) {
-            Object.assign(dataToBeParsed, { brand: formData.get('brand') })
+            Object.assign(dataToBeParsed, { brand: +(formData.get('brand') || 0) })
+        }
+
+        if (formData.getAll('animal').map((animal) => SafeParseJSON(animal))) {
+            Object.assign(dataToBeParsed, { animals: formData.getAll('animal').map((animal) => SafeParseJSON(animal)), })
         }
 
         const allImages = formData.getAll('product_images')?.filter((image) => image instanceof File && image.size > 0)
@@ -57,7 +61,7 @@ export const createUpdateProduct = async (
             headers: getMultiPartRequestHeaders(),
             body: DATA,
         });
-
+        console.log({ response, DATA })
         const body = await response.json()
         if (!response.ok || !body.success) {
             const message = getResponseErrorMessage(body)
