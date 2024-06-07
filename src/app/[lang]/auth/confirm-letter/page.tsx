@@ -10,6 +10,8 @@ import { Metadata } from 'next';
 import { redirect, useRouter } from '@/i18n/navigation';
 import React from 'react'
 import { useTranslations } from 'next-intl'
+import { pushSuccessNotification } from '@/utils/pushNotification.util';
+import { useIntervalRequest } from '@/hooks/useIntervalRequest';
 // export const metadata: Metadata = {
 //     title: 'Sulala | Auth Confirmation Letter',
 //     description: 'Confirm your email address to get started with Sulala.',
@@ -28,22 +30,15 @@ function ConfirmationLetter({ searchParams: { email } }: Props) {
     const router = useRouter()
     const [formState, setFormState] = React.useState(EMPTY_FORM_STATE)
 
-    const checkEmailVerification = async () => {
-        const personalInfo = await getPersonalInfo()
-        if (personalInfo?.email_verified && !personalInfo?.is_password_set && personalInfo?.email && !personalInfo?.phone_verified) {
-            router.push('/auth/create-password')
-        }
-    }
 
     useToastMessage(formState)
     useRedirectRoute(formState)
-
-    React.useEffect(() => {
-        const interval = setInterval(() => {
-            checkEmailVerification()
-        }, 30000)
-        return () => clearInterval(interval)
-    }, [])
+    useIntervalRequest({
+        time: 5,
+        redirect: '/auth/create-password',
+        message: 'Email verified successfully',
+        property: 'email_verified'
+    })
 
     const t = useTranslations('Auth')
 

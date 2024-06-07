@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Suspense } from 'react'
 import { Inter } from "next/font/google";
 import "../globals.css";
@@ -7,15 +6,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import PageSuspense from "@/components/common/ui/PageSuspense";
 import { SetupAccountStoreProvider } from '@/providers/setup-account-store-provider'
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
-import { LOCALES } from "@/i18n/config";
+import { getMessages } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
 
 const inter = Inter({ subsets: ["latin"] });
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+export async function generateMetadata({ params: { lang } }: { params: { lang: string } }) {
 
-  const t = await getTranslations({ locale, namespace: 'LandingMetadata' });
+  const t = await getTranslations({ lang, namespace: 'LandingMetadata' });
 
   return {
     title: t('title'),
@@ -27,6 +25,8 @@ export async function generateMetadata({ params: { locale } }: { params: { local
       images: ['/sulala-logo.svg'],
       title: t('title')
     },
+    locale: lang,
+    type: 'website',
   };
 }
 
@@ -36,7 +36,6 @@ export default async function AppLayout({
   children: React.ReactNode;
   params: { lang: string };
 }>) {
-  unstable_setRequestLocale(params.lang);
   const messages = await getMessages();
 
   return (

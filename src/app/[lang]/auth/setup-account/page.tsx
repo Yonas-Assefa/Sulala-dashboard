@@ -2,10 +2,8 @@ import { getCategories } from '@/actions/common/get-categories'
 import SetupAccountForm from './SetupAccountForm'
 import BackButton from '@/components/common/ui/BackButton'
 import ProgressBar from '@/components/common/ui/ProgressBar'
-import { redirect } from '@/i18n/navigation'
 import React from 'react'
 import { Metadata } from 'next'
-import { getShopInfo } from '@/actions/settings/get-shop-info'
 import { getPersonalInfo } from '@/actions/settings/get-personal-info'
 import { getTranslations } from 'next-intl/server'
 
@@ -23,23 +21,6 @@ type Props = {
   }
 }
 async function SetupAccount({ searchParams: { stage: activeStage } }: Props) {
-
-  try {
-    const shopInfo = await getShopInfo()
-    if (shopInfo.certificates && Array.isArray(shopInfo.certificates) && shopInfo.certificates.length > 0) {
-      redirect('/dashboard/settings/shop-info')
-    }
-  } catch (error: unknown) {
-    if (error && typeof error == 'object' && 'message' in error && typeof error.message == 'string' && error.message.includes("don't have a shop")) {
-      console.info('Please set up your shop to start buying and selling goods and services.')
-    }
-  }
-
-
-  if (!['one', 'two', 'three'].includes(activeStage)) {
-    return redirect('/auth/setup-account?stage=one')
-  }
-
 
   const categoryLists = await getCategories()
   const personalInfo = await getPersonalInfo()

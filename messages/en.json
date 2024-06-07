@@ -98,7 +98,13 @@
         "thank_you": "Thank you!",
         "moderation_notification_will_be_sent": "The notification about passing moderation on the platform will be sent to {email}.",
         "it_will_take_48_hr": "It could take up to 48 hours.",
-        "verifying_email": "Verifying email"
+        "verifying_email": "Verifying email",
+        "unauthorized_title": "Unauthorized!!",
+        "unauthorized_description": "You are not authorized to access this page.",
+        "resend_verification_title": "Resend Verification",
+        "resend_verification_description": "Do you want to resend the verification email?",
+        "yes": "Yes",
+        "cancel": "Cancel"
     },
     "SideBar": {
         "contact_support": "Contact support",
@@ -250,6 +256,28 @@
         "animals": "Animals",
         "brand": "Brand"
     },
+    "Manage": {
+        "manage_shops": "Manage Shops",
+        "vendor_details": "Vendor Details",
+        "vendor_info": "Vendor Info",
+        "vendor_name": "Vendor Name",
+        "vendor_phone_number": "Vendor Phone Number",
+        "vendor_email": "Vendor Email",
+        "vendor_files": "Vendor Files",
+        "certificate_file": "Certificate File",
+        "tax_file": "Tax File",
+        "vendor_shop_info": "Vendor Shop Info",
+        "vendor_shop_name": "Vendor Shop Name",
+        "vendor_shop_categories": "Vendor Shop Categories",
+        "vendor_shop_registration_date": "Vendor Shop Registration Date",
+        "vendor_address": "Vendor Address",
+        "vendor_approval_action": "Vendor Approval Action",
+        "approve": "Approve",
+        "reject": "Reject",
+        "continue": "Continue",
+        "reason": "Reason",
+        "type_here": "Type here"
+    },
     "Commons": {
         "instagram_link": "Instagram link",
         "facebook_link": "Facebook link",
@@ -308,11 +336,21 @@
         "images": "Images",
         "phone_number": "Phone Number",
         "pdf_or_image_file,_maximum_5_mb": "PDF or image file, maximum 5 MB",
-        "search_countries": "Search countries"
+        "search_countries": "Search countries",
+        "continue": "Continue"
     },
     "Error": {
         "trouble_loading_page": "We're sorry, we're having some trouble loading the page right now",
         "we_are_working_on_it": "We're working on a fix and will get things back to normal as soon as possible!",
         "try_refreshing_the_page": "In the meantime, you can try refreshing the page later."
+    },
+    "Manifest": {
+        "name": "Sulala",
+        "short_name": "Sulala",
+        "description": "Sulala is a platform for selling and buying goods and services."
+    },
+    "OpenGraphImage": {
+        "title": "Sulala",
+        "description": "Your one-stop shop for all your farm needs! From livestock feed and fencing to veterinary supplies and agricultural equipment, Sulala has everything to keep your farm thriving."
     }
 }

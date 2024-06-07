@@ -98,7 +98,13 @@
         "thank_you": "شكرًا لك!",
         "moderation_notification_will_be_sent": "سيتم إرسال الإشعار الخاص باجتياز الإشراف على النظام الأساسي إلى {email}.",
         "it_will_take_48_hr": "يمكن أن يستغرق ما يصل إلى 48 ساعة.",
-        "verifying_email": "التحقق من البريد الإلكتروني"
+        "verifying_email": "التحقق من البريد الإلكتروني",
+        "unauthorized_title": "غير مصرح!!",
+        "unauthorized_description": "أنت غير مفوض لدخول هذه الصفحة.",
+        "resend_verification_title": "إعادة التحقق",
+        "resend_verification_description": "هل تريد إعادة إرسال رسالة التحقق عبر البريد الإلكتروني؟",
+        "yes": "نعم",
+        "cancel": "يلغي"
     },
     "SideBar": {
         "contact_support": "اتصل بالدعم",
@@ -250,6 +256,28 @@
         "animals": "الحيوانات",
         "brand": "ماركة"
     },
+    "Manage": {
+        "manage_shops": "إدارة المحلات التجارية",
+        "vendor_details": "تفاصيل البائع",
+        "vendor_info": "معلومات البائع",
+        "vendor_name": "اسم البائع",
+        "vendor_phone_number": "رقم هاتف البائع",
+        "vendor_email": "البريد الإلكتروني للمورد",
+        "vendor_files": "ملفات البائع",
+        "certificate_file": "ملف الشهادة",
+        "tax_file": "الملف الضريبي",
+        "vendor_shop_info": "معلومات متجر البائع",
+        "vendor_shop_name": "اسم متجر البائع",
+        "vendor_shop_categories": "فئات متجر البائع",
+        "vendor_shop_registration_date": "تاريخ تسجيل متجر البائع",
+        "vendor_address": "عنوان البائع",
+        "vendor_approval_action": "إجراء موافقة البائع",
+        "approve": "يعتمد",
+        "reject": "يرفض",
+        "continue": "يكمل",
+        "reason": "سبب",
+        "type_here": "أكتب هنا"
+    },
     "Commons": {
         "instagram_link": "رابط الانستقرام",
         "facebook_link": "رابط الفيسبوك",
@@ -308,11 +336,21 @@
         "images": "الصور",
         "phone_number": "رقم التليفون",
         "pdf_or_image_file,_maximum_5_mb": "ملف PDF أو صورة، بحد أقصى 5 ميغابايت",
-        "search_countries": "دول البحث"
+        "search_countries": "دول البحث",
+        "continue": "يكمل"
     },
     "Error": {
         "trouble_loading_page": "عذرًا، نواجه بعض المشاكل في تحميل الصفحة الآن",
         "we_are_working_on_it": "نحن نعمل على حل المشكلة وسنعيد الأمور إلى طبيعتها في أقرب وقت ممكن!",
         "try_refreshing_the_page": "وفي هذه الأثناء، يمكنك محاولة تحديث الصفحة لاحقًا."
+    },
+    "Manifest": {
+        "name": "سولالا",
+        "short_name": "سولالا",
+        "description": "Sulala هي عبارة عن منصة لبيع وشراء السلع والخدمات."
+    },
+    "OpenGraphImage": {
+        "title": "سولالا",
+        "description": "متجرك الشامل لجميع احتياجات مزرعتك! من أعلاف الماشية والأسوار إلى الإمدادات البيطرية والمعدات الزراعية، تمتلك Sulala كل ما تحتاجه للحفاظ على ازدهار مزرعتك."
     }
 }

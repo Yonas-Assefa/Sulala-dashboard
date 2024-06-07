@@ -8,6 +8,7 @@ import { EMPTY_FORM_STATE } from '@/utils/formStateHelper';
 import React from 'react'
 import { useFormState } from 'react-dom';
 import { useTranslations } from 'next-intl'
+import { useIntervalRequest } from '@/hooks/useIntervalRequest';
 
 function CreatePasswordForm() {
     const [formState, action] = useFormState(
@@ -17,6 +18,12 @@ function CreatePasswordForm() {
 
     useToastMessage(formState);
     useRedirectRoute(formState);
+    useIntervalRequest({
+        time: 5,
+        redirect: '/auth/setup-account',
+        message: 'Password created successfully',
+        property: 'is_password_set'
+    })
 
     const t = useTranslations('Auth')
 

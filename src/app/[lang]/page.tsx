@@ -1,6 +1,8 @@
 import SecondaryButton from "@/components/common/ui/SecondaryButton";
 import { useTranslations } from 'next-intl';
 import LandingNavBar from "./components/LandingNavBar";
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import { LOCALES } from "@/i18n/config";
 
 type Props = {
   params: {
@@ -8,7 +10,28 @@ type Props = {
   }
 }
 
+export function generateStaticParams() {
+  return LOCALES.map((locale) => ({ lang: locale }));
+}
+
+export async function generateMetadata({ params: { lang } }: { params: { lang: string } }) {
+  const t = await getTranslations({ lang, namespace: 'LandingMetadata' });
+
+  return {
+    title: t('title'),
+    description: t('description'),
+    icons: [
+      '/sulala-logo.svg',
+    ],
+    openGraph: {
+      images: ['/sulala-logo.svg'],
+      title: t('title')
+    },
+  };
+}
+
 export default function Landing({ params: { lang } }: Props) {
+  unstable_setRequestLocale(lang);
   const t = useTranslations('Landing');
 
   return (

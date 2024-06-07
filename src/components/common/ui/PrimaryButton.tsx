@@ -3,6 +3,7 @@ import { openModal } from '@/lib/modals'
 import { Link } from '@/i18n/navigation'
 import React from 'react'
 import { useFormStatus } from 'react-dom'
+import { useTranslations } from 'next-intl'
 
 type Props = {
     handleClick?: () => void
@@ -28,6 +29,7 @@ const paddings = {
 function PrimaryButton({ padding, name, handleClick, className, modal, ref, href, type, disabled = false, isPending }: Props) {
 
     const { pending } = useFormStatus();
+    const t = useTranslations('Commons')
 
     const handleButtonClick = (e: React.MouseEvent) => {
         if (disabled) e.preventDefault()
@@ -58,7 +60,7 @@ function PrimaryButton({ padding, name, handleClick, className, modal, ref, href
             >
                 {
                     (pending || isPending) ? <span className="loading loading-spinner loading-md text-primary"></span> :
-                        (name || 'Continue')
+                        (name || t('continue'))
                 }
 
             </Link>
@@ -72,7 +74,7 @@ function PrimaryButton({ padding, name, handleClick, className, modal, ref, href
         >
             {
                 (pending || isPending) ? <span className="loading loading-spinner loading-md text-primary"></span> :
-                    (name || 'Continue')
+                    (name || t('continue'))
             }
         </button>
     )

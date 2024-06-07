@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { authMiddleware } from "./middleware/authMiddleware";
 import { i18nMiddleware } from "./middleware/i18nMiddleware";
+import { guardMiddleware } from "./middleware/guardMiddleware";
 
 const middlewares = [
+  guardMiddleware,
   authMiddleware,
   i18nMiddleware,
 ];
