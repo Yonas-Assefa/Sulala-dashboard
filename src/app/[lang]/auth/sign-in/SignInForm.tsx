@@ -35,7 +35,7 @@ function SignInForm({ by }: SignInProps) {
                 <AuthWithEmail emailError={formState.fieldErrors?.email?.[0]} passwordError={formState.fieldErrors?.password?.[0]} />
             }
 
-            <input type='text' hidden name='by' value={by} />
+            <input type='text' hidden name='by' value={by} onChange={() => { }} />
 
             {/* SIGN UP LINK */}
             <div className='flex flex-col gap-3 w-full items-center'>

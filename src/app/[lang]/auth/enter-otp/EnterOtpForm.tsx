@@ -45,9 +45,9 @@ function EnterOtpForm({ phone, action: authAction }: Props) {
             {/* OTP IN INPUT */}
             <OTPInput submitBtn={submitBtn} setDisabled={setDisabled} otp={otp} setOTP={setOTP} />
             {/* SIGN UP LINK */}
-            <input type="text" name="phone_number" id='phone_number' hidden value={phone} />
-            <input type="text" name="otp" id="otp" hidden value={otp.join('')} />
-            <input type="text" name="action" id="action" hidden value={authAction} />
+            <input type="text" name="phone_number" id='phone_number' hidden value={phone} onChange={() => { }} />
+            <input type="text" name="otp" id="otp" hidden value={otp.join('')} onChange={() => { }} />
+            <input type="text" name="action" id="action" hidden value={authAction} onChange={() => { }} />
             <div className='flex flex-col gap-3 w-full items-center'>
                 <Counter initialValue={30} buttonLabel={t('send_new_code')} buttonFunction={counterFunction} />
                 <div className='flex flex-col w-full'>

@@ -16,25 +16,31 @@ export const guardSetupAccount = async (request: NextRequest) => {
     console.log({ personalInfo })
     const shop = personalInfo?.shops?.[0];
     const stage = request.nextUrl.searchParams.get('stage');
-    const { last_name } = personalInfo;
+    const { last_name, first_name, email } = personalInfo;
     console.log({ stage, last_name, shop })
-    if (!shop) {
-        // if (!last_name) {
+    if (!personalInfo?.is_password_set) {
+        return NextResponse.redirect(new URL('/auth/create-password', request.url));
+    }
+    // else if (!shop) {
+    else if (!last_name || !first_name || !email) {
         if (stage === 'one') {
             return;
         }
         return NextResponse.redirect(new URL('/auth/setup-account?stage=one', request.url));
-    } else if (shop && shop.categories?.length === 0) {
-        if (stage === 'two') {
+        // } else if (!shop || (shop && shop.categories?.length === 0)) {
+    } else if (!shop) {
+        if (stage === 'two' || stage === 'three') {
             return;
         }
         return NextResponse.redirect(new URL('/auth/setup-account?stage=two', request.url));
-    } else if (shop && !shop.tax_forms?.length) {
-        if (stage === 'three') {
-            return;
-        }
-        return NextResponse.redirect(new URL('/auth/setup-account?stage=three', request.url));
-    } else {
+    }
+    // else if (shop && !shop.tax_forms?.length) {
+    //     if (stage === 'three') {
+    //         return;
+    //     }
+    //     return NextResponse.redirect(new URL('/auth/setup-account?stage=three', request.url));
+    // } 
+    else {
         return NextResponse.redirect(new URL('/dashboard/settings', request.url));
     }
 }
@@ -60,7 +66,9 @@ export const guardDashboard = async (request: NextRequest) => {
     }
 
     const personalInfo = await getPersonalInfo();
-    if (!personalInfo?.shops?.length) {
+    if (!personalInfo?.is_password_set) {
+        return NextResponse.redirect(new URL('/auth/create-password', request.url));
+    } else if (!personalInfo?.shops?.length) {
         return NextResponse.redirect(new URL('/auth/setup-account', request.url));
     } else if (!personalInfo?.has_onboarded) {
         return NextResponse.redirect(new URL(`/auth/setup-complete?email=${personalInfo?.email}`, request.url));

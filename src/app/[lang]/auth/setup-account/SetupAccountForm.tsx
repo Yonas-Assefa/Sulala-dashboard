@@ -73,12 +73,12 @@ function SetupAccountStageThree({ formState, show }: { formState: FormState, sho
 
 function SetupAccountForm({ categoryLists, activeStage, personalInfo }: { categoryLists: any, personalInfo: any, activeStage: string }) {
 
-    const { createQueryStringAndPush } = useCreateQueryString()
+    // const { createQueryStringAndPush } = useCreateQueryString()
 
-    const handleNext = () => {
-        const nextStage = activeStage === 'one' ? 'two' : 'three'
-        createQueryStringAndPush('stage', nextStage)
-    }
+    // const handleNext = () => {
+    //     const nextStage = activeStage === 'one' ? 'two' : 'three'
+    //     createQueryStringAndPush('stage', nextStage)
+    // }
 
     const [formState, action] = useFormState(
         setupAccount,
@@ -88,6 +88,10 @@ function SetupAccountForm({ categoryLists, activeStage, personalInfo }: { catego
     useToastMessage(formState);
     useRedirectRoute(formState);
 
+    useEffect(() => {
+        console.log({ formState })
+    }, [formState])
+
     const t = useTranslations('Auth')
 
     return (
@@ -95,9 +99,9 @@ function SetupAccountForm({ categoryLists, activeStage, personalInfo }: { catego
             <SetupAccountStageOne formState={formState} show={activeStage === 'one'} personalInfo={personalInfo} />
             <SetupAccountStageTwo formState={formState} categoryLists={categoryLists} show={activeStage === 'two'} />
             <SetupAccountStageThree formState={formState} show={activeStage === 'three'} />
-            <input type="text" name="stage" id="stage" hidden value={activeStage} />
+            <input type="text" name="stage" id="stage" hidden value={activeStage} onChange={() => { }} />
             <div className='flex flex-col items-stretch gap-3 w-full my-6'>
-                <PrimaryButton name={t('continue')} type={'submit'} handleClick={handleNext} />
+                <PrimaryButton name={t('continue')} type={'submit'} />
                 <p className='text-black font-semibold text-center'>{t('you_agree_to_terms_and_conditions')}
                     <span className='text-primary'>{t('terms_conditions')}</span></p>
             </div>

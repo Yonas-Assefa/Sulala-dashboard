@@ -35,7 +35,7 @@ function SignUpForm({ by }: SignUpProps) {
         />
       )}
 
-      <input type="text" hidden name="by" value={by} />
+      <input type="text" hidden name="by" value={by} onChange={() => { }} />
 
       {/* SIGN UP LINK */}
       <div className="flex flex-col gap-3 w-full items-center">
