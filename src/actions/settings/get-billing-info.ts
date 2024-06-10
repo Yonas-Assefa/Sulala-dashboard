@@ -2,7 +2,7 @@
 
 import { GET_BILLING_ACCOUNT } from "../../config/urls"
 import { billingMapper } from "../mapper/billing-mapper"
-import { getRequestHeaders } from "../../lib/helper"
+import { getRequestHeaders, getResponseBody } from "../../lib/helper"
 
 export const getBillingInfo = async () => {
 
@@ -13,7 +13,7 @@ export const getBillingInfo = async () => {
             tags: ['billing']
         }
     })
-    const body = await response.json()
+    const body = await getResponseBody(response)
 
     if (!response.ok || !body.success) {
         throw new Error(body.message || 'Failed to get billing info');

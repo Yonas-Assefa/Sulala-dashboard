@@ -39,7 +39,7 @@ export default function Landing({ params: { lang } }: Props) {
       <LandingNavBar lang={lang} />
 
 
-      <section className="h-screen w-screen bg-gradient-to-b relative from-primary to-primary/50 text-white grid grid-cols-1 md:grid-cols-2">
+      <section className="min-h-screen min-w-screen bg-gradient-to-b relative from-primary to-primary/50 text-white grid grid-cols-1 md:grid-cols-2">
         <div className="h-full flex flex-col justify-between md:justify-center gap-12 py-24 md:py-4 items-center z-20 md:z-auto">
           <div className="flex flex-row justify-center items-center gap-3 ">
             <img src="/sulala-logo-white.svg" alt="" className="w-12 md:w-16 aspect-square" />
@@ -62,7 +62,7 @@ export default function Landing({ params: { lang } }: Props) {
 
 
 
-      <section className="h-screen w-screen bg-white grid grid-cols-1 md:grid-cols-5">
+      <section className="min-h-screen min-w-screen bg-white grid grid-cols-1 md:grid-cols-5">
         <div className="md:col-span-2 absolute z-10 md:relative md:z-auto h-full opacity-20 md:opacity-100 flex flex-col justify-center items-center object-fill bg-gradient-to-r from-primary/15 to-primary/0">
           <img src="/images/sulala-phone.png" alt="" className="h-3/3 w-1/2" />
         </div>

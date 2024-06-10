@@ -1,7 +1,7 @@
 'use server'
 import { fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { ACCEPT_SHOP_APPROVAL } from '../../config/urls';
-import { getResponseErrorMessage, makeRequest, setBrowserCookie } from '../../lib/helper';
+import { getResponseBody, getResponseErrorMessage, makeRequest, setBrowserCookie } from '../../lib/helper';
 
 type AcceptApprovalArgs = {
     vendor_id: string
@@ -11,7 +11,7 @@ type AcceptApprovalArgs = {
 export const acceptApproval = async ({ approval_token, vendor_id }: AcceptApprovalArgs) => {
     try {
         const response = await makeRequest(`${ACCEPT_SHOP_APPROVAL}?approval_token=${approval_token}&vendor_id=${vendor_id}`, {}, 'GET')
-        const body = await response.json()
+        const body = await getResponseBody(response)
 
         if (!response.ok || !body.success) {
             const redirectUrl = '/auth/sign-in'

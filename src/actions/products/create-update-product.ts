@@ -2,7 +2,7 @@
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { PRODUCTS, } from '../../config/urls';
 import { createProductSchema, updateProductSchema, } from '../schema/zod-schema';
-import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders, getResponseErrorMessage } from '../../lib/helper';
+import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders, getResponseBody, getResponseErrorMessage } from '../../lib/helper';
 import { revalidatePath } from 'next/cache';
 
 const SafeParseJSON = (jsonString: unknown) => {
@@ -61,7 +61,7 @@ export const createUpdateProduct = async (
             body: DATA,
         });
 
-        const body = await response.json()
+        const body = await getResponseBody(response)
         if (!response.ok || !body.success) {
             const message = getResponseErrorMessage(body)
             throw new Error(message || 'Failed to submit form');

@@ -2,7 +2,7 @@
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { SIGNUP_URL } from '../../config/urls';
 import { emailSignUpSchema, phoneAuthSchema } from '../schema/zod-schema';
-import { getPhoneNumber, getResponseErrorMessage, setBrowserCookie } from '../../lib/helper';
+import { getPhoneNumber, getResponseBody, getResponseErrorMessage, setBrowserCookie } from '../../lib/helper';
 
 export const signUp = async (
     formState: FormState,
@@ -36,7 +36,7 @@ export const signUp = async (
             body: JSON.stringify(data),
         });
 
-        const body = await response.json()
+        const body = await getResponseBody(response)
         if (!response.ok || !body.success) {
             throw new Error(getResponseErrorMessage(body) || 'Failed to sign up');
         }

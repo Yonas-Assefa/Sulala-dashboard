@@ -2,7 +2,7 @@
 
 import { PROMOTIONS } from "../../config/urls"
 import { promotionMapper } from "../mapper/promotion-mapper"
-import { Fetch, getRequestHeaders, getResponseErrorMessage } from "../../lib/helper"
+import { Fetch, getRequestHeaders, getResponseBody, getResponseErrorMessage } from "../../lib/helper"
 import { notFound } from "next/navigation"
 import { getFilterSortOrdering } from "@/lib/table"
 
@@ -32,7 +32,7 @@ export const getPromotions = async (formData: FormData) => {
             page,
         }
     })
-    const body = await response.json()
+    const body = await getResponseBody(response)
 
     if (!response.ok || !body.results) {
         throw new Error(getResponseErrorMessage(body.message) || 'Failed to get promotions');
@@ -51,7 +51,7 @@ export const getOnePromotion = async (promotion_id: string) => {
             tags: [`promotion-detail-${promotion_id}`]
         }
     })
-    const body = await response.json()
+    const body = await getResponseBody(response)
 
     if (!response.ok || !body.data) {
         if (response.status === 404) {

@@ -2,7 +2,7 @@
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { UPDATE_SHOP_ACCOUNT, } from '../../config/urls';
 import { personalInfoSettingSchema, shopInfoSettingSchema, } from '../schema/zod-schema';
-import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders, getResponseErrorMessage, removeNullAndUndefined } from '../../lib/helper';
+import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders, getResponseBody, getResponseErrorMessage, removeNullAndUndefined } from '../../lib/helper';
 import { revalidatePath, revalidateTag } from 'next/cache';
 
 export const updateShopInfo = async (
@@ -30,7 +30,7 @@ export const updateShopInfo = async (
             body: changeObjToFormData(data),
         });
 
-        const body = await response.json()
+        const body = await getResponseBody(response)
         if (!response.ok || !body.success) {
             const message = getResponseErrorMessage(body)
             throw new Error(message || 'Failed to submit form');

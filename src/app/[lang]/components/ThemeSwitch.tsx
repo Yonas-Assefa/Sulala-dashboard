@@ -2,16 +2,20 @@
 import React from 'react'
 
 function ThemeSwitch() {
-    const [theme, setTheme] = React.useState(localStorage.getItem('theme') || 'light')
+    const initialTheme = document.cookie.split(';').find(cookie => cookie.includes('NEXT_THEME'))?.split('=')[1]
+    const [theme, setTheme] = React.useState(initialTheme || 'light')
 
 
     const toggleTheme = () => {
         if (theme === 'light') {
             document.documentElement.classList.remove('dark')
             setTheme('dark')
-            localStorage.setItem('theme', 'dark')
+            // localStorage.setItem('theme', 'dark')
+            document.cookie = 'NEXT_THEME=dark; path=/; max-age=31536000;'
+
         } else {
-            localStorage.setItem('theme', 'light')
+            // localStorage.setItem('theme', 'light')
+            document.cookie = 'NEXT_THEME=light; path=/; max-age=31536000;'
             setTheme('light')
             document.documentElement.classList.add('dark')
         }

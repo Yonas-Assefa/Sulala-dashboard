@@ -2,14 +2,14 @@
 
 import { notFound } from "next/navigation"
 import { SUBCATEGORIES } from "../../config/urls"
-import { formatCategory, getRequestHeaders, makeRequest } from "../../lib/helper"
+import { formatCategory, getRequestHeaders, getResponseBody, makeRequest } from "../../lib/helper"
 
 export const getSubCategories = async () => {
     const response = await fetch(SUBCATEGORIES, {
         method: 'GET',
         headers: getRequestHeaders()
     })
-    const body = await response.json()
+    const body = await getResponseBody(response)
     if (!response.ok || !body.data) {
         if (response.status === 404) {
             notFound()

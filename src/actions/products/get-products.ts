@@ -2,7 +2,7 @@
 
 import { PRODUCTS } from "../../config/urls"
 import { productMapper } from "../mapper/product-mapper"
-import { Fetch, getRequestHeaders, getResponseErrorMessage, makeRequest } from "../../lib/helper"
+import { Fetch, getRequestHeaders, getResponseBody, getResponseErrorMessage, makeRequest } from "../../lib/helper"
 import { notFound } from "next/navigation"
 import { getFilterSortOrdering } from "@/lib/table"
 
@@ -24,7 +24,7 @@ export const getProducts = async (formData?: FormData) => {
             page
         }
     })
-    const body = await response.json()
+    const body = await getResponseBody(response)
 
     if (!response.ok || !body.results) {
         throw new Error(body.message || 'Failed to get product');
@@ -39,7 +39,7 @@ export const getOneProduct = async (item: string) => {
         method: 'GET',
         headers: getRequestHeaders()
     })
-    const body = await response.json()
+    const body = await getResponseBody(response)
 
     if (!response.ok || !body.id) {
         if (response.status === 404) {

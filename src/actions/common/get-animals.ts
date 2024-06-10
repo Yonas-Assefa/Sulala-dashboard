@@ -2,7 +2,7 @@
 
 import { notFound } from "next/navigation"
 import { GET_ANIMALS } from "../../config/urls"
-import { getRequestHeaders } from "../../lib/helper"
+import { getRequestHeaders, getResponseBody } from "../../lib/helper"
 import { animalMapper } from "../mapper/animal-mapper"
 
 export const getAnimals = async () => {
@@ -10,7 +10,7 @@ export const getAnimals = async () => {
         method: 'GET',
         headers: getRequestHeaders()
     })
-    const body = await response.json()
+    const body = await getResponseBody(response)
     if (!response.ok || !body.success) {
         if (response.status === 404) {
             notFound()

@@ -2,7 +2,7 @@
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { EMAIL_SIGNIN_URL, PHONE_SIGNIN_URL } from '../../config/urls';
 import { emailSignInSchema, phoneAuthSchema } from '../schema/zod-schema';
-import { getPhoneNumber, getResponseErrorMessage, setBrowserCookie } from '../../lib/helper';
+import { getPhoneNumber, getResponseBody, getResponseErrorMessage, setBrowserCookie } from '../../lib/helper';
 import { getPersonalInfo } from '../settings/get-personal-info';
 
 export const signIn = async (
@@ -36,7 +36,7 @@ export const signIn = async (
             body: JSON.stringify(data),
         });
 
-        const body = await response.json()
+        const body = await getResponseBody(response)
 
         if (!response.ok || !body.success) {
             if (body.message == 'Password not set. set password') {
