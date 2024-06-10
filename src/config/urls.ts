@@ -67,3 +67,7 @@ export const GET_PENDING_SHOPS = `${VENDOR_BASE_URL}review_vendor_registration/`
 export const APPROVE_SHOPS = `${VENDOR_BASE_URL}approve_vendor_registration/`;
 export const REJECT_SHOPS = `${VENDOR_BASE_URL}reject_vendor_registration/`;
 export const ACCEPT_SHOP_APPROVAL = `${VENDOR_BASE_URL}account-access-link/`;
+
+// OPEN TELEMETRY URLS
+export const SENTRY_DSN = process.env.SENTRY_DNS!;
+export const SENTRY_AUTH_TOKEN = process.env.SENTRY_AUTH_TOKEN!;
