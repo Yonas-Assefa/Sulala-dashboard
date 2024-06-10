@@ -72,6 +72,7 @@
         "proceed_with_phone": "المضي قدما مع هاتفك؟",
         "create_password": "إنشاء كلمة المرور",
         "confirm_password": "تأكيد كلمة المرور",
+        "reset_password": "إعادة تعيين كلمة المرور",
         "enter_code": "ادخل الرمز",
         "we_have_sent_a_verification_code": "نقوم بإرسال رمز التحقق على رقم الهاتف التالي:",
         "send_new_code": "إرسال رمز جديد",

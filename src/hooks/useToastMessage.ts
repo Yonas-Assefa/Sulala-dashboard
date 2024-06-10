@@ -19,7 +19,7 @@ const useToastMessage = (formState: FormState) => {
           errorCode: 'RECEIVED_HTML_RESPONSE',
           response: formState.message.replace('[HTML RESPONSE]', ''),
         });
-      } if (formState.status === 'ERROR') {
+      } else if (formState.status === 'ERROR') {
         pushNotification(formState.message, 'error');
       } else if (formState.status === 'INFO') {
         pushNotification(formState.message, 'info');
