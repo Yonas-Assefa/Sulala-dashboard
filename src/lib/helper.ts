@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import parsePhoneNumberFromString from 'libphonenumber-js';
 import { z } from 'zod';
+import { Console } from "./print";
 
 export const phoneTransform = (arg: string, ctx: z.RefinementCtx) => {
     const phone = parsePhoneNumberFromString(arg, {
@@ -207,9 +208,14 @@ export const getMultiPartRequestHeaders = () => {
 
 export const getResponseBody = async (response: Response) => {
     try {
-        return await response.json()
+        const clonedResponse = response.clone();
+        const json = await clonedResponse.json();
+        return json
     } catch (error) {
-        return { success: false, message: '[HTML RESPONSE]' + response.text() }
+        const clonedResponse = response.clone();
+        const text = await clonedResponse.text()
+        Console.error(text)
+        return { success: false, message: '[HTML RESPONSE]' + text }
     }
 
 }

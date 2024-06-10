@@ -10,6 +10,7 @@ export const getPersonalInfo = async () => {
         headers: getRequestHeaders()
     })
     const body = await getResponseBody(response)
+    console.log({ body })
 
     if (!response.ok || !body.success) {
         throw new Error(body.message || 'Failed to get profile');
