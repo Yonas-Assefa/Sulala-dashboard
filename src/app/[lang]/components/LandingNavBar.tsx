@@ -43,7 +43,7 @@ function LandingNavBar({ lang }: { lang: string }) {
                 <div className=" flex flex-row gap-3 px-3">
                     <Link href={'/sign-in'} className="bg-primary border-gray-200 hover:border-primary text-white font-semibold border p-2 rounded-lg hover:bg-primary/90 hover:text-white transition-all btn">{t('signin')}</Link>
                     <Link href={'/sign-up'} className="bg-white border-gray-200 hover:border-primary text-primary font-semibold border p-2 rounded-lg hover:bg-primary/90 hover:text-white transition-all btn">{t('register')}</Link>
-                    <Link href={'/'} locale={lang == 'en' ? 'ar' : 'en'} className="swap bg-transparent hover:bg-white text-white hover:text-primary rounded-lg p-[4px] text-center aspect-square self-center">
+                    <Link href={'/'} locale={lang == 'en' ? 'ar' : 'en'} className={`swap bg-transparent rounded-lg p-[4px] text-center aspect-square self-center ${direction == 'at-top' ? 'hover:bg-white text-white hover:text-primary' : 'hover:bg-primary text-primary hover:text-white'}`}>
                         <div className={lang == 'en' ? 'swap-on' : 'swap-off'}>EN</div>
                         <div className={lang == 'ar' ? 'swap-on' : 'swap-off'}>عربي</div>
                     </Link>
