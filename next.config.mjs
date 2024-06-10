@@ -17,6 +17,12 @@ const nextConfig = {
                 hostname: 'randomuser.me',
                 port: '',
                 pathname: '/**',
+            },
+            {
+                protocol: 'http',
+                hostname: '192.168.0.155',
+                port: '8000',
+                pathname: '/**',
             }
         ],
         minimumCacheTTL: 60,

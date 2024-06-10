@@ -93,6 +93,7 @@ export const removeNullAndUndefined = (obj: Record<string, any>) => {
     return Object.fromEntries(
         Object.entries(obj).filter(([_, v]) => {
             if (Array.isArray(v)) {
+                if (v[0] instanceof File) return v[0].size > 0
                 return v.length > 0
             }
             if (v instanceof File) {

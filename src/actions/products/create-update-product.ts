@@ -2,7 +2,7 @@
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { PRODUCTS, } from '../../config/urls';
 import { createProductSchema, updateProductSchema, } from '../schema/zod-schema';
-import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders, getResponseErrorMessage } from '../../lib/helper';
+import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders, getResponseErrorMessage, removeNullAndUndefined } from '../../lib/helper';
 import { revalidatePath } from 'next/cache';
 
 const SafeParseJSON = (jsonString: unknown) => {
@@ -18,7 +18,7 @@ export const createUpdateProduct = async (
 ) => {
     try {
 
-        const dataToBeParsed = {
+        const dataToBeParsed = removeNullAndUndefined({
             title: formData.get('product_name'),
             description: formData.get('description'),
             price: +(formData.get('price') || 0),
@@ -27,18 +27,11 @@ export const createUpdateProduct = async (
             inventory: +(formData.get('quantity') || 0),
             status: formData.get('status'),
             tags: formData.getAll('product_tag'),
-            animals: formData.getAll('animal').map((animal) => SafeParseJSON(animal)),
-        }
+            brand: +(formData.get('brand') || 0),
+            animals: formData.getAll('animal'),
+        })
 
         const tab = formData.get('tab')
-
-        if (formData.get('brand')) {
-            Object.assign(dataToBeParsed, { brand: +(formData.get('brand') || 0) })
-        }
-
-        if (formData.getAll('animal').map((animal) => SafeParseJSON(animal))) {
-            Object.assign(dataToBeParsed, { animals: formData.getAll('animal').map((animal) => SafeParseJSON(animal)), })
-        }
 
         const allImages = formData.getAll('product_images')?.filter((image) => image instanceof File && image.size > 0)
         if (allImages.length > 0) {

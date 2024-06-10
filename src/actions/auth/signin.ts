@@ -37,6 +37,7 @@ export const signIn = async (
         });
 
         const body = await response.json()
+        console.log({ SIGNIN_URL, data, body })
         if (!response.ok || !body.success) {
             if (body.message == 'Password not set. set password') {
                 return toFormState('ERROR', 'Create password to continue', `/auth/create-password`);
@@ -50,9 +51,11 @@ export const signIn = async (
             'Signin successful!.' :
             'Check your message for the verification code'
 
-        const personalInfo = await getPersonalInfo()
-        const redirectUrl = personalInfo?.is_superuser ? '/dashboard/manage?filter=pending' :
-            ((by == 'email') ? '/dashboard/settings' : `/auth/enter-otp?phone=${data.phone_number}&action=signin`)
+        const personalInfo = (by == 'email') ? await getPersonalInfo() : null
+
+        const redirectUrl = (by == 'email') ? (
+            personalInfo?.is_superuser ? '/dashboard/manage?filter=pending' : '/dashboard/settings'
+        ) : `/auth/enter-otp?phone=${data.phone_number}&action=signin`
 
         return toFormState('SUCCESS', successMessage, redirectUrl);
     } catch (error) {

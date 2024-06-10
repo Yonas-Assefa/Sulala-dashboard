@@ -131,13 +131,10 @@ export const createProductSchema = z.object({
     status: z.nativeEnum(ProductStatus),
     tags: z.array(z.string()),
     brand: z.number()
-        .min(1, 'Please choose at least one brand'),
+        .min(1, 'Please choose at least one brand')
+        .optional(),
     animals: z.array(
-        z.object({
-            id: z.number(),
-            name: z.string(),
-            animal_family: z.string(),
-        })
+        z.string()
     )
         // .min(1, 'Please choose at least one animal')
         .optional(),
