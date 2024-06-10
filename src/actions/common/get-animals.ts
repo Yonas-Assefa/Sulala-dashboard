@@ -17,6 +17,6 @@ export const getAnimals = async () => {
         }
         throw new Error(body.message || 'Failed to get animals');
     }
-    const mappedAnimals = animalMapper(body.data)
+    const mappedAnimals = await animalMapper(body.data)
     return mappedAnimals
 }

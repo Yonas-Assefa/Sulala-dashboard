@@ -209,7 +209,7 @@ export const getResponseBody = async (response: Response) => {
     try {
         return await response.json()
     } catch (error) {
-        return { success: false, message: 'Failed to submit form', error: error, html: response.text() }
+        return { success: false, message: '[HTML RESPONSE]' + response.text() }
     }
 
 }
