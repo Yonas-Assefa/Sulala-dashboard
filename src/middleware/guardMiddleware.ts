@@ -1,5 +1,4 @@
-import { getPersonalInfo } from "@/actions/settings/get-personal-info";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { guardSetupAccount, guardCreatePassword, guardDashboard, guardManageShop } from "./handlers/middleware.handler";
 
 export async function guardMiddleware(request: NextRequest) {
