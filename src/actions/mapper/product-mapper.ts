@@ -1,5 +1,6 @@
 import { getCategories } from "../common/get-categories";
 import { BASE_URL } from "../../config/urls";
+import { constructImageUrl } from "@/lib/images";
 
 export const productMapper = async (data: any) => {
   const categories = await getCategories();
@@ -10,15 +11,17 @@ export const productMapper = async (data: any) => {
         category: categories.find((category: any) =>
           category.options.map((o: any) => o.value).includes(product.category)
         )?.label,
-        images: product.images?.[0] ? `${BASE_URL}${product.images?.[0]}` : "",
+        category_value: product.category,
+        images: constructImageUrl(product.images, true),
       };
     });
   } else {
     return {
       ...data,
       category: getSubCategory(categories, data.category),
+      category_value: data.category,
       tags: data.tags.map((tag: any) => ({ label: tag.name, value: tag.id })),
-      images: data.images?.[0] ? `${BASE_URL}${data.images?.[0]}` : "",
+      images: constructImageUrl(data.images, true)
     };
   }
 };
@@ -43,17 +46,16 @@ const getCategoryLabel = (
   );
   if (!returnArray) {
     const category_label = category
-      ? `${category.label} / ${
-          category.options.find((o: any) => o.value === id).label
-        }`
+      ? `${category.label} / ${category.options.find((o: any) => o.value === id).label
+      }`
       : "";
     return category_label;
   } else {
     const category_label = category
       ? [
-          category.label,
-          category.options.find((o: any) => o.value === id).label,
-        ]
+        category.label,
+        category.options.find((o: any) => o.value === id).label,
+      ]
       : [];
     return category_label;
   }

@@ -5,13 +5,6 @@ import { createProductSchema, updateProductSchema, } from '../schema/zod-schema'
 import { changeObjToFormData, getMultiPartRequestHeaders, getRequestHeaders, getResponseBody, getResponseErrorMessage } from '../../lib/helper';
 import { revalidatePath } from 'next/cache';
 
-const SafeParseJSON = (jsonString: unknown) => {
-    try {
-        return JSON.parse(jsonString as string)
-    } catch (error) {
-        return {}
-    }
-}
 export const createUpdateProduct = async (
     formState: FormState,
     formData: FormData

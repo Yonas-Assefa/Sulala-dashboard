@@ -11,13 +11,14 @@ function LandingNavBar({ lang }: { lang: string }) {
     const t = useTranslations('Landing');
 
     useEffect(() => {
-        window.addEventListener('scroll', controlDirection);
+        global.window && window.addEventListener('scroll', controlDirection);
         return () => {
-            window.removeEventListener('scroll', controlDirection);
+            global.window && window.removeEventListener('scroll', controlDirection);
         };
-    }, [window])
+    }, [(global.window && window)])
 
     const controlDirection = () => {
+        if (!global.window || !window) return;
         if (window.scrollY == 0) {
             setDirection('at-top');
             oldScrollY = window.scrollY;

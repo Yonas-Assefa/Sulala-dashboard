@@ -20,6 +20,14 @@ export const phoneTransform = (arg: string, ctx: z.RefinementCtx) => {
     return z.NEVER;
 }
 
+const SafeParseJSON = (jsonString: unknown) => {
+    try {
+        return JSON.parse(jsonString as string)
+    } catch (error) {
+        return {}
+    }
+}
+
 export const confirmPasswordRefine = {
     Fn: (values: any) => {
         return values.password === values.confirm_password;
