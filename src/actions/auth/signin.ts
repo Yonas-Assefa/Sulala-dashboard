@@ -55,7 +55,7 @@ export const signIn = async (
 
         const redirectUrl = (by == 'email') ? (
             personalInfo?.is_superuser ? '/dashboard/manage?filter=pending' : '/dashboard/settings'
-        ) : `/auth/enter-otp?phone=${data.phone_number}&action=signin`
+        ) : `/auth/enter-otp?phone=${encodeURIComponent(data.phone_number!)}&action=signin`
 
         return toFormState('SUCCESS', successMessage, redirectUrl);
     } catch (error) {

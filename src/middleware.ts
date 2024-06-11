@@ -21,9 +21,10 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!_next/).*auth/.*)',
-    '/((?!_next/).*dashboard/.*)',
-    '/(ar|en)/:path*'
+    // '/((?!_next/).*auth/.*)',
+    // '/((?!_next/).*dashboard/.*)',
+    // '/(ar|en)/:path*',
+    '/((?!api|_next|.*\\..*).*)'
   ],
 
 };

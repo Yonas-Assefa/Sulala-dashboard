@@ -2,11 +2,12 @@
 import React from 'react'
 
 function ThemeSwitch() {
-    const initialTheme = document.cookie.split(';').find(cookie => cookie.includes('NEXT_THEME'))?.split('=')[1]
+    const initialTheme = global.document && document?.cookie?.split(';').find(cookie => cookie.includes('NEXT_THEME'))?.split('=')[1]
     const [theme, setTheme] = React.useState(initialTheme || 'light')
 
 
     const toggleTheme = () => {
+        if (!document) return
         if (theme === 'light') {
             document.documentElement.classList.remove('dark')
             setTheme('dark')
