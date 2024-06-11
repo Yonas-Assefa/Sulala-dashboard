@@ -2,12 +2,11 @@
 import { fromErrorToFormState, toFormState } from "@/utils/formStateHelper";
 import { RESEND_PASSWORD_SETUP_LINK } from "../../config/urls";
 import { emailSignUpSchema } from "../schema/zod-schema";
-import { cookies } from "next/headers";
+
 import {
   getResponseBody,
   getResponseErrorMessage,
   makeRequest,
-  setBrowserCookie,
 } from "../../lib/helper";
 
 export const resendCreatePasswordLink = async ({
