@@ -22,7 +22,7 @@ export const useResponseInterceptModal = ({ formState, message, modalId, notific
                 const confirm = await openModal(modalId, true)
                 closeModal(modalId)
 
-                if (!confirm) return;
+                if (!confirm) return pushNotification('Request action cancelled!', 'warning');
 
                 pushNotification(notification, 'info')
                 Fn(FnArgs)

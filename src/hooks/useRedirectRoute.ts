@@ -1,6 +1,6 @@
 import { FormState } from "@/utils/formStateHelper";
 import { usePathname, useRouter } from "@/i18n/navigation";
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export const useRedirectRoute = (formState: FormState) => {
     const router = useRouter();
@@ -16,5 +16,5 @@ export const useRedirectRoute = (formState: FormState) => {
         if (doRedirect) {
             router.push(formState.redirectUrl as any);
         }
-    }, [formState.redirectUrl]);
+    }, [formState, doRedirect]);
 }

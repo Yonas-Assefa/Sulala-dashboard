@@ -19,8 +19,6 @@ export const resendVerificationLink = async ({ email }: { email: string }) => {
             throw new Error(getResponseErrorMessage(body) || 'Failed to resend verification link');
         }
 
-        setBrowserCookie(response)
-
         const successMessage = 'Verification link resent successfully!'
 
         return toFormState('SUCCESS', successMessage);
