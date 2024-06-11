@@ -39,9 +39,6 @@ export const signIn = async (
         const body = await getResponseBody(response)
 
         if (!response.ok || !body.success) {
-            if (body.message == 'Password not set. set password') {
-                return toFormState('ERROR', 'Create password to continue', `/auth/create-password`);
-            }
             throw new Error(getResponseErrorMessage(body) || 'Failed to signin');
         }
 

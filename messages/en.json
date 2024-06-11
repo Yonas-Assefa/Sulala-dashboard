@@ -104,6 +104,8 @@
         "unauthorized_description": "You are not authorized to access this page.",
         "resend_verification_title": "Resend Verification",
         "resend_verification_description": "Do you want to resend the verification email?",
+        "resend_create_password_title": "Resend Create Password",
+        "resend_create_password_description": "Do you want to resend the create password email?",
         "yes": "Yes",
         "cancel": "Cancel"
     },

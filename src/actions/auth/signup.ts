@@ -47,7 +47,7 @@ export const signUp = async (
             'Check your email for the verification link' :
             'Check your message for the verification code'
 
-        const redirectUrl = (by == 'email') ? `/auth/confirm-letter?email=${data.email}&action=signup` : `/auth/enter-otp?phone=${data.phone_number}&action=signup`
+        const redirectUrl = (by == 'email') ? `/auth/confirm-letter?email=${encodeURIComponent(data.email!)}&action=signup` : `/auth/enter-otp?phone=${encodeURIComponent(data.phone_number!)}&action=signup`
 
         return toFormState('SUCCESS', `Signup successful! ${successMessage}.`, redirectUrl);
     } catch (error) {

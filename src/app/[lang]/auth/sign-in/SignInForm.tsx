@@ -7,13 +7,12 @@ import SecondaryButton from '@/components/common/ui/SecondaryButton'
 import { useRedirectRoute } from '@/hooks/useRedirectRoute'
 import { useToastMessage } from '@/hooks/useToastMessage'
 import { EMPTY_FORM_STATE, FormState } from '@/utils/formStateHelper'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useFormState } from 'react-dom'
 import { useTranslations } from 'next-intl'
 import { resendVerificationLink } from '@/actions/auth/resend-verification-link'
-import pushNotification from '@/utils/pushNotification.util'
-import { useRouter } from '@/i18n/navigation'
-import { closeModal, openModal } from '@/lib/modals'
+import { resendCreatePasswordLink } from '@/actions/auth/resend-create-password-link'
+import { useResponseInterceptModal } from '@/hooks/useResposeInterceptModal'
 
 type SignInProps = {
     by: "phone" | "email" | undefined
@@ -29,29 +28,24 @@ function SignInForm({ by }: SignInProps) {
     useToastMessage(formState);
     useRedirectRoute(formState);
 
-    const router = useRouter()
-    useEffect(() => {
-        if (formState.message == 'Email not verified. Please verify your email first') {
-            setTimeout(async () => {
-                const confirm = await openModal('resend_email_verification_link', true)
-                closeModal('resend_email_verification_link')
-
-                if (!confirm) return;
-
-                pushNotification('Resending verification link...', 'info')
-                const email = document.getElementById('email')?.getAttribute('value')
-                resendVerificationLink({ email })
-                    .then((res: FormState) => {
-                        if (res.status == 'SUCCESS') {
-                            pushNotification(res.message, 'success')
-                            router.push('/auth/confirm-letter?email=' + email as any)
-                        } else {
-                            pushNotification(res.message, 'error')
-                        }
-                    })
-            }, 1000)
-        }
-    }, [formState])
+    useResponseInterceptModal({
+        Fn: resendVerificationLink,
+        FnArgs: { email: global.document && document.getElementById('email')?.getAttribute('value') },
+        formState,
+        message: 'Email not verified. Please verify your email first',
+        modalId: 'resend_email_verification_link',
+        notification: 'Resending verification link...',
+        redirect: `/auth/confirm-letter?email=${encodeURIComponent(global.document && document.getElementById('email')?.getAttribute('value') as string)}`,
+    })
+    useResponseInterceptModal({
+        Fn: resendCreatePasswordLink,
+        FnArgs: { email: global.document && document.getElementById('email')?.getAttribute('value') },
+        formState,
+        message: 'Password not set. set password',
+        modalId: 'resend_create_password_link',
+        notification: 'Sending password creation link...',
+        redirect: '/auth/create-password',
+    })
 
     const t = useTranslations('Auth')
 

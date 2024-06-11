@@ -104,6 +104,8 @@
         "unauthorized_description": "أنت غير مفوض لدخول هذه الصفحة.",
         "resend_verification_title": "إعادة التحقق",
         "resend_verification_description": "هل تريد إعادة إرسال رسالة التحقق عبر البريد الإلكتروني؟",
+        "resend_create_password_title": "إعادة إرسال كلمة المرور",
+        "resend_create_password_description": "هل تريد إعادة إرسال رسالة إعادة تعيين كلمة المرور عبر البريد الإلكتروني؟",
         "yes": "نعم",
         "cancel": "يلغي"
     },
