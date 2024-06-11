@@ -12,7 +12,7 @@ type Props = {
   }
 
 }
-async function CreatePassword({ searchParams: { vendor_id, reset_link } }: Props) {
+async function SetupPassword({ searchParams: { vendor_id, reset_link } }: Props) {
   const router = useRouter()
 
   const parseFormState = async () => {
@@ -51,4 +51,4 @@ async function CreatePassword({ searchParams: { vendor_id, reset_link } }: Props
   )
 }
 
-export default CreatePassword
+export default SetupPassword
