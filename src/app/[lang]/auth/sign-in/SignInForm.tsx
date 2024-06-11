@@ -48,7 +48,7 @@ function SignInForm({ by }: SignInProps) {
     message: "Password not set. set password",
     modalId: "resend_create_password_link",
     notification: "Sending password creation link...",
-    redirect: `/auth/confirm-letter?email=${encodeURIComponent(global.document && (document.getElementById("email")?.getAttribute("value") as string))}`,
+    redirect: `/auth/confirm-reset?email=${encodeURIComponent(global.document && (document.getElementById("email")?.getAttribute("value") as string))}`,
   });
 
   const t = useTranslations("Auth");

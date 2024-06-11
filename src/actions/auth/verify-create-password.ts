@@ -10,18 +10,18 @@ import {
 
 type VerifyEmailArgs = {
   vendor_id: string;
-  reset_link: string;
+  password_set_link: string;
 };
 
 export const verifyCreatepassword = async ({
-  reset_link: confirmation_token,
+  password_set_link,
   vendor_id,
 }: VerifyEmailArgs) => {
   try {
     const response = await makeRequest(
-      `${CONFIRM_PASSWORD_SETUP}?confirmation_token=${confirmation_token}&vendor_id=${vendor_id}`,
+      `${CONFIRM_PASSWORD_SETUP}?password_set_link=${password_set_link}&vendor_id=${vendor_id}`,
       {},
-      "GET",
+      "PATCH",
     );
     const body = await getResponseBody(response);
 
@@ -34,7 +34,7 @@ export const verifyCreatepassword = async ({
 
     setBrowserCookie(response);
 
-    const successMessage = "Verification successful!";
+    const successMessage = body.message || "Verification successful!";
 
     const redirectUrl = "/auth/create-password";
 
