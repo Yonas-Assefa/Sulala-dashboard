@@ -16,6 +16,7 @@ export default function GlobalError({ error }) {
       <body>
         {/* @ts-ignore */}
         <Error />
+        "Global Error Page"
       </body>
     </html>
   );
