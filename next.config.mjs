@@ -27,7 +27,7 @@ const nextConfig = {
             fullUrl: true,
         },
     },
-    output: 'standalone',
+    // output: 'standalone',
 };
 
 export default withSentryConfig(withNextIntl(nextConfig), {
