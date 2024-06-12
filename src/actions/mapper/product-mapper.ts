@@ -24,7 +24,7 @@ export const productMapper = async (data: any) => {
       ...data,
       category: getSubCategory(categories, data.category),
       category_value: data.category,
-      tags: data.tags?.map((tag: any) => ({ label: tag.name, value: tag.id })),
+      tags: data.tags,
       images: constructImageUrl(data.images, true),
       animals: (animalMapper(data.animal_products) as []).map(
         (animal: any) => animal.value,

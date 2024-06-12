@@ -26,7 +26,7 @@ function TagInput({
 }: MultiTextInputProps) {
   const [value, setValue] = React.useState<string>("");
   const [values, setValues] = React.useState<string[]>(defaultValue || []);
-  const [toDelete, setToDelete] = React.useState<string>("");
+  const [toDelete, setToDelete] = React.useState<number>();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (disabled) return;
@@ -48,7 +48,7 @@ function TagInput({
     if (e.key === "Enter" || e.key === "Tab") {
       e.preventDefault();
       e.stopPropagation();
-      if (toDelete !== "") setToDelete("");
+      if (toDelete !== undefined) setToDelete(undefined);
       if (!value) return;
       setValues([...values, value]);
       setValue("");
@@ -58,22 +58,17 @@ function TagInput({
       e.stopPropagation();
       if (values.length === 0) return;
 
-      if (toDelete === "") {
-        setToDelete(values[values.length - 1]);
+      if (toDelete === undefined) {
+        setToDelete(values.length - 1);
       } else {
         setValues(values.slice(0, -1));
-        setToDelete("");
+        setToDelete(undefined);
         emitVal && emitVal(values.slice(0, -1));
       }
     } else {
-      if (toDelete !== "") setToDelete("");
+      if (toDelete !== undefined) setToDelete(undefined);
       return;
     }
-  };
-
-  const handleClear = () => {
-    if (disabled) return;
-    setValue("");
   };
 
   const handleClearAll = () => {
@@ -84,6 +79,17 @@ function TagInput({
 
   return (
     <label htmlFor={id} className="flex flex-col gap-3">
+      {values.map((item, i) => (
+        <input
+          type="text"
+          id={id}
+          name={name}
+          value={item}
+          key={i}
+          hidden
+          onChange={() => {}}
+        />
+      ))}
       <p className="self-start text-black">
         {label}
         {required && (
@@ -94,12 +100,12 @@ function TagInput({
         )}
       </p>
       <div
-        className={`flex gap-1 flex-wrap items-center px-3 py-2 justify-start border rounded-[40px] w-full ${error ? "bg-dangerlight border-danger" : "bg-white focus-within:border-primary"}`}
+        className={`flex gap-1 relative flex-wrap items-center px-3 py-2 justify-start border rounded-[40px] w-full ${error ? "bg-dangerlight border-danger" : "bg-white focus-within:border-primary"}`}
       >
         {values.map((tag, index) => (
           <span
             key={index}
-            className={`inline-block text-white px-2 py-1 text-xs rounded-[30px] ${toDelete === tag ? "bg-danger" : "bg-primary"} transition-all`}
+            className={`inline-block text-white px-2 py-1 text-xs rounded-[30px] ${toDelete === index ? "bg-danger" : "bg-primary"} transition-all`}
           >
             {tag}
             <button
@@ -125,11 +131,42 @@ function TagInput({
           autoComplete={"false"}
           value={value}
           onChange={handleChange}
-          defaultValue={defaultValue}
           onKeyDown={handleSubmit}
           // {...props}
         />
+        <div className="text-xs text-secondary absolute right-2">
+          {values.length > 0 && (
+            <button
+              type="button"
+              onClick={handleClearAll}
+              className={
+                disabled
+                  ? "opacity-40 cursor-not-allowed"
+                  : "opacity-100 cursor-pointer"
+              }
+            >
+              <img
+                src="/x-circle.svg"
+                alt=""
+                className="mr-0 stroke-emerald-500"
+              />
+            </button>
+          )}
+        </div>
       </div>
+      {value.length ? (
+        <div className="w-full flex justify-start gap-2 opacity-70">
+          <span className="text-xs text-secondary">
+            Enter, Tab, Comma to add
+          </span>
+          <span className="text-xs text-danger">Backspace, X to remove</span>
+        </div>
+      ) : null}
+      {toDelete !== undefined && (
+        <span className="text-xs text-danger opacity-70">
+          Press Backspace again to confirm removing the item
+        </span>
+      )}
 
       {error && <span className="text-xs text-danger">{error}</span>}
     </label>

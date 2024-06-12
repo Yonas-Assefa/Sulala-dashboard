@@ -190,7 +190,7 @@ function ProductForm({
               name="product_tag"
               label={t("tags")}
               error={formState.fieldErrors?.tags?.[0]}
-              defaultValue={["initialValue?.tags"]}
+              defaultValue={initialValue?.tags}
             />
           </div>
         </div>
