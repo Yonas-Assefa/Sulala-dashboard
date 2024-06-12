@@ -1,10 +1,6 @@
 "use client";
-import { acceptApproval } from "@/actions/auth/accept-approval";
-import { getPersonalInfo } from "@/actions/settings/get-personal-info";
-import pushNotification from "@/utils/pushNotification.util";
-import { redirect, useRouter } from "@/i18n/navigation";
+import PrimaryButton from "@/components/common/ui/PrimaryButton";
 import React from "react";
-import { useTranslations } from "next-intl";
 
 type Props = {
   searchParams: {
@@ -13,9 +9,6 @@ type Props = {
 };
 
 async function SelectAccount({ searchParams: { action } }: Props) {
-  const router = useRouter();
-  const t = useTranslations("Auth");
-
   return (
     <div className="text-black w-10/12 flex flex-col gap-5 items-center">
       {/* SIGN IN HEADER */}
@@ -23,7 +16,7 @@ async function SelectAccount({ searchParams: { action } }: Props) {
         Select Account Type
       </h1>
 
-      <form action={() => {}} className="flex flex-col gap-4 group">
+      <form action={() => {}} className="flex flex-col gap-8 group">
         <div className="flex">
           <div className="card drop-shadow-lg flex flex-col gap-2">
             {[
@@ -54,9 +47,7 @@ async function SelectAccount({ searchParams: { action } }: Props) {
         </div>
 
         <div className="flex justify-center w-full">
-          <button className="btn btn-outline group-has-[:checked]:btn-success">
-            Continue
-          </button>
+          <PrimaryButton name="Continue" padding="sm" />
         </div>
       </form>
     </div>
