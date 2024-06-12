@@ -14,7 +14,7 @@ async function Items() {
   const orders = await getOrders();
   return (
     <div className="text-black flex flex-col w-full h-full gap-10">
-      <div className="grid grid-cols-3 gap-5">
+      <div className="flex flex-col md:grid md:grid-cols-3 gap-5">
         <RevenueCard
           revenuePeriod="Total"
           totalCurrentSale={shopRevenueStat.total_revenue}
