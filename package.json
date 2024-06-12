@@ -14,6 +14,7 @@
     "@sentry/nextjs": "^8.8.0",
     "@tanstack/react-query": "^5.35.1",
     "@types/lodash": "^4.17.4",
+    "commitlint": "^19.3.0",
     "dayjs": "^1.11.11",
     "export-to-csv": "^1.3.0",
     "framer-motion": "^11.2.6",
