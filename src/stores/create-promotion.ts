@@ -1,7 +1,7 @@
 import { createJSONStorage, persist } from "zustand/middleware";
 import { createStore } from "zustand/vanilla";
 
-export type SetupState = {
+export type PromotionState = {
   campaign_name: string;
   items: string[];
   description: string;
@@ -17,7 +17,7 @@ export type SetupState = {
   cart_total: string;
 };
 
-export type SetupActions = {
+export type PromotionActions = {
   setCampaignName: (campaign_name: string) => void;
   setItems: (items: string[]) => void;
   setDescription: (description: string) => void;
@@ -34,9 +34,9 @@ export type SetupActions = {
   resetStore: () => void;
 };
 
-export type SetupStore = SetupState & SetupActions;
+export type PromotionStore = PromotionState & PromotionActions;
 
-export const initSetupStore = (): SetupState => {
+export const initPromotionStore = (): PromotionState => {
   return {
     campaign_name: "",
     items: [],
@@ -54,7 +54,7 @@ export const initSetupStore = (): SetupState => {
   };
 };
 
-export const defaultInitState: SetupState = {
+export const defaultInitState: PromotionState = {
   campaign_name: "",
   items: [],
   description: "",
@@ -71,9 +71,9 @@ export const defaultInitState: SetupState = {
 };
 
 export const createPromotionStore = (
-  initState: SetupState = defaultInitState,
+  initState: PromotionState = defaultInitState,
 ) => {
-  return createStore<SetupStore>()(
+  return createStore<PromotionStore>()(
     persist(
       (set) => ({
         ...initState,

@@ -1,89 +1,82 @@
 import { createJSONStorage, persist } from "zustand/middleware";
 import { createStore } from "zustand/vanilla";
 
-export type SetupState = {
-  first_name: string;
-  last_name: string;
-  email: string;
-  campany_name: string;
-  sales_category: string;
-  address: string;
-  stage: "one" | "two" | "three" | "finished";
+export type ProductState = {
+  title: string;
+  quantity: string;
+  description: string;
+  price: string;
+  discount: string;
+  status: string;
+  category: string;
+  animals: string[];
+  brands: string[];
+  tags: string[];
 };
 
-export type SetupActions = {
-  nextStage: () => void;
-  previousStage: () => void;
-  setFirstName: (first_name: string) => void;
-  setLastName: (last_name: string) => void;
-  setEmail: (email: string) => void;
-  setSalesCategory: (sales_category: string) => void;
-  setAddress: (address: string) => void;
-  setCompanyName: (campany_name: string) => void;
-  resetStore: () => void;
-  completeStage: () => void;
+export type ProductActions = {
+  setTitle: (title: string) => void;
+  setQuantity: (quantity: string) => void;
+  setDescription: (description: string) => void;
+  setPrice: (price: string) => void;
+  setDiscount: (discount: string) => void;
+  setStatus: (status: string) => void;
+  setCategory: (category: string) => void;
+  setAnimals: (animals: []) => void;
+  setBrands: (brands: []) => void;
+  setTags: (tags: []) => void;
 };
 
-export type SetupStore = SetupState & SetupActions;
+export type ProductStore = ProductState & ProductActions;
 
-export const initSetupStore = (): SetupState => {
+export const initPromotionStore = (): ProductState => {
   return {
-    address: "",
-    campany_name: "",
-    email: "",
-    first_name: "",
-    last_name: "",
-    sales_category: "",
-    stage: "one",
+    title: "",
+    quantity: "",
+    description: "",
+    price: "",
+    discount: "",
+    status: "",
+    category: "",
+    animals: [],
+    brands: [],
+    tags: [],
   };
 };
 
-export const defaultInitState: SetupState = {
-  address: "",
-  campany_name: "",
-  email: "",
-  first_name: "",
-  last_name: "",
-  sales_category: "",
-  stage: "one",
+export const defaultInitState: ProductState = {
+  title: "",
+  quantity: "",
+  description: "",
+  price: "",
+  discount: "",
+  status: "",
+  category: "",
+  animals: [],
+  brands: [],
+  tags: [],
 };
 
-export const createSetupStore = (initState: SetupState = defaultInitState) => {
-  return createStore<SetupStore>()(
+export const createPromotionStore = (
+  initState: ProductState = defaultInitState,
+) => {
+  return createStore<ProductStore>()(
     persist(
       (set) => ({
         ...initState,
-        nextStage: () =>
-          set((state) => {
-            if (state.stage === "one") {
-              return { stage: "two" };
-            }
-            if (state.stage === "two") {
-              return { stage: "three" };
-            }
-            return state;
-          }),
-        previousStage: () =>
-          set((state) => {
-            if (state.stage === "three") {
-              return { ...state, stage: "two" };
-            }
-            if (state.stage === "two") {
-              return { ...state, stage: "one" };
-            }
-            return state;
-          }),
-        setFirstName: (first_name: string) => set({ first_name }),
-        setLastName: (last_name: string) => set({ last_name }),
-        setEmail: (email: string) => set({ email }),
-        setSalesCategory: (sales_category: string) => set({ sales_category }),
-        setAddress: (address: string) => set({ address }),
-        setCompanyName: (campany_name: string) => set({ campany_name }),
-        resetStore: () => set(defaultInitState),
-        completeStage: () => set({ stage: "finished" }),
+        setTitle: (title: string) => set({ title }),
+        setQuantity: (quantity: string) => set({ quantity }),
+        setDescription: (description: string) => set({ description }),
+        setPrice: (price: string) => set({ price }),
+        setDiscount: (discount: string) => set({ discount }),
+        setStatus: (status: string) => set({ status }),
+        setCategory: (category: string) => set({ category }),
+        setAnimals: (animals: []) => set({ animals }),
+        setBrands: (brands: []) => set({ brands }),
+        setTags: (tags: []) => set({ tags }),
       }),
       {
-        name: "setup-account",
+        name: "create-product",
         storage: createJSONStorage(() => sessionStorage),
       },
     ),
