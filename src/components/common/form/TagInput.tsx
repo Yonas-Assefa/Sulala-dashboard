@@ -26,6 +26,7 @@ function TagInput({
 }: MultiTextInputProps) {
   const [value, setValue] = React.useState<string>("");
   const [values, setValues] = React.useState<string[]>(defaultValue || []);
+  const [toDelete, setToDelete] = React.useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (disabled) return;
@@ -47,6 +48,7 @@ function TagInput({
     if (e.key === "Enter" || e.key === "Tab") {
       e.preventDefault();
       e.stopPropagation();
+      if (toDelete !== "") setToDelete("");
       if (!value) return;
       setValues([...values, value]);
       setValue("");
@@ -55,9 +57,16 @@ function TagInput({
       e.preventDefault();
       e.stopPropagation();
       if (values.length === 0) return;
-      setValues(values.slice(0, -1));
-      emitVal && emitVal(values.slice(0, -1));
+
+      if (toDelete === "") {
+        setToDelete(values[values.length - 1]);
+      } else {
+        setValues(values.slice(0, -1));
+        setToDelete("");
+        emitVal && emitVal(values.slice(0, -1));
+      }
     } else {
+      if (toDelete !== "") setToDelete("");
       return;
     }
   };
@@ -90,7 +99,7 @@ function TagInput({
         {values.map((tag, index) => (
           <span
             key={index}
-            className="bg-primary inline-block text-white px-2 py-1 text-xs rounded-[30px]"
+            className={`inline-block text-white px-2 py-1 text-xs rounded-[30px] ${toDelete === tag ? "bg-danger" : "bg-primary"} transition-all`}
           >
             {tag}
             <button
