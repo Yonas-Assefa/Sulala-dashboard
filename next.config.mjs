@@ -12,12 +12,6 @@ const nextConfig = {
                 hostname: 'sulala.com',
                 port: '',
                 pathname: '/**',
-            },
-            {
-                protocol: 'https',
-                hostname: 'randomuser.me',
-                port: '',
-                pathname: '/**',
             }
         ],
         minimumCacheTTL: 60,
