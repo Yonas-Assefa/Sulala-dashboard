@@ -35,8 +35,9 @@ function SelectInput({
 }: CustomSelectInputProps) {
   const [options, setOptions] = React.useState<SelectInputSchema[]>(data || []);
 
-  const defaultSelected =
-    typeof defaultValue === "string" || typeof defaultValue === "number"
+  const defaultSelected = !defaultValue
+    ? []
+    : typeof defaultValue === "string" || typeof defaultValue === "number"
       ? nested
         ? options
             .map((option) => option.options)
