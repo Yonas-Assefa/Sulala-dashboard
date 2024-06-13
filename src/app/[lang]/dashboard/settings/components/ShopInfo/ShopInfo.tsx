@@ -37,16 +37,16 @@ function ShopInfo({ categories, shopInfo }: Props) {
         <TextInput
           id="shop_name"
           name="shop_name"
-          placeholder="Shop name"
-          label="Shop name"
+          placeholder={t("shop_name")}
+          label={t("shop_name")}
           error={formState?.fieldErrors?.name?.[0]}
           defaultValue={shopInfo.name}
         />
         <SelectInput
           id="categories"
           name="categories"
-          placeholder="Categories"
-          label="Categories"
+          placeholder={t("categories")}
+          label={t("categories")}
           error={formState?.fieldErrors?.category?.[0]}
           data={categories}
           defaultValue={shopInfo.categories}
@@ -55,16 +55,16 @@ function ShopInfo({ categories, shopInfo }: Props) {
         <TextInput
           id="legal_address"
           name="legal_address"
-          placeholder="Legal Address"
-          label="Legal Address"
+          placeholder={t("legal_address")}
+          label={t("legal_address")}
           error={formState?.fieldErrors?.legal_address?.[0]}
           defaultValue={shopInfo.legal_address}
         />
         <TextInput
           id="website"
           name="website"
-          placeholder="Website"
-          label="Website"
+          placeholder={t("website")}
+          label={t("website")}
           error={formState?.fieldErrors?.website?.[0]}
           defaultValue={shopInfo.website}
         />
