@@ -1,39 +1,45 @@
 "use client";
 import PrimaryButton from "@/components/common/ui/PrimaryButton";
 import { useRouter } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import React from "react";
+
+const ACCOUNTS = [
+  {
+    label: "farmer_account",
+    value: "farmer",
+    description: "farmer_account_description",
+    image: "/icons/app-and-play-store.png",
+  },
+  {
+    label: "driver_account",
+    value: "driver",
+    description: "deriver_account_description",
+    image: "/icons/app-and-play-store.png",
+  },
+  {
+    label: "vendor_account",
+    value: "vendor",
+    description: "vendor_account_description",
+    image: "/sulala-logo.svg",
+  },
+];
 
 type Props = {
   searchParams: {
     action: string;
   };
+  params: {
+    lang: string;
+  };
 };
 
-async function SelectAccount({ searchParams: { action } }: Props) {
+async function SelectAccount({
+  searchParams: { action },
+  params: { lang },
+}: Props) {
   const router = useRouter();
-  const ACCOUNTS = [
-    {
-      label: "Farmer Account",
-      value: "farmer",
-      description:
-        "showcase their livestock, crops, and agricultural products, connecting them with potential buyers and facilitating business growth in the Middle Eastern market.",
-      image: "/icons/app-and-play-store.png",
-    },
-    {
-      label: "Driver Account",
-      value: "driver",
-      description:
-        "offer their services for efficient transportation and logistics within the marketplace.",
-      image: "/icons/app-and-play-store.png",
-    },
-    {
-      label: "Vendor Account",
-      value: "vendor",
-      description:
-        "empowers sellers of equipment, tools, foods, and related products to reach a wide audience of animal enthusiasts and professionals in the Middle East",
-      image: "/sulala-logo.svg",
-    },
-  ];
+  const t = useTranslations("Auth");
 
   const submitForm = (formData: FormData) => {
     console.log({ formData: formData.get("account_type") });
@@ -50,7 +56,7 @@ async function SelectAccount({ searchParams: { action } }: Props) {
     <div className="text-black w-10/12 flex flex-col gap-5 items-center">
       {/* SIGN IN HEADER */}
       <h1 className="text-[30px] font-serif font-semibold">
-        Select Account Type
+        {t("select_account_type")}
       </h1>
 
       <form action={submitForm} className="flex flex-col gap-8 group">
@@ -67,15 +73,15 @@ async function SelectAccount({ searchParams: { action } }: Props) {
                   defaultChecked={i == 0}
                 />
                 <div className="collapse-title flex justify-between text-xl bg-tertiary font-medium peer-checked:bg-white peer-checked:text-primary peer-checked:font-bold transition-all">
-                  <h2>{item.label}</h2>
+                  <h2>{t(item.label)}</h2>
                 </div>
                 <img
                   src={item.image}
                   alt=""
-                  className="h-[20px] invisible peer-checked:visible absolute right-3 top-3"
+                  className={`h-[20px] invisible peer-checked:visible absolute top-3 ${lang == "ar" ? "left-3" : "right-3"}`}
                 />
                 <div className="collapse-content peer-checked:bg-gradient-to-b from-primary/0 to-primary/10">
-                  <p>{item.description}</p>
+                  <p>{t(item.description)}</p>
                 </div>
               </div>
             ))}
@@ -83,7 +89,7 @@ async function SelectAccount({ searchParams: { action } }: Props) {
         </div>
 
         <div className="flex justify-center w-full">
-          <PrimaryButton name="Continue" padding="sm" type="submit" />
+          <PrimaryButton name={t("continue")} padding="sm" type="submit" />
         </div>
       </form>
     </div>
