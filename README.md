@@ -14,7 +14,7 @@ Y88b  d88P Y88b 888 888 888  888 888 888  888
 <br />
 <div align="center">
   <a href="https://github.com/DevSulala/Sulala-ShopDashboard">
-    <img src="/public/sulala-logo.svg" alt="Logo" width="80" height="80">
+    <img src="https://avatars.githubusercontent.com/u/171445244?v=4" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Sulala Dashboard</h3>
