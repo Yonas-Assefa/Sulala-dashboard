@@ -12,3 +12,4 @@ yarn-error.log*
 .vscode
 Dockerfile
 docker-compose.yml
+nginx.conf
