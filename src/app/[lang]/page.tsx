@@ -65,7 +65,7 @@ export default function Landing({ params: { lang } }: Props) {
           <div>
             <SecondaryButton
               name={t("hero_button")}
-              href="/auth/select-account"
+              href="/auth/select-account?action=signup"
               padding="md"
             />
           </div>

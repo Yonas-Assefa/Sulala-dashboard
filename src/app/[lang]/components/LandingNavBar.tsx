@@ -67,13 +67,13 @@ function LandingNavBar({ lang }: { lang: string }) {
           </div>
           <div className=" flex flex-row gap-3 px-3">
             <Link
-              href={"/auth/select-account"}
+              href={"/auth/select-account?action=signin"}
               className="bg-primary border-gray-200 hover:border-primary text-white font-semibold border p-2 rounded-lg hover:bg-primary/90 hover:text-white transition-all btn"
             >
               {t("signin")}
             </Link>
             <Link
-              href={"/auth/select-account"}
+              href={"/auth/select-account?action=signup"}
               className="bg-white border-gray-200 hover:border-primary text-primary font-semibold border p-2 rounded-lg hover:bg-primary/90 hover:text-white transition-all btn"
             >
               {t("register")}
