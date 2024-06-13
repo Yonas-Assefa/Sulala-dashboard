@@ -1,4 +1,4 @@
-FROM node:20-alpine AS build
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
@@ -14,8 +14,10 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-COPY --from=build /app/* /*
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/static ./.next/static
 
 EXPOSE 3000
 
-CMD ["node", "start"]
+CMD ["node", "server.js"]
