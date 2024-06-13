@@ -1,6 +1,6 @@
 services:
 
-  nextjs:
+  dashboard:
     build:
       context: .
       dockerfile: Dockerfile
