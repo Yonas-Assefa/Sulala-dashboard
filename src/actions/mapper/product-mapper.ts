@@ -3,7 +3,7 @@ import { BASE_URL } from "../../config/urls";
 import { constructImageUrl } from "@/lib/images";
 import { animalMapper } from "./animal-mapper";
 
-export const productMapper = async (data: any) => {
+export const productMapper = async (data: any, manyImages: boolean) => {
   const categories = await getCategories();
   if (Array.isArray(data)) {
     return data.map((product: any) => {
@@ -13,7 +13,7 @@ export const productMapper = async (data: any) => {
           category.options.map((o: any) => o.value).includes(product.category),
         )?.label,
         category_value: product.category,
-        images: constructImageUrl(product.images, true),
+        images: constructImageUrl(product.images, !manyImages),
         animals: (animalMapper(product.animal_products) as []).map(
           (animal: any) => animal.value,
         ),
@@ -25,7 +25,7 @@ export const productMapper = async (data: any) => {
       category: getSubCategory(categories, data.category),
       category_value: data.category,
       tags: data.tags,
-      images: constructImageUrl(data.images, true),
+      images: constructImageUrl(data.images, !manyImages),
       animals: (animalMapper(data.animal_products) as []).map(
         (animal: any) => animal.value,
       ),
