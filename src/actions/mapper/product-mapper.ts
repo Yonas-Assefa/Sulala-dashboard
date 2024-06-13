@@ -3,7 +3,7 @@ import { BASE_URL } from "../../config/urls";
 import { constructImageUrl } from "@/lib/images";
 import { animalMapper } from "./animal-mapper";
 
-export const productMapper = async (data: any, manyImages: boolean) => {
+export const productMapper = async (data: any, manyImages?: boolean) => {
   const categories = await getCategories();
   if (Array.isArray(data)) {
     return data.map((product: any) => {
