@@ -130,9 +130,14 @@ _Below is an instruction of installing and setting up sulala app._
     GOOGLE_SECRET='GOCSPX-<google-secret>'
    ```
 
+5. Run in development mode
+   ```sh
+   npm run dev
+   ```
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-5. There is also `Dockerfile` and `docker-compose.yml` for quick start
+6. There is also `Dockerfile` and `docker-compose.yml` for quick start for production
    ```sh
     docker compose up --build -d
    ```
