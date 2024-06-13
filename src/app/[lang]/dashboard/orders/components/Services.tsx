@@ -11,6 +11,7 @@ import { getVendorsRevenueStas } from "@/actions/orders/get-vendors-revenue-stat
 
 async function Services() {
   const shopRevenueStat = await getVendorsRevenueStas();
+  await new Promise((resolve) => setTimeout(resolve, 4000));
 
   return (
     <>
