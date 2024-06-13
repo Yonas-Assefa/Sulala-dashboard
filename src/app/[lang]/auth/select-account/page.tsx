@@ -20,6 +20,13 @@ async function SelectAccount({ searchParams: { action } }: Props) {
       image: "/icons/app-and-play-store.png",
     },
     {
+      label: "Driver Account",
+      value: "driver",
+      description:
+        "offer their services for efficient transportation and logistics within the marketplace.",
+      image: "/icons/app-and-play-store.png",
+    },
+    {
       label: "Vendor Account",
       value: "vendor",
       description:
@@ -31,8 +38,7 @@ async function SelectAccount({ searchParams: { action } }: Props) {
   const submitForm = (formData: FormData) => {
     console.log({ formData: formData.get("account_type") });
     const selectedAccount = formData.get("account_type") as string;
-    if (selectedAccount === "farmer") {
-      // app store link
+    if (selectedAccount === "farmer" || selectedAccount === "driver") {
       window.location.href = "https://play.google.com/store/";
     } else if (selectedAccount === "vendor") {
       const href = action == "signup" ? "/auth/sign-up" : "/auth/sign-in";
