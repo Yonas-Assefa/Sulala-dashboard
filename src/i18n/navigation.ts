@@ -43,6 +43,7 @@ export const pathnames = {
   "/en": "/en",
 
   "/support/contact": "/support/contact",
+  "/support/faq": "/support/faq",
 
   // // If locales use different paths, you can
   // // specify each external path per locale.
