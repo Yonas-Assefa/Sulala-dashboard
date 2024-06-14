@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import { handleGoogleSignIn } from "@/actions/auth/ggoleSigninHelper";
 import { useTranslations } from 'next-intl';
 import ResendVerificationModal from "./modal/ResendVerificationModal";
+import ResendCreatePasswordModal from "./modal/ResendCreatePasswordModal";
 
 export const metadata: Metadata = {
   title: "Sulala | Auth Sign In",
@@ -19,6 +20,7 @@ function SignIn({ searchParams: { by }, params: { lang } }: SignupProps) {
   return (
     <>
       <ResendVerificationModal />
+      <ResendCreatePasswordModal />
       <div className="text-black w-10/12 flex flex-col gap-5 items-center">
         {/* SIGN IN HEADER */}
         <h1 className="text-3xl md:text-5xl font-serif font-semibold">{t('signin')}</h1>

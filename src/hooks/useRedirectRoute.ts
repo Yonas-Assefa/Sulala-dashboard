@@ -1,17 +1,20 @@
 import { FormState } from "@/utils/formStateHelper";
 import { usePathname, useRouter } from "@/i18n/navigation";
-import React from "react";
+import { useEffect, useRef } from "react";
 
 export const useRedirectRoute = (formState: FormState) => {
     const router = useRouter();
     const pathname = usePathname();
+    const prevTimestamp = useRef(formState.timestamp);
 
-    React.useEffect(() => {
-        if (
-            ["SUCCESS", "INFO", "ERROR"].includes(formState.status) &&
-            formState.redirectUrl &&
-            pathname !== formState.redirectUrl) {
+    const doRedirect =
+        formState.redirectUrl &&
+        formState.timestamp !== prevTimestamp.current &&
+        pathname !== formState.redirectUrl;
+
+    useEffect(() => {
+        if (doRedirect) {
             router.push(formState.redirectUrl as any);
         }
-    }, [formState.redirectUrl]);
+    }, [formState, doRedirect]);
 }

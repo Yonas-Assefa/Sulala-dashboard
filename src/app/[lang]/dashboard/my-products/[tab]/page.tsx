@@ -24,7 +24,7 @@ async function page({ params: { tab }, searchParams: { item } }: Props) {
   }
 
   const subcategoryLists = await getSubCategories();
-  const productTags = await getProductTags();
+  // const productTags = await getProductTags()
   const animals = await getAnimals();
   const brands = await getBrands();
   const product = item ? await getOneProduct(item) : null;
@@ -43,7 +43,7 @@ async function page({ params: { tab }, searchParams: { item } }: Props) {
       </div>
       <ProductForm
         categoryLists={subcategoryLists}
-        productTags={productTags}
+        // productTags={productTags}
         initialValue={product}
         tab={tab}
         animals={animals}

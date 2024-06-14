@@ -2,7 +2,7 @@
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { CHANGE_PASSWORD, } from '../../config/urls';
 import { changePasswordSettingSchema, } from '../schema/zod-schema';
-import { getRequestHeaders, getResponseErrorMessage, setBrowserCookie } from '../../lib/helper';
+import { getRequestHeaders, getResponseBody, getResponseErrorMessage, setBrowserCookie } from '../../lib/helper';
 import { revalidatePath } from 'next/cache';
 
 export const changePassword = async (
@@ -23,7 +23,7 @@ export const changePassword = async (
             body: JSON.stringify(data),
         });
 
-        const body = await response.json()
+        const body = await getResponseBody(response)
         if (!response.ok || !body.success) {
             const message = getResponseErrorMessage(body)
             throw new Error(message || 'Failed to submit form');

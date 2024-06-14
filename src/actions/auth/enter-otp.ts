@@ -3,7 +3,8 @@ import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateH
 import { CONFIRM_PHONE, VERIFY_PHONE } from '../../config/urls';
 import { otpVerificationSchema } from '../schema/zod-schema';
 import { cookies } from 'next/headers';
-import { getResponseErrorMessage, makeRequest, setBrowserCookie } from '../../lib/helper';
+import { getResponseBody, getResponseErrorMessage, makeRequest, setBrowserCookie } from '../../lib/helper';
+import { getPersonalInfo } from '../settings/get-personal-info';
 
 export const enterOtp = async (
     formState: FormState,
@@ -21,7 +22,7 @@ export const enterOtp = async (
             await makeRequest(VERIFY_PHONE, data, 'PATCH') :
             await makeRequest(CONFIRM_PHONE, data, 'POST')
 
-        const body = await response.json()
+        const body = await getResponseBody(response)
 
         if (!response.ok || !body.success) {
             throw new Error(getResponseErrorMessage(body) || 'Failed to verify phone number');
@@ -31,7 +32,11 @@ export const enterOtp = async (
 
         const successMessage = 'Verification successful!'
 
-        const redirectUrl = action === 'signup' ? '/auth/setup-account' : '/dashboard/settings'
+        const personalInfo = await getPersonalInfo()
+
+        const redirectUrl = action === 'signup' ?
+            '/auth/setup-account' : personalInfo?.is_superuser ?
+                '/dashboard/manage?filter=pending' : '/dashboard/settings'
 
         return toFormState('SUCCESS', successMessage, redirectUrl);
     } catch (error) {

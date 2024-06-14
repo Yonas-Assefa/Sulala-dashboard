@@ -2,7 +2,7 @@
 
 import { notFound } from "next/navigation"
 import { GET_PENDING_SHOPS } from "../../config/urls"
-import { getRequestHeaders } from "../../lib/helper"
+import { getRequestHeaders, getResponseBody } from "../../lib/helper"
 import { manageShopsMapper } from "../mapper/manage-shop-mapper"
 
 export const getPendingShops = async (formData: FormData) => {
@@ -14,7 +14,7 @@ export const getPendingShops = async (formData: FormData) => {
             tags: ['pending-shops']
         },
     })
-    const body = await response.json()
+    const body = await getResponseBody(response)
 
     if (!response.ok || !body.data) {
         throw new Error(body.message || 'Failed to get pending shops');
@@ -31,7 +31,7 @@ export const getOnePendingShop = async (vendor_id: string) => {
             tags: ['pending-shops']
         },
     })
-    const body = await response.json()
+    const body = await getResponseBody(response)
 
     if (!response.ok || !body.data) {
         if (response.status === 404) {

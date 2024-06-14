@@ -2,14 +2,14 @@
 
 import { notFound } from "next/navigation"
 import { PRODUCT_TAGS } from "../../config/urls"
-import { getRequestHeaders, makeRequest } from "../../lib/helper"
+import { getRequestHeaders, getResponseBody, makeRequest } from "../../lib/helper"
 
 export const getProductTags = async () => {
     const response = await fetch(PRODUCT_TAGS, {
         method: 'GET',
         headers: getRequestHeaders()
     })
-    const body = await response.json()
+    const body = await getResponseBody(response)
 
     if (!response.ok || !body.results) {
         if (response.status === 404) {

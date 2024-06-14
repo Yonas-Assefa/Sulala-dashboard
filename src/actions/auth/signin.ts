@@ -2,7 +2,7 @@
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { EMAIL_SIGNIN_URL, PHONE_SIGNIN_URL } from '../../config/urls';
 import { emailSignInSchema, phoneAuthSchema } from '../schema/zod-schema';
-import { getPhoneNumber, getResponseErrorMessage, setBrowserCookie } from '../../lib/helper';
+import { getPhoneNumber, getResponseBody, getResponseErrorMessage, setBrowserCookie } from '../../lib/helper';
 import { getPersonalInfo } from '../settings/get-personal-info';
 
 export const signIn = async (
@@ -36,11 +36,9 @@ export const signIn = async (
             body: JSON.stringify(data),
         });
 
-        const body = await response.json()
+        const body = await getResponseBody(response)
+
         if (!response.ok || !body.success) {
-            if (body.message == 'Password not set. set password') {
-                return toFormState('ERROR', 'Create password to continue', `/auth/create-password`);
-            }
             throw new Error(getResponseErrorMessage(body) || 'Failed to signin');
         }
 
@@ -50,9 +48,11 @@ export const signIn = async (
             'Signin successful!.' :
             'Check your message for the verification code'
 
-        const personalInfo = await getPersonalInfo()
-        const redirectUrl = personalInfo?.is_superuser ? '/dashboard/manage?filter=pending' :
-            ((by == 'email') ? '/dashboard/settings' : `/auth/enter-otp?phone=${data.phone_number}&action=signin`)
+        const personalInfo = (by == 'email') ? await getPersonalInfo() : null
+
+        const redirectUrl = (by == 'email') ? (
+            personalInfo?.is_superuser ? '/dashboard/manage?filter=pending' : '/dashboard/settings'
+        ) : `/auth/enter-otp?phone=${encodeURIComponent(data.phone_number!)}&action=signin`
 
         return toFormState('SUCCESS', successMessage, redirectUrl);
     } catch (error) {

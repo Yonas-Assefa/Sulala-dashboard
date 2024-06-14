@@ -3,17 +3,17 @@ import { BASE_URL } from "@/config/urls"
 export const constructImageUrl = (arg: string | string[], returnOne: boolean) => {
     if (Array.isArray(arg)) {
         if (arg.length === 0) {
-            return ''
+            return []
         }
         if (returnOne) {
-            return finalImageCleanup(`${cleanUrl(BASE_URL)}${cleanUrl(arg[0])}`)
+            return new URL(arg[0], BASE_URL).href
         }
-        return arg.map((url) => finalImageCleanup(`${cleanUrl(BASE_URL)}${cleanUrl(url)}`))
+        return arg.map((url) => new URL(url, BASE_URL).href)
     }
     if (!arg) {
         return ''
     }
-    return finalImageCleanup(`${cleanUrl(BASE_URL)}${cleanUrl(arg)}`)
+    return new URL(arg, BASE_URL).href
 }
 
 export const deconstructImageUrl = (url: string | string[]): string => {
@@ -23,24 +23,5 @@ export const deconstructImageUrl = (url: string | string[]): string => {
     if (Array.isArray(url)) {
         return deconstructImageUrl(url[0])
     }
-    return url.replace(`${cleanUrl(BASE_URL)}`, '/')
-}
-
-const cleanUrl = (url: string, end?: boolean) => {
-    let cleanedUrl = url
-    if (cleanedUrl.startsWith('/')) {
-        cleanedUrl = cleanedUrl.slice(1)
-    }
-    if (!cleanedUrl.endsWith('/')) {
-        cleanedUrl = `${cleanedUrl}/`
-    }
-    return cleanedUrl
-}
-
-const finalImageCleanup = (url: string) => {
-    const uid = `?uid=${new Date().getTime()}`
-    if (url.endsWith('/')) {
-        return url.slice(0, url.length - 1) + uid
-    }
-    return url + uid
+    return new URL(url, BASE_URL).pathname
 }

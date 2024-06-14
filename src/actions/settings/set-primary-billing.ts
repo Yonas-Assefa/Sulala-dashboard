@@ -2,7 +2,7 @@
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { SET_PRIMARY_BILLING, } from '../../config/urls';
 import { billingInfoSettingSchema, } from '../schema/zod-schema';
-import { getRequestHeaders, getResponseErrorMessage } from '../../lib/helper';
+import { getRequestHeaders, getResponseBody, getResponseErrorMessage } from '../../lib/helper';
 import { revalidatePath } from 'next/cache';
 
 export const setPrimaryBilling = async (
@@ -26,7 +26,7 @@ export const setPrimaryBilling = async (
             }),
         });
 
-        const body = await response.json()
+        const body = await getResponseBody(response)
         if (!response.ok || !body.success) {
             const message = getResponseErrorMessage(body)
             throw new Error(message || 'Failed to submit form');

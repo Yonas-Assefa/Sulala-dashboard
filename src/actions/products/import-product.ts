@@ -3,7 +3,7 @@
 import { PRODUCTS_IMPORT } from "@/config/urls";
 import { importProductsSchema } from "../schema/zod-schema";
 import { fromErrorToFormState, toFormState } from "@/utils/formStateHelper";
-import { changeObjToFormData, getMultiPartRequestHeaders, getResponseErrorMessage } from "@/lib/helper";
+import { changeObjToFormData, getMultiPartRequestHeaders, getResponseBody, getResponseErrorMessage } from "@/lib/helper";
 import { revalidatePath } from "next/cache";
 
 
@@ -20,7 +20,7 @@ export const importProduct = async (formData?: FormData) => {
             body: changeObjToFormData(result),
         });
 
-        const body = await response.json();
+        const body = await getResponseBody(response)
         if (!response.ok || !body?.success) {
             throw new Error(getResponseErrorMessage(body) || 'Failed to submit form');
         }

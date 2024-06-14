@@ -13,10 +13,14 @@ export const SIGNUP_URL = `${VENDOR_BASE_URL}register/`;
 export const SETUP_URL = `${VENDOR_BASE_URL}update_profile/`;
 export const PHONE_SIGNIN_URL = `${VENDOR_BASE_URL}login-with-phonenumber/`;
 export const EMAIL_SIGNIN_URL = `${VENDOR_BASE_URL}login-with-email/`;
-export const FORGOT_PASSWORD = `${VENDOR_BASE_URL}forgot-password/`;
+export const FORGOT_PASSWORD = `${VENDOR_BASE_URL}reset-password/`;
+export const CONTACT_SUPPORT = `${VENDOR_BASE_URL}contact-support/`;
+export const CONFIRM_RESET_PASSWORD = `${VENDOR_BASE_URL}confirm-reset-password/`;
 export const VERIFY_PHONE = `${VENDOR_BASE_URL}verify-phonenumber/`;
 export const RESEND_OTP = `${VENDOR_BASE_URL}resendOtp/`;
 export const RESEND_VERIFICATION_LINK = `${VENDOR_BASE_URL}resend_verification_link/`;
+export const RESEND_PASSWORD_SETUP_LINK = `${VENDOR_BASE_URL}send-set-password-link/`;
+export const CONFIRM_PASSWORD_SETUP = `${VENDOR_BASE_URL}confirm-set-password/`;
 export const CONFIRM_PHONE = `${VENDOR_BASE_URL}confirm_phonenumber_login/`;
 export const VERIFY_EMAIL = `${VENDOR_BASE_URL}verify-email/`;
 export const CREATE_PASSWORD = `${VENDOR_BASE_URL}set-password/`;
@@ -67,3 +71,7 @@ export const GET_PENDING_SHOPS = `${VENDOR_BASE_URL}review_vendor_registration/`
 export const APPROVE_SHOPS = `${VENDOR_BASE_URL}approve_vendor_registration/`;
 export const REJECT_SHOPS = `${VENDOR_BASE_URL}reject_vendor_registration/`;
 export const ACCEPT_SHOP_APPROVAL = `${VENDOR_BASE_URL}account-access-link/`;
+
+// OPEN TELEMETRY URLS
+export const SENTRY_DSN = process.env.SENTRY_DNS!;
+export const SENTRY_AUTH_TOKEN = process.env.SENTRY_AUTH_TOKEN!;

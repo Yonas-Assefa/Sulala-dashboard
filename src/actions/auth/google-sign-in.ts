@@ -1,6 +1,6 @@
 "use server";
 import { GOOGLE_SIGNIN_URL } from "@/config/urls";
-import { getPhoneNumber, setBrowserCookie } from "../../lib/helper";
+import { getPhoneNumber, getResponseBody, setBrowserCookie } from "../../lib/helper";
 
 import {
   FormState,
@@ -19,7 +19,7 @@ export const googleSingIn = async (accessToken: string) => {
       body: JSON.stringify({ access_token: accessToken }),
     });
 
-    const body = await response.json();
+    const body = await getResponseBody(response);
     if (!response.ok || !body.success) {
       throw new Error(body.message || "Failed to signin");
     }

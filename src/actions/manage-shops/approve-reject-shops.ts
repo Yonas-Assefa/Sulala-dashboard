@@ -3,7 +3,7 @@ import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateH
 import { APPROVE_SHOPS, CONFIRM_PHONE, REJECT_SHOPS, VERIFY_PHONE } from '../../config/urls';
 import { approveRejectShopsSchema } from '../schema/zod-schema';
 import { cookies } from 'next/headers';
-import { getRequestHeaders, getResponseErrorMessage, makeRequest, setBrowserCookie } from '../../lib/helper';
+import { getRequestHeaders, getResponseBody, getResponseErrorMessage, makeRequest, setBrowserCookie } from '../../lib/helper';
 import { revalidateTag } from 'next/cache';
 
 export const approveReject = async (
@@ -35,7 +35,7 @@ export const approveReject = async (
             body: JSON.stringify(dataToSend)
         })
 
-        const body = await response.json()
+        const body = await getResponseBody(response)
 
 
         if (!response.ok || !body.success) {

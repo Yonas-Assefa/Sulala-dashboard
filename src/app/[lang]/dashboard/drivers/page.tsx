@@ -18,7 +18,7 @@ async function page({
   searchParams: { search, filter, sort, sort_by },
 }: Props) {
   const promotions = await getPromotions(
-    changeObjToFormData({ search, filter, sort, sort_by })
+    changeObjToFormData({ search, filter, sort, sort_by }),
   );
 
   return (

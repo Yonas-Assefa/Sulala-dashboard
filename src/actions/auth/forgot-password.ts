@@ -2,7 +2,7 @@
 import { FormState, fromErrorToFormState, toFormState } from '@/utils/formStateHelper';
 import { FORGOT_PASSWORD } from '../../config/urls';
 import { emailSignUpSchema } from '../schema/zod-schema';
-import { getResponseErrorMessage, setBrowserCookie } from '../../lib/helper';
+import { getResponseBody, getResponseErrorMessage, setBrowserCookie } from '../../lib/helper';
 
 export const forgotPassword = async (
     formState: FormState,
@@ -22,16 +22,14 @@ export const forgotPassword = async (
             body: JSON.stringify(data),
         });
 
-        const body = await response.json()
+        const body = await getResponseBody(response)
         if (!response.ok || !body.success) {
             throw new Error(getResponseErrorMessage(body) || 'Failed to submit form');
         }
 
-        const successMessage = 'Check your email for the verification code'
+        const successMessage = body.message || 'Check your email for the reset link'
 
-        const redirectUrl = `/auth/enter-otp?email=${data.email}&action=reset-password`
-
-        return toFormState('SUCCESS', successMessage, redirectUrl);
+        return toFormState('SUCCESS', successMessage);
     } catch (error) {
         return fromErrorToFormState(error);
     }

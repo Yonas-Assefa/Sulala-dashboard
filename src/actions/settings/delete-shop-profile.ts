@@ -3,7 +3,7 @@
 import { FormState, toFormState } from "@/utils/formStateHelper"
 import { UPDATE_SHOP_ACCOUNT } from "../../config/urls"
 import { shopMapper } from "../mapper/shop-mapper"
-import { getMultiPartRequestHeaders, getRequestHeaders } from "../../lib/helper"
+import { getMultiPartRequestHeaders, getRequestHeaders, getResponseBody } from "../../lib/helper"
 import { revalidatePath } from "next/cache"
 
 export const deleteShopProfile = async (
@@ -15,7 +15,7 @@ export const deleteShopProfile = async (
         headers: getMultiPartRequestHeaders(),
         body: formData
     })
-    const body = await response.json()
+    const body = await getResponseBody(response)
 
     if (!response.ok || !body.success) {
         throw new Error(body.message || 'Failed to delete shop profile');

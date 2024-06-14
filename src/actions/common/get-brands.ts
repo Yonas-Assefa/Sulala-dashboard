@@ -2,7 +2,7 @@
 
 import { notFound } from "next/navigation"
 import { GET_BRANDS } from "../../config/urls"
-import { getRequestHeaders } from "../../lib/helper"
+import { getRequestHeaders, getResponseBody } from "../../lib/helper"
 import { brandMapper } from "../mapper/brand-mapper"
 
 export const getBrands = async () => {
@@ -10,7 +10,7 @@ export const getBrands = async () => {
         method: 'GET',
         headers: getRequestHeaders()
     })
-    const body = await response.json()
+    const body = await getResponseBody(response)
     if (!response.ok || !body.results) {
         if (response.status === 404) {
             notFound()
