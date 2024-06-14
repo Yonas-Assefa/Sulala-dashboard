@@ -7,10 +7,10 @@ import {
   orderItemSortData,
 } from "../schema/items/data";
 import { orderItemTableSchema } from "../schema/items/schema";
-import { getVendorsRevenueStas } from "@/actions/orders/get-vendors-revenue-stat";
+import { getVendorsRevenueStats } from "@/actions/orders/get-vendors-revenue-stat";
 import { getOrders } from "@/actions/orders/get-vendor-orders";
 async function Items() {
-  const shopRevenueStat = await getVendorsRevenueStas();
+  const shopRevenueStat = await getVendorsRevenueStats();
   const orders = await getOrders();
 
   return (
@@ -18,18 +18,18 @@ async function Items() {
       <div className="flex flex-col md:grid md:grid-cols-3 gap-5">
         <RevenueCard
           revenuePeriod="Total"
-          totalCurrentSale={shopRevenueStat.total_revenue}
-          totalCurrentFee={0}
+          totalCurrentSale={shopRevenueStat.total.revenue}
+          totalCurrentFee={shopRevenueStat.total.fee}
         />
         <RevenueCard
           revenuePeriod="Weekly"
-          totalCurrentSale={shopRevenueStat.weekly_sales}
-          totalCurrentFee={0}
+          totalCurrentSale={shopRevenueStat.weekly.revenue}
+          totalCurrentFee={shopRevenueStat.weekly.fee}
         />
         <RevenueCard
           revenuePeriod="Daily"
-          totalCurrentSale={shopRevenueStat.today_sales}
-          totalCurrentFee={0}
+          totalCurrentSale={shopRevenueStat.today.revenue}
+          totalCurrentFee={shopRevenueStat.today.fee}
         />
       </div>
 
