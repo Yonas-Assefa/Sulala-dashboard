@@ -13,9 +13,9 @@ function SideBarOptions() {
       >
         •&nbsp;•&nbsp;•
       </div>
-      <button
+      <a
         tabIndex={0}
-        className="dropdown-content z-[1] bg-tertiary md:dark:bg-gray-800 dark:bg-black menu p-2 md:shadow md:drop-shadow-lg rounded-box block absolute mt-3 mr-2 md:mt-0 md:mr-0 md:relative opacity-20 focus-within:opacity-100 md:opacity-100"
+        className="dropdown-content z-[1] bg-tertiary md:dark:bg-gray-800 dark:bg-black menu p-2 md:shadow md:drop-shadow-lg rounded-box block absolute mt-3 mr-2 md:mt-0 md:mr-0 md:relative opacity-20 focus-within:opacity-100 md:opacity-100 transition-all"
       >
         <div className="flex flex-row items-center justify-end gap-3 px-4">
           {/* LANGUAGE */}
@@ -25,7 +25,7 @@ function SideBarOptions() {
           {/* LOGOUT */}
           <LogoutSwitch />
         </div>
-      </button>
+      </a>
     </div>
   );
 }

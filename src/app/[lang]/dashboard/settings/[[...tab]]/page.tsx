@@ -32,7 +32,7 @@ async function SettingsPage({ params: { tab, lang } }: Props) {
       <LogoutModal />
       <ChangePasswordModal />
       <CreatePaymentMethodModal />
-      <div className="text-black dark:text-white bg-white dark:bg-black flex flex-col w-full h-full p-8 gap-10 overflow-y-scroll">
+      <div className="text-black dark:text-white flex flex-col w-full h-full p-8 gap-10 overflow-y-scroll">
         <h1 className="text-3xl md:text-4xl font-semibold font-serif">
           {t("settings")}
         </h1>
