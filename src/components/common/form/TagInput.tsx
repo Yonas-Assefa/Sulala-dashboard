@@ -87,7 +87,7 @@ function TagInput({
           value={item}
           key={i}
           hidden
-          onChange={() => {}}
+          onChange={() => { }}
         />
       ))}
       <p className="self-start text-black">
@@ -132,7 +132,7 @@ function TagInput({
           value={value}
           onChange={handleChange}
           onKeyDown={handleSubmit}
-          // {...props}
+        // {...props}
         />
         <div className="text-xs text-secondary absolute right-2">
           {values.length > 0 && (
