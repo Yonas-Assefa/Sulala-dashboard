@@ -107,16 +107,16 @@ const FAQ = [
 
 function page() {
   return (
-    <div className="w-full h-full flex flex-row overflow-hidden relative">
-      <div className="bg-gradient-to-b from-white to-primary/20 flex-grow">
+    <div className="w-full h-full flex flex-row relative">
+      <div className="bg-gradient-to-b from-white via-primary/20 to-white flex-grow">
         <div className="p-3 fixed">
           <BackButton />
         </div>
-        <div className="w-full h-full flex flex-col overflow-scroll pb-6 gap-8 justify-start items-center">
-          <h1 className="text-primary font-bold text-3xl underline">
+        <div className="w-full h-full flex flex-col mt-20 md:mt-0 gap-8 justify-start items-center">
+          <h1 className="text-primary font-bold text-2xl md:text-3xl underline">
             Frequently asked questions
           </h1>
-          <div className="join join-vertical w-2/3">
+          <div className="join join-vertical w-full md:w-2/3 px-1 md:px-0">
             {FAQ.map((faq, index) => (
               <div
                 className="collapse collapse-arrow join-item border border-secondary group"
