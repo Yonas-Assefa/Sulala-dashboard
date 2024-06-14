@@ -14,6 +14,7 @@ export const SETUP_URL = `${VENDOR_BASE_URL}update_profile/`;
 export const PHONE_SIGNIN_URL = `${VENDOR_BASE_URL}login-with-phonenumber/`;
 export const EMAIL_SIGNIN_URL = `${VENDOR_BASE_URL}login-with-email/`;
 export const FORGOT_PASSWORD = `${VENDOR_BASE_URL}reset-password/`;
+export const CONTACT_SUPPORT = `${VENDOR_BASE_URL}contact-support/`;
 export const CONFIRM_RESET_PASSWORD = `${VENDOR_BASE_URL}confirm-reset-password/`;
 export const VERIFY_PHONE = `${VENDOR_BASE_URL}verify-phonenumber/`;
 export const RESEND_OTP = `${VENDOR_BASE_URL}resendOtp/`;
