@@ -1,0 +1,37 @@
+[
+    {
+        "value": "pet-foods-and-treats",
+        "label": "Pet foods and treats",
+        "image": "/images/milktake-silver.svg"
+    },
+    {
+        "value": "pet-accessories",
+        "label": "Pet accessories",
+        "image": "/images/pet-horse-cattle-shampoo.svg"
+    },
+    {
+        "value": "pet-toys",
+        "label": "Pet toys",
+        "image": "/images/equigloss.svg"
+    },
+    {
+        "value": "pet-care",
+        "label": "Pet care",
+        "image": "/images/milktake-silver.svg"
+    },
+    {
+        "value": "pet-health",
+        "label": "Pet health",
+        "image": "/images/pet-horse-cattle-shampoo.svg"
+    },
+    {
+        "value": "pet-grooming",
+        "label": "Pet grooming",
+        "image": "/images/equigloss.svg"
+    },
+    {
+        "value": "pet-training",
+        "label": "Pet training",
+        "image": "/images/milktake-silver.svg"
+    }
+]

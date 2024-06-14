@@ -1,0 +1,17 @@
+"use server";
+import { SHOP_REVENUE_URL } from "@/config/urls";
+import { getRequestHeaders } from "@/lib/helper";
+
+export const getVendorsRevenueStas = async () => {
+  const shopRevenueResponse = await fetch(SHOP_REVENUE_URL, {
+    method: "GET",
+    headers: getRequestHeaders(),
+  });
+
+  const shopRevenueBody = await shopRevenueResponse.json();
+  if (!shopRevenueResponse || !shopRevenueBody.data) {
+    throw new Error(shopRevenueBody.message || "Failed to get shop revenue");
+  }
+
+  return shopRevenueBody.data;
+};

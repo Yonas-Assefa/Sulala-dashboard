@@ -1,0 +1,27 @@
+{
+    "id": "destination_type",
+    "label": "destination",
+    "value": "destination_type",
+    "options": [
+        {
+            "id": "LIST_OF_PRODUCTS",
+            "label": "lists_of_products",
+            "value": "LIST_OF_PRODUCTS",
+            "input": {
+                "id": "products",
+                "label": "products_list",
+                "placeholder": "select_products",
+                "type": "select",
+                "props": {
+                    "multi": true,
+                    "withImage": true
+                }
+            }
+        },
+        {
+            "id": "SHOP",
+            "label": "shops",
+            "value": "SHOP"
+        }
+    ]
+}
