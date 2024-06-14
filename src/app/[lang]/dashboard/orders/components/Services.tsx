@@ -7,10 +7,10 @@ import {
   orderServiceSortData,
 } from "../schema/services/data";
 import { orderServiceTableSchema } from "../schema/services/schema";
-import { getVendorsRevenueStats } from "@/actions/orders/get-vendors-revenue-stat";
+import { getVendorsRevenueStas } from "@/actions/orders/get-vendors-revenue-stat";
 
 async function Services() {
-  const shopRevenueStat = await getVendorsRevenueStats();
+  const shopRevenueStat = await getVendorsRevenueStas();
 
   return (
     <>
@@ -18,18 +18,18 @@ async function Services() {
         <div className="grid grid-cols-3 gap-5">
           <RevenueCard
             revenuePeriod="Total"
-            totalCurrentSale={shopRevenueStat.total.revenue}
-            totalCurrentFee={shopRevenueStat.total.fee}
+            totalCurrentSale={shopRevenueStat.total_revenue}
+            totalCurrentFee={6100}
           />
           <RevenueCard
             revenuePeriod="Weekly"
-            totalCurrentSale={shopRevenueStat.weekly.revenue}
-            totalCurrentFee={shopRevenueStat.weekly.fee}
+            totalCurrentSale={shopRevenueStat.weekly_sales}
+            totalCurrentFee={750}
           />
           <RevenueCard
             revenuePeriod="Daily"
-            totalCurrentSale={shopRevenueStat.today.revenue}
-            totalCurrentFee={shopRevenueStat.today.fee}
+            totalCurrentSale={shopRevenueStat.today_sales}
+            totalCurrentFee={750}
           />
         </div>
 

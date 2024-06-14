@@ -2,8 +2,7 @@ import { changeLocalToISODateOnly } from "@/utils/dateFormatter.util";
 import { BASE_URL } from "@/config/urls";
 
 export const ordersMapper = (orders: any) => {
-  console.log("orders before: ", { orders });
-  const modifeidOrders = orders?.map((order: any) => ({
+  const modifeidOrders = orders.map((order: any) => ({
     ...order,
     ordered_at: changeLocalToISODateOnly(order.ordered_at),
     order_items: order.order_items.map((order_item: any) => ({
@@ -17,5 +16,5 @@ export const ordersMapper = (orders: any) => {
 
   console.log("orders: ", modifeidOrders);
 
-  return modifeidOrders;
+  return [];
 };

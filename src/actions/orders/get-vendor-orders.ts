@@ -10,9 +10,9 @@ export const getOrders = async () => {
     headers: getRequestHeaders(),
   });
   const ordersBody = await ordersResponse.json();
-  if (!ordersResponse.ok || !ordersBody.data) {
+  if (!ordersResponse.ok || !ordersBody.results) {
     throw new Error(ordersBody.message || "Failed to get Orders");
   }
 
-  return await ordersMapper(ordersBody.data.results);
+  return await ordersMapper(ordersBody.results);
 };
