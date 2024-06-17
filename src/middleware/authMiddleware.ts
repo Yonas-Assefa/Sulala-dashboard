@@ -3,7 +3,7 @@ import {
   isAuthenticationRequiringPath,
   isUnauthenticationRequiringPath,
 } from "./handlers/middleware.handler";
-import { isAuthenticated } from "@/lib/detect";
+import { isAuthenticated } from "@/lib/detect/server";
 
 export async function authMiddleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;

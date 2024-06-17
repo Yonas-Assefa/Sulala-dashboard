@@ -1,5 +1,5 @@
 import { getPersonalInfo } from "@/actions/settings/get-personal-info";
-import { isAuthenticated } from "@/lib/detect";
+import { isAuthenticated } from "@/lib/detect/server";
 import { NextRequest, NextResponse } from "next/server";
 
 export const guardSetupAccount = async (request: NextRequest) => {

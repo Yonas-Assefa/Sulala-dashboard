@@ -45,6 +45,10 @@ export const pathnames = {
   "/support/contact": "/support/contact",
   "/support/faq": "/support/faq",
 
+  "/auth/download-app": "/auth/download-app",
+  "/auth/download-app?store=appstore": "/auth/download-app?store=appstore",
+  "/auth/download-app?store=playstore": "/auth/download-app?store=playstore",
+
   // // If locales use different paths, you can
   // // specify each external path per locale.
   // '/about': {

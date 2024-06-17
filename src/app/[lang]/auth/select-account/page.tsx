@@ -1,6 +1,7 @@
 "use client";
 import PrimaryButton from "@/components/common/ui/PrimaryButton";
 import { useRouter } from "@/i18n/navigation";
+import { isAndroid, isIphone } from "@/lib/detect/client";
 import { useTranslations } from "next-intl";
 import React from "react";
 
@@ -42,10 +43,15 @@ async function SelectAccount({
   const t = useTranslations("Auth");
 
   const submitForm = (formData: FormData) => {
-    console.log({ formData: formData.get("account_type") });
     const selectedAccount = formData.get("account_type") as string;
     if (selectedAccount === "farmer" || selectedAccount === "driver") {
-      window.location.href = "https://play.google.com/store/";
+      if (isAndroid()) {
+        window.location.href = "https://play.google.com/store";
+      } else if (isIphone()) {
+        window.location.href = "https://apps.apple.com/us/app/apple-store";
+      } else {
+        router.push("/auth/download-app?store=appstore");
+      }
     } else if (selectedAccount === "vendor") {
       const href = action == "signup" ? "/auth/sign-up" : "/auth/sign-in";
       router.push(href);
