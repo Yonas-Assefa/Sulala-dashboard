@@ -32,7 +32,7 @@ function Table({
   return (
     <>
       <DeleteProductModal deleteAction={actionOptions?.delete} />
-      <div className="overflow-x-scroll min-w-[900px] border rounded-[20px]">
+      <div className="overflow-x-visible min-w-[900px] border rounded-[20px]">
         <div className="flex justify-between p-3 items-center">
           <div className="flex items-center gap-4">
             <TableFilter filterData={filterData} />
