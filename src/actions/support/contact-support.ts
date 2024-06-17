@@ -6,11 +6,7 @@ import {
 } from "@/utils/formStateHelper";
 import { CONTACT_SUPPORT } from "../../config/urls";
 import { contactSupportSchema } from "../schema/zod-schema";
-import {
-  getResponseBody,
-  getResponseErrorMessage,
-  setBrowserCookie,
-} from "../../lib/helper";
+import { getResponseBody, getResponseErrorMessage } from "../../lib/helper";
 
 export const contactSupport = async (
   formState: FormState,
@@ -32,12 +28,11 @@ export const contactSupport = async (
     });
 
     const body = await getResponseBody(response);
-    if (!response.ok || !body.success) {
+    if (!response.ok) {
       throw new Error(getResponseErrorMessage(body) || "Failed to submit form");
     }
 
-    const successMessage =
-      body.message || "Contact form submitted successfully.";
+    const successMessage = "Contact form submitted successfully.";
 
     return toFormState("SUCCESS", successMessage);
   } catch (error) {
