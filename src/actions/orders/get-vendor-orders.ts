@@ -1,18 +1,27 @@
 "use server";
 
 import { ORDERS_URL } from "@/config/urls";
-import { getRequestHeaders } from "@/lib/helper";
+import { Fetch, getRequestHeaders } from "@/lib/helper";
 import { ordersMapper } from "../mapper/orders-mapper";
+import { getFilterSortOrdering } from "@/lib/table";
 
-export const getOrders = async () => {
-  const ordersResponse = await fetch(ORDERS_URL, {
+export const getOrders = async (formData: FormData) => {
+  const { search, status, ordering, page } = getFilterSortOrdering(formData);
+  const ordersResponse = await Fetch({
+    url: ORDERS_URL,
     method: "GET",
     headers: getRequestHeaders(),
+    params: {
+      search,
+      status,
+      ordering,
+      page,
+    },
   });
   const ordersBody = await ordersResponse.json();
-  if (!ordersResponse.ok || !ordersBody.results) {
+  if (!ordersResponse.ok || !ordersBody.data) {
     throw new Error(ordersBody.message || "Failed to get Orders");
   }
 
-  return await ordersMapper(ordersBody.results);
+  return await ordersMapper(ordersBody.data.results);
 };

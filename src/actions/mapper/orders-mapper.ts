@@ -14,7 +14,5 @@ export const ordersMapper = (orders: any) => {
     })),
   }));
 
-  console.log("orders: ", modifeidOrders);
-
-  return [];
+  return modifeidOrders;
 };

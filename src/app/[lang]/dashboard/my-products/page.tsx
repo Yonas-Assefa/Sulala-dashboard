@@ -15,8 +15,12 @@ import { changeObjToFormData } from "@/lib/helper";
 import { TableProps as Props } from "@/types/props.type";
 import ExportProductsModal from "./components/modals/ExportProductsModal";
 
-async function page({ searchParams: { search, filter, sort, sort_by } }: Props) {
-  const products = await getProducts(changeObjToFormData({ search, filter, sort, sort_by }));
+async function page({
+  searchParams: { search, filter, sort, sort_by },
+}: Props) {
+  const products = await getProducts(
+    changeObjToFormData({ search, filter, sort, sort_by })
+  );
   return (
     <>
       <ImportProductsModal />
@@ -24,19 +28,6 @@ async function page({ searchParams: { search, filter, sort, sort_by } }: Props) 
       <div className="text-black flex flex-col w-full h-full p-8 gap-10">
         {/* HEADER FOR MY PRODUCTS */}
         <ProductHead />
-
-        <Table
-          data={products}
-          filterData={productsFilterData}
-          tableSchema={productTableSchema}
-          sortData={productsSortData}
-          actionOptions={{
-            delete: {
-              action: deleteProduct,
-              formData: [{ formDataKey: "item_id", searchKey: "item" }],
-            },
-          }}
-        />
       </div>
     </>
   );

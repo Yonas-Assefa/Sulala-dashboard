@@ -4,19 +4,28 @@ import Services from "../components/Services";
 import ItemsLoading from "../components/ItemsPageSuspense";
 import ServicesLoading from "../components/ServicesPageSuspense";
 import { Suspense } from "react";
+import { TableProps } from "@/types/props.type";
 
 type Props = {
-  params: {
-    tab: string[];
+  params: { tab: string[] };
+  searchParams: {
+    search: string;
+    filter: string;
+    sort: string;
+    sort_by: string;
   };
-};
+} & TableProps;
 
-async function OrdersPage({ params: { tab } }: Props) {
+async function OrdersPage({
+  params: { tab },
+  searchParams: { search, filter, sort, sort_by },
+}: Props) {
   const activeTab = tab ? tab[0] : "items";
   const tabs = [
     { name: "Items", id: "items" },
     { name: "Services", id: "services" },
   ];
+
   return (
     <div className="text-black flex flex-col w-full h-full p-8 gap-10 overflow-y-scroll">
       <h1 className="text-5xl font-semibold font-serif">Orders</h1>
@@ -48,11 +57,11 @@ async function OrdersPage({ params: { tab } }: Props) {
       {/* TAB CONTENTS HERE */}
       {activeTab == "items" ? (
         <Suspense fallback={<ItemsLoading />}>
-          <Items />
+          <Items searchParams={{ search, filter, sort, sort_by }} />
         </Suspense>
       ) : activeTab == "services" ? (
         <Suspense fallback={<ServicesLoading />}>
-          <Services />
+          <Services searchParams={{ search, filter, sort, sort_by }} />
         </Suspense>
       ) : null}
     </div>
