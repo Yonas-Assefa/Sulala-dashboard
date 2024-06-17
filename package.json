@@ -23,7 +23,6 @@
     "libphonenumber-js": "^1.10.62",
     "lint-staged": "^15.2.5",
     "lodash": "^4.17.21",
-    "mobile-device-detect": "^0.4.3",
     "next": "14.2.3",
     "next-auth": "^4.24.7",
     "next-intl": "^3.14.1",
