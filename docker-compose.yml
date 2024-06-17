@@ -1,6 +1,7 @@
 services:
 
   dashboard:
+    image: sulala-dashboard
     build:
       context: .
       dockerfile: Dockerfile
