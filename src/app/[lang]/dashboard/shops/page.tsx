@@ -4,7 +4,7 @@ import { promotionFilterData, promotionSortData } from "./schema/data";
 import { promotionTableSchema } from "./schema/schema";
 import { TableProps as Props } from "@/types/props.type";
 import { changeObjToFormData } from "@/lib/helper";
-import { getPendingShops } from "@/actions/manage-shops/get-pending-shops";
+import { getPendingShops } from "@/actions/admin-manage/get-pending-shops";
 import { getTranslations } from "next-intl/server";
 
 async function page({

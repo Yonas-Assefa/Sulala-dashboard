@@ -2,7 +2,7 @@ import BackButton from "@/components/common/ui/BackButton";
 import React from "react";
 import VendorDetailForm from "./components/VendorDetailForm";
 import { Metadata } from "next";
-import { getOnePendingShop } from "@/actions/manage-shops/get-pending-shops";
+import { getOnePendingShop } from "@/actions/admin-manage/get-pending-shops";
 import { getTranslations } from "next-intl/server";
 
 type Props = {

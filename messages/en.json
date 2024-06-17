@@ -126,7 +126,8 @@
     "promotion": "Promotion",
     "drivers": "Drivers",
     "manage_shops": "Manage Shops",
-    "customer_support": "Customer Support"
+    "customer_support": "Customer Support",
+    "manage_customer_support": "Manage Customer Support"
   },
   "Dashboard": {
     "settings": "Settings",
@@ -289,7 +290,8 @@
     "reject": "Reject",
     "continue": "Continue",
     "reason": "Reason",
-    "type_here": "Type here"
+    "type_here": "Type here",
+    "manage_customer_support": "Manage Customer Support"
   },
   "Commons": {
     "instagram_link": "Instagram link",

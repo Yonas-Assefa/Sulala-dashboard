@@ -126,7 +126,8 @@
     "promotion": "ترقية",
     "drivers": "السائقين",
     "manage_shops": "إدارة المحلات التجارية",
-    "customer_support": "دعم العملاء"
+    "customer_support": "دعم العملاء",
+    "manage_customer_support": "إدارة دعم العملاء"
   },
   "Dashboard": {
     "settings": "إعدادات",
@@ -289,7 +290,8 @@
     "reject": "يرفض",
     "continue": "يكمل",
     "reason": "سبب",
-    "type_here": "أكتب هنا"
+    "type_here": "أكتب هنا",
+    "manage_customer_support": "إدارة دعم العملاء"
   },
   "Commons": {
     "instagram_link": "رابط الانستقرام",

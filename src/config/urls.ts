@@ -68,6 +68,8 @@ export const FACEBOOK_BASE_URL = "https://www.facebook.com/";
 
 // ADMIN URLS
 export const GET_PENDING_SHOPS = `${VENDOR_BASE_URL}review_vendor_registration/`;
+export const GET_SUPPORT_REQUESTS = `${VENDOR_BASE_URL}customer-support/`;
+export const ANSWER_SUPPORT_REQUESTS = `${VENDOR_BASE_URL}customer-support-response/`;
 export const APPROVE_SHOPS = `${VENDOR_BASE_URL}approve_vendor_registration/`;
 export const REJECT_SHOPS = `${VENDOR_BASE_URL}reject_vendor_registration/`;
 export const ACCEPT_SHOP_APPROVAL = `${VENDOR_BASE_URL}account-access-link/`;

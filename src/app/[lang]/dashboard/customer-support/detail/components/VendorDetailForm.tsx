@@ -1,5 +1,5 @@
 "use client";
-import { approveReject } from "@/actions/manage-shops/approve-reject-shops";
+import { approveReject } from "@/actions/admin-manage/approve-reject-shops";
 import DateInput from "@/components/common/form/DateInput";
 import ProfileImagePicker from "@/components/common/form/ProfileImagePicker";
 import RadioInput from "@/components/common/form/RadioInput";
