@@ -1,6 +1,6 @@
 import BackButton from "@/components/common/ui/BackButton";
 import React from "react";
-import VendorDetailForm from "./components/VendorDetailForm";
+import ClientDetailForm from "./components/ClientDetailForm";
 import { Metadata } from "next";
 import { getOnePendingShop } from "@/actions/admin-manage/get-pending-shops";
 import { getTranslations } from "next-intl/server";
@@ -33,7 +33,7 @@ async function page({ searchParams: { item } }: Props) {
           {t("customer_details")}
         </h2>
       </div>
-      <VendorDetailForm initialData={vendorDetail} />
+      <ClientDetailForm initialData={vendorDetail} />
     </div>
   );
 }

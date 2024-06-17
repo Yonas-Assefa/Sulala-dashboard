@@ -13,7 +13,9 @@ export async function guardMiddleware(request: NextRequest) {
   const isAtSetupAccount = pathname.includes("/auth/setup-account");
   const isAtCreatePassword = pathname.includes("/auth/create-password");
   const isAtDashboard = pathname.includes("/dashboard");
-  const isAtManageShop = pathname.includes("/dashboard/manage");
+  const isAtManage =
+    pathname.includes("/dashboard/shops") ||
+    pathname.includes("/dashboard/customer-support");
 
   // GUARD IMPLEMENTATION
   if (isAtSetupAccount) {
@@ -22,7 +24,7 @@ export async function guardMiddleware(request: NextRequest) {
     return guardCreatePassword(request);
   } else if (isAtDashboard) {
     return guardDashboard(request);
-  } else if (isAtManageShop) {
+  } else if (isAtManage) {
     return guardAdminOnly(request);
   } else {
     return;

@@ -10,7 +10,7 @@ export const guardSetupAccount = async (request: NextRequest) => {
   const personalInfo = await getPersonalInfo();
 
   if (personalInfo?.is_superuser)
-    return NextResponse.redirect(new URL("/dashboard/manage", request.url));
+    return NextResponse.redirect(new URL("/dashboard/shops", request.url));
 
   const shop = personalInfo?.shops?.[0];
   const stage = request.nextUrl.searchParams.get("stage");
@@ -55,7 +55,7 @@ export const guardCreatePassword = async (request: NextRequest) => {
   const personalInfo = await getPersonalInfo();
 
   if (personalInfo?.is_superuser)
-    return NextResponse.redirect(new URL("/dashboard/manage", request.url));
+    return NextResponse.redirect(new URL("/dashboard/shops", request.url));
 
   if (!personalInfo?.email_verified) {
     return NextResponse.redirect(
@@ -87,7 +87,7 @@ export const guardDashboard = async (request: NextRequest) => {
     ) {
       return;
     } else {
-      return NextResponse.redirect(new URL("/dashboard/manage", request.url));
+      return NextResponse.redirect(new URL("/dashboard/shops", request.url));
     }
   }
 

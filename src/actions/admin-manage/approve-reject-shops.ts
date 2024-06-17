@@ -58,7 +58,7 @@ export const approveReject = async (
 
     const successMessage = body.message || "Success";
 
-    const redirectUrl = "/dashboard/manage?filter=pending";
+    const redirectUrl = "/dashboard/shops?filter=pending";
 
     revalidateTag("pending-shops");
 

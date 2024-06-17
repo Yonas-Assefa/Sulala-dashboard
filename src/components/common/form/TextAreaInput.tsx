@@ -13,6 +13,8 @@ type Props = {
   onClear?: () => void;
   defaultValue?: string;
   required?: boolean;
+  disabled?: boolean;
+  className?: string;
 };
 
 function TextAreaInput({
@@ -25,6 +27,8 @@ function TextAreaInput({
   setValue,
   value,
   required,
+  disabled,
+  className,
 }: Props) {
   const props = {};
   if (value) {
@@ -43,7 +47,7 @@ function TextAreaInput({
     }
   }, []);
   return (
-    <div className="flex flex-col gap-3">
+    <div className={`flex flex-col gap-3 ${className}`}>
       <label htmlFor={id} className="self-start text-black dark:text-white">
         {label}
         {required && (
@@ -58,7 +62,8 @@ function TextAreaInput({
         id={id}
         defaultValue={defaultValue}
         placeholder={placeholder}
-        className={`textarea textarea-bordered rounded-[20px] textarea-lg w-full text-black ${error ? "bg-dangerlight border-danger" : "bg-white"}`}
+        disabled={disabled}
+        className={`textarea disabled:bg-white disabled:text-secondary disabled:border-secondary/50 textarea-bordered rounded-[20px] textarea-lg w-full text-black ${error ? "bg-dangerlight border-danger" : "bg-white"}`}
         {...props}
       ></textarea>
       {error && <span className="text-xs text-danger">{error}</span>}

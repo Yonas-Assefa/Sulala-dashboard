@@ -5,6 +5,7 @@ import {
   toFormState,
 } from "@/utils/formStateHelper";
 import {
+  ANSWER_SUPPORT_REQUESTS,
   APPROVE_SHOPS,
   CONFIRM_PHONE,
   REJECT_SHOPS,
@@ -27,25 +28,16 @@ export const answerSupportRequest = async (
 ) => {
   try {
     const data = {
-      status: formData.get("status"),
+      response: formData.get("response"),
+      id: formData.get("id"),
     };
-
-    if (data.status == "REJECT") {
-      Object.assign(data, { reason: formData.get("reason") });
-    }
 
     const validatedData = approveRejectShopsSchema.parse(data);
 
-    const URL = data.status == "APPROVE" ? APPROVE_SHOPS : REJECT_SHOPS;
-
-    const { status, ...dataToSend } = validatedData;
-
-    Object.assign(dataToSend, { id: formData.get("vendor_id") });
-
-    const response = await fetch(URL, {
+    const response = await fetch(ANSWER_SUPPORT_REQUESTS, {
       method: "PATCH",
       headers: getRequestHeaders(),
-      body: JSON.stringify(dataToSend),
+      body: JSON.stringify(validatedData),
     });
 
     const body = await getResponseBody(response);
@@ -58,9 +50,9 @@ export const answerSupportRequest = async (
 
     const successMessage = body.message || "Success";
 
-    const redirectUrl = "/dashboard/manage?filter=pending";
+    const redirectUrl = "/dashboard/customer-support?filter=pending";
 
-    revalidateTag("pending-shops");
+    revalidateTag("customer-support");
 
     return toFormState("SUCCESS", successMessage, redirectUrl);
   } catch (error) {

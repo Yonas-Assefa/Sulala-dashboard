@@ -275,6 +275,10 @@
     "vendor_details": "تفاصيل البائع",
     "customer_details": "تفاصيل العميل",
     "vendor_info": "معلومات البائع",
+    "customer_info": "معلومات العميل",
+    "email_address": "عنوان البريد الإلكتروني",
+    "full_name": "الاسم الكامل",
+    "message": "رسالة",
     "vendor_name": "اسم البائع",
     "vendor_phone_number": "رقم هاتف البائع",
     "vendor_email": "البريد الإلكتروني للمورد",
@@ -292,7 +296,11 @@
     "continue": "يكمل",
     "reason": "سبب",
     "type_here": "أكتب هنا",
-    "manage_customer_support": "إدارة دعم العملاء"
+    "manage_customer_support": "إدارة دعم العملاء",
+    "respond_to_customer": "الرد على العميل",
+    "response": "استجابة",
+    "enter_response_for_the_customer": "أدخل الاستجابة للعميل",
+    "send": "يرسل"
   },
   "Commons": {
     "instagram_link": "رابط الانستقرام",
