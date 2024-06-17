@@ -1,7 +1,7 @@
 import { TableSchema } from "@/types/table.type";
 
 export const orderItemBadgeColorSchema = {
-  new: "bg-[#edfbe6] text-[#1d7941]",
+  new: "bg-[#7fe14d] text-[#1d7941]",
   delivered: "bg-[#edfbe6] text-[#1d7941]",
   cancelled: "bg-[#f6f6f6] text-[#52565d]",
   in_delivery: "bg-[#fef6d0] text-[#43464c]",
@@ -14,12 +14,12 @@ export const orderItemTableSchema: TableSchema = {
   },
   schema: [
     {
-      key: "id",
+      key: "order_id",
       title: "№",
       type: "number",
     },
     {
-      key: "id",
+      key: "order_id",
       title: "Order number",
       type: "string",
       image: false,
@@ -38,12 +38,12 @@ export const orderItemTableSchema: TableSchema = {
       type: "date",
     },
     {
-      key: "total_price",
+      key: "price",
       title: "Price",
       type: "money",
     },
     {
-      key: "total_fee",
+      key: "fee",
       title: "Fee",
       type: "money",
     },
