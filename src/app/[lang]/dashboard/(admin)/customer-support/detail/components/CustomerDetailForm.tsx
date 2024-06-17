@@ -28,7 +28,7 @@ function CustomerDetailForm({ initialData }: Props) {
     <div className="w-full flex flex-col md:grid md:grid-cols-3 gap-3">
       <div className="bg-tertiary col-span-2 p-8 rounded-[40px] flex flex-col gap-3">
         <h3 className="font-semibold text-xl">{t("customer_info")}</h3>
-        <div className="max-w-[1300px] grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="max-w-[1300px] flex flex-col md:grid md:grid-cols-2 gap-3">
           <TextInput
             defaultValue={initialData?.full_name}
             disabled
