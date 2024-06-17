@@ -5,7 +5,7 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/tailwind-datepicker-react/dist/**/*.js"
+    "./node_modules/tailwind-datepicker-react/dist/**/*.js",
   ],
   theme: {
     extend: {
@@ -16,14 +16,14 @@ const config: Config = {
       },
       colors: {
         primary: "#176635",
-        secondary: '#a2a6ac',
-        tertiary: '#f6f6f6',
-        danger: '#f93e2d',
-        dangerlight: '#fee4e0'
-      }
+        secondary: "#a2a6ac",
+        tertiary: "#f6f6f6",
+        danger: "#f93e2d",
+        dangerlight: "#fee4e0",
+      },
     },
   },
-  darkMode: 'selector',
+  darkMode: "selector",
   plugins: [require("daisyui")],
 };
 export default config;
