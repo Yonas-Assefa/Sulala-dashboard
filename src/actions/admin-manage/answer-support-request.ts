@@ -41,7 +41,7 @@ export const answerSupportRequest = async (
 
     const redirectUrl = "/dashboard/customer-support?filter=pending";
 
-    revalidateTag("customer-support");
+    revalidateTag("support-requests");
 
     return toFormState("SUCCESS", successMessage, redirectUrl);
   } catch (error) {

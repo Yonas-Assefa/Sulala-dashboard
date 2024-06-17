@@ -4,9 +4,23 @@ import { notFound } from "next/navigation";
 import { GET_SUPPORT_REQUESTS } from "../../config/urls";
 import { getRequestHeaders, getResponseBody } from "../../lib/helper";
 import { manageCustomerSupport } from "../mapper/manage-customer-support-mapper";
+import { getFilterSortOrdering } from "@/lib/table";
 
 export const getSupportRequests = async (formData: FormData) => {
-  const response = await fetch(`${GET_SUPPORT_REQUESTS}`, {
+  const { status } = getFilterSortOrdering(formData);
+
+  const query = new URLSearchParams();
+  query.append(
+    "answered",
+    status.toLowerCase() == "answered" ? "true" : "false",
+  );
+
+  const URL =
+    !status || status.toLowerCase() == "all"
+      ? GET_SUPPORT_REQUESTS
+      : `${GET_SUPPORT_REQUESTS}?${query.toString()}`;
+
+  const response = await fetch(`${URL}`, {
     method: "GET",
     headers: getRequestHeaders(),
     next: {
