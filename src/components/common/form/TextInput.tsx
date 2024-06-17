@@ -56,7 +56,7 @@ function TextInput({
           type={type}
           placeholder={placeholder || "Type here"}
           name={name || "text-input"}
-          className={`input text-black w-full max-w-xs bg-transparent disabled:bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none ${disabled ? "opacity-40 cursor-not-allowed" : "opacity-100 cursor-auto"}`}
+          className={`input text-black disabled:text-secondary w-full max-w-xs bg-transparent disabled:bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none`}
           autoComplete={autoComplete || "false"}
           value={value}
           onChange={handleChange}

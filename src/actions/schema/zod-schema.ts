@@ -379,6 +379,18 @@ export const approveRejectShopsSchema = z.object({
     .optional(),
 });
 
+export const answerCustomerSupportSchema = z.object({
+  id: z.string({
+    message: "Id must be a string",
+  }),
+
+  response: z
+    .string({
+      message: "Response type is a required!",
+    })
+    .min(5, { message: "Minimun of 5 character long response is required" }),
+});
+
 export const importProductsSchema = z.object({
   csv_file: z
     .any()

@@ -22,7 +22,7 @@ export const getSupportRequests = async (formData: FormData) => {
   return manageCustomerSupport(body.results);
 };
 
-export const getOnePendingShop = async (vendor_id: string) => {
+export const getOneCustomerRequest = async (vendor_id: string) => {
   const response = await fetch(`${GET_SUPPORT_REQUESTS}`, {
     method: "GET",
     headers: getRequestHeaders(),

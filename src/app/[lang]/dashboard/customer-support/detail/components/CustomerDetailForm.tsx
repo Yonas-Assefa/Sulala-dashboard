@@ -13,7 +13,7 @@ import { useFormState } from "react-dom";
 type Props = {
   initialData: any;
 };
-function ClientDetailForm({ initialData }: Props) {
+function CustomerDetailForm({ initialData }: Props) {
   const t = useTranslations("Manage");
 
   const [formState, action] = useFormState(
@@ -30,32 +30,42 @@ function ClientDetailForm({ initialData }: Props) {
         <h3 className="font-semibold text-xl">{t("customer_info")}</h3>
         <div className="max-w-[1300px] grid grid-cols-1 md:grid-cols-2 gap-3">
           <TextInput
-            defaultValue={initialData?.vendor_name}
+            defaultValue={initialData?.full_name}
             disabled
             label={t("full_name")}
           />
           <TextInput
-            defaultValue={initialData?.vendor_email}
+            defaultValue={initialData?.email}
             disabled
             label={t("email_address")}
             type="email"
           />
           <TextAreaInput
-            defaultValue={initialData?.phone_number}
+            defaultValue={initialData?.message}
             disabled
             label={t("message")}
             className="col-span-2 h-[400px]"
+            autoFocus
           />
         </div>
       </div>
       <div className="bg-tertiary p-8 rounded-[40px] flex flex-col gap-3">
         <h3 className="font-semibold text-xl">{t("respond_to_customer")}</h3>
         <form action={action} className="max-w-[1300px] grid grid-cols-1 gap-3">
+          <input
+            type="text"
+            id="id"
+            hidden
+            name="id"
+            value={initialData?.id}
+            onChange={() => {}}
+          />
           <TextAreaInput
             name="response"
             id="response"
             label={t("response")}
             placeholder={t("enter_response_for_the_customer")}
+            error={formState?.fieldErrors?.response?.[0]}
           />
           <PrimaryButton name={t("send")} />
         </form>
@@ -64,4 +74,4 @@ function ClientDetailForm({ initialData }: Props) {
   );
 }
 
-export default ClientDetailForm;
+export default CustomerDetailForm;

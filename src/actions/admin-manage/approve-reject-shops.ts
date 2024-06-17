@@ -4,20 +4,12 @@ import {
   fromErrorToFormState,
   toFormState,
 } from "@/utils/formStateHelper";
-import {
-  APPROVE_SHOPS,
-  CONFIRM_PHONE,
-  REJECT_SHOPS,
-  VERIFY_PHONE,
-} from "../../config/urls";
+import { APPROVE_SHOPS, REJECT_SHOPS } from "../../config/urls";
 import { approveRejectShopsSchema } from "../schema/zod-schema";
-import { cookies } from "next/headers";
 import {
   getRequestHeaders,
   getResponseBody,
   getResponseErrorMessage,
-  makeRequest,
-  setBrowserCookie,
 } from "../../lib/helper";
 import { revalidateTag } from "next/cache";
 
@@ -53,8 +45,6 @@ export const approveReject = async (
     if (!response.ok || !body.success) {
       throw new Error(getResponseErrorMessage(body) || "Failed to submit form");
     }
-
-    setBrowserCookie(response);
 
     const successMessage = body.message || "Success";
 

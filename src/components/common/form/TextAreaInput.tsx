@@ -15,6 +15,7 @@ type Props = {
   required?: boolean;
   disabled?: boolean;
   className?: string;
+  autoFocus?: boolean;
 };
 
 function TextAreaInput({
@@ -29,6 +30,7 @@ function TextAreaInput({
   required,
   disabled,
   className,
+  autoFocus,
 }: Props) {
   const props = {};
   if (value) {
@@ -63,7 +65,8 @@ function TextAreaInput({
         defaultValue={defaultValue}
         placeholder={placeholder}
         disabled={disabled}
-        className={`textarea disabled:bg-white disabled:text-secondary disabled:border-secondary/50 textarea-bordered rounded-[20px] textarea-lg w-full text-black ${error ? "bg-dangerlight border-danger" : "bg-white"}`}
+        autoFocus={autoFocus}
+        className={`textarea focus:border-primary outline-none focus:outline-none disabled:bg-white disabled:text-secondary disabled:border-secondary/50 textarea-bordered rounded-[20px] textarea-lg w-full text-black ${error ? "bg-dangerlight border-danger" : "bg-white"}`}
         {...props}
       ></textarea>
       {error && <span className="text-xs text-danger">{error}</span>}

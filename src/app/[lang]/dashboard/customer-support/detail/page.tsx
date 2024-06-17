@@ -1,9 +1,10 @@
 import BackButton from "@/components/common/ui/BackButton";
 import React from "react";
-import ClientDetailForm from "./components/ClientDetailForm";
+import CustomerDetailForm from "./components/CustomerDetailForm";
 import { Metadata } from "next";
 import { getOnePendingShop } from "@/actions/admin-manage/get-pending-shops";
 import { getTranslations } from "next-intl/server";
+import { getOneCustomerRequest } from "@/actions/admin-manage/get-support-requests";
 
 type Props = {
   searchParams: {
@@ -15,12 +16,12 @@ type Props = {
 
 export const metadata: Metadata = {
   title: "Sulala | Admin Only",
-  description: "Approve or reject shops.",
+  description: "Respond to customer requests.",
   icons: ["/icons/key.svg"],
 };
 
 async function page({ searchParams: { item } }: Props) {
-  const vendorDetail = await getOnePendingShop(item);
+  const customerDetail = await getOneCustomerRequest(item);
   const t = await getTranslations("Manage");
 
   return (
@@ -33,7 +34,7 @@ async function page({ searchParams: { item } }: Props) {
           {t("customer_details")}
         </h2>
       </div>
-      <ClientDetailForm initialData={vendorDetail} />
+      <CustomerDetailForm initialData={customerDetail} />
     </div>
   );
 }
