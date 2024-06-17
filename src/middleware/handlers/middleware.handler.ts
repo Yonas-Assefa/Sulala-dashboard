@@ -1,15 +1,6 @@
 import { getPersonalInfo } from "@/actions/settings/get-personal-info";
-import { headers } from "next/headers";
+import { isAuthenticated } from "@/lib/detect";
 import { NextRequest, NextResponse } from "next/server";
-
-export const isAuthenticated = (request: NextRequest) => {
-  return !!request?.cookies?.get("access");
-};
-
-export const isMobile = () => {
-  const userAgent = headers().get("user-agent");
-  return /android.+mobile|ip(hone|[oa]d)/i.test(userAgent!);
-};
 
 export const guardSetupAccount = async (request: NextRequest) => {
   if (!isAuthenticated(request)) {

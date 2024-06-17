@@ -2,7 +2,7 @@ import BackButton from "@/components/common/ui/BackButton";
 import { Link, redirect } from "@/i18n/navigation";
 import React from "react";
 import { getTranslations } from "next-intl/server";
-import { isMobile } from "@/middleware/handlers/middleware.handler";
+import { isMobile } from "@/lib/detect";
 
 async function ContinueWithPhone() {
   const t = await getTranslations("Auth");
