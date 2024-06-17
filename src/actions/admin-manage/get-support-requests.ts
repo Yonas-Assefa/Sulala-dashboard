@@ -3,7 +3,7 @@
 import { notFound } from "next/navigation";
 import { GET_SUPPORT_REQUESTS } from "../../config/urls";
 import { getRequestHeaders, getResponseBody } from "../../lib/helper";
-import { manageCustomerSupport } from "../mapper/manage-customer-support";
+import { manageCustomerSupport } from "../mapper/manage-customer-support-mapper";
 
 export const getSupportRequests = async (formData: FormData) => {
   const response = await fetch(`${GET_SUPPORT_REQUESTS}`, {

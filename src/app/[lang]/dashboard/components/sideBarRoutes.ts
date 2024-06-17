@@ -51,7 +51,7 @@ const routes = [
     icon: "/icons/customer_support.svg",
     activeIcon: "/icons/customer_support_active.svg",
     name: "customer_support",
-    path: "/dashboard/customer-support?answered=false",
+    path: "/dashboard/customer-support?filter=pending",
     protected: true,
   },
 ];

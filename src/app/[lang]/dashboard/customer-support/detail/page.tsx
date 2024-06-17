@@ -30,7 +30,7 @@ async function page({ searchParams: { item } }: Props) {
           <BackButton />
         </div>
         <h2 className="capitalize text-2xl md:text-3xl">
-          {t("vendor_details")}
+          {t("customer_details")}
         </h2>
       </div>
       <VendorDetailForm initialData={vendorDetail} />

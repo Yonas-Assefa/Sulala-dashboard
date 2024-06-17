@@ -273,6 +273,7 @@
   "Manage": {
     "manage_shops": "Manage Shops",
     "vendor_details": "Vendor Details",
+    "customer_details": "Customer Details",
     "vendor_info": "Vendor Info",
     "vendor_name": "Vendor Name",
     "vendor_phone_number": "Vendor Phone Number",

@@ -1,16 +1,16 @@
 import React from "react";
 import Table from "@/components/common/table/Table";
 import { promotionFilterData, promotionSortData } from "./schema/data";
-import { promotionTableSchema } from "./schema/schema";
+import { customerSupportTableSchema } from "./schema/schema";
 import { TableProps as Props } from "@/types/props.type";
 import { changeObjToFormData } from "@/lib/helper";
-import { getPendingShops } from "@/actions/admin-manage/get-pending-shops";
 import { getTranslations } from "next-intl/server";
+import { getSupportRequests } from "@/actions/admin-manage/get-support-requests";
 
 async function page({
   searchParams: { search, filter, sort, sort_by },
 }: Props) {
-  const pendingShops: any = await getPendingShops(
+  const pendingShops: any = await getSupportRequests(
     changeObjToFormData({ search, filter, sort, sort_by }),
   );
   const t = await getTranslations("Manage");
@@ -29,7 +29,7 @@ async function page({
         <Table
           data={pendingShops}
           filterData={promotionFilterData}
-          tableSchema={promotionTableSchema}
+          tableSchema={customerSupportTableSchema}
           sortData={promotionSortData}
           actionOptions={{}}
         />

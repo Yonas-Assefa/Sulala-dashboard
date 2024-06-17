@@ -1,12 +1,11 @@
 import { TableSchema } from "@/types/table.type";
 
-export const promotionBadgeColorSchema = {
-  approved: "bg-[#edfbe6] text-[#1d7941]",
+export const customerSupportBadgeColorSchema = {
+  answered: "bg-[#edfbe6] text-[#1d7941]",
   pending: "bg-[#fef6d0] text-[#43464c]",
-  rejected: "bg-[#fde7e7] text-[#b91c1c]",
 };
 
-export const promotionTableSchema: TableSchema = {
+export const customerSupportTableSchema: TableSchema = {
   include: {
     checkbox: false,
     actions: {
@@ -15,34 +14,26 @@ export const promotionTableSchema: TableSchema = {
   },
   schema: [
     {
-      key: "vendor_name",
-      title: "Vendor Name",
+      key: "full_name",
+      title: "Full Name",
       type: "string",
     },
     {
-      key: "vendor_email",
-      title: "Vendor Email",
+      key: "email",
+      title: "Email Address",
       type: "string",
     },
     {
-      key: "phone_number",
-      title: "Phone Number",
+      key: "message",
+      title: "Message",
       type: "string",
     },
     {
-      key: "shop_address",
-      title: "Address",
+      key: "status",
+      title: "Status",
       type: "string",
-    },
-    {
-      key: "date",
-      title: "Date",
-      type: "date",
-    },
-    {
-      key: "shop_name",
-      title: "Shop Name",
-      type: "string",
+      badge: true,
+      schema_colors: customerSupportBadgeColorSchema,
     },
   ],
 };
