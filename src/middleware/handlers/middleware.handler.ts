@@ -81,7 +81,10 @@ export const guardDashboard = async (request: NextRequest) => {
   const personalInfo = await getPersonalInfo();
 
   if (personalInfo?.is_superuser) {
-    if (pathname.includes("/dashboard/manage")) {
+    if (
+      pathname.includes("/dashboard/shops") ||
+      pathname.includes("/dashboard/customer-support")
+    ) {
       return;
     } else {
       return NextResponse.redirect(new URL("/dashboard/manage", request.url));
@@ -101,7 +104,7 @@ export const guardDashboard = async (request: NextRequest) => {
   }
 };
 
-export const guardManageShop = async (request: NextRequest) => {
+export const guardAdminOnly = async (request: NextRequest) => {
   if (!isAuthenticated(request)) {
     return NextResponse.redirect(new URL("/auth/sign-in", request.url));
   }
