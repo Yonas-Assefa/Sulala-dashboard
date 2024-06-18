@@ -21,7 +21,7 @@ async function page(
         {/* HEADER FOR MY PRODUCTS */}
         <div className="flex flex-row justify-between">
           <h1 className="text-2xl md:text-4xl font-semibold font-serif">
-            {t("manage_customer_support")}
+            {t("manage_faqs")}
           </h1>
         </div>
 

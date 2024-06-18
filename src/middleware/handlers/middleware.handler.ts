@@ -83,7 +83,8 @@ export const guardDashboard = async (request: NextRequest) => {
   if (personalInfo?.is_superuser) {
     if (
       pathname.includes("/dashboard/shops") ||
-      pathname.includes("/dashboard/customer-support")
+      pathname.includes("/dashboard/customer-support") ||
+      pathname.includes("/dashboard/faq")
     ) {
       return;
     } else {
