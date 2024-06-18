@@ -2,7 +2,7 @@
 
 git fetch --tags
 
-current_branch=$(git symbolic-ref --short HEAD)
+# current_branch=$(git symbolic-ref --short HEAD)
 
 latest_tag=$(git describe --tags --abbrev=0)
 latest_tag=${latest_tag#v}
@@ -42,6 +42,6 @@ echo "Pushed to origin"
 
 echo "Tagging finished. New tag is $new_tag"
 
-sed -i "s/\"version\": \".*\"/\"version\": \"$major.$minor.$patch\"/g" package.json
-git add package.json
-echo "Updated package.json version to $major.$minor.$patch"
+# sed -i "s/\"version\": \".*\"/\"version\": \"$major.$minor.$patch\"/g" package.json
+# git add package.json
+# echo "Updated package.json version to $major.$minor.$patch"
