@@ -50,4 +50,7 @@ else
     echo "Pushed to origin"
 
     echo "Tagging finished. New tag is $new_tag"
+
+    sed -i "s/\"version\": \".*\"/\"version\": \"$major.$minor.$patch\"/g" package.json
+    echo "Updated package.json version to $major.$minor.$patch"
 fi
