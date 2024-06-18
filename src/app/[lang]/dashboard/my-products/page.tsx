@@ -15,8 +15,12 @@ import { changeObjToFormData } from "@/lib/helper";
 import { TableProps as Props } from "@/types/props.type";
 import ExportProductsModal from "./components/modals/ExportProductsModal";
 
-async function page({ searchParams: { search, filter, sort, sort_by } }: Props) {
-  const products = await getProducts(changeObjToFormData({ search, filter, sort, sort_by }));
+async function page({
+  searchParams: { search, filter, sort, sort_by, page, page_size },
+}: Props) {
+  const products = await getProducts(
+    changeObjToFormData({ search, filter, sort, sort_by, page, page_size }),
+  );
   return (
     <>
       <ImportProductsModal />

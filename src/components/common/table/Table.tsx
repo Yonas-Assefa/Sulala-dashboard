@@ -13,6 +13,7 @@ import {
   ActionOptions,
 } from "../../../types/table.type";
 import NoItemsFound from "../ui/NoItemsFound";
+import TablePagination from "./TablePagination";
 
 type Props = {
   filterData: FilterData;
@@ -55,6 +56,7 @@ function Table({
             <NoItemsFound />
           )}
         </table>
+        <TablePagination />
       </div>
     </>
   );

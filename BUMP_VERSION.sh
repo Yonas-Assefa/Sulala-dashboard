@@ -14,6 +14,7 @@ if [ "$current_branch" == "main" ]; then
     fi
     git tag -a latest -m "Latest version" "$(git rev-parse HEAD)"
     git push origin latest
+    echo "Only tags are pushed to origin, not the code"
 else
     IFS='.' read -r -a version_parts <<< "$latest_tag"
     major=${version_parts[0]}
