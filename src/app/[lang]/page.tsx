@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import LandingNavBar from "./components/LandingNavBar";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { LOCALES } from "@/i18n/config";
+import Image from "next/image";
 
 type Props = {
   params: {
@@ -43,10 +44,12 @@ export default function Landing({ params: { lang } }: Props) {
       <section className="min-h-screen min-w-screen bg-gradient-to-b relative from-primary to-primary/50 text-white grid grid-cols-1 md:grid-cols-2">
         <div className="h-full flex flex-col justify-between md:justify-center gap-12 py-24 md:py-4 items-center z-20 md:z-auto">
           <div className="flex flex-row justify-center items-center gap-3 ">
-            <img
+            <Image
               src="/sulala-logo-white.svg"
               alt=""
               className="w-12 md:w-16 aspect-square"
+              width={64}
+              height={64}
             />
             <h1 className="font-semibold text-4xl md:text-5xl font-serif space-x-2">
               {t("sulala")}
@@ -73,13 +76,24 @@ export default function Landing({ params: { lang } }: Props) {
         <div
           className={`h-full absolute -top-16 md:top-auto z-10 md:relative md:z-auto opacity-20 md:opacity-100 bg-gradient-to-l ${lang == "en" ? "from-black/60 to-black/0" : "to-black/60 from-black/0"} flex flex-col justify-center`}
         >
-          <img src="/images/sulala-pc-phone.png" alt="" />
+          <Image
+            src="/images/sulala-pc-phone.png"
+            alt=""
+            width={900}
+            height={900}
+          />
         </div>
       </section>
 
       <section className="min-h-screen min-w-screen bg-white grid grid-cols-1 md:grid-cols-5">
         <div className="md:col-span-2 absolute z-10 md:relative md:z-auto h-full opacity-20 md:opacity-100 flex flex-col justify-center items-center object-fill bg-gradient-to-r from-primary/15 to-primary/0">
-          <img src="/images/sulala-phone.png" alt="" className="h-3/3 w-1/2" />
+          <Image
+            src="/images/sulala-phone.png"
+            alt=""
+            className="h-3/3 w-1/2"
+            width={900}
+            height={900}
+          />
         </div>
         <div className="md:col-span-3 z-20 md:z-auto p-5 md:p-auto flex flex-col justify-center items-start gap-14 bg-gradient-to-r from-white to-primary/15">
           <h3 className="font-semibold text-primary text-3xl font-serif">
