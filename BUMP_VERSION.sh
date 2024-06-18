@@ -44,5 +44,4 @@ echo "Tagging finished. New tag is $new_tag"
 
 sed -i "s/\"version\": \".*\"/\"version\": \"$major.$minor.$patch\"/g" package.json
 git add package.json
-git commit -m "Bumped version to $major.$minor.$patch" -n
 echo "Updated package.json version to $major.$minor.$patch"
