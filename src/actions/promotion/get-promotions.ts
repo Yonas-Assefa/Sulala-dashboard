@@ -43,10 +43,17 @@ export const getPromotions = async (formData: FormData) => {
       getResponseErrorMessage(body.message) || "Failed to get promotions",
     );
   }
-  return promotionMapper({
-    data: body.results,
-    tableSearch: search_type == "table_search",
-  });
+
+  if (search_type == "table_search")
+    return promotionMapper({
+      data: body.results,
+      tableSearch: true,
+    });
+
+  return {
+    data: promotionMapper({ data: body.results }),
+    count: body.count,
+  };
 };
 
 export const getOnePromotion = async (promotion_id: string) => {

@@ -15,10 +15,15 @@ import {
 import NoItemsFound from "../ui/NoItemsFound";
 import TablePagination from "./TablePagination";
 
+type Meta = {
+  data: Data;
+  count: number;
+};
+
 type Props = {
   filterData: FilterData;
   tableSchema: TableSchema;
-  data: Data;
+  data: Meta | Data;
   sortData: SortSchema;
   actionOptions?: ActionOptions;
 };
@@ -26,12 +31,14 @@ type Props = {
 function Table({
   filterData,
   tableSchema,
-  data,
+  data: meta,
   sortData,
   actionOptions,
 }: Props) {
+  const data = "count" in meta ? meta.data : meta;
+  const count = "count" in meta ? meta.count : undefined;
   return (
-    <>
+    <div className="flex flex-col">
       <DeleteProductModal deleteAction={actionOptions?.delete} />
       <div className="overflow-x-visible min-w-[900px] border rounded-[20px]">
         <div className="flex justify-between p-3 items-center">
@@ -56,9 +63,9 @@ function Table({
             <NoItemsFound />
           )}
         </table>
-        <TablePagination />
       </div>
-    </>
+      <TablePagination count={count} />
+    </div>
   );
 }
 
