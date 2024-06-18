@@ -1,5 +1,20 @@
 #!/bin/bash
 
+recent_commit_message=$(git log -n 1)
+
+if [[ $recent_commit_message =~ (--patch|#patch) ]]; then
+  version_increment="--patch"
+elif [[ $recent_commit_message =~ (--minor|#minor) ]]; then
+  version_increment="--minor"
+elif [[ $recent_commit_message =~ (--major|#major) ]]; then
+  version_increment="--major"
+fi
+
+if [[ $recent_commit_message =~ \#skip ]]; then
+  echo "Skipping versioning script due to #skip directive in commit message."
+  exit 0
+fi
+
 git fetch --tags
 
 current_branch=$(git symbolic-ref --short HEAD)
@@ -15,8 +30,19 @@ else
     major=${version_parts[0]}
     minor=${version_parts[1]}
     patch=${version_parts[2]}
-
-    if [ "$1" == "--patch" ]; then
+    if [ "$version_increment" == "--patch" ]; then
+        echo "patch argument detected. Incrementing patch version"
+        patch=$((patch + 1))
+    elif [ "$version_increment" == "--minor" ]; then
+        echo "minor argument detected. Incrementing minor version"
+        minor=$((minor + 1))
+        patch=0
+    elif [ "$version_increment" == "--major" ]; then
+        echo "major argument detected. Incrementing major version"
+        major=$((major + 1))
+        minor=0
+        patch=0
+   elif [ "$1" == "--patch" ]; then
         echo "patch argument detected. Incrementing patch version"
         patch=$((patch + 1))
     elif [ "$1" == "--minor" ]; then
