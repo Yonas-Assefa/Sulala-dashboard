@@ -8,6 +8,10 @@ latest_tag=$(git describe --tags --abbrev=0)
 latest_tag=${latest_tag#v}
 
 if [ "$current_branch" == "main" ]; then
+    if git rev-parse -q --verify refs/tags/latest >/dev/null; then
+        git tag -d latest
+        git push --delete origin latest
+    fi
     git tag -a latest -m "Latest version" "$(git rev-parse HEAD)"
     git push origin latest
 else
