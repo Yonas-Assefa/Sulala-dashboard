@@ -5,7 +5,11 @@
 ### Added or Changed
 - Added this changelog
 - Added readme documentation
+- Grouped auth routes and page to '(admin)' group
+- i18n and l10n for (arabic and english) started
+- theme (dark mode and light mode) implmentation started 
 
 ### Removed
 
 - Some packages/libraries from acknowledgements I no longer use
+- Removed detect-device package, and implmented device detection manually
