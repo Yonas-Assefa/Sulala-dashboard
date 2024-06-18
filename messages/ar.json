@@ -125,7 +125,10 @@
     "settings": "إعدادات",
     "promotion": "ترقية",
     "drivers": "السائقين",
-    "manage_shops": "إدارة المحلات التجارية"
+    "manage_shops": "إدارة المحلات التجارية",
+    "customer_support": "دعم العملاء",
+    "manage_customer_support": "إدارة دعم العملاء",
+    "faq": "التعليمات"
   },
   "Dashboard": {
     "settings": "إعدادات",
@@ -271,7 +274,12 @@
   "Manage": {
     "manage_shops": "إدارة المحلات التجارية",
     "vendor_details": "تفاصيل البائع",
+    "customer_details": "تفاصيل العميل",
     "vendor_info": "معلومات البائع",
+    "customer_info": "معلومات العميل",
+    "email_address": "عنوان البريد الإلكتروني",
+    "full_name": "الاسم الكامل",
+    "message": "رسالة",
     "vendor_name": "اسم البائع",
     "vendor_phone_number": "رقم هاتف البائع",
     "vendor_email": "البريد الإلكتروني للمورد",
@@ -288,7 +296,13 @@
     "reject": "يرفض",
     "continue": "يكمل",
     "reason": "سبب",
-    "type_here": "أكتب هنا"
+    "type_here": "أكتب هنا",
+    "manage_customer_support": "إدارة دعم العملاء",
+    "respond_to_customer": "الرد على العميل",
+    "response": "استجابة",
+    "enter_response_for_the_customer": "أدخل الاستجابة للعميل",
+    "send": "يرسل",
+    "manage_faqs": "إدارة الأسئلة الشائعة"
   },
   "Commons": {
     "instagram_link": "رابط الانستقرام",

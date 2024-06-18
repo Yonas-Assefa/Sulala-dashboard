@@ -125,7 +125,10 @@
     "settings": "Settings",
     "promotion": "Promotion",
     "drivers": "Drivers",
-    "manage_shops": "Manage Shops"
+    "manage_shops": "Manage Shops",
+    "customer_support": "Customer Support",
+    "manage_customer_support": "Manage Customer Support",
+    "faq": "FAQ"
   },
   "Dashboard": {
     "settings": "Settings",
@@ -271,7 +274,12 @@
   "Manage": {
     "manage_shops": "Manage Shops",
     "vendor_details": "Vendor Details",
+    "customer_details": "Customer Details",
     "vendor_info": "Vendor Info",
+    "customer_info": "Customer Info",
+    "email_address": "Email Address",
+    "full_name": "Full Name",
+    "message": "Message",
     "vendor_name": "Vendor Name",
     "vendor_phone_number": "Vendor Phone Number",
     "vendor_email": "Vendor Email",
@@ -288,7 +296,13 @@
     "reject": "Reject",
     "continue": "Continue",
     "reason": "Reason",
-    "type_here": "Type here"
+    "type_here": "Type here",
+    "manage_customer_support": "Manage Customer Support",
+    "respond_to_customer": "Respond to Customer",
+    "response": "Response",
+    "enter_response_for_the_customer": "Enter response for the customer",
+    "send": "Send",
+    "manage_faqs": "Manage FAQs"
   },
   "Commons": {
     "instagram_link": "Instagram link",

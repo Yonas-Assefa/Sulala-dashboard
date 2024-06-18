@@ -4,10 +4,6 @@ const OrderPageSuspense = () => {
 
 export default OrderPageSuspense;
 
-
-const OrderPageSuspense2 = () => {
-    return <div>{/* Add your JSX here */}</div>;
-  };
-  
-  export  OrderPageSuspense2;
-  
+export const OrderPageSuspense2 = () => {
+  return <div>{/* Add your JSX here */}</div>;
+};

@@ -9,11 +9,12 @@ import { createProductSchema, updateProductSchema } from "../schema/zod-schema";
 import {
   changeObjToFormData,
   getMultiPartRequestHeaders,
-  getRequestHeaders,
   getResponseBody,
   getResponseErrorMessage,
 } from "../../lib/helper";
 import { revalidatePath } from "next/cache";
+import { ZodError } from "zod";
+import { CustomZodError } from "@/error/custom-zod.error";
 
 export const createUpdateProduct = async (
   formState: FormState,
@@ -68,6 +69,18 @@ export const createUpdateProduct = async (
 
     const body = await getResponseBody(response);
     if (!response.ok || !body.success) {
+      if (response.status == 409) {
+        if (body.errors) {
+          const fieldErrors = Object.keys(body.errors).reduce(
+            (acc, key) => {
+              acc[key as string] = [body.message, body.errors[key]];
+              return acc;
+            },
+            {} as Record<string, string[]>,
+          );
+          throw new CustomZodError(fieldErrors);
+        }
+      }
       const message = getResponseErrorMessage(body);
       throw new Error(message || "Failed to submit form");
     }

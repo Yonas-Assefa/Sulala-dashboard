@@ -15,10 +15,10 @@ import { TableProps as Props } from "@/types/props.type";
 import { changeObjToFormData } from "@/lib/helper";
 
 async function page({
-  searchParams: { search, filter, sort, sort_by },
+  searchParams: { search, filter, sort, sort_by, page, page_size },
 }: Props) {
   const promotions = await getPromotions(
-    changeObjToFormData({ search, filter, sort, sort_by }),
+    changeObjToFormData({ search, filter, sort, sort_by, page, page_size }),
   );
 
   return (

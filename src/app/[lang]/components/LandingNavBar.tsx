@@ -50,7 +50,7 @@ function LandingNavBar({ lang }: { lang: string }) {
         <nav
           className={`${direction == "going-up" ? "bg-white" : "bg-transparent"} transition-all z-40 flex flex-row justify-between items-center drop-shadow-lg fixed w-full`}
         >
-          <div className="text-black md:p-5 p-2 flex items-center gap-3 self-start">
+          <div className="text-black md:p-5 p-4 flex items-center gap-3 self-start">
             <img
               src={
                 direction == "going-up"
