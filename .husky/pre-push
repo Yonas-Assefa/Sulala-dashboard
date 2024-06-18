@@ -1,1 +1,22 @@
-./BUMP_VERSION.sh
+#!/bin/bash
+
+cd "$(git rev-parse --show-toplevel)"
+
+recent_commit_message=$(git log -n 1)
+
+if [[ $recent_commit_message =~ (--patch|#patch) ]]; then
+  version_increment="--patch"
+elif [[ $recent_commit_message =~ (--minor|#minor) ]]; then
+  version_increment="--minor"
+elif [[ $recent_commit_message =~ (--major|#major) ]]; then
+  version_increment="--major"
+else
+  version_increment="--patch"
+fi
+
+if [[ $recent_commit_message =~ \#skip ]]; then
+  echo "Skipping versioning script due to #skip directive in commit message."
+  exit 0
+fi
+
+./BUMP_VERSION.sh "$version_increment"
