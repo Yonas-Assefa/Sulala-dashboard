@@ -2,6 +2,12 @@
 
 git fetch --tags
 
+# check if tags were fetched, if not exit
+if [ $? -ne 0 ]; then
+    echo "Failed to fetch tags. Exiting..."
+    exit 0
+fi
+
 # current_branch=$(git symbolic-ref --short HEAD)
 
 latest_tag=$(git describe --tags --abbrev=0)
