@@ -1,7 +1,13 @@
 #!/bin/bash
 
 # Build the Docker image
-docker build -t sulala-dashboard ../
+docker build -t sulala-dashboard .  --progress=plain
+
+# check if the build was successful
+if [ $? -ne 0 ]; then
+  echo "Docker build failed"
+  exit 1
+fi
 
 # get latest tag from git
 latest_tag=$(git describe --tags --abbrev=0)
