@@ -42,6 +42,7 @@ export const IMAGE_TYPES = [
 
 export const fileRefine = {
   existFn: (file: any) => {
+    console.log("fiel probolem ; ", file);
     if (!file || file.size === 0 || file.name === undefined) return false;
     else return true;
   },
@@ -127,13 +128,13 @@ export const getPhoneNumber = ({
   const phone_number = !raw_phone_number
     ? ""
     : raw_phone_number?.toString()?.[0] == "0"
-    ? raw_phone_number.slice(1)
-    : raw_phone_number;
+      ? raw_phone_number.slice(1)
+      : raw_phone_number;
   const country_code = !raw_country_code
     ? ""
     : raw_country_code?.toString()?.[0] == "+"
-    ? raw_country_code
-    : `+${raw_country_code}`;
+      ? raw_country_code
+      : `+${raw_country_code}`;
   return `${country_code}${phone_number}`;
 };
 
@@ -316,6 +317,7 @@ type TFetch = {
 export const Fetch = async (args: TFetch) => {
   const { url, method, data, headers, params, cache, next } = args;
   const requestUrl = params ? buildUrlWithParams(url, params) : url;
+  console.log("request url: ", requestUrl, args.params);
 
   const options = {};
 

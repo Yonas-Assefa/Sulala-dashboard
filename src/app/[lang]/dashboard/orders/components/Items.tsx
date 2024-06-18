@@ -16,6 +16,7 @@ type SearchParams = {
   filter: string;
   sort: string;
   sort_by: string;
+  page_size: string;
 };
 
 type ItemsProps = {
@@ -23,8 +24,14 @@ type ItemsProps = {
 };
 
 async function Items({ searchParams }: ItemsProps) {
-  const { search, filter, sort, sort_by } = searchParams;
-  const ordersFormData = changeObjToFormData({ search, filter, sort, sort_by });
+  const { search, filter, sort, sort_by, page_size } = searchParams;
+  const ordersFormData = changeObjToFormData({
+    search,
+    filter,
+    sort,
+    sort_by,
+    page_size,
+  });
 
   const shopRevenueStat = await getVendorsRevenueStas();
   const orders = await getOrders(ordersFormData);

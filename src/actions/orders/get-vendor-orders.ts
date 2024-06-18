@@ -6,7 +6,9 @@ import { ordersMapper } from "../mapper/orders-mapper";
 import { getFilterSortOrdering } from "@/lib/table";
 
 export const getOrders = async (formData: FormData) => {
-  const { search, status, ordering, page } = getFilterSortOrdering(formData);
+  const { search, status, ordering, page, page_size } =
+    getFilterSortOrdering(formData);
+  console.log(search, status, ordering, page, page_size);
   const ordersResponse = await Fetch({
     url: ORDERS_URL,
     method: "GET",
@@ -16,6 +18,7 @@ export const getOrders = async (formData: FormData) => {
       status,
       ordering,
       page,
+      page_size,
     },
   });
   const ordersBody = await ordersResponse.json();

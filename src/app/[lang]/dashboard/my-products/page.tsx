@@ -21,6 +21,7 @@ async function page({
   const products = await getProducts(
     changeObjToFormData({ search, filter, sort, sort_by })
   );
+  console.log("prducts: ", products);
   return (
     <>
       <ImportProductsModal />
@@ -28,6 +29,19 @@ async function page({
       <div className="text-black flex flex-col w-full h-full p-8 gap-10">
         {/* HEADER FOR MY PRODUCTS */}
         <ProductHead />
+
+        <Table
+          data={products}
+          filterData={productsFilterData}
+          tableSchema={productTableSchema}
+          sortData={productsSortData}
+          actionOptions={{
+            delete: {
+              action: deleteProduct,
+              formData: [{ formDataKey: "item_id", searchKey: "item" }],
+            },
+          }}
+        />
       </div>
     </>
   );
