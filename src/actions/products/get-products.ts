@@ -13,7 +13,8 @@ import { notFound } from "next/navigation";
 import { getFilterSortOrdering } from "@/lib/table";
 
 export const getProducts = async (formData?: FormData) => {
-  const { search, status, ordering, page } = getFilterSortOrdering(formData);
+  const { search, status, ordering, page, page_size } =
+    getFilterSortOrdering(formData);
 
   const response = await Fetch({
     url: PRODUCTS,
@@ -27,6 +28,7 @@ export const getProducts = async (formData?: FormData) => {
       status,
       ordering,
       page,
+      page_size,
     },
   });
   const body = await getResponseBody(response);
@@ -35,7 +37,15 @@ export const getProducts = async (formData?: FormData) => {
     throw new Error(body.message || "Failed to get product");
   }
 
-  return await productMapper(body.results);
+  const data = await productMapper(body.results);
+
+  if (formData?.get("with_pagination"))
+    return {
+      data,
+      count: body.count,
+    };
+
+  return data;
 };
 
 export const getOneProduct = async (item: string) => {

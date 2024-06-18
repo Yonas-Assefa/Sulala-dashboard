@@ -19,7 +19,15 @@ async function page({
   searchParams: { search, filter, sort, sort_by, page, page_size },
 }: Props) {
   const products = await getProducts(
-    changeObjToFormData({ search, filter, sort, sort_by, page, page_size }),
+    changeObjToFormData({
+      search,
+      filter,
+      sort,
+      sort_by,
+      page,
+      page_size,
+      with_pagination: true,
+    }),
   );
   return (
     <>

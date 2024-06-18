@@ -62,8 +62,10 @@ function TablePagination({ count }: { count: number | undefined }) {
           <select
             name="page size"
             className="bg-primary text-white font-semibold"
+            value={page_size}
             onChange={handlePageSizeChange}
           >
+            <option value="1">1</option>
             <option value="5">5</option>
             <option value="10">10</option>
             <option value="20">20</option>

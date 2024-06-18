@@ -44,16 +44,16 @@ export const getPromotions = async (formData: FormData) => {
     );
   }
 
-  if (search_type == "table_search")
-    return promotionMapper({
-      data: body.results,
-      tableSearch: true,
-    });
+  if (formData?.get("with_pagination"))
+    return {
+      data: promotionMapper({ data: body.results }),
+      count: body.count,
+    };
 
-  return {
-    data: promotionMapper({ data: body.results }),
-    count: body.count,
-  };
+  return promotionMapper({
+    data: body.results,
+    tableSearch: true,
+  });
 };
 
 export const getOnePromotion = async (promotion_id: string) => {
