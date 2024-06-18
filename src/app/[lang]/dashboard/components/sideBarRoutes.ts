@@ -54,6 +54,13 @@ const routes = [
     path: "/dashboard/customer-support?filter=pending",
     protected: true,
   },
+  {
+    icon: "/icons/question.svg",
+    activeIcon: "/icons/question_active.svg",
+    name: "faq",
+    path: "/dashboard/faq",
+    protected: true,
+  },
 ];
 
 export default routes;

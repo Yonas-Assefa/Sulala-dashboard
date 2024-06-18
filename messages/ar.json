@@ -127,7 +127,8 @@
     "drivers": "السائقين",
     "manage_shops": "إدارة المحلات التجارية",
     "customer_support": "دعم العملاء",
-    "manage_customer_support": "إدارة دعم العملاء"
+    "manage_customer_support": "إدارة دعم العملاء",
+    "faq": "التعليمات"
   },
   "Dashboard": {
     "settings": "إعدادات",
