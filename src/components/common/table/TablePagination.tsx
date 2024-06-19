@@ -3,6 +3,7 @@ import { useCreateQueryString } from "@/hooks/useCreateQueryString";
 import { useTranslations } from "next-intl";
 import React from "react";
 
+const PAGE_SIZES = [1, 3, 5, 10, 20, 50];
 function TablePagination({ count }: { count: number | undefined }) {
   const { createQueryStringAndPush, searchParams } = useCreateQueryString();
   const page = searchParams.get("page") || 1;
@@ -76,11 +77,11 @@ function TablePagination({ count }: { count: number | undefined }) {
             value={page_size}
             onChange={handlePageSizeChange}
           >
-            <option value="1">1</option>
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="50">50</option>
+            {PAGE_SIZES.map((size) => (
+              <option key={size} value={size}>
+                {size}
+              </option>
+            ))}
           </select>
           <p>per page</p>
         </div>
