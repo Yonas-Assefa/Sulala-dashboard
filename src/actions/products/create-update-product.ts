@@ -25,7 +25,6 @@ export const createUpdateProduct = async (
       title: formData.get("product_name"),
       description: formData.get("description"),
       price: +(formData.get("price") || 0),
-      discounted_price: +(formData.get("discount") || 0),
       category: +(formData.get("category") || 0),
       inventory: +(formData.get("quantity") || 0),
       status: formData.get("status"),
