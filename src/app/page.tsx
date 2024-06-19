@@ -1,11 +1,10 @@
-import { redirect } from 'next/navigation'
-import React from 'react'
+import { DEFAULT_LOCALE } from "@/i18n/config";
+import { redirect } from "next/navigation";
+import React from "react";
 
 function page() {
-    redirect('/ar')
-    return (
-        <div></div>
-    )
+  redirect(`/${DEFAULT_LOCALE}`);
+  return <div></div>;
 }
 
-export default page
+export default page;

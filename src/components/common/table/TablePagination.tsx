@@ -56,7 +56,7 @@ function TablePagination({ count }: { count: number | undefined }) {
         <span className="text-sm text-gray-700 dark:text-gray-400">
           <span className="font-semibold text-primary ">
             {isPending ? (
-              <span className="loading loading-ball loading-sm text-primary"></span>
+              <span className="loading loading-bars loading-xs"></span>
             ) : (
               `${page} of ${Math.ceil(count / +page_size)}`
             )}
