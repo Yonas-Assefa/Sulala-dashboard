@@ -13,12 +13,14 @@ type Props = {
     filter: string;
     sort: string;
     sort_by: string;
+    page_size: string;
+    page: string;
   };
 } & TableProps;
 
 async function OrdersPage({
   params: { tab },
-  searchParams: { search, filter, sort, sort_by },
+  searchParams: { search, filter, sort, sort_by, page_size, page },
 }: Props) {
   const activeTab = tab ? tab[0] : "items";
   const tabs = [
@@ -57,11 +59,15 @@ async function OrdersPage({
       {/* TAB CONTENTS HERE */}
       {activeTab == "items" ? (
         <Suspense fallback={<ItemsLoading />}>
-          <Items searchParams={{ search, filter, sort, sort_by }} />
+          <Items
+            searchParams={{ search, filter, sort, sort_by, page_size, page }}
+          />
         </Suspense>
       ) : activeTab == "services" ? (
         <Suspense fallback={<ServicesLoading />}>
-          <Services searchParams={{ search, filter, sort, sort_by }} />
+          <Services
+            searchParams={{ search, filter, sort, sort_by, page_size }}
+          />
         </Suspense>
       ) : null}
     </div>

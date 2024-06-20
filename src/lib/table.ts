@@ -2,6 +2,7 @@ export const getFilterSortOrdering = (formData?: FormData) => {
   const search = formData?.get("search") || "";
   const filter = (formData?.get("filter") || "").toString()?.toUpperCase();
   const status = filter == "ALL" ? "" : filter;
+  const page_size = formData?.get("page_size") || "";
 
   const sort_by = formData?.get("sort_by") || "";
   const sort = formData?.get("sort") || "";
@@ -11,7 +12,6 @@ export const getFilterSortOrdering = (formData?: FormData) => {
   if (sort) ordering += sort;
 
   const page = formData?.get("page") || 1;
-  const page_size = formData?.get("page_size") || 10;
 
   return { search, status, ordering, page, page_size };
 };

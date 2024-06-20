@@ -114,6 +114,7 @@
     "deriver_account_description": "تقديم خدماتهم للنقل والخدمات اللوجستية الفعالة داخل السوق.",
     "vendor_account": "حساب البائع",
     "vendor_account_description": "قم بتسجيل عملك وتحميل منتجاتك على لوحة تحكم Sulala للوصول إلى جمهور واسع من مربي الحيوانات ومحبي الحيوانات الأليفة في الشرق الأوسط...",
+
     "yes": "نعم",
     "cancel": "يلغي"
   },
@@ -269,17 +270,17 @@
     "enter_discount_in_%": "أدخل الخصم في٪",
     "animal_and_branding": "الحيوان والعلامات التجارية",
     "animals": "الحيوانات",
-    "brand": "ماركة"
+    "brand": "ماركة",
+    "customer_details": "تفاصيل العميل",
+    "customer_info": "معلومات العميل",
+    "email_address": "عنوان البريد الإلكتروني",
+    "full_name": "الاسم الكامل",
+    "message": "رسالة"
   },
   "Manage": {
     "manage_shops": "إدارة المحلات التجارية",
     "vendor_details": "تفاصيل البائع",
-    "customer_details": "تفاصيل العميل",
     "vendor_info": "معلومات البائع",
-    "customer_info": "معلومات العميل",
-    "email_address": "عنوان البريد الإلكتروني",
-    "full_name": "الاسم الكامل",
-    "message": "رسالة",
     "vendor_name": "اسم البائع",
     "vendor_phone_number": "رقم هاتف البائع",
     "vendor_email": "البريد الإلكتروني للمورد",
@@ -363,7 +364,10 @@
     "phone_number": "رقم التليفون",
     "pdf_or_image_file,_maximum_5_mb": "ملف PDF أو صورة، بحد أقصى 5 ميغابايت",
     "search_countries": "دول البحث",
-    "continue": "يكمل"
+    "continue": "يكمل",
+    "pagination_showing": "عرض",
+    "pagination_of": "ل",
+    "pagination_orders": "طلبات"
   },
   "Error": {
     "trouble_loading_page": "عذرًا، نواجه بعض المشاكل في تحميل الصفحة الآن",

@@ -363,7 +363,10 @@
     "phone_number": "Phone Number",
     "pdf_or_image_file,_maximum_5_mb": "PDF or image file, maximum 5 MB",
     "search_countries": "Search countries",
-    "continue": "Continue"
+    "continue": "Continue",
+    "pagination_showing": "Showing",
+    "pagination_of": "of",
+    "pagination_orders": "orders"
   },
   "Error": {
     "trouble_loading_page": "We're sorry, we're having some trouble loading the page right now",
