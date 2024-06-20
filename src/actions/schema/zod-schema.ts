@@ -122,7 +122,6 @@ export const createProductSchema = z.object({
     .string()
     .min(1, "Description must be at least 1 character long"),
   price: z.number().min(1, "Price must be at least 1"),
-  discounted_price: z.number().min(0, "Discounted price must be at least 0"),
   category: z.number().min(1, "Please choose at least one category"),
   images: z.array(
     z

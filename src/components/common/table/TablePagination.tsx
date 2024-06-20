@@ -3,38 +3,46 @@ import { useCreateQueryString } from "@/hooks/useCreateQueryString";
 import { useTranslations } from "next-intl";
 import React from "react";
 
+const PAGE_SIZES = [1, 3, 5, 10, 20, 50];
 function TablePagination({ count }: { count: number | undefined }) {
   const { createQueryStringAndPush, searchParams } = useCreateQueryString();
   const page = searchParams.get("page") || 1;
   const page_size = searchParams.get("page_size") || 10;
+  const [isPending, startTransition] = React.useTransition();
 
   const t = useTranslations("Commons");
 
   const handleNextClick = () => {
-    createQueryStringAndPush([
-      { key: "page", value: +page + 1 + "" },
-      { key: "page_size", value: page_size + "" },
-    ]);
+    startTransition(() => {
+      createQueryStringAndPush([
+        { key: "page", value: +page + 1 + "" },
+        { key: "page_size", value: page_size + "" },
+      ]);
+    });
   };
 
   const handlePreviousClick = () => {
-    createQueryStringAndPush([
-      { key: "page", value: +page - 1 + "" },
-      { key: "page_size", value: page_size + "" },
-    ]);
+    startTransition(() => {
+      createQueryStringAndPush([
+        { key: "page", value: +page - 1 + "" },
+        { key: "page_size", value: page_size + "" },
+      ]);
+    });
   };
 
   const handlePageSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    createQueryStringAndPush([
-      { key: "page", value: "1" },
-      { key: "page_size", value: e.target.value },
-    ]);
+    startTransition(() => {
+      createQueryStringAndPush([
+        { key: "page", value: "1" },
+        { key: "page_size", value: e.target.value },
+      ]);
+    });
   };
 
   if (!count) return null;
 
   return (
-    <div className="flex flex-col items-center opacity-70 hover:opacity-100">
+    <div className="flex relative flex-col items-center opacity-70 hover:opacity-100">
       <span className="text-sm text-gray-700 dark:text-gray-400">
         {/* Showing <span className="font-semibold text-gray-900 ">1</span> to <span className="font-semibold text-gray-900 ">10</span> of <span className="font-semibold text-gray-900 ">100</span> Entries */}
       </span>
@@ -48,7 +56,11 @@ function TablePagination({ count }: { count: number | undefined }) {
         </button>
         <span className="text-sm text-gray-700 dark:text-gray-400">
           <span className="font-semibold text-primary ">
-            {page} of {Math.ceil(count / +page_size)}
+            {isPending ? (
+              <span className="loading loading-bars loading-xs"></span>
+            ) : (
+              `${page} of ${Math.ceil(count / +page_size)}`
+            )}
           </span>
         </span>
         <button
@@ -65,11 +77,11 @@ function TablePagination({ count }: { count: number | undefined }) {
             value={page_size}
             onChange={handlePageSizeChange}
           >
-            <option value="1">1</option>
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="50">50</option>
+            {PAGE_SIZES.map((size) => (
+              <option key={size} value={size}>
+                {size}
+              </option>
+            ))}
           </select>
           <p>per page</p>
         </div>

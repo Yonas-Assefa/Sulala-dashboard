@@ -179,6 +179,100 @@ export default function Landing({ params: { lang } }: Props) {
         </div>
       </section>
 
+      <section className="min-h-screen min-w-screen bg-white grid grid-cols-1 md:grid-cols-5">
+        <div className="md:col-span-2 absolute z-10 md:relative md:z-auto h-full opacity-20 md:opacity-100 flex flex-col justify-center items-center object-fill bg-gradient-to-r from-primary/15 to-primary/0">
+          <Image
+            src="/images/sulala-phone.png"
+            alt=""
+            className="h-3/3 w-1/2"
+            width={900}
+            height={900}
+          />
+        </div>
+        <div className="md:col-span-3 z-20 md:z-auto p-5 md:p-auto flex flex-col justify-center items-start gap-14 bg-gradient-to-r from-white to-primary/15">
+          <h3 className="font-semibold text-primary text-3xl font-serif">
+            {t("what_we_provide")}
+          </h3>
+          <ul className="flex flex-col gap-4">
+            <li className="flex flex-row gap-2">
+              <img
+                src="/icons/shopping_bag_active.svg"
+                alt=""
+                className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]"
+              />
+              <div className="w-full md:w-2/3">
+                <h6 className="text-primary text-lg font-semibold font-serif">
+                  {t("orders")}
+                </h6>
+                <p className="text-black text-sm italic">
+                  {t("orders_description")}
+                </p>
+              </div>
+            </li>
+            <li className="flex flex-row gap-2">
+              <img
+                src="/icons/storefront_active.svg"
+                alt=""
+                className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]"
+              />
+              <div className="w-full md:w-2/3">
+                <h6 className="text-primary text-lg font-semibold font-serif">
+                  {t("products")}
+                </h6>
+                <p className="text-black text-sm italic">
+                  {t("products_description")}
+                </p>
+              </div>
+            </li>
+            <li className="flex flex-row gap-2">
+              <img
+                src="/icons/medical_services_active.svg"
+                alt=""
+                className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]"
+              />
+              <div className="w-full md:w-2/3">
+                <h6 className="text-primary text-lg font-semibold font-serif">
+                  {t("services")}
+                </h6>
+                <p className="text-black text-sm italic">
+                  {t("services_description")}
+                </p>
+              </div>
+            </li>
+            <li className="flex flex-row gap-2">
+              <img
+                src="/icons/whatshot_active.svg"
+                alt=""
+                className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]"
+              />
+              <div className="w-full md:w-2/3">
+                <h6 className="text-primary text-lg font-semibold font-serif">
+                  {t("promotions")}
+                </h6>
+                <p className="text-black text-sm italic">
+                  {t("promotions_description")}
+                </p>
+              </div>
+            </li>
+            <li className="flex flex-row gap-2">
+              <img
+                src="/icons/command_active.svg"
+                alt=""
+                className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]"
+              />
+              <div className="w-full md:w-2/3">
+                <h6 className="text-primary text-lg font-semibold font-serif">
+                  {t("drivers")}
+                </h6>
+                <p className="text-black text-sm italic">
+                  {t("drivers_description")}
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
       <footer className="bg-primary w-full flex flex-col items-center">
         <div className="grid grid-cols-2 md:grid-cols-5 p-4 gap-3 md:gap-0 md:w-2/3">
           <div className="flex flex-col gap-3">

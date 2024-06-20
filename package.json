@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky",
+    "tag:version": "./scripts/git/BUMP_VERSION.sh",
+    "docker:build": "./scripts/docker/ALL.sh",
     "test": "vitest run"
   },
   "dependencies": {

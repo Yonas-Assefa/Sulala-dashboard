@@ -10,6 +10,7 @@ import { EMPTY_FORM_STATE, FormState } from "@/utils/formStateHelper";
 import { useToastMessage } from "@/hooks/useToastMessage";
 import { useRedirectRoute } from "@/hooks/useRedirectRoute";
 import { useTranslations } from "next-intl";
+import { AnimatePresence, motion } from "framer-motion";
 
 type Props = {
   multi?: boolean;
@@ -136,26 +137,33 @@ function ImageListSelector({
         </label>
       ) : multi ? (
         <div className="flex flex-wrap gap-3">
-          {fileList.map((file, index) => (
-            <div
-              key={index}
-              className="bg-[#d9d9d9] block h-[180px] aspect-square rounded-[20px] relative"
-            >
-              <ImageUnselectButton
-                // handleClick={() => {
-                //     setFileList((prevFile) => prevFile.filter((_, i) => i !== index))
-                // }}
-                handleClick={() => handleRemoveImage(file)}
-              />
-              <Image
-                width={100}
-                height={100}
-                src={typeof file == "string" ? file : URL.createObjectURL(file)}
-                alt=""
-                className="w-full h-full rounded-[20px]"
-              />
-            </div>
-          ))}
+          <AnimatePresence>
+            {fileList.map((file, index) => (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { duration: 1 } }}
+                exit={{ opacity: 0 }}
+                key={index}
+                className="bg-[#d9d9d9] block h-[180px] aspect-square rounded-[20px] relative"
+              >
+                <ImageUnselectButton
+                  // handleClick={() => {
+                  //     setFileList((prevFile) => prevFile.filter((_, i) => i !== index))
+                  // }}
+                  handleClick={() => handleRemoveImage(file)}
+                />
+                <Image
+                  width={100}
+                  height={100}
+                  src={
+                    typeof file == "string" ? file : URL.createObjectURL(file)
+                  }
+                  alt=""
+                  className="w-full h-full rounded-[20px]"
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
           <label
             htmlFor={id}
             className="bg-[#ffffff] cursor-pointer block h-[180px] aspect-square rounded-[20px]"

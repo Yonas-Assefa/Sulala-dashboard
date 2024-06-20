@@ -19,4 +19,4 @@ if [[ $recent_commit_message =~ \#skip ]]; then
   exit 0
 fi
 
-./BUMP_VERSION.sh "$version_increment"
+./scripts/git/BUMP_VERSION.sh "$version_increment"

@@ -1,10 +1,11 @@
 services:
 
   dashboard:
-    image: sulala-dashboard
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: yosephtadesse/sulala-dashboard:latest
+    # image: sulala-dashboard
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - 3000:3000

@@ -107,15 +107,6 @@ function ProductForm({
                 error={formState.fieldErrors?.price?.[0]}
                 defaultValue={initialValue?.price}
               />
-              <TextInput
-                id="discount"
-                name="discount"
-                type="number"
-                defaultValue={initialValue?.discounted_price || 0}
-                placeholder={t("enter_discount_in_%")}
-                label={t("discount")}
-                error={formState.fieldErrors?.discounted_price?.[0]}
-              />
               <div className="col-span-2">
                 <ImageListSelector
                   id="product_images"
