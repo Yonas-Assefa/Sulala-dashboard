@@ -4,26 +4,22 @@ import Link from "next/link";
 import ItemsPerPageSelector from "./ItemsPerPageSelector";
 import { useEffect, useState } from "react";
 import { useCreateQueryString } from "@/hooks/useCreateQueryString";
-import { create } from "lodash";
+import { useTranslations } from "next-intl";
 
 export const DEFAULTPAGESIZE = 10;
 
 export default function Pagination({ dataCount }: { dataCount: number }) {
+  const t = useTranslations("Commons");
+
   const { createQueryStringAndPush, createQueryString, searchParams } =
     useCreateQueryString();
-  const currentPageTemp = searchParams.get("page") || 1;
-  const currentPage =
-    typeof currentPageTemp === "string"
-      ? parseInt(currentPageTemp)
-      : currentPageTemp;
-
+  const currentPage = Number(searchParams.get("page") || 1);
   const [itemsPerPage, setItemsPerPage] = useState(
     searchParams.get("page_size") || DEFAULTPAGESIZE
   );
 
   const handleItemClick = (pageSize: number) => {
     createQueryStringAndPush("page_size", pageSize.toString());
-    console.log("inside item click : ", searchParams.get("page_size"));
     setItemsPerPage(pageSize);
   };
 
@@ -53,19 +49,16 @@ export default function Pagination({ dataCount }: { dataCount: number }) {
 
   useEffect(() => {
     const temp_pagination = totalPaginationPages.slice(0, minPagesToDisplay);
-    console.log("h1");
     if (!temp_pagination.includes(currentActivePage)) {
       const PAGE = 1;
-      console.log("h2");
 
       setCurrentActivePage(1); // Set currentActivePage to 1 if it's not in temp_pagination
       createQueryStringAndPush("page", PAGE.toString());
       createQueryString("pag_size", itemsPerPage.toString());
-      console.log("h3");
     }
 
     setCurrentPaginationPages(temp_pagination);
-  }, [itemsPerPage]);
+  }, [itemsPerPage, dataCount]);
 
   // Update currentPaginationPages when currentActivePage changes
   useEffect(() => {
@@ -87,29 +80,18 @@ export default function Pagination({ dataCount }: { dataCount: number }) {
         totalPaginationPages.slice(startIndex, endIndex)
       );
     }
-  }, [currentActivePage, totalPaginationPages]);
-
-  console.log(
-    "current pages;: ",
-    currentPaginationPages,
-    searchParams.get("page"),
-    itemsPerPage
-  );
+  }, [currentActivePage, totalPaginationPages, dataCount]);
 
   return (
     <>
       <div className="flex flex-row justify-between	 items-center	 self-end gap-[40px] border rounded-lg mr-2 px-5 py-2 bg-white-100">
         <div className="">
           <h3>
-            Showing {current_page_start} - {current_page_end} of {dataCount}{" "}
-            orders
+            {t("pagination_showing")} {current_page_start} - {current_page_end}{" "}
+            {t("pagination_of")} {dataCount} {t("pagination_orders")}
           </h3>
         </div>
         <div className="flex flex-row gap-4">
-          <ItemsPerPageSelector
-            itemsPerPage={itemsPerPage}
-            handleItemClick={handleItemClick}
-          />
           <nav>
             <ul className="flex items-center -space-x-px h-10">
               <li>
@@ -156,7 +138,7 @@ export default function Pagination({ dataCount }: { dataCount: number }) {
                       className={`flex items-center justify-center px-4 h-10 leading-tight ${
                         currentActivePage === page
                           ? "text-white bg-primary"
-                          : "text-gray-500 bg-white border border-gray-300"
+                          : "text-gray-700 bg-white border border-gray-300"
                       }`}
                       onClick={() => {
                         setCurrentActivePage(page);
@@ -179,7 +161,7 @@ export default function Pagination({ dataCount }: { dataCount: number }) {
                       ).toString()
                     ) as any
                   }
-                  className={`flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg ${currentActivePage === totalPaginationPages.length ? "opacity-50 cursor-not-allowed" : ""}`}
+                  className={`flex items-center justify-center px-4  h-10 leading-tight text-gray-700 bg-white border border-gray-300 rounded-e-lg ${currentActivePage === totalPaginationPages.length ? "opacity-50 cursor-not-allowed" : ""}`}
                   onClick={() => {
                     setCurrentActivePage((prev) =>
                       prev === totalPaginationPages.length

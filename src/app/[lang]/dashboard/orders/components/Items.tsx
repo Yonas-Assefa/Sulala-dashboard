@@ -68,9 +68,11 @@ async function Items({ searchParams }: ItemsProps) {
         sortData={orderItemSortData}
         tableSchema={orderItemTableSchema}
       />
-      <div className="flex flex-row self-end">
-        <Pagination dataCount={TOTAL_ORDERS_COUNT} />
-      </div>
+      {TOTAL_ORDERS_COUNT > 0 && (
+        <div className="flex flex-row self-end">
+          <Pagination dataCount={TOTAL_ORDERS_COUNT} />
+        </div>
+      )}
     </div>
   );
 }

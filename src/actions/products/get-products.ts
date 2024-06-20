@@ -13,6 +13,7 @@ import { getFilterSortOrdering } from "@/lib/table";
 
 export const getProducts = async (formData?: FormData) => {
   const { search, status, ordering, page } = getFilterSortOrdering(formData);
+  console.log("page", page);
 
   const response = await Fetch({
     url: PRODUCTS,
@@ -29,6 +30,7 @@ export const getProducts = async (formData?: FormData) => {
     },
   });
   const body = await response.json();
+  console.log("body: ", { body });
 
   if (!response.ok || !body.results) {
     throw new Error(body.message || "Failed to get product");

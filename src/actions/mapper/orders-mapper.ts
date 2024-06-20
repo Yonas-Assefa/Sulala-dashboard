@@ -4,6 +4,7 @@ import { BASE_URL } from "@/config/urls";
 export let TOTAL_ORDERS_COUNT: number;
 export const ordersMapper = (orders: any) => {
   TOTAL_ORDERS_COUNT = orders.count;
+  console.log("log: ", TOTAL_ORDERS_COUNT);
 
   const modifeidOrders = orders.results.map((order: any) => ({
     ...order,
