@@ -8,7 +8,6 @@ import { getFilterSortOrdering } from "@/lib/table";
 export const getOrders = async (formData: FormData) => {
   const { search, status, ordering, page, page_size } =
     getFilterSortOrdering(formData);
-  console.log(search, status, ordering, page, page_size);
   const ordersResponse = await Fetch({
     url: ORDERS_URL,
     method: "GET",
@@ -26,5 +25,5 @@ export const getOrders = async (formData: FormData) => {
     throw new Error(ordersBody.message || "Failed to get Orders");
   }
 
-  return await ordersMapper(ordersBody.data.results);
+  return await ordersMapper(ordersBody.data);
 };

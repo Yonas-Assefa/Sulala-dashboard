@@ -42,7 +42,6 @@ export const IMAGE_TYPES = [
 
 export const fileRefine = {
   existFn: (file: any) => {
-    console.log("fiel probolem ; ", file);
     if (!file || file.size === 0 || file.name === undefined) return false;
     else return true;
   },
@@ -317,7 +316,6 @@ type TFetch = {
 export const Fetch = async (args: TFetch) => {
   const { url, method, data, headers, params, cache, next } = args;
   const requestUrl = params ? buildUrlWithParams(url, params) : url;
-  console.log("request url: ", requestUrl, args.params);
 
   const options = {};
 

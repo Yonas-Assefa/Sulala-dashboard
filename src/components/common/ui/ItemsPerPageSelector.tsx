@@ -3,15 +3,13 @@ import { useState } from "react";
 import { useCreateQueryString } from "@/hooks/useCreateQueryString";
 import { DEFAULTPAGESIZE } from "./Pagination";
 
-const pageSizes = [5, 10, 15, 20];
+const pageSizes = [1, 10, 15, 20];
 type Props = {
   itemsPerPage: number | string;
   handleItemClick: (arg0: number) => void;
 };
 
 function ItemsPerPageSelector({ itemsPerPage, handleItemClick }: Props) {
-  console.log("items pere page", itemsPerPage);
-
   // const { createQueryStringAndPush, searchParams } = useCreateQueryString();
 
   // Initialize itemsPerPage state with localStorage value or DEFAULTPAGESIZE
@@ -25,7 +23,7 @@ function ItemsPerPageSelector({ itemsPerPage, handleItemClick }: Props) {
   // };
 
   return (
-    <div className="dropdown dropdown-top  w-fit">
+    <div className="m-1 dropdown dropdown-top dropdown-end w-fit">
       <div
         tabIndex={0}
         role="button"
@@ -35,16 +33,16 @@ function ItemsPerPageSelector({ itemsPerPage, handleItemClick }: Props) {
       </div>
       <ul
         tabIndex={0}
-        className="dropdown-content z-[1] menu p-2 shadow bg-white rounded-box w-fit"
+        className="dropdown-content z-[1] menu p-0 shadow bg-white rounded-box w-fit"
       >
         {pageSizes.map((pageSizeOption) => (
           <li
             key={pageSizeOption}
             onClick={() => handleItemClick(pageSizeOption)}
-            className={`cursor-pointer `}
+            className={`cursor-pointer p-0 m-0`}
           >
             <a
-              className={` border rounded-30  hover:bg-primary ${itemsPerPage == pageSizeOption ? "bg-primary" : ""}`}
+              className={` hover:bg-primary ${itemsPerPage == pageSizeOption ? "bg-primary" : ""}`}
             >
               {pageSizeOption}
             </a>

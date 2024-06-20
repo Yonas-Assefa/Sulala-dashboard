@@ -21,7 +21,6 @@ async function page({
   const products = await getProducts(
     changeObjToFormData({ search, filter, sort, sort_by })
   );
-  console.log("prducts: ", products);
   return (
     <>
       <ImportProductsModal />

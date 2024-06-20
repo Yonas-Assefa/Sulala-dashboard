@@ -13,7 +13,6 @@ import {
   ActionOptions,
 } from "../../../types/table.type";
 import NoItemsFound from "../ui/NoItemsFound";
-import Pagination from "../ui/Pagination";
 
 type Props = {
   filterData: FilterData;
@@ -56,9 +55,6 @@ function Table({
             <NoItemsFound />
           )}
         </table>
-      </div>
-      <div className="flex flex-row self-end">
-        <Pagination data={100} />
       </div>
     </>
   );

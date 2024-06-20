@@ -10,6 +10,8 @@ import { orderItemTableSchema } from "../schema/items/schema";
 import { getVendorsRevenueStas } from "@/actions/orders/get-vendors-revenue-stat";
 import { getOrders } from "@/actions/orders/get-vendor-orders";
 import { changeObjToFormData } from "@/lib/helper";
+import Pagination from "@/components/common/ui/Pagination";
+import { TOTAL_ORDERS_COUNT } from "@/actions/mapper/orders-mapper";
 
 type SearchParams = {
   search: string;
@@ -17,6 +19,7 @@ type SearchParams = {
   sort: string;
   sort_by: string;
   page_size: string;
+  page: string;
 };
 
 type ItemsProps = {
@@ -24,13 +27,14 @@ type ItemsProps = {
 };
 
 async function Items({ searchParams }: ItemsProps) {
-  const { search, filter, sort, sort_by, page_size } = searchParams;
+  const { search, filter, sort, sort_by, page_size, page } = searchParams;
   const ordersFormData = changeObjToFormData({
     search,
     filter,
     sort,
     sort_by,
     page_size,
+    page,
   });
 
   const shopRevenueStat = await getVendorsRevenueStas();
@@ -64,6 +68,9 @@ async function Items({ searchParams }: ItemsProps) {
         sortData={orderItemSortData}
         tableSchema={orderItemTableSchema}
       />
+      <div className="flex flex-row self-end">
+        <Pagination dataCount={TOTAL_ORDERS_COUNT} />
+      </div>
     </div>
   );
 }

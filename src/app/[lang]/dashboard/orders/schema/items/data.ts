@@ -142,6 +142,7 @@ export const orderItemSortData = [
 
 export const orderItemFilterData = [
   "all",
+  "new",
   "delivered",
   "cancelled",
   "in_delivery",
