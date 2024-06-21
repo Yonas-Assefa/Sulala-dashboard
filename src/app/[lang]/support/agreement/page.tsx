@@ -560,7 +560,7 @@ submitted after account termination.`,
 function page() {
   return (
     <div className="w-full h-full flex flex-row relative text-black">
-      <div className=" bg-gradient-to-b from-white via-primary/20 to-white flex-grow md:p-[80px] p-12 flex-grow ">
+      <div className=" bg-gradient-to-b from-white to-primary/20 overflow-scroll md:p-[80px] p-12 flex-grow ">
         <div className="flex flex-col justify-center w-full">
           <h1 className="capitalize underline font-bold text-3xl md:text-4xl flex justify-center">
             Sulala Terms & Conditions
