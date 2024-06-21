@@ -4,6 +4,7 @@ import React from "react";
 import ResetButton from "../ui/ResetButton";
 import { formatFileSize } from "@/utils/filesizeFormatter.util";
 import { useTranslations } from "next-intl";
+import { useScrollToErrorField } from "@/hooks/useScrollToErrorField";
 
 function FileInput({
   label,
@@ -17,6 +18,7 @@ function FileInput({
 }: FileInputProps) {
   const [file, setFile] = React.useState<File | null | undefined>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const ref = useScrollToErrorField<HTMLDivElement>(error);
 
   const t = useTranslations("Commons");
 
@@ -47,7 +49,7 @@ function FileInput({
 
   return (
     <>
-      <div className="w-full">
+      <div ref={ref} className="w-full">
         <label
           htmlFor={id || "file-1"}
           className={`cursor-pointer w-full flex flex-col gap-3 ${file && "hidden"}`}

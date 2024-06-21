@@ -84,7 +84,9 @@ function SelectInput({
     setOpen(false);
   };
 
-  const ref = useDetectClickOutside({ onTriggered: closeDropdown });
+  const ref: React.RefObject<HTMLDivElement> = useDetectClickOutside({
+    onTriggered: closeDropdown,
+  });
 
   const handleSelect = (value: string) => {
     if (nested) {
@@ -168,6 +170,13 @@ function SelectInput({
       if (setValue) setValue(selected.map((item) => item.label).join(", "));
     }
   }, [selected]);
+
+  useEffect(() => {
+    if (ref.current) {
+      console.log("scrolling to fieldRef");
+      ref.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [error]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
