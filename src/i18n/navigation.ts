@@ -35,10 +35,6 @@ export const pathnames = {
   "/auth/create-password": "/auth/create-password",
 
   "/auth/verify-email": "/auth/verify-email",
-  "/auth/select-account": "/auth/select-account",
-  "/auth/select-account?action=signin": "/auth/select-account?action=signin",
-  "/auth/select-account?action=signup": "/auth/select-account?action=signup",
-
   "/ar": "/ar",
   "/en": "/en",
 

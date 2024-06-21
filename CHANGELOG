@@ -6,8 +6,8 @@
 - Added this changelog
 - Added readme documentation
 - Grouped auth routes and page to '(admin)' group
-- i18n and l10n for (arabic and english) started
-- theme (dark mode and light mode) implmentation started 
+- Started to implement i18n and l10n for (arabic and english)
+- Started to implement theme (dark mode and light mode)
 
 ### Removed
 - Some packages/libraries from acknowledgements I no longer use
@@ -16,8 +16,9 @@
 ## V1.1.0
 
 ### Added or Changed
-- landing page changed to include selecting account
-- landing page style modified
-- terms and conditions added
+- Changed landing page to include selecting account
+- Modified landing page styles
+- Added terms and conditions
 
 ### Removed
+- Removed Select Account page and It's routes
