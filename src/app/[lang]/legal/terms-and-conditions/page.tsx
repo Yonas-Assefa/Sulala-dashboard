@@ -8,7 +8,7 @@ function page() {
           Sulala Vendor Agreement
         </h1>
         <hr />
-        <ol className="text-black list-decimal flex flex-col gap-5">
+        <ol className="text-black list-decimal flex flex-col gap-5 my-2">
           <li>
             <h2 className="font-semibold text-xl">Introduction</h2>
             <p>
@@ -326,9 +326,12 @@ function page() {
             </ul>
           </li>
         </ol>
+        <hr />
+        <div className="flex justify-center items-center gap-3 text-primary bg-amber-50">
+          <img src="/sulala-logo.svg" alt="" className="w-[15px] h-[15px]" />
+          <p>Sulala.com</p>
+        </div>
       </div>
-
-      <hr />
 
       <div className="text-black w-1/2">
         <p>
