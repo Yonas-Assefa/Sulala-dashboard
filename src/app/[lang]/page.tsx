@@ -1,4 +1,3 @@
-"use client";
 import SecondaryButton from "@/components/common/ui/SecondaryButton";
 import { useTranslations } from "next-intl";
 import LandingNavBar from "./components/LandingNavBar";
@@ -6,7 +5,7 @@ import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { LOCALES } from "@/i18n/config";
 import Image from "next/image";
 import Link from "next/link";
-import PrimaryButton from "@/components/common/ui/PrimaryButton";
+import SelectAccount from "./components/SelectAccount";
 
 type Props = {
   params: {
@@ -14,54 +13,30 @@ type Props = {
   };
 };
 
-// export function generateStaticParams() {
-//   return LOCALES.map((locale) => ({ lang: locale }));
-// }
+export function generateStaticParams() {
+  return LOCALES.map((locale) => ({ lang: locale }));
+}
 
-const ACCOUNTS = [
-  {
-    label: "Marketplace Account",
-    value: "farmer",
-    description:
-      "Add, Manage, Record & Track the details of your animals and shop the best products for your animals sourced from best suppliers.",
-    image: "/icons/app-and-play-store.png",
-  },
-  {
-    label: "Delivery Partner",
-    value: "driver",
-    description:
-      "Offer your best services as Sulala Delivery Partners for best transportation and logistics services.",
-    image: "/icons/app-and-play-store.png",
-  },
-  {
-    label: "Vendor Account",
-    value: "vendor",
-    description:
-      "Registed your business & Upload your products on Sulala Dashboard to reach a wide audience of animal breeders and pet lovers in the Middle East...",
-    image: "/sulala-logo.svg",
-  },
-];
+export async function generateMetadata({
+  params: { lang },
+}: {
+  params: { lang: string };
+}) {
+  const t = await getTranslations({ lang, namespace: "LandingMetadata" });
 
-// export async function generateMetadata({
-//   params: { lang },
-// }: {
-//   params: { lang: string };
-// }) {
-//   const t = await getTranslations({ lang, namespace: "LandingMetadata" });
-
-//   return {
-//     title: t("title"),
-//     description: t("description"),
-//     icons: ["/sulala-logo.svg"],
-//     openGraph: {
-//       images: ["/sulala-logo.svg"],
-//       title: t("title"),
-//     },
-//   };
-// }
+  return {
+    title: t("title"),
+    description: t("description"),
+    icons: ["/sulala-logo.svg"],
+    openGraph: {
+      images: ["/sulala-logo.svg"],
+      title: t("title"),
+    },
+  };
+}
 
 export default function Landing({ params: { lang } }: Props) {
-  // unstable_setRequestLocale(lang);
+  unstable_setRequestLocale(lang);
   const t = useTranslations("Landing");
 
   return (
@@ -224,38 +199,7 @@ export default function Landing({ params: { lang } }: Props) {
       >
         <div className="w-6/12 flex justify-center items-center flex-col gap-8 bg-gradient-to-r from-transparent to-primary via-primary/50">
           <h2 className="font-bold text-4xl text-white">Get Started Today!</h2>
-          <form action={() => {}} className="flex flex-col gap-8 group w-1/2">
-            <div className="flex">
-              <div className="card drop-shadow-lg flex flex-col gap-2">
-                {ACCOUNTS.map((item, i) => (
-                  <div className="collapse bg-white relative" key={item.value}>
-                    <input
-                      type="radio"
-                      name="account_type"
-                      id={item.value}
-                      value={item.value}
-                      className="peer"
-                      defaultChecked={i == 0}
-                    />
-                    <div className="collapse-title flex justify-between text-xl bg-secondary/40 text-secondary font-medium peer-checked:bg-white peer-checked:text-primary peer-checked:font-bold transition-all">
-                      <h2>{item.label}</h2>
-                    </div>
-                    <img
-                      src={item.image}
-                      alt=""
-                      className={`h-[20px] invisible peer-checked:visible absolute top-3 ${lang == "ar" ? "left-3" : "right-3"}`}
-                    />
-                    <div className="collapse-content text-black peer-checked:bg-gradient-to-b from-primary/0 to-primary/10">
-                      <p>{item.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="flex justify-center w-full">
-              <SecondaryButton name={"continue"} padding="sm" type="submit" />
-            </div>
-          </form>
+          <SelectAccount />
         </div>
       </section>
 
