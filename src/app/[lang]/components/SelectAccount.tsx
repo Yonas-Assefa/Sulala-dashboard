@@ -56,7 +56,10 @@ function SelectAccount() {
     }
   };
   return (
-    <form action={submitForm} className="flex flex-col gap-8 group w-1/2">
+    <form
+      action={submitForm}
+      className="flex flex-col gap-8 group w-full p-4 md:p-0 md:w-1/2"
+    >
       <div className="flex">
         <div className="card drop-shadow-lg flex flex-col gap-2">
           {ACCOUNTS.map((item, i) => (

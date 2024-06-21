@@ -62,8 +62,8 @@ export default function Landing({ params: { lang } }: Props) {
               {t("hero_title")}
             </p>
           </div>
-          <div className="w-11/12 md:w-2/3 text-center">
-            <p className="text-md md:text-xl font-normal font-serif">
+          <div className="w-2/3 text-center hidden md:block">
+            <p className="text-xl font-normal font-serif">
               {t("hero_description")}
             </p>
           </div>
@@ -89,7 +89,7 @@ export default function Landing({ params: { lang } }: Props) {
 
       <section className="min-h-screen min-w-screen bg-white grid grid-cols-1 md:grid-cols-5">
         <div className="md:col-span-3 z-20 md:z-auto p-5 md:p-auto flex flex-row justify-end items-center gap-14 bg-gradient-to-r from-white to-primary/15">
-          <div className="text-primary w-2/3 text-center font-serif text-xl md:text-3xl font-semibold">
+          <div className="text-primary w-full md:w-2/3 text-center font-serif text-xl md:text-3xl font-semibold">
             <p>{t("explore_the_power_of_sulala")}</p>
           </div>
         </div>
@@ -97,7 +97,7 @@ export default function Landing({ params: { lang } }: Props) {
           <Image
             src="/mockups/family-tree-portrait.png"
             alt=""
-            className="w-5/12 aspect-auto"
+            className="w-9/12 md:w-5/12 aspect-auto"
             width={900}
             height={900}
           />
@@ -188,7 +188,7 @@ export default function Landing({ params: { lang } }: Props) {
         className="min-h-screen min-w-screen relative bg-[url('/landing.png')] bg-cover bg-center text-white flex flex-row justify-end items-stretch gap-8"
       >
         <div
-          className={`w-6/12 flex justify-center items-center flex-col gap-8 ${lang == "en" ? "bg-gradient-to-r" : "bg-gradient-to-l"} from-transparent to-primary via-primary/50`}
+          className={`w-full md:w-6/12 flex justify-center items-center flex-col gap-8 ${lang == "en" ? "bg-gradient-to-r" : "bg-gradient-to-l"} from-transparent to-primary via-primary/50`}
         >
           <h2 className="font-bold text-4xl text-white">
             {t("get_started_today")}
