@@ -172,8 +172,7 @@ function SelectInput({
   }, [selected]);
 
   useEffect(() => {
-    if (ref.current) {
-      console.log("scrolling to fieldRef");
+    if (ref.current && error) {
       ref.current?.scrollIntoView({ behavior: "smooth" });
     }
   }, [error]);
