@@ -16,11 +16,18 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom,
+  background: linear-gradient(
+      to bottom,
       transparent,
-      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
@@ -28,7 +35,6 @@ body {
     text-wrap: balance;
   }
 }
-
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -57,8 +63,20 @@ input:-webkit-autofill {
   display: grid;
   border-radius: 50%;
   background:
-    linear-gradient(0deg, rgb(255 255 255/50%) 30%, #0000 0 70%, rgb(255 255 255/100%) 0) 50%/8% 100%,
-    linear-gradient(90deg, rgb(255 255 255/25%) 30%, #0000 0 70%, rgb(255 255 255/75%) 0) 50%/100% 8%;
+    linear-gradient(
+        0deg,
+        rgb(255 255 255/50%) 30%,
+        #0000 0 70%,
+        rgb(255 255 255/100%) 0
+      )
+      50%/8% 100%,
+    linear-gradient(
+        90deg,
+        rgb(255 255 255/25%) 30%,
+        #0000 0 70%,
+        rgb(255 255 255/75%) 0
+      )
+      50%/100% 8%;
   background-repeat: no-repeat;
   animation: l23 1s infinite steps(12);
 }
@@ -73,21 +91,19 @@ input:-webkit-autofill {
   transform: rotate(30deg);
 }
 
-
 .loader::after {
   opacity: 0.83;
   transform: rotate(60deg);
 }
 
-
 @keyframes l23 {
   100% {
-    transform: rotate(360deg)
+    transform: rotate(360deg);
   }
 }
 
 .tab-active {
-  @apply bg-black text-white
+  @apply bg-black text-white;
 }
 
 /* width */

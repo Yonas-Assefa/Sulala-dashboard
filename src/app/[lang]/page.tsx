@@ -1,9 +1,12 @@
+"use client";
 import SecondaryButton from "@/components/common/ui/SecondaryButton";
 import { useTranslations } from "next-intl";
 import LandingNavBar from "./components/LandingNavBar";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { LOCALES } from "@/i18n/config";
 import Image from "next/image";
+import Link from "next/link";
+import PrimaryButton from "@/components/common/ui/PrimaryButton";
 
 type Props = {
   params: {
@@ -11,30 +14,54 @@ type Props = {
   };
 };
 
-export function generateStaticParams() {
-  return LOCALES.map((locale) => ({ lang: locale }));
-}
+// export function generateStaticParams() {
+//   return LOCALES.map((locale) => ({ lang: locale }));
+// }
 
-export async function generateMetadata({
-  params: { lang },
-}: {
-  params: { lang: string };
-}) {
-  const t = await getTranslations({ lang, namespace: "LandingMetadata" });
+const ACCOUNTS = [
+  {
+    label: "Marketplace Account",
+    value: "farmer",
+    description:
+      "Add, Manage, Record & Track the details of your animals and shop the best products for your animals sourced from best suppliers.",
+    image: "/icons/app-and-play-store.png",
+  },
+  {
+    label: "Delivery Partner",
+    value: "driver",
+    description:
+      "Offer your best services as Sulala Delivery Partners for best transportation and logistics services.",
+    image: "/icons/app-and-play-store.png",
+  },
+  {
+    label: "Vendor Account",
+    value: "vendor",
+    description:
+      "Registed your business & Upload your products on Sulala Dashboard to reach a wide audience of animal breeders and pet lovers in the Middle East...",
+    image: "/sulala-logo.svg",
+  },
+];
 
-  return {
-    title: t("title"),
-    description: t("description"),
-    icons: ["/sulala-logo.svg"],
-    openGraph: {
-      images: ["/sulala-logo.svg"],
-      title: t("title"),
-    },
-  };
-}
+// export async function generateMetadata({
+//   params: { lang },
+// }: {
+//   params: { lang: string };
+// }) {
+//   const t = await getTranslations({ lang, namespace: "LandingMetadata" });
+
+//   return {
+//     title: t("title"),
+//     description: t("description"),
+//     icons: ["/sulala-logo.svg"],
+//     openGraph: {
+//       images: ["/sulala-logo.svg"],
+//       title: t("title"),
+//     },
+//   };
+// }
 
 export default function Landing({ params: { lang } }: Props) {
-  unstable_setRequestLocale(lang);
+  // unstable_setRequestLocale(lang);
   const t = useTranslations("Landing");
 
   return (
@@ -68,7 +95,7 @@ export default function Landing({ params: { lang } }: Props) {
           <div>
             <SecondaryButton
               name={t("hero_button")}
-              href="/auth/select-account?action=signup"
+              href="#get-started"
               padding="md"
             />
           </div>
@@ -77,8 +104,31 @@ export default function Landing({ params: { lang } }: Props) {
           className={`h-full absolute -top-16 md:top-auto z-10 md:relative md:z-auto opacity-20 md:opacity-100 bg-gradient-to-l ${lang == "en" ? "from-black/60 to-black/0" : "to-black/60 from-black/0"} flex flex-col justify-center`}
         >
           <Image
-            src="/images/sulala-pc-phone.png"
+            src="/mockups/iphone-mac-product-mockup.png"
             alt=""
+            width={900}
+            height={900}
+          />
+        </div>
+      </section>
+
+      <section className="min-h-screen min-w-screen bg-white grid grid-cols-1 md:grid-cols-5">
+        <div className="md:col-span-3 z-20 md:z-auto p-5 md:p-auto flex flex-row justify-end items-center gap-14 bg-gradient-to-r from-white to-primary/15">
+          <div className="text-primary w-2/3 text-center font-serif text-xl md:text-3xl font-semibold">
+            <p>
+              Explore the power of Sulala's Animal Management Module, designed
+              to streamline the tracking of family trees, breeding details, and
+              medical histories. This intuitive module offers essential tools
+              for maintaining accurate animal records, ensuring optimal care and
+              management with ease.
+            </p>
+          </div>
+        </div>
+        <div className="md:col-span-2 absolute z-10 md:relative md:z-auto h-full opacity-20 md:opacity-100 flex flex-col justify-center items-center object-fill bg-gradient-to-r from-primary/15 to-primary/0">
+          <Image
+            src="/mockups/family-tree-portrait.png"
+            alt=""
+            className="w-5/12 aspect-auto"
             width={900}
             height={900}
           />
@@ -88,9 +138,9 @@ export default function Landing({ params: { lang } }: Props) {
       <section className="min-h-screen min-w-screen bg-white grid grid-cols-1 md:grid-cols-5">
         <div className="md:col-span-2 absolute z-10 md:relative md:z-auto h-full opacity-20 md:opacity-100 flex flex-col justify-center items-center object-fill bg-gradient-to-r from-primary/15 to-primary/0">
           <Image
-            src="/images/sulala-phone.png"
+            src="/mockups/scroll-portrait.png"
             alt=""
-            className="h-3/3 w-1/2"
+            className="w-5/12 aspect-auto"
             width={900}
             height={900}
           />
@@ -108,25 +158,11 @@ export default function Landing({ params: { lang } }: Props) {
               />
               <div className="w-full md:w-2/3">
                 <h6 className="text-primary text-lg font-semibold font-serif">
-                  {t("orders")}
+                  Your Animal Dedicated Products
                 </h6>
                 <p className="text-black text-sm italic">
-                  {t("orders_description")}
-                </p>
-              </div>
-            </li>
-            <li className="flex flex-row gap-2">
-              <img
-                src="/icons/storefront_active.svg"
-                alt=""
-                className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]"
-              />
-              <div className="w-full md:w-2/3">
-                <h6 className="text-primary text-lg font-semibold font-serif">
-                  {t("products")}
-                </h6>
-                <p className="text-black text-sm italic">
-                  {t("products_description")}
+                  Get wide selection of high quality products filtered on the
+                  selection of your animal.
                 </p>
               </div>
             </li>
@@ -138,25 +174,27 @@ export default function Landing({ params: { lang } }: Props) {
               />
               <div className="w-full md:w-2/3">
                 <h6 className="text-primary text-lg font-semibold font-serif">
-                  {t("services")}
+                  Packages
                 </h6>
                 <p className="text-black text-sm italic">
-                  {t("services_description")}
+                  Save the items added to cart as a package to order with only
+                  one click next time without adding to cart again.
                 </p>
               </div>
             </li>
             <li className="flex flex-row gap-2">
               <img
-                src="/icons/whatshot_active.svg"
+                src="/icons/truck_active.svg"
                 alt=""
                 className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]"
               />
               <div className="w-full md:w-2/3">
                 <h6 className="text-primary text-lg font-semibold font-serif">
-                  {t("promotions")}
+                  AutoDelivery
                 </h6>
                 <p className="text-black text-sm italic">
-                  {t("promotions_description")}
+                  Let Sulala take the privilege to deliver to you your products
+                  without your ordering again
                 </p>
               </div>
             </li>
@@ -168,10 +206,11 @@ export default function Landing({ params: { lang } }: Props) {
               />
               <div className="w-full md:w-2/3">
                 <h6 className="text-primary text-lg font-semibold font-serif">
-                  {t("drivers")}
+                  Scheduled Deliveries
                 </h6>
                 <p className="text-black text-sm italic">
-                  {t("drivers_description")}
+                  Schedule the deliveries at your best times at your
+                  convinience.
                 </p>
               </div>
             </li>
@@ -179,101 +218,49 @@ export default function Landing({ params: { lang } }: Props) {
         </div>
       </section>
 
-      <section className="min-h-screen min-w-screen bg-white grid grid-cols-1 md:grid-cols-5">
-        <div className="md:col-span-2 absolute z-10 md:relative md:z-auto h-full opacity-20 md:opacity-100 flex flex-col justify-center items-center object-fill bg-gradient-to-r from-primary/15 to-primary/0">
-          <Image
-            src="/images/sulala-phone.png"
-            alt=""
-            className="h-3/3 w-1/2"
-            width={900}
-            height={900}
-          />
-        </div>
-        <div className="md:col-span-3 z-20 md:z-auto p-5 md:p-auto flex flex-col justify-center items-start gap-14 bg-gradient-to-r from-white to-primary/15">
-          <h3 className="font-semibold text-primary text-3xl font-serif">
-            {t("what_we_provide")}
-          </h3>
-          <ul className="flex flex-col gap-4">
-            <li className="flex flex-row gap-2">
-              <img
-                src="/icons/shopping_bag_active.svg"
-                alt=""
-                className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]"
-              />
-              <div className="w-full md:w-2/3">
-                <h6 className="text-primary text-lg font-semibold font-serif">
-                  {t("orders")}
-                </h6>
-                <p className="text-black text-sm italic">
-                  {t("orders_description")}
-                </p>
+      <section
+        id="get-started"
+        className="min-h-screen min-w-screen relative bg-[url('/landing.png')] bg-cover bg-center text-white flex flex-row justify-end items-stretch gap-8"
+      >
+        <div className="w-6/12 flex justify-center items-center flex-col gap-8 bg-gradient-to-r from-transparent to-primary via-primary/50">
+          <h2 className="font-bold text-4xl text-white">Get Started Today!</h2>
+          <form action={() => {}} className="flex flex-col gap-8 group w-1/2">
+            <div className="flex">
+              <div className="card drop-shadow-lg flex flex-col gap-2">
+                {ACCOUNTS.map((item, i) => (
+                  <div className="collapse bg-white relative" key={item.value}>
+                    <input
+                      type="radio"
+                      name="account_type"
+                      id={item.value}
+                      value={item.value}
+                      className="peer"
+                      defaultChecked={i == 0}
+                    />
+                    <div className="collapse-title flex justify-between text-xl bg-secondary/40 text-secondary font-medium peer-checked:bg-white peer-checked:text-primary peer-checked:font-bold transition-all">
+                      <h2>{item.label}</h2>
+                    </div>
+                    <img
+                      src={item.image}
+                      alt=""
+                      className={`h-[20px] invisible peer-checked:visible absolute top-3 ${lang == "ar" ? "left-3" : "right-3"}`}
+                    />
+                    <div className="collapse-content text-black peer-checked:bg-gradient-to-b from-primary/0 to-primary/10">
+                      <p>{item.description}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            </li>
-            <li className="flex flex-row gap-2">
-              <img
-                src="/icons/storefront_active.svg"
-                alt=""
-                className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]"
-              />
-              <div className="w-full md:w-2/3">
-                <h6 className="text-primary text-lg font-semibold font-serif">
-                  {t("products")}
-                </h6>
-                <p className="text-black text-sm italic">
-                  {t("products_description")}
-                </p>
-              </div>
-            </li>
-            <li className="flex flex-row gap-2">
-              <img
-                src="/icons/medical_services_active.svg"
-                alt=""
-                className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]"
-              />
-              <div className="w-full md:w-2/3">
-                <h6 className="text-primary text-lg font-semibold font-serif">
-                  {t("services")}
-                </h6>
-                <p className="text-black text-sm italic">
-                  {t("services_description")}
-                </p>
-              </div>
-            </li>
-            <li className="flex flex-row gap-2">
-              <img
-                src="/icons/whatshot_active.svg"
-                alt=""
-                className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]"
-              />
-              <div className="w-full md:w-2/3">
-                <h6 className="text-primary text-lg font-semibold font-serif">
-                  {t("promotions")}
-                </h6>
-                <p className="text-black text-sm italic">
-                  {t("promotions_description")}
-                </p>
-              </div>
-            </li>
-            <li className="flex flex-row gap-2">
-              <img
-                src="/icons/command_active.svg"
-                alt=""
-                className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]"
-              />
-              <div className="w-full md:w-2/3">
-                <h6 className="text-primary text-lg font-semibold font-serif">
-                  {t("drivers")}
-                </h6>
-                <p className="text-black text-sm italic">
-                  {t("drivers_description")}
-                </p>
-              </div>
-            </li>
-          </ul>
+            </div>
+            <div className="flex justify-center w-full">
+              <SecondaryButton name={"continue"} padding="sm" type="submit" />
+            </div>
+          </form>
         </div>
       </section>
 
       <footer className="bg-primary w-full flex flex-col items-center">
+        {/* FOOTER SUBTOPICS */}
         <div className="grid grid-cols-2 md:grid-cols-5 p-4 gap-3 md:gap-0 md:w-2/3">
           <div className="flex flex-col gap-3">
             <h4 className="text-white underline font-semibold text-xs md:text-md font-serif">
@@ -356,6 +343,7 @@ export default function Landing({ params: { lang } }: Props) {
             </ul>
           </div>
         </div>
+        {/* SOCIAL MEDIA LINKS */}
         <div className="flex flex-row gap-6 justify-center my-3 w-full">
           <img
             src="/icons/social_media/facebook.svg"
@@ -383,10 +371,24 @@ export default function Landing({ params: { lang } }: Props) {
             className="bg-white rounded-full aspect-square p-1 drop-shadow-lg w-[25px] cursor-pointer hover:scale-110 transition-all"
           />
         </div>
+        {/* LANGUAGE LIST */}
         <div className="flex flex-row gap-6 justify-center w-full my-3 text-sm text-white bg-primary">
           <p>English</p>
           <p>عربي</p>
         </div>
+        {/* TERMS AND COND */}
+        <Link
+          href="/terms"
+          className="flex flex-row gap-6 justify-center w-full my-3 text-[10px] text-secondary bg-primary font-mono"
+        >
+          <p> Terms and Conditions</p>
+          <img
+            src="/icons/external-link.svg"
+            alt=""
+            className="w-[10px] aspect-square"
+          />
+        </Link>
+        {/* COPY RIGHT */}
         <div className="flex flex-row justify-center items-center gap-3 p-3 border-t border-white/10 w-full">
           <img src="/sulala-logo-white.svg" alt="" className="w-6" />
           {/* <p className="font-thin font-serif text-xs md:text-sm">sulala.com</p> */}
