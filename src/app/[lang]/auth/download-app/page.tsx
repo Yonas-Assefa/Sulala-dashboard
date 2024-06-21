@@ -46,7 +46,7 @@ function DownloadApp({ searchParams: { store } }: Props) {
         </div>
       </div>
 
-      <Link
+      {/* <Link
         href={
           store == "playstore"
             ? "/auth/download-app?store=appstore"
@@ -57,7 +57,48 @@ function DownloadApp({ searchParams: { store } }: Props) {
         {store == "appstore"
           ? "Download from Play Store"
           : "Download from App Store"}
+      </Link>       */}
+      <Link
+        href={
+          store == "playstore"
+            ? "/auth/download-app?store=appstore"
+            : "/auth/download-app?store=playstore"
+        }
+        className="flex flex-row justify-center gap-1 p-[2px] bg-tertiary rounded-[30px] transition-all"
+      >
+        <div
+          className={` py-1 px-2 rounded-[30px] ${store == "playstore" ? "bg-primary" : "bg-transparent"}`}
+        >
+          <img
+            src="/icons/playstore.webp"
+            alt="playstore"
+            className="w-[15px] aspect-square"
+          />
+        </div>
+        <div
+          className={` py-1 px-2 rounded-[30px] ${store == "appstore" ? "bg-primary" : "bg-transparent"}`}
+        >
+          <img
+            src="/icons/appstore.png"
+            alt="appstore"
+            className="w-[15px] aspect-square"
+          />
+        </div>
       </Link>
+      <div>
+        <p className="text-sm text-secondary">Couldn't scan the code? </p>
+        <a
+          href={QR_CODE_URL}
+          className="underline text-primary cursor-pointer flex justify-center gap-2"
+        >
+          Download using link{" "}
+          <img
+            src="/icons/external-link.svg"
+            alt=""
+            className="w-[15px] aspect-square"
+          />
+        </a>
+      </div>
     </div>
   );
 }
