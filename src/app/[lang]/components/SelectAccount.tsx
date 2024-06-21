@@ -6,6 +6,7 @@ import pushNotification from "@/utils/pushNotification.util";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import React from "react";
+import PrimaryButton from "@/components/common/ui/PrimaryButton";
 
 const ACCOUNTS = [
   {
@@ -88,7 +89,7 @@ function SelectAccount() {
         </div>
       </div>
       <div className="flex justify-center w-1/2 mx-auto">
-        <SecondaryButton name={t("continue")} padding="sm" type="submit" />
+        <PrimaryButton name={t("continue")} padding="sm" type="submit" />
       </div>
     </form>
   );
