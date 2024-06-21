@@ -14,6 +14,8 @@ type SearchParams = {
   filter: string;
   sort: string;
   sort_by: string;
+  page?: string;
+  page_size?: string;
 };
 
 type ServicesProps = {
