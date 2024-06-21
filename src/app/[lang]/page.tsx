@@ -76,7 +76,7 @@ export default function Landing({ params: { lang } }: Props) {
           </div>
         </div>
         <div
-          className={`h-full absolute -top-16 md:top-auto z-10 md:relative md:z-auto opacity-20 md:opacity-100 bg-gradient-to-l ${lang == "en" ? "from-black/60 to-black/0" : "to-black/60 from-black/0"} flex flex-col justify-center`}
+          className={`h-full absolute -top-16 md:top-auto z-10 md:relative md:z-auto opacity-20 md:opacity-100 ${lang == "en" ? "bg-gradient-to-l" : "bg-gradient-to-r"} from-black/60 to-black/0 flex flex-col justify-center`}
         >
           <Image
             src="/mockups/iphone-mac-product-mockup.png"
@@ -90,13 +90,7 @@ export default function Landing({ params: { lang } }: Props) {
       <section className="min-h-screen min-w-screen bg-white grid grid-cols-1 md:grid-cols-5">
         <div className="md:col-span-3 z-20 md:z-auto p-5 md:p-auto flex flex-row justify-end items-center gap-14 bg-gradient-to-r from-white to-primary/15">
           <div className="text-primary w-2/3 text-center font-serif text-xl md:text-3xl font-semibold">
-            <p>
-              Explore the power of Sulala's Animal Management Module, designed
-              to streamline the tracking of family trees, breeding details, and
-              medical histories. This intuitive module offers essential tools
-              for maintaining accurate animal records, ensuring optimal care and
-              management with ease.
-            </p>
+            <p>{t("explore_the_power_of_sulala")}</p>
           </div>
         </div>
         <div className="md:col-span-2 absolute z-10 md:relative md:z-auto h-full opacity-20 md:opacity-100 flex flex-col justify-center items-center object-fill bg-gradient-to-r from-primary/15 to-primary/0">
@@ -133,11 +127,10 @@ export default function Landing({ params: { lang } }: Props) {
               />
               <div className="w-full md:w-2/3">
                 <h6 className="text-primary text-lg font-semibold font-serif">
-                  Your Animal Dedicated Products
+                  {t("animal_dedicated_product_title")}
                 </h6>
                 <p className="text-black text-sm italic">
-                  Get wide selection of high quality products filtered on the
-                  selection of your animal.
+                  {t("animal_dedicated_product_description")}
                 </p>
               </div>
             </li>
@@ -149,11 +142,10 @@ export default function Landing({ params: { lang } }: Props) {
               />
               <div className="w-full md:w-2/3">
                 <h6 className="text-primary text-lg font-semibold font-serif">
-                  Packages
+                  {t("packages_title")}
                 </h6>
                 <p className="text-black text-sm italic">
-                  Save the items added to cart as a package to order with only
-                  one click next time without adding to cart again.
+                  {t("packages_description")}
                 </p>
               </div>
             </li>
@@ -165,11 +157,10 @@ export default function Landing({ params: { lang } }: Props) {
               />
               <div className="w-full md:w-2/3">
                 <h6 className="text-primary text-lg font-semibold font-serif">
-                  AutoDelivery
+                  {t("auto_delivery_title")}
                 </h6>
                 <p className="text-black text-sm italic">
-                  Let Sulala take the privilege to deliver to you your products
-                  without your ordering again
+                  {t("auto_delivery_description")}
                 </p>
               </div>
             </li>
@@ -181,11 +172,10 @@ export default function Landing({ params: { lang } }: Props) {
               />
               <div className="w-full md:w-2/3">
                 <h6 className="text-primary text-lg font-semibold font-serif">
-                  Scheduled Deliveries
+                  {t("scheduled_delivery_title")}
                 </h6>
                 <p className="text-black text-sm italic">
-                  Schedule the deliveries at your best times at your
-                  convinience.
+                  {t("scheduled_delivery_description")}
                 </p>
               </div>
             </li>
@@ -197,8 +187,12 @@ export default function Landing({ params: { lang } }: Props) {
         id="get-started"
         className="min-h-screen min-w-screen relative bg-[url('/landing.png')] bg-cover bg-center text-white flex flex-row justify-end items-stretch gap-8"
       >
-        <div className="w-6/12 flex justify-center items-center flex-col gap-8 bg-gradient-to-r from-transparent to-primary via-primary/50">
-          <h2 className="font-bold text-4xl text-white">Get Started Today!</h2>
+        <div
+          className={`w-6/12 flex justify-center items-center flex-col gap-8 ${lang == "en" ? "bg-gradient-to-r" : "bg-gradient-to-l"} from-transparent to-primary via-primary/50`}
+        >
+          <h2 className="font-bold text-4xl text-white">
+            {t("get_started_today")}
+          </h2>
           <SelectAccount />
         </div>
       </section>
@@ -325,7 +319,7 @@ export default function Landing({ params: { lang } }: Props) {
           href="/terms"
           className="flex flex-row gap-6 justify-center w-full my-3 text-[10px] text-secondary bg-primary font-mono"
         >
-          <p> Terms and Conditions</p>
+          <p>{t("terms_and_conditions")}</p>
           <img
             src="/icons/external-link.svg"
             alt=""
