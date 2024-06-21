@@ -12,3 +12,12 @@
 ### Removed
 - Some packages/libraries from acknowledgements I no longer use
 - Removed detect-device package, and implmented device detection manually
+
+## V1.1.0
+
+### Added or Changed
+- landing page changed to include selecting account
+- landing page style modified
+- terms and conditions added
+
+### Removed
