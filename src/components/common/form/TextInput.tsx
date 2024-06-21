@@ -1,4 +1,5 @@
 "use client";
+import { useScrollToErrorField } from "@/hooks/useScrollToErrorField";
 import { TextInputProps } from "@/types/props.type";
 import React from "react";
 
@@ -17,6 +18,7 @@ function TextInput({
   required,
 }: TextInputProps) {
   const [value, setValue] = React.useState(defaultValue || otVal || "");
+  const ref = useScrollToErrorField<HTMLLabelElement>(error);
 
   React.useEffect(() => {
     if (setValue && defaultValue) {
@@ -38,7 +40,7 @@ function TextInput({
   };
 
   return (
-    <label htmlFor={id} className="flex flex-col gap-3">
+    <label ref={ref} htmlFor={id} className="flex flex-col gap-3">
       <p className="self-start text-black">
         {label}
         {required && (
