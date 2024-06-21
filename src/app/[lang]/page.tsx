@@ -4,6 +4,8 @@ import LandingNavBar from "./components/LandingNavBar";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { LOCALES } from "@/i18n/config";
 import Image from "next/image";
+import { Link } from "@/i18n/navigation";
+import SelectAccount from "./components/SelectAccount";
 
 type Props = {
   params: {
@@ -60,25 +62,42 @@ export default function Landing({ params: { lang } }: Props) {
               {t("hero_title")}
             </p>
           </div>
-          <div className="w-11/12 md:w-2/3 text-center">
-            <p className="text-md md:text-xl font-normal font-serif">
+          <div className="w-2/3 text-center hidden md:block">
+            <p className="text-xl font-normal font-serif">
               {t("hero_description")}
             </p>
           </div>
           <div>
             <SecondaryButton
               name={t("hero_button")}
-              href="/auth/select-account?action=signup"
+              href="#get-started"
               padding="md"
             />
           </div>
         </div>
         <div
-          className={`h-full absolute -top-16 md:top-auto z-10 md:relative md:z-auto opacity-20 md:opacity-100 bg-gradient-to-l ${lang == "en" ? "from-black/60 to-black/0" : "to-black/60 from-black/0"} flex flex-col justify-center`}
+          className={`h-full absolute -top-16 md:top-auto z-10 md:relative md:z-auto opacity-20 md:opacity-100 ${lang == "en" ? "bg-gradient-to-l" : "bg-gradient-to-r"} from-black/60 to-black/0 flex flex-col justify-center`}
         >
           <Image
-            src="/images/sulala-pc-phone.png"
+            src="/mockups/iphone-mac-product-mockup.png"
             alt=""
+            width={900}
+            height={900}
+          />
+        </div>
+      </section>
+
+      <section className="min-h-screen min-w-screen bg-white grid grid-cols-1 md:grid-cols-5">
+        <div className="md:col-span-3 z-20 md:z-auto p-5 md:p-auto flex flex-row justify-end items-center gap-14 bg-gradient-to-r from-white to-primary/15">
+          <div className="text-primary w-full md:w-2/3 text-center font-serif text-xl md:text-3xl font-semibold">
+            <p>{t("explore_the_power_of_sulala")}</p>
+          </div>
+        </div>
+        <div className="md:col-span-2 absolute z-10 md:relative md:z-auto h-full opacity-20 md:opacity-100 flex flex-col justify-center items-center object-fill bg-gradient-to-r from-primary/15 to-primary/0">
+          <Image
+            src="/mockups/family-tree-portrait.png"
+            alt=""
+            className="w-9/12 md:w-5/12 aspect-auto"
             width={900}
             height={900}
           />
@@ -88,9 +107,9 @@ export default function Landing({ params: { lang } }: Props) {
       <section className="min-h-screen min-w-screen bg-white grid grid-cols-1 md:grid-cols-5">
         <div className="md:col-span-2 absolute z-10 md:relative md:z-auto h-full opacity-20 md:opacity-100 flex flex-col justify-center items-center object-fill bg-gradient-to-r from-primary/15 to-primary/0">
           <Image
-            src="/images/sulala-phone.png"
+            src="/mockups/scroll-portrait.png"
             alt=""
-            className="h-3/3 w-1/2"
+            className="w-5/12 aspect-auto"
             width={900}
             height={900}
           />
@@ -108,25 +127,10 @@ export default function Landing({ params: { lang } }: Props) {
               />
               <div className="w-full md:w-2/3">
                 <h6 className="text-primary text-lg font-semibold font-serif">
-                  {t("orders")}
+                  {t("animal_dedicated_product_title")}
                 </h6>
                 <p className="text-black text-sm italic">
-                  {t("orders_description")}
-                </p>
-              </div>
-            </li>
-            <li className="flex flex-row gap-2">
-              <img
-                src="/icons/storefront_active.svg"
-                alt=""
-                className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]"
-              />
-              <div className="w-full md:w-2/3">
-                <h6 className="text-primary text-lg font-semibold font-serif">
-                  {t("products")}
-                </h6>
-                <p className="text-black text-sm italic">
-                  {t("products_description")}
+                  {t("animal_dedicated_product_description")}
                 </p>
               </div>
             </li>
@@ -138,25 +142,25 @@ export default function Landing({ params: { lang } }: Props) {
               />
               <div className="w-full md:w-2/3">
                 <h6 className="text-primary text-lg font-semibold font-serif">
-                  {t("services")}
+                  {t("packages_title")}
                 </h6>
                 <p className="text-black text-sm italic">
-                  {t("services_description")}
+                  {t("packages_description")}
                 </p>
               </div>
             </li>
             <li className="flex flex-row gap-2">
               <img
-                src="/icons/whatshot_active.svg"
+                src="/icons/truck_active.svg"
                 alt=""
                 className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]"
               />
               <div className="w-full md:w-2/3">
                 <h6 className="text-primary text-lg font-semibold font-serif">
-                  {t("promotions")}
+                  {t("auto_delivery_title")}
                 </h6>
                 <p className="text-black text-sm italic">
-                  {t("promotions_description")}
+                  {t("auto_delivery_description")}
                 </p>
               </div>
             </li>
@@ -168,10 +172,10 @@ export default function Landing({ params: { lang } }: Props) {
               />
               <div className="w-full md:w-2/3">
                 <h6 className="text-primary text-lg font-semibold font-serif">
-                  {t("drivers")}
+                  {t("scheduled_delivery_title")}
                 </h6>
                 <p className="text-black text-sm italic">
-                  {t("drivers_description")}
+                  {t("scheduled_delivery_description")}
                 </p>
               </div>
             </li>
@@ -179,101 +183,22 @@ export default function Landing({ params: { lang } }: Props) {
         </div>
       </section>
 
-      <section className="min-h-screen min-w-screen bg-white grid grid-cols-1 md:grid-cols-5">
-        <div className="md:col-span-2 absolute z-10 md:relative md:z-auto h-full opacity-20 md:opacity-100 flex flex-col justify-center items-center object-fill bg-gradient-to-r from-primary/15 to-primary/0">
-          <Image
-            src="/images/sulala-phone.png"
-            alt=""
-            className="h-3/3 w-1/2"
-            width={900}
-            height={900}
-          />
-        </div>
-        <div className="md:col-span-3 z-20 md:z-auto p-5 md:p-auto flex flex-col justify-center items-start gap-14 bg-gradient-to-r from-white to-primary/15">
-          <h3 className="font-semibold text-primary text-3xl font-serif">
-            {t("what_we_provide")}
-          </h3>
-          <ul className="flex flex-col gap-4">
-            <li className="flex flex-row gap-2">
-              <img
-                src="/icons/shopping_bag_active.svg"
-                alt=""
-                className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]"
-              />
-              <div className="w-full md:w-2/3">
-                <h6 className="text-primary text-lg font-semibold font-serif">
-                  {t("orders")}
-                </h6>
-                <p className="text-black text-sm italic">
-                  {t("orders_description")}
-                </p>
-              </div>
-            </li>
-            <li className="flex flex-row gap-2">
-              <img
-                src="/icons/storefront_active.svg"
-                alt=""
-                className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]"
-              />
-              <div className="w-full md:w-2/3">
-                <h6 className="text-primary text-lg font-semibold font-serif">
-                  {t("products")}
-                </h6>
-                <p className="text-black text-sm italic">
-                  {t("products_description")}
-                </p>
-              </div>
-            </li>
-            <li className="flex flex-row gap-2">
-              <img
-                src="/icons/medical_services_active.svg"
-                alt=""
-                className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]"
-              />
-              <div className="w-full md:w-2/3">
-                <h6 className="text-primary text-lg font-semibold font-serif">
-                  {t("services")}
-                </h6>
-                <p className="text-black text-sm italic">
-                  {t("services_description")}
-                </p>
-              </div>
-            </li>
-            <li className="flex flex-row gap-2">
-              <img
-                src="/icons/whatshot_active.svg"
-                alt=""
-                className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]"
-              />
-              <div className="w-full md:w-2/3">
-                <h6 className="text-primary text-lg font-semibold font-serif">
-                  {t("promotions")}
-                </h6>
-                <p className="text-black text-sm italic">
-                  {t("promotions_description")}
-                </p>
-              </div>
-            </li>
-            <li className="flex flex-row gap-2">
-              <img
-                src="/icons/command_active.svg"
-                alt=""
-                className="bg-gradient-to-br from-primary to-primary/20 p-3 rounded-full h-[50px]"
-              />
-              <div className="w-full md:w-2/3">
-                <h6 className="text-primary text-lg font-semibold font-serif">
-                  {t("drivers")}
-                </h6>
-                <p className="text-black text-sm italic">
-                  {t("drivers_description")}
-                </p>
-              </div>
-            </li>
-          </ul>
+      <section
+        id="get-started"
+        className="min-h-screen min-w-screen relative bg-[url('/landing.png')] bg-cover bg-center text-white flex flex-row justify-end items-stretch gap-8"
+      >
+        <div
+          className={`w-full md:w-6/12 flex justify-center items-center flex-col gap-8 ${lang == "en" ? "bg-gradient-to-r" : "bg-gradient-to-l"} from-transparent to-primary via-primary/50`}
+        >
+          <h2 className="font-bold text-4xl text-white">
+            {t("get_started_today")}
+          </h2>
+          <SelectAccount />
         </div>
       </section>
 
       <footer className="bg-primary w-full flex flex-col items-center">
+        {/* FOOTER SUBTOPICS */}
         <div className="grid grid-cols-2 md:grid-cols-5 p-4 gap-3 md:gap-0 md:w-2/3">
           <div className="flex flex-col gap-3">
             <h4 className="text-white underline font-semibold text-xs md:text-md font-serif">
@@ -356,6 +281,7 @@ export default function Landing({ params: { lang } }: Props) {
             </ul>
           </div>
         </div>
+        {/* SOCIAL MEDIA LINKS */}
         <div className="flex flex-row gap-6 justify-center my-3 w-full">
           <img
             src="/icons/social_media/facebook.svg"
@@ -383,10 +309,24 @@ export default function Landing({ params: { lang } }: Props) {
             className="bg-white rounded-full aspect-square p-1 drop-shadow-lg w-[25px] cursor-pointer hover:scale-110 transition-all"
           />
         </div>
+        {/* LANGUAGE LIST */}
         <div className="flex flex-row gap-6 justify-center w-full my-3 text-sm text-white bg-primary">
           <p>English</p>
           <p>عربي</p>
         </div>
+        {/* TERMS AND COND */}
+        <Link
+          href="/legal/terms-and-conditions"
+          className="flex flex-row gap-6 justify-center w-full my-3 text-[10px] text-secondary bg-primary font-mono"
+        >
+          <p>{t("terms_and_conditions")}</p>
+          <img
+            src="/icons/external-link.svg"
+            alt=""
+            className="w-[10px] aspect-square"
+          />
+        </Link>
+        {/* COPY RIGHT */}
         <div className="flex flex-row justify-center items-center gap-3 p-3 border-t border-white/10 w-full">
           <img src="/sulala-logo-white.svg" alt="" className="w-6" />
           {/* <p className="font-thin font-serif text-xs md:text-sm">sulala.com</p> */}

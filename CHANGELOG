@@ -6,9 +6,19 @@
 - Added this changelog
 - Added readme documentation
 - Grouped auth routes and page to '(admin)' group
-- i18n and l10n for (arabic and english) started
-- theme (dark mode and light mode) implmentation started 
+- Started to implement i18n and l10n for (arabic and english)
+- Started to implement theme (dark mode and light mode)
 
 ### Removed
 - Some packages/libraries from acknowledgements I no longer use
 - Removed detect-device package, and implmented device detection manually
+
+## V1.1.0
+
+### Added or Changed
+- Changed landing page to include selecting account
+- Modified landing page styles
+- Added terms and conditions
+
+### Removed
+- Removed Select Account page and It's routes

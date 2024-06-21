@@ -1,3 +1,4 @@
+import { useScrollToErrorField } from "@/hooks/useScrollToErrorField";
 import React, { useEffect } from "react";
 
 type Props = {
@@ -32,6 +33,8 @@ function TextAreaInput({
   className,
   autoFocus,
 }: Props) {
+  const ref = useScrollToErrorField<HTMLDivElement>(error);
+
   const props = {};
   if (value) {
     Object.assign(props, { value });
@@ -48,8 +51,9 @@ function TextAreaInput({
       setValue(defaultValue);
     }
   }, []);
+
   return (
-    <div className={`flex flex-col gap-3 ${className}`}>
+    <div ref={ref} className={`flex flex-col gap-3 ${className}`}>
       <label htmlFor={id} className="self-start text-black dark:text-white">
         {label}
         {required && (

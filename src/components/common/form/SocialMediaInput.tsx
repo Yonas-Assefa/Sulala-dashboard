@@ -1,3 +1,5 @@
+"use client";
+import { useScrollToErrorField } from "@/hooks/useScrollToErrorField";
 import { useTranslations } from "next-intl";
 import React from "react";
 
@@ -7,9 +9,11 @@ type Props = {
   defaultValue?: string;
 };
 function SocialMediaInput({ socialMedia, error, defaultValue }: Props) {
+  const ref = useScrollToErrorField<HTMLDivElement>(error);
+
   const t = useTranslations("Commons");
   return (
-    <div className="flex flex-col gap-3">
+    <div ref={ref} className="flex flex-col gap-3">
       <label htmlFor={socialMedia}>
         {socialMedia == "instagram" ? t("instagram_link") : t("facebook_link")}
       </label>

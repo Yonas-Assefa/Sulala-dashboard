@@ -35,10 +35,6 @@ export const pathnames = {
   "/auth/create-password": "/auth/create-password",
 
   "/auth/verify-email": "/auth/verify-email",
-  "/auth/select-account": "/auth/select-account",
-  "/auth/select-account?action=signin": "/auth/select-account?action=signin",
-  "/auth/select-account?action=signup": "/auth/select-account?action=signup",
-
   "/ar": "/ar",
   "/en": "/en",
 
@@ -49,6 +45,7 @@ export const pathnames = {
   "/auth/download-app?store=appstore": "/auth/download-app?store=appstore",
   "/auth/download-app?store=playstore": "/auth/download-app?store=playstore",
 
+  "/legal/terms-and-conditions": "/legal/terms-and-conditions",
   // // If locales use different paths, you can
   // // specify each external path per locale.
   // '/about': {

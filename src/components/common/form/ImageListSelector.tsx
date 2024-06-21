@@ -11,6 +11,7 @@ import { useToastMessage } from "@/hooks/useToastMessage";
 import { useRedirectRoute } from "@/hooks/useRedirectRoute";
 import { useTranslations } from "next-intl";
 import { AnimatePresence, motion } from "framer-motion";
+import { useScrollToErrorField } from "@/hooks/useScrollToErrorField";
 
 type Props = {
   multi?: boolean;
@@ -42,6 +43,8 @@ function ImageListSelector({
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [formState, setFormState] = React.useState(EMPTY_FORM_STATE);
   const [isPending, startTransition] = React.useTransition();
+
+  const ref = useScrollToErrorField<HTMLDivElement>(error);
 
   const t = useTranslations("Commons");
 
@@ -103,7 +106,7 @@ function ImageListSelector({
     });
   };
   return (
-    <div className="flex flex-col gap-1">
+    <div ref={ref} className="flex flex-col gap-1">
       <ImageDeleteModal isPending={isPending} />
       <div className="flex flex-row gap-2">
         <p>{label || t("images")}</p>
