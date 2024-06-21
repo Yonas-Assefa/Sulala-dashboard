@@ -10,15 +10,15 @@ import Image from "next/image";
 
 type Props = {
   tableSchema: TableSchema;
-  mockData: Record<string, any>[];
+  data: Record<string, any>[];
   actionOptions?: ActionOptions;
 };
 
-function TableBody({ tableSchema, mockData, actionOptions }: Props) {
+function TableBody({ tableSchema, data, actionOptions }: Props) {
   return (
     <tbody>
-      {mockData.map((product, index) => {
-        const last_items = index > mockData.length - 3;
+      {data.map((product, index) => {
+        const last_items = index > data.length - 3;
         return (
           <tr className="border-secondary/30" key={product.id}>
             {tableSchema.include.checkbox && (
@@ -88,6 +88,7 @@ function TableBody({ tableSchema, mockData, actionOptions }: Props) {
             {tableSchema.include.actions && (
               <TableActions
                 promote={tableSchema.include.actions.promote}
+                is_promoted={product.is_promoted}
                 delete={tableSchema.include.actions.delete}
                 edit={tableSchema.include.actions.edit}
                 detail={tableSchema.include.actions.detail}

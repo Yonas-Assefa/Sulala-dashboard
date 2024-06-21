@@ -55,7 +55,7 @@ function Table({
           />
           {data.length > 0 ? (
             <TableBody
-              mockData={data}
+              data={data}
               tableSchema={tableSchema}
               actionOptions={actionOptions}
             />

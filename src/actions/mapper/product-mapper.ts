@@ -17,6 +17,7 @@ export const productMapper = async (data: any, manyImages?: boolean) => {
         animals: (animalMapper(product.animal_products) as []).map(
           (animal: any) => animal.value,
         ),
+        is_promoted: product.promotion_campaigns.length > 0,
       };
     });
   } else {
