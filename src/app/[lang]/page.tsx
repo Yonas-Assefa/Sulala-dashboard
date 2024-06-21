@@ -4,7 +4,7 @@ import LandingNavBar from "./components/LandingNavBar";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { LOCALES } from "@/i18n/config";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import SelectAccount from "./components/SelectAccount";
 
 type Props = {
@@ -316,7 +316,7 @@ export default function Landing({ params: { lang } }: Props) {
         </div>
         {/* TERMS AND COND */}
         <Link
-          href="/terms"
+          href="/legal/terms-and-conditions"
           className="flex flex-row gap-6 justify-center w-full my-3 text-[10px] text-secondary bg-primary font-mono"
         >
           <p>{t("terms_and_conditions")}</p>
