@@ -79,3 +79,10 @@ export const ACCEPT_SHOP_APPROVAL = `${VENDOR_BASE_URL}account-access-link/`;
 // OPEN TELEMETRY URLS
 export const SENTRY_DSN = process.env.SENTRY_DNS!;
 export const SENTRY_AUTH_TOKEN = process.env.SENTRY_AUTH_TOKEN!;
+
+// GOOGLE MAPS URLS
+export const GOOGLE_MAPS_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY!;
+export const GOOGLE_MAPS_BASE_URL = "https://maps.googleapis.com/";
+export const GOOGLE_MAPS_API_URL = `${GOOGLE_MAPS_BASE_URL}maps/api/`;
+export const GOOGLE_MAPS_GEOCODE_URL = `${GOOGLE_MAPS_API_URL}geocode/json`;
+export const GOOGLE_MAPS_AUTOCOMPLETE_URL = `${GOOGLE_MAPS_API_URL}place/autocomplete/json`;
