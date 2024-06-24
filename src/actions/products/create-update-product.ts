@@ -45,6 +45,36 @@ export const createUpdateProduct = async (
       Object.assign(dataToBeParsed, { images: allImages });
     }
 
+    if (formData.get("weight_or_volume")) {
+      const weightOrVolume = formData.get("weight_or_volume");
+      const unit = formData.get("unit");
+      const measureType = formData.get("measure_type")?.toString();
+
+      if (measureType?.toLowerCase() == "weight") {
+        Object.assign(dataToBeParsed, {
+          weight: weightOrVolume,
+          unit: unit,
+        });
+      } else if (measureType?.toLowerCase() == "volume") {
+        Object.assign(dataToBeParsed, {
+          volume: weightOrVolume,
+          unit: unit,
+        });
+      }
+    }
+
+    if (formData.get("pieces_per_pack")) {
+      Object.assign(dataToBeParsed, {
+        pieces_per_pack: formData.get("pieces_per_pack"),
+      });
+    }
+
+    if (formData.get("benefits")) {
+      Object.assign(dataToBeParsed, {
+        benefits: formData.get("benefits"),
+      });
+    }
+
     const data =
       tab == "add"
         ? createProductSchema.parse(dataToBeParsed)

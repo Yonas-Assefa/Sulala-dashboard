@@ -117,7 +117,7 @@ function ProductForm({
                   formState.fieldErrors?.volume?.[0] ||
                   formState.fieldErrors?.unit?.[0]
                 }
-                defaultValue={initialValue?.weight || initialValue?.weight}
+                defaultValue={initialValue?.weight || initialValue?.volume}
                 unit={initialValue?.unit}
               />
               <TextInput

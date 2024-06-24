@@ -32,6 +32,7 @@ export type RadioInputSchema = RadioInputOptions & {
 
 export enum MeasurementUnits {
   KG = "KG",
+  MG = "MG",
   G = "G",
   LB = "LB",
   OZ = "OZ",

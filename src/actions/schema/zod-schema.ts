@@ -130,7 +130,7 @@ export const createProductSchema = z.object({
     .optional(),
   volume: z.string().optional(),
   weight: z.string().optional(),
-  unit: z.nativeEnum(MeasurementUnits),
+  unit: z.nativeEnum(MeasurementUnits).optional(),
   pieces_per_pack: z.string().optional(),
   benefits: z
     .string()

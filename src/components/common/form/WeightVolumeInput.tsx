@@ -7,6 +7,11 @@ import React from "react";
 const UNITS = [
   {
     type: "Weight",
+    label: "Milligram",
+    value: "MG",
+  },
+  {
+    type: "Weight",
     label: "Kilogram",
     value: "KG",
   },
@@ -49,6 +54,8 @@ const UNITS = [
 
 const MEASURE_TYPES = ["Weight", "Volume"];
 
+type MeasureType = "Weight" | "Volume";
+
 function WeightVolumeInput({
   value: otVal,
   disabled,
@@ -65,8 +72,9 @@ function WeightVolumeInput({
 }: WeightVolumeInputProps) {
   const [value, setValue] = React.useState(defaultValue || otVal || "");
   const ref = useScrollToErrorField<HTMLLabelElement>(error);
-  const [measureType, setMeasureType] = React.useState<"Weight" | "Volume">(
-    "Weight",
+  const [measureType, setMeasureType] = React.useState<MeasureType>(
+    (UNITS.find((unitEntity) => unitEntity.value == unit)?.type ||
+      "Weight") as MeasureType,
   );
   const [unitValue, setUnitValue] = React.useState<MeasurementUnits>(
     unit || ("KG" as MeasurementUnits),
