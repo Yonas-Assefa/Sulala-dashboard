@@ -113,7 +113,7 @@ export const removeNullAndUndefined = (obj: Record<string, any>) => {
         return v.size > 0;
       }
       return v !== null && v !== undefined;
-    })
+    }),
   );
 };
 
@@ -154,7 +154,7 @@ export type TRequestMethod = "GET" | "POST" | "PATCH" | "DELETE";
 export const makeRequest = async (
   url: string,
   data: object,
-  method: TRequestMethod
+  method: TRequestMethod,
 ) => {
   const response = await fetch(url, {
     method: method,
@@ -170,7 +170,7 @@ export const makeRequestWithCookie = async (
   url: string,
   data: object,
   method: TRequestMethod,
-  cookie: string
+  cookie: string,
 ) => {
   const response = await fetch(url, {
     method: method,
@@ -228,6 +228,18 @@ export const getBearerToken = () => {
   return token;
 };
 
+export const cachePersonalInfo = (data: any) => {
+  cookies().set({
+    name: "personal_info",
+    value: JSON.stringify(data),
+  });
+};
+
+export const retrievePersonalInfo = () => {
+  const personalInfo = cookies().get("personal_info")?.value;
+  return personalInfo ? JSON.parse(personalInfo) : undefined;
+};
+
 export const getRequestHeaders = () => {
   return {
     Authorization: getBearerToken(),
@@ -273,7 +285,7 @@ export const changeObjToFormData = (Obj: object) => {
 
 export const getResponseErrorMessage = (
   body: any,
-  defaultMessage?: string
+  defaultMessage?: string,
 ): string => {
   if (body.message) {
     if (typeof body.message === "object")
@@ -316,8 +328,8 @@ export const buildUrlWithParams = (url: string, params = {}) => {
     .filter(
       ([_, value]) =>
         !["undefined", "null", undefined, null, ""].includes(
-          value?.toString()?.toLowerCase() as string
-        )
+          value?.toString()?.toLowerCase() as string,
+        ),
     )
     .map(([key, value]) => `${key}=${encodeURIComponent(value as string)}`)
     .join("&");

@@ -314,25 +314,41 @@ export default function Landing({ params: { lang } }: Props) {
           <p>English</p>
           <p>عربي</p>
         </div>
-        {/* TERMS AND COND */}
-        <Link
-          href="/legal/terms-and-conditions"
-          className="flex flex-row gap-6 justify-center w-full my-3 text-[10px] text-secondary bg-primary font-mono"
-        >
-          <p>{t("terms_and_conditions")}</p>
-          <img
-            src="/icons/external-link.svg"
-            alt=""
-            className="w-[10px] aspect-square"
-          />
-        </Link>
         {/* COPY RIGHT */}
-        <div className="flex flex-row justify-center items-center gap-3 p-3 border-t border-white/10 w-full">
-          <img src="/sulala-logo-white.svg" alt="" className="w-6" />
-          {/* <p className="font-thin font-serif text-xs md:text-sm">sulala.com</p> */}
-          <p className="font-thin font-serif text-xs md:text-sm">
-            {t("copyright")}
-          </p>
+        <div className="flex flex-col justify-start items-center gap-0 pt-3 border-t border-white/10 w-full">
+          <div className="flex flex-row gap-3">
+            <img src="/sulala-logo-white.svg" alt="" className="w-6" />
+            {/* <p className="font-thin font-serif text-xs md:text-sm">sulala.com</p> */}
+            <p className="font-thin font-serif text-xs md:text-sm">
+              {t("copyright")}
+            </p>
+          </div>
+          <div className="flex flex-row gap-0">
+            {/* TERMS AND COND */}
+            <Link
+              href="/legal/terms-and-conditions"
+              className="flex flex-row gap-6 justify-center items-center w-full text-[10px] text-secondary min-w-[200px] font-mono"
+            >
+              <p>{t("terms_and_conditions")}</p>
+              <img
+                src="/icons/external-link.svg"
+                alt=""
+                className="w-[10px] aspect-square"
+              />
+            </Link>
+            {/* VENDOR AGR */}
+            <Link
+              href="/legal/vendor-agreement"
+              className="flex flex-row gap-6 justify-center items-center w-full my-3 text-[10px] text-secondary min-w-[200px] bg-primary font-mono"
+            >
+              <p>{t("vendor_agreement")}</p>
+              <img
+                src="/icons/external-link.svg"
+                alt=""
+                className="w-[10px] aspect-square"
+              />
+            </Link>
+          </div>
         </div>
       </footer>
     </div>

@@ -50,6 +50,10 @@ export const enterOtp = async (formState: FormState, formData: FormData) => {
           ? "/dashboard/shops?filter=pending"
           : "/dashboard/settings";
 
+    if (action == "signin") {
+      await getPersonalInfo();
+    }
+
     return toFormState("SUCCESS", successMessage, redirectUrl);
   } catch (error) {
     return fromErrorToFormState(error);

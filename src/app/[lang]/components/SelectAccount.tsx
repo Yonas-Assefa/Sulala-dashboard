@@ -89,7 +89,7 @@ function SelectAccount() {
         </div>
       </div>
       <div className="flex justify-center w-1/2 mx-auto">
-        <PrimaryButton name={t("continue")} padding="sm" type="submit" />
+        <SecondaryButton name={t("continue")} padding="sm" type="submit" />
       </div>
     </form>
   );

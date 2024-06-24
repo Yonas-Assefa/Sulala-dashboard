@@ -68,6 +68,10 @@ export const signIn = async (formState: FormState, formData: FormData) => {
           : "/dashboard/settings"
         : `/auth/enter-otp?phone=${encodeURIComponent(data.phone_number!)}&action=signin`;
 
+    if (by == "email") {
+      // this fetches user info and caches it
+      await getPersonalInfo();
+    }
     return toFormState("SUCCESS", successMessage, redirectUrl);
   } catch (error) {
     return fromErrorToFormState(error);

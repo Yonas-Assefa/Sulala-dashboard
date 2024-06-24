@@ -1,19 +1,41 @@
-'use server'
+"use server";
 
-import { GET_VENDOR_ACCOUNT as GET_VENDOR_PROFILE, PRODUCTS } from "../../config/urls"
-import { getRequestHeaders, getResponseBody, makeRequest } from "../../lib/helper"
+import {
+  GET_VENDOR_ACCOUNT as GET_VENDOR_PROFILE,
+  PRODUCTS,
+} from "../../config/urls";
+import {
+  cachePersonalInfo,
+  getRequestHeaders,
+  getResponseBody,
+  makeRequest,
+  retrievePersonalInfo,
+} from "../../lib/helper";
 
 export const getPersonalInfo = async () => {
+  const cachedPersonalInfo = retrievePersonalInfo();
+  if (cachedPersonalInfo) {
+    return cachedPersonalInfo;
+  }
 
-    const response = await fetch(GET_VENDOR_PROFILE, {
-        method: 'GET',
-        headers: getRequestHeaders()
-    })
-    const body = await getResponseBody(response)
+  const response = await fetch(GET_VENDOR_PROFILE, {
+    method: "GET",
+    headers: getRequestHeaders(),
+  });
+  const body = await getResponseBody(response);
 
-    if (!response.ok || !body.success) {
-        throw new Error(body.message || 'Failed to get profile');
-    }
+  if (!response.ok || !body.success) {
+    throw new Error(body.message || "Failed to get profile");
+  }
 
-    return body.data
-}
+  const personalInfo = body.data;
+  if (
+    personalInfo &&
+    personalInfo.email_verified &&
+    personalInfo.is_password_set &&
+    personalInfo?.shops?.length > 0
+  ) {
+    cachePersonalInfo(personalInfo);
+  }
+  return body.data;
+};

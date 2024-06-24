@@ -46,6 +46,7 @@ export const pathnames = {
   "/auth/download-app?store=playstore": "/auth/download-app?store=playstore",
 
   "/legal/terms-and-conditions": "/legal/terms-and-conditions",
+  "/legal/vendor-agreement": "/legal/vendor-agreement",
   // // If locales use different paths, you can
   // // specify each external path per locale.
   // '/about': {

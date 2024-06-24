@@ -50,6 +50,10 @@ function TableActions({
   useToastMessage(formState);
   useRedirectRoute(formState);
 
+  const promotion_id = Array.isArray(product?.promotion_campaigns)
+    ? product?.promotion_campaigns?.[0]?.id
+    : product?.promotion_campaigns?.id;
+
   const getEditLink = () => {
     let link: string;
 
@@ -202,8 +206,13 @@ function TableActions({
           )}
         </div>
         {promote && (
-          <div
-            className={`flex flex-row gap-2 ${!is_promoted && "opacity-50"}`}
+          <Link
+            href={
+              is_promoted
+                ? `/dashboard/promotion/edit?type=product&tab=discounts-ads&item=${promotion_id}`
+                : (`/dashboard/promotion/add?type=product&tab=discounts-ads&product=${product.id}` as any)
+            }
+            className={`flex flex-row gap-2 ${!is_promoted && "opacity-50 hover:opacity-100 transition-all"}`}
           >
             <img
               src={
@@ -216,9 +225,9 @@ function TableActions({
             <p
               className={`${is_promoted ? "text-primary" : "text-secondary"} font-semibold`}
             >
-              Promote
+              {is_promoted ? "Promoted" : "Promote"}
             </p>
-          </div>
+          </Link>
         )}
       </div>
     </td>
