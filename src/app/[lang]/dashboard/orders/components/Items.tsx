@@ -10,8 +10,6 @@ import { orderItemTableSchema } from "../schema/items/schema";
 import { getVendorsRevenueStas } from "@/actions/orders/get-vendors-revenue-stat";
 import { getOrders } from "@/actions/orders/get-vendor-orders";
 import { changeObjToFormData } from "@/lib/helper";
-import Pagination from "@/components/common/ui/Pagination";
-import { TOTAL_ORDERS_COUNT } from "@/actions/mapper/orders-mapper";
 
 type SearchParams = {
   search: string;
@@ -68,11 +66,6 @@ async function Items({ searchParams }: ItemsProps) {
         sortData={orderItemSortData}
         tableSchema={orderItemTableSchema}
       />
-      {TOTAL_ORDERS_COUNT > 0 && (
-        <div className="flex flex-row self-end">
-          <Pagination dataCount={TOTAL_ORDERS_COUNT} />
-        </div>
-      )}
     </div>
   );
 }

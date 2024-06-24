@@ -21,20 +21,15 @@ export const getOrders = async (formData: FormData) => {
     },
   });
   const ordersBody = await ordersResponse.json();
-  console.log(ordersResponse.status);
-  if (ordersResponse.status === 404) {
-    console.log("exitst");
-    return await ordersMapper({
-      count: 0,
-      results: [],
-    });
-  }
-  {
-  }
+  console.log(ordersBody, ordersResponse);
 
   if (!ordersResponse.ok || !ordersBody.data) {
     throw new Error(ordersBody.message || "Failed to get Orders");
   }
 
-  return await ordersMapper(ordersBody.data);
+  const data = await ordersMapper(ordersBody.data.results);
+  return {
+    data,
+    count: ordersBody.data.count,
+  };
 };
