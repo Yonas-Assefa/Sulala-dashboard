@@ -80,7 +80,7 @@ function ChildInput({
   // IF CHILD DISABLED EXIST WITH INPUT ID, IT ASSIGNS IT TO THE INPUT
   if (childDisabled[input.id]) {
     Object.assign(props, {
-      disabled: childDisabled[input.id],
+      disabled: childDisabled?.[input.id],
     });
   }
 
@@ -160,8 +160,10 @@ function CustomRadioWithConditionalInput({
       {showLabel && <p className="font-semibold">{t(data.label)}</p>}
       {data.options.map((radioInput) => {
         const disabled = convertToArray(radioInput.input)?.find(
-          (input) => childDisabled[input.id],
-        );
+          (input) => childDisabled?.[input.id],
+        )
+          ? true
+          : false;
         return (
           <div className="flex flex-col gap-3" key={radioInput.id}>
             {/* LABEL FOR EACH RADIO BUTTON */}
@@ -179,7 +181,9 @@ function CustomRadioWithConditionalInput({
                 className={`radio ${error ? "radio-error border-danger" : "radio-success border-secondary"}`}
                 disabled={disabled}
               />
-              <span className="capitalize disabled:text-secondary">
+              <span
+                className={`capitalize ${disabled && "text-secondary cursor-not-allowed"}`}
+              >
                 {t(radioInput.label)}
               </span>
             </label>

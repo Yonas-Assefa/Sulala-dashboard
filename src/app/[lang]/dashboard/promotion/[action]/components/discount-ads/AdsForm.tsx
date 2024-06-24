@@ -198,7 +198,10 @@ function ProductDiscountAdsForm({ products, promotion }: Props) {
                 cart_total: formState?.fieldErrors?.cart_total?.[0],
               }}
               childDisabled={{
-                limited_price: products.length == 1,
+                // TO FIX: This is a temporary fix to disable the input fields
+                limited_price: !(
+                  item?.trim()?.split(",")?.filter(Boolean).length == 1
+                ),
               }}
               childSetValue={{
                 discount: setDiscount,
