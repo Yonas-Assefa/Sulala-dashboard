@@ -29,8 +29,17 @@ function TextInput({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (disabled) return;
-    setValue(e.target.value);
-    emitVal && emitVal(e.target.value);
+    const { value } = e.target;
+    if (type === "number") {
+      const re = /^[0-9\b]+$/;
+      if (value === "" || re.test(value)) {
+        setValue(value);
+        emitVal && emitVal(value);
+      }
+    } else {
+      setValue(value);
+      emitVal && emitVal(value);
+    }
   };
 
   const handleClear = () => {
@@ -55,7 +64,7 @@ function TextInput({
       >
         <input
           id={id}
-          type={type}
+          type={type == "number" ? "text" : type}
           placeholder={placeholder || "Type here"}
           name={name || "text-input"}
           className={`input text-black disabled:text-secondary w-full bg-transparent disabled:bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none ${disabled && "cursor-not-allowed opacity-50"}`}

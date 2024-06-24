@@ -31,8 +31,12 @@ function WeightVolumeInput({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (disabled) return;
-    setValue(e.target.value);
-    emitVal && emitVal(e.target.value);
+    const { value } = e.target;
+    const re = /^[0-9\b]+$/;
+    if (value === "" || re.test(value)) {
+      setValue(value);
+      emitVal && emitVal(value);
+    }
   };
 
   const handleClear = () => {
@@ -57,7 +61,7 @@ function WeightVolumeInput({
       >
         <input
           id={id}
-          type={"number"}
+          type={"text"}
           placeholder={placeholder || "Type here"}
           name={name || "text-input"}
           className={`input text-black disabled:text-secondary w-full bg-transparent rounded-none disabled:bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none ${disabled && "cursor-not-allowed opacity-50"}`}
