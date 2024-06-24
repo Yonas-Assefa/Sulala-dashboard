@@ -1,14 +1,10 @@
 "use server";
 
-import {
-  GET_VENDOR_ACCOUNT as GET_VENDOR_PROFILE,
-  PRODUCTS,
-} from "../../config/urls";
+import { GET_VENDOR_ACCOUNT as GET_VENDOR_PROFILE } from "../../config/urls";
 import {
   cachePersonalInfo,
   getRequestHeaders,
   getResponseBody,
-  makeRequest,
   retrievePersonalInfo,
 } from "../../lib/helper";
 
@@ -37,5 +33,5 @@ export const getPersonalInfo = async () => {
   ) {
     cachePersonalInfo(personalInfo);
   }
-  return body.data;
+  return personalInfo;
 };

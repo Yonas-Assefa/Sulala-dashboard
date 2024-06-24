@@ -2,7 +2,6 @@
 import { openModal } from "@/lib/modals";
 import { Link } from "@/i18n/navigation";
 import React from "react";
-import { useFormStatus } from "react-dom";
 
 type Props = {
   href?: string;
@@ -11,8 +10,6 @@ type Props = {
   name: string;
   padding?: "xsm" | "sm" | "md" | "lg" | "xlg";
   type?: "submit" | "reset" | "button";
-  disabled?: boolean;
-  isPending?: boolean;
 };
 
 function SecondaryButton({
@@ -22,8 +19,6 @@ function SecondaryButton({
   modal,
   type,
   handleClick,
-  disabled,
-  isPending,
 }: Props) {
   const paddings = {
     xsm: "px-[10px]",
@@ -33,10 +28,7 @@ function SecondaryButton({
     xlg: "px-[300px]",
   };
 
-  const { pending } = useFormStatus();
-
   const handleButtonClick = () => {
-    if (disabled) return;
     if (handleClick) {
       handleClick();
     }
@@ -56,27 +48,19 @@ function SecondaryButton({
   if (href) {
     return (
       <Link
-        href={disabled ? "" : (href as any)}
-        className={`btn w-full rounded-[40px] bg-[#f6f6f6] hover:bg-secondary/40 border-0 text-black ${padding && paddings[padding]} ${(disabled || pending) && "bg-secondary hover:bg-secondary border-0 text-white cursor-not-allowed"}`}
+        href={href as any}
+        className={`btn w-full rounded-[40px] bg-[#f6f6f6] hover:bg-secondary/40 border-0 text-black ${padding && paddings[padding]}`}
       >
-        {pending || isPending ? (
-          <span className="loading loading-spinner loading-md text-primary"></span>
-        ) : (
-          name
-        )}
+        {name}
       </Link>
     );
   } else {
     return (
       <button
-        className={`btn w-full rounded-[40px] bg-[#f6f6f6] hover:bg-secondary/40 border-0 text-black ${padding && paddings[padding]} ${(disabled || pending) && "bg-secondary hover:bg-secondary border-0 text-white cursor-not-allowed"}`}
+        className={`btn w-full rounded-[40px] bg-[#f6f6f6] hover:bg-secondary/40 border-0 text-black ${padding && paddings[padding]}`}
         {...props}
       >
-        {pending || isPending ? (
-          <span className="loading loading-spinner loading-md text-primary"></span>
-        ) : (
-          name
-        )}
+        {name}
       </button>
     );
   }

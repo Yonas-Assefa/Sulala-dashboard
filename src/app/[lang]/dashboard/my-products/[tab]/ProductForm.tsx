@@ -13,6 +13,7 @@ import React from "react";
 import { useFormState } from "react-dom";
 import { useTranslations } from "next-intl";
 import TagInput from "@/components/common/form/TagInput";
+import WeightVolumeInput from "@/components/common/form/WeightVolumeInput";
 
 type Props = {
   categoryLists: any;
@@ -106,6 +107,31 @@ function ProductForm({
                 label={t("price")}
                 error={formState.fieldErrors?.price?.[0]}
                 defaultValue={initialValue?.price}
+              />
+              <WeightVolumeInput
+                label="Weight"
+                id="weight"
+                name="weight"
+                error={formState.fieldErrors?.weight?.[0]}
+                defaultValue={initialValue?.weight}
+              />
+              <TextInput
+                id="pieces_per_pack"
+                name="pieces_per_pack"
+                type="number"
+                placeholder={t("enter_pieces_per_pack")}
+                label={t("pieces_per_pack")}
+                error={formState.fieldErrors?.pieces_per_pack?.[0]}
+                defaultValue={initialValue?.pieces_per_pack}
+              />
+              <TextAreaInput
+                id="benefits"
+                name="benefits"
+                placeholder="Enter benefits of the product"
+                label="Benefits"
+                error={formState.fieldErrors?.benefits?.[0]}
+                defaultValue={initialValue?.benefits}
+                className="col-span-2"
               />
               <div className="col-span-2">
                 <ImageListSelector

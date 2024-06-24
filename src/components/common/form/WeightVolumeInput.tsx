@@ -3,7 +3,7 @@ import { useScrollToErrorField } from "@/hooks/useScrollToErrorField";
 import { TextInputProps } from "@/types/props.type";
 import React from "react";
 
-function TextInput({
+function WeightVolumeInput({
   value: otVal,
   disabled,
   setValue: emitVal,
@@ -51,14 +51,14 @@ function TextInput({
         )}
       </p>
       <div
-        className={`flex items-center relative overflow-hidden justify-between gap-0 border rounded-[40px] w-full ${error ? "bg-dangerlight border-danger" : "bg-white focus-within:border-primary"}`}
+        className={`flex items-stretch overflow-hidden relative justify-between gap-0 border rounded-[40px] w-full ${error ? "bg-dangerlight border-danger" : "bg-white focus-within:border-primary"}`}
       >
         <input
           id={id}
-          type={type}
+          type={"number"}
           placeholder={placeholder || "Type here"}
           name={name || "text-input"}
-          className={`input text-black disabled:text-secondary w-full bg-transparent disabled:bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none ${disabled && "cursor-not-allowed opacity-50"}`}
+          className={`input text-black disabled:text-secondary w-full bg-transparent rounded-none disabled:bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none ${disabled && "cursor-not-allowed opacity-50"}`}
           autoComplete={autoComplete || "false"}
           value={value}
           onChange={handleChange}
@@ -70,7 +70,7 @@ function TextInput({
           <button
             type="button"
             onClick={handleClear}
-            className={`absolute right-[13px] bottom-[13px] ${
+            className={`absolute right-[60px] bottom-[13px] ${
               disabled
                 ? "opacity-40 cursor-not-allowed"
                 : "opacity-100 cursor-pointer"
@@ -83,10 +83,20 @@ function TextInput({
             />
           </button>
         )}
+        <select
+          name="unit"
+          id="unit"
+          className="bg-primary/20 text-primary w-[50px] text-center"
+        >
+          <option value="kg">kg</option>
+          <option value="g">g</option>
+          <option value="l">l</option>
+          <option value="ml">ml</option>
+        </select>
       </div>
       {error && <span className="text-xs text-danger">{error}</span>}
     </label>
   );
 }
 
-export default TextInput;
+export default WeightVolumeInput;
