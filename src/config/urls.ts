@@ -64,6 +64,7 @@ export const ORDERS_URL = `${API_URL}orders/vendor-orders/`;
 
 //SHOP URLS
 export const SHOP_REVENUE_URL = `${VENDOR_BASE_URL}shops/revenue/`;
+
 // OTHERS
 export const INSTAGRAM_BASE_URL = "https://www.instagram.com/";
 export const FACEBOOK_BASE_URL = "https://www.facebook.com/";
