@@ -1,5 +1,9 @@
 import { ChangeEventHandler } from "react";
-import { RadioInputSchema, SelectInputSchema } from "./input-field.type";
+import {
+  MeasurementUnits,
+  RadioInputSchema,
+  SelectInputSchema,
+} from "./input-field.type";
 
 type BaseInputProps = {
   id?: string;
@@ -18,6 +22,10 @@ type BaseInputProps = {
 export type TextInputProps = BaseInputProps & {
   type?: "text" | "email" | "password" | "number";
   dynamicPlaceholder?: RegExp;
+};
+
+export type WeightVolumeInputProps = TextInputProps & {
+  unit?: MeasurementUnits;
 };
 
 export type SelectInputProps = Omit<BaseInputProps, "defaultValue"> & {

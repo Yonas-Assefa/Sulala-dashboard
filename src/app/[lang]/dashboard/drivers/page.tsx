@@ -17,10 +17,6 @@ import { changeObjToFormData } from "@/lib/helper";
 async function page({
   searchParams: { search, filter, sort, sort_by, page, page_size },
 }: Props) {
-  const promotions = await getPromotions(
-    changeObjToFormData({ search, filter, sort, sort_by, page, page_size }),
-  );
-
   return (
     <>
       <CreateCampaignModal />
@@ -39,7 +35,7 @@ async function page({
 
         {/* <PromotionCampaignTable /> */}
         <Table
-          data={promotions}
+          data={[]}
           filterData={promotionFilterData}
           tableSchema={promotionTableSchema}
           sortData={promotionSortData}

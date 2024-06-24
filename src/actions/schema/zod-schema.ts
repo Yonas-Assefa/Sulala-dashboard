@@ -17,6 +17,7 @@ import {
   BUDGETING_ENUM,
   DESTINATION_ENUM,
 } from "@/app/[lang]/dashboard/drivers/[action]/data/discount-contants";
+import { MeasurementUnits, ProductStatus } from "@/types/input-field.type";
 
 export const phoneAuthSchema = z.object({
   phone_number: z.string().transform(phoneTransform),
@@ -104,16 +105,6 @@ export const setupAccountLastStepSchema = z.object({
     .optional(),
 });
 
-// ("NEW", "New"),
-// ("ACTIVE", "Active"),
-// ("DRAFT", "Draft"),
-// ("ARCHIVED", "Archived"),
-enum ProductStatus {
-  NEW = "NEW",
-  ACTIVE = "ACTIVE",
-  DRAFT = "DRAFT",
-  ARCHIVED = "ARCHIVED",
-}
 export const createProductSchema = z.object({
   title: z
     .string({ message: "Product title is a required field" })
@@ -136,6 +127,14 @@ export const createProductSchema = z.object({
   animals: z
     .array(z.string())
     // .min(1, 'Please choose at least one animal')
+    .optional(),
+  volume: z.string().optional(),
+  weight: z.string().optional(),
+  unit: z.nativeEnum(MeasurementUnits),
+  pieces_per_pack: z.string().optional(),
+  benefits: z
+    .string()
+    .min(1, "Benefits must be at least 1 character long")
     .optional(),
 });
 

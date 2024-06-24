@@ -1,9 +1,53 @@
 "use client";
 import { useScrollToErrorField } from "@/hooks/useScrollToErrorField";
-import { TextInputProps } from "@/types/props.type";
+import { MeasurementUnits } from "@/types/input-field.type";
+import { WeightVolumeInputProps } from "@/types/props.type";
 import React from "react";
 
-const UNITS = ["KG", "G", "LB", "OZ", "L", "ML", "CUBIC_M", "CUBIC_CM"];
+const UNITS = [
+  {
+    type: "Weight",
+    label: "Kilogram",
+    value: "KG",
+  },
+  {
+    type: "Weight",
+    label: "Gram",
+    value: "G",
+  },
+  {
+    type: "Weight",
+    label: "Pound",
+    value: "LB",
+  },
+  {
+    type: "Weight",
+    label: "Ounce",
+    value: "OZ",
+  },
+  {
+    type: "Volume",
+    label: "Liter",
+    value: "L",
+  },
+  {
+    type: "Volume",
+    label: "Milliliter",
+    value: "ML",
+  },
+  {
+    type: "Volume",
+    label: "Cubic Meter",
+    value: "CUBIC_M",
+  },
+  {
+    type: "Volume",
+    label: "Cubic Centimeter",
+    value: "CUBIC_CM",
+  },
+];
+
+const MEASURE_TYPES = ["Weight", "Volume"];
 
 function WeightVolumeInput({
   value: otVal,
@@ -15,12 +59,18 @@ function WeightVolumeInput({
   name,
   autoComplete,
   error,
-  type = "text",
   defaultValue,
   required,
-}: TextInputProps) {
+  unit,
+}: WeightVolumeInputProps) {
   const [value, setValue] = React.useState(defaultValue || otVal || "");
   const ref = useScrollToErrorField<HTMLLabelElement>(error);
+  const [measureType, setMeasureType] = React.useState<"Weight" | "Volume">(
+    "Weight",
+  );
+  const [unitValue, setUnitValue] = React.useState<MeasurementUnits>(
+    unit || ("KG" as MeasurementUnits),
+  );
 
   React.useEffect(() => {
     if (setValue && defaultValue) {
@@ -47,15 +97,32 @@ function WeightVolumeInput({
 
   return (
     <label ref={ref} htmlFor={id} className="flex flex-col gap-3">
-      <p className="self-start text-black">
-        {label}
-        {required && (
-          <span className="text-danger">
-            *&nbsp;
-            <sup className="text-xs opacity-70">(required)</sup>
-          </span>
-        )}
-      </p>
+      <div className="w-full flex flex-row justify-between px-4">
+        <p className="self-start text-black">
+          {label}
+          {required && (
+            <span className="text-danger">
+              *&nbsp;
+              <sup className="text-xs opacity-70">(required)</sup>
+            </span>
+          )}
+        </p>
+        <select
+          name="measure_type"
+          id="measure_type"
+          className="text-[10px] select-none cursor-pointer flex flex-row gap-2 overflow-hidden border border-secondary/40 bg-tertiary rounded-[30px] justify-center items-center px-1"
+          onChange={(e) =>
+            setMeasureType(e.target.value as "Weight" | "Volume")
+          }
+          value={measureType}
+        >
+          {MEASURE_TYPES.map((type) => (
+            <option key={type} value={type} className="bg-white text-primary">
+              {type}
+            </option>
+          ))}
+        </select>
+      </div>
       <div
         className={`flex items-stretch overflow-hidden relative justify-between gap-0 border rounded-[40px] w-full ${error ? "bg-dangerlight border-danger" : "bg-white focus-within:border-primary"}`}
       >
@@ -92,11 +159,17 @@ function WeightVolumeInput({
         <select
           name="unit"
           id="unit"
-          className="bg-tertiary text-primary w-[100px] text-center"
+          className="bg-tertiary text-primary w-[100px] text-center text-sm"
+          onChange={(e) => setUnitValue(e.target.value as MeasurementUnits)}
+          value={unitValue}
         >
-          {UNITS.map((unit) => (
-            <option key={unit} value={unit} className="bg-white text-primary ">
-              {unit}
+          {UNITS.filter((unit) => unit.type == measureType).map((unit) => (
+            <option
+              key={unit.value}
+              value={unit.value}
+              className="bg-white text-primary "
+            >
+              {unit.label}
             </option>
           ))}
         </select>

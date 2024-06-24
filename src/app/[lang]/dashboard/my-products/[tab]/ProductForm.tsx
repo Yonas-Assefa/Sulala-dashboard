@@ -109,11 +109,16 @@ function ProductForm({
                 defaultValue={initialValue?.price}
               />
               <WeightVolumeInput
-                label="Weight"
-                id="weight"
-                name="weight"
-                error={formState.fieldErrors?.weight?.[0]}
-                defaultValue={initialValue?.weight}
+                label="Weight / Volume"
+                id="weight_or_volume"
+                name="weight_or_volume"
+                error={
+                  formState.fieldErrors?.weight?.[0] ||
+                  formState.fieldErrors?.volume?.[0] ||
+                  formState.fieldErrors?.unit?.[0]
+                }
+                defaultValue={initialValue?.weight || initialValue?.weight}
+                unit={initialValue?.unit}
               />
               <TextInput
                 id="pieces_per_pack"
