@@ -42,10 +42,7 @@ fi
 new_tag="v$major.$minor.$patch"
 
 git tag -a "$new_tag" -m "Version $new_tag"
-echo "Tagged with $new_tag"
-
 git push origin "$new_tag" --quiet
-echo "Pushed to origin"
 
 echo "Tagging finished. New tag is $new_tag"
 
