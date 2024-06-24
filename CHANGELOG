@@ -19,6 +19,10 @@
 - Changed landing page to include selecting account
 - Modified landing page styles
 - Added terms and conditions
+- Added vendor agreement
+- Added Geo Encoding and Place Autocomplete functionality
+- Added weight, volume, unit, pieces per pack and benefits on products create page
 
 ### Removed
 - Removed Select Account page and It's routes
+- Removed Discount from products create page
