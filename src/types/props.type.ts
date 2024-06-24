@@ -54,6 +54,7 @@ export type CustomRadioInputProps = {
   childSetValue?: any;
   childOptions?: any;
   childDefaultValue?: any;
+  childDisabled?: any;
   defaultValue?: string;
 };
 

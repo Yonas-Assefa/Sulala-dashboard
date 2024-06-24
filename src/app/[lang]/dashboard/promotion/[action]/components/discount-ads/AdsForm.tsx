@@ -197,6 +197,9 @@ function ProductDiscountAdsForm({ products, promotion }: Props) {
                 limited_price: formState?.fieldErrors?.limited_price?.[0],
                 cart_total: formState?.fieldErrors?.cart_total?.[0],
               }}
+              childDisabled={{
+                limited_price: products.length == 1,
+              }}
               childSetValue={{
                 discount: setDiscount,
                 limited_price: setLimitedPrice,

@@ -3,7 +3,7 @@ import { useScrollToErrorField } from "@/hooks/useScrollToErrorField";
 import { TextInputProps } from "@/types/props.type";
 import React from "react";
 
-const UNITS = ["KG", "G", "LB", "OZ", "L", "ML", "CUBIC_M", "CUBIC_CM", "NONE"];
+const UNITS = ["KG", "G", "LB", "OZ", "L", "ML", "CUBIC_M", "CUBIC_CM"];
 
 function WeightVolumeInput({
   value: otVal,
