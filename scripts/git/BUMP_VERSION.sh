@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git fetch --tags
+git fetch --tags --quiet
 
 # check if tags were fetched, if not exit
 if [ $? -ne 0 ]; then
