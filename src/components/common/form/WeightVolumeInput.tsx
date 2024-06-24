@@ -3,6 +3,8 @@ import { useScrollToErrorField } from "@/hooks/useScrollToErrorField";
 import { TextInputProps } from "@/types/props.type";
 import React from "react";
 
+const UNITS = ["KG", "G", "LB", "OZ", "L", "ML", "CUBIC_M", "CUBIC_CM", "NONE"];
+
 function WeightVolumeInput({
   value: otVal,
   disabled,
@@ -70,7 +72,7 @@ function WeightVolumeInput({
           <button
             type="button"
             onClick={handleClear}
-            className={`absolute right-[60px] bottom-[13px] ${
+            className={`absolute right-[105px] bottom-[13px] ${
               disabled
                 ? "opacity-40 cursor-not-allowed"
                 : "opacity-100 cursor-pointer"
@@ -86,12 +88,13 @@ function WeightVolumeInput({
         <select
           name="unit"
           id="unit"
-          className="bg-primary/20 text-primary w-[50px] text-center"
+          className="bg-tertiary text-primary w-[100px] text-center"
         >
-          <option value="kg">kg</option>
-          <option value="g">g</option>
-          <option value="l">l</option>
-          <option value="ml">ml</option>
+          {UNITS.map((unit) => (
+            <option key={unit} value={unit} className="bg-white text-primary ">
+              {unit}
+            </option>
+          ))}
         </select>
       </div>
       {error && <span className="text-xs text-danger">{error}</span>}
