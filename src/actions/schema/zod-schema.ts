@@ -161,20 +161,20 @@ export const shopInfoSettingSchema = z
       .min(1, "Address must be at least 1 character long"),
     website: z
       .string()
-      .url({ message: "Invalid url eg (start like https://**)" }),
+      .url({ message: "Invalid url eg (start with https://**)" }),
     description: z
       .string()
       .min(1, "Description must be at least 1 character long"),
     instagram: z
       .string()
-      .url({ message: "Invalid url eg (start like https://**)" })
+      .url({ message: "Invalid url eg (start with https://**)" })
       .startsWith(INSTAGRAM_BASE_URL, {
         message:
           "Url must be an instagram url eg (https://www.instagram.com/s***)",
       }),
     facebook: z
       .string()
-      .url({ message: "Invalid url eg (start like https://**)" })
+      .url({ message: "Invalid url eg (start with https://**)" })
       .startsWith(FACEBOOK_BASE_URL, {
         message:
           "Url must be a facebook url eg (https://www.facebook.com/s***)",
