@@ -78,7 +78,7 @@ function ChildInput({
   }
 
   // IF CHILD DISABLED EXIST WITH INPUT ID, IT ASSIGNS IT TO THE INPUT
-  if (childDisabled[input.id]) {
+  if (childDisabled?.[input.id]) {
     Object.assign(props, {
       disabled: childDisabled?.[input.id],
     });

@@ -1,23 +1,17 @@
-'use client'
-import React from 'react'
+"use client";
+import React from "react";
+import ErrorDisplay from "@/app/[lang]/components/ErrorDisplay";
 
-function error() {
-    return (
-        <div className='w-full h-full flex flex-row'>
-            <div className='bg-white flex-grow'>
-                <div className='w-full h-full flex justify-between flex-col items-center'>
-                    <div className='flex flex-col justify-center items-center w-full h-full'>
-                        <img src="/icons/alert.svg" alt="" className='opacity-80' />
-                        <h1 className='text-2xl md:text-4xl text-center  font-semibold text-danger'>Error - While loading my services</h1>
-                        <div className='flex flex-row justify-between gap-5'>
-                            <a href='mailto:support@sulala.com' className='text-primary font-semibold hover:underline'>Please contact support team!</a>
-                        </div>
-                        <img src='/icons/medical_services.svg' className='w-[100px] opacity-15 absolute' />
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
+type ErrorProps = {
+  error: Error & { digest?: string };
+  reset: () => void;
+};
+function error({ reset }: ErrorProps) {
+  return (
+    <div className="w-screen h-screen">
+      <ErrorDisplay title="Services" reset={reset} />
+    </div>
+  );
 }
 
-export default error
+export default error;
