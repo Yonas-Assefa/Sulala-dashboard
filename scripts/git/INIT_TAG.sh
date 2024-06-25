@@ -19,4 +19,10 @@ if [[ $recent_commit_message =~ \#skip ]]; then
   exit 0
 fi
 
+current_branch=$(git symbolic-ref --short HEAD)
+if [[ $current_branch != "main" && $current_branch != "master" ]]; then
+  echo -e "\e[0;31;40mNot on main or master branch. Skipping tag...\e[0m"
+  exit 0
+fi
+
 ./scripts/git/BUMP_VERSION.sh "$version_increment"
