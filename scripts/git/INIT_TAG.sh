@@ -15,13 +15,13 @@ else
 fi
 
 if [[ $recent_commit_message =~ \#skip ]]; then
-  echo -e "\e[0;33;40mSkipping versioning script due to #skip directive in commit message.\e[0m"
+  echo -e "\e[0;33;49mSkipping versioning script due to #skip directive in commit message.\e[0m"
   exit 0
 fi
 
 current_branch=$(git symbolic-ref --short HEAD)
 if [[ $current_branch != "main" && $current_branch != "master" ]]; then
-  echo -e "\e[0;35;40mNot on main or master branch. Skipping tag...\e[0m"
+  echo -e "\e[0;35;49mNot on main or master branch. Skipping tag...\e[0m"
   exit 0
 fi
 
