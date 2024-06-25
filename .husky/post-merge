@@ -1,4 +1,4 @@
 #!/bin/bash
 
-npm install
 ./scripts/git/INIT_TAG.sh
+npm install
