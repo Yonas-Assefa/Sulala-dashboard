@@ -15,7 +15,7 @@ else
 fi
 
 if [[ $recent_commit_message =~ \#skip ]]; then
-  echo "Skipping versioning script due to #skip directive in commit message."
+  echo -e "\e[0;33;40mSkipping versioning script due to #skip directive in commit message.\e[0m"
   exit 0
 fi
 

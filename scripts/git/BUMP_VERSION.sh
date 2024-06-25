@@ -4,7 +4,7 @@ git fetch --tags --quiet
 
 # check if tags were fetched, if not exit
 if [ $? -ne 0 ]; then
-    echo "Failed to fetch tags. Exiting..."
+    echo -e "\e[0;31;40mFailed to fetch tags. Exiting...\e[0m"
     exit 0
 fi
 
@@ -20,14 +20,14 @@ minor=${version_parts[1]}
 patch=${version_parts[2]}
 
 if [ "$1" == "--patch" ]; then
-    echo "patch argument detected. Incrementing patch version"
+    echo -e "\e[0;33;40mpatch argument detected. Incrementing patch version\e[0m"
     patch=$((patch + 1))
 elif [ "$1" == "--minor" ]; then
-    echo "minor argument detected. Incrementing minor version"
+    echo -e "\e[0;33;40mminor argument detected. Incrementing minor version\e[0m"
     minor=$((minor + 1))
     patch=0
 elif [ "$1" == "--major" ]; then
-    echo "major argument detected. Incrementing major version"
+    echo -e "\e[0;33;40mmajor argument detected. Incrementing major version\e[0m"
     major=$((major + 1))
     minor=0
     patch=0
@@ -35,7 +35,7 @@ elif [ -z "$1" ]; then
     echo "No argument detected. Incrementing patch version"
     patch=$((patch + 1))
 else
-    echo "Invalid argument. Exiting..."
+    echo -e "\e[0;31;40mInvalid argument. Exiting...\e[0m"
     exit 1
 fi
 
@@ -44,7 +44,8 @@ new_tag="v$major.$minor.$patch"
 git tag -a "$new_tag" -m "Version $new_tag"
 git push origin "$new_tag" --quiet
 
-echo "Tagging finished. New tag is $new_tag"
+echo -e "\e[0;34;40mTagging finished.\e[0m"
+echo -e "\e[0;32;40mNew tag is $new_tag\e[0m"
 
 # sed -i "s/\"version\": \".*\"/\"version\": \"$major.$minor.$patch\"/g" package.json
 # git add package.json
