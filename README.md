@@ -1,12 +1,12 @@
 ```
- .d8888b.           888          888
-d88P  Y88b          888          888
-Y88b.               888          888
- "Y888b.   888  888 888  8888b.  888  8888b.
-    "Y88b. 888  888 888     "88b 888     "88b
-      "888 888  888 888 .d888888 888 .d888888
-Y88b  d88P Y88b 888 888 888  888 888 888  888
- "Y8888P"   "Y88888 888 "Y888888 888 "Y888888
+                   .d8888b.           888          888
+                  d88P  Y88b          888          888
+                  Y88b.               888          888
+                   "Y888b.   888  888 888  8888b.  888  8888b.
+                      "Y88b. 888  888 888     "88b 888     "88b
+                        "888 888  888 888 .d888888 888 .d888888
+                  Y88b  d88P Y88b 888 888 888  888 888 888  888
+                   "Y8888P"   "Y88888 888 "Y888888 888 "Y888888
 ```
 
 <a name="readme-top"></a>
@@ -154,6 +154,35 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Helpers
+
+This project also utilize some helper `scripts` and `git hooks`.
+
+1. Scripts:
+
+- the `scripts` folder holds two types of scripts, for docker, and for git.
+- the git scripts are used for tagging images and pushing the tag to source code repository
+- the script fetched the current tag from source code repo, and increament the version based on args given.
+- argument `--patch` or no argument increases the patch version of the app.
+- argument `--minor` increases the minor version of the app.
+- argument `--major` inceases the major version of the app.
+- _semantic versioning_ strategy is used in this case. to create tag or version, use the following guidelines.
+  - **patch**: Apply a patch for bug fixes, style improvements, and other minor changes.
+  - **minor**: Apply a minor version for changes that go beyond bug fixes, including the addition of new features, without breaking existing functionality.
+  - **major**: Apply a major version for features that introduce significant changes and may cause compatibility issues with previous versions of the app, potentially leading to crashes.
+
+2. Hooks:
+
+- This project utilizes Git hooks to perform various operations on Git actions, such as:
+  - Linting and formatting code using Prettier, and checking commit messages before committing changes (`pre-commit`).
+  - Standardizing commit messages (`commit-msg`).
+  - Running tests before pushing changes (`pre-push`).
+  - Automatically tagging code and installing packages after merging and pulling changes (`post-merge`).
+
+_For more examples, please refer to the [Documentation](https://example.com)_
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- ROADMAP -->
 
 ## Roadmap
@@ -208,6 +237,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 Sulala - [@sulala_twitter](https://twitter.com/your_username) - email@sulala.com
 
 Project Link: [https://github.com/DevSulala/Sulala-ShopDashboard](https://github.com/DevSulala/Sulala-ShopDashboard)
+
+[sulala.com](https://sulala.com/en)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
