@@ -70,7 +70,7 @@ function TableSearch({ action }: Props) {
           onChange={handleChange}
           value={value}
           type="text"
-          className="bg-white outline-none border-0 focus:outline-none"
+          className="bg-white outline-none border-0 focus:outline-none text-black dark:bg-black dark:text-white"
           placeholder="Seach my products"
         />
         {/* {isPending && <span className="loading loading-dots loading-xs text-primary/80 absolute right-2 top-2"></span>} */}

@@ -25,6 +25,8 @@ function ThemeSwitch() {
     }
   }, []);
 
+  return <div></div>;
+
   return (
     <label className="swap swap-rotate bg-white dark:bg-gray-600 dark:text-white hover:bg-primary fill-primary dark:fill-white hover:fill-white rounded-lg p-2 aspect-square">
       <input

@@ -103,7 +103,7 @@ input:-webkit-autofill {
 }
 
 .tab-active {
-  @apply bg-black text-white;
+  @apply bg-black text-white dark:bg-white dark:text-black;
 }
 
 /* width */

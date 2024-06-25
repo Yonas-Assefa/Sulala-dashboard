@@ -33,7 +33,7 @@ function TableSort({ sortData }: Props) {
         <div
           tabIndex={0}
           role="button"
-          className="bg-white border rounded-[30px] p-1 px-3 flex flex-row gap-2"
+          className="bg-white border rounded-[30px] p-1 px-3 flex flex-row gap-2 text-black dark:bg-black dark:text-white"
         >
           <img
             src="/icons/swap_vert.svg"

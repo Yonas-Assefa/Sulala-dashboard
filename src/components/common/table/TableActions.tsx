@@ -212,7 +212,7 @@ function TableActions({
                 ? `/dashboard/promotion/edit?type=product&tab=discounts-ads&item=${promotion_id}`
                 : (`/dashboard/promotion/add?type=product&tab=discounts-ads&product=${product.id}` as any)
             }
-            className={`flex flex-row gap-2 ${!is_promoted && "opacity-50 hover:opacity-100 transition-all"}`}
+            className={`flex flex-row gap-2 ${!is_promoted && "transition-all"}`}
           >
             <img
               src={
@@ -223,7 +223,7 @@ function TableActions({
               alt=""
             />
             <p
-              className={`${is_promoted ? "text-primary" : "text-secondary"} font-semibold`}
+              className={`${is_promoted ? "text-primary" : "text-gray-800"} font-semibold`}
             >
               {is_promoted ? "Promoted" : "Promote"}
             </p>
