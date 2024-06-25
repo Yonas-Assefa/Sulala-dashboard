@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Build the Docker image
-docker build -t sulala-dashboard .  --progress=plain
+docker build -t sulala-dashboard .
 
 # check if the build was successful
 if [ $? -ne 0 ]; then
