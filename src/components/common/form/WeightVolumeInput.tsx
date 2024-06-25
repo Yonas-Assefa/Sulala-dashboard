@@ -2,6 +2,7 @@
 import { useScrollToErrorField } from "@/hooks/useScrollToErrorField";
 import { MeasurementUnits } from "@/types/input-field.type";
 import { WeightVolumeInputProps } from "@/types/props.type";
+import { useParams } from "next/navigation";
 import React from "react";
 
 const UNITS = [
@@ -79,6 +80,7 @@ function WeightVolumeInput({
   const [unitValue, setUnitValue] = React.useState<MeasurementUnits>(
     unit || ("KG" as MeasurementUnits),
   );
+  const { lang } = useParams();
 
   React.useEffect(() => {
     if (setValue && defaultValue) {
@@ -151,7 +153,7 @@ function WeightVolumeInput({
           <button
             type="button"
             onClick={handleClear}
-            className={`absolute right-[105px] bottom-[13px] ${
+            className={`absolute bottom-[13px] ${lang !== "ar" ? "right-[105px]" : "left-[105px]"} ${
               disabled
                 ? "opacity-40 cursor-not-allowed"
                 : "opacity-100 cursor-pointer"

@@ -1,5 +1,6 @@
 "use client";
 import { useScrollToErrorField } from "@/hooks/useScrollToErrorField";
+import { useParams } from "next/navigation";
 import React from "react";
 
 type Props = {
@@ -22,6 +23,7 @@ function PasswordInput({
   const [showPassword, setShowPassword] = React.useState(false);
 
   const ref = useScrollToErrorField<HTMLDivElement>(error);
+  const { lang } = useParams();
 
   const toggleShowHidePassword = () => {
     setShowPassword(!showPassword);
@@ -50,7 +52,7 @@ function PasswordInput({
           <button
             onClick={toggleShowHidePassword}
             type="button"
-            className="absolute top-[13px] right-[13px]"
+            className={`absolute top-[13px] ${lang !== "ar" ? "right-[13px]" : "left-[13px]"}`}
           >
             <img
               src="/opened-eye.svg"

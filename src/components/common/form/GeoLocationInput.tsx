@@ -6,6 +6,7 @@ import {
 } from "@/config/urls";
 import { useScrollToErrorField } from "@/hooks/useScrollToErrorField";
 import { TextInputProps } from "@/types/props.type";
+import { useParams } from "next/navigation";
 import React from "react";
 
 function GeoLocationInput({
@@ -28,6 +29,7 @@ function GeoLocationInput({
     { value: string; label: string }[]
   >([]);
   const [geoLocation, setGeoLocation] = React.useState<any>();
+  const { lang } = useParams();
 
   React.useEffect(() => {
     if (setValue && defaultValue) {
@@ -124,7 +126,7 @@ function GeoLocationInput({
           <button
             type="button"
             onClick={handleClear}
-            className={`absolute right-[13px] bottom-[13px] ${
+            className={`absolute bottom-[13px] ${lang !== "ar" ? "right-[13px]" : "left-[13px]"} ${
               disabled
                 ? "opacity-40 cursor-not-allowed"
                 : "opacity-100 cursor-pointer"

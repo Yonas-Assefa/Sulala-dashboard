@@ -9,7 +9,7 @@ function SideBarOptions() {
       <div
         tabIndex={0}
         role="button"
-        className="p-2 hidden md:block text-black dark:text-white"
+        className="p-2 hidden md:block text-black dark:text-white text-[10px]"
       >
         •&nbsp;•&nbsp;•
       </div>
