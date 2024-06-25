@@ -11,7 +11,7 @@ elif [[ $recent_commit_message =~ (--minor|#minor) ]]; then
 elif [[ $recent_commit_message =~ (--major|#major) ]]; then
   version_increment="--major"
 else
-  version_increment="--patch"
+  version_increment=""
 fi
 
 if [[ $recent_commit_message =~ \#skip ]]; then

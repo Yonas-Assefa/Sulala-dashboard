@@ -32,7 +32,7 @@ elif [ "$1" == "--major" ]; then
     minor=0
     patch=0
 elif [ -z "$1" ]; then
-    echo "No argument detected. Incrementing patch version"
+    echo -e "\e[0;33;40mNo argument detected. Incrementing patch version\e[0m"
     patch=$((patch + 1))
 else
     echo -e "\e[0;31;40mInvalid argument. Exiting...\e[0m"
