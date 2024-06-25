@@ -13,7 +13,7 @@ fi
 latest_tag=$(git describe --tags --abbrev=0)
 latest_tag=${latest_tag#v}
 
-echo -e "\e[0;34;40mLabel the current tag with 'latest' tag? (y/n)\e[0m"
+echo -e "\e[0;36;40mLabel the current tag with 'latest' tag? (y/n)\e[0m"
 read label_latest
 
 if [ "$label_latest" == "y" ]; then

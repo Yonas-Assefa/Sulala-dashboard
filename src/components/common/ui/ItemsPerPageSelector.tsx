@@ -1,7 +1,4 @@
 "use client";
-import { useState } from "react";
-import { useCreateQueryString } from "@/hooks/useCreateQueryString";
-import { DEFAULTPAGESIZE } from "./Pagination";
 
 const pageSizes = [1, 10, 15, 20];
 type Props = {
