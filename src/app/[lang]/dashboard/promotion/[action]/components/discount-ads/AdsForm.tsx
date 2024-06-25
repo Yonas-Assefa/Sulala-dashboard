@@ -162,7 +162,7 @@ function ProductDiscountAdsForm({ products, promotion }: Props) {
                 label={t("banner_ads")}
                 id="ad_files"
                 name="ad_files"
-                error={formState?.fieldErrors?.ad_files?.[0]}
+                error={formState?.fieldErrors?.files?.[0]}
                 onDelete={{
                   action: removePromotionBannerFile,
                   formData: [

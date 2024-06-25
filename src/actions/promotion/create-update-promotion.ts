@@ -5,7 +5,10 @@ import {
   toFormState,
 } from "@/utils/formStateHelper";
 import { PROMOTIONS } from "../../config/urls";
-import { createPromoCampaingSchema } from "../schema/zod-schema";
+import {
+  createPromoCampaingSchema,
+  updatePromoCampaingSchema,
+} from "../schema/zod-schema";
 import {
   changeObjToFormData,
   getMultiPartRequestHeaders,
@@ -85,10 +88,13 @@ export const createUpdatePromotion = async (
       }
     }
 
-    const data = createPromoCampaingSchema.parse(dataToBeParsed);
-
     const action = formData.get("action_type");
     const item_id = formData.get("item_id");
+
+    const data =
+      action === "add"
+        ? createPromoCampaingSchema.parse(dataToBeParsed)
+        : updatePromoCampaingSchema.parse(dataToBeParsed);
 
     const METHOD = action === "add" ? "POST" : "PATCH";
     const URL = action === "add" ? PROMOTIONS : `${PROMOTIONS}${item_id}/`;

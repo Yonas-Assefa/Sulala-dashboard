@@ -348,8 +348,7 @@ export const createPromoCampaingSchema = z.object({
   files: z
     .any()
     .refine(fileRefine.existFn, fileRefine.existMg)
-    .refine(fileRefine.acceptFn(IMAGE_TYPES), fileRefine.acceptMg("image"))
-    .optional(),
+    .refine(fileRefine.acceptFn(IMAGE_TYPES), fileRefine.acceptMg("image")),
   destination_type: z
     .string({
       message: "Destination type is a required field",
@@ -359,6 +358,8 @@ export const createPromoCampaingSchema = z.object({
     })
     .optional(),
 });
+
+export const updatePromoCampaingSchema = createPromoCampaingSchema.partial();
 
 export const approveRejectShopsSchema = z.object({
   status: z
