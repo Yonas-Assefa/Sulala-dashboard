@@ -49,7 +49,7 @@ function SecondaryButton({
     return (
       <Link
         href={href as any}
-        className={`btn w-full rounded-[40px] bg-[#f6f6f6] hover:bg-secondary/40 border-0 text-black ${padding && paddings[padding]}`}
+        className={`btn w-full rounded-[40px] bg-[#f6f6f6] hover:bg-secondary/40 border-0 text-black dark:bg-gray-700 dark:text-white ${padding && paddings[padding]}`}
       >
         {name}
       </Link>
@@ -57,7 +57,7 @@ function SecondaryButton({
   } else {
     return (
       <button
-        className={`btn w-full rounded-[40px] bg-[#f6f6f6] hover:bg-secondary/40 border-0 text-black ${padding && paddings[padding]}`}
+        className={`btn w-full rounded-[40px] bg-[#f6f6f6] hover:bg-secondary/40 border-0 text-black dark:bg-gray-700 dark:text-white ${padding && paddings[padding]}`}
         {...props}
       >
         {name}
