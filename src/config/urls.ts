@@ -87,3 +87,6 @@ export const GOOGLE_MAPS_BASE_URL = "https://maps.googleapis.com/";
 export const GOOGLE_MAPS_API_URL = `${GOOGLE_MAPS_BASE_URL}maps/api/`;
 export const GOOGLE_MAPS_GEOCODE_URL = `${GOOGLE_MAPS_API_URL}geocode/json`;
 export const GOOGLE_MAPS_AUTOCOMPLETE_URL = `${GOOGLE_MAPS_API_URL}place/autocomplete/json`;
+
+// USER LOCATION URL
+export const USER_LOCATION_URL = "https://ipapi.co/json/";
