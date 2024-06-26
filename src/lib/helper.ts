@@ -240,6 +240,10 @@ export const retrievePersonalInfo = () => {
   return personalInfo ? JSON.parse(personalInfo) : undefined;
 };
 
+export const clearPersonalInfo = () => {
+  cookies().delete("personal_info");
+};
+
 export const getRequestHeaders = () => {
   return {
     Authorization: getBearerToken(),
