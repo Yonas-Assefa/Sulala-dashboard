@@ -28,7 +28,7 @@ type Props = {
   setValue?: (val: (File | string)[]) => void;
   onDelete?: {
     action: (formData: FormData) => Promise<FormState>;
-    formData: { key: string; value: string }[];
+    formData: { key: string; value: string | Function }[];
   };
 };
 
@@ -61,7 +61,6 @@ function ImageListSelector({
       const formData = new FormData();
       Console.log({ file, onDelete });
       onDelete?.formData.forEach((ele) => {
-        // @ts-ignore
         formData.append(
           ele.key,
           typeof ele.value == "function" ? ele.value(file) : ele.value,
