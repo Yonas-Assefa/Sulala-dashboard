@@ -11,9 +11,11 @@ export const billingMapper = async (data: any) => {
     };
   }
   if (Array.isArray(data)) {
-    return data.map((billing: any) => {
-      return convert(billing);
-    });
+    return data
+      .map((billing: any) => {
+        return convert(billing);
+      })
+      .sort((billing) => (billing.primary ? -1 : 1));
   } else {
     return convert(data);
   }

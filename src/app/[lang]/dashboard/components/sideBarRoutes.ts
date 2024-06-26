@@ -1,5 +1,12 @@
 const routes = [
   {
+    icon: "/icons/bar_chart.svg",
+    activeIcon: "/icons/bar_chart_active.svg",
+    name: "statistics",
+    path: "/dashboard/statistics",
+    protected: false,
+  },
+  {
     icon: "/icons/shopping_bag.svg",
     activeIcon: "/icons/shopping_bag_active.svg",
     name: "orders",
