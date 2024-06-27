@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.0.0
+## v1.0.~
 
 ### Added or Changed
 - Added this changelog
@@ -13,7 +13,7 @@
 - Some packages/libraries from acknowledgements I no longer use
 - Removed detect-device package, and implmented device detection manually
 
-## V1.1.0
+## V1.1.~
 
 ### Added or Changed
 - Changed landing page to include selecting account
@@ -22,6 +22,8 @@
 - Added vendor agreement
 - Added Geo Encoding and Place Autocomplete functionality
 - Added weight, volume, unit, pieces per pack and benefits on products create page
+- Added user consent for using cookie and location
+- Added statistics chart display for dashboard
 
 ### Removed
 - Removed Select Account page and It's routes
