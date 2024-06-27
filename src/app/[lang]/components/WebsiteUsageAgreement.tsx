@@ -18,7 +18,7 @@ function WebsiteUsageAgreement() {
   if (!showConcentForm) return null;
 
   return (
-    <div className="fixed bottom-0 w-full h-full flex flex-col">
+    <div className="fixed bottom-0 w-full h-full flex flex-col z-40">
       <div className="flex-grow backdrop-blur-md"></div>
       <div className="bg-tertiary p-6 drop-shadow-md flex flex-col gap-3">
         <h3 className="text-black font-semibold">Cookie and Location</h3>

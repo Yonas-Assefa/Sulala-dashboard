@@ -40,7 +40,7 @@ export default function Landing({ params: { lang } }: Props) {
   const t = useTranslations("Landing");
 
   return (
-    <div className="">
+    <div className="overflow-hidden">
       <LandingNavBar lang={lang} />
 
       <section className="min-h-screen min-w-screen bg-gradient-to-b relative from-primary to-primary/50 text-white grid grid-cols-1 md:grid-cols-2">
