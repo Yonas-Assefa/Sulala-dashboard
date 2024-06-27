@@ -122,12 +122,15 @@ _Below is an instruction of installing and setting up sulala app._
    ```sh
     BACKEND_BASE_URL = 'http://<url>/'
     FRONTEND_BASE_URL = 'http://<url>/'
+    IMAGE_BASE_URL = 'http://<url>/'
 
     SENTRY_DNS = 'https://<api-key>.ingest.us.sentry.io/<secret-key>'
     SENTRY_AUTH_TOKEN = 'sntrys_<auth-token>'
 
     GOOGLE_ID='<google-id>.apps.googleusercontent.com'
     GOOGLE_SECRET='GOCSPX-<google-secret>'
+
+    NEXT_PUBLIC_GOOGLE_MAPS_KEY='<google-geo-encoding-api-key>'
    ```
 
 5. Run in development mode

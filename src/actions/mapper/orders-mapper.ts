@@ -1,5 +1,5 @@
 import { changeLocalToISODateOnly } from "@/utils/dateFormatter.util";
-import { BASE_URL } from "@/config/urls";
+import { constructImageUrl } from "@/lib/images";
 
 export const ordersMapper = (orders: any) => {
   const modifeidOrders = orders.map((order: any) => ({
@@ -9,7 +9,7 @@ export const ordersMapper = (orders: any) => {
       ...order_item,
       label: order_item?.product.title,
       image: order_item?.product.images?.[0]
-        ? `${BASE_URL}${order_item?.product.images?.[0]}`
+        ? constructImageUrl(order_item?.product.images, true)
         : "",
     })),
   }));

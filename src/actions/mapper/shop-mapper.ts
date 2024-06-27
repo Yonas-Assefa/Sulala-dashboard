@@ -1,5 +1,6 @@
 import { getCategories } from "../common/get-categories";
 import { BASE_URL } from "../../config/urls";
+import { constructImageUrl } from "@/lib/images";
 
 export const shopMapper = async (data: any) => {
   const categories = await getCategories();
@@ -9,10 +10,10 @@ export const shopMapper = async (data: any) => {
         ...shop,
         profile_photo:
           shop.profile_photo?.length > 0
-            ? `${BASE_URL}${shop.profile_photo}`
+            ? constructImageUrl(shop.profile_photo, true)
             : undefined,
-        categories: categories.filter(
-          (category) => shop.categories.includes(category.value)
+        categories: categories.filter((category) =>
+          shop.categories.includes(category.value),
         ),
       };
     });
@@ -21,10 +22,10 @@ export const shopMapper = async (data: any) => {
       ...data,
       profile_photo:
         data.profile_photo?.length > 0
-          ? `${BASE_URL}${data.profile_photo}`
+          ? constructImageUrl(data.profile_photo, true)
           : undefined,
-      categories: categories.filter(
-        (category) => data.categories.includes(category.value)
+      categories: categories.filter((category) =>
+        data.categories.includes(category.value),
       ),
     };
   }

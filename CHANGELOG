@@ -24,6 +24,7 @@
 - Added weight, volume, unit, pieces per pack and benefits on products create page
 - Added user consent for using cookie and location
 - Added statistics chart display for dashboard
+- Added functionality to upload assets prior to item creation
 
 ### Removed
 - Removed Select Account page and It's routes
