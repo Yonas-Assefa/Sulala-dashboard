@@ -6,8 +6,15 @@ type ErrorProps = {
 };
 function ErrorDisplay({ reset, title }: ErrorProps) {
   const handleRetry = () => {
-    if (reset) reset();
-    else window.location.reload();
+    const errorStatus = localStorage.getItem("NEXT_ERR");
+
+    if (reset && errorStatus !== "SOFT_RELOAD") {
+      localStorage.setItem("NEXT_ERR", "SOFT_RELOAD");
+      reset();
+    } else {
+      localStorage.setItem("NEXT_ERR", "HARD_RELOAD");
+      window.location.reload();
+    }
   };
   return (
     <div className="w-full h-full flex flex-row bg-gradient-to-br from-black/5 to-black/25">

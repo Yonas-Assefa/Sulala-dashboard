@@ -5,22 +5,20 @@ function WebsiteUsageAgreement() {
   const [showConcentForm, setShowConcentForm] = React.useState(false);
 
   React.useEffect(() => {
-    setShowConcentForm(
-      localStorage.getItem("cookie-location-agreement") !== "agreed",
-    );
+    setShowConcentForm(localStorage.getItem("SULALA_Cns") !== "RECIEVED");
   }, []);
 
   const handleClick = () => {
-    localStorage.setItem("cookie-location-agreement", "agreed");
+    localStorage.setItem("SULALA_Cns", "RECIEVED");
     setShowConcentForm(false);
   };
 
   if (!showConcentForm) return null;
 
   return (
-    <div className="fixed bottom-0 w-full h-full flex flex-col z-40">
+    <div className="fixed bottom-0 w-full h-full flex flex-col z-50">
       <div className="flex-grow backdrop-blur-md"></div>
-      <div className="bg-tertiary p-6 drop-shadow-md flex flex-col gap-3">
+      <div className="bg-tertiary p-6 shadow-2xl shadow-gray-700 flex flex-col gap-3">
         <h3 className="text-black font-semibold">Cookie and Location</h3>
         <div>
           <p className="text-secondary text-sm">
