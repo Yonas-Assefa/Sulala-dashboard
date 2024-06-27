@@ -3,6 +3,7 @@ import { SelectInputSchema } from "@/types/input-field.type";
 import { CustomSelectInputProps } from "@/types/props.type";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { title } from "process";
 import React, { useEffect } from "react";
 // import initialData from '@/constants/select-input.placeholder.json'
 // import initialNestedData from '@/constants/select-input-nested.placeholder.json'
@@ -71,6 +72,10 @@ function SelectInput({
   const selectRef = React.useRef<HTMLDetailsElement>(null);
   const [open, setOpen] = React.useState(false);
   const [search, setSearch] = React.useState("");
+  const [childErrorItem, setChildErrorItem] = React.useState<{
+    id: string;
+    title: string;
+  } | null>(null);
 
   const t = useTranslations("Commons");
 
@@ -175,6 +180,19 @@ function SelectInput({
     if (ref.current && error) {
       ref.current?.scrollIntoView({ behavior: "smooth" });
     }
+
+    const regex = /\[{'id': (\d+), 'title': '([^']+)'}]/;
+
+    const match = regex.exec(error || "");
+
+    if (match) {
+      setChildErrorItem({
+        id: match[1],
+        title: match[2],
+      });
+    } else {
+      setChildErrorItem(null);
+    }
   }, [error]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -205,6 +223,7 @@ function SelectInput({
     // SELECT REF IS USED TO OPEN AND CLOSE THE DROPDOWN
     <div ref={ref} className="flex flex-col w-full gap-3">
       {/* <input type="text" id={id} name={name} value={multi ? selected.map(s => s.value) : selected[0]?.value} hidden onChange={() => { }} /> */}
+      {/* HIDDEN INPUTS OF SELECTED VALUE FOR FORM DATA SUBMISSION */}
       {selected.map((item, i) => (
         <input
           type="text"
@@ -295,7 +314,7 @@ function SelectInput({
                     key={option.value}
                   >
                     <div
-                      className={`form-control w-full flex flex-row justify-between rounded-none ${options.length !== i + 1 && "border-b"}`}
+                      className={`form-control w-full flex flex-row justify-between rounded-none ${options.length !== i + 1 && "border-b"} ${childErrorItem?.id == option.value && "border-danger bg-dangerlight"}`}
                     >
                       {/* IF DROPDOWN IS SET TO HAVE IMAGE INIT AND IMAGE SHOW IS ENABLED, IT WILL BE DISPLAYED HERE */}
                       {withImage && (
@@ -309,7 +328,7 @@ function SelectInput({
                       )}
                       <label
                         htmlFor="1"
-                        className={`label-text label w-full flex justify-between text-black text-md ${disabled ? "opacity-50 cursor-not-allowed" : "opacity-100 cursor-pointer"}`}
+                        className={`label-text label w-full flex justify-between text-black text-md ${disabled ? "opacity-50 cursor-not-allowed" : "opacity-100 cursor-pointer"} ${childErrorItem?.id == option.value && "text-danger"}`}
                       >
                         {option.label}
                       </label>
@@ -355,7 +374,16 @@ function SelectInput({
           </div>
         </div>
       </details>
-      {error && <span className="text-xs text-danger">{error}</span>}
+      {error && (
+        <span className="text-xs text-danger">
+          {childErrorItem
+            ? error?.replace(
+                /\[{'id': \d+, 'title': '[^']+'}\]/,
+                childErrorItem?.title,
+              )
+            : error}
+        </span>
+      )}
     </div>
   );
 }

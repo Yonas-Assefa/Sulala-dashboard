@@ -8,6 +8,8 @@ import { getProducts } from "@/actions/products/get-products";
 import { customMapper } from "@/actions/mapper/custom-mapper";
 import { getOnePromotion } from "@/actions/promotion/get-promotions";
 import { getTranslations } from "next-intl/server";
+import { getoneFromArray } from "@/utils/getOneFromArray";
+import { changeObjToFormData } from "@/lib/helper";
 
 type Props = {
   params: {
@@ -33,15 +35,14 @@ async function page({
   const t = await getTranslations("Promotion");
 
   const products = await customMapper({
-    data: await getProducts(),
+    data: await getProducts(changeObjToFormData({ filter: "ACTIVE" })),
     opt: [
       { from: "id", to: "value" },
       { from: "title", to: "label" },
       {
         from: "images",
         to: "image",
-        converter: (image: unknown) =>
-          Array.isArray(image) ? image[0] : image,
+        converter: getoneFromArray,
       },
     ],
   });
