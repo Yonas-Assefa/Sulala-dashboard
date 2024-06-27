@@ -1,6 +1,6 @@
 {
   "name": "sulala-dashboard",
-  "version": "v1.1.35",
+  "version": "v1.1.60",
   "private": true,
   "scripts": {
     "dev": "next dev",
