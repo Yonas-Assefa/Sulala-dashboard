@@ -3,12 +3,13 @@ import { SelectInputSchema } from "@/types/input-field.type";
 import { CustomSelectInputProps } from "@/types/props.type";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { title } from "process";
 import React, { useEffect } from "react";
-// import initialData from '@/constants/select-input.placeholder.json'
-// import initialNestedData from '@/constants/select-input-nested.placeholder.json'
 import { useDetectClickOutside } from "react-detect-click-outside";
 
+type TChildError = {
+  id: string;
+  title: string;
+};
 function NoItemPlaceholder() {
   const t = useTranslations("Commons");
   return (
@@ -72,10 +73,9 @@ function SelectInput({
   const selectRef = React.useRef<HTMLDetailsElement>(null);
   const [open, setOpen] = React.useState(false);
   const [search, setSearch] = React.useState("");
-  const [childErrorItem, setChildErrorItem] = React.useState<{
-    id: string;
-    title: string;
-  } | null>(null);
+  const [childErrorItem, setChildErrorItem] = React.useState<
+    TChildError[] | null
+  >(null);
 
   const t = useTranslations("Commons");
 
@@ -181,18 +181,22 @@ function SelectInput({
       ref.current?.scrollIntoView({ behavior: "smooth" });
     }
 
-    const regex = /\[{'id': (\d+), 'title': '([^']+)'}]/;
+    const arrayRegex = /\[.+]/g;
+    const ObjRegex = /\{'id': (\d+), 'title': '([^']+)'\}/g;
 
-    const match = regex.exec(error || "");
+    const message = error?.match(arrayRegex)?.[0] || "";
 
-    if (match) {
-      setChildErrorItem({
-        id: match[1],
-        title: match[2],
-      });
-    } else {
-      setChildErrorItem(null);
+    const extractedObjects: TChildError[] = [];
+    let match;
+
+    while ((match = ObjRegex.exec(message)) !== null) {
+      const id = match[1];
+      const title = match[2];
+      const product = { id, title };
+      extractedObjects.push(product);
     }
+
+    setChildErrorItem(extractedObjects);
   }, [error]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -314,7 +318,7 @@ function SelectInput({
                     key={option.value}
                   >
                     <div
-                      className={`form-control w-full flex flex-row justify-between rounded-none ${options.length !== i + 1 && "border-b"} ${childErrorItem?.id == option.value && "border-danger bg-dangerlight"}`}
+                      className={`form-control w-full flex flex-row justify-between rounded-none ${options.length !== i + 1 && "border-b"} ${childErrorItem?.map((obj) => obj.id).includes(option.value + "") && "border-danger bg-dangerlight"}`}
                     >
                       {/* IF DROPDOWN IS SET TO HAVE IMAGE INIT AND IMAGE SHOW IS ENABLED, IT WILL BE DISPLAYED HERE */}
                       {withImage && (
@@ -328,7 +332,7 @@ function SelectInput({
                       )}
                       <label
                         htmlFor="1"
-                        className={`label-text label w-full flex justify-between text-black text-md ${disabled ? "opacity-50 cursor-not-allowed" : "opacity-100 cursor-pointer"} ${childErrorItem?.id == option.value && "text-danger"}`}
+                        className={`label-text label w-full flex justify-between text-black text-md ${disabled ? "opacity-50 cursor-not-allowed" : "opacity-100 cursor-pointer"} ${childErrorItem?.map((obj) => obj.id).includes(option.value + "") && "text-danger"}`}
                       >
                         {option.label}
                       </label>
@@ -378,8 +382,8 @@ function SelectInput({
         <span className="text-xs text-danger">
           {childErrorItem
             ? error?.replace(
-                /\[{'id': \d+, 'title': '[^']+'}\]/,
-                childErrorItem?.title,
+                /\[.+]/,
+                `(${childErrorItem?.map((obj) => obj.title).join(", ")})`,
               )
             : error}
         </span>
