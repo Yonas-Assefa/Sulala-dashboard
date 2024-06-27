@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState, useTransition } from "react";
 import TextInput from "./TextInput";
-import CustomMultiSelectInput from "./SelectInput";
+import SelectInput from "./SelectInput";
 import { RadioInputSchema } from "@/types/input-field.type";
 import { CustomRadioInputProps as Props } from "@/types/props.type";
 import { convertToArray } from "@/utils/convertObjToArray";
@@ -93,7 +93,7 @@ function ChildInput({
 
   if (input.type == "select") {
     return (
-      <CustomMultiSelectInput
+      <SelectInput
         label={t(input.label)}
         data={childOptions[input.id]}
         key={input.id}
