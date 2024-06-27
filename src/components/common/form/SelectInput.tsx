@@ -312,13 +312,16 @@ function SelectInput({
             ) : (
               options.map((option, i) => {
                 const disabled = option.disabled;
+                const hasError = childErrorItem
+                  ?.map((obj) => obj.id)
+                  .includes(option.value + "");
                 return (
                   <li
                     onClick={() => !disabled && handleSelect(option.value)}
                     key={option.value}
                   >
                     <div
-                      className={`form-control w-full flex flex-row justify-between rounded-none ${options.length !== i + 1 && "border-b"} ${childErrorItem?.map((obj) => obj.id).includes(option.value + "") && "border-danger bg-dangerlight"}`}
+                      className={`form-control w-full flex flex-row justify-between rounded-none ${options.length !== i + 1 && "border-b"} ${hasError && "border-danger bg-dangerlight"}`}
                     >
                       {/* IF DROPDOWN IS SET TO HAVE IMAGE INIT AND IMAGE SHOW IS ENABLED, IT WILL BE DISPLAYED HERE */}
                       {withImage && (
@@ -332,7 +335,7 @@ function SelectInput({
                       )}
                       <label
                         htmlFor="1"
-                        className={`label-text label w-full flex justify-between text-black text-md ${disabled ? "opacity-50 cursor-not-allowed" : "opacity-100 cursor-pointer"} ${childErrorItem?.map((obj) => obj.id).includes(option.value + "") && "text-danger"}`}
+                        className={`label-text label w-full flex justify-between text-black text-md ${disabled ? "opacity-50 cursor-not-allowed" : "opacity-100 cursor-pointer"} ${hasError && "text-danger"}`}
                       >
                         {option.label}
                       </label>
@@ -351,7 +354,7 @@ function SelectInput({
                         multi ? (
                           <input
                             type="checkbox"
-                            className="checkbox checkbox-success"
+                            className={`checkbox checkbox-success ${hasError && "checkbox-error"}`}
                             checked={true}
                           />
                         ) : (
