@@ -187,24 +187,27 @@ function CustomRadioWithConditionalInput({
                 {t(radioInput.label)}
               </span>
             </label>
-            {inputForEach && radioInput?.input && radioInput.id == input && (
-              // INPUT FOR EACH RADIO BUTTON
-              <div
-                className={`w-full check grid grid-cols-1 md:grid-cols-2 gap-4`}
-              >
-                {convertToArray(radioInput.input).map((inputEntry) => (
-                  <ChildInput
-                    childDefaultValue={childDefaultValue}
-                    childError={childError}
-                    childOptions={childOptions}
-                    childSetValue={childSetValue}
-                    childValue={childValue}
-                    childDisabled={childDisabled}
-                    input={inputEntry}
-                  />
-                ))}
-              </div>
-            )}
+            {!disabled &&
+              inputForEach &&
+              radioInput?.input &&
+              radioInput.id == input && (
+                // INPUT FOR EACH RADIO BUTTON
+                <div
+                  className={`w-full check grid grid-cols-1 md:grid-cols-2 gap-4`}
+                >
+                  {convertToArray(radioInput.input).map((inputEntry) => (
+                    <ChildInput
+                      childDefaultValue={childDefaultValue}
+                      childError={childError}
+                      childOptions={childOptions}
+                      childSetValue={childSetValue}
+                      childValue={childValue}
+                      childDisabled={childDisabled}
+                      input={inputEntry}
+                    />
+                  ))}
+                </div>
+              )}
           </div>
         );
       })}
