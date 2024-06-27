@@ -1,5 +1,6 @@
 "use client";
 import { useScrollToErrorField } from "@/hooks/useScrollToErrorField";
+import { getUserTimezone } from "@/lib/time";
 import dayjs from "dayjs";
 import React from "react";
 type Props = {
@@ -93,7 +94,12 @@ function DateInput({
 
   return (
     <div ref={ref}>
-      <p>{label}</p>
+      <p>
+        {label}{" "}
+        <span className="text-secondary text-[10px] block md:inline-block">
+          {getUserTimezone().userTimezoneWithOffset}
+        </span>
+      </p>
       <div
         className={`flex flex-col md:flex-row p-2 gap-2 w-full flex-wrap ${disabled && "opacity-50"}`}
       >

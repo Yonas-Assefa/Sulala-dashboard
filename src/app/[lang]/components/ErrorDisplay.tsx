@@ -1,10 +1,21 @@
 "use client";
 import React from "react";
 type ErrorProps = {
-  reset: () => void;
+  reset?: () => void;
   title?: string;
 };
 function ErrorDisplay({ reset, title }: ErrorProps) {
+  const handleRetry = () => {
+    const errorStatus = localStorage.getItem("NEXT_ERR");
+
+    if (reset && errorStatus !== "SOFT_RELOAD") {
+      localStorage.setItem("NEXT_ERR", "SOFT_RELOAD");
+      reset();
+    } else {
+      localStorage.setItem("NEXT_ERR", "HARD_RELOAD");
+      window.location.reload();
+    }
+  };
   return (
     <div className="w-full h-full flex flex-row bg-gradient-to-br from-black/5 to-black/25">
       <div className="bg-transparent flex-grow">
@@ -30,7 +41,7 @@ function ErrorDisplay({ reset, title }: ErrorProps) {
             <div className="flex flex-col justify-between gap-5">
               {/* <a href='mailto:support@sulala.com' className='text-primary font-semibold hover:underline'>Please contact support team!</a> */}
               <button
-                onClick={reset}
+                onClick={handleRetry}
                 className="flex flex-row gap-3 px-2 group bg-tertiary/50 hover:bg-tertiary/90 cursor-pointer z-20 p-1 rounded-[30px] items-center justify-center"
               >
                 <p className="text-black text-sm md:text-md">retry</p>

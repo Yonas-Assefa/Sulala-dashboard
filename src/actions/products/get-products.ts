@@ -52,6 +52,9 @@ export const getOneProduct = async (item: string) => {
   const response = await fetch(`${PRODUCTS}${item}/`, {
     method: "GET",
     headers: getRequestHeaders(),
+    next: {
+      tags: [`product-${item}`],
+    },
   });
   const body = await getResponseBody(response);
 

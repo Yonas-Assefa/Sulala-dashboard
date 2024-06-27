@@ -13,6 +13,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@js-temporal/polyfill": "^0.4.4",
     "@sentry/nextjs": "^8.8.0",
     "@tanstack/react-query": "^5.35.1",
     "@types/lodash": "^4.17.4",

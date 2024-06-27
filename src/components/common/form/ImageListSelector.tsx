@@ -6,12 +6,17 @@ import Image from "next/image";
 import DeleteModal from "../modal/DeleteModal";
 import { closeModal, openModal } from "@/lib/modals";
 import ImageDeleteModal from "./ImageDeleteModal";
-import { EMPTY_FORM_STATE, FormState } from "@/utils/formStateHelper";
+import {
+  EMPTY_FORM_STATE,
+  FormState,
+  toFormState,
+} from "@/utils/formStateHelper";
 import { useToastMessage } from "@/hooks/useToastMessage";
 import { useRedirectRoute } from "@/hooks/useRedirectRoute";
 import { useTranslations } from "next-intl";
 import { AnimatePresence, motion } from "framer-motion";
 import { useScrollToErrorField } from "@/hooks/useScrollToErrorField";
+import { Console } from "@/lib/print";
 
 type Props = {
   multi?: boolean;
@@ -23,7 +28,7 @@ type Props = {
   setValue?: (val: (File | string)[]) => void;
   onDelete?: {
     action: (formData: FormData) => Promise<FormState>;
-    formData: { key: string; value: string }[];
+    formData: { key: string; value: string | Function }[];
   };
 };
 
@@ -54,15 +59,25 @@ function ImageListSelector({
   const handleDelete = async (file?: string) => {
     startTransition(async () => {
       const formData = new FormData();
+      Console.log({ file, onDelete });
       onDelete?.formData.forEach((ele) => {
-        formData.append(ele.key, ele.value);
-      });
-      const response = await onDelete?.action(formData);
-      setFormState(response || EMPTY_FORM_STATE);
-      if (response?.status === "SUCCESS") {
-        setFileList(
-          !file ? [] : (prevFile) => prevFile.filter((f) => f !== file),
+        formData.append(
+          ele.key,
+          typeof ele.value == "function" ? ele.value(file) : ele.value,
         );
+      });
+      try {
+        const response = await onDelete?.action(formData);
+        setFormState(response || EMPTY_FORM_STATE);
+        if (response?.status === "SUCCESS") {
+          setFileList(
+            !file ? [] : (prevFile) => prevFile.filter((f) => f !== file),
+          );
+          closeModal("image_delete_modal");
+        }
+      } catch (error) {
+        Console.error(error);
+        setFormState(toFormState("ERROR", "Failed to delete image"));
         closeModal("image_delete_modal");
       }
     });
@@ -141,12 +156,12 @@ function ImageListSelector({
       ) : multi ? (
         <div className="flex flex-wrap gap-3">
           <AnimatePresence>
-            {fileList.map((file, index) => (
+            {fileList.map((file) => (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1, transition: { duration: 1 } }}
                 exit={{ opacity: 0 }}
-                key={index}
+                key={typeof file == "string" ? file : file.name}
                 className="bg-[#d9d9d9] block h-[180px] aspect-square rounded-[20px] relative"
               >
                 <ImageUnselectButton

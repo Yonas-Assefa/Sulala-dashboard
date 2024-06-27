@@ -14,6 +14,8 @@ import { useFormState } from "react-dom";
 import { useTranslations } from "next-intl";
 import TagInput from "@/components/common/form/TagInput";
 import WeightVolumeInput from "@/components/common/form/WeightVolumeInput";
+import { deleteProductImage } from "@/actions/products/delete-product-image";
+import { deconstructImageUrl } from "@/lib/images";
 
 type Props = {
   categoryLists: any;
@@ -145,6 +147,16 @@ function ProductForm({
                   multi
                   error={formState.fieldErrors?.images?.[0]}
                   defaultValues={initialValue?.images}
+                  onDelete={{
+                    action: deleteProductImage,
+                    formData: [
+                      { key: "item_id", value: initialValue?.id },
+                      {
+                        key: "image",
+                        value: (url: string) => deconstructImageUrl(url),
+                      },
+                    ],
+                  }}
                 />
               </div>
             </div>
