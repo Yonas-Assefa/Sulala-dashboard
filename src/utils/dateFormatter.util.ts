@@ -36,8 +36,9 @@ export const changeLocalToISODateOnly = (val: unknown) => {
     return dateObj.toISOString().split("T")[0];
   }
 };
+
 const isLocalString = (val: unknown): boolean => {
   return /^\d{1,2}\/\d{1,2}\/\d{4}, \d{1,2}:\d{1,2}:\d{1,2} (AM)|(PM)$/.test(
-    val as string
+    val as string,
   );
 };
