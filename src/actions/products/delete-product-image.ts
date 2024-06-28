@@ -1,7 +1,10 @@
 "use server";
 import { fromErrorToFormState, toFormState } from "@/utils/formStateHelper";
 import { PRODUCTS } from "../../config/urls";
-import { getRequestHeaders } from "../../lib/helper";
+import {
+  changeObjToFormData,
+  getMultiPartRequestHeaders,
+} from "../../lib/helper";
 import { revalidatePath } from "next/cache";
 
 export const deleteProductImage = async (formData: FormData) => {
@@ -22,8 +25,8 @@ export const deleteProductImage = async (formData: FormData) => {
 
     const response = await fetch(URL, {
       method: METHOD,
-      headers: getRequestHeaders(),
-      body: JSON.stringify({ image }),
+      headers: getMultiPartRequestHeaders(),
+      body: changeObjToFormData({ image }),
     });
 
     if (!response.ok) {
