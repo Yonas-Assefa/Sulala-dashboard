@@ -29,5 +29,6 @@
 ### Removed
 - Removed Select Account page and It's routes
 - Removed Discount from products create page
-- Disable theme change toogle
+- Disabled theme change toogle
+- Disabled sentry monitoring until proper configuration (next version)
 - Made promotion image requried
