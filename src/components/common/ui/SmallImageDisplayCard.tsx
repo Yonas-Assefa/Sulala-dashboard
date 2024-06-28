@@ -29,9 +29,15 @@ function SmallImageDisplayCard({
     !usePreUploader || typeof file == "string" ? false : true,
   );
   const [uploadedImage, setUploadedImage] = React.useState<string>("");
+  const imageUploadTriggered = React.useRef(false);
 
   React.useEffect(() => {
-    if (usePreUploader && file instanceof File) {
+    if (
+      usePreUploader &&
+      file instanceof File &&
+      !imageUploadTriggered.current
+    ) {
+      imageUploadTriggered.current = true;
       const formData = new FormData();
       formData.append("file", file);
       setProgress(30);
