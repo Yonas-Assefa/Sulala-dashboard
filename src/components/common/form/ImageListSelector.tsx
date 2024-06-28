@@ -31,6 +31,7 @@ type Props = {
     action: (formData: FormData) => Promise<FormState>;
     formData: { key: string; value: string | Function }[];
   };
+  usePreUploader?: boolean;
 };
 
 function ImageListSelector({
@@ -42,10 +43,12 @@ function ImageListSelector({
   defaultValues,
   setValue,
   onDelete,
+  usePreUploader,
 }: Props) {
   const [fileList, setFileList] = React.useState<(File | string)[]>(
     convertToArray(defaultValues),
   );
+  const [uploadedImages, setUploadedImages] = React.useState<string[]>([]);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [formState, setFormState] = React.useState(EMPTY_FORM_STATE);
   const [isPending, startTransition] = React.useTransition();
@@ -149,6 +152,10 @@ function ImageListSelector({
                 file={file}
                 handleRemoveImage={handleRemoveImage}
                 key={typeof file == "string" ? file : file.name}
+                replaceImage={(file) => {
+                  setUploadedImages((prev) => [...prev, file]);
+                }}
+                usePreUploader={usePreUploader}
               />
             ))}
           </AnimatePresence>
@@ -171,6 +178,16 @@ function ImageListSelector({
         accept="image/*"
         hidden
       />
+      {uploadedImages.map((image) => (
+        <input
+          type="hidden"
+          key={image}
+          name={`uploaded_${name}`}
+          id={`uploaded_${id}`}
+          value={image}
+          onChange={() => {}}
+        />
+      ))}
 
       {error && <span className="text-xs text-danger">{error}</span>}
     </div>

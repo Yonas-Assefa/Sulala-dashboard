@@ -146,6 +146,7 @@ function ProductForm({
                   name="product_images"
                   multi
                   error={formState.fieldErrors?.images?.[0]}
+                  usePreUploader
                   defaultValues={initialValue?.images}
                   onDelete={{
                     action: deleteProductImage,

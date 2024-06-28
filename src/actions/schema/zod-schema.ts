@@ -114,12 +114,15 @@ export const createProductSchema = z.object({
     .min(1, "Description must be at least 1 character long"),
   price: z.number().min(1, "Price must be at least 1"),
   category: z.number().min(1, "Please choose at least one category"),
-  images: z.array(
-    z
-      .any()
-      .refine(fileRefine.existFn, fileRefine.existMg)
-      .refine(fileRefine.acceptFn(IMAGE_TYPES), fileRefine.acceptMg("image")),
-  ),
+  images: z.union([
+    z.array(z.string()),
+    z.array(
+      z
+        .any()
+        .refine(fileRefine.existFn, fileRefine.existMg)
+        .refine(fileRefine.acceptFn(IMAGE_TYPES), fileRefine.acceptMg("image")),
+    ),
+  ]),
   inventory: z.number().min(1, "Quantity must be at least 1"),
   status: z.nativeEnum(ProductStatus),
   tags: z.array(z.string()),
@@ -401,7 +404,7 @@ export const importProductsSchema = z.object({
 });
 
 export const uploadImageSchema = z.object({
-  files: z
+  image: z
     .any()
     .refine(fileRefine.existFn, fileRefine.existMg)
     .refine(fileRefine.acceptFn(IMAGE_TYPES), fileRefine.acceptMg("image")),

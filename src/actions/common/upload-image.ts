@@ -8,6 +8,8 @@ import {
   getResponseBody,
   getResponseErrorMessage,
 } from "@/lib/helper";
+import { getoneFromArray } from "@/utils/getOneFromArray";
+import { constructImageUrl } from "@/lib/images";
 
 type uploadImageResponse = {
   success: boolean;
@@ -32,9 +34,9 @@ export const uploadImage = async (
   formData?: FormData,
 ): Promise<uploadImageResponse> => {
   try {
-    const file = formData?.get("file");
+    const image = formData?.get("file");
 
-    const data = uploadImageSchema.parse({ file });
+    const data = uploadImageSchema.parse({ image });
 
     const response = await fetch(UPLOAD_IMAGE, {
       method: "POST",
@@ -49,9 +51,9 @@ export const uploadImage = async (
       );
     }
 
-    const successMessage = "Image uploaded successful!";
+    const message = getoneFromArray(body.data);
 
-    return toFormState("SUCCESS", successMessage);
+    return toFormState("SUCCESS", message);
   } catch (error) {
     return fromErrorToFormState(error as Error);
   }

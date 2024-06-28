@@ -38,11 +38,20 @@ export const createUpdateProduct = async (
       Object.assign(dataToBeParsed, { animals: formData.getAll("animal") });
     }
 
-    const allImages = formData
-      .getAll("product_images")
-      ?.filter((image) => image instanceof File && image.size > 0);
-    if (allImages.length > 0) {
-      Object.assign(dataToBeParsed, { images: allImages });
+    const uploadedImages = formData.getAll("uploaded_product_images");
+
+    if (uploadedImages.length > 0) {
+      Object.assign(dataToBeParsed, {
+        images: uploadedImages.map((image) => image.toString()),
+      });
+    } else {
+      const allImages = formData
+        .getAll("product_images")
+        ?.filter((image) => image instanceof File && image.size > 0);
+
+      if (allImages.length > 0) {
+        Object.assign(dataToBeParsed, { images: allImages });
+      }
     }
 
     if (formData.get("weight_or_volume")) {
