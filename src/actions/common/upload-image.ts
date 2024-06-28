@@ -1,14 +1,13 @@
 "use server";
 
-import { PRODUCTS_IMPORT } from "@/config/urls";
-import { importProductsSchema } from "../schema/zod-schema";
+import { UPLOAD_IMAGE } from "@/config/urls";
+import { uploadImageSchema } from "../schema/zod-schema";
 import {
   changeObjToFormData,
   getMultiPartRequestHeaders,
   getResponseBody,
   getResponseErrorMessage,
 } from "@/lib/helper";
-import { revalidatePath } from "next/cache";
 
 type uploadImageResponse = {
   success: boolean;
@@ -35,10 +34,12 @@ export const uploadImage = async (
   try {
     const file = formData?.get("file");
 
-    const response = await fetch(PRODUCTS_IMPORT, {
+    const data = uploadImageSchema.parse({ file });
+
+    const response = await fetch(UPLOAD_IMAGE, {
       method: "POST",
       headers: getMultiPartRequestHeaders(),
-      body: changeObjToFormData({ file }),
+      body: changeObjToFormData(data),
     });
 
     const body = await getResponseBody(response);
@@ -49,8 +50,6 @@ export const uploadImage = async (
     }
 
     const successMessage = "Image uploaded successful!";
-
-    revalidatePath("/dashboard/my-products");
 
     return toFormState("SUCCESS", successMessage);
   } catch (error) {

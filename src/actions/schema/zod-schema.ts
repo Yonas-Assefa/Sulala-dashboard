@@ -399,3 +399,10 @@ export const importProductsSchema = z.object({
       fileRefine.acceptMg("csv"),
     ),
 });
+
+export const uploadImageSchema = z.object({
+  files: z
+    .any()
+    .refine(fileRefine.existFn, fileRefine.existMg)
+    .refine(fileRefine.acceptFn(IMAGE_TYPES), fileRefine.acceptMg("image")),
+});

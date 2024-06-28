@@ -13,6 +13,10 @@ const VENDOR_BASE_URL = `${API_URL}vendors/`;
 // IMAGE BASED URLS
 export const IMAGE_BASE_URL = process.env.IMAGE_BASE_URL!;
 
+// IMAGE UPLOAD URLS
+// TODO: Change this to the correct URL
+export const UPLOAD_IMAGE = `${API_URL}products/upload-image/`;
+
 // VENDOR BASED URLS
 export const SIGNUP_URL = `${VENDOR_BASE_URL}register/`;
 export const SETUP_URL = `${VENDOR_BASE_URL}update_profile/`;

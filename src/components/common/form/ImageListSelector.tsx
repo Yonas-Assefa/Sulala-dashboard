@@ -1,9 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import ImageUnselectButton from "../ui/ImageUnselectButton";
 import { convertToArray } from "@/utils/convertObjToArray";
-import Image from "next/image";
-import DeleteModal from "../modal/DeleteModal";
 import { closeModal, openModal } from "@/lib/modals";
 import ImageDeleteModal from "./ImageDeleteModal";
 import {
@@ -14,9 +11,13 @@ import {
 import { useToastMessage } from "@/hooks/useToastMessage";
 import { useRedirectRoute } from "@/hooks/useRedirectRoute";
 import { useTranslations } from "next-intl";
-import { AnimatePresence, motion } from "framer-motion";
 import { useScrollToErrorField } from "@/hooks/useScrollToErrorField";
 import { Console } from "@/lib/print";
+import SmallImageDisplayCard from "../ui/SmallImageDisplayCard";
+import LargeImageAddPlaceholder from "../ui/LargeImageAddPlaceholder";
+import LargeImageDisplayCard from "../ui/LargeImageDisplayCard";
+import { AnimatePresence } from "framer-motion";
+import SmallImageAddPlaceholder from "../ui/SmallImageAddPlaceholder";
 
 type Props = {
   multi?: boolean;
@@ -139,94 +140,25 @@ function ImageListSelector({
         )}
       </div>
       {fileList.length == 0 ? (
-        <label
-          htmlFor={id}
-          className={`flex flex-col items-center justify-center gap-5 cursor-pointer w-full p-4 border rounded-[30px] border-dashed h-[300px] select-none ${error ? "border-danger bg-dangerlight" : "bg-white"}`}
-        >
-          <img src="/icons/image.svg" alt="" />
-          <div className="flex flex-col justify-center items-center text-secondary">
-            <p>{t("upload_upto_8_images")}</p>
-            <p>{t("maximum_size_20_mb")}</p>
-          </div>
-          <div className="flex gap-2">
-            <img src="/icons/upload.svg" alt="" className="w-[15px]" />
-            <p className="text-primary font-semibold">{t("upload")}</p>
-          </div>
-        </label>
+        <LargeImageAddPlaceholder id={id!} error={!!error} />
       ) : multi ? (
         <div className="flex flex-wrap gap-3">
           <AnimatePresence>
             {fileList.map((file) => (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { duration: 1 } }}
-                exit={{ opacity: 0 }}
+              <SmallImageDisplayCard
+                file={file}
+                handleRemoveImage={handleRemoveImage}
                 key={typeof file == "string" ? file : file.name}
-                className="bg-[#d9d9d9] block h-[180px] aspect-square rounded-[20px] relative"
-              >
-                <ImageUnselectButton
-                  // handleClick={() => {
-                  //     setFileList((prevFile) => prevFile.filter((_, i) => i !== index))
-                  // }}
-                  handleClick={() => handleRemoveImage(file)}
-                />
-                <Image
-                  width={100}
-                  height={100}
-                  src={
-                    typeof file == "string" ? file : URL.createObjectURL(file)
-                  }
-                  alt=""
-                  className="w-full h-full rounded-[20px]"
-                />
-              </motion.div>
+              />
             ))}
           </AnimatePresence>
-          <label
-            htmlFor={id}
-            className="bg-[#ffffff] cursor-pointer block h-[180px] aspect-square rounded-[20px]"
-          >
-            <div className="w-full h-full flex justify-center items-center group transition-all">
-              <img
-                src="/icons/image.svg"
-                alt=""
-                className="w-[30px] aspect-square block group-hover:hidden"
-              />
-              <div className=" hidden group-hover:flex flex-col justify-center items-center">
-                <div></div>
-                <img
-                  src="/icons/plus.svg"
-                  alt=""
-                  className="w-[30px] aspect-square"
-                />
-                <p className="text-[12px] text-secondary">add image</p>
-              </div>
-            </div>
-          </label>
+          <SmallImageAddPlaceholder id={id!} />
         </div>
       ) : (
-        <div className="w-full">
-          <div className="bg-[#d9d9d9] block rounded-[20px] relative">
-            <ImageUnselectButton
-              handleClick={() => handleRemoveImage(fileList[0])}
-            />
-            <Image
-              width={500}
-              height={500}
-              quality={100}
-              src={
-                typeof fileList[0] == "string"
-                  ? fileList[0]
-                  : URL.createObjectURL(fileList[0])
-              }
-              alt=""
-              className="w-full h-full rounded-[20px]"
-              // loader={({ src, width, quality }) => `https://example.com/${src}?w=${width}&q=${quality || 75}`}
-              placeholder="blur"
-              blurDataURL="/images/banner.png"
-            />
-          </div>
-        </div>
+        <LargeImageDisplayCard
+          fileList={fileList}
+          handleRemoveImage={handleRemoveImage}
+        />
       )}
       <input
         type="file"
