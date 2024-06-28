@@ -89,6 +89,7 @@ function TableBody({ tableSchema, data, actionOptions }: Props) {
               <TableActions
                 promote={tableSchema.include.actions.promote}
                 is_promoted={product.is_promoted}
+                is_disabled={product.is_promote_disabled}
                 delete={tableSchema.include.actions.delete}
                 edit={tableSchema.include.actions.edit}
                 detail={tableSchema.include.actions.detail}

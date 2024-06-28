@@ -24,6 +24,7 @@ function TableActions({
   delete: deleteItem,
   promote,
   is_promoted,
+  is_disabled,
   product,
   toggle,
   actionOptions,
@@ -208,11 +209,13 @@ function TableActions({
         {promote && (
           <Link
             href={
-              is_promoted
-                ? `/dashboard/promotion/edit?type=product&tab=discounts-ads&item=${promotion_id}`
-                : (`/dashboard/promotion/add?type=product&tab=discounts-ads&product=${product.id}` as any)
+              is_disabled
+                ? ""
+                : is_promoted
+                  ? `/dashboard/promotion/edit?type=product&tab=discounts-ads&item=${promotion_id}`
+                  : (`/dashboard/promotion/add?type=product&tab=discounts-ads&product=${product.id}` as any)
             }
-            className={`flex flex-row gap-2 ${!is_promoted && "transition-all"}`}
+            className={`flex flex-row gap-2 ${!is_promoted && "transition-all"}  ${is_disabled && "cursor-not-allowed opacity-50"}`}
           >
             <img
               src={

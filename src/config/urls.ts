@@ -5,9 +5,7 @@
 
 export const BASE_URL = process.env.BACKEND_BASE_URL!;
 export const FRONTEND_BASE_URL = process.env.FRONTEND_BASE_URL!;
-const API_URL = BASE_URL?.includes("services")
-  ? `${BASE_URL}api/v1/`
-  : `${BASE_URL}services/api/v1/`;
+const API_URL = `${BASE_URL}api/v1/`;
 
 // VENDOR BASED URLS
 const VENDOR_BASE_URL = `${API_URL}vendors/`;

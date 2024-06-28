@@ -1,5 +1,4 @@
 import { getCategories } from "../common/get-categories";
-import { BASE_URL } from "../../config/urls";
 import { constructImageUrl } from "@/lib/images";
 import { animalMapper } from "./animal-mapper";
 
@@ -18,6 +17,7 @@ export const productMapper = async (data: any, manyImages?: boolean) => {
           (animal: any) => animal.value,
         ),
         is_promoted: product.promotion_campaigns.length > 0,
+        is_promote_disabled: product.status !== "ACTIVE",
       };
     });
   } else {

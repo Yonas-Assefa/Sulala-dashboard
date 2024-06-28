@@ -1,10 +1,10 @@
 import { FRONTEND_BASE_URL } from "@/config/urls";
-import { LOCALES } from "@/i18n/config";
+import { DEFAULT_LOCALE, LOCALES } from "@/i18n/config";
 
 export const metadata = {
   metadataBase: new URL(FRONTEND_BASE_URL).origin,
   alternates: {
-    canonical: "/",
+    canonical: `/${DEFAULT_LOCALE}`,
     languages: LOCALES.reduce((acc, locale) => {
       acc[locale] = `/${locale}`;
       return acc;

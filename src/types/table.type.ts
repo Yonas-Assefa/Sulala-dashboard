@@ -21,6 +21,7 @@ type Actions = {
   delete?: boolean;
   promote?: boolean;
   is_promoted?: boolean;
+  is_disabled?: boolean;
   toggle?: boolean;
   detail?: boolean;
 };
