@@ -34,7 +34,7 @@ function TextInput({
     if (disabled) return;
     const { value } = e.target;
     if (type === "number") {
-      const re = /^[0-9\b]+$/;
+      const re = /^\d+(\.)?(\d+)?$/;
       if (value === "" || re.test(value)) {
         setValue(value);
         emitVal && emitVal(value);
