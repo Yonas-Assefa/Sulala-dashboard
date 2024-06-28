@@ -152,8 +152,11 @@ function ImageListSelector({
                 file={file}
                 handleRemoveImage={handleRemoveImage}
                 key={typeof file == "string" ? file : file.name}
-                replaceImage={(file) => {
+                addUploadedImage={(file) => {
                   setUploadedImages((prev) => [...prev, file]);
+                }}
+                removeUploadedImage={(file) => {
+                  setUploadedImages((prev) => prev.filter((f) => f !== file));
                 }}
                 usePreUploader={usePreUploader}
               />

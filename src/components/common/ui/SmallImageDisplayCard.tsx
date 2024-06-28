@@ -9,14 +9,16 @@ import { Console } from "@/lib/print";
 type Props = {
   file: File | string;
   handleRemoveImage: (file: string | File) => void;
-  replaceImage?: (file: string) => void;
+  addUploadedImage?: (file: string) => void;
+  removeUploadedImage?: (file: string) => void;
   usePreUploader?: boolean;
 };
 
 function SmallImageDisplayCard({
   file,
   handleRemoveImage,
-  replaceImage,
+  addUploadedImage,
+  removeUploadedImage,
   usePreUploader,
 }: Props) {
   const [progress, setProgress] = React.useState(0);
@@ -26,6 +28,7 @@ function SmallImageDisplayCard({
   const [openProgressDisplay, setOpenProgressDisplay] = React.useState(
     !usePreUploader || typeof file == "string" ? false : true,
   );
+  const [uploadedImage, setUploadedImage] = React.useState<string>("");
 
   React.useEffect(() => {
     if (usePreUploader && file instanceof File) {
@@ -39,7 +42,8 @@ function SmallImageDisplayCard({
             setTimeout(() => {
               setProgressStatus("success");
               Console.log({ data: res.message });
-              replaceImage?.(res.message);
+              setUploadedImage(res.message);
+              addUploadedImage?.(res.message);
               setTimeout(() => {
                 setOpenProgressDisplay(false);
               }, 2000);
@@ -67,7 +71,10 @@ function SmallImageDisplayCard({
         // handleClick={() => {
         //     setFileList((prevFile) => prevFile.filter((_, i) => i !== index))
         // }}
-        handleClick={() => handleRemoveImage(file)}
+        handleClick={() => {
+          handleRemoveImage(file);
+          removeUploadedImage?.(uploadedImage);
+        }}
       />
       <Image
         width={100}
