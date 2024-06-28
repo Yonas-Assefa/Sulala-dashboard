@@ -13,12 +13,14 @@ import { updatePromotionStatus } from "@/actions/promotion/update-promotion-stat
 import { deletePromotion } from "@/actions/promotion/delete-promotion";
 import { TableProps as Props } from "@/types/props.type";
 import { changeObjToFormData } from "@/lib/helper";
+import ComingSoon from "@/components/common/ui/ComingSoon";
 
 async function page({
   searchParams: { search, filter, sort, sort_by, page, page_size },
 }: Props) {
   return (
     <>
+      <ComingSoon />
       <CreateCampaignModal />
       <div className="text-black flex flex-col w-full h-full p-8 gap-10">
         {/* HEADER FOR MY PRODUCTS */}
