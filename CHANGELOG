@@ -32,3 +32,12 @@
 - Disabled theme change toogle
 - Disabled sentry monitoring until proper configuration (next version)
 - Made promotion image requried
+
+## V1.2.~
+
+### Added or Changed
+- Enabled Darkmode
+- Added dark theme for most of the pages (signin, signup, settings, promotion, products)
+- Changed API response format
+
+### Removed
