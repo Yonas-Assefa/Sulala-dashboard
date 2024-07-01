@@ -20,7 +20,10 @@ function TableBody({ tableSchema, data, actionOptions }: Props) {
       {data.map((product, index) => {
         const last_items = index > data.length - 3;
         return (
-          <tr className="border-secondary/30" key={product.id}>
+          <tr
+            className="border-secondary/30 dark:border-white/50 text-black dark:text-white"
+            key={product.id}
+          >
             {tableSchema.include.checkbox && (
               <TableCheckbox item_id={product.id} />
             )}
@@ -69,7 +72,10 @@ function TableBody({ tableSchema, data, actionOptions }: Props) {
                             {Array.isArray(product_key) ? (
                               product_key.map((item, index) => {
                                 return (
-                                  <li key={index} className="text-xs text-back">
+                                  <li
+                                    key={index}
+                                    className="text-xs text-black dark:text-white"
+                                  >
                                     <p>{item}</p>
                                   </li>
                                 );

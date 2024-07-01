@@ -226,7 +226,7 @@ function TableActions({
               alt=""
             />
             <p
-              className={`${is_promoted ? "text-primary" : "text-gray-800"} font-semibold`}
+              className={`${is_promoted ? "text-primary" : "text-gray-800 dark:text-gray-400"} font-semibold`}
             >
               {is_promoted ? "Promoted" : "Promote"}
             </p>

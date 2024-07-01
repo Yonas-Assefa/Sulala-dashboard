@@ -1,4 +1,5 @@
 "use client";
+import SwapVertIcon from "@/assets/icons/SwapVertIcon";
 import { useCreateQueryString } from "@/hooks/useCreateQueryString";
 import { SortSchema } from "@/types/table.type";
 import React from "react";
@@ -33,14 +34,9 @@ function TableSort({ sortData }: Props) {
         <div
           tabIndex={0}
           role="button"
-          className="bg-white border rounded-[30px] p-1 px-3 flex flex-row gap-2 text-black dark:bg-black dark:text-white"
+          className="bg-white border dark:border-gray-700 rounded-[30px] p-1 px-3 flex flex-row gap-2 text-black dark:bg-black dark:text-white"
         >
-          <img
-            src="/icons/swap_vert.svg"
-            alt=""
-            onClick={handleSortBy}
-            className={`transition-all ${sort_by == "newest" ? "rotate-180" : "-rotate-180"}`}
-          />
+          <SwapVertIcon />
           <p className="capitalize">
             Sort by {sort_filter}: <span>{sort_by}</span>
           </p>

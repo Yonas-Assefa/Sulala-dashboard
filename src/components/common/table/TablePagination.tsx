@@ -50,12 +50,12 @@ function TablePagination({ count }: { count: number | undefined }) {
         <button
           onClick={handlePreviousClick}
           disabled={page == 1}
-          className="flex items-center justify-center px-3 h-8 text-sm font-medium text-primary bg-tertiary rounded-e rounded-full hover:bg-primary hover:text-white active:scale-105 transition-all disabled:text-secondary disabled:bg-tertiary disabled:cursor-not-allowed"
+          className="flex items-center justify-center px-3 h-8 text-sm font-medium text-primary bg-tertiary dark:bg-gray-800 dark:disabled:bg-gray-800 rounded-e rounded-full hover:bg-primary hover:text-white active:scale-105 transition-all disabled:text-secondary disabled:bg-tertiary disabled:cursor-not-allowed"
         >
           &lt;&lt;
         </button>
         <span className="text-sm text-gray-700 dark:text-gray-400">
-          <span className="font-semibold text-primary ">
+          <span className="font-semibold text-primary dark:text-white">
             {isPending ? (
               <span className="loading loading-bars loading-xs"></span>
             ) : (
@@ -66,11 +66,11 @@ function TablePagination({ count }: { count: number | undefined }) {
         <button
           onClick={handleNextClick}
           disabled={count <= +page * +page_size}
-          className="flex items-center justify-center px-3 h-8 text-sm font-medium text-primary bg-tertiary rounded-s rounded-full hover:bg-primary hover:text-white active:scale-105 transition-all disabled:text-secondary disabled:bg-tertiary disabled:cursor-not-allowed"
+          className="flex items-center justify-center px-3 h-8 text-sm font-medium text-primary bg-tertiary dark:bg-gray-800 dark:disabled:bg-gray-800 rounded-s rounded-full hover:bg-primary hover:text-white active:scale-105 transition-all disabled:text-secondary disabled:bg-tertiary disabled:cursor-not-allowed"
         >
           &gt;&gt;
         </button>
-        <div className="text-xs text-primary flex flex-row gap-3">
+        <div className="text-xs text-primary dark:text-white flex flex-row gap-3">
           <select
             name="page size"
             className="bg-primary text-white font-semibold"

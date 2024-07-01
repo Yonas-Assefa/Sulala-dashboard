@@ -2,7 +2,7 @@ import React from "react";
 
 function ComingSoon() {
   return (
-    <div className="bg-white/80 select-none absolute w-full h-full z-30 flex flex-col justify-center items-center">
+    <div className="bg-white/80 dark:bg-gray-800/80 select-none absolute w-full h-full z-30 flex flex-col justify-center items-center">
       <img
         src="/sulala-logo.svg"
         alt="sulala logo"

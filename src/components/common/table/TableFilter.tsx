@@ -22,9 +22,11 @@ function TableFilter({ filterData }: Props) {
             key={filter}
             href={createQueryString("filter", filter) as any}
             role="tab"
-            className={`tab capitalize rounded-[30px] bg-white text-black dark:bg-black dark:text-white ${
-              isActive ? "tab-active" : ""
-            } bg-white text-black dark:bg-black dark:text-white`}
+            className={`tab capitalize rounded-[30px] ${
+              isActive
+                ? "bg-black text-white dark:bg-white dark:text-black"
+                : "bg-white text-black dark:bg-black dark:text-white"
+            } `}
           >
             {filter_label}
           </Link>

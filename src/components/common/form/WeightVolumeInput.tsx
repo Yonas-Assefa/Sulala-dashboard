@@ -108,7 +108,7 @@ function WeightVolumeInput({
   return (
     <label ref={ref} htmlFor={id} className="flex flex-col gap-3">
       <div className="w-full flex flex-row justify-between px-4">
-        <p className="self-start text-black">
+        <p className="self-start text-black dark:text-white">
           {label}
           {required && (
             <span className="text-danger">
@@ -120,28 +120,32 @@ function WeightVolumeInput({
         <select
           name="measure_type"
           id="measure_type"
-          className="text-[10px] select-none cursor-pointer flex flex-row gap-2 overflow-hidden border border-secondary/40 bg-tertiary rounded-[30px] justify-center items-center px-1"
+          className="text-[10px] select-none cursor-pointer flex flex-row gap-2 overflow-hidden border border-secondary/40 bg-tertiary dark:bg-gray-800 rounded-[30px] justify-center items-center px-1"
           onChange={(e) =>
             setMeasureType(e.target.value as "Weight" | "Volume")
           }
           value={measureType}
         >
           {MEASURE_TYPES.map((type) => (
-            <option key={type} value={type} className="bg-white text-primary">
+            <option
+              key={type}
+              value={type}
+              className="bg-white dark:bg-gray-600 text-primary dark:text-white"
+            >
               {type}
             </option>
           ))}
         </select>
       </div>
       <div
-        className={`flex items-stretch overflow-hidden relative justify-between gap-0 border rounded-[40px] w-full ${error ? "bg-dangerlight border-danger" : "bg-white focus-within:border-primary"}`}
+        className={`flex items-stretch overflow-hidden relative justify-between gap-0 border rounded-[40px] w-full ${error ? "bg-dangerlight border-danger" : "bg-white dark:bg-gray-800 focus-within:border-primary"}`}
       >
         <input
           id={id}
           type={"text"}
           placeholder={placeholder || "Type here"}
           name={name || "text-input"}
-          className={`input text-black disabled:text-secondary w-full bg-transparent rounded-none disabled:bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none ${disabled && "cursor-not-allowed opacity-50"}`}
+          className={`input text-black dark:text-white disabled:text-secondary w-full bg-transparent rounded-none disabled:bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none ${disabled && "cursor-not-allowed opacity-50"}`}
           autoComplete={autoComplete || "false"}
           value={value}
           onChange={handleChange}
@@ -169,7 +173,7 @@ function WeightVolumeInput({
         <select
           name="unit"
           id="unit"
-          className="bg-tertiary text-primary w-[100px] text-center text-sm"
+          className="bg-tertiary dark:bg-gray-600 text-primary dark:text-white w-[100px] text-center text-sm"
           onChange={(e) => setUnitValue(e.target.value as MeasurementUnits)}
           value={unitValue}
         >
@@ -177,7 +181,7 @@ function WeightVolumeInput({
             <option
               key={unit.value}
               value={unit.value}
-              className="bg-white text-primary "
+              className="bg-white dark:bg-gray-600 text-primary dark:text-white "
             >
               {unit.label}
             </option>

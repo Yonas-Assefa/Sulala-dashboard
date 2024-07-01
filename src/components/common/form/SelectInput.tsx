@@ -250,11 +250,11 @@ function SelectInput({
       </p>
       <details
         ref={selectRef}
-        className={`dropdown bg-white rounded-[30px] m-0 p-0 border w-full hover:bg-white outline-none `}
+        className={`dropdown bg-white dark:bg-gray-800 rounded-[30px] m-0 p-0 border w-full hover:bg-white dark:hover:bg-gray-700 outline-none `}
       >
         {/* SUMMARY HOLDS SELECTED COMPUTED VALUE OR PLACEHOLDER IF THERE IS NO SELECTED VALUE */}
         <summary
-          className={`flex items-center overflow-hidden px-3 justify-between gap-0 rounded-[40px] w-full cursor-pointer input select-none focus:outline-none ${computedValue ? "text-black" : "text-gray-400"} ${error ? "border-danger bg-dangerlight" : "focus-within:border-primary bg-transparent"}`}
+          className={`flex items-center overflow-hidden px-3 justify-between gap-0 rounded-[40px] w-full cursor-pointer input select-none focus:outline-none ${computedValue ? "text-black dark:text-white" : "text-gray-400"} ${error ? "border-danger bg-dangerlight" : "focus-within:border-primary bg-transparent"}`}
         >
           <p className="truncate">
             {computedValue || placeholder || t("select_one")}
@@ -298,7 +298,7 @@ function SelectInput({
                 <img src="/icons/arrow-left.svg" alt="" />
                 <label
                   htmlFor="1"
-                  className="label-text font-semibold cursor-pointer label w-full flex justify-between text-black text-md"
+                  className="label-text font-semibold cursor-pointer label w-full flex justify-between text-black dark:text-white text-md"
                 >
                   {selectedParent.label}
                 </label>
@@ -335,7 +335,7 @@ function SelectInput({
                       )}
                       <label
                         htmlFor="1"
-                        className={`label-text label w-full flex justify-between text-black text-md ${disabled ? "opacity-50 cursor-not-allowed" : "opacity-100 cursor-pointer"} ${hasError && "text-danger"}`}
+                        className={`label-text label w-full flex justify-between text-black dark:text-white text-md ${disabled ? "opacity-50 cursor-not-allowed" : "opacity-100 cursor-pointer"} ${hasError && "text-danger"}`}
                       >
                         {option.label}
                       </label>

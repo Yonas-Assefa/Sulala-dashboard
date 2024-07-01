@@ -53,7 +53,7 @@ function TextInput({
 
   return (
     <label ref={ref} htmlFor={id} className="flex flex-col gap-3">
-      <p className="self-start text-black">
+      <p className="self-start text-black dark:text-white">
         {label}
         {required && (
           <span className="text-danger">
@@ -63,14 +63,14 @@ function TextInput({
         )}
       </p>
       <div
-        className={`flex items-center relative overflow-hidden justify-between gap-0 border rounded-[40px] w-full ${error ? "bg-dangerlight border-danger" : "bg-white focus-within:border-primary"}`}
+        className={`flex items-center relative overflow-hidden justify-between gap-0 border rounded-[40px] w-full ${error ? "bg-dangerlight border-danger" : "bg-white dark:bg-gray-800 focus-within:border-primary"}`}
       >
         <input
           id={id}
           type={type == "number" ? "text" : type}
           placeholder={placeholder || "Type here"}
           name={name || "text-input"}
-          className={`input text-black disabled:text-secondary w-full bg-transparent disabled:bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none ${disabled && "cursor-not-allowed opacity-50"}`}
+          className={`input text-black dark:text-white disabled:text-secondary w-full bg-transparent disabled:bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none ${disabled && "cursor-not-allowed opacity-50"}`}
           autoComplete={autoComplete || "false"}
           value={value}
           onChange={handleChange}

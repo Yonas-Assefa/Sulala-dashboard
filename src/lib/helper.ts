@@ -266,7 +266,7 @@ export const getResponseBody = async (response: Response) => {
     const clonedResponse = response.clone();
     const text = await clonedResponse.text();
     Console.error(text);
-    return { success: false, message: "[HTML RESPONSE]" + text };
+    return { success: false, message: "[HTML_RESPONSE]" + text };
   }
 };
 

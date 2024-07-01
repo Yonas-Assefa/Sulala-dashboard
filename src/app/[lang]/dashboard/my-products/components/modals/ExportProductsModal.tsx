@@ -50,9 +50,9 @@ function ExportProductsModal({ exportData }: Props) {
 
   return (
     <dialog id="export_products_modal" className="modal">
-      <div className="modal-box w-11/12 max-w-sm bg-white px-0">
+      <div className="modal-box w-11/12 max-w-sm bg-white dark:bg-gray-800 px-0">
         <div className="border-b-2 border-gray-200 pb-3">
-          <h3 className="font-bold text-xl text-black text-center font-serif">
+          <h3 className="font-bold text-xl text-black dark:text-white text-center font-serif">
             {t("export_to_csv")}
           </h3>
         </div>
