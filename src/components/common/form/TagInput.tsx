@@ -87,7 +87,7 @@ function TagInput({
           value={item}
           key={i}
           hidden
-          onChange={() => { }}
+          onChange={() => {}}
         />
       ))}
       <p className="self-start text-black">
@@ -100,7 +100,7 @@ function TagInput({
         )}
       </p>
       <div
-        className={`flex gap-1 relative flex-wrap items-center px-3 py-2 justify-start border rounded-[40px] w-full ${error ? "bg-dangerlight border-danger" : "bg-white focus-within:border-primary"}`}
+        className={`flex gap-1 relative flex-wrap items-center px-3 py-2 justify-start border rounded-[40px] w-full ${error ? "bg-dangerlight border-danger" : "bg-white dark:bg-gray-800 focus-within:border-primary"}`}
       >
         {values.map((tag, index) => (
           <span
@@ -127,12 +127,12 @@ function TagInput({
           type="text"
           placeholder={placeholder || "Type here"}
           name={name || "text-input"}
-          className={`input flex-grow-1 h-[30px] p-0 m-0 max-w-[150px] text-black bg-transparent disabled:bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none ${disabled ? "opacity-40 cursor-not-allowed" : "opacity-100 cursor-auto"}`}
+          className={`input flex-grow-1 h-[30px] p-0 m-0 max-w-[150px] text-black dark:text-white bg-transparent disabled:bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none ${disabled ? "opacity-40 cursor-not-allowed" : "opacity-100 cursor-auto"}`}
           autoComplete={"false"}
           value={value}
           onChange={handleChange}
           onKeyDown={handleSubmit}
-        // {...props}
+          // {...props}
         />
         <div className="text-xs text-secondary absolute right-2">
           {values.length > 0 && (

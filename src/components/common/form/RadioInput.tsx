@@ -38,7 +38,9 @@ function RadioInput({ id, label, name, error, options, defaultValue }: Props) {
               value={option.value}
               className={`radio radio-success ${error ? "border-danger" : "border-secondary"}`}
             />
-            <p className={`${error ? "text-danger" : "text-black"}`}>
+            <p
+              className={`${error ? "text-danger" : "text-black dark:text-white"}`}
+            >
               {option.label}
             </p>
           </label>

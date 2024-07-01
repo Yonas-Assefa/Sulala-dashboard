@@ -8,7 +8,7 @@ function SmallImageAddPlaceholder({ id }: Props) {
   return (
     <label
       htmlFor={id}
-      className="bg-[#ffffff] cursor-pointer block h-[180px] aspect-square rounded-[20px]"
+      className="bg-[#ffffff] dark:bg-gray-800 cursor-pointer block h-[180px] aspect-square rounded-[20px]"
     >
       <div className="w-full h-full flex justify-center items-center group transition-all">
         <img
