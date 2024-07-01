@@ -27,7 +27,7 @@ function ForgotPassword() {
 
   return (
     <div className="w-full h-full flex flex-row overflow-hidden relative">
-      <div className="bg-gradient-to-b from-white to-primary/20 flex-grow">
+      <div className="bg-gradient-to-b from-white dark:from-gray-600 to-primary/20 flex-grow">
         <div className="p-3 fixed">
           <BackButton />
         </div>
@@ -78,7 +78,7 @@ function ForgotPassword() {
                 <h1 className="font-bold text-3xl text-primary">
                   Contact Sulala.
                 </h1>
-                <p className="text-black text-justify z-10">
+                <p className="text-black dark:text-white text-justify z-10">
                   We first encourage you to go to{" "}
                   <Link
                     href={"/support/faq"}

@@ -108,7 +108,7 @@ const FAQ = [
 function page() {
   return (
     <div className="w-full h-full flex flex-row relative">
-      <div className="bg-gradient-to-b from-white via-primary/20 to-white flex-grow">
+      <div className="bg-gradient-to-b from-white dark:from-gray-700 via-primary/20 to-white flex-grow">
         <div className="p-3 fixed">
           <BackButton />
         </div>
@@ -123,13 +123,13 @@ function page() {
                 key={index}
               >
                 <input type="radio" name="my-accordion-4" className="peer" />
-                <div className="collapse-title group-has-[:checked]:bg-white">
-                  <h2 className="text-xl font-semibold group-has-[:checked]:text-primary text-black">
+                <div className="collapse-title group-has-[:checked]:bg-white dark:group-has-[:checked]:bg-gray-700">
+                  <h2 className="text-xl font-semibold group-has-[:checked]:text-primary text-black dark:text-white">
                     {faq.title}
                   </h2>
                 </div>
-                <div className="collapse-content group-has-[:checked]:bg-gradient-to-b group-has-[:checked]:from-white group-has-[:checked]:to-secondary/20">
-                  <p className="text-black">{faq.content}</p>
+                <div className="collapse-content group-has-[:checked]:bg-gradient-to-b group-has-[:checked]:from-white dark:group-has-[:checked]:from-gray-700 group-has-[:checked]:to-secondary/20">
+                  <p className="text-black dark:text-white">{faq.content}</p>
                 </div>
               </div>
             ))}

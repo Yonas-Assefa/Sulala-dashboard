@@ -42,7 +42,7 @@ function SetupPassword({
   const t = useTranslations("Auth");
 
   return (
-    <div className="text-black w-10/12 flex flex-col gap-5 items-center">
+    <div className="w-10/12 flex flex-col gap-5 items-center">
       {/* SIGN IN HEADER */}
       <h1 className="text-[30px] font-serif font-semibold">
         {t("confirming_action")}
