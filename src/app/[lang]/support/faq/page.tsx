@@ -113,7 +113,7 @@ function page() {
           <BackButton />
         </div>
         <div className="w-full h-full flex flex-col mt-20 md:mt-0 gap-8 justify-start items-center">
-          <h1 className="text-primary font-bold text-2xl md:text-3xl underline">
+          <h1 className="text-primary dark:text-green-400 font-bold text-2xl md:text-3xl underline">
             Frequently asked questions
           </h1>
           <div className="join join-vertical w-full md:w-2/3 px-1 md:px-0">
@@ -124,7 +124,7 @@ function page() {
               >
                 <input type="radio" name="my-accordion-4" className="peer" />
                 <div className="collapse-title group-has-[:checked]:bg-white dark:group-has-[:checked]:bg-gray-700">
-                  <h2 className="text-xl font-semibold group-has-[:checked]:text-primary text-black dark:text-white">
+                  <h2 className="text-xl font-semibold group-has-[:checked]:text-primary dark:group-has-[:checked]:text-green-400 text-black dark:text-white">
                     {faq.title}
                   </h2>
                 </div>
