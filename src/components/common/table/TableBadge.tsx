@@ -6,9 +6,10 @@ type Prop = {
   product_key: string;
   schema: Schema;
   last_items: boolean;
+  isSuperUser?: boolean;
 };
 
-function TableBadge({ product_key, schema, last_items }: Prop) {
+function TableBadge({ product_key, schema, last_items, isSuperUser }: Prop) {
   const selectRef = React.useRef<HTMLDetailsElement>(null);
 
   React.useEffect(() => {
@@ -38,7 +39,7 @@ function TableBadge({ product_key, schema, last_items }: Prop) {
             ]
           }`}
         >
-          <p className="capitalize">
+          <p className="capitalize text-[12px]">
             {product_key.replace("_", " ").toLocaleLowerCase()}
           </p>
           <img
@@ -52,17 +53,16 @@ function TableBadge({ product_key, schema, last_items }: Prop) {
           className="dropdown-content z-[1] menu p-2 mt-3 shadow bg-white border rounded-box w-52"
         >
           <div className="flex flex-col gap-3 p-2">
-            {Object.keys(schema.schema_colors || {}).map((color) => {
+            {Object.keys(schema.schema_colors || {}).map((color_key) => {
+              const isSelected = product_key.toLocaleLowerCase() === color_key;
               return (
                 <div
-                  className="flex flex-row justify-between gap-2 items-center cursor-pointer"
-                  key={color}
+                  className={`flex flex-row justify-between gap-2 items-center cursor-pointer ${isSelected || isSuperUser ? "flex" : "hidden"}`}
+                  key={color_key}
                 >
                   {/* {product_key === color && <input type="checkbox" defaultChecked className="checkbox checkbox-xs checkbox-success" />} */}
-                  <p>{color.replace("_", " ")}</p>
-                  {product_key.toLocaleLowerCase() === color && (
-                    <img src="/icons/check.svg" alt="" />
-                  )}
+                  <p>{color_key.replace("_", " ")}</p>
+                  {isSelected && <img src="/icons/check.svg" alt="" />}
                 </div>
               );
             })}

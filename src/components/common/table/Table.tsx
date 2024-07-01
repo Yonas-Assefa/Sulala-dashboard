@@ -14,6 +14,7 @@ import {
 } from "../../../types/table.type";
 import NoItemsFound from "../ui/NoItemsFound";
 import TablePagination from "./TablePagination";
+import { getPersonalInfo } from "@/actions/settings/get-personal-info";
 
 type Meta = {
   data: Data;
@@ -28,7 +29,7 @@ type Props = {
   actionOptions?: ActionOptions;
 };
 
-function Table({
+async function Table({
   filterData,
   tableSchema,
   data: meta,
@@ -37,6 +38,9 @@ function Table({
 }: Props) {
   const data = "count" in meta ? meta.data : meta;
   const count = "count" in meta ? meta.count : undefined;
+
+  const personalInfo = await getPersonalInfo();
+
   return (
     <div className="flex flex-col">
       <DeleteProductModal deleteAction={actionOptions?.delete} />
@@ -48,7 +52,7 @@ function Table({
           </div>
           <TableSort sortData={sortData} />
         </div>
-        <table className="table">
+        <table className="table overflow-x-scroll">
           <TableHead
             tableSchema={tableSchema}
             allItemIds={data.map((prod) => prod.id + "")}
@@ -58,6 +62,7 @@ function Table({
               data={data}
               tableSchema={tableSchema}
               actionOptions={actionOptions}
+              isSuperUser={personalInfo?.is_superuser}
             />
           ) : (
             <NoItemsFound />

@@ -12,9 +12,10 @@ type Props = {
   tableSchema: TableSchema;
   data: Record<string, any>[];
   actionOptions?: ActionOptions;
+  isSuperUser?: boolean;
 };
 
-function TableBody({ tableSchema, data, actionOptions }: Props) {
+function TableBody({ tableSchema, data, actionOptions, isSuperUser }: Props) {
   return (
     <tbody>
       {data.map((product, index) => {
@@ -36,6 +37,7 @@ function TableBody({ tableSchema, data, actionOptions }: Props) {
                       product_key={product_key}
                       schema={schema}
                       last_items={last_items}
+                      isSuperUser={isSuperUser}
                     />
                   ) : schema.dropdown ? (
                     <TableDropDown
