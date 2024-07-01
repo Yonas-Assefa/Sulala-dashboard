@@ -36,7 +36,7 @@ function LogoutModal() {
             )}
           </button>
           <form method="dialog">
-            <button className="btn modal-backdrop w-full rounded-[40px] bg-[#f6f6f6] dark:bg-gray-700 hover:bg-primary/20 border-0 text-black">
+            <button className="btn modal-backdrop w-full rounded-[40px] bg-[#f6f6f6] dark:bg-gray-700 hover:bg-primary/20 border-0 text-black dark:text-white">
               {t("cancel")}
             </button>
           </form>
