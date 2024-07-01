@@ -7,6 +7,7 @@ import {
   makeRequest,
   setBrowserCookie,
 } from "../../lib/helper";
+import { getPersonalInfo } from "../settings/get-personal-info";
 
 type AcceptApprovalArgs = {
   vendor_id: string;
@@ -36,6 +37,9 @@ export const acceptApproval = async ({
     setBrowserCookie(response);
 
     const successMessage = "Approval successful!";
+
+    // this fetches user info and caches it
+    await getPersonalInfo();
 
     const redirectUrl = "/dashboard/settings";
 
