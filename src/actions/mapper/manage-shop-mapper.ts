@@ -20,7 +20,8 @@ type TManageShops = {
 };
 
 export const manageShopsMapper = async (
-  data: TManageShops[] | TManageShops,
+  // data: TManageShops[] | TManageShops,
+  data: any,
 ) => {
   const categories = await getCategories();
   function convert(item: any) {

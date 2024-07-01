@@ -8,7 +8,8 @@ type TManageCustomerSupport = {
 };
 
 export const manageCustomerSupport = async (
-  data: TManageCustomerSupport[] | TManageCustomerSupport,
+  // data: TManageCustomerSupport[] | TManageCustomerSupport,
+  data: any,
 ) => {
   function convert(item: any) {
     if (!item) return {};

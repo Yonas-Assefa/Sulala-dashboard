@@ -8,7 +8,8 @@ type TBilling = {
   expiration_date: string;
 };
 
-export const billingMapper = async (data: TBilling[] | TBilling) => {
+// export const billingMapper = async (data: TBilling[] | TBilling) => {
+export const billingMapper = async (data: any) => {
   function convert(item: any) {
     return {
       id: item.id,

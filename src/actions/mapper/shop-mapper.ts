@@ -8,7 +8,8 @@ type TShop = {
   categories: string[];
 };
 
-export const shopMapper = async (data: TShop | TShop[]) => {
+// export const shopMapper = async (data: TShop | TShop[]) => {
+export const shopMapper = async (data: any) => {
   const categories = await getCategories();
   if (Array.isArray(data)) {
     return data.map((shop: TShop) => {

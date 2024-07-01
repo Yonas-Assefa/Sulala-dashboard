@@ -6,7 +6,8 @@ type TBrand = {
   image: string;
 };
 
-export const brandMapper = async (data: TBrand[] | TBrand) => {
+// export const brandMapper = async (data: TBrand[] | TBrand) => {
+export const brandMapper = async (data: any) => {
   function convert(item: any) {
     return {
       id: item.id,

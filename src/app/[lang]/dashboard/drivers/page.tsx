@@ -76,9 +76,6 @@ async function page({
               action: deletePromotion,
               formData: [{ formDataKey: "item_id", searchKey: "item" }],
             },
-            search: {
-              action: getPromotions,
-            },
           }}
         />
       </div>

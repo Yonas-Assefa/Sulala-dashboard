@@ -5,7 +5,8 @@ type TAnimal = {
   name: string;
 };
 
-export const animalMapper = (data: TAnimal[] | TAnimal) => {
+// export const animalMapper = (data: TAnimal[] | TAnimal) => {
+export const animalMapper = (data: any) => {
   function convert(item: TAnimal) {
     return {
       id: JSON.stringify({

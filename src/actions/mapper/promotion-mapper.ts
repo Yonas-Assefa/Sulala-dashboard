@@ -12,7 +12,8 @@ type TPromotion = {
 
 type OptArgs = {
   tableSearch?: boolean;
-  data: TPromotion[] | TPromotion;
+  // data: TPromotion[] | TPromotion;
+  data: any;
 };
 
 export const promotionMapper = ({ tableSearch, data }: OptArgs) => {

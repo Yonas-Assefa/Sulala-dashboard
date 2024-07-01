@@ -14,7 +14,8 @@ type TProduct = {
 };
 
 export const productMapper = async (
-  data: TProduct[] | TProduct,
+  // data: TProduct[] | TProduct,
+  data: any,
   manyImages?: boolean,
 ) => {
   const categories = await getCategories();

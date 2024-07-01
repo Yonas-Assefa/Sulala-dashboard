@@ -7,7 +7,8 @@ type TOrder = {
   date: string;
 };
 
-export const ordersMapper = (orders: TOrder[]) => {
+// export const ordersMapper = (orders: TOrder[]) => {
+export const ordersMapper = (orders: any) => {
   const modifeidOrders = orders.map((order: any) => ({
     ...order,
     ordered_at: changeLocalToISODateOnly(order?.date),
