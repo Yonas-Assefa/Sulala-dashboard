@@ -1,11 +1,17 @@
 import { getCategories } from "../common/get-categories";
-import { BASE_URL } from "../../config/urls";
 import { constructImageUrl } from "@/lib/images";
 
-export const shopMapper = async (data: any) => {
+type TShop = {
+  id: number;
+  name: string;
+  profile_photo: string;
+  categories: string[];
+};
+
+export const shopMapper = async (data: TShop | TShop[]) => {
   const categories = await getCategories();
   if (Array.isArray(data)) {
-    return data.map((shop: any) => {
+    return data.map((shop: TShop) => {
       return {
         ...shop,
         profile_photo:

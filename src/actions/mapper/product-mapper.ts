@@ -2,7 +2,21 @@ import { getCategories } from "../common/get-categories";
 import { constructImageUrl } from "@/lib/images";
 import { animalMapper } from "./animal-mapper";
 
-export const productMapper = async (data: any, manyImages?: boolean) => {
+type TProduct = {
+  id: number;
+  name: string;
+  category: number;
+  images: string[];
+  animal_products: any[];
+  status: string;
+  promotion_campaigns: any[];
+  tags: string[];
+};
+
+export const productMapper = async (
+  data: TProduct[] | TProduct,
+  manyImages?: boolean,
+) => {
   const categories = await getCategories();
   if (Array.isArray(data)) {
     return data.map((product: any) => {

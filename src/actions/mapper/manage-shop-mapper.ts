@@ -1,7 +1,27 @@
 import { getCategories } from "../common/get-categories";
 import { constructImageUrl, deconstructImageUrl } from "@/lib/images";
 
-export const manageShopsMapper = async (data: any) => {
+type TManageShops = {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone_number: string;
+  shops: {
+    id: number;
+    name: string;
+    legal_address: string;
+    profile_photo: string;
+    certificates: string[];
+    tax_forms: string[];
+    categories: string[];
+  }[];
+  date_joined: string;
+};
+
+export const manageShopsMapper = async (
+  data: TManageShops[] | TManageShops,
+) => {
   const categories = await getCategories();
   function convert(item: any) {
     if (!item) return {};

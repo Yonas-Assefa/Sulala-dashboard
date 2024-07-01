@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import DeleteProductModal from "../modal/DeleteModal";
 import TableFilter from "./TableFilter";
 import TableSearch from "./TableSearch";

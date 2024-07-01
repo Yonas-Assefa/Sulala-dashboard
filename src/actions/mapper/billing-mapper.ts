@@ -1,4 +1,14 @@
-export const billingMapper = async (data: any) => {
+type TBilling = {
+  id: number;
+  account_holder_name: string;
+  type: string;
+  is_default: boolean;
+  card_number: string;
+  cvc: string;
+  expiration_date: string;
+};
+
+export const billingMapper = async (data: TBilling[] | TBilling) => {
   function convert(item: any) {
     return {
       id: item.id,
