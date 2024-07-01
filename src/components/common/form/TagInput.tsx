@@ -90,7 +90,7 @@ function TagInput({
           onChange={() => {}}
         />
       ))}
-      <p className="self-start text-black">
+      <p className="self-start text-black dark:text-white">
         {label}
         {required && (
           <span className="text-danger">

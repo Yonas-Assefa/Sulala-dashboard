@@ -41,13 +41,13 @@ async function SettingsPage({ params: { tab, lang } }: Props) {
           <div className="md:self-start font-medium flex flex-row">
             <Link
               href={"/dashboard/settings/personal-info"}
-              className={`tab md:border-b-2 text-xs md:text-[15px] md:px-6 -mb-[1px] ${activeTab == "personal-info" ? "md:text-primary md:border-primary text-tertiary bg-primary md:bg-transparent" : "md:text-secondary md:border-transparent text-primary bg-tertiary md:bg-transparent"}`}
+              className={`tab md:border-b-2 text-xs md:text-[15px] md:px-6 -mb-[1px] ${activeTab == "personal-info" ? "md:text-primary md:border-primary text-tertiary bg-primary md:bg-transparent" : "md:text-secondary md:border-transparent text-primary bg-tertiary dark:bg-gray-800 md:bg-transparent md:dark:bg-transparent"}`}
             >
               {t("personal_info")}
             </Link>
             <Link
               href={"/dashboard/settings/shop-info"}
-              className={`tab md:border-b-2 text-xs md:text-[15px] md:px-6 -mb-[1px] ${activeTab == "shop-info" ? "md:text-primary md:border-primary text-tertiary bg-primary md:bg-transparent" : "md:text-secondary md:border-transparent text-primary bg-tertiary md:bg-transparent"}`}
+              className={`tab md:border-b-2 text-xs md:text-[15px] md:px-6 -mb-[1px] ${activeTab == "shop-info" ? "md:text-primary md:border-primary text-tertiary bg-primary md:bg-transparent" : "md:text-secondary md:border-transparent text-primary bg-tertiary dark:bg-gray-800 md:bg-transparent md:dark:bg-transparent"}`}
             >
               {t("shop_info")}
             </Link>
