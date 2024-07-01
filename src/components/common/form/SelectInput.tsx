@@ -13,7 +13,7 @@ type TChildError = {
 function NoItemPlaceholder() {
   const t = useTranslations("Commons");
   return (
-    <div className="bg-tertiary/50 dark:bg-gray-600 hover:cursor-pointer hover:bg-tertiary p-3 select-none flex flex-row justify-center gap-2 text-center font-semibold text-secondary">
+    <div className="bg-tertiary/50 dark:bg-gray-600 hover:cursor-pointer hover:bg-tertiary dark:hover:bg-gray-800 p-3 select-none flex flex-row justify-center gap-2 text-center font-semibold text-secondary">
       <img src="/icons/inbox.svg" className="w-[20px] opacity-30" />
       <p>{t("there_is_no_item_to_select_here")}</p>
     </div>
