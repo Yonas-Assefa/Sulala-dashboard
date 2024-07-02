@@ -4,7 +4,7 @@ import React from "react";
 
 function page() {
   redirect(`/${DEFAULT_LOCALE}`);
-  return <div></div>;
+  return <></>;
 }
 
 export default page;

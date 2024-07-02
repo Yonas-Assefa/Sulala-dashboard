@@ -11,15 +11,11 @@ import {
   FilterData,
   TableSchema,
   ActionOptions,
+  Meta,
 } from "../../../types/table.type";
 import NoItemsFound from "../ui/NoItemsFound";
 import TablePagination from "./TablePagination";
 import { getPersonalInfo } from "@/actions/settings/get-personal-info";
-
-type Meta = {
-  data: Data;
-  count: number;
-};
 
 type Props = {
   filterData: FilterData;

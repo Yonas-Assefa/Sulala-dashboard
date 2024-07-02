@@ -1,14 +1,5 @@
 import { constructImageUrl, deconstructImageUrl } from "@/lib/images";
-
-type TPromotion = {
-  id: number;
-  name: string;
-  noc: number;
-  start_date: string;
-  end_date: string;
-  impressions: number;
-  ad_files: string[];
-};
+import { TPromotion } from "@/types/mapper.type";
 
 type OptArgs = {
   tableSearch?: boolean;
@@ -16,7 +7,7 @@ type OptArgs = {
   data: any;
 };
 
-export const promotionMapper = ({ tableSearch, data }: OptArgs) => {
+export const promotionMapper = <T>({ tableSearch, data }: OptArgs): T => {
   function convert(item: TPromotion) {
     if (tableSearch)
       return {
@@ -40,8 +31,8 @@ export const promotionMapper = ({ tableSearch, data }: OptArgs) => {
   if (Array.isArray(data)) {
     return data.map((promotion: any) => {
       return convert(promotion);
-    });
+    }) as T;
   } else {
-    return convert(data);
+    return convert(data) as T;
   }
 };

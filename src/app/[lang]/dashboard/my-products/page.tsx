@@ -9,6 +9,7 @@ import { deleteProduct } from "@/actions/products/delete-product";
 import { changeObjToFormData } from "@/lib/helper";
 import { TableProps as Props } from "@/types/props.type";
 import ExportProductsModal from "./components/modals/ExportProductsModal";
+import { Meta } from "@/types/table.type";
 
 async function page({
   searchParams: { search, filter, sort, sort_by, page, page_size },
@@ -35,7 +36,7 @@ async function page({
         <ProductHead />
 
         <Table
-          data={products}
+          data={products as Meta}
           filterData={productsFilterData}
           tableSchema={productTableSchema}
           sortData={productsSortData}

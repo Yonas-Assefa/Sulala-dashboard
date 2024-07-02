@@ -10,16 +10,15 @@ import {
 } from "../../lib/helper";
 import { notFound } from "next/navigation";
 import { getFilterSortOrdering } from "@/lib/table";
+import { TPromotion } from "@/types/mapper.type";
 
 type Args = {
   search: string | undefined;
 };
 
-export const getPromotions = async (formData: FormData) => {
+export const getPromotions = async <T>(formData: FormData): Promise<T> => {
   const { search, status, ordering, page, page_size } =
     getFilterSortOrdering(formData);
-
-  const search_type = formData.get("search_type") || "";
 
   const response = await Fetch({
     url: PROMOTIONS,
@@ -46,11 +45,11 @@ export const getPromotions = async (formData: FormData) => {
 
   if (formData?.get("with_pagination"))
     return {
-      data: promotionMapper({ data: body.results }),
+      data: promotionMapper<TPromotion>({ data: body.results }),
       count: body.count,
-    };
+    } as T;
 
-  return promotionMapper({
+  return promotionMapper<T>({
     data: body.results,
     tableSearch: true,
   });
