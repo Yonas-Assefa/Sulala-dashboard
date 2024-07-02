@@ -4,7 +4,11 @@ import React from "react";
 
 function page() {
   redirect(`/${DEFAULT_LOCALE}`);
-  return <></>;
+  return (
+    <html>
+      <body></body>
+    </html>
+  );
 }
 
 export default page;
