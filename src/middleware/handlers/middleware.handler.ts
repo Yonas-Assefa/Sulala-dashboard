@@ -7,7 +7,9 @@ export const guardSetupAccount = async (request: NextRequest) => {
     return NextResponse.redirect(new URL("/auth/sign-in", request.url));
   }
 
-  const personalInfo = await getPersonalInfo();
+  const response = NextResponse.next();
+
+  const personalInfo = await getPersonalInfo(response.cookies);
 
   if (personalInfo?.is_superuser)
     return NextResponse.redirect(new URL("/dashboard/shops", request.url));

@@ -4,6 +4,10 @@ import parsePhoneNumberFromString from "libphonenumber-js";
 import { z } from "zod";
 
 import { Console } from "./print";
+import {
+  RequestCookies,
+  ResponseCookies,
+} from "next/dist/compiled/@edge-runtime/cookies";
 
 export const phoneTransform = (arg: string, ctx: z.RefinementCtx) => {
   const phone = parsePhoneNumberFromString(arg, {
@@ -228,11 +232,15 @@ export const getBearerToken = () => {
   return token;
 };
 
-export const cachePersonalInfo = (data: any) => {
-  cookies().set({
-    name: "personal_info",
-    value: JSON.stringify(data),
-  });
+export const cachePersonalInfo = (data: any, reqCookie?: ResponseCookies) => {
+  if (reqCookie) {
+    reqCookie.set("personal_info", JSON.stringify(data));
+  } else {
+    cookies().set({
+      name: "personal_info",
+      value: JSON.stringify(data),
+    });
+  }
 };
 
 export const retrievePersonalInfo = () => {
