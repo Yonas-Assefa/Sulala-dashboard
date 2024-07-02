@@ -26,7 +26,7 @@ export const acceptApproval = async ({
     );
     const body = await getResponseBody(response);
 
-    if (!response.ok || !body.success) {
+    if (!response.ok) {
       const redirectUrl = "/auth/sign-in";
       const failedMessage =
         getResponseErrorMessage(body) || "Failed to accept approval";
