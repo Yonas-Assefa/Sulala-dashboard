@@ -2,7 +2,11 @@
 
 import { notFound } from "next/navigation";
 import { GET_SUPPORT_REQUESTS } from "../../config/urls";
-import { getRequestHeaders, getResponseBody } from "../../lib/helper";
+import {
+  getRequestHeaders,
+  getResponseBody,
+  getResponseErrorMessage,
+} from "../../lib/helper";
 import { manageCustomerSupport } from "../mapper/manage-customer-support-mapper";
 import { getFilterSortOrdering } from "@/lib/table";
 
@@ -29,11 +33,14 @@ export const getSupportRequests = async (formData: FormData) => {
   });
   const body = await getResponseBody(response);
 
-  if (!response.ok || !body.results) {
-    throw new Error(body.message || "Failed to get customer support requests");
+  if (!response.ok) {
+    throw new Error(
+      getResponseErrorMessage(body) ||
+        "Failed to get customer support requests",
+    );
   }
 
-  return manageCustomerSupport(body.results);
+  return manageCustomerSupport(body.data?.results);
 };
 
 export const getOneCustomerRequest = async (vendor_id: string) => {
@@ -46,14 +53,17 @@ export const getOneCustomerRequest = async (vendor_id: string) => {
   });
   const body = await getResponseBody(response);
 
-  if (!response.ok || !body.results) {
+  if (!response.ok) {
     if (response.status === 404) {
       notFound();
     }
-    throw new Error(body.message || "Failed to get customer support requests");
+    throw new Error(
+      getResponseErrorMessage(body) ||
+        "Failed to get customer support requests",
+    );
   }
 
   return manageCustomerSupport(
-    body.results?.find((vendor: any) => vendor.id == vendor_id),
+    body.data?.results?.find((vendor: any) => vendor.id == vendor_id),
   );
 };
