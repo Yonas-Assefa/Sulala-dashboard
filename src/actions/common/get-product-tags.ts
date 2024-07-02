@@ -6,7 +6,6 @@ import {
   getRequestHeaders,
   getResponseBody,
   getResponseErrorMessage,
-  makeRequest,
 } from "../../lib/helper";
 
 export const getProductTags = async () => {
