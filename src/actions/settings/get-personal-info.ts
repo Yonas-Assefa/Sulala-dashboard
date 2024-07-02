@@ -20,15 +20,15 @@ export const getPersonalInfo = async () => {
   });
   const body = await getResponseBody(response);
 
-  if (!response.ok || !body.success) {
+  if (!response.ok) {
     throw new Error(body.message || "Failed to get profile");
   }
 
   const personalInfo = body.data;
   if (
     personalInfo &&
-    personalInfo.email_verified &&
-    personalInfo.is_password_set &&
+    personalInfo?.email_verified &&
+    personalInfo?.is_password_set &&
     personalInfo?.shops?.length > 0
   ) {
     cachePersonalInfo(personalInfo);
