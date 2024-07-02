@@ -31,6 +31,7 @@ async function page({
       with_pagination: true,
     }),
   );
+
   const t = await getTranslations("Promotion");
 
   return (

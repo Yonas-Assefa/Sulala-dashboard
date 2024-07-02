@@ -43,7 +43,7 @@ async function OrdersPage({
           >
             Items
           </Link>
-          <Link
+          {/* <Link
             href={"/dashboard/orders/services"}
             className={`tab border-b-2 px-6 -mb-[1px] ${
               activeTab == "services"
@@ -52,7 +52,7 @@ async function OrdersPage({
             }`}
           >
             Services
-          </Link>
+          </Link> */}
         </div>
       </div>
 

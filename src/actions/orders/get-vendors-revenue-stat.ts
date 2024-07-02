@@ -1,6 +1,6 @@
 "use server";
 import { SHOP_REVENUE_URL } from "@/config/urls";
-import { getRequestHeaders } from "@/lib/helper";
+import { getRequestHeaders, getResponseErrorMessage } from "@/lib/helper";
 
 export const getVendorsRevenueStas = async () => {
   const shopRevenueResponse = await fetch(SHOP_REVENUE_URL, {
@@ -9,8 +9,10 @@ export const getVendorsRevenueStas = async () => {
   });
 
   const shopRevenueBody = await shopRevenueResponse.json();
-  if (!shopRevenueResponse || !shopRevenueBody.data) {
-    throw new Error(shopRevenueBody.message || "Failed to get shop revenue");
+  if (!shopRevenueResponse.ok) {
+    throw new Error(
+      getResponseErrorMessage(shopRevenueBody) || "Failed to get shop revenue",
+    );
   }
 
   return shopRevenueBody.data;
