@@ -19,7 +19,9 @@ export const getProductTags = async () => {
     if (response.status === 404) {
       notFound();
     }
-    throw new Error(getResponseErrorMessage(body) || "Failed to resend OTP");
+    throw new Error(
+      getResponseErrorMessage(body) || "Failed to get product tags",
+    );
   }
 
   return body.data?.results?.map((tag: any) => {
