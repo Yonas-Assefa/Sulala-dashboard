@@ -6,11 +6,7 @@ import {
 } from "@/utils/formStateHelper";
 import { FORGOT_PASSWORD } from "../../config/urls";
 import { emailSignUpSchema } from "../schema/zod-schema";
-import {
-  getResponseBody,
-  getResponseErrorMessage,
-  setBrowserCookie,
-} from "../../lib/helper";
+import { getResponseBody, getResponseErrorMessage } from "../../lib/helper";
 
 export const forgotPassword = async (
   formState: FormState,

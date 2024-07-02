@@ -1,10 +1,6 @@
 "use server";
 import { GOOGLE_SIGNIN_URL } from "@/config/urls";
-import {
-  getPhoneNumber,
-  getResponseBody,
-  setBrowserCookie,
-} from "../../lib/helper";
+import { getResponseBody, setBrowserCookie } from "../../lib/helper";
 
 import {
   FormState,

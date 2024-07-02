@@ -4,9 +4,8 @@ import {
   fromErrorToFormState,
   toFormState,
 } from "@/utils/formStateHelper";
-import { CONFIRM_PHONE, RESEND_OTP, VERIFY_PHONE } from "../../config/urls";
-import { otpVerificationSchema, resendOtpSchema } from "../schema/zod-schema";
-import { cookies } from "next/headers";
+import { RESEND_OTP } from "../../config/urls";
+import { resendOtpSchema } from "../schema/zod-schema";
 import {
   getResponseBody,
   getResponseErrorMessage,

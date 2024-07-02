@@ -9,7 +9,6 @@ import {
   getResponseErrorMessage,
 } from "@/lib/helper";
 import { getoneFromArray } from "@/utils/getOneFromArray";
-import { constructImageUrl } from "@/lib/images";
 
 type uploadImageResponse = {
   success: boolean;

@@ -7,7 +7,6 @@ import {
   getRequestHeaders,
   getResponseBody,
   getResponseErrorMessage,
-  makeRequest,
 } from "../../lib/helper";
 import { notFound } from "next/navigation";
 import { getFilterSortOrdering } from "@/lib/table";

@@ -1,9 +1,6 @@
 "use server";
 
-import {
-  RequestCookies,
-  ResponseCookies,
-} from "next/dist/compiled/@edge-runtime/cookies";
+import { ResponseCookies } from "next/dist/compiled/@edge-runtime/cookies";
 import { GET_VENDOR_ACCOUNT as GET_VENDOR_PROFILE } from "../../config/urls";
 import {
   cachePersonalInfo,

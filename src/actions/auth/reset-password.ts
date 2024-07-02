@@ -6,11 +6,7 @@ import {
 } from "@/utils/formStateHelper";
 import { CONFIRM_RESET_PASSWORD } from "../../config/urls";
 import { createPasswordSchema } from "../schema/zod-schema";
-import {
-  getResponseBody,
-  getResponseErrorMessage,
-  setBrowserCookie,
-} from "../../lib/helper";
+import { getResponseBody, getResponseErrorMessage } from "../../lib/helper";
 
 export const resetPassword = async (
   formState: FormState,

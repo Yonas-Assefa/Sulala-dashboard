@@ -17,7 +17,6 @@ import {
   getResponseErrorMessage,
   removeNullAndUndefined,
 } from "../../lib/helper";
-import { redirect } from "@/i18n/navigation";
 
 export const setupAccount = async (
   formState: FormState,
