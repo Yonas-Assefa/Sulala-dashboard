@@ -106,17 +106,22 @@ export const createUpdatePromotion = async (
     });
 
     const body = await getResponseBody(response);
-    // if (!response.ok || !body.success) {
-    if (!body.success) {
+    if (!response.ok) {
       if (response.status == 409) {
-        if (body.errors) {
-          const fieldErrors = Object.keys(body.errors).reduce(
-            (acc, key) => {
-              acc[key as string] = [body.message, body.errors[key]];
-              return acc;
-            },
-            {} as Record<string, string[]>,
-          );
+        // if (body.errors) {
+        if (
+          body.error &&
+          "title" in body.error &&
+          typeof body.error.title === "string"
+        ) {
+          // const fieldErrors = Object.keys(body.errors)?.reduce(
+          //   (acc, key) => {
+          //     acc[key as string] = [body.message, body.errors[key]];
+          //     return acc;
+          //   },
+          //   {} as Record<string, string[]>,
+          // );
+          const fieldErrors = { products: [body.error.title] };
           throw new CustomZodError(fieldErrors);
         }
       }

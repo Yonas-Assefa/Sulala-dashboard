@@ -103,9 +103,8 @@ export const createUpdateProduct = async (
     });
 
     const body = await getResponseBody(response);
-    if (!response.ok || !body.success) {
-      const message = getResponseErrorMessage(body);
-      throw new Error(message || "Failed to submit form");
+    if (!response.ok) {
+      throw new Error(getResponseErrorMessage(body) || "Failed to submit form");
     }
 
     const successMessage =
