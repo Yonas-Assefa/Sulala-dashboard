@@ -2,7 +2,11 @@
 
 import { GET_SHOP_ACCOUNT } from "../../config/urls";
 import { shopMapper } from "../mapper/shop-mapper";
-import { getRequestHeaders, getResponseBody } from "../../lib/helper";
+import {
+  getRequestHeaders,
+  getResponseBody,
+  getResponseErrorMessage,
+} from "../../lib/helper";
 
 export const getShopInfo = async () => {
   const response = await fetch(GET_SHOP_ACCOUNT, {
@@ -13,10 +17,11 @@ export const getShopInfo = async () => {
       tags: ["shop-info-detail"],
     },
   });
-  const body = await getResponseBody(response)
 
-  if (!response.ok || !body.success) {
-    throw new Error(body.message || "Failed to get shop info");
+  const body = await getResponseBody(response);
+
+  if (!response.ok) {
+    throw new Error(getResponseErrorMessage(body) || "Failed to get shop info");
   }
 
   return shopMapper(body.data);

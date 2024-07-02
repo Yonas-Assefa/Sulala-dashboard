@@ -37,20 +37,20 @@ export const getPromotions = async <T>(formData: FormData): Promise<T> => {
   });
   const body = await getResponseBody(response);
 
-  if (!response.ok || !body.results) {
+  if (!response.ok) {
     throw new Error(
-      getResponseErrorMessage(body.message) || "Failed to get promotions",
+      getResponseErrorMessage(body) || "Failed to get promotions",
     );
   }
 
   if (formData?.get("with_pagination"))
     return {
-      data: promotionMapper<TPromotion>({ data: body.results }),
-      count: body.count,
+      data: promotionMapper<TPromotion>({ data: body.data?.results }),
+      count: body.data?.count,
     } as T;
 
   return promotionMapper<T>({
-    data: body.results,
+    data: body.data?.results,
     tableSearch: true,
   });
 };
@@ -65,7 +65,7 @@ export const getOnePromotion = async (promotion_id: string) => {
   });
   const body = await getResponseBody(response);
 
-  if (!response.ok || !body.data) {
+  if (!response.ok) {
     if (response.status === 404) {
       notFound();
     }
