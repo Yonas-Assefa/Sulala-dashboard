@@ -9,7 +9,7 @@ import {
   getResponseErrorMessage,
 } from "../../lib/helper";
 import { notFound } from "next/navigation";
-import { getFilterSortOrdering } from "@/lib/table";
+import { getFilterSortOrdering } from "@/lib/filter-sort-ordering";
 import { TPromotion } from "@/types/mapper.type";
 
 type Args = {

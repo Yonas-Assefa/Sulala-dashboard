@@ -9,13 +9,14 @@ import { useEffect, useState } from "react";
 // @ts-ignore
 export default function GlobalError({ error }) {
   const [isCaptured, setIsCaptured] = useState(false);
+  const USE_SENTRY = process.env.NEXT_PUBLIC_USE_MONITORING === "true";
 
   useEffect(() => {
-    try {
+    if (USE_SENTRY && error) {
       Sentry.captureException(error);
       setIsCaptured(true);
-    } catch (e) {
-      Console.error(e);
+    } else {
+      Console.error("Error is not captured by Sentry!");
       setIsCaptured(false);
     }
   }, [error]);

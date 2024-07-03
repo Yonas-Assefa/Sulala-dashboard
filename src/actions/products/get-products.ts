@@ -9,7 +9,7 @@ import {
   getResponseErrorMessage,
 } from "../../lib/helper";
 import { notFound } from "next/navigation";
-import { getFilterSortOrdering } from "@/lib/table";
+import { getFilterSortOrdering } from "@/lib/filter-sort-ordering";
 
 export const getProducts = async (formData?: FormData) => {
   const { search, status, ordering, page, page_size } =
