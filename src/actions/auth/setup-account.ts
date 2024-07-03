@@ -36,10 +36,13 @@ export const setupAccount = async (
     const data: { phone_number?: string; email?: string } = {};
 
     if (stage == "one") {
-      const ZodObj = setupAccountFirstStepSchema.parse({
-        first_name: formData.get("first_name"),
-        last_name: formData.get("last_name"),
-      });
+      const ZodObj = setupAccountFirstStepSchema.parse(
+        removeNullAndUndefined({
+          first_name: formData.get("first_name"),
+          last_name: formData.get("last_name"),
+          email: formData.get("email"),
+        }),
+      );
       Object.assign(data, { ...ZodObj });
     } else {
       const cleanedData = removeNullAndUndefined({

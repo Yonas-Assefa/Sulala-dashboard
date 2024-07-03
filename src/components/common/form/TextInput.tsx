@@ -75,7 +75,7 @@ function TextInput({
           value={value}
           onChange={handleChange}
           defaultValue={defaultValue}
-          // disabled={disabled}
+          disabled={disabled}
           // {...props}
         />
         {value && (
