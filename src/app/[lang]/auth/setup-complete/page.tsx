@@ -1,19 +1,18 @@
 "use client";
 import { clearCookie } from "@/actions/common/clear-cookie";
-import { useSetupAccountStore } from "@/providers/setup-account-store-provider";
-import { useRouter } from "@/i18n/navigation";
 import React from "react";
 import { notFound } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 type Props = {
   searchParams: {
-    email: string;
+    email?: string;
+    phone_number?: string;
   };
 };
 
-function SetupComplete({ searchParams: { email } }: Props) {
-  if (!email) notFound();
+function SetupComplete({ searchParams: { email, phone_number } }: Props) {
+  if (!email && !phone_number) notFound();
   React.useEffect(() => {
     clearCookie();
   }, []);
@@ -29,7 +28,9 @@ function SetupComplete({ searchParams: { email } }: Props) {
 
       <div className="">
         <p>
-          {t("moderation_notification_will_be_sent", { email })}
+          {t("moderation_notification_will_be_sent", {
+            media: email || phone_number,
+          })}
           &nbsp;{" "}
           <span className="text-primary font-semibold">
             {t("it_will_take_48_hr")}

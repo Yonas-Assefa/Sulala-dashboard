@@ -76,13 +76,20 @@ export const setupAccount = async (
     const successMessage =
       stage == "one" ? "Account setup 1/3" : "Account setup 3/3";
 
+    const email = formData.get("email")?.toString()!;
+    const phone_number = formData.get("phone_number")?.toString()!;
+
     const redirectUrl = body?.message
       ?.toLowerCase()
       .includes("please verify the new email address")
       ? `/auth/confirm-letter?email=${encodeURIComponent(data.email!)}`
       : stage !== "three"
         ? `/auth/setup-account?stage=${encodeURIComponent(stage == "one" ? "two" : "three")}`
-        : `/auth/setup-complete?email=${encodeURIComponent(formData.get("email")?.toString()!)}`;
+        : `/auth/setup-complete?${
+            email
+              ? `email=${encodeURIComponent(email)}`
+              : `phone_number=${encodeURIComponent(phone_number)}`
+          }`;
 
     return toFormState("INFO", successMessage, redirectUrl);
   } catch (error) {

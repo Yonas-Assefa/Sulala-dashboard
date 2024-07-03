@@ -52,15 +52,31 @@ function SetupAccountStageOne({
         error={formState.fieldErrors?.last_name?.[0]}
       />
       <TextInput
-        defaultValue={personalInfo?.email || email}
-        disabled={personalInfo?.email?.length > 0}
+        defaultValue={
+          personalInfo?.email || personalInfo?.phone_number || email
+        }
+        disabled={
+          personalInfo?.email?.length > 0 ||
+          personalInfo?.phone_number?.length > 0
+        }
         value={email}
         setValue={setEmail}
-        label={t("what_is_your_email_address")}
-        placeholder={t("enter_your_email_address")}
-        id="email"
-        name="email"
-        error={formState.fieldErrors?.email?.[0]}
+        label={t(
+          personalInfo?.email
+            ? "what_is_your_email_address"
+            : "what_is_your_phone_number",
+        )}
+        placeholder={t(
+          personalInfo?.email
+            ? "enter_your_email_address"
+            : "enter_your_phone_number",
+        )}
+        id={personalInfo?.email ? "email" : "phone_number"}
+        name={personalInfo?.email ? "email" : "phone_number"}
+        error={
+          formState.fieldErrors?.email?.[0] ||
+          formState.fieldErrors?.phone_number?.[0]
+        }
       />
     </section>
   );

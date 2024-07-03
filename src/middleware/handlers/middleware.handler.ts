@@ -18,34 +18,57 @@ export const guardSetupAccount = async (request: NextRequest) => {
   const stage = request.nextUrl.searchParams.get("stage");
   const { last_name, first_name, email } = personalInfo;
 
-  if (!personalInfo?.is_password_set) {
-    return NextResponse.redirect(new URL("/auth/create-password", request.url));
-  }
-  // else if (!shop) {
-  else if (!last_name || !first_name || !email) {
-    if (stage === "one") {
-      return;
+  // IF THE USER REGISTERED WITH PHONE NUMBER
+  if (personalInfo?.phone_number && personalInfo?.phone_number?.length > 0) {
+    if (!last_name || !first_name) {
+      if (stage === "one") {
+        return;
+      }
+      return NextResponse.redirect(
+        new URL("/auth/setup-account?stage=one", request.url),
+      );
+    } else if (!shop) {
+      if (stage === "two" || stage === "three") {
+        return;
+      }
+      return NextResponse.redirect(
+        new URL("/auth/setup-account?stage=two", request.url),
+      );
+    } else {
+      return NextResponse.redirect(new URL("/dashboard/settings", request.url));
     }
-    return NextResponse.redirect(
-      new URL("/auth/setup-account?stage=one", request.url),
-    );
-    // } else if (!shop || (shop && shop.categories?.length === 0)) {
-  } else if (!shop) {
-    if (stage === "two" || stage === "three") {
-      return;
+  } else {
+    if (!personalInfo?.is_password_set) {
+      return NextResponse.redirect(
+        new URL("/auth/create-password", request.url),
+      );
     }
-    return NextResponse.redirect(
-      new URL("/auth/setup-account?stage=two", request.url),
-    );
-  }
-  // else if (shop && !shop.tax_forms?.length) {
-  //     if (stage === 'three') {
-  //         return;
-  //     }
-  //     return NextResponse.redirect(new URL('/auth/setup-account?stage=three', request.url));
-  // }
-  else {
-    return NextResponse.redirect(new URL("/dashboard/settings", request.url));
+    // else if (!shop) {
+    else if (!last_name || !first_name || !email) {
+      if (stage === "one") {
+        return;
+      }
+      return NextResponse.redirect(
+        new URL("/auth/setup-account?stage=one", request.url),
+      );
+      // } else if (!shop || (shop && shop.categories?.length === 0)) {
+    } else if (!shop) {
+      if (stage === "two" || stage === "three") {
+        return;
+      }
+      return NextResponse.redirect(
+        new URL("/auth/setup-account?stage=two", request.url),
+      );
+    }
+    // else if (shop && !shop.tax_forms?.length) {
+    //     if (stage === 'three') {
+    //         return;
+    //     }
+    //     return NextResponse.redirect(new URL('/auth/setup-account?stage=three', request.url));
+    // }
+    else {
+      return NextResponse.redirect(new URL("/dashboard/settings", request.url));
+    }
   }
 };
 
