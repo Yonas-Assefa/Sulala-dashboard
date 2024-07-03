@@ -34,7 +34,7 @@ const getSentryConfig = () => {
     const SENTRY_ORG = process.env.SENTRY_ORG;
     const SENTRY_PROJECT = process.env.SENTRY_PROJECT;
 
-    console.info("\x1b[35m  △ Sentry enabled\x1b[0m");
+    console.info("\x1b[35m  ⧌ Sentry enabled\x1b[0m");
 
     return {
         // For all available options, see:
