@@ -1,4 +1,5 @@
 import { getPersonalInfo } from "@/actions/settings/get-personal-info";
+import routes from "@/app/[lang]/dashboard/components/sideBarRoutes";
 import { isAuthenticated } from "@/lib/detect/server";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -109,12 +110,13 @@ export const guardDashboard = async (request: NextRequest) => {
 
   const personalInfo = await getPersonalInfo(response.cookies);
 
+  const superAdminPaths = routes
+    .filter((route) => route.protected)
+    .map((route) => route.path)
+    .map((path) => path.split("?")[0]);
+
   if (personalInfo?.is_superuser) {
-    if (
-      pathname.includes("/dashboard/shops") ||
-      pathname.includes("/dashboard/customer-support") ||
-      pathname.includes("/dashboard/faq")
-    ) {
+    if (superAdminPaths.some((path) => pathname.includes(path))) {
       return;
     } else {
       return NextResponse.redirect(new URL("/dashboard/shops", request.url));

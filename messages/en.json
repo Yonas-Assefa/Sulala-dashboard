@@ -134,7 +134,10 @@
     "manage_shops": "Manage Shops",
     "customer_support": "Customer Support",
     "manage_customer_support": "Manage Customer Support",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "shop_products": "Shop Products",
+    "shop_services": "Shop Services",
+    "shop_drivers": "Shop Drivers"
   },
   "Dashboard": {
     "settings": "Settings",

@@ -68,6 +68,20 @@ const routes = [
     path: "/dashboard/faq",
     protected: true,
   },
+  {
+    icon: "/icons/storefront.svg",
+    activeIcon: "/icons/storefront_active.svg",
+    name: "shop_products",
+    path: "/dashboard/shop-products?filter=all",
+    protected: true,
+  },
+  {
+    icon: "/icons/truck.svg",
+    activeIcon: "/icons/truck_active.svg",
+    name: "shop_drivers",
+    path: "/dashboard/shop-drivers?filter=all",
+    protected: true,
+  },
 ];
 
 export default routes;
