@@ -18,7 +18,7 @@ function SocialMediaInput({ socialMedia, error, defaultValue }: Props) {
         {socialMedia == "instagram" ? t("instagram_link") : t("facebook_link")}
       </label>
       <div
-        className={`flex flex-row gap-2 border-2 rounded-[30px] px-4 ${error ? "border-danger bg-dangerlight" : "bg-white"}`}
+        className={`flex flex-row gap-2 border-2 dark:border-gray-700 rounded-[30px] px-4 ${error ? "border-danger bg-dangerlight" : "bg-white dark:bg-gray-800"}`}
       >
         <img
           src={

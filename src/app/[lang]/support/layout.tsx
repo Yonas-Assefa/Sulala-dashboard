@@ -21,8 +21,8 @@ export default async function SupportLayout({
 }: Readonly<{ children: React.ReactNode; params: { lang: string } }>) {
   return (
     <div className="w-screen h-screen overflow-hidden flex md:flex-row flex-col">
-      <div className="bg-white flex-grow overflow-scroll">
-        <div className="w-full h-full mt-8 flex justify-between flex-col items-center">
+      <div className="bg-white dark:bg-black flex-grow overflow-scroll">
+        <div className="w-full h-full flex justify-between flex-col items-center">
           {children}
         </div>
       </div>

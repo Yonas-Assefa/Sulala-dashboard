@@ -115,7 +115,7 @@ function DateInput({
         />
         <label
           htmlFor={`${name}-date`}
-          className={`border rounded-[30px] py-2 px-4 flex flex-row justify-between gap-3 ${error ? "bg-dangerlight border-danger" : "bg-white"}`}
+          className={`border rounded-[30px] py-2 px-4 flex flex-row justify-between gap-3 ${error ? "bg-dangerlight border-danger" : "bg-white dark:bg-gray-800"}`}
         >
           <input
             disabled={disabled}
@@ -132,7 +132,7 @@ function DateInput({
         </label>
         <label
           htmlFor={`${name}-time`}
-          className={`border rounded-[30px] py-2 px-4 flex flex-row justify-between gap-3 ${error ? "bg-dangerlight border-danger" : "bg-white"}`}
+          className={`border rounded-[30px] py-2 px-4 flex flex-row justify-between gap-3 ${error ? "bg-dangerlight border-danger" : "bg-white dark:bg-gray-800"}`}
         >
           <input
             disabled={disabled}

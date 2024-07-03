@@ -72,7 +72,6 @@ export const setupAccountFirstStepSchema = z.object({
     .string()
     .min(2, "First name must be at least 2 characters long"),
   last_name: z.string().min(2, "Last name must be at least 2 characters long"),
-  email: z.string().email(),
 });
 
 export const setupAccountLastStepSchema = z.object({

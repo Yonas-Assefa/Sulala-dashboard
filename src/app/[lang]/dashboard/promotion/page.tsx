@@ -14,11 +14,13 @@ import { deletePromotion } from "@/actions/promotion/delete-promotion";
 import { TableProps as Props } from "@/types/props.type";
 import { changeObjToFormData } from "@/lib/helper";
 import { getTranslations } from "next-intl/server";
+import { TPromotion } from "@/types/mapper.type";
+import { Meta } from "@/types/table.type";
 
 async function page({
   searchParams: { search, filter, sort, sort_by, page, page_size },
 }: Props) {
-  const promotions = await getPromotions(
+  const promotions = await getPromotions<TPromotion | Meta>(
     changeObjToFormData({
       search,
       filter,
@@ -29,6 +31,7 @@ async function page({
       with_pagination: true,
     }),
   );
+
   const t = await getTranslations("Promotion");
 
   return (
@@ -52,7 +55,7 @@ async function page({
 
         {/* <PromotionCampaignTable /> */}
         <Table
-          data={promotions}
+          data={promotions as Meta}
           filterData={promotionFilterData}
           tableSchema={promotionTableSchema}
           sortData={promotionSortData}

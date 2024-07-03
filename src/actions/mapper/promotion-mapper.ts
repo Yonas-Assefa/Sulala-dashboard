@@ -1,13 +1,14 @@
 import { constructImageUrl, deconstructImageUrl } from "@/lib/images";
-import { changeISOToLocaleDate } from "@/utils/dateFormatter.util";
+import { TPromotion } from "@/types/mapper.type";
 
 type OptArgs = {
   tableSearch?: boolean;
+  // data: TPromotion[] | TPromotion;
   data: any;
 };
 
-export const promotionMapper = ({ tableSearch, data }: OptArgs) => {
-  function convert(item: any) {
+export const promotionMapper = <T>({ tableSearch, data }: OptArgs): T => {
+  function convert(item: TPromotion) {
     if (tableSearch)
       return {
         id: item.id,
@@ -19,8 +20,8 @@ export const promotionMapper = ({ tableSearch, data }: OptArgs) => {
       number_of_clicks: item.noc || 0,
       campaign_name: item.name,
       amount_spend: 0,
-      start_date: item.start_date,
-      end_date: item.end_date,
+      start_date: new Date(item.start_date).toLocaleString(),
+      end_date: new Date(item.end_date).toLocaleString(),
       impressions: item.impressions || 0,
       ad_files: constructImageUrl(item.ad_files, true),
       deconstructed_ad_files: deconstructImageUrl(item.ad_files?.[0]),
@@ -30,8 +31,8 @@ export const promotionMapper = ({ tableSearch, data }: OptArgs) => {
   if (Array.isArray(data)) {
     return data.map((promotion: any) => {
       return convert(promotion);
-    });
+    }) as T;
   } else {
-    return convert(data);
+    return convert(data) as T;
   }
 };

@@ -10,16 +10,15 @@ import {
 } from "../../lib/helper";
 import { notFound } from "next/navigation";
 import { getFilterSortOrdering } from "@/lib/table";
+import { TPromotion } from "@/types/mapper.type";
 
 type Args = {
   search: string | undefined;
 };
 
-export const getPromotions = async (formData: FormData) => {
+export const getPromotions = async <T>(formData: FormData): Promise<T> => {
   const { search, status, ordering, page, page_size } =
     getFilterSortOrdering(formData);
-
-  const search_type = formData.get("search_type") || "";
 
   const response = await Fetch({
     url: PROMOTIONS,
@@ -38,20 +37,20 @@ export const getPromotions = async (formData: FormData) => {
   });
   const body = await getResponseBody(response);
 
-  if (!response.ok || !body.results) {
+  if (!response.ok) {
     throw new Error(
-      getResponseErrorMessage(body.message) || "Failed to get promotions",
+      getResponseErrorMessage(body) || "Failed to get promotions",
     );
   }
 
   if (formData?.get("with_pagination"))
     return {
-      data: promotionMapper({ data: body.results }),
-      count: body.count,
-    };
+      data: promotionMapper<TPromotion>({ data: body.data?.results }),
+      count: body.data?.count,
+    } as T;
 
-  return promotionMapper({
-    data: body.results,
+  return promotionMapper<T>({
+    data: body.data?.results,
     tableSearch: true,
   });
 };
@@ -66,7 +65,7 @@ export const getOnePromotion = async (promotion_id: string) => {
   });
   const body = await getResponseBody(response);
 
-  if (!response.ok || !body.data) {
+  if (!response.ok) {
     if (response.status === 404) {
       notFound();
     }

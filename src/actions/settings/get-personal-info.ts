@@ -1,5 +1,9 @@
 "use server";
 
+import {
+  RequestCookies,
+  ResponseCookies,
+} from "next/dist/compiled/@edge-runtime/cookies";
 import { GET_VENDOR_ACCOUNT as GET_VENDOR_PROFILE } from "../../config/urls";
 import {
   cachePersonalInfo,
@@ -8,7 +12,7 @@ import {
   retrievePersonalInfo,
 } from "../../lib/helper";
 
-export const getPersonalInfo = async () => {
+export const getPersonalInfo = async (cookie?: ResponseCookies) => {
   const cachedPersonalInfo = retrievePersonalInfo();
   if (cachedPersonalInfo) {
     return cachedPersonalInfo;
@@ -20,18 +24,18 @@ export const getPersonalInfo = async () => {
   });
   const body = await getResponseBody(response);
 
-  if (!response.ok || !body.success) {
+  if (!response.ok) {
     throw new Error(body.message || "Failed to get profile");
   }
 
   const personalInfo = body.data;
   if (
     personalInfo &&
-    personalInfo.email_verified &&
-    personalInfo.is_password_set &&
+    personalInfo?.email_verified &&
+    personalInfo?.is_password_set &&
     personalInfo?.shops?.length > 0
   ) {
-    cachePersonalInfo(personalInfo);
+    cachePersonalInfo(personalInfo, cookie);
   }
   return personalInfo;
 };

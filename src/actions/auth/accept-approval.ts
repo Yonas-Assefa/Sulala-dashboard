@@ -7,6 +7,7 @@ import {
   makeRequest,
   setBrowserCookie,
 } from "../../lib/helper";
+import { getPersonalInfo } from "../settings/get-personal-info";
 
 type AcceptApprovalArgs = {
   vendor_id: string;
@@ -25,7 +26,7 @@ export const acceptApproval = async ({
     );
     const body = await getResponseBody(response);
 
-    if (!response.ok || !body.success) {
+    if (!response.ok) {
       const redirectUrl = "/auth/sign-in";
       const failedMessage =
         getResponseErrorMessage(body) || "Failed to accept approval";
@@ -36,6 +37,9 @@ export const acceptApproval = async ({
     setBrowserCookie(response);
 
     const successMessage = "Approval successful!";
+
+    // this fetches user info and caches it
+    await getPersonalInfo();
 
     const redirectUrl = "/dashboard/settings";
 

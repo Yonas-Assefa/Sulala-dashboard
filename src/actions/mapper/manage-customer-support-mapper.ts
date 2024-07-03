@@ -1,4 +1,16 @@
-export const manageCustomerSupport = async (data: any) => {
+type TManageCustomerSupport = {
+  id: number;
+  full_name: string;
+  email: string;
+  message: string;
+  answered: boolean;
+  status: string;
+};
+
+export const manageCustomerSupport = async (
+  // data: TManageCustomerSupport[] | TManageCustomerSupport,
+  data: any,
+) => {
   function convert(item: any) {
     if (!item) return {};
     return {

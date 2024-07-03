@@ -42,7 +42,7 @@ export const approveReject = async (
 
     const body = await getResponseBody(response);
 
-    if (!response.ok || !body.success) {
+    if (!response.ok) {
       throw new Error(getResponseErrorMessage(body) || "Failed to submit form");
     }
 

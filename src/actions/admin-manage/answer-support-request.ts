@@ -33,11 +33,11 @@ export const answerSupportRequest = async (
 
     const body = await getResponseBody(response);
 
-    if (!response.ok || !body.success) {
+    if (!response.ok) {
       throw new Error(getResponseErrorMessage(body) || "Failed to submit form");
     }
 
-    const successMessage = body.message || "Success";
+    const successMessage = getResponseErrorMessage(body) || "Success";
 
     const redirectUrl = "/dashboard/customer-support?filter=pending";
 

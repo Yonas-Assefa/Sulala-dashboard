@@ -1,6 +1,13 @@
 import { changeLocalToISODateOnly } from "@/utils/dateFormatter.util";
 import { constructImageUrl } from "@/lib/images";
 
+type TOrder = {
+  id: number;
+  order_items: any[];
+  date: string;
+};
+
+// export const ordersMapper = (orders: TOrder[]) => {
 export const ordersMapper = (orders: any) => {
   const modifeidOrders = orders.map((order: any) => ({
     ...order,

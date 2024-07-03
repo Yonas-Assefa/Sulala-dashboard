@@ -108,12 +108,12 @@ const FAQ = [
 function page() {
   return (
     <div className="w-full h-full flex flex-row relative">
-      <div className="bg-gradient-to-b from-white via-primary/20 to-white flex-grow">
+      <div className="bg-gradient-to-b from-white dark:from-gray-700 via-primary/20 to-white flex-grow">
         <div className="p-3 fixed">
           <BackButton />
         </div>
         <div className="w-full h-full flex flex-col mt-20 md:mt-0 gap-8 justify-start items-center">
-          <h1 className="text-primary font-bold text-2xl md:text-3xl underline">
+          <h1 className="text-primary dark:text-green-400 font-bold text-2xl md:text-3xl underline">
             Frequently asked questions
           </h1>
           <div className="join join-vertical w-full md:w-2/3 px-1 md:px-0">
@@ -123,13 +123,13 @@ function page() {
                 key={index}
               >
                 <input type="radio" name="my-accordion-4" className="peer" />
-                <div className="collapse-title group-has-[:checked]:bg-white">
-                  <h2 className="text-xl font-semibold group-has-[:checked]:text-primary text-black">
+                <div className="collapse-title group-has-[:checked]:bg-white dark:group-has-[:checked]:bg-gray-700">
+                  <h2 className="text-xl font-semibold group-has-[:checked]:text-primary dark:group-has-[:checked]:text-green-400 text-black dark:text-white">
                     {faq.title}
                   </h2>
                 </div>
-                <div className="collapse-content group-has-[:checked]:bg-gradient-to-b group-has-[:checked]:from-white group-has-[:checked]:to-secondary/20">
-                  <p className="text-black">{faq.content}</p>
+                <div className="collapse-content group-has-[:checked]:bg-gradient-to-b group-has-[:checked]:from-white dark:group-has-[:checked]:from-gray-700 group-has-[:checked]:to-secondary/20">
+                  <p className="text-black dark:text-white">{faq.content}</p>
                 </div>
               </div>
             ))}

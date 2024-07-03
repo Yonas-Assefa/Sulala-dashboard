@@ -56,8 +56,11 @@ function BannerAdsForm({ products, promotion }: Props) {
 
   return (
     <div className="flex flex-col gap-3 md:grid md:grid-cols-3 md:gap-6">
-      <form action={action} className="col-span-2 flex flex-col gap-5 bg-white">
-        <div className="flex flex-col gap-5 bg-tertiary rounded-[30px] p-8">
+      <form
+        action={action}
+        className="col-span-2 flex flex-col gap-5 bg-white dark:bg-black text-black dark:text-white"
+      >
+        <div className="flex flex-col gap-5 bg-tertiary dark:bg-gray-700 rounded-[30px] p-8">
           <input
             type="text"
             hidden
@@ -143,7 +146,7 @@ function BannerAdsForm({ products, promotion }: Props) {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-5 bg-tertiary rounded-[30px] p-8">
+        <div className="flex flex-col gap-5 bg-tertiary dark:bg-gray-700 rounded-[30px] p-8">
           <h3 className="font-semibold text-xl">{t("destination")}</h3>
           <div className="max-w-[1300px] gap-6 flex flex-col">
             <CustomRadioWithConditionalInput
@@ -177,7 +180,7 @@ function BannerAdsForm({ products, promotion }: Props) {
             />
           </div>
         </div>
-        <div className="flex flex-col gap-5 bg-tertiary rounded-[30px] p-8">
+        <div className="flex flex-col gap-5 bg-tertiary dark:bg-gray-700 rounded-[30px] p-8">
           <h3 className="font-semibold text-xl">{t("budgeting")}</h3>
           <div className="max-w-[1300px] gap-6 flex flex-col">
             <CustomRadioWithConditionalInput
@@ -205,8 +208,8 @@ function BannerAdsForm({ products, promotion }: Props) {
           />
         </div>
       </form>
-      <div className="col-span-1 bg-white flex flex-col gap-8">
-        <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
+      <div className="col-span-1 bg-white dark:bg-black text-black dark:text-white flex flex-col gap-8">
+        <div className="bg-tertiary dark:bg-gray-700 rounded-[30px] p-8 flex flex-col gap-5">
           <h3 className="font-semibold text-xl">{t("summary")}</h3>
           <SummaryDescription
             title={t("campaign_name")}

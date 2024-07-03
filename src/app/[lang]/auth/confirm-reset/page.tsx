@@ -12,7 +12,7 @@ function ConfirmationLetter({ searchParams: { email } }: Props) {
   const t = useTranslations("Auth");
 
   return (
-    <div className="text-black w-10/12 h-4/5 px-6 flex flex-col justify-evenly pb-8 items-center">
+    <div className="w-10/12 h-4/5 px-6 flex flex-col justify-evenly pb-8 items-center">
       <div className="flex w-full">
         <BackButton />
       </div>

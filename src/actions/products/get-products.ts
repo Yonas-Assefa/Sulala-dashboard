@@ -33,16 +33,16 @@ export const getProducts = async (formData?: FormData) => {
   });
   const body = await getResponseBody(response);
 
-  if (!response.ok || !body.results) {
-    throw new Error(body.message || "Failed to get product");
+  if (!response.ok) {
+    throw new Error(getResponseErrorMessage(body) || "Failed to get product");
   }
 
-  const data = await productMapper(body.results);
+  const data = await productMapper(body.data?.results);
 
   if (formData?.get("with_pagination"))
     return {
       data,
-      count: body.count,
+      count: body.data?.count,
     };
 
   return data;
@@ -58,11 +58,11 @@ export const getOneProduct = async (item: string) => {
   });
   const body = await getResponseBody(response);
 
-  if (!response.ok || !body.id) {
+  if (!response.ok) {
     if (response.status === 404) {
       notFound();
     }
     throw new Error(getResponseErrorMessage(body) || "Failed to get product");
   }
-  return await productMapper(body, true);
+  return await productMapper(body?.data, true);
 };

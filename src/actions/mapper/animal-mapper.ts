@@ -1,12 +1,13 @@
-type Animal = {
+type TAnimal = {
   id: number;
   animal_family?: string;
   animal_type?: string;
   name: string;
 };
 
-export const animalMapper = (data: Animal[]) => {
-  function convert(item: Animal) {
+// export const animalMapper = (data: TAnimal[] | TAnimal) => {
+export const animalMapper = (data: any) => {
+  function convert(item: TAnimal) {
     return {
       id: JSON.stringify({
         id: item?.id,
@@ -22,7 +23,7 @@ export const animalMapper = (data: Animal[]) => {
     };
   }
   if (Array.isArray(data)) {
-    return data.map((billing: Animal) => {
+    return data.map((billing: TAnimal) => {
       return convert(billing);
     });
   } else {

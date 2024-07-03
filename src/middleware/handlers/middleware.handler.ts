@@ -7,7 +7,9 @@ export const guardSetupAccount = async (request: NextRequest) => {
     return NextResponse.redirect(new URL("/auth/sign-in", request.url));
   }
 
-  const personalInfo = await getPersonalInfo();
+  const response = NextResponse.next();
+
+  const personalInfo = await getPersonalInfo(response.cookies);
 
   if (personalInfo?.is_superuser)
     return NextResponse.redirect(new URL("/dashboard/shops", request.url));
@@ -52,7 +54,9 @@ export const guardCreatePassword = async (request: NextRequest) => {
     return NextResponse.redirect(new URL("/auth/sign-in", request.url));
   }
 
-  const personalInfo = await getPersonalInfo();
+  const response = NextResponse.next();
+
+  const personalInfo = await getPersonalInfo(response.cookies);
 
   if (personalInfo?.is_superuser)
     return NextResponse.redirect(new URL("/dashboard/shops", request.url));
@@ -78,7 +82,9 @@ export const guardDashboard = async (request: NextRequest) => {
     return NextResponse.redirect(new URL("/auth/sign-in", request.url));
   }
 
-  const personalInfo = await getPersonalInfo();
+  const response = NextResponse.next();
+
+  const personalInfo = await getPersonalInfo(response.cookies);
 
   if (personalInfo?.is_superuser) {
     if (
@@ -110,7 +116,10 @@ export const guardAdminOnly = async (request: NextRequest) => {
     return NextResponse.redirect(new URL("/auth/sign-in", request.url));
   }
 
-  const personalInfo = await getPersonalInfo();
+  const response = NextResponse.next();
+
+  const personalInfo = await getPersonalInfo(response.cookies);
+
   if (!personalInfo?.is_superuser) {
     return NextResponse.redirect(new URL("/auth/unauthorized", request.url));
   } else {

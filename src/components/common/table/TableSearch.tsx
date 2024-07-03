@@ -3,6 +3,7 @@ import { useCreateQueryString } from "@/hooks/useCreateQueryString";
 import React from "react";
 import { debounce, set } from "lodash";
 import { FormState } from "@/utils/formStateHelper";
+import SearchIcon from "@/assets/icons/SearchIcon";
 
 type Props = {
   action: ((formData: FormData) => Promise<FormState>) | undefined;
@@ -59,12 +60,12 @@ function TableSearch({ action }: Props) {
     <div className="relative">
       <form
         action={handleSearchEnterClick}
-        className="border flex flex-row gap-1 p-1 rounded-[30px] relative focus-within:border-primary"
+        className="border dark:border-gray-700 flex flex-row gap-1 p-1 rounded-[30px] relative focus-within:border-primary"
       >
         {isPending ? (
           <span className="loading loading-bars loading-xs text-primary"></span>
         ) : (
-          <img src="/icons/search.svg" alt="" />
+          <SearchIcon />
         )}
         <input
           onChange={handleChange}

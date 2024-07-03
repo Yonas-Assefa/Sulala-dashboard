@@ -11,7 +11,7 @@ function LargeImageAddPlaceholder({ id, error }: Props) {
   return (
     <label
       htmlFor={id}
-      className={`flex flex-col items-center justify-center gap-5 cursor-pointer w-full p-4 border rounded-[30px] border-dashed h-[300px] select-none ${error ? "border-danger bg-dangerlight" : "bg-white"}`}
+      className={`flex flex-col items-center justify-center gap-5 cursor-pointer w-full p-4 border rounded-[30px] border-dashed h-[300px] select-none ${error ? "border-danger bg-dangerlight" : "bg-white dark:bg-gray-800"}`}
     >
       <img src="/icons/image.svg" alt="" />
       <div className="flex flex-col justify-center items-center text-secondary">

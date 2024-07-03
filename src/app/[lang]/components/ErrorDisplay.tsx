@@ -17,7 +17,7 @@ function ErrorDisplay({ reset, title }: ErrorProps) {
     }
   };
   return (
-    <div className="w-full h-full flex flex-row bg-gradient-to-br from-black/5 to-black/25">
+    <div className="w-full h-full flex flex-row bg-gradient-to-br from-black/5 to-black/25 dark:from-gray-700 dark:to-gray-800">
       <div className="bg-transparent flex-grow">
         <div className="w-full h-full flex justify-between flex-col items-center">
           <div className="flex flex-col justify-center items-center w-full h-full">
@@ -25,7 +25,7 @@ function ErrorDisplay({ reset, title }: ErrorProps) {
             <h1 className="text-sm md:text-md text-center font-semibold text-danger">
               Error while loading {title || "contents"}!
             </h1>
-            <p className="text-sm md:text-md text-center font-normal text-gray-800">
+            <p className="text-sm md:text-md text-center font-normal text-gray-800 dark:text-white">
               This error is already tracked by our system.
               <br />
               If you keep getting this error, please contact
@@ -42,9 +42,11 @@ function ErrorDisplay({ reset, title }: ErrorProps) {
               {/* <a href='mailto:support@sulala.com' className='text-primary font-semibold hover:underline'>Please contact support team!</a> */}
               <button
                 onClick={handleRetry}
-                className="flex flex-row gap-3 px-2 group bg-tertiary/50 hover:bg-tertiary/90 cursor-pointer z-20 p-1 rounded-[30px] items-center justify-center"
+                className="flex flex-row gap-3 px-2 group bg-tertiary/50 dark:bg-gray-900 hover:bg-tertiary/90  dark:hover:bg-gray-700 cursor-pointer z-20 p-1 rounded-[30px] items-center justify-center"
               >
-                <p className="text-black text-sm md:text-md">retry</p>
+                <p className="text-black dark:text-white text-sm md:text-md">
+                  retry
+                </p>
                 <img
                   src="/icons/retry.svg"
                   alt=""

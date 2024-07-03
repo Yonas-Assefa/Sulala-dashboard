@@ -13,7 +13,7 @@ type TChildError = {
 function NoItemPlaceholder() {
   const t = useTranslations("Commons");
   return (
-    <div className="bg-tertiary/50 hover:cursor-pointer hover:bg-tertiary p-3 select-none flex flex-row justify-center gap-2 text-center font-semibold text-secondary">
+    <div className="bg-tertiary/50 dark:bg-gray-600 hover:cursor-pointer hover:bg-tertiary dark:hover:bg-gray-800 p-3 select-none flex flex-row justify-center gap-2 text-center font-semibold text-secondary">
       <img src="/icons/inbox.svg" className="w-[20px] opacity-30" />
       <p>{t("there_is_no_item_to_select_here")}</p>
     </div>
@@ -250,11 +250,11 @@ function SelectInput({
       </p>
       <details
         ref={selectRef}
-        className={`dropdown bg-white rounded-[30px] m-0 p-0 border w-full hover:bg-white outline-none `}
+        className={`dropdown bg-white dark:bg-gray-800 rounded-[30px] m-0 p-0 border w-full hover:bg-white dark:hover:bg-gray-700 outline-none `}
       >
         {/* SUMMARY HOLDS SELECTED COMPUTED VALUE OR PLACEHOLDER IF THERE IS NO SELECTED VALUE */}
         <summary
-          className={`flex items-center overflow-hidden px-3 justify-between gap-0 rounded-[40px] w-full cursor-pointer input select-none focus:outline-none ${computedValue ? "text-black" : "text-gray-400"} ${error ? "border-danger bg-dangerlight" : "focus-within:border-primary bg-transparent"}`}
+          className={`flex items-center overflow-hidden px-3 justify-between gap-0 rounded-[40px] w-full cursor-pointer input select-none focus:outline-none ${computedValue ? "text-black dark:text-white" : "text-gray-400"} ${error ? "border-danger bg-dangerlight" : "focus-within:border-primary bg-transparent"}`}
         >
           <p className="truncate">
             {computedValue || placeholder || t("select_one")}
@@ -268,11 +268,11 @@ function SelectInput({
         {/* DROPDOWN LIST STARTS FROM HERE */}
         <div
           tabIndex={0}
-          className="dropdown-content z-[1] menu p-2 my-3 border-2 shadow rounded-box w-full bg-white"
+          className="dropdown-content z-[1] menu p-2 my-3 border-2 shadow rounded-box w-full bg-white dark:bg-gray-700"
         >
           {
             // searchable &&
-            true && (
+            searchable && (
               <input
                 type="text"
                 name={`search-${id}`}
@@ -298,7 +298,7 @@ function SelectInput({
                 <img src="/icons/arrow-left.svg" alt="" />
                 <label
                   htmlFor="1"
-                  className="label-text font-semibold cursor-pointer label w-full flex justify-between text-black text-md"
+                  className="label-text font-semibold cursor-pointer label w-full flex justify-between text-black dark:text-white text-md"
                 >
                   {selectedParent.label}
                 </label>
@@ -335,7 +335,7 @@ function SelectInput({
                       )}
                       <label
                         htmlFor="1"
-                        className={`label-text label w-full flex justify-between text-black text-md ${disabled ? "opacity-50 cursor-not-allowed" : "opacity-100 cursor-pointer"} ${hasError && "text-danger"}`}
+                        className={`label-text label w-full flex justify-between text-black dark:text-white text-md ${disabled ? "opacity-50 cursor-not-allowed" : "opacity-100 cursor-pointer"} ${hasError && "text-danger"}`}
                       >
                         {option.label}
                       </label>

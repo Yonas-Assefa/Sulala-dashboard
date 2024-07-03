@@ -18,7 +18,7 @@ function error() {
                 </p>
               </div>
               <p className="text-secondary font-semibold p-3 md:p-1">
-                {"meanwhile try refreshing the page letter."}
+                {"mean while try refreshing the page letter."}
               </p>
               <img
                 src="/sulala-logo.svg"

@@ -54,6 +54,9 @@ export default async function AppLayout({
             newestOnTop={false}
             draggable
             className="select-none"
+            toastClassName="bg-white dark:bg-gray-800 text-black dark:text-white"
+            closeButton={false}
+            // theme="dark"
           />
           <Suspense fallback={<PageSuspense />}>
             <SetupAccountStoreProvider>

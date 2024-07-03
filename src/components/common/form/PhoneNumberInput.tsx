@@ -109,7 +109,7 @@ function PhoneNumberInput({
       </label>
       <div className="w-full">
         <div
-          className={`flex items-center gap-0 border rounded-[40px] w-full ${error ? "bg-dangerlight border-danger" : "focus-within:border-primary"}`}
+          className={`flex items-center gap-0 border rounded-[40px] w-full ${error ? "bg-dangerlight border-danger" : "bg-white dark:bg-gray-800 focus-within:border-primary"}`}
         >
           <details
             className="dropdown relative bg-transparent h-full"
@@ -136,7 +136,7 @@ function PhoneNumberInput({
             {/* DROPDOWN OPTION STARTS FROM HERE */}
             <div
               tabIndex={0}
-              className="dropdown z-10 absolute menu p-0 mt-4 border-2  shadow rounded-box w-52 bg-white block"
+              className="dropdown z-10 absolute menu p-0 mt-4 border-2 dark:border-gray-600  shadow rounded-box w-52 bg-white dark:bg-gray-800 block"
             >
               <input
                 type="text"
@@ -152,7 +152,7 @@ function PhoneNumberInput({
                   .filter((country) => applyCountryFilter(country))
                   .map((country) => (
                     <li
-                      className={`flex flex-row w-full rounded-md hover:bg-gray-100 ${countryCode?.code == country.code ? "bg-gray-400/20" : ""}`}
+                      className={`flex flex-row w-full rounded-md hover:bg-gray-100 dark:hover:bg-gray-600 ${countryCode?.code == country.code ? "bg-gray-400/20" : ""}`}
                       onClick={() => selectCountryCode(country)}
                       key={country.code}
                     >

@@ -26,7 +26,7 @@ export const googleSingIn = async (accessToken: string) => {
 
     const body = await getResponseBody(response);
     setBrowserCookie(response);
-    if (!response.ok || !body.success) {
+    if (!response.ok) {
       throw new Error(body.message || "Failed to signin");
     }
 

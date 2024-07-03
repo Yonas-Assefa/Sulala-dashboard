@@ -37,14 +37,14 @@ function PasswordInput({
         </label>
       )}
       <div
-        className={`flex items-center px-0 overflow-hidden relative justify-between gap-0 border rounded-[40px] w-full ${error ? "border-danger bg-dangerlight" : "focus-within:border-primary"}`}
+        className={`flex items-center px-0 overflow-hidden relative justify-between gap-0 border rounded-[40px] w-full ${error ? "border-danger bg-dangerlight" : "bg-white dark:bg-gray-800 focus-within:border-primary"}`}
       >
         <input
           id={id}
           name={name}
           type={showPassword ? "text" : "password"}
           placeholder={placeholder || "Type here"}
-          className="input text-black w-full bg-transparent focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none selection:bg-primary selection:text-tertiary caret-primary"
+          className="input text-black dark:text-white w-full bg-transparent focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none selection:bg-primary selection:text-tertiary caret-primary"
           // className="input w-full max-w-xs bg-white rounded-r-[30px] focus:border-0 focus:outline-none"
           autoComplete="false"
         />

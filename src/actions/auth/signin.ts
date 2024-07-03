@@ -48,7 +48,7 @@ export const signIn = async (formState: FormState, formData: FormData) => {
 
     const body = await getResponseBody(response);
 
-    if (!response.ok || !body.success) {
+    if (!response.ok) {
       throw new Error(getResponseErrorMessage(body) || "Failed to signin");
     }
 

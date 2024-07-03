@@ -31,10 +31,10 @@ function CreatePaymentMethodModal() {
     <dialog id="create_payment_method_modal" className="modal">
       <form
         action={action}
-        className="modal-box text-black w-11/12 max-w-sm bg-white px-0"
+        className="modal-box text-black dark:text-white w-11/12 max-w-sm bg-white dark:bg-gray-800 px-0"
       >
         <div className="border-b-2 border-gray-200 pb-3">
-          <h3 className="font-bold text-xl text-black text-center font-serif">
+          <h3 className="font-bold text-xl text-black dark:text-white text-center font-serif">
             {t("add_new_card")}
           </h3>
         </div>

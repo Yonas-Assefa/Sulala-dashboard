@@ -90,7 +90,7 @@ function FileInput({
             />
             <div className="flex items-center gap-1">
               <p
-                className={`font-semibold truncate max-w-[200px] ${error ? "text-danger" : "text-black"}`}
+                className={`font-semibold truncate max-w-[200px] ${error ? "text-danger" : "text-black dark:text-white"}`}
               >
                 {file?.name}
               </p>

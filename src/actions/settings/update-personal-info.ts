@@ -34,7 +34,7 @@ export const updatePersonalInfo = async (
     });
 
     const body = await getResponseBody(response);
-    if (!response.ok || !body.success) {
+    if (!response.ok) {
       const message = getResponseErrorMessage(body);
       throw new Error(message || "Failed to submit form");
     }

@@ -54,9 +54,9 @@ function DeleteModal({ deleteAction }: Props) {
 
   return (
     <dialog id="delete_item_table_modal" className="modal">
-      <div className="modal-box w-11/12 max-w-sm bg-white px-0">
+      <div className="modal-box w-11/12 max-w-sm bg-white dark:bg-gray-800 px-0">
         <div className="border-b-2 border-gray-200 pb-3">
-          <h3 className="font-bold text-xl text-black text-center font-serif">
+          <h3 className="font-bold text-xl text-black dark:text-white text-center font-serif">
             Delete{" "}
             {items_length > 1
               ? `${items_length} items?`

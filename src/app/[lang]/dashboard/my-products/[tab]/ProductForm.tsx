@@ -71,7 +71,7 @@ function ProductForm({
       />
       <div className="flex flex-col gap-3 md:grid md:grid-cols-3 md:gap-6">
         <div className="col-span-2">
-          <div className="flex flex-col gap-5 p-8 bg-tertiary rounded-[30px]">
+          <div className="flex flex-col gap-5 p-8 bg-tertiary dark:bg-gray-700 rounded-[30px]">
             <h3 className="font-semibold text-xl">{t("general_info")}</h3>
             <div className="flex flex-col md:grid md:grid-cols-2 max-w-[1300px] gap-5">
               <TextInput
@@ -163,7 +163,7 @@ function ProductForm({
             </div>
           </div>
         </div>
-        <div className="col-span-1 bg-white flex flex-col gap-8">
+        <div className="col-span-1 bg-white dark:bg-black flex flex-col gap-8">
           <RadioInput
             label={t("status")}
             id="status"
@@ -172,7 +172,7 @@ function ProductForm({
             error={formState.fieldErrors?.status?.[0]}
             defaultValue={initialValue?.status}
           />
-          <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
+          <div className="bg-tertiary dark:bg-gray-700 rounded-[30px] p-8 flex flex-col gap-5">
             <h3 className="font-semibold text-xl">
               {t("product_organization")}
             </h3>
@@ -186,7 +186,7 @@ function ProductForm({
               nested
             />
           </div>
-          <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
+          <div className="bg-tertiary dark:bg-gray-700 rounded-[30px] p-8 flex flex-col gap-5">
             <h3 className="font-semibold text-xl">
               {t("animal_and_branding")}
             </h3>
@@ -211,7 +211,7 @@ function ProductForm({
               multi={false}
             />
           </div>
-          <div className="bg-tertiary rounded-[30px] p-8 flex flex-col gap-5">
+          <div className="bg-tertiary dark:bg-gray-700 rounded-[30px] p-8 flex flex-col gap-5">
             <h3 className="font-semibold text-xl">{t("product_promotion")}</h3>
             <SelectInput
               id="campaign"

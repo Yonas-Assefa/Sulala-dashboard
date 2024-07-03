@@ -63,6 +63,11 @@ type TableSchema = {
 
 type Data = Record<string, any>[];
 
+type Meta = {
+  data: Data;
+  count: number;
+};
+
 type SortData = {
   label: string;
   value: string;
@@ -76,6 +81,7 @@ export type {
   TableSchema,
   Actions,
   Data,
+  Meta,
   SortData,
   SortSchema,
   ActionOptions,

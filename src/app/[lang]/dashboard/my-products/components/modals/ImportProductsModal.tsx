@@ -138,9 +138,9 @@ function ImportProductsModal() {
 
   return (
     <dialog id="import_products_modal" className="modal">
-      <div className="modal-box w-11/12 max-w-sm bg-white px-0">
+      <div className="modal-box w-11/12 max-w-sm bg-white dark:bg-gray-800 px-0">
         <div className="border-b-2 border-gray-200 pb-3">
-          <h3 className="font-bold text-xl text-black text-center font-serif">
+          <h3 className="font-bold text-xl text-black dark:text-white text-center font-serif">
             {t("import")}
           </h3>
         </div>
@@ -156,11 +156,11 @@ function ImportProductsModal() {
           <div
             ref={previewRef}
             onWheel={handleScroll}
-            className="overflow-x-scroll mx-4 select-none text-black bg-tertiary border border-black"
+            className="overflow-x-scroll mx-4 select-none text-black dark:text-white bg-tertiary dark:bg-gray-900 border border-black dark:border-gray-600"
           >
             <table className="table table-xs">
               <thead>
-                <tr className="text-black font-semibold">
+                <tr className="text-black dark:text-white font-semibold">
                   {previewData[0].map((header: string) => {
                     const isValid = expectedHeaders.includes(
                       header.toLowerCase(),
@@ -180,7 +180,7 @@ function ImportProductsModal() {
                 {previewData.slice(1, 3).map((row, i) => (
                   <tr
                     key={i}
-                    className="border text-black font-extralight italic"
+                    className="border text-black dark:text-white font-extralight italic"
                   >
                     {row.map((cell: string, j: number) => (
                       <td key={j}>{cell}</td>

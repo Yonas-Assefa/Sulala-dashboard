@@ -4,6 +4,10 @@ import parsePhoneNumberFromString from "libphonenumber-js";
 import { z } from "zod";
 
 import { Console } from "./print";
+import {
+  RequestCookies,
+  ResponseCookies,
+} from "next/dist/compiled/@edge-runtime/cookies";
 
 export const phoneTransform = (arg: string, ctx: z.RefinementCtx) => {
   const phone = parsePhoneNumberFromString(arg, {
@@ -228,11 +232,15 @@ export const getBearerToken = () => {
   return token;
 };
 
-export const cachePersonalInfo = (data: any) => {
-  cookies().set({
-    name: "personal_info",
-    value: JSON.stringify(data),
-  });
+export const cachePersonalInfo = (data: any, reqCookie?: ResponseCookies) => {
+  if (reqCookie) {
+    reqCookie.set("personal_info", JSON.stringify(data));
+  } else {
+    cookies().set({
+      name: "personal_info",
+      value: JSON.stringify(data),
+    });
+  }
 };
 
 export const retrievePersonalInfo = () => {
@@ -266,7 +274,7 @@ export const getResponseBody = async (response: Response) => {
     const clonedResponse = response.clone();
     const text = await clonedResponse.text();
     Console.error(text);
-    return { success: false, message: "[HTML RESPONSE]" + text };
+    return { success: false, message: "[HTML_RESPONSE]" + text };
   }
 };
 
@@ -291,7 +299,13 @@ export const getResponseErrorMessage = (
   body: any,
   defaultMessage?: string,
 ): string => {
-  if (body.message) {
+  if (
+    body.error &&
+    "title" in body.error &&
+    typeof body.error.title === "string"
+  ) {
+    return body.error.title;
+  } else if (body.message) {
     if (typeof body.message === "object")
       return (
         body.message[Object.keys(body.message)[0]] ||

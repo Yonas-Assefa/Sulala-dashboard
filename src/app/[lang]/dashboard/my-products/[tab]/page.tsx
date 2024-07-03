@@ -32,7 +32,7 @@ async function page({ params: { tab }, searchParams: { item } }: Props) {
   const t = await getTranslations("Products");
 
   return (
-    <div className="text-black flex flex-col w-full h-full p-8 gap-10 overflow-y-scroll">
+    <div className="text-black dark:text-white flex flex-col w-full h-full p-8 gap-10 overflow-y-scroll">
       <div className="flex flex-row font-semibold justify-start items-center gap-6 text-3xl font-serif">
         <div className="mt-4">
           <BackButton />

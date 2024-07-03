@@ -1,7 +1,11 @@
 "use server";
 
 import { ORDERS_URL } from "@/config/urls";
-import { Fetch, getRequestHeaders } from "@/lib/helper";
+import {
+  Fetch,
+  getRequestHeaders,
+  getResponseErrorMessage,
+} from "@/lib/helper";
 import { ordersMapper } from "../mapper/orders-mapper";
 import { getFilterSortOrdering } from "@/lib/table";
 
@@ -23,8 +27,10 @@ export const getOrders = async (formData: FormData) => {
   const ordersBody = await ordersResponse.json();
   console.log(ordersBody, ordersResponse);
 
-  if (!ordersResponse.ok || !ordersBody.data) {
-    throw new Error(ordersBody.message || "Failed to get Orders");
+  if (!ordersResponse.ok) {
+    throw new Error(
+      getResponseErrorMessage(ordersBody) || "Failed to get Orders",
+    );
   }
 
   const data = await ordersMapper(ordersBody.data.results);
