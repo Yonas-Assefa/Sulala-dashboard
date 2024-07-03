@@ -17,6 +17,7 @@ import {
   getResponseErrorMessage,
   removeNullAndUndefined,
 } from "../../lib/helper";
+import { getPersonalInfo } from "../settings/get-personal-info";
 
 export const setupAccount = async (
   formState: FormState,
@@ -47,9 +48,9 @@ export const setupAccount = async (
     } else {
       const cleanedData = removeNullAndUndefined({
         name: formData.get("company_name"),
-        categories: formData
-          .getAll("sale_category")
-          .map((category) => +category),
+        // categories: formData
+        //   .getAll("sale_category")
+        //   .map((category) => +category),
         legal_address: formData.get("address"),
         certificates: formData.get("certificate"),
         tax_forms: formData.get("tax_form"),
@@ -79,8 +80,8 @@ export const setupAccount = async (
     const successMessage =
       stage == "one" ? "Account setup 1/3" : "Account setup 3/3";
 
-    const email = formData.get("email")?.toString()!;
-    const phone_number = formData.get("phone_number")?.toString()!;
+    const personalInfo = await getPersonalInfo();
+    const email = personalInfo.email;
 
     const redirectUrl = body?.message
       ?.toLowerCase()
@@ -88,11 +89,7 @@ export const setupAccount = async (
       ? `/auth/confirm-letter?email=${encodeURIComponent(data.email!)}`
       : stage !== "three"
         ? `/auth/setup-account?stage=${encodeURIComponent(stage == "one" ? "two" : "three")}`
-        : `/auth/setup-complete?${
-            email
-              ? `email=${encodeURIComponent(email)}`
-              : `phone_number=${encodeURIComponent(phone_number)}`
-          }`;
+        : `/auth/setup-complete?email=${encodeURIComponent(email)}`;
 
     return toFormState("INFO", successMessage, redirectUrl);
   } catch (error) {

@@ -7,12 +7,11 @@ import { useTranslations } from "next-intl";
 type Props = {
   searchParams: {
     email?: string;
-    phone_number?: string;
   };
 };
 
-function SetupComplete({ searchParams: { email, phone_number } }: Props) {
-  if (!email && !phone_number) notFound();
+function SetupComplete({ searchParams: { email } }: Props) {
+  if (!email) notFound();
   React.useEffect(() => {
     clearCookie();
   }, []);
@@ -29,7 +28,7 @@ function SetupComplete({ searchParams: { email, phone_number } }: Props) {
       <div className="">
         <p>
           {t("moderation_notification_will_be_sent", {
-            media: email || phone_number,
+            email,
           })}
           &nbsp;{" "}
           <span className="text-primary font-semibold">

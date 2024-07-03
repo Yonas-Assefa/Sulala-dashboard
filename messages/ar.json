@@ -109,7 +109,7 @@
     "please_attach_the_certificates": "يرجى إرفاق الشهادات",
     "please_attach_the_tax_section": "يرجى إرفاق قسم الضرائب",
     "thank_you": "شكرًا لك!",
-    "moderation_notification_will_be_sent": "سيتم إرسال الإشعار الخاص باجتياز الإشراف على النظام الأساسي إلى {media}.",
+    "moderation_notification_will_be_sent": "سيتم إرسال الإشعار الخاص باجتياز الإشراف على النظام الأساسي إلى {email}.",
     "it_will_take_48_hr": "يمكن أن يستغرق ما يصل إلى 48 ساعة.",
     "verifying_email": "التحقق من البريد الإلكتروني",
     "unauthorized_title": "غير مصرح!!",

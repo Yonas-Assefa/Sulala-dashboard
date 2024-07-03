@@ -101,7 +101,7 @@ function SetupAccountStageTwo({
         name="company_name"
         error={formState.fieldErrors?.name?.[0]}
       />
-      <CustomMultiSelectInput
+      {/**<CustomMultiSelectInput
         defaultValue={sales_category}
         setValue={setSalesCategory}
         label={t("please_choose_categories_for_sale")}
@@ -111,7 +111,7 @@ function SetupAccountStageTwo({
         error={formState.fieldErrors?.categories?.[0]}
         data={data}
         multi
-      />
+  />**/}
       <TextInput
         defaultValue={address}
         value={address}

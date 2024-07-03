@@ -37,7 +37,7 @@ export const answerSupportRequest = async (
       throw new Error(getResponseErrorMessage(body) || "Failed to submit form");
     }
 
-    const successMessage = getResponseErrorMessage(body) || "Success";
+    const successMessage = body?.message || "Success";
 
     const redirectUrl = "/dashboard/customer-support?filter=pending";
 

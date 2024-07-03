@@ -78,11 +78,11 @@ export const setupAccountFirstStepSchema = z.object({
 export const setupAccountLastStepSchema = z.object({
   name: z.string().min(1, "Company name must be at least 1 character long"),
   legal_address: z.string().min(1, "Address must be at least 1 character long"),
-  categories: z.array(
-    z
-      .number({ message: "Please choose at least one category" })
-      .min(1, "Please choose at least one category"),
-  ),
+  // categories: z.array(
+  //   z
+  //     .number({ message: "Please choose at least one category" })
+  //     .min(1, "Please choose at least one category"),
+  // ),
   certificates: z
     .any()
     .refine(fileRefine.existFn, fileRefine.existMg)

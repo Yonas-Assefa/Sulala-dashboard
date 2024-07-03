@@ -232,14 +232,14 @@ export const getBearerToken = () => {
   return token;
 };
 
-export const cachePersonalInfo = (data: any, reqCookie?: ResponseCookies) => {
-  if (reqCookie) {
-    reqCookie.set("personal_info", JSON.stringify(data));
-  } else {
+export const cachePersonalInfo = (data: any) => {
+  try {
     cookies().set({
       name: "personal_info",
       value: JSON.stringify(data),
     });
+  } catch (error) {
+    Console.error(error);
   }
 };
 

@@ -109,7 +109,7 @@
     "please_attach_the_certificates": "Please attach the certificates",
     "please_attach_the_tax_section": "Please attach the tax section",
     "thank_you": "Thank you!",
-    "moderation_notification_will_be_sent": "The notification about passing moderation on the platform will be sent to {media}.",
+    "moderation_notification_will_be_sent": "The notification about passing moderation on the platform will be sent to {email}.",
     "it_will_take_48_hr": "It could take up to 48 hours.",
     "verifying_email": "Verifying email",
     "unauthorized_title": "Unauthorized!!",

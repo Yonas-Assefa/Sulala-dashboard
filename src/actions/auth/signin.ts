@@ -13,6 +13,7 @@ import {
   setBrowserCookie,
 } from "../../lib/helper";
 import { getPersonalInfo } from "../settings/get-personal-info";
+import { resendVerificationLink } from "./resend-verification-link";
 
 export const signIn = async (formState: FormState, formData: FormData) => {
   try {
@@ -49,6 +50,16 @@ export const signIn = async (formState: FormState, formData: FormData) => {
     const body = await getResponseBody(response);
 
     if (!response.ok) {
+      if ("error" in body) {
+        if (body?.error?.verification_error) {
+          await resendVerificationLink({ email: body.error?.old_email });
+          return toFormState(
+            "INFO",
+            "Check your email for verification link",
+            `/auth/confirm-letter?email=${encodeURIComponent(body.error?.old_email)}&action=signup`,
+          );
+        }
+      }
       throw new Error(getResponseErrorMessage(body) || "Failed to signin");
     }
 

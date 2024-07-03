@@ -9,7 +9,7 @@ import {
   retrievePersonalInfo,
 } from "../../lib/helper";
 
-export const getPersonalInfo = async (cookie?: ResponseCookies) => {
+export const getPersonalInfo = async () => {
   const cachedPersonalInfo = retrievePersonalInfo();
   if (cachedPersonalInfo) {
     return cachedPersonalInfo;
@@ -32,7 +32,7 @@ export const getPersonalInfo = async (cookie?: ResponseCookies) => {
     personalInfo?.is_password_set &&
     personalInfo?.shops?.length > 0
   ) {
-    cachePersonalInfo(personalInfo, cookie);
+    cachePersonalInfo(personalInfo);
   }
   return personalInfo;
 };
