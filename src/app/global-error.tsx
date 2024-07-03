@@ -2,19 +2,20 @@
 import { Console } from "@/lib/print";
 // @ts-nocheck
 
-import * as Sentry from "@sentry/nextjs";
 import Error from "next/error";
 import { useEffect, useState } from "react";
 
+const USE_SENTRY = process.env.NEXT_PUBLIC_USE_MONITORING === "true";
 // @ts-ignore
 export default function GlobalError({ error }) {
   const [isCaptured, setIsCaptured] = useState(false);
-  const USE_SENTRY = process.env.NEXT_PUBLIC_USE_MONITORING === "true";
 
   useEffect(() => {
     if (USE_SENTRY && error) {
-      Sentry.captureException(error);
-      setIsCaptured(true);
+      import("@sentry/nextjs").then((Sentry) => {
+        Sentry.captureException(error);
+        setIsCaptured(true);
+      });
     } else {
       Console.error("Error is not captured by Sentry!");
       setIsCaptured(false);
