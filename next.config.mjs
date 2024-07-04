@@ -4,30 +4,32 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-    images: {
-        remotePatterns: [
-            {
-                protocol: 'https',
-                hostname: 'sulala.com',
-                port: '',
-                pathname: '/**',
-            },
-            {
-                protocol: 'http',
-                hostname: '34.18.54.116',
-                port: '3001',
-                pathname: '/**',
-            }
-        ],
-        minimumCacheTTL: 60,
-    },
-    logging: {
-        fetches: {
-            fullUrl: true,
+const nextConfig = () => {
+    const BACKEND_BASE_URL = process.env.BACKEND_BASE_URL;
+    const URI = new URL(BACKEND_BASE_URL);
+    const BACKEND_PROTOCOL = URI.protocol.replace(':', '');
+    const BACKEND_HOSTNAME = URI.hostname;
+    const BACKEND_PORT = URI.port;
+
+    return {
+        images: {
+            remotePatterns: [
+                {
+                    protocol: BACKEND_PROTOCOL,
+                    hostname: BACKEND_HOSTNAME,
+                    port: BACKEND_PORT,
+                    pathname: '/**',
+                }
+            ],
+            minimumCacheTTL: 60,
         },
-    },
-    output: 'standalone',
+        logging: {
+            fetches: {
+                fullUrl: true,
+            },
+        },
+        output: 'standalone',
+    };
 };
 
 const getSentryConfig = () => {
@@ -75,9 +77,9 @@ const getSentryConfig = () => {
 const getNextConfig = () => {
     const USE_SENTRY = process.env.NEXT_PUBLIC_USE_MONITORING
     if (USE_SENTRY === 'true') {
-        return withSentryConfig(withNextIntl(nextConfig), getSentryConfig());
+        return withSentryConfig(withNextIntl(nextConfig()), getSentryConfig());
     }
-    return withNextIntl(nextConfig);
+    return withNextIntl(nextConfig());
 }
 
 export default getNextConfig();
