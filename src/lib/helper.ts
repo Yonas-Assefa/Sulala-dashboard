@@ -325,6 +325,7 @@ export const getResponseErrorMessage = (
 };
 
 export const formatCategory = (categories: any[]) => {
+  if (!categories) return [];
   return categories.map((category: any) => {
     const data = {
       label: category.name,
