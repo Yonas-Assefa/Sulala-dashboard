@@ -62,11 +62,13 @@ function TableBody({ tableSchema, data, actionOptions, isSuperUser }: Props) {
                       )}
                       {!schema.breadcrumb ? (
                         <p className="capitalize">
-                          {schema.type == "money"
-                            ? formatNumber(product_key)
-                            : schema.type == "pieces"
-                              ? formatPiece(product_key)
-                              : (product_key + "").toLowerCase()}
+                          {!product_key
+                            ? "N/A"
+                            : schema.type == "money"
+                              ? formatNumber(product_key)
+                              : schema.type == "pieces"
+                                ? formatPiece(product_key)
+                                : (product_key + "").toLowerCase()}
                         </p>
                       ) : (
                         <div className="max-w-xs text-sm breadcrumbs">

@@ -313,7 +313,18 @@
     "response": "استجابة",
     "enter_response_for_the_customer": "أدخل الاستجابة للعميل",
     "send": "يرسل",
-    "manage_faqs": "إدارة الأسئلة الشائعة"
+    "manage_faqs": "إدارة الأسئلة الشائعة",
+    "first_name": "الاسم الأول",
+    "last_name": "اسم العائلة",
+    "phone_number": "رقم التليفون",
+    "address": "عنوان",
+    "license_number": "رقم الترخيص",
+    "profile_photo": "الصورة الشخصية",
+    "license_front": "الرخصة الأمامية",
+    "license_back": "الرخصة الخلفية",
+    "id_front": "الهوية الأمامية",
+    "id_back": "الهوية الخلفية",
+    "driver_files": "ملفات السائق"
   },
   "Commons": {
     "instagram_link": "رابط الانستقرام",

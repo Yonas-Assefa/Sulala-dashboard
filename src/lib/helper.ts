@@ -299,12 +299,8 @@ export const getResponseErrorMessage = (
   body: any,
   defaultMessage?: string,
 ): string => {
-  if (
-    body.error &&
-    "title" in body.error &&
-    typeof body.error.title === "string"
-  ) {
-    return body.error.title;
+  if (body.error && "title" in body.error && "detail" in body.error) {
+    return `${body.error.title}: ${body.error.detail}`;
   } else if (body.message) {
     if (typeof body.message === "object")
       return (

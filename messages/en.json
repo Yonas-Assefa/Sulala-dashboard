@@ -313,7 +313,18 @@
     "response": "Response",
     "enter_response_for_the_customer": "Enter response for the customer",
     "send": "Send",
-    "manage_faqs": "Manage FAQs"
+    "manage_faqs": "Manage FAQs",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "phone_number": "Phone Number",
+    "address": "Address",
+    "license_number": "License Number",
+    "profile_photo": "Profile Photo",
+    "license_front": "License Front",
+    "license_back": "License Back",
+    "id_front": "ID Front",
+    "id_back": "ID Back",
+    "driver_files": "Driver Files"
   },
   "Commons": {
     "instagram_link": "Instagram link",

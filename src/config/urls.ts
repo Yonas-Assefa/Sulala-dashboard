@@ -83,6 +83,9 @@ export const ANSWER_SUPPORT_REQUESTS = `${VENDOR_BASE_URL}customer-support-respo
 export const APPROVE_SHOPS = `${VENDOR_BASE_URL}approve_vendor_registration/`;
 export const REJECT_SHOPS = `${VENDOR_BASE_URL}reject_vendor_registration/`;
 export const ACCEPT_SHOP_APPROVAL = `${VENDOR_BASE_URL}account-access-link/`;
+export const GET_PENDING_DRIVERS = `${API_URL}review-driver-registration/`;
+export const REJECT_DRIVER_URL = `${API_URL}reject-driver-registration/`;
+export const APPROVE_DRIVER_URL = `${API_URL}approve-driver-registration/`;
 
 // OPEN TELEMETRY URLS
 export const SENTRY_DSN = process.env.SENTRY_DNS!;

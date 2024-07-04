@@ -4,15 +4,16 @@ import { promotionFilterData, promotionSortData } from "./schema/data";
 import { customerSupportTableSchema } from "./schema/schema";
 import { TableProps as Props } from "@/types/props.type";
 import { getTranslations } from "next-intl/server";
+import { changeObjToFormData } from "@/lib/helper";
+import { getPendingDrivers } from "@/actions/admin-manage/get-pending-drivers";
 
-async function page(
-  {
-    // searchParams: { search, filter, sort, sort_by },
-  }: Props,
-) {
-  // const pendingShops: any = await getSupportRequests(
-  //   changeObjToFormData({ search, filter, sort, sort_by }),
-  // );
+async function page({
+  searchParams: { search, filter, sort, sort_by },
+}: Props) {
+  const pendingDrivers: any = await getPendingDrivers(
+    changeObjToFormData({ search, filter, sort, sort_by }),
+  );
+  console.log({ pendingDrivers });
   const t = await getTranslations("Manage");
 
   return (
@@ -27,8 +28,7 @@ async function page(
 
         {/* <PromotionCampaignTable /> */}
         <Table
-          // data={pendingShops}
-          data={[]}
+          data={pendingDrivers}
           filterData={promotionFilterData}
           tableSchema={customerSupportTableSchema}
           sortData={promotionSortData}

@@ -389,6 +389,23 @@ export const approveRejectShopsSchema = z.object({
     .optional(),
 });
 
+export const approveRejectDriversSchema = z.object({
+  status: z
+    .string({
+      message: "Status type is a required field",
+    })
+    .refine((val) => ["REJECT", "APPROVE"].includes(val), {
+      message: "Invalid status type",
+    }),
+
+  reason: z
+    .string({
+      message: "Reason type is a required field for reject status",
+    })
+    .min(5, { message: "Minimun of 5 character long reason is required" })
+    .optional(),
+});
+
 export const answerCustomerSupportSchema = z.object({
   id: z.string({
     message: "Id must be a string",

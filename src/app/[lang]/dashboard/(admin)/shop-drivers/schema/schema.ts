@@ -14,8 +14,13 @@ export const customerSupportTableSchema: TableSchema = {
   },
   schema: [
     {
-      key: "full_name",
-      title: "Full Name",
+      key: "first_name",
+      title: "First Name",
+      type: "string",
+    },
+    {
+      key: "last_name",
+      title: "Last Name",
       type: "string",
     },
     {
@@ -24,16 +29,19 @@ export const customerSupportTableSchema: TableSchema = {
       type: "string",
     },
     {
-      key: "message",
-      title: "Message",
+      key: "username",
+      title: "Username",
       type: "string",
     },
     {
-      key: "status",
-      title: "Status",
+      key: "phone_number",
+      title: "Phone number",
       type: "string",
-      badge: true,
-      schema_colors: customerSupportBadgeColorSchema,
+    },
+    {
+      key: "address",
+      title: "Address",
+      type: "string",
     },
   ],
 };
