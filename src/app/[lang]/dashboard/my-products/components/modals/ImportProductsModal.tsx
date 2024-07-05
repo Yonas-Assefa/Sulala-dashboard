@@ -209,29 +209,32 @@ function ImportProductsModal() {
             isPending={isPending}
           />
         </div>
-        {file && (
-          <div className="w-full px-5 mt-2 py-1 opacity-80 bg-gradient-to-r from-white via-secondary/40 to-white">
-            <p className="text-black text-[10px]">
-              You can get lists of &nbsp;
-              <Link
-                className="text-primary font-semibold hover:underline hover:text-blue-600"
-                href={"/glossary/categories"}
-                target="_blank"
-              >
-                {"categories"}
-              </Link>
-              &nbsp;and{" "}
-              <Link
-                className="text-primary font-semibold hover:underline hover:text-blue-600"
-                href={"/glossary/categories"}
-                target="_blank"
-              >
-                {"product status"}
-              </Link>
-              &nbsp;from here.
-            </p>
-          </div>
-        )}
+        {formState?.message &&
+          formState.message
+            ?.toLowerCase()
+            .includes("invalid category provided") && (
+            <div className="w-full px-5 mt-2 py-1 opacity-80 bg-gradient-to-r from-danger via-dangerlight to-danger">
+              <p className="text-black dark:text-white text-[10px]">
+                You can get lists of &nbsp;
+                <Link
+                  className="text-primary dark:text-green-500 font-semibold hover:underline hover:text-blue-600"
+                  href={"/glossary/categories"}
+                  target="_blank"
+                >
+                  {"categories"}
+                </Link>
+                &nbsp;and{" "}
+                <Link
+                  className="text-primary dark:text-green-500 font-semibold hover:underline hover:text-blue-600"
+                  href={"/glossary/categories"}
+                  target="_blank"
+                >
+                  {"product status"}
+                </Link>
+                &nbsp;from here.
+              </p>
+            </div>
+          )}
       </div>
       <form method="dialog" className="modal-backdrop">
         <button className="text-black"></button>
