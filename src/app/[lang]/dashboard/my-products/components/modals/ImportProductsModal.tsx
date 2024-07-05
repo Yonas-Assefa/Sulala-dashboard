@@ -4,6 +4,7 @@ import FileInput from "@/components/common/form/FileInput";
 import PrimaryButton from "@/components/common/ui/PrimaryButton";
 import { useRedirectRoute } from "@/hooks/useRedirectRoute";
 import { useToastMessage } from "@/hooks/useToastMessage";
+import { Link } from "@/i18n/navigation";
 import { closeModal } from "@/lib/modals";
 import { EMPTY_FORM_STATE, toFormState } from "@/utils/formStateHelper";
 import { pushWarningNotification } from "@/utils/pushNotification.util";
@@ -209,9 +210,26 @@ function ImportProductsModal() {
           />
         </div>
         {file && (
-          <div className="w-full flex justify-center flex-row pt-2 gap-2 items-center opacity-60">
-            <img src="/icons/alert.svg" alt="" className="w-[15px]" />
-            <p className="text-danger text-xs">Images will not be included!</p>
+          <div className="w-full px-5 mt-2 py-1 opacity-80 bg-gradient-to-r from-white via-secondary/40 to-white">
+            <p className="text-black text-[10px]">
+              You can get lists of &nbsp;
+              <Link
+                className="text-primary font-semibold hover:underline hover:text-blue-600"
+                href={"/glossary/categories"}
+                target="_blank"
+              >
+                {"categories"}
+              </Link>
+              &nbsp;and{" "}
+              <Link
+                className="text-primary font-semibold hover:underline hover:text-blue-600"
+                href={"/glossary/categories"}
+                target="_blank"
+              >
+                {"product status"}
+              </Link>
+              &nbsp;from here.
+            </p>
           </div>
         )}
       </div>
