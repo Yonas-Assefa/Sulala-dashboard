@@ -2,11 +2,8 @@
 
 import { notFound } from "next/navigation";
 import { ALL_SUBCATEGORIES } from "../../config/urls";
-import {
-  formatCategory,
-  getRequestHeaders,
-  getResponseBody,
-} from "../../lib/helper";
+import { getRequestHeaders, getResponseBody } from "../../lib/helper";
+import convertAndGroupCategories from "@/lib/convertAndGroupCategories";
 
 export const getAllSubCategories = async () => {
   const response = await fetch(ALL_SUBCATEGORIES, {
@@ -20,6 +17,6 @@ export const getAllSubCategories = async () => {
     }
     throw new Error(body.message || "Failed to get subcategories");
   }
-  const formatedCategory = formatCategory(body.data);
+  const formatedCategory = convertAndGroupCategories(body.data?.results);
   return formatedCategory;
 };
