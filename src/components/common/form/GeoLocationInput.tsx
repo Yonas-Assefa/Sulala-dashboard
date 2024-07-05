@@ -1,9 +1,4 @@
 "use client";
-import {
-  GOOGLE_MAPS_AUTOCOMPLETE_URL,
-  GOOGLE_MAPS_GEOCODE_URL,
-  GOOGLE_MAPS_KEY,
-} from "@/config/urls";
 import { useScrollToErrorField } from "@/hooks/useScrollToErrorField";
 import { TextInputProps } from "@/types/props.type";
 import { useParams } from "next/navigation";

@@ -1,5 +1,4 @@
 "use client";
-import GeoLocationInput from "@/components/common/form/GeoLocationInput";
 import { pushSuccessNotification } from "@/utils/pushNotification.util";
 import React from "react";
 
@@ -223,7 +222,6 @@ function page() {
   return (
     <div className="w-full h-full flex flex-col gap-5">
       <h2 className="font-bold text-primary text-xl">CATEGORY</h2>
-      <GeoLocationInput label="" />
       <form
         onSubmit={handleSubmit}
         className="input input-bordered flex items-center gap-2 bg-primary/20 text-black"
