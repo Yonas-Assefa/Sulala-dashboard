@@ -31,48 +31,7 @@ function GeoLocationInput({
   const ref = useScrollToErrorField<HTMLLabelElement>(error);
   const [addressOptions, setAddressOptions] = React.useState<
     { value: string; label: string }[]
-  >([
-    {
-      label: "New York, NY, USA",
-      value: "New York, NY, USA",
-    },
-    {
-      label: "Los Angeles, CA, USA",
-      value: "Los Angeles, CA, USA",
-    },
-    {
-      label: "Chicago, IL, USA",
-      value: "Chicago, IL, USA",
-    },
-    {
-      label: "Houston, TX, USA",
-      value: "Houston, TX, USA",
-    },
-    {
-      label: "Phoenix, AZ, USA",
-      value: "Phoenix, AZ, USA",
-    },
-    {
-      label: "Philadelphia, PA, USA",
-      value: "Philadelphia, PA, USA",
-    },
-    {
-      label: "San Antonio, TX, USA",
-      value: "San Antonio, TX, USA",
-    },
-    {
-      label: "San Diego, CA, USA",
-      value: "San Diego, CA, USA",
-    },
-    {
-      label: "Dallas, TX, USA",
-      value: "Dallas, TX, USA",
-    },
-    {
-      label: "San Jose, CA, USA",
-      value: "San Jose, CA, USA",
-    },
-  ]);
+  >([]);
   const [geoLocation, setGeoLocation] = React.useState<{
     lat: string;
     lng: string;
