@@ -1,4 +1,5 @@
 "use client";
+import { getAllSubCategories } from "@/actions/common/get-all-subcategories";
 import { pushSuccessNotification } from "@/utils/pushNotification.util";
 import React from "react";
 
@@ -196,6 +197,15 @@ const CATAGORY_GLOSSARY = [
 function page() {
   const [search, setSearch] = React.useState("");
   const [data, setData] = React.useState(CATAGORY_GLOSSARY);
+
+  const fetchSubCategories = async () => {
+    const subcategories = await getAllSubCategories();
+    console.log({ subcategories });
+  };
+
+  React.useEffect(() => {
+    fetchSubCategories();
+  }, []);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);

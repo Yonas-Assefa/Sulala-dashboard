@@ -50,6 +50,7 @@ export const GOOGLE_SIGNIN_URL = `${VENDOR_BASE_URL}google_signin_signup_vendor/
 // CATEGORY URLS
 export const CATEGORIES = `${API_URL}categories/`;
 export const SUBCATEGORIES = `${API_URL}get_category_by_shop/`;
+export const ALL_SUBCATEGORIES = `${API_URL}sub_categories/`;
 
 // ANIMAL URLS
 export const GET_ANIMALS = `${API_URL}get_all_animal_species_for_product_search/`;
