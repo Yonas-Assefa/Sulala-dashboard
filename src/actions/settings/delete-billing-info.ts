@@ -5,7 +5,7 @@ import {
   toFormState,
 } from "@/utils/formStateHelper";
 import { BILLING_INFO } from "../../config/urls";
-import { getRequestHeaders } from "../../lib/helper";
+import { getRequestHeaders, getResponseErrorMessage } from "../../lib/helper";
 import { revalidateTag } from "next/cache";
 
 export const deleteBillingInfo = async (
@@ -23,16 +23,14 @@ export const deleteBillingInfo = async (
       throw new Error("Invalid billing id");
     }
 
-    const response = await fetch(BILLING_INFO, {
+    const response = await fetch(`${BILLING_INFO}${billing_id}/`, {
       method: "DELETE",
       headers: getRequestHeaders(),
-      body: JSON.stringify({
-        id: Number(billing_id),
-      }),
     });
 
     if (!response.ok) {
-      throw new Error("Failed to submit form");
+      const body = await response.json();
+      throw new Error(getResponseErrorMessage(body) || "Failed to submit form");
     }
     const successMessage = "Successfully deleted payment method";
 
