@@ -7,18 +7,18 @@ const getDefaulLocale = () => {
   ) {
     const LOCALE = NEXT_PUBLIC_DEFAULT_LOCALE.toLowerCase();
     if (LOCALES.includes(LOCALE)) {
-      console.info(`\x1b[35m  漢字 Default locale: ${LOCALE}\x1b[0m`);
+      // console.info(`\x1b[35m  漢字 Default locale: ${LOCALE}\x1b[0m`);
       return LOCALE;
     } else {
-      console.warn(
-        `\x1b[33m  漢字 Default locale: ${LOCALE} is not supported. Defaulting to ${INITIAL_LOCALE}\x1b[0m`,
-      );
+      // console.warn(
+      //   `\x1b[33m  漢字 Default locale: ${LOCALE} is not supported. Defaulting to ${INITIAL_LOCALE}\x1b[0m`,
+      // );
       return INITIAL_LOCALE;
     }
   }
-  console.warn(
-    `\x1b[33m  漢字 Default locale is not set. Defaulting to ${INITIAL_LOCALE}\x1b[0m`,
-  );
+  // console.warn(
+  //   `\x1b[33m  漢字 Default locale is not set. Defaulting to ${INITIAL_LOCALE}\x1b[0m`,
+  // );
   return INITIAL_LOCALE;
 };
 
