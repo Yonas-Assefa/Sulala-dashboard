@@ -20,7 +20,7 @@ function GlossaryLayout({
   params,
 }: Readonly<{ children: React.ReactNode; params: { lang: string } }>) {
   return (
-    <div className="w-screen h-screen flex flex-col gap-5 text-black p-8 md:p-16 bg-gradient-to-br from-white to-white">
+    <div className="w-screen h-screen overflow-hidden flex flex-col gap-5 text-black p-8 md:p-16 bg-gradient-to-br from-white to-white">
       <h1 className="font-bold text-primary text-3xl">GLOSSARY</h1>
       {children}
     </div>

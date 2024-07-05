@@ -1,7 +1,6 @@
-import SearchIcon from "@/assets/icons/SearchIcon";
 import React from "react";
 
-const CATAGORY_GLOSSARY = [
+const PLACEHOLDER_GLOSSARY = [
   {
     group: "A",
     categories: [
@@ -195,7 +194,7 @@ const CATAGORY_GLOSSARY = [
 function page() {
   return (
     <div className="w-full h-full flex flex-col gap-5">
-      <h2 className="font-bold text-primary text-xl">CATEGORY</h2>
+      <h2 className="font-bold text-primary text-xl">PRODUCT STATUS</h2>
       <label className="input input-bordered flex items-center gap-2 bg-primary/20 text-black">
         <input type="text" className="grow h-10" placeholder="Search" />
         <button className="flex bg-tertiary hover:bg-secondary p-1 rounded-full fill-black hover:scale-110 hover:fill-tertiary transition-all">
@@ -212,8 +211,8 @@ function page() {
           </svg>
         </button>
       </label>
-      <div className="flex-grow overflow-x-auto">
-        {CATAGORY_GLOSSARY.map((category) => (
+      <div className="flex-grow overflow-x-auto mb-10 md:mb-0">
+        {PLACEHOLDER_GLOSSARY.map((category) => (
           <table className="table table-pin-rows">
             <thead>
               <tr key={category.group} className="bg-primary text-white">

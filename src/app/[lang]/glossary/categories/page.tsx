@@ -247,7 +247,7 @@ function page() {
           </svg>
         </button>
       </form>
-      <div className="flex-grow overflow-x-auto">
+      <div className="flex-grow overflow-x-auto mb-10 md:mb-0">
         {data.map((category) => (
           <table className="table table-pin-rows">
             <thead>
