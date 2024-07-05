@@ -21,7 +21,7 @@ type BaseInputProps = {
 
 export type TextInputProps = BaseInputProps & {
   type?: "text" | "email" | "password" | "number";
-  dynamicPlaceholder?: RegExp;
+  dynamicPlaceholder?: boolean;
 };
 
 export type WeightVolumeInputProps = TextInputProps & {

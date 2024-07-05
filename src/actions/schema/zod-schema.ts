@@ -197,7 +197,7 @@ export const billingInfoSettingSchema = z.object({
   expiration_date: z
     .string()
     // .regex(/^\d{2}\/\d{2}$/, 'Invalid expiry date format'),
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "Invalid expiry date format"),
+    .regex(/^\d{2}\/\d{2}$/, "Invalid expiry date format"),
   cvc: z
     .string()
     .length(3, "CVV must be a three digit number")

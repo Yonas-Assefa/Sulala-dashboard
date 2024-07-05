@@ -17,6 +17,7 @@ function TextInput({
   type = "text",
   defaultValue,
   required,
+  dynamicPlaceholder,
 }: TextInputProps) {
   const [value, setValue] = React.useState(defaultValue || otVal || "");
   const ref = useScrollToErrorField<HTMLLabelElement>(error);
@@ -65,6 +66,21 @@ function TextInput({
       <div
         className={`flex items-center relative overflow-hidden justify-between gap-0 border rounded-[40px] w-full ${error ? "bg-dangerlight border-danger" : "bg-white dark:bg-gray-800 focus-within:border-primary"}`}
       >
+        {dynamicPlaceholder && (
+          <p
+            className={`absolute opacity-35 select-none ${lang !== "ar" ? "left-4" : "right-4"}`}
+          >
+            {placeholder?.split("").map((char, i) => {
+              return value[i] ? (
+                <span key={i} className="opacity-0">
+                  {value[i]}
+                </span>
+              ) : (
+                <span key={i}>{char}</span>
+              );
+            })}
+          </p>
+        )}
         <input
           id={id}
           type={type == "number" ? "text" : type}

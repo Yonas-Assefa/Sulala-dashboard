@@ -1,11 +1,11 @@
 "use server";
 
-import { GET_BILLING_ACCOUNT } from "../../config/urls";
+import { BILLING_INFO } from "../../config/urls";
 import { billingMapper } from "../mapper/billing-mapper";
 import { getRequestHeaders, getResponseBody } from "../../lib/helper";
 
 export const getBillingInfo = async () => {
-  const response = await fetch(GET_BILLING_ACCOUNT, {
+  const response = await fetch(BILLING_INFO, {
     method: "GET",
     headers: getRequestHeaders(),
     next: {
@@ -18,5 +18,5 @@ export const getBillingInfo = async () => {
     throw new Error(body.message || "Failed to get billing info");
   }
 
-  return billingMapper(body.data);
+  return billingMapper(body.data.results);
 };

@@ -188,7 +188,7 @@
       "enter_name": "Enter Name",
       "enter_card_number": "Enter Card Number",
       "add": "Add",
-      "yyyy_mm_dd": "YYYY-MM-DD",
+      "mm/yy": "MM/YY",
       "primary": "Primary",
       "set_as_primary": "Set as primary",
       "delete": "Delete"

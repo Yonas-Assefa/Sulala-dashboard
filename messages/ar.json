@@ -188,7 +188,7 @@
       "enter_name": "أدخل الاسم",
       "enter_card_number": "أدخل رقم البطاقة",
       "add": "يضيف",
-      "yyyy_mm_dd": "السنة-الشهر-اليوم",
+      "mm/yy": "مم/سنة",
       "primary": "أساسي",
       "set_as_primary": "تعيين كإعداد أساسي",
       "delete": "يمسح"

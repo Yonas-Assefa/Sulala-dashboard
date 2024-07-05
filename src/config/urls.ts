@@ -39,12 +39,10 @@ export const GET_SHOP_ACCOUNT = `${VENDOR_BASE_URL}get_shop_info/`;
 export const UPDATE_VENDOR_ACCOUNT = `${VENDOR_BASE_URL}update_profile/`;
 export const UPDATE_SHOP_ACCOUNT = `${VENDOR_BASE_URL}update_shop_info/`;
 export const UPDATE_BILLING_ACCOUNT = `${VENDOR_BASE_URL}update_profile/`;
-export const ADD_BILLING_INFO = `${VENDOR_BASE_URL}add_payment_method/`;
-export const DELETE_BILLING_INFO = `${VENDOR_BASE_URL}delete_payment_method/`;
+export const BILLING_INFO = `${API_URL}payments/`;
 export const SET_PRIMARY_BILLING = `${VENDOR_BASE_URL}set_payment_method_primary/`;
 export const CHANGE_PASSWORD = `${VENDOR_BASE_URL}change_password/`;
 export const LOGOUT = `${API_URL}logout/`;
-export const GET_BILLING_ACCOUNT = `${VENDOR_BASE_URL}get_payment_method/`;
 export const GOOGLE_SIGNIN_URL = `${VENDOR_BASE_URL}google_signin_signup_vendor/`;
 
 // CATEGORY URLS

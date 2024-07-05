@@ -4,7 +4,7 @@ import {
   fromErrorToFormState,
   toFormState,
 } from "@/utils/formStateHelper";
-import { DELETE_BILLING_INFO } from "../../config/urls";
+import { BILLING_INFO } from "../../config/urls";
 import { getRequestHeaders } from "../../lib/helper";
 import { revalidateTag } from "next/cache";
 
@@ -23,7 +23,7 @@ export const deleteBillingInfo = async (
       throw new Error("Invalid billing id");
     }
 
-    const response = await fetch(DELETE_BILLING_INFO, {
+    const response = await fetch(BILLING_INFO, {
       method: "DELETE",
       headers: getRequestHeaders(),
       body: JSON.stringify({

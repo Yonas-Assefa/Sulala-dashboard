@@ -28,8 +28,10 @@ function GeoLocationInput({
     { value: string; label: string }[]
   >([]);
   const [geoLocation, setGeoLocation] = React.useState<{
+    description: string;
     lat: string;
-    lng: string;
+    long: string;
+    is_manual: boolean;
   }>();
   const dropdownRef = React.useRef<HTMLDetailsElement>(null);
   const optionListRef = useDetectClickOutside({

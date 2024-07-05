@@ -4,7 +4,7 @@ import {
   fromErrorToFormState,
   toFormState,
 } from "@/utils/formStateHelper";
-import { ADD_BILLING_INFO } from "../../config/urls";
+import { BILLING_INFO } from "../../config/urls";
 import { billingInfoSettingSchema } from "../schema/zod-schema";
 import {
   getRequestHeaders,
@@ -25,7 +25,7 @@ export const createBillingInfo = async (
       cvc: formData.get("cvc"),
     });
 
-    const response = await fetch(ADD_BILLING_INFO, {
+    const response = await fetch(BILLING_INFO, {
       method: "POST",
       headers: getRequestHeaders(),
       body: JSON.stringify(data),
