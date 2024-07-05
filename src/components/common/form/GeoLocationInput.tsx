@@ -9,6 +9,9 @@ import { TextInputProps } from "@/types/props.type";
 import { useParams } from "next/navigation";
 import React from "react";
 import { useDetectClickOutside } from "react-detect-click-outside";
+import { debounce } from "lodash";
+import { getLocationSuggetion } from "@/actions/google/get-location-suggestion";
+import { getLocationGeoCode } from "@/actions/google/get-location-geocode";
 
 function GeoLocationInput({
   value: otVal,
@@ -70,7 +73,10 @@ function GeoLocationInput({
       value: "San Jose, CA, USA",
     },
   ]);
-  const [geoLocation, setGeoLocation] = React.useState<string>();
+  const [geoLocation, setGeoLocation] = React.useState<{
+    lat: string;
+    lng: string;
+  }>();
   const dropdownRef = React.useRef<HTMLDetailsElement>(null);
   const optionListRef = useDetectClickOutside({
     onTriggered: () => {
@@ -86,22 +92,6 @@ function GeoLocationInput({
     }
   }, [defaultValue]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (disabled) return;
-    const { value } = e.target;
-    if (type === "number") {
-      const re = /^[0-9\b]+$/;
-      if (value === "" || re.test(value)) {
-        setValue(value);
-        emitVal && emitVal(value);
-      }
-    } else {
-      setValue(value);
-      emitVal && emitVal(value);
-    }
-    dropdownRef.current?.setAttribute("open", "");
-  };
-
   const handleClear = () => {
     if (disabled) return;
     setValue("");
@@ -111,33 +101,37 @@ function GeoLocationInput({
   const loadAddressOptions = async (inputValue: string) => {
     if (inputValue) {
       try {
-        const response = await fetch(
-          `${GOOGLE_MAPS_AUTOCOMPLETE_URL}?input=${inputValue}&key=${GOOGLE_MAPS_KEY}`,
-        );
-        const data = await response.json();
-        let places: { value: string; label: string }[] = [];
-        data?.data?.predictions?.map(
-          (place: { description: string }, i: number) => {
-            places = [
-              ...places,
-              { value: place.description, label: place.description },
-            ];
-          },
-        );
-
+        const places = await getLocationSuggetion(inputValue || "");
+        dropdownRef.current?.setAttribute("open", "true");
         setAddressOptions(places);
+        console.log({ places });
       } catch (error) {
         console.error(error);
       }
+    } else {
+      setAddressOptions([]);
+      dropdownRef.current?.removeAttribute("open");
     }
+  };
+
+  const debouncedLoadAddressOptions = React.useCallback(
+    debounce(loadAddressOptions, 1000),
+    [],
+  );
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (disabled) return;
+    const { value } = e.target;
+    setValue(value);
+    emitVal && emitVal(value);
+    debouncedLoadAddressOptions(value);
+    console.log("value", value);
   };
 
   const getGeoLocation = async (address: string) => {
     try {
-      const response = await fetch(
-        `${GOOGLE_MAPS_GEOCODE_URL}?address=${address}&key=${GOOGLE_MAPS_KEY}`,
-      );
-      const data = await response.json();
+      const data = await getLocationGeoCode(address);
+      console.log({ data });
       setGeoLocation(data);
     } catch (error) {
       console.error(error);
@@ -153,7 +147,11 @@ function GeoLocationInput({
   };
 
   return (
-    <label ref={ref} htmlFor={id} className="flex flex-col gap-3">
+    <label
+      ref={ref}
+      htmlFor={id + "_geolocation"}
+      className="flex flex-col gap-3"
+    >
       <p className="self-start text-black">
         {label}
         {required && (
@@ -163,6 +161,14 @@ function GeoLocationInput({
           </span>
         )}
       </p>
+      <input
+        type="text"
+        hidden
+        id={id}
+        name={name}
+        value={JSON.stringify(geoLocation)}
+        onChange={() => {}}
+      />
       <details
         ref={dropdownRef}
         className="relative w-full"
@@ -172,10 +178,10 @@ function GeoLocationInput({
           className={`flex items-center relative overflow-hidden justify-between gap-0 border rounded-[40px] w-full ${error ? "bg-dangerlight border-danger" : "bg-white focus-within:border-primary"}`}
         >
           <input
-            id={id}
+            id={id + "_geolocation"}
             type={type == "number" ? "text" : type}
             placeholder={placeholder || "Type here"}
-            name={name || "text-input"}
+            name={name || "_geolocation"}
             className={`input text-black disabled:text-secondary w-full bg-transparent disabled:bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none ${disabled && "cursor-not-allowed opacity-50"}`}
             autoComplete={autoComplete || "false"}
             value={value}
@@ -206,7 +212,7 @@ function GeoLocationInput({
         <div
           tabIndex={0}
           ref={optionListRef}
-          className="dropdown-content z-[1] menu p-2 absolute my-2 border-2 shadow rounded-box w-full bg-white"
+          className="dropdown-content z-10 menu p-2 absolute my-2 border-2 shadow rounded-box w-full bg-white"
         >
           <div className="max-h-[300px] overflow-y-scroll block">
             {/* DROPDOWN VALUE GOES HERE */}
