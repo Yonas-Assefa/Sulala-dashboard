@@ -91,7 +91,7 @@ function CustomerDetailForm({ initialData }: Props) {
         </div>
         <div className="bg-tertiary dark:bg-gray-600 col-span-2 p-8 rounded-[40px] flex flex-col gap-3">
           <h3 className="font-semibold text-xl">{t("driver_files")}</h3>
-          <div className="flex flex-row gap-4">
+          <div className="flex flex-col md:flex-row gap-4">
             {TABS.map((tab) => (
               <button
                 key={tab}
@@ -99,7 +99,7 @@ function CustomerDetailForm({ initialData }: Props) {
                   setfile(tab as any);
                   setFileFullScreen(true);
                 }}
-                className="bg-tertiary dark:bg-gray-500 border-4 rounded-lg border-primary/50 w-1/2 max-w-[1300px] h-[200px] flex flex-col justify-center items-center"
+                className="bg-tertiary dark:bg-gray-500 border-4 rounded-lg border-primary/50 w-full md:w-1/2 max-w-[1300px] h-[200px] flex flex-col justify-center items-center"
               >
                 <img
                   src={initialData[tab]}
