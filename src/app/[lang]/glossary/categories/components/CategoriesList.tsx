@@ -34,7 +34,7 @@ function CategoriesList({ categories }: TCategoryProps) {
   };
 
   return (
-    <div className="w-full h-full flex flex-col gap-5">
+    <div className="w-full h-full flex flex-col gap-5 pb-16">
       <h2 className="font-bold text-primary dark:text-green-500 text-xl">
         CATEGORY
       </h2>
