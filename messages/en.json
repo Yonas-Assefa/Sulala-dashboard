@@ -407,5 +407,10 @@
   "OpenGraphImage": {
     "title": "Sulala",
     "description": "Your one-stop shop for all your farm needs! From livestock feed and fencing to veterinary supplies and agricultural equipment, Sulala has everything to keep your farm thriving."
+  },
+  "Glossary": {
+    "glossary": "Glossary",
+    "category": "Category",
+    "search": "Search"
   }
 }

@@ -1,6 +1,7 @@
 "use client";
 import { GroupedCategory } from "@/lib/convertAndGroupCategories";
 import { pushSuccessNotification } from "@/utils/pushNotification.util";
+import { useTranslations } from "next-intl";
 import React from "react";
 
 type TCategoryProps = {
@@ -10,6 +11,8 @@ type TCategoryProps = {
 function CategoriesList({ categories }: TCategoryProps) {
   const [search, setSearch] = React.useState("");
   const [data, setData] = React.useState<GroupedCategory[]>(categories);
+
+  const t = useTranslations("Glossary");
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -35,8 +38,8 @@ function CategoriesList({ categories }: TCategoryProps) {
 
   return (
     <div className="w-full h-full flex flex-col gap-5 pb-16">
-      <h2 className="font-bold text-primary dark:text-green-500 text-xl">
-        CATEGORY
+      <h2 className="font-bold uppercase text-primary dark:text-green-500 text-xl">
+        {t("category")}
       </h2>
       <form
         onSubmit={handleSubmit}
@@ -47,7 +50,7 @@ function CategoriesList({ categories }: TCategoryProps) {
           onChange={handleSearch}
           type="text"
           className="grow h-10 text-black dark:text-white"
-          placeholder="Search"
+          placeholder={t("search")}
         />
         <button className="flex bg-tertiary dark:bg-gray-600 hover:bg-primary dark:hover:bg-green-500 p-1 rounded-full fill-black dark:fill-white hover:scale-110 hover:fill-tertiary dark:hover:fill-gray-600 transition-all">
           <svg
