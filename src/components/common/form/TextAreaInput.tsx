@@ -70,7 +70,7 @@ function TextAreaInput({
         placeholder={placeholder}
         disabled={disabled}
         autoFocus={autoFocus}
-        className={`textarea focus:border-primary outline-none focus:outline-none disabled:bg-white disabled:text-secondary disabled:border-secondary/50 textarea-bordered rounded-[20px] textarea-lg w-full text-black dark:text-white ${error ? "bg-dangerlight border-danger" : "bg-white dark:bg-gray-800"}`}
+        className={`textarea focus:border-primary outline-none focus:outline-none disabled:bg-white disabled:text-secondary disabled:border-secondary/50 dark:disabled:bg-gray-800 textarea-bordered rounded-[20px] textarea-lg w-full h-full text-black dark:text-white ${error ? "bg-dangerlight border-danger" : "bg-white dark:bg-gray-800"}`}
         {...props}
       ></textarea>
       {error && <span className="text-xs text-danger">{error}</span>}

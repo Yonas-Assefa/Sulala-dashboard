@@ -45,7 +45,7 @@ function CustomerDetailForm({ initialData }: Props) {
 
   return (
     <div className="w-full flex flex-col md:grid md:grid-cols-3 gap-3">
-      <div className="bg-tertiary col-span-2 p-8 rounded-[40px] flex flex-col gap-3">
+      <div className="bg-tertiary dark:bg-gray-800 text-black dark:text-white col-span-2 p-8 rounded-[40px] flex flex-col gap-3">
         <h3 className="font-semibold text-xl">{t("customer_info")}</h3>
         <div className="max-w-[1300px] flex flex-col md:grid md:grid-cols-2 gap-3">
           <TextInput
@@ -89,7 +89,7 @@ function CustomerDetailForm({ initialData }: Props) {
             type="text"
           />
         </div>
-        <div className="bg-tertiary col-span-2 p-8 rounded-[40px] flex flex-col gap-3">
+        <div className="bg-tertiary dark:bg-gray-600 col-span-2 p-8 rounded-[40px] flex flex-col gap-3">
           <h3 className="font-semibold text-xl">{t("driver_files")}</h3>
           <div className="flex flex-row gap-4">
             {TABS.map((tab) => (
@@ -99,7 +99,7 @@ function CustomerDetailForm({ initialData }: Props) {
                   setfile(tab as any);
                   setFileFullScreen(true);
                 }}
-                className="bg-tertiary border-4 rounded-lg border-primary/50 w-1/2 max-w-[1300px] h-[200px] flex flex-col justify-center items-center"
+                className="bg-tertiary dark:bg-gray-500 border-4 rounded-lg border-primary/50 w-1/2 max-w-[1300px] h-[200px] flex flex-col justify-center items-center"
               >
                 <img
                   src={initialData[tab]}
@@ -137,7 +137,7 @@ function CustomerDetailForm({ initialData }: Props) {
           </div>
         </div>
       </div>
-      <div className="bg-tertiary p-8 rounded-[40px] flex flex-col gap-3">
+      <div className="bg-tertiary dark:bg-gray-800 text-black dark:text-white p-8 rounded-[40px] flex flex-col gap-3">
         <h3 className="font-semibold text-xl">{t("vendor_approval_action")}</h3>
         <form action={action} className="flex flex-col gap-4">
           <input
@@ -148,7 +148,7 @@ function CustomerDetailForm({ initialData }: Props) {
             onChange={() => {}}
             hidden
           />
-          <div className="flex flex-col gap-3 bg-white p-4 rounded-lg">
+          <div className="flex flex-col gap-3 text-black dark:text-white bg-white dark:bg-gray-600 p-4 rounded-lg">
             <h4 className="font-semibold ">{t("notify_the_user_via")}</h4>
             <div className="flex flex-row gap-3 text-sm">
               <div className="flex flex-row gap-1 cursor-pointer">

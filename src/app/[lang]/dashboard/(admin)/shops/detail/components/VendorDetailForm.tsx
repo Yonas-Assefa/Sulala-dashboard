@@ -38,15 +38,15 @@ function VendorDetailForm({ initialData }: Props) {
 
   return (
     <div className="w-full flex flex-col md:grid md:grid-cols-3 gap-3">
-      <div className="bg-tertiary col-span-2 p-8 rounded-[40px] flex flex-col gap-3">
+      <div className="bg-tertiary text-black dark:bg-gray-800 dark:text-white col-span-2 p-8 rounded-[40px] flex flex-col gap-3">
         <h3 className="font-semibold text-xl">{t("vendor_info")}</h3>
         <div className="max-w-[1300px] grid grid-cols-1 md:grid-cols-2 gap-3">
-          <ProfileImagePicker
+          {/* <ProfileImagePicker
             disabled
             defaultValue={initialData?.profile_photo || "/images/no-image.png"}
             id="profile_image"
             name="profile_image"
-          />
+          /> */}
           <TextInput
             defaultValue={initialData?.vendor_name}
             disabled
@@ -68,7 +68,7 @@ function VendorDetailForm({ initialData }: Props) {
           />
         </div>
       </div>
-      <div className="bg-tertiary p-8 rounded-[40px] flex flex-col gap-3">
+      <div className="bg-tertiary text-black dark:bg-gray-800 dark:text-white p-8 rounded-[40px] flex flex-col gap-3">
         <h3 className="font-semibold text-xl">{t("vendor_shop_info")}</h3>
         <div className="max-w-[1300px] grid grid-cols-1 gap-3">
           <TextInput
@@ -97,7 +97,7 @@ function VendorDetailForm({ initialData }: Props) {
           />
         </div>
       </div>
-      <div className="bg-tertiary col-span-2 p-8 rounded-[40px] flex flex-col gap-3">
+      <div className="bg-tertiary text-black dark:bg-gray-800 dark:text-white col-span-2 p-8 rounded-[40px] flex flex-col gap-3">
         <h3 className="font-semibold text-xl">{t("vendor_files")}</h3>
         <div className="flex flex-row gap-4">
           <button
@@ -149,7 +149,7 @@ function VendorDetailForm({ initialData }: Props) {
           </div>
         </div>
       </div>
-      <div className="bg-tertiary p-8 rounded-[40px] flex flex-col gap-3">
+      <div className="bg-tertiary text-black dark:bg-gray-800 dark:text-white p-8 rounded-[40px] flex flex-col gap-3">
         <h3 className="font-semibold text-xl">{t("vendor_approval_action")}</h3>
         <form action={action} className="flex flex-col gap-4">
           <input
