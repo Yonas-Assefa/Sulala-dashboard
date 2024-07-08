@@ -22,6 +22,8 @@ export const approveReject = async (
       status: formData.get("status"),
     };
 
+    Object.assign(data, { notify_via: formData.get("notify_via") });
+
     if (data.status == "REJECT") {
       Object.assign(data, { reason: formData.get("reason") });
     }
@@ -31,10 +33,10 @@ export const approveReject = async (
     const URL =
       data.status == "APPROVE" ? APPROVE_DRIVER_URL : REJECT_DRIVER_URL;
 
-    const { status, ...dataToSend } = validatedData;
+    const { status, notify_via, ...dataToSend } = validatedData;
 
     Object.assign(dataToSend, { id: formData.get("vendor_id") });
-    Object.assign(dataToSend, { notify_by_email: true });
+    Object.assign(dataToSend, { notify_by_email: notify_via == "email" });
 
     const response = await fetch(URL, {
       method: "PATCH",

@@ -289,6 +289,7 @@
     "vendor_info": "Vendor Info",
     "customer_info": "Customer Info",
     "email_address": "Email Address",
+    "username": "Username",
     "full_name": "Full Name",
     "message": "Message",
     "vendor_name": "Vendor Name",
@@ -324,7 +325,10 @@
     "license_back": "License Back",
     "id_front": "ID Front",
     "id_back": "ID Back",
-    "driver_files": "Driver Files"
+    "driver_files": "Driver Files",
+    "email": "Email",
+    "phone": "Phone",
+    "notify_the_user_via": "Notify the user via"
   },
   "Commons": {
     "instagram_link": "Instagram link",

@@ -148,6 +148,36 @@ function CustomerDetailForm({ initialData }: Props) {
             onChange={() => {}}
             hidden
           />
+          <div className="flex flex-col gap-3 bg-white p-4 rounded-lg">
+            <h4 className="font-semibold ">{t("notify_the_user_via")}</h4>
+            <div className="flex flex-row gap-3 text-sm">
+              <div className="flex flex-row gap-1 cursor-pointer">
+                <input
+                  type="radio"
+                  name="notify_via"
+                  value="phone"
+                  id="phone"
+                  className="radio"
+                />
+                <label htmlFor="phone">{t("phone")}</label>
+              </div>
+              <div className="flex flex-row gap-1 cursor-pointer">
+                <input
+                  type="radio"
+                  name="notify_via"
+                  value="email"
+                  id="email"
+                  className="radio"
+                />
+                <label htmlFor="email">{t("email")}</label>
+              </div>
+            </div>
+            {formState?.fieldErrors?.notify_via?.[0] && (
+              <span className="text-xs text-danger">
+                {formState?.fieldErrors?.notify_via?.[0]}
+              </span>
+            )}
+          </div>
           <div className="flex flex-col gap-3">
             <div className="flex flex-col gap-3">
               <div className="flex flex-row gap-1">

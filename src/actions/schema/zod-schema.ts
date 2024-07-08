@@ -404,6 +404,14 @@ export const approveRejectDriversSchema = z.object({
     })
     .min(5, { message: "Minimun of 5 character long reason is required" })
     .optional(),
+
+  notify_via: z
+    .string({
+      message: "Notify via type is a required field",
+    })
+    .refine((val) => ["email", "phone"].includes(val), {
+      message: "Invalid notify via type",
+    }),
 });
 
 export const answerCustomerSupportSchema = z.object({

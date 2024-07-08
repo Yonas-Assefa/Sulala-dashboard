@@ -290,7 +290,13 @@
   "Manage": {
     "manage_shops": "إدارة المحلات التجارية",
     "vendor_details": "تفاصيل البائع",
+    "customer_details": "تفاصيل العميل",
     "vendor_info": "معلومات البائع",
+    "customer_info": "معلومات العميل",
+    "email_address": "عنوان البريد الإلكتروني",
+    "username": "اسم المستخدم",
+    "full_name": "الاسم الكامل",
+    "message": "رسالة",
     "vendor_name": "اسم البائع",
     "vendor_phone_number": "رقم هاتف البائع",
     "vendor_email": "البريد الإلكتروني للمورد",
@@ -324,7 +330,10 @@
     "license_back": "الرخصة الخلفية",
     "id_front": "الهوية الأمامية",
     "id_back": "الهوية الخلفية",
-    "driver_files": "ملفات السائق"
+    "driver_files": "ملفات السائق",
+    "email": "البريد الإلكتروني",
+    "phone": "هاتف",
+    "notify_the_user_via": "إخطار المستخدم عبر"
   },
   "Commons": {
     "instagram_link": "رابط الانستقرام",
