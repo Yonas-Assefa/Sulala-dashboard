@@ -1,5 +1,6 @@
 "use client";
 import { approveReject } from "@/actions/admin-manage/approve-reject-drivers";
+import ProfileImagePicker from "@/components/common/form/ProfileImagePicker";
 import TextAreaInput from "@/components/common/form/TextAreaInput";
 import TextInput from "@/components/common/form/TextInput";
 import PrimaryButton from "@/components/common/ui/PrimaryButton";
@@ -22,13 +23,7 @@ function CustomerDetailForm({ initialData }: Props) {
   >();
   const [status, setStatus] = React.useState<"APPROVE" | "REJECT">();
 
-  const TABS = [
-    "profile_photo",
-    "license_front",
-    "license_back",
-    "id_front",
-    "id_back",
-  ];
+  const TABS = ["license_front", "license_back", "id_front", "id_back"];
 
   const [formState, action] = useFormState(approveReject, EMPTY_FORM_STATE);
 
@@ -45,9 +40,14 @@ function CustomerDetailForm({ initialData }: Props) {
 
   return (
     <div className="w-full flex flex-col md:grid md:grid-cols-3 gap-3">
-      <div className="bg-tertiary col-span-2 p-8 rounded-[40px] flex flex-col gap-3">
-        <h3 className="font-semibold text-xl">{t("customer_info")}</h3>
+      <div className="bg-tertiary dark:bg-gray-800 text-black dark:text-white col-span-2 p-8 rounded-[40px] flex flex-col gap-3">
+        <h3 className="font-semibold text-xl">{t("driver_info")}</h3>
         <div className="max-w-[1300px] flex flex-col md:grid md:grid-cols-2 gap-3">
+          <ProfileImagePicker
+            defaultValue={initialData?.profile_photo}
+            disabled
+            label={t("profile_photo")}
+          />
           <TextInput
             defaultValue={initialData?.first_name}
             disabled
@@ -89,9 +89,9 @@ function CustomerDetailForm({ initialData }: Props) {
             type="text"
           />
         </div>
-        <div className="bg-tertiary col-span-2 p-8 rounded-[40px] flex flex-col gap-3">
+        <div className="bg-tertiary dark:bg-gray-600 col-span-2 p-8 rounded-[40px] flex flex-col gap-3">
           <h3 className="font-semibold text-xl">{t("driver_files")}</h3>
-          <div className="flex flex-row gap-4">
+          <div className="flex flex-col md:flex-row gap-4">
             {TABS.map((tab) => (
               <button
                 key={tab}
@@ -99,7 +99,7 @@ function CustomerDetailForm({ initialData }: Props) {
                   setfile(tab as any);
                   setFileFullScreen(true);
                 }}
-                className="bg-tertiary border-4 rounded-lg border-primary/50 w-1/2 max-w-[1300px] h-[200px] flex flex-col justify-center items-center"
+                className="bg-tertiary dark:bg-gray-500 border-4 rounded-lg border-primary/50 w-full md:w-1/2 max-w-[1300px] h-[200px] flex flex-col justify-center items-center"
               >
                 <img
                   src={initialData[tab]}
@@ -137,8 +137,8 @@ function CustomerDetailForm({ initialData }: Props) {
           </div>
         </div>
       </div>
-      <div className="bg-tertiary p-8 rounded-[40px] flex flex-col gap-3">
-        <h3 className="font-semibold text-xl">{t("vendor_approval_action")}</h3>
+      <div className="bg-tertiary dark:bg-gray-800 text-black dark:text-white p-8 rounded-[40px] flex flex-col gap-3">
+        <h3 className="font-semibold text-xl">{t("driver_approval_action")}</h3>
         <form action={action} className="flex flex-col gap-4">
           <input
             type="text"
@@ -148,6 +148,42 @@ function CustomerDetailForm({ initialData }: Props) {
             onChange={() => {}}
             hidden
           />
+          <div className="flex flex-col gap-3 text-black dark:text-white bg-white dark:bg-gray-600 p-4 rounded-lg">
+            <h4 className="font-semibold ">{t("notify_the_user_via")}</h4>
+            <div className="flex flex-row gap-3 text-sm">
+              <div className="flex flex-row gap-1 cursor-pointer">
+                <input
+                  type="radio"
+                  name="notify_via"
+                  value="phone"
+                  id="phone"
+                  className="radio"
+                  defaultChecked={
+                    initialData.phone_number && !initialData.email
+                  }
+                />
+                <label htmlFor="phone">{t("phone")}</label>
+              </div>
+              <div className="flex flex-row gap-1 cursor-pointer">
+                <input
+                  type="radio"
+                  name="notify_via"
+                  value="email"
+                  id="email"
+                  className="radio"
+                  defaultChecked={
+                    initialData.email && !initialData.phone_number
+                  }
+                />
+                <label htmlFor="email">{t("email")}</label>
+              </div>
+            </div>
+            {formState?.fieldErrors?.notify_via?.[0] && (
+              <span className="text-xs text-danger">
+                {formState?.fieldErrors?.notify_via?.[0]}
+              </span>
+            )}
+          </div>
           <div className="flex flex-col gap-3">
             <div className="flex flex-col gap-3">
               <div className="flex flex-row gap-1">

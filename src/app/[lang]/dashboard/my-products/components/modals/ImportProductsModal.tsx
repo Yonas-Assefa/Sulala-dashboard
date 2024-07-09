@@ -56,12 +56,28 @@ function ImportProductsModal() {
           }
           setPreviewData(results.data);
           const fileHeaders = results.data[0];
+          const fileContents = results.data.slice(1);
           const missingColumns = expectedHeaders.filter(
             (header) => !fileHeaders?.includes(header),
           );
           const extraColumns = fileHeaders.filter(
             (header) => !expectedHeaders.includes(header),
           );
+
+          const invalidCategories = fileContents
+            .filter((content: any) => content?.length > 1)
+            .map((content: any) => content?.[0] as string)
+            .filter((category) => {
+              console.log({
+                category,
+                fileContents,
+                isValid: !/^\d+$/.test(category),
+              });
+              return !/^\d+$/.test(category);
+            });
+
+          console.log({ invalidCategories });
+
           if (missingColumns.length > 0) {
             setFormState(
               toFormState(
@@ -73,6 +89,14 @@ function ImportProductsModal() {
           } else if (extraColumns.length > 0) {
             setFormState(
               toFormState("ERROR", `Extra columns: ${extraColumns.join(", ")}`),
+            );
+            setIsDisabled(true);
+          } else if (invalidCategories.length > 0) {
+            setFormState(
+              toFormState(
+                "ERROR",
+                `Invalid category provided: ${invalidCategories.join(", ")}`,
+              ),
             );
             setIsDisabled(true);
           } else {

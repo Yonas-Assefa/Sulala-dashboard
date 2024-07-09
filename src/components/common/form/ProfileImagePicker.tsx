@@ -17,6 +17,7 @@ type Props = {
   id?: string;
   defaultValue?: string;
   disabled?: boolean;
+  label?: string;
 };
 
 function ProfileImagePicker({
@@ -25,6 +26,7 @@ function ProfileImagePicker({
   id,
   defaultValue,
   disabled,
+  label,
 }: Props) {
   const [image, setImage] = React.useState<{
     dataUrl: boolean;
@@ -175,8 +177,8 @@ function ProfileImagePicker({
                 </button>
               </div>
             ) : (
-              <p className="text-black/40 font-semibold cursor-not-allowed truncate">
-                {t("readonly")}
+              <p className="text-black/40 dark:text-tertiary font-semibold cursor-not-allowed truncate">
+                {label}
               </p>
             )}
             {/* {
