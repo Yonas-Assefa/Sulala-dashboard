@@ -2,11 +2,12 @@ import React, { ElementRef } from "react";
 
 type Props = {
   submitBtn: React.RefObject<ElementRef<"button">>;
+  formRef: React.RefObject<HTMLFormElement>;
   setDisabled: React.Dispatch<React.SetStateAction<boolean>>;
   otp: string[];
   setOTP: React.Dispatch<React.SetStateAction<string[]>>;
 };
-function OTPInput({ submitBtn, setDisabled, otp, setOTP }: Props) {
+function OTPInput({ submitBtn, formRef, setDisabled, otp, setOTP }: Props) {
   const input1 = React.useRef<ElementRef<"input">>(null);
   const input2 = React.useRef<ElementRef<"input">>(null);
   const input3 = React.useRef<ElementRef<"input">>(null);
@@ -16,32 +17,57 @@ function OTPInput({ submitBtn, setDisabled, otp, setOTP }: Props) {
 
   React.useEffect(() => {
     setDisabled(otp.some((value) => value === ""));
+    if (otp.every((value) => value !== "")) {
+      formRef.current?.requestSubmit();
+    }
   }, [otp]);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const index = parseInt(e.target.name.slice(-1));
     setOTP(otp.map((value, i) => (i === index - 1 ? e.target.value : value)));
-    if (e.target.value) {
-      if (index < 6) {
-        switch (index) {
-          case 1:
+    console.log("e.target.value", e.target.value, index);
+    if (index < 6) {
+      switch (index) {
+        case 1:
+          // if backspace is pressed, stay on the same input
+          if (e.target.value !== "") {
             input2.current?.focus();
-            break;
-          case 2:
+          }
+          break;
+        case 2:
+          if (e.target.value !== "") {
             input3.current?.focus();
-            break;
-          case 3:
+          } else {
+            input1.current?.focus();
+          }
+          break;
+        case 3:
+          if (e.target.value !== "") {
             input4.current?.focus();
-            break;
-          case 4:
+          } else {
+            input2.current?.focus();
+          }
+          break;
+        case 4:
+          if (e.target.value !== "") {
             input5.current?.focus();
-            break;
-          case 5:
+          } else {
+            input3.current?.focus();
+          }
+          break;
+        case 5:
+          if (e.target.value !== "") {
             input6.current?.focus();
-            break;
-        }
+          } else {
+            input4.current?.focus();
+          }
+          break;
       }
-      if (index === 6) {
+    }
+    if (index === 6) {
+      if (e.target.value === "") {
+        input5.current?.focus();
+      } else {
         submitBtn.current?.focus();
       }
     }

@@ -6,7 +6,6 @@ import {
 } from "@/utils/formStateHelper";
 import { CONFIRM_PHONE, VERIFY_PHONE } from "../../config/urls";
 import { otpVerificationSchema } from "../schema/zod-schema";
-import { cookies } from "next/headers";
 import {
   getResponseBody,
   getResponseErrorMessage,

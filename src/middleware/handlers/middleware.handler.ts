@@ -1,4 +1,5 @@
 import { getPersonalInfo } from "@/actions/settings/get-personal-info";
+import routes from "@/app/[lang]/dashboard/components/sideBarRoutes";
 import { isAuthenticated } from "@/lib/detect/server";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -7,9 +8,7 @@ export const guardSetupAccount = async (request: NextRequest) => {
     return NextResponse.redirect(new URL("/auth/sign-in", request.url));
   }
 
-  const response = NextResponse.next();
-
-  const personalInfo = await getPersonalInfo(response.cookies);
+  const personalInfo = await getPersonalInfo();
 
   if (personalInfo?.is_superuser)
     return NextResponse.redirect(new URL("/dashboard/shops", request.url));
@@ -18,34 +17,57 @@ export const guardSetupAccount = async (request: NextRequest) => {
   const stage = request.nextUrl.searchParams.get("stage");
   const { last_name, first_name, email } = personalInfo;
 
-  if (!personalInfo?.is_password_set) {
-    return NextResponse.redirect(new URL("/auth/create-password", request.url));
-  }
-  // else if (!shop) {
-  else if (!last_name || !first_name || !email) {
-    if (stage === "one") {
-      return;
+  // IF THE USER REGISTERED WITH PHONE NUMBER
+  if (personalInfo?.phone_number && personalInfo?.phone_number?.length > 0) {
+    if (!last_name || !first_name) {
+      if (stage === "one") {
+        return;
+      }
+      return NextResponse.redirect(
+        new URL("/auth/setup-account?stage=one", request.url),
+      );
+    } else if (!shop) {
+      if (stage === "two" || stage === "three") {
+        return;
+      }
+      return NextResponse.redirect(
+        new URL("/auth/setup-account?stage=two", request.url),
+      );
+    } else {
+      return NextResponse.redirect(new URL("/dashboard/settings", request.url));
     }
-    return NextResponse.redirect(
-      new URL("/auth/setup-account?stage=one", request.url),
-    );
-    // } else if (!shop || (shop && shop.categories?.length === 0)) {
-  } else if (!shop) {
-    if (stage === "two" || stage === "three") {
-      return;
+  } else {
+    if (!personalInfo?.is_password_set) {
+      return NextResponse.redirect(
+        new URL("/auth/create-password", request.url),
+      );
     }
-    return NextResponse.redirect(
-      new URL("/auth/setup-account?stage=two", request.url),
-    );
-  }
-  // else if (shop && !shop.tax_forms?.length) {
-  //     if (stage === 'three') {
-  //         return;
-  //     }
-  //     return NextResponse.redirect(new URL('/auth/setup-account?stage=three', request.url));
-  // }
-  else {
-    return NextResponse.redirect(new URL("/dashboard/settings", request.url));
+    // else if (!shop) {
+    else if (!last_name || !first_name || !email) {
+      if (stage === "one") {
+        return;
+      }
+      return NextResponse.redirect(
+        new URL("/auth/setup-account?stage=one", request.url),
+      );
+      // } else if (!shop || (shop && shop.categories?.length === 0)) {
+    } else if (!shop) {
+      if (stage === "two" || stage === "three") {
+        return;
+      }
+      return NextResponse.redirect(
+        new URL("/auth/setup-account?stage=two", request.url),
+      );
+    }
+    // else if (shop && !shop.tax_forms?.length) {
+    //     if (stage === 'three') {
+    //         return;
+    //     }
+    //     return NextResponse.redirect(new URL('/auth/setup-account?stage=three', request.url));
+    // }
+    else {
+      return NextResponse.redirect(new URL("/dashboard/settings", request.url));
+    }
   }
 };
 
@@ -54,9 +76,7 @@ export const guardCreatePassword = async (request: NextRequest) => {
     return NextResponse.redirect(new URL("/auth/sign-in", request.url));
   }
 
-  const response = NextResponse.next();
-
-  const personalInfo = await getPersonalInfo(response.cookies);
+  const personalInfo = await getPersonalInfo();
 
   if (personalInfo?.is_superuser)
     return NextResponse.redirect(new URL("/dashboard/shops", request.url));
@@ -82,16 +102,15 @@ export const guardDashboard = async (request: NextRequest) => {
     return NextResponse.redirect(new URL("/auth/sign-in", request.url));
   }
 
-  const response = NextResponse.next();
+  const personalInfo = await getPersonalInfo();
 
-  const personalInfo = await getPersonalInfo(response.cookies);
+  const superAdminPaths = routes
+    .filter((route) => route.protected)
+    .map((route) => route.path)
+    .map((path) => path.split("?")[0]);
 
   if (personalInfo?.is_superuser) {
-    if (
-      pathname.includes("/dashboard/shops") ||
-      pathname.includes("/dashboard/customer-support") ||
-      pathname.includes("/dashboard/faq")
-    ) {
+    if (superAdminPaths.some((path) => pathname.includes(path))) {
       return;
     } else {
       return NextResponse.redirect(new URL("/dashboard/shops", request.url));
@@ -116,9 +135,7 @@ export const guardAdminOnly = async (request: NextRequest) => {
     return NextResponse.redirect(new URL("/auth/sign-in", request.url));
   }
 
-  const response = NextResponse.next();
-
-  const personalInfo = await getPersonalInfo(response.cookies);
+  const personalInfo = await getPersonalInfo();
 
   if (!personalInfo?.is_superuser) {
     return NextResponse.redirect(new URL("/auth/unauthorized", request.url));

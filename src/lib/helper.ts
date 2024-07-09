@@ -232,14 +232,14 @@ export const getBearerToken = () => {
   return token;
 };
 
-export const cachePersonalInfo = (data: any, reqCookie?: ResponseCookies) => {
-  if (reqCookie) {
-    reqCookie.set("personal_info", JSON.stringify(data));
-  } else {
+export const cachePersonalInfo = (data: any) => {
+  try {
     cookies().set({
       name: "personal_info",
       value: JSON.stringify(data),
     });
+  } catch (error) {
+    Console.error(error);
   }
 };
 
@@ -299,12 +299,8 @@ export const getResponseErrorMessage = (
   body: any,
   defaultMessage?: string,
 ): string => {
-  if (
-    body.error &&
-    "title" in body.error &&
-    typeof body.error.title === "string"
-  ) {
-    return body.error.title;
+  if (body.error && "title" in body.error && "detail" in body.error) {
+    return `${body.error.title}: ${body.error.detail}`;
   } else if (body.message) {
     if (typeof body.message === "object")
       return (
@@ -325,6 +321,7 @@ export const getResponseErrorMessage = (
 };
 
 export const formatCategory = (categories: any[]) => {
+  if (!categories) return [];
   return categories.map((category: any) => {
     const data = {
       label: category.name,

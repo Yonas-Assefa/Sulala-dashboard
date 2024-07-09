@@ -33,6 +33,7 @@ export const productMapper = async (
         ),
         is_promoted: product.promotion_campaigns.length > 0,
         is_promote_disabled: product.status !== "ACTIVE",
+        uploadDate: new Date(product.uploadDate)?.toLocaleString(),
       };
     });
   } else {

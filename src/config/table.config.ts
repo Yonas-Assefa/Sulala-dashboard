@@ -1,0 +1,2 @@
+export const DEFAULT_ITEMS_PER_PAGE =
+  process.env.NEXT_PUBLIC_DEFAULT_ITEMS_PER_PAGE || 20;

@@ -7,7 +7,7 @@ import {
   getResponseErrorMessage,
 } from "@/lib/helper";
 import { ordersMapper } from "../mapper/orders-mapper";
-import { getFilterSortOrdering } from "@/lib/table";
+import { getFilterSortOrdering } from "@/lib/filter-sort-ordering";
 
 export const getOrders = async (formData: FormData) => {
   const { search, status, ordering, page, page_size } =

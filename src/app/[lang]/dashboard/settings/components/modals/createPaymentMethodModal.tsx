@@ -58,7 +58,8 @@ function CreatePaymentMethodModal() {
               id="expiry_date"
               label={t("expiration_date")}
               name="expiry_date"
-              placeholder={t("yyyy_mm_dd")}
+              placeholder={t("mm/yy")}
+              dynamicPlaceholder
               error={formState?.fieldErrors?.expiration_date?.[0]}
             />
             <TextInput
@@ -66,6 +67,7 @@ function CreatePaymentMethodModal() {
               label={t("cvc")}
               name="cvc"
               placeholder="***"
+              dynamicPlaceholder
               error={formState?.fieldErrors?.cvc?.[0]}
             />
           </div>

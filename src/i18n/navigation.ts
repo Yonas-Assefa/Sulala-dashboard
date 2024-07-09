@@ -47,6 +47,9 @@ export const pathnames = {
 
   "/legal/terms-and-conditions": "/legal/terms-and-conditions",
   "/legal/vendor-agreement": "/legal/vendor-agreement",
+
+  "/glossary/categories": "/glossary/categories",
+  "/glossary/product-status": "/glossary/product-status",
   // // If locales use different paths, you can
   // // specify each external path per locale.
   // '/about': {

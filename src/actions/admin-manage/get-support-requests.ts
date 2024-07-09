@@ -8,7 +8,7 @@ import {
   getResponseErrorMessage,
 } from "../../lib/helper";
 import { manageCustomerSupport } from "../mapper/manage-customer-support-mapper";
-import { getFilterSortOrdering } from "@/lib/table";
+import { getFilterSortOrdering } from "@/lib/filter-sort-ordering";
 
 export const getSupportRequests = async (formData: FormData) => {
   const { status } = getFilterSortOrdering(formData);

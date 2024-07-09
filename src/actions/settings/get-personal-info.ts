@@ -1,9 +1,6 @@
 "use server";
 
-import {
-  RequestCookies,
-  ResponseCookies,
-} from "next/dist/compiled/@edge-runtime/cookies";
+import { ResponseCookies } from "next/dist/compiled/@edge-runtime/cookies";
 import { GET_VENDOR_ACCOUNT as GET_VENDOR_PROFILE } from "../../config/urls";
 import {
   cachePersonalInfo,
@@ -12,7 +9,7 @@ import {
   retrievePersonalInfo,
 } from "../../lib/helper";
 
-export const getPersonalInfo = async (cookie?: ResponseCookies) => {
+export const getPersonalInfo = async () => {
   const cachedPersonalInfo = retrievePersonalInfo();
   if (cachedPersonalInfo) {
     return cachedPersonalInfo;
@@ -35,7 +32,7 @@ export const getPersonalInfo = async (cookie?: ResponseCookies) => {
     personalInfo?.is_password_set &&
     personalInfo?.shops?.length > 0
   ) {
-    cachePersonalInfo(personalInfo, cookie);
+    cachePersonalInfo(personalInfo);
   }
   return personalInfo;
 };

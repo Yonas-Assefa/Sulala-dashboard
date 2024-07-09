@@ -1,4 +1,5 @@
 "use client";
+import { DEFAULT_ITEMS_PER_PAGE } from "@/config/table.config";
 import { useCreateQueryString } from "@/hooks/useCreateQueryString";
 import { useTranslations } from "next-intl";
 import React from "react";
@@ -7,7 +8,7 @@ const PAGE_SIZES = [1, 3, 5, 10, 20, 50];
 function TablePagination({ count }: { count: number | undefined }) {
   const { createQueryStringAndPush, searchParams } = useCreateQueryString();
   const page = searchParams.get("page") || 1;
-  const page_size = searchParams.get("page_size") || 10;
+  const page_size = searchParams.get("page_size") || DEFAULT_ITEMS_PER_PAGE;
   const [isPending, startTransition] = React.useTransition();
 
   const t = useTranslations("Commons");

@@ -4,6 +4,7 @@ import FileInput from "@/components/common/form/FileInput";
 import PrimaryButton from "@/components/common/ui/PrimaryButton";
 import { useRedirectRoute } from "@/hooks/useRedirectRoute";
 import { useToastMessage } from "@/hooks/useToastMessage";
+import { Link } from "@/i18n/navigation";
 import { closeModal } from "@/lib/modals";
 import { EMPTY_FORM_STATE, toFormState } from "@/utils/formStateHelper";
 import { pushWarningNotification } from "@/utils/pushNotification.util";
@@ -208,12 +209,32 @@ function ImportProductsModal() {
             isPending={isPending}
           />
         </div>
-        {file && (
-          <div className="w-full flex justify-center flex-row pt-2 gap-2 items-center opacity-60">
-            <img src="/icons/alert.svg" alt="" className="w-[15px]" />
-            <p className="text-danger text-xs">Images will not be included!</p>
-          </div>
-        )}
+        {formState?.message &&
+          formState.message
+            ?.toLowerCase()
+            .includes("invalid category provided") && (
+            <div className="w-full px-5 mt-2 py-1 opacity-80 bg-gradient-to-r from-danger via-dangerlight to-danger">
+              <p className="text-black dark:text-white text-[10px]">
+                You can get lists of &nbsp;
+                <Link
+                  className="text-primary dark:text-green-500 font-semibold hover:underline hover:text-blue-600"
+                  href={"/glossary/categories"}
+                  target="_blank"
+                >
+                  {"categories"}
+                </Link>
+                &nbsp;and{" "}
+                <Link
+                  className="text-primary dark:text-green-500 font-semibold hover:underline hover:text-blue-600"
+                  href={"/glossary/categories"}
+                  target="_blank"
+                >
+                  {"product status"}
+                </Link>
+                &nbsp;from here.
+              </p>
+            </div>
+          )}
       </div>
       <form method="dialog" className="modal-backdrop">
         <button className="text-black"></button>

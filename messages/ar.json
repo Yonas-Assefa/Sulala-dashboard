@@ -95,6 +95,8 @@
     "enter_your_last_name": "أدخل اسمك الأخير",
     "what_is_your_email_address": "ما هو عنوان البريد الإلكتروني الخاص بك؟",
     "enter_your_email_address": "أدخل عنوان بريدك الالكتروني",
+    "what_is_your_phone_number": "ما هو رقم هاتفك؟",
+    "enter_your_phone_number": "أدخل رقم هاتفك",
     "terms_conditions": "بنود الخدمة وخصوصية السياسة",
     "you_agree_to_terms_and_conditions": "من خلال التحقق من حسابك، فإنك توافق على",
     "what_is_your_company_name": "ما هو اسم الشركة الخاصة بك؟",
@@ -132,7 +134,10 @@
     "manage_shops": "إدارة المحلات التجارية",
     "customer_support": "دعم العملاء",
     "manage_customer_support": "إدارة دعم العملاء",
-    "faq": "التعليمات"
+    "faq": "التعليمات",
+    "shop_products": "منتجات المتجر",
+    "shop_services": "خدمات المتجر",
+    "shop_drivers": "سائقي المتجر"
   },
   "Dashboard": {
     "settings": "إعدادات",
@@ -183,7 +188,7 @@
       "enter_name": "أدخل الاسم",
       "enter_card_number": "أدخل رقم البطاقة",
       "add": "يضيف",
-      "yyyy_mm_dd": "السنة-الشهر-اليوم",
+      "mm/yy": "مم/سنة",
       "primary": "أساسي",
       "set_as_primary": "تعيين كإعداد أساسي",
       "delete": "يمسح"
@@ -308,7 +313,18 @@
     "response": "استجابة",
     "enter_response_for_the_customer": "أدخل الاستجابة للعميل",
     "send": "يرسل",
-    "manage_faqs": "إدارة الأسئلة الشائعة"
+    "manage_faqs": "إدارة الأسئلة الشائعة",
+    "first_name": "الاسم الأول",
+    "last_name": "اسم العائلة",
+    "phone_number": "رقم التليفون",
+    "address": "عنوان",
+    "license_number": "رقم الترخيص",
+    "profile_photo": "الصورة الشخصية",
+    "license_front": "الرخصة الأمامية",
+    "license_back": "الرخصة الخلفية",
+    "id_front": "الهوية الأمامية",
+    "id_back": "الهوية الخلفية",
+    "driver_files": "ملفات السائق"
   },
   "Commons": {
     "instagram_link": "رابط الانستقرام",

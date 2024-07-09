@@ -9,7 +9,6 @@ import {
   getResponseErrorMessage,
 } from "@/lib/helper";
 import { getoneFromArray } from "@/utils/getOneFromArray";
-import { constructImageUrl } from "@/lib/images";
 
 type uploadImageResponse = {
   success: boolean;
@@ -45,7 +44,7 @@ export const uploadImage = async (
     });
 
     const body = await getResponseBody(response);
-    if (!response.ok || !body?.success) {
+    if (!response.ok) {
       throw new Error(
         getResponseErrorMessage(body) || "Failed to upload image",
       );

@@ -2,3 +2,5 @@
 
 ./scripts/git/INIT_TAG.sh
 npm install
+
+echo -e "\e[0;33;49mYou can build new image and push to docker hub by running \e[0m\e[0;34;49mnpm run docker:build\e[0m\e[0;33;49m and \e[0m\e[0;34;49mnpm run docker:push\e[0m\e[0;33;49m commands\e[0m"

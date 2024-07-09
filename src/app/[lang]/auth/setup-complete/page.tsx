@@ -1,14 +1,12 @@
 "use client";
 import { clearCookie } from "@/actions/common/clear-cookie";
-import { useSetupAccountStore } from "@/providers/setup-account-store-provider";
-import { useRouter } from "@/i18n/navigation";
 import React from "react";
 import { notFound } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 type Props = {
   searchParams: {
-    email: string;
+    email?: string;
   };
 };
 
@@ -29,7 +27,9 @@ function SetupComplete({ searchParams: { email } }: Props) {
 
       <div className="">
         <p>
-          {t("moderation_notification_will_be_sent", { email })}
+          {t("moderation_notification_will_be_sent", {
+            email,
+          })}
           &nbsp;{" "}
           <span className="text-primary font-semibold">
             {t("it_will_take_48_hr")}

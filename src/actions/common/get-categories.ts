@@ -6,7 +6,6 @@ import {
   formatCategory,
   getRequestHeaders,
   getResponseBody,
-  makeRequest,
 } from "../../lib/helper";
 
 export const getCategories = async () => {

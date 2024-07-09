@@ -39,17 +39,16 @@ export const GET_SHOP_ACCOUNT = `${VENDOR_BASE_URL}get_shop_info/`;
 export const UPDATE_VENDOR_ACCOUNT = `${VENDOR_BASE_URL}update_profile/`;
 export const UPDATE_SHOP_ACCOUNT = `${VENDOR_BASE_URL}update_shop_info/`;
 export const UPDATE_BILLING_ACCOUNT = `${VENDOR_BASE_URL}update_profile/`;
-export const ADD_BILLING_INFO = `${VENDOR_BASE_URL}add_payment_method/`;
-export const DELETE_BILLING_INFO = `${VENDOR_BASE_URL}delete_payment_method/`;
-export const SET_PRIMARY_BILLING = `${VENDOR_BASE_URL}set_payment_method_primary/`;
+export const BILLING_INFO = `${API_URL}payments/`;
+export const SET_PRIMARY_BILLING = `${API_URL}payments/set-default-payment-method/`;
 export const CHANGE_PASSWORD = `${VENDOR_BASE_URL}change_password/`;
 export const LOGOUT = `${API_URL}logout/`;
-export const GET_BILLING_ACCOUNT = `${VENDOR_BASE_URL}get_payment_method/`;
 export const GOOGLE_SIGNIN_URL = `${VENDOR_BASE_URL}google_signin_signup_vendor/`;
 
 // CATEGORY URLS
 export const CATEGORIES = `${API_URL}categories/`;
 export const SUBCATEGORIES = `${API_URL}get_category_by_shop/`;
+export const ALL_SUBCATEGORIES = `${API_URL}sub-categories/`;
 
 // ANIMAL URLS
 export const GET_ANIMALS = `${API_URL}get_all_animal_species_for_product_search/`;
@@ -83,6 +82,9 @@ export const ANSWER_SUPPORT_REQUESTS = `${VENDOR_BASE_URL}customer-support-respo
 export const APPROVE_SHOPS = `${VENDOR_BASE_URL}approve_vendor_registration/`;
 export const REJECT_SHOPS = `${VENDOR_BASE_URL}reject_vendor_registration/`;
 export const ACCEPT_SHOP_APPROVAL = `${VENDOR_BASE_URL}account-access-link/`;
+export const GET_PENDING_DRIVERS = `${API_URL}review-driver-registration/`;
+export const REJECT_DRIVER_URL = `${API_URL}reject-driver-registration/`;
+export const APPROVE_DRIVER_URL = `${API_URL}approve-driver-registration/`;
 
 // OPEN TELEMETRY URLS
 export const SENTRY_DSN = process.env.SENTRY_DNS!;
