@@ -7,7 +7,7 @@ import { Suspense } from "react";
 import { TableProps } from "@/types/props.type";
 
 type Props = {
-  params: { tab: string[] };
+  params: { tab: string };
   searchParams: {
     search: string;
     filter: string;
@@ -22,7 +22,8 @@ async function OrdersPage({
   params: { tab },
   searchParams: { search, filter, sort, sort_by, page_size, page },
 }: Props) {
-  const activeTab = tab ? tab[0] : "items";
+  console.log("console log: ", tab);
+  const activeTab = tab ? tab : "items";
   const tabs = [
     { name: "Items", id: "items" },
     { name: "Services", id: "services" },
@@ -43,7 +44,7 @@ async function OrdersPage({
           >
             Items
           </Link>
-          {/* <Link
+          <Link
             href={"/dashboard/orders/services"}
             className={`tab border-b-2 px-6 -mb-[1px] ${
               activeTab == "services"
@@ -52,7 +53,7 @@ async function OrdersPage({
             }`}
           >
             Services
-          </Link> */}
+          </Link>
         </div>
       </div>
 
