@@ -137,6 +137,12 @@ function TableActions({
   };
 
   const handleToogle = async () => {
+    if (!toggleValue.checked) {
+      const confirmation = await openModal("confirm_item_table_modal", true);
+      if (!confirmation) {
+        return;
+      }
+    }
     addOptimisticToggleValue(!toggleValue.checked);
     startTransition(async () => {
       if (toggle && actionOptions?.toggle) {

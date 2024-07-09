@@ -16,6 +16,7 @@ import {
 import NoItemsFound from "../ui/NoItemsFound";
 import TablePagination from "./TablePagination";
 import { getPersonalInfo } from "@/actions/settings/get-personal-info";
+import ConfirmModal from "../modal/ConfirmModal";
 
 type Props = {
   filterData: FilterData;
@@ -39,6 +40,7 @@ async function Table({
 
   return (
     <div className="flex flex-col">
+      <ConfirmModal />
       <DeleteProductModal deleteAction={actionOptions?.delete} />
       <div className="overflow-x-visible min-w-[900px] border dark:border-gray-600 rounded-[20px]">
         <div className="flex justify-between p-3 items-center">
