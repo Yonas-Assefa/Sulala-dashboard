@@ -102,15 +102,17 @@ function OrderDetailPage({ res }: any) {
               <div className="flex flex-col gap-4 pr-5 md:flex-row justify-around md:gap-16 text-md ">
                 <div className="flex flex-col  items-end">
                   <h4 className="text-gray-400 capitalize">Status</h4>
-                  <StatusBadge status="Cancelled" statusType="fail" />
+                  <StatusBadge status={res.status} />
                 </div>
+
                 <div className="flex flex-col  items-end">
                   <h4 className="text-gray-400 capitalize">payment</h4>
-                  <StatusBadge status="Paid" statusType="success" />
+                  <StatusBadge status="Paid" />
                 </div>
+
                 <div className="flex flex-col items-end">
                   <h4 className="text-gray-400 capitalize">driver </h4>
-                  <StatusBadge status="Assigned" statusType="success" />
+                  <StatusBadge status="Assigned" />
                 </div>
               </div>
             </div>
@@ -119,7 +121,52 @@ function OrderDetailPage({ res }: any) {
 
             {/* start order items detail  */}
             <div className="flex flex-col gap-3 text-sm">
-              <div className="flex flex-row justify-between mt-10">
+              {res.order_items.map((order_item: any, index: any) => {
+                return (
+                  <div className="flex flex-row justify-between mt-5 shadow-sm">
+                    <div className="flex flex-row justify-between">
+                      <div className="flex flex-row items-center pr-4">
+                        <img
+                          className="w-24 h-24 rounded-md"
+                          src={
+                            order_item.image
+                              ? order_item.image
+                              : "/images/product-placeholder.jpg"
+                          }
+                          alt="product image "
+                        />
+                      </div>
+
+                      <div className="flex flex-col justify-around text-lg">
+                        <h2 className="text-primary">
+                          {order_item.product_name}
+                        </h2>
+                        <p>product short discription</p>
+                        <p> quantity: {order_item.quantity}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col justify-around text-lg ">
+                      <div className="flex flex-row justify-between gap-10 w-[200px]">
+                        <h3 className="text-gray-400">unit price: </h3>
+                        <p>{order_item.unit_price}</p>
+                      </div>
+
+                      <div className="flex flex-row justify-between gap-10 w-[200px]">
+                        <h3 className="text-gray-400">Fee: </h3>
+                        <p>{order_item.fee}</p>
+                      </div>
+
+                      <div className="flex flex-row justify-between gap-10 w-[200px]">
+                        <h3 className="text-gray-400">Total: </h3>
+                        <p>{order_item.total_price}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+
+              {/* <div className="flex flex-row justify-between mt-10">
                 <div className="flex flex-row justify-between">
                   <div className="flex flex-row items-center pr-4">
                     <img
@@ -222,42 +269,7 @@ function OrderDetailPage({ res }: any) {
                     <p>$183</p>
                   </div>
                 </div>
-              </div>
-
-              <div className="flex flex-row justify-between mt-10">
-                <div className="flex flex-row justify-between">
-                  <div className="flex flex-row items-center pr-4">
-                    <img
-                      className="w-24 h-24"
-                      src="/cat.jpeg"
-                      alt="product image "
-                    />
-                  </div>
-
-                  <div className="flex flex-col justify-around text-lg">
-                    <h2 className="text-primary">product name</h2>
-                    <p>product short discription</p>
-                    <p> quantity: 3</p>
-                  </div>
-                </div>
-
-                <div className="flex flex-col justify-around text-lg ">
-                  <div className="flex flex-row justify-between gap-10 w-[200px]">
-                    <h3 className="text-gray-400">unit price: </h3>
-                    <p>$123</p>
-                  </div>
-
-                  <div className="flex flex-row justify-between gap-10 w-[200px]">
-                    <h3 className="text-gray-400">Fee: </h3>
-                    <p>$13</p>
-                  </div>
-
-                  <div className="flex flex-row justify-between gap-10 w-[200px]">
-                    <h3 className="text-gray-400">Total: </h3>
-                    <p>$183</p>
-                  </div>
-                </div>
-              </div>
+              </div> */}
             </div>
             {/* end order items detail  */}
 
