@@ -75,7 +75,7 @@ export const setupAccountFirstStepSchema = z.object({
   email: z.string().email().optional(),
 });
 
-export const setupAccountLastStepSchema = z.object({
+export const setupAccountSecondStepSchema = z.object({
   name: z.string().min(1, "Company name must be at least 1 character long"),
   legal_address: z.string().min(1, "Address must be at least 1 character long"),
   // categories: z.array(
@@ -83,6 +83,9 @@ export const setupAccountLastStepSchema = z.object({
   //     .number({ message: "Please choose at least one category" })
   //     .min(1, "Please choose at least one category"),
   // ),
+});
+
+export const setupAccountLastStepSchema = setupAccountSecondStepSchema.extend({
   certificates: z
     .any()
     .refine(fileRefine.existFn, fileRefine.existMg)

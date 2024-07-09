@@ -12,6 +12,7 @@ import { updateShopInfo } from "@/actions/settings/update-shop-info";
 import SocialMediaInput from "@/components/common/form/SocialMediaInput";
 import SelectInput from "@/components/common/form/SelectInput";
 import { useTranslations } from "next-intl";
+import GeoLocationInput from "@/components/common/form/GeoLocationInput";
 
 type Props = {
   categories: any;
@@ -52,7 +53,7 @@ function ShopInfo({ categories, shopInfo }: Props) {
           defaultValue={shopInfo.categories}
           multi
         />
-        <TextInput
+        <GeoLocationInput
           id="legal_address"
           name="legal_address"
           placeholder={t("legal_address")}

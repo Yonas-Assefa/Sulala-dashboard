@@ -13,6 +13,7 @@ import TextInput from "@/components/common/form/TextInput";
 import PrimaryButton from "@/components/common/ui/PrimaryButton";
 import ProfileImagePicker from "@/components/common/form/ProfileImagePicker";
 import { useTranslations } from "next-intl";
+import GeoLocationInput from "@/components/common/form/GeoLocationInput";
 
 function SetupAccountStageOne({
   formState,
@@ -112,7 +113,7 @@ function SetupAccountStageTwo({
         data={data}
         multi
   />**/}
-      <TextInput
+      <GeoLocationInput
         defaultValue={address}
         value={address}
         setValue={setAddress}

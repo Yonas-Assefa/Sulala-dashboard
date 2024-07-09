@@ -10,10 +10,10 @@ import {
 } from "../../lib/helper";
 
 export const getPersonalInfo = async () => {
-  const cachedPersonalInfo = retrievePersonalInfo();
-  if (cachedPersonalInfo) {
-    return cachedPersonalInfo;
-  }
+  // const cachedPersonalInfo = retrievePersonalInfo();
+  // if (cachedPersonalInfo) {
+  //   return cachedPersonalInfo;
+  // }
 
   const response = await fetch(GET_VENDOR_PROFILE, {
     method: "GET",
@@ -26,13 +26,13 @@ export const getPersonalInfo = async () => {
   }
 
   const personalInfo = body.data;
-  if (
-    personalInfo &&
-    personalInfo?.email_verified &&
-    personalInfo?.is_password_set &&
-    personalInfo?.shops?.length > 0
-  ) {
-    cachePersonalInfo(personalInfo);
-  }
+  // if (
+  //   personalInfo &&
+  //   personalInfo?.email_verified &&
+  //   personalInfo?.is_password_set &&
+  //   personalInfo?.shops?.length > 0
+  // ) {
+  //   cachePersonalInfo(personalInfo);
+  // }
   return personalInfo;
 };

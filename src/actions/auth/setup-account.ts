@@ -8,6 +8,7 @@ import { SETUP_URL, SHOP_ACCOUNT } from "../../config/urls";
 import {
   setupAccountFirstStepSchema,
   setupAccountLastStepSchema,
+  setupAccountSecondStepSchema,
 } from "../schema/zod-schema";
 import {
   changeObjToFormData,
@@ -27,6 +28,15 @@ export const setupAccount = async (
     const stage = formData.get("stage")?.toString();
 
     if (stage === "two") {
+      setupAccountSecondStepSchema.parse(
+        removeNullAndUndefined({
+          name: formData.get("company_name"),
+          // categories: formData
+          //   .getAll("sale_category")
+          //   .map((category) => +category),
+          legal_address: formData.get("address"),
+        }),
+      );
       return toFormState(
         "INFO",
         "Account setup 2/3",
