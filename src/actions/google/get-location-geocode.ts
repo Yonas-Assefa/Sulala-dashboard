@@ -2,14 +2,13 @@
 
 import { GOOGLE_MAPS_GEOCODE_URL, GOOGLE_MAPS_KEY } from "../../config/urls";
 
-type TGetLocationGeoCodeReturn =
-  // {
-  //   description: string;
-  //   lat: string;
-  //   long: string;
-  //   is_manual: boolean;
-  // };
-  string;
+// type TGetLocationGeoCodeReturn = {
+//   description: string;
+//   lat: string;
+//   long: string;
+//   is_manual: boolean;
+// };
+type TGetLocationGeoCodeReturn = string;
 export const getLocationGeoCode = async (
   address: string,
 ): Promise<TGetLocationGeoCodeReturn> => {

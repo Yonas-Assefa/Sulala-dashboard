@@ -333,7 +333,10 @@
     "driver_files": "ملفات السائق",
     "email": "البريد الإلكتروني",
     "phone": "هاتف",
-    "notify_the_user_via": "إخطار المستخدم عبر"
+    "notify_the_user_via": "إخطار المستخدم عبر",
+    "driver_approval_action": "إجراء موافقة السائق",
+    "driver_details": "تفاصيل السائق",
+    "driver_info": "معلومات السائق"
   },
   "Commons": {
     "instagram_link": "رابط الانستقرام",

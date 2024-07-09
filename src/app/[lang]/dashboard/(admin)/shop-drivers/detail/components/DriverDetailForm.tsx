@@ -1,5 +1,6 @@
 "use client";
 import { approveReject } from "@/actions/admin-manage/approve-reject-drivers";
+import ProfileImagePicker from "@/components/common/form/ProfileImagePicker";
 import TextAreaInput from "@/components/common/form/TextAreaInput";
 import TextInput from "@/components/common/form/TextInput";
 import PrimaryButton from "@/components/common/ui/PrimaryButton";
@@ -22,13 +23,7 @@ function CustomerDetailForm({ initialData }: Props) {
   >();
   const [status, setStatus] = React.useState<"APPROVE" | "REJECT">();
 
-  const TABS = [
-    "profile_photo",
-    "license_front",
-    "license_back",
-    "id_front",
-    "id_back",
-  ];
+  const TABS = ["license_front", "license_back", "id_front", "id_back"];
 
   const [formState, action] = useFormState(approveReject, EMPTY_FORM_STATE);
 
@@ -46,8 +41,13 @@ function CustomerDetailForm({ initialData }: Props) {
   return (
     <div className="w-full flex flex-col md:grid md:grid-cols-3 gap-3">
       <div className="bg-tertiary dark:bg-gray-800 text-black dark:text-white col-span-2 p-8 rounded-[40px] flex flex-col gap-3">
-        <h3 className="font-semibold text-xl">{t("customer_info")}</h3>
+        <h3 className="font-semibold text-xl">{t("driver_info")}</h3>
         <div className="max-w-[1300px] flex flex-col md:grid md:grid-cols-2 gap-3">
+          <ProfileImagePicker
+            defaultValue={initialData?.profile_photo}
+            disabled
+            label={t("profile_photo")}
+          />
           <TextInput
             defaultValue={initialData?.first_name}
             disabled
@@ -138,7 +138,7 @@ function CustomerDetailForm({ initialData }: Props) {
         </div>
       </div>
       <div className="bg-tertiary dark:bg-gray-800 text-black dark:text-white p-8 rounded-[40px] flex flex-col gap-3">
-        <h3 className="font-semibold text-xl">{t("vendor_approval_action")}</h3>
+        <h3 className="font-semibold text-xl">{t("driver_approval_action")}</h3>
         <form action={action} className="flex flex-col gap-4">
           <input
             type="text"
@@ -158,6 +158,9 @@ function CustomerDetailForm({ initialData }: Props) {
                   value="phone"
                   id="phone"
                   className="radio"
+                  defaultChecked={
+                    initialData.phone_number && !initialData.email
+                  }
                 />
                 <label htmlFor="phone">{t("phone")}</label>
               </div>
@@ -168,6 +171,9 @@ function CustomerDetailForm({ initialData }: Props) {
                   value="email"
                   id="email"
                   className="radio"
+                  defaultChecked={
+                    initialData.email && !initialData.phone_number
+                  }
                 />
                 <label htmlFor="email">{t("email")}</label>
               </div>

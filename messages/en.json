@@ -328,7 +328,10 @@
     "driver_files": "Driver Files",
     "email": "Email",
     "phone": "Phone",
-    "notify_the_user_via": "Notify the user via"
+    "notify_the_user_via": "Notify the user via",
+    "driver_approval_action": "Driver Approval Action",
+    "driver_details": "Driver Details",
+    "driver_info": "Driver Info"
   },
   "Commons": {
     "instagram_link": "Instagram link",

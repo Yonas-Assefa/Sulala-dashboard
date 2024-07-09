@@ -27,13 +27,13 @@ function GeoLocationInput({
   const [addressOptions, setAddressOptions] = React.useState<
     { value: string; label: string }[]
   >([]);
-  const [geoLocation, setGeoLocation] = React.useState<// {
+  // const [geoLocation, setGeoLocation] = React.useState<{
   //   description: string;
   //   lat: string;
   //   long: string;
   //   is_manual: boolean;
-  // }
-  string>();
+  // }>();
+  const [geoLocation, setGeoLocation] = React.useState<string>();
   const dropdownRef = React.useRef<HTMLDetailsElement>(null);
   const optionListRef = useDetectClickOutside({
     onTriggered: () => {
@@ -122,15 +122,23 @@ function GeoLocationInput({
       htmlFor={id + "_geolocation"}
       className="flex flex-col gap-3"
     >
-      <p className="self-start text-black dark:text-white">
-        {label}
-        {required && (
-          <span className="text-danger">
-            *&nbsp;
-            <sup className="text-xs opacity-70">(required)</sup>
+      <div className="flex flex-row justify-between items-center">
+        <p className="self-start text-black dark:text-white">
+          {label}
+          {required && (
+            <span className="text-danger">
+              *&nbsp;
+              <sup className="text-xs opacity-70">(required)</sup>
+            </span>
+          )}
+        </p>
+        {isPending && (
+          <span className="text-[13px] text-primary dark:text-green-600 mr-8 -mb-6">
+            {"searching for locations..."}
           </span>
         )}
-      </p>
+      </div>
+
       <input
         type="text"
         hidden
@@ -145,7 +153,7 @@ function GeoLocationInput({
         open={addressOptions.length > 0}
       >
         <summary
-          className={`flex items-center relative overflow-hidden justify-between gap-0 border rounded-[40px] w-full ${error ? "bg-dangerlight border-danger" : "bg-white dark:bg-gray-800 focus-within:border-primary"}`}
+          className={`flex items-center relative overflow-hidden justify-between gap-0 border rounded-[40px] w-full ${error ? "bg-dangerlight border-danger" : "bg-white dark:bg-gray-800 dark:hover:bg-gray-700 focus-within:border-primary"}`}
         >
           <input
             id={id + "_geolocation"}
@@ -172,8 +180,8 @@ function GeoLocationInput({
               disabled={disabled || isPending}
             >
               {isPending ? (
-                <div className="flex flex-col justify-center items-center rounded-full bg-primary/30 animate-pulse">
-                  <span className="loading loading-ring loading-md text-primary"></span>
+                <div className="flex flex-col justify-center items-center rounded-full bg-primary/30 dark:bg-tertiary/30 animate-pulse">
+                  <span className="loading loading-ring loading-md text-primary dark:text-white"></span>
                 </div>
               ) : (
                 <img
