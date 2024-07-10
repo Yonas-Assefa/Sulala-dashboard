@@ -2,13 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { authMiddleware } from "./middleware/authMiddleware";
 import { i18nMiddleware } from "./middleware/i18nMiddleware";
 import { guardMiddleware } from "./middleware/guardMiddleware";
+import { mobileMiddleware } from "./middleware/mobileMiddleware";
 
 const middlewares = [
+  mobileMiddleware,
   guardMiddleware,
   authMiddleware,
   i18nMiddleware,
 ];
-
 
 export async function middleware(request: NextRequest) {
   for (const fn of middlewares) {
@@ -24,7 +25,6 @@ export const config = {
     // '/((?!_next/).*auth/.*)',
     // '/((?!_next/).*dashboard/.*)',
     // '/(ar|en)/:path*',
-    '/((?!api|_next|.*\\..*).*)'
+    "/((?!api|_next|.*\\..*).*)",
   ],
-
 };
