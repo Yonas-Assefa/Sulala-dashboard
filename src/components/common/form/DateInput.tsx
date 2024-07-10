@@ -104,14 +104,14 @@ function DateInput({
 
   return (
     <div ref={ref}>
-      <p>
+      <p className="text-black dark:text-white">
         {label}{" "}
         <span className="text-secondary text-[10px] block md:inline-block">
           {getUserTimezone().userTimezoneWithOffset}
         </span>
       </p>
       <div
-        className={`flex flex-col md:flex-row p-2 gap-2 w-full flex-wrap ${disabled && "opacity-50"}`}
+        className={`flex flex-col text-black dark:text-white md:flex-row p-2 gap-2 w-full flex-wrap ${disabled && "opacity-50"}`}
       >
         <input
           type="text"

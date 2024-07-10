@@ -97,8 +97,8 @@ function ConfirmModal() {
             name="status"
           />
         </div>
-        <div className="flex flex-col bg-tertiary m-3 p-2 gap-3">
-          <h4 className="font-semibold text-xl text-gray-600">
+        <div className="flex flex-col bg-tertiary dark:bg-gray-700 rounded-md m-3 p-2 gap-3">
+          <h4 className="font-semibold text-xl text-gray-600 dark:text-white">
             Edit end date and time
           </h4>
           <hr />

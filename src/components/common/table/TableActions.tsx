@@ -158,12 +158,14 @@ function TableActions({
           toInclude.map((fd) => {
             formData.append(fd.formDataKey, product[fd.itemKey]);
           });
-          actionOptions.toggle.action(formData).then((res: FormState) => {
-            setFormState(res);
-            if (res.status === "SUCCESS") {
-              setToggleValue({ checked: !toggleValue.checked });
-            }
-          });
+          actionOptions.toggle
+            .action(formState, formData)
+            .then((res: FormState) => {
+              setFormState(res);
+              if (res.status === "SUCCESS") {
+                setToggleValue({ checked: !toggleValue.checked });
+              }
+            });
         }
       });
     }
