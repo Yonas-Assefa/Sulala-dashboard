@@ -109,7 +109,7 @@ function TextInput({
           <button
             type="button"
             onClick={handleClear}
-            className={`absolute bottom-[13px] ${lang !== "ar" ? "right-[13px]" : "left-[13px]"} ${
+            className={`absolute bottom-[13px] z-10 ${lang !== "ar" ? "right-[13px]" : "left-[13px]"} ${
               disabled
                 ? "opacity-40 cursor-not-allowed"
                 : "opacity-100 cursor-pointer"
