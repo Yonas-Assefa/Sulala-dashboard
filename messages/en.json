@@ -395,7 +395,8 @@
     "continue": "Continue",
     "pagination_showing": "Showing",
     "pagination_of": "of",
-    "pagination_orders": "orders"
+    "pagination_orders": "orders",
+    "no_photo": "No Photo"
   },
   "Error": {
     "trouble_loading_page": "We're sorry, we're having some trouble loading the page right now",

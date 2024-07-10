@@ -141,14 +141,16 @@ function ProfileImagePicker({
             </div>
             <div className="flex flex-col gap-2">
               <p
-                className={`font-semibold ${error ? "text-danger" : "text-primary"}`}
+                className={`font-semibold ${error ? "text-danger" : disabled ? "text-gray-500" : "text-primary"}`}
               >
-                {t("add_photo")}
+                {disabled ? t("no_photo") : t("add_photo")}
               </p>
-              <div className="text-secondary flex flex-col gap-0">
-                <span>{t("jpeg,_png")}</span>
-                <span>{t("max_20_mb")}</span>
-              </div>
+              {!disabled && (
+                <div className="text-secondary flex flex-col gap-0">
+                  <span>{t("jpeg,_png")}</span>
+                  <span>{t("max_20_mb")}</span>
+                </div>
+              )}
             </div>
           </label>
         ) : (

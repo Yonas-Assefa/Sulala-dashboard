@@ -140,7 +140,8 @@ function TableActions({
   const handleToogle = async () => {
     if (!toggleValue.checked) {
       createQueryStringAndPush("item", product.id as string);
-      openModal("confirm_item_table_modal");
+      const isSuccessful = await openModal("confirm_item_table_modal", true);
+      console.log({ isSuccessful });
     } else {
       addOptimisticToggleValue(!toggleValue.checked);
       startTransition(async () => {
