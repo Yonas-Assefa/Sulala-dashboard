@@ -9,7 +9,15 @@
     "lint": "next lint",
     "prepare": "husky",
     "tag:version": "./scripts/git/BUMP_VERSION.sh",
+    "tag:version:latest": "./scripts/git/BUMP_VERSION.sh --latest",
+    "tag:version:patch": "./scripts/git/BUMP_VERSION.sh --patch",
+    "tag:version:minor": "./scripts/git/BUMP_VERSION.sh --minor",
+    "tag:version:major": "./scripts/git/BUMP_VERSION.sh --major",
+    "docker:login": "./scripts/docker/LOGIN.sh",
+    "docker:logout": "./scripts/docker/LOGOUT.sh",
     "docker:build": "./scripts/docker/ALL.sh",
+    "docker:run": "./scripts/docker/RUN.sh",
+    "docker:push": "./scripts/docker/PUSH.sh",
     "test": "vitest run"
   },
   "dependencies": {
