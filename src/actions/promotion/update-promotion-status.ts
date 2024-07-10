@@ -7,7 +7,7 @@ import {
   getResponseBody,
   getResponseErrorMessage,
 } from "../../lib/helper";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 export const updatePromotionStatus = async (formData: FormData) => {
   try {
@@ -41,7 +41,8 @@ export const updatePromotionStatus = async (formData: FormData) => {
 
     const successMessage = `Promotion status set to ${newStatus.toLowerCase()} successfully`;
 
-    revalidatePath("/dashboard/promotion");
+    // revalidatePath("/dashboard/promotion");
+    revalidateTag("promotions");
 
     return toFormState("SUCCESS", successMessage);
   } catch (error) {

@@ -52,6 +52,14 @@ function TableActions({
   useToastMessage(formState);
   useRedirectRoute(formState);
 
+  React.useEffect(() => {
+    setToggleValue({
+      checked:
+        product[actionOptions?.toggle?.key as string] ==
+        actionOptions?.toggle?.active,
+    });
+  }, [product]);
+
   const promotion_id = Array.isArray(product?.promotion_campaigns)
     ? product?.promotion_campaigns?.[0]?.id
     : product?.promotion_campaigns?.id;
@@ -140,8 +148,7 @@ function TableActions({
   const handleToogle = async () => {
     if (!toggleValue.checked) {
       createQueryStringAndPush("item", product.id as string);
-      const isSuccessful = await openModal("confirm_item_table_modal", true);
-      console.log({ isSuccessful });
+      await openModal("confirm_item_table_modal");
     } else {
       addOptimisticToggleValue(!toggleValue.checked);
       startTransition(async () => {
