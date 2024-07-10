@@ -29,7 +29,8 @@ function TableActions({
   toggle,
   actionOptions,
 }: Props) {
-  const { createQueryString } = useCreateQueryString();
+  const { createQueryString, createQueryStringAndPush } =
+    useCreateQueryString();
   const [formState, setFormState] = useState(EMPTY_FORM_STATE);
   const pathname = usePathname();
   const [toggleValue, setToggleValue] = useState({
@@ -138,27 +139,26 @@ function TableActions({
 
   const handleToogle = async () => {
     if (!toggleValue.checked) {
-      const confirmation = await openModal("confirm_item_table_modal", true);
-      if (!confirmation) {
-        return;
-      }
+      createQueryStringAndPush("item", product.id as string);
+      openModal("confirm_item_table_modal");
+    } else {
+      addOptimisticToggleValue(!toggleValue.checked);
+      startTransition(async () => {
+        if (toggle && actionOptions?.toggle) {
+          const formData = new FormData();
+          const toInclude = actionOptions.toggle.formData || [];
+          toInclude.map((fd) => {
+            formData.append(fd.formDataKey, product[fd.itemKey]);
+          });
+          actionOptions.toggle.action(formData).then((res: FormState) => {
+            setFormState(res);
+            if (res.status === "SUCCESS") {
+              setToggleValue({ checked: !toggleValue.checked });
+            }
+          });
+        }
+      });
     }
-    addOptimisticToggleValue(!toggleValue.checked);
-    startTransition(async () => {
-      if (toggle && actionOptions?.toggle) {
-        const formData = new FormData();
-        const toInclude = actionOptions.toggle.formData || [];
-        toInclude.map((fd) => {
-          formData.append(fd.formDataKey, product[fd.itemKey]);
-        });
-        actionOptions.toggle.action(formData).then((res: FormState) => {
-          setFormState(res);
-          if (res.status === "SUCCESS") {
-            setToggleValue({ checked: !toggleValue.checked });
-          }
-        });
-      }
-    });
   };
 
   return (

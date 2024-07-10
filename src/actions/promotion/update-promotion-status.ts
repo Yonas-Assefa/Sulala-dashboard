@@ -22,10 +22,11 @@ export const updatePromotionStatus = async (formData: FormData) => {
     if (newStatus == "ACTIVE") {
       // make the start date the current date and off by half minute
       const start_date = new Date(Date.now() + 60000 / 2).toISOString();
-      Object.assign(data, { start_date });
+      const end_date = formData.get("end_datetime");
+      Object.assign(data, { start_date, end_date });
     }
 
-    console.log({ data });
+    console.log({ data, item_id, PROMOTIONS });
 
     const response = await fetch(`${PROMOTIONS}${item_id}/`, {
       method: "PATCH",

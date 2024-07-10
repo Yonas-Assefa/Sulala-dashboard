@@ -10,6 +10,7 @@ type Props = {
   name?: string;
   error?: string;
   defaultValue?: string;
+  value?: string;
   disabled?: boolean;
 };
 
@@ -41,6 +42,7 @@ function DateInput({
   error,
   defaultValue,
   disabled,
+  value,
 }: Props) {
   const [time, setTime] = React.useState<string>(
     extractDateAndTime(defaultValue)?.time,
@@ -84,6 +86,14 @@ function DateInput({
     const dateTime = new Date(`${date}T${time}:00`);
     return dateTime.toLocaleString();
   };
+
+  React.useEffect(() => {
+    if (value) {
+      const { time, date } = extractDateAndTime(value);
+      setTime(time);
+      setDate(date);
+    }
+  }, [value]);
 
   React.useEffect(() => {
     if (setValue) {

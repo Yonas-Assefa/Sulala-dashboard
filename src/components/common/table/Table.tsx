@@ -16,7 +16,7 @@ import {
 import NoItemsFound from "../ui/NoItemsFound";
 import TablePagination from "./TablePagination";
 import { getPersonalInfo } from "@/actions/settings/get-personal-info";
-import ConfirmModal from "../modal/ConfirmModal";
+import ConfirmModal from "../modal/PromotionConfirmModal";
 
 type Props = {
   filterData: FilterData;
