@@ -375,6 +375,50 @@ export const createPromoCampaingSchema = basePromoCampaignSchema.refine(
 
 export const updatePromoCampaingSchema = basePromoCampaignSchema.partial();
 
+export const updatePromoStatus = z.object({
+  start_date: z
+    .string()
+    .refine(
+      (val) => {
+        try {
+          new Date(val);
+          return true;
+        } catch (error) {
+          return false;
+        }
+      },
+      {
+        message: "Please provide a valid date",
+      },
+    )
+    .optional(),
+  end_date: z
+    .string()
+    .refine(
+      (val) => {
+        try {
+          new Date(val);
+          return true;
+        } catch (error) {
+          return false;
+        }
+      },
+      {
+        message: "Please provide a valid date",
+      },
+    )
+    .refine((val) => new Date(val) >= new Date(), {
+      message: "End date must be in the future",
+    })
+    .optional(),
+  status: z
+    .string({
+      message: "Status type is a required field",
+    })
+    .refine((val) => ["PAUSED", "ACTIVE"].includes(val), {
+      message: "Invalid status type",
+    }),
+});
 export const approveRejectShopsSchema = z.object({
   status: z
     .string({

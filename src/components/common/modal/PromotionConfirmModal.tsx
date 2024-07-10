@@ -7,6 +7,11 @@ import DateInput from "../form/DateInput";
 import { updatePromotionStatus } from "@/actions/promotion/update-promotion-status";
 import { EMPTY_FORM_STATE, FormState } from "@/utils/formStateHelper";
 import pushNotification from "@/utils/pushNotification.util";
+import { useFormState } from "react-dom";
+import { useToastMessage } from "@/hooks/useToastMessage";
+import { useRedirectRoute } from "@/hooks/useRedirectRoute";
+import PrimaryButton from "../ui/PrimaryButton";
+import SecondaryButton from "../ui/SecondaryButton";
 
 function ConfirmModal() {
   const [promotion, setPromotion] = React.useState<{
@@ -15,10 +20,18 @@ function ConfirmModal() {
     end_date: string;
     status: string;
   }>();
-  const [formState, setFormState] = React.useState<FormState>(EMPTY_FORM_STATE);
+  // const [formState, setFormState] = React.useState<FormState>(EMPTY_FORM_STATE);
   const { deleteQueryStringAndPush, searchParams } = useCreateQueryString();
   const item_id = searchParams.get("item")?.toString();
   const [isPending, startTransition] = React.useTransition();
+
+  const [formState, action] = useFormState(
+    updatePromotionStatus,
+    EMPTY_FORM_STATE,
+  );
+
+  useToastMessage(formState);
+  useRedirectRoute(formState);
 
   React.useEffect(() => {
     if (item_id) {
@@ -31,27 +44,12 @@ function ConfirmModal() {
     }
   }, [item_id]);
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    startTransition(async () => {
-      const form = e.currentTarget;
-      e.preventDefault();
-      const formData = new FormData(form);
-      try {
-        const response = await updatePromotionStatus(formData);
-        if (response.status === "SUCCESS") {
-          pushNotification(response.message, "success");
-          deleteQueryStringAndPush("item");
-          closeModal("confirm_item_table_modal");
-        } else {
-          setFormState(response);
-          pushNotification(response.message, "error");
-        }
-      } catch (error: any) {
-        console.error(error);
-        pushNotification(error.message, "error");
-      }
-    });
-  };
+  React.useEffect(() => {
+    if (formState.status === "SUCCESS") {
+      deleteQueryStringAndPush("item");
+      closeModal("confirm_item_table_modal");
+    }
+  }, [formState]);
 
   const handleCancel = async () => {
     deleteQueryStringAndPush("item");
@@ -69,7 +67,7 @@ function ConfirmModal() {
   return (
     <dialog id="confirm_item_table_modal" className="modal">
       <form
-        onSubmit={onSubmit}
+        action={action}
         className="modal-box w-11/12 max-w-xl bg-white dark:bg-gray-800 px-0"
       >
         <div className="border-b-2 border-gray-200 pb-3">
@@ -99,14 +97,16 @@ function ConfirmModal() {
             name="status"
           />
         </div>
-        <div className="flex flex-col bg-tertiary m-3 p-2">
-          <h4 className="font-semibold">Edit endtime</h4>
+        <div className="flex flex-col bg-tertiary m-3 p-2 gap-3">
+          <h4 className="font-semibold text-xl text-gray-600">
+            Edit end date and time
+          </h4>
           <hr />
           <div className="w-full flex flex-col justify-center">
             <DateInput
-              defaultValue={new Date(Date.now() + 60000 / 2).toISOString()}
+              defaultValue={new Date().toISOString()}
               // label={t("start_date_&_time")}
-              label=""
+              label="Start Date & Time"
               id="start_datetime"
               name="start_datetime"
               disabled
@@ -116,7 +116,7 @@ function ConfirmModal() {
               value={promotion?.end_date}
               disabled={isPending}
               // label={t("end_date_&_time")}
-              label=""
+              label="End Date & Time"
               id="end_datetime"
               name="end_datetime"
               error={formState?.fieldErrors?.end_date?.[0]}
@@ -124,27 +124,12 @@ function ConfirmModal() {
           </div>
         </div>
         <div className="px-5 flex flex-col gap-3 my-4">
-          <button
-            type="submit"
-            disabled={isPending}
-            className="btn w-full rounded-[40px] bg-[#f6f6f6] hover:bg-primary/20 border-0 text-red-600 "
-            id="confirm_item_table_modal_confirm"
-          >
-            {isPending ? (
-              <span className="loading loading-spinner loading-md text-primary"></span>
-            ) : (
-              "Confirm"
-            )}
-          </button>
-          <button
-            onClick={handleCancel}
-            disabled={isPending}
+          <PrimaryButton type="submit" disabled={isPending} name={"Confirm"} />
+          <SecondaryButton
             type="button"
-            className="btn w-full rounded-[40px] bg-[#f6f6f6] hover:bg-primary/20 border-0 text-black disabled:text-gray-400"
-            id="confirm_item_table_modal_cancel"
-          >
-            Cancel
-          </button>
+            handleClick={handleCancel}
+            name={"Cancel"}
+          />
         </div>
       </form>
       <form method="dialog" className="modal-backdrop">

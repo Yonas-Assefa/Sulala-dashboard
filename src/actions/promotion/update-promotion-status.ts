@@ -1,5 +1,9 @@
 "use server";
-import { fromErrorToFormState, toFormState } from "@/utils/formStateHelper";
+import {
+  FormState,
+  fromErrorToFormState,
+  toFormState,
+} from "@/utils/formStateHelper";
 import { PROMOTIONS } from "../../config/urls";
 import {
   changeObjToFormData,
@@ -8,8 +12,12 @@ import {
   getResponseErrorMessage,
 } from "../../lib/helper";
 import { revalidatePath, revalidateTag } from "next/cache";
+import { updatePromoStatus } from "../schema/zod-schema";
 
-export const updatePromotionStatus = async (formData: FormData) => {
+export const updatePromotionStatus = async (
+  formState: FormState,
+  formData: FormData,
+) => {
   try {
     const status = formData.get("status");
     const item_id = formData.get("item_id");
@@ -20,18 +28,17 @@ export const updatePromotionStatus = async (formData: FormData) => {
     };
 
     if (newStatus == "ACTIVE") {
-      // make the start date the current date and off by half minute
-      const start_date = new Date(Date.now() + 60000 / 2).toISOString();
+      const start_date = new Date().toISOString();
       const end_date = formData.get("end_datetime");
       Object.assign(data, { start_date, end_date });
     }
 
-    console.log({ data, item_id, PROMOTIONS });
+    const parsedData = updatePromoStatus.parse(data);
 
     const response = await fetch(`${PROMOTIONS}${item_id}/`, {
       method: "PATCH",
       headers: getMultiPartRequestHeaders(),
-      body: changeObjToFormData(data),
+      body: changeObjToFormData(parsedData),
     });
 
     const body = await getResponseBody(response);
