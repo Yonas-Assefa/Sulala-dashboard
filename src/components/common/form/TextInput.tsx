@@ -86,7 +86,7 @@ function TextInput({
           type={type == "number" ? "text" : type}
           placeholder={placeholder || "Type here"}
           name={name || "text-input"}
-          className={`input text-black dark:text-white disabled:text-secondary w-full bg-transparent disabled:bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none ${disabled && "cursor-not-allowed opacity-50"}`}
+          className={`input w-full bg-transparent disabled:bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none ${dynamicPlaceholder && placeholder && (value?.length == placeholder?.length ? "text-primary dark:text-green-500" : value?.length > placeholder?.length ? "text-danger dark:text-danger" : "text-black dark:text-white disabled:text-secondary ")} ${disabled && "cursor-not-allowed opacity-50"}`}
           autoComplete={autoComplete || "false"}
           value={value}
           onChange={handleChange}
