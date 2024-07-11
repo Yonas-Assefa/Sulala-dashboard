@@ -15,7 +15,7 @@ export const contactSupport = async (
   try {
     const data = contactSupportSchema.parse({
       email: formData.get("email"),
-      message: formData.get("message"),
+      question: formData.get("question"),
       full_name: formData.get("full_name"),
     });
 

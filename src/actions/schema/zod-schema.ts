@@ -33,7 +33,7 @@ export const contactSupportSchema = z.object({
     .string()
     .min(3, "Full name must be at least 3 characters long")
     .regex(/^[a-zA-Z]+ [a-zA-Z]+$/, "Full name must have a space in between"),
-  message: z.string().min(20, "Message must be at least 20 character long"),
+  question: z.string().min(20, "Message must be at least 20 character long"),
 });
 
 export const emailSignInSchema = z.object({

@@ -60,9 +60,9 @@ function ForgotPassword() {
                   <TextAreaInput
                     label="Message"
                     placeholder="Enter your message"
-                    id="message"
-                    name="message"
-                    error={formState?.fieldErrors?.message?.[0]}
+                    id="question"
+                    name="question"
+                    error={formState?.fieldErrors?.question?.[0]}
                   />
                 </div>
                 <div className="flex justify-center flex-col w-full">

@@ -3,7 +3,6 @@
 import { notFound } from "next/navigation";
 import { GET_PENDING_DRIVERS } from "../../config/urls";
 import { getRequestHeaders, getResponseBody } from "../../lib/helper";
-import { manageShopsMapper } from "../mapper/manage-shop-mapper";
 import { manageDriversMapper } from "../mapper/manage-driver-mapper";
 
 export const getPendingDrivers = async (formData: FormData) => {

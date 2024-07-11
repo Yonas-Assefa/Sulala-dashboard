@@ -14,19 +14,15 @@ export const getSupportRequests = async (formData: FormData) => {
   const { status, search } = getFilterSortOrdering(formData);
 
   const query = new URLSearchParams();
-  query.append(
-    "answered",
-    status.toLowerCase() == "answered" ? "true" : "false",
-  );
+  if (status && status.toLowerCase() !== "all") {
+    query.append("status", status?.toString());
+  }
 
   if (search) {
     query.append("search", search?.toString());
   }
 
-  const URL =
-    !status || status.toLowerCase() == "all"
-      ? GET_SUPPORT_REQUESTS
-      : `${GET_SUPPORT_REQUESTS}?${query.toString()}`;
+  const URL = `${GET_SUPPORT_REQUESTS}?${query.toString()}`;
 
   const response = await fetch(`${URL}`, {
     method: "GET",
