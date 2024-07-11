@@ -28,10 +28,6 @@ export async function generateMetadata({
     title: t("title"),
     description: t("description"),
     icons: ["/sulala-logo.svg"],
-    openGraph: {
-      images: ["/sulala-logo.svg"],
-      title: t("title"),
-    },
   };
 }
 
@@ -42,7 +38,6 @@ export default function Landing({ params: { lang } }: Props) {
   return (
     <div className="overflow-hidden">
       <LandingNavBar lang={lang} />
-
       <section className="min-h-screen min-w-screen bg-gradient-to-b relative from-primary to-primary/50 text-white grid grid-cols-1 md:grid-cols-2">
         <div className="h-full flex flex-col justify-between md:justify-center gap-12 py-24 md:py-4 items-center z-20 md:z-auto">
           <div className="flex flex-row justify-center items-center gap-3 ">
