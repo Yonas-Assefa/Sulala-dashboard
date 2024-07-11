@@ -20,7 +20,7 @@ export const getPendingDrivers = async (formData: FormData) => {
     throw new Error(body.message || "Failed to get pending drivers");
   }
 
-  return manageDriversMapper(body.data);
+  return manageDriversMapper(body.data?.results);
 };
 
 export const getOnePendingDriver = async (vendor_id: string) => {

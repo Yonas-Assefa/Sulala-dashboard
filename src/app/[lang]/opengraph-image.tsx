@@ -1,6 +1,5 @@
 import { ImageResponse } from "next/og";
 import { getTranslations } from "next-intl/server";
-import { DEFAULT_LOCALE } from "@/i18n/config";
 
 export default async function OpenGraphImage() {
   const t = await getTranslations("OpenGraphImage");
@@ -13,6 +12,9 @@ export default async function OpenGraphImage() {
           gap: "4",
           justifyContent: "center",
           alignItems: "center",
+          backgroundColor: "#ffffff",
+          width: "100%",
+          height: "100%",
         }}
       >
         <img
