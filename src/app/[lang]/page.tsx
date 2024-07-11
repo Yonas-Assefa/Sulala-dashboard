@@ -6,6 +6,7 @@ import { LOCALES } from "@/i18n/config";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import SelectAccount from "./components/SelectAccount";
+import { FRONTEND_BASE_URL } from "@/config/urls";
 
 type Props = {
   params: {
@@ -28,6 +29,12 @@ export async function generateMetadata({
     title: t("title"),
     description: t("description"),
     icons: ["/sulala-logo.svg"],
+    openGraph: {
+      images: [
+        new URL(`${lang}/opengraph-image`, FRONTEND_BASE_URL).toString(),
+      ],
+      title: t("title"),
+    },
   };
 }
 
