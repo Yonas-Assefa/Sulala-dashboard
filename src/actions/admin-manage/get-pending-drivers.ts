@@ -40,6 +40,6 @@ export const getOnePendingDriver = async (vendor_id: string) => {
   }
 
   return manageDriversMapper(
-    body.data?.find((vendor: any) => vendor.id == vendor_id),
+    body.data?.results?.find((vendor: any) => vendor.id == vendor_id),
   );
 };
