@@ -81,6 +81,7 @@ function ProductForm({
                 placeholder={t("enter_product_name")}
                 label={t("title")}
                 defaultValue={initialValue?.title}
+                required
               />
               <TextInput
                 id="quantity"
@@ -90,6 +91,7 @@ function ProductForm({
                 label={t("quantity")}
                 error={formState.fieldErrors?.inventory?.[0]}
                 defaultValue={initialValue?.inventory}
+                required
               />
               <div className="col-span-2">
                 <TextAreaInput
@@ -99,6 +101,7 @@ function ProductForm({
                   label={t("description")}
                   error={formState.fieldErrors?.description?.[0]}
                   defaultValue={initialValue?.description}
+                  required
                 />
               </div>
               <TextInput
@@ -109,6 +112,7 @@ function ProductForm({
                 label={t("price")}
                 error={formState.fieldErrors?.price?.[0]}
                 defaultValue={initialValue?.price}
+                required
               />
               <WeightVolumeInput
                 label="Weight / Volume"
@@ -158,6 +162,7 @@ function ProductForm({
                       },
                     ],
                   }}
+                  required
                 />
               </div>
             </div>
@@ -171,6 +176,7 @@ function ProductForm({
             options={productStatusOptions}
             error={formState.fieldErrors?.status?.[0]}
             defaultValue={initialValue?.status}
+            required
           />
           <div className="bg-tertiary dark:bg-gray-700 rounded-[30px] p-8 flex flex-col gap-5">
             <h3 className="font-semibold text-xl">
@@ -184,6 +190,8 @@ function ProductForm({
               error={formState.fieldErrors?.category?.[0]}
               defaultValue={initialValue?.category_value}
               nested
+              required
+              searchable
             />
           </div>
           <div className="bg-tertiary dark:bg-gray-700 rounded-[30px] p-8 flex flex-col gap-5">

@@ -27,8 +27,8 @@ function BillingInfo({ billings }: Props) {
               />
             ))
           ) : (
-            <div className="p-1 bg-tertiary border ">
-              <p className="text-sm text-black/50 font-serif">
+            <div className="p-1 bg-tertiary dark:bg-gray-600 border ">
+              <p className="text-sm text-black/50 dark:text-white/50 font-serif">
                 {t("no_billing_info_found")}
               </p>
             </div>

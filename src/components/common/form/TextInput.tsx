@@ -59,7 +59,7 @@ function TextInput({
         {required && (
           <span className="text-danger">
             *&nbsp;
-            <sup className="text-xs opacity-70">(required)</sup>
+            {/* <sup className="text-xs opacity-70">(required)</sup> */}
           </span>
         )}
       </p>
@@ -83,7 +83,7 @@ function TextInput({
         )}
         <input
           id={id}
-          type={type == "number" ? "text" : type}
+          type={type}
           placeholder={placeholder || "Type here"}
           name={name || "text-input"}
           className={`input w-full bg-transparent disabled:bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none 
@@ -91,9 +91,9 @@ function TextInput({
               dynamicPlaceholder &&
               placeholder &&
               (value?.length == placeholder?.length
-                ? "text-primary dark:text-green-500"
+                ? "text-green-800 dark:text-green-500"
                 : value?.length > placeholder?.length
-                  ? "text-danger dark:text-danger"
+                  ? "text-red-800 dark:text-red-500"
                   : "text-black dark:text-white disabled:text-secondary ")
             } 
             ${disabled && "cursor-not-allowed opacity-50"}

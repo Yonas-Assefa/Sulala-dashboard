@@ -12,6 +12,7 @@ type Props = {
   defaultValue?: string;
   value?: string;
   disabled?: boolean;
+  required?: boolean;
 };
 
 const extractDateAndTime = (dateTime: string | undefined) => {
@@ -43,6 +44,7 @@ function DateInput({
   defaultValue,
   disabled,
   value,
+  required,
 }: Props) {
   const [time, setTime] = React.useState<string>(
     extractDateAndTime(defaultValue)?.time,
@@ -106,6 +108,12 @@ function DateInput({
     <div ref={ref}>
       <p className="text-black dark:text-white">
         {label}{" "}
+        {required && (
+          <span className="text-danger">
+            *&nbsp;
+            {/* <sup className="text-xs opacity-70">(required)</sup> */}
+          </span>
+        )}
         <span className="text-secondary text-[10px] block md:inline-block">
           {getUserTimezone().userTimezoneWithOffset}
         </span>

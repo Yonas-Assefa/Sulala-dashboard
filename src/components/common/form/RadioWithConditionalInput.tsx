@@ -132,6 +132,7 @@ function CustomRadioWithConditionalInput({
   childOptions,
   childDefaultValue,
   childDisabled,
+  required,
 }: Props) {
   const [input, setInput] = React.useState<string>(defaultValue || "");
   const t = useTranslations("Commons");
@@ -157,7 +158,17 @@ function CustomRadioWithConditionalInput({
 
   return (
     <div className="flex flex-col gap-5">
-      {showLabel && <p className="font-semibold">{t(data.label)}</p>}
+      {showLabel && (
+        <div className="flex">
+          <p className="font-semibold">{t(data.label)}</p>
+          {required && (
+            <span className="text-danger">
+              *&nbsp;
+              {/* <sup className="text-xs opacity-70">(required)</sup> */}
+            </span>
+          )}
+        </div>
+      )}
       {data.options.map((radioInput) => {
         const disabled = convertToArray(radioInput.input)?.find(
           (input) => childDisabled?.[input.id],

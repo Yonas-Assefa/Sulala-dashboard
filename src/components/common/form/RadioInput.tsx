@@ -12,16 +12,33 @@ type Props = {
   error?: string;
   options: RadioInputOptions[];
   defaultValue?: string;
+  required?: boolean;
 };
 
-function RadioInput({ id, label, name, error, options, defaultValue }: Props) {
+function RadioInput({
+  required,
+  id,
+  label,
+  name,
+  error,
+  options,
+  defaultValue,
+}: Props) {
   const [selected, setSelected] = React.useState<string | null>(
     defaultValue || null,
   );
 
   return (
     <div className="bg-tertiary dark:bg-gray-700 rounded-[30px] p-8 flex flex-col gap-5">
-      <h3 className="font-semibold text-xl">{label}</h3>
+      <div className="flex">
+        <h3 className="font-semibold text-xl">{label}</h3>
+        {required && (
+          <span className="text-danger">
+            *&nbsp;
+            {/* <sup className="text-xs opacity-70">(required)</sup> */}
+          </span>
+        )}
+      </div>
       <div className="flex flex-col gap-3 p-2">
         {options.map((option) => (
           <label

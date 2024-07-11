@@ -20,6 +20,6 @@ export const getSubCategories = async () => {
     }
     throw new Error(body.message || "Failed to get subcategories");
   }
-  const formatedCategory = formatCategory(body.data);
+  const formatedCategory = formatCategory(body.data?.results);
   return formatedCategory;
 };
