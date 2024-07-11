@@ -16,7 +16,7 @@
     "docker:login": "./scripts/docker/LOGIN.sh",
     "docker:logout": "./scripts/docker/LOGOUT.sh",
     "docker:build": "./scripts/docker/ALL.sh",
-    "docker:run": "./scripts/docker/RUN.sh",
+    "docker:run": "docker compose up --build",
     "docker:push": "./scripts/docker/PUSH.sh",
     "test": "vitest run"
   },
