@@ -11,7 +11,8 @@ export const getPersonalInfo = async () => {
   const body = await getResponseBody(response);
 
   if (!response.ok) {
-    throw new Error(body.message || "Failed to get profile");
+    // throw new Error(body.message || "Failed to get profile");
+    return null;
   }
 
   const personalInfo = body.data;
