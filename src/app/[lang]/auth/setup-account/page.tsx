@@ -4,8 +4,8 @@ import BackButton from "@/components/common/ui/BackButton";
 import ProgressBar from "@/components/common/ui/ProgressBar";
 import React from "react";
 import { Metadata } from "next";
-import { getPersonalInfo } from "@/actions/settings/get-personal-info";
 import { getTranslations } from "next-intl/server";
+import { getCachedPersonalInfo } from "@/cache/get-cached-personal-info";
 
 export const metadata: Metadata = {
   title: "Sulala | Auth Setup Account",
@@ -21,7 +21,7 @@ type Props = {
 };
 async function SetupAccount({ searchParams: { stage: activeStage } }: Props) {
   const categoryLists = await getCategories();
-  const personalInfo = await getPersonalInfo();
+  const personalInfo = await getCachedPersonalInfo();
 
   const t = await getTranslations("Auth");
   return (

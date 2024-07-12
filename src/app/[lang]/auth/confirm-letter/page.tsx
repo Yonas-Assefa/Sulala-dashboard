@@ -1,6 +1,5 @@
 "use client";
 import { resendVerificationLink } from "@/actions/auth/resend-verification-link";
-import { getPersonalInfo } from "@/actions/settings/get-personal-info";
 import BackButton from "@/components/common/ui/BackButton";
 import Counter from "@/components/common/ui/Counter";
 import { useRedirectRoute } from "@/hooks/useRedirectRoute";
@@ -12,6 +11,7 @@ import React from "react";
 import { useTranslations } from "next-intl";
 import { pushSuccessNotification } from "@/utils/pushNotification.util";
 import { useIntervalRequest } from "@/hooks/useIntervalRequest";
+import { getCachedPersonalInfo } from "@/cache/get-cached-personal-info";
 // export const metadata: Metadata = {
 //     title: 'Sulala | Auth Confirmation Letter',
 //     description: 'Confirm your email address to get started with Sulala.',
@@ -44,7 +44,7 @@ function ConfirmationLetter({ searchParams: { email } }: Props) {
   const counterFunction = async () => {
     let personalInfo: any;
     try {
-      personalInfo = await getPersonalInfo();
+      personalInfo = await getCachedPersonalInfo();
     } catch (error) {
       console.error(error);
     }

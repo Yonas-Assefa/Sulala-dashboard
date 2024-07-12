@@ -1,20 +1,9 @@
 "use server";
 
-import { ResponseCookies } from "next/dist/compiled/@edge-runtime/cookies";
 import { GET_VENDOR_ACCOUNT as GET_VENDOR_PROFILE } from "../../config/urls";
-import {
-  cachePersonalInfo,
-  getRequestHeaders,
-  getResponseBody,
-  retrievePersonalInfo,
-} from "../../lib/helper";
+import { getRequestHeaders, getResponseBody } from "../../lib/helper";
 
 export const getPersonalInfo = async () => {
-  // const cachedPersonalInfo = retrievePersonalInfo();
-  // if (cachedPersonalInfo) {
-  //   return cachedPersonalInfo;
-  // }
-
   const response = await fetch(GET_VENDOR_PROFILE, {
     method: "GET",
     headers: getRequestHeaders(),
@@ -26,13 +15,5 @@ export const getPersonalInfo = async () => {
   }
 
   const personalInfo = body.data;
-  // if (
-  //   personalInfo &&
-  //   personalInfo?.email_verified &&
-  //   personalInfo?.is_password_set &&
-  //   personalInfo?.shops?.length > 0
-  // ) {
-  //   cachePersonalInfo(personalInfo);
-  // }
   return personalInfo;
 };

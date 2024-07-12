@@ -18,7 +18,10 @@ import {
   getResponseErrorMessage,
   removeNullAndUndefined,
 } from "../../lib/helper";
-import { getPersonalInfo } from "../settings/get-personal-info";
+import {
+  getCachedPersonalInfo,
+  revalidateCachedPersonalInfo,
+} from "@/cache/get-cached-personal-info";
 
 export const setupAccount = async (
   formState: FormState,
@@ -87,10 +90,11 @@ export const setupAccount = async (
       throw new Error(getResponseErrorMessage(body) || "Failed to submit form");
     }
 
+    await revalidateCachedPersonalInfo();
     const successMessage =
       stage == "one" ? "Account setup 1/3" : "Account setup 3/3";
 
-    const personalInfo = await getPersonalInfo();
+    const personalInfo = await getCachedPersonalInfo();
     const email = personalInfo.email;
 
     const redirectUrl = body?.message

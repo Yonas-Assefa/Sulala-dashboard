@@ -1,6 +1,5 @@
 "use client";
 import { acceptApproval } from "@/actions/auth/accept-approval";
-import { getPersonalInfo } from "@/actions/settings/get-personal-info";
 import pushNotification from "@/utils/pushNotification.util";
 import { redirect, useRouter } from "@/i18n/navigation";
 import React from "react";
@@ -17,7 +16,7 @@ async function VerifyEmail({
   searchParams: { approval_token, vendor_id },
 }: Props) {
   // const checkEmailVerification = async () => {
-  //   const personalInfo = await getPersonalInfo()
+  //   const personalInfo = await getCachedPersonalInfo()
   //   if (!personalInfo?.email_verified && pathname !== '/auth/verify-email') {
   //     redirect('/auth/verify-email')
   //   } else if (!personalInfo?.is_password_set && personalInfo?.email && !personalInfo?.phone_verified && pathname !== '/auth/create-password') {

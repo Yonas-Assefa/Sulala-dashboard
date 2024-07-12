@@ -12,6 +12,8 @@ import {
   getResponseErrorMessage,
   setBrowserCookie,
 } from "../../lib/helper";
+import cache from "@/cache/node-cache";
+import { revalidateCachedPersonalInfo } from "@/cache/get-cached-personal-info";
 
 export const signUp = async (formState: FormState, formData: FormData) => {
   try {
@@ -48,6 +50,8 @@ export const signUp = async (formState: FormState, formData: FormData) => {
     }
 
     setBrowserCookie(response);
+
+    await revalidateCachedPersonalInfo();
 
     const successMessage =
       by == "email"

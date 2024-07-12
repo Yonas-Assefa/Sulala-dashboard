@@ -1,5 +1,5 @@
-import { getPersonalInfo } from "@/actions/settings/get-personal-info";
 import routes from "@/app/[lang]/dashboard/components/sideBarRoutes";
+import { getCachedPersonalInfo } from "@/cache/get-cached-personal-info";
 import { isAuthenticated } from "@/lib/detect/server";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -8,7 +8,7 @@ export const guardSetupAccount = async (request: NextRequest) => {
     return NextResponse.redirect(new URL("/auth/sign-in", request.url));
   }
 
-  const personalInfo = await getPersonalInfo();
+  const personalInfo = await getCachedPersonalInfo();
 
   if (personalInfo?.is_superuser)
     return NextResponse.redirect(new URL("/dashboard/shops", request.url));
@@ -76,7 +76,7 @@ export const guardCreatePassword = async (request: NextRequest) => {
     return NextResponse.redirect(new URL("/auth/sign-in", request.url));
   }
 
-  const personalInfo = await getPersonalInfo();
+  const personalInfo = await getCachedPersonalInfo();
 
   if (personalInfo?.is_superuser)
     return NextResponse.redirect(new URL("/dashboard/shops", request.url));
@@ -102,7 +102,7 @@ export const guardDashboard = async (request: NextRequest) => {
     return NextResponse.redirect(new URL("/auth/sign-in", request.url));
   }
 
-  const personalInfo = await getPersonalInfo();
+  const personalInfo = await getCachedPersonalInfo();
 
   const superAdminPaths = routes
     .filter((route) => route.protected)
@@ -135,7 +135,7 @@ export const guardAdminOnly = async (request: NextRequest) => {
     return NextResponse.redirect(new URL("/auth/sign-in", request.url));
   }
 
-  const personalInfo = await getPersonalInfo();
+  const personalInfo = await getCachedPersonalInfo();
 
   if (!personalInfo?.is_superuser) {
     return NextResponse.redirect(new URL("/auth/unauthorized", request.url));

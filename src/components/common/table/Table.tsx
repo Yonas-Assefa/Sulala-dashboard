@@ -15,8 +15,8 @@ import {
 } from "../../../types/table.type";
 import NoItemsFound from "../ui/NoItemsFound";
 import TablePagination from "./TablePagination";
-import { getPersonalInfo } from "@/actions/settings/get-personal-info";
 import ConfirmModal from "../modal/PromotionConfirmModal";
+import { getCachedPersonalInfo } from "@/cache/get-cached-personal-info";
 
 type Props = {
   filterData: FilterData;
@@ -36,7 +36,7 @@ async function Table({
   const data = "count" in meta ? meta.data : meta;
   const count = "count" in meta ? meta.count : undefined;
 
-  const personalInfo = await getPersonalInfo();
+  const personalInfo = await getCachedPersonalInfo();
 
   return (
     <div className="flex flex-col">

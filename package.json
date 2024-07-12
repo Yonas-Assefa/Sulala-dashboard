@@ -38,6 +38,7 @@
     "next": "14.2.3",
     "next-auth": "^4.24.7",
     "next-intl": "^3.14.1",
+    "node-cache": "^5.1.2",
     "prettier": "^3.3.2",
     "primereact": "^10.6.6",
     "react": "^18",

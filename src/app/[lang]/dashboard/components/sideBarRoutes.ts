@@ -79,7 +79,7 @@ const routes = [
     icon: "/icons/truck.svg",
     activeIcon: "/icons/truck_active.svg",
     name: "shop_drivers",
-    path: "/dashboard/shop-drivers?filter=all",
+    path: "/dashboard/shop-drivers?filter=pending",
     protected: true,
   },
 ];

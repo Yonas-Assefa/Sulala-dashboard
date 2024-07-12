@@ -6,11 +6,11 @@ import BillingInfo from "../components/BillingInfo/BillingInfo";
 import LogoutModal from "../components/modals/LogoutModal";
 import ChangePasswordModal from "../components/modals/ChangePasswordModal";
 import CreatePaymentMethodModal from "../components/modals/createPaymentMethodModal";
-import { getPersonalInfo } from "@/actions/settings/get-personal-info";
 import { getBillingInfo } from "@/actions/settings/get-billing-info";
 import { getCategories } from "@/actions/common/get-categories";
 import { getShopInfo } from "@/actions/settings/get-shop-info";
 import { getTranslations } from "next-intl/server";
+import { getCachedPersonalInfo } from "@/cache/get-cached-personal-info";
 
 type Props = {
   params: {
@@ -21,7 +21,7 @@ type Props = {
 
 async function SettingsPage({ params: { tab, lang } }: Props) {
   const activeTab = tab ? tab[0] : "personal-info";
-  const personalInfo = await getPersonalInfo();
+  const personalInfo = await getCachedPersonalInfo();
   const billings = await getBillingInfo();
   const categories = await getCategories();
   const shopInfo = await getShopInfo();

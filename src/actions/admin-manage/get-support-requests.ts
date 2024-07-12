@@ -15,7 +15,10 @@ export const getSupportRequests = async (formData: FormData) => {
 
   const query = new URLSearchParams();
   if (status && status.toLowerCase() !== "all") {
-    query.append("status", status?.toString());
+    query.append(
+      "answered",
+      status?.toString().toLowerCase() == "answered" ? "true" : "false",
+    );
   }
 
   if (search) {
