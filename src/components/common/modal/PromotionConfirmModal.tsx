@@ -38,7 +38,6 @@ function ConfirmModal() {
       startTransition(() => {
         getOnePromotion(item_id).then((data: any) => {
           setPromotion(data);
-          console.log({ data });
         });
       });
     }

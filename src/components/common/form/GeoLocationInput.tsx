@@ -66,7 +66,6 @@ function GeoLocationInput({
           const places = await getLocationSuggetion(inputValue || "");
           dropdownRef.current?.setAttribute("open", "true");
           setAddressOptions(places);
-          console.log({ places });
         });
       } catch (error) {
         console.error(error);
@@ -102,7 +101,6 @@ function GeoLocationInput({
       startTransition(async () => {
         const data = await getLocationGeoCode(address);
         setGeoLocation(data);
-        console.log({ fetchedData: data });
       });
     } catch (error) {
       console.error(error);
@@ -114,7 +112,6 @@ function GeoLocationInput({
     // emitVal && emitVal(selectedValue);
     // setAddressOptions([]);
     getGeoLocation(selectedValue);
-    console.log({ selectedValue });
     dropdownRef.current?.removeAttribute("open");
   };
 

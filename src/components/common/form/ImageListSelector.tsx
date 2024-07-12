@@ -65,7 +65,6 @@ function ImageListSelector({
   const handleDelete = async (file?: string) => {
     startTransition(async () => {
       const formData = new FormData();
-      Console.log({ file, onDelete });
       onDelete?.formData.forEach((ele) => {
         formData.append(
           ele.key,

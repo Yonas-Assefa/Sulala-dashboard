@@ -47,7 +47,6 @@ function SmallImageDisplayCard({
             setProgress(100);
             setTimeout(() => {
               setProgressStatus("success");
-              Console.log({ data: res.message });
               setUploadedImage(res.message);
               addUploadedImage?.(res.message);
               setTimeout(() => {

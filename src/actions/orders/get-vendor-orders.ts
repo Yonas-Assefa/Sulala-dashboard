@@ -25,7 +25,6 @@ export const getOrders = async (formData: FormData) => {
     },
   });
   const ordersBody = await ordersResponse.json();
-  console.log(ordersBody, ordersResponse);
 
   if (!ordersResponse.ok) {
     throw new Error(

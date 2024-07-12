@@ -12,7 +12,6 @@ type TGetLocationGeoCodeReturn = string;
 export const getLocationGeoCode = async (
   address: string,
 ): Promise<TGetLocationGeoCodeReturn> => {
-  console.log({ address });
   const response = await fetch(
     `${GOOGLE_MAPS_GEOCODE_URL}?address=${address}&key=${GOOGLE_MAPS_KEY}`,
   );

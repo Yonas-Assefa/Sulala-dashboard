@@ -8,7 +8,6 @@ import { decodeJwt } from "@/lib/decode-jwt";
 export const getCachedPersonalInfo = async () => {
   const token = cookies().get("access")?.value || "";
   const decodedToken = token && decodeJwt(token);
-  console.log({ decodedToken: decodedToken?.user_id });
   if (cache.has(`personal_info_${decodedToken?.user_id}`)) {
     return cache.get(`personal_info_${decodedToken?.user_id}`);
   }
