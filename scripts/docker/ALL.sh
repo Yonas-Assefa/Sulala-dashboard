@@ -13,13 +13,20 @@ fi
 latest_tag=$(git describe --tags --abbrev=0)
 latest_tag=${latest_tag#v}
 
-echo -e "\e[0;36;49mLabel the current tag with 'latest' tag? (y/n)\e[0m"
-read label_latest
+# echo -e "\e[0;36;49mLabel the current tag with 'latest' tag? (y/n)\e[0m"
+# read label_latest
+
+label_latest=$1
+
+if [ "$label_latest" != "y" ] && [ "$label_latest" != "n" ]; then
+  echo -e "\e[0;36;49mLabel the current tag with 'latest' tag? (y/n)\e[0m"
+  read label_latest
+fi
 
 if [ "$label_latest" == "y" ]; then
-  echo -e "\e[0;32;49mYes\e[0m"
+  echo -e "\e[0;32;49m[Yes]\e[0m labeling the current tag with 'latest' tag"
 else
-  echo -e "\e[0;31;49mNo\e[0m"
+  echo -e "\e[0;31;49m[No]\e[0m skipping labeling the current tag with 'latest' tag"
 fi
 
 # tag the docker image with the current version and latest tag
