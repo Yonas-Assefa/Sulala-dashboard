@@ -1,16 +1,9 @@
 import React from "react";
-import { isAuthenticated } from "@/lib/helper";
 import { Link } from "@/i18n/navigation";
-import SideBarNav from "./dashboard/components/SideBarNav";
-import { getCachedPersonalInfo } from "@/cache/get-cached-personal-info";
 
 async function NotFoundPage() {
-  const personalInfo = await getCachedPersonalInfo();
   return (
     <div className="w-screen h-screen flex flex-row">
-      {isAuthenticated() && (
-        <SideBarNav isSuperUser={personalInfo?.is_superuser} />
-      )}
       <div className="bg-white flex-grow">
         <div className="w-full h-full flex justify-between flex-col items-center">
           <div className="flex flex-col justify-center items-center w-full h-full">
