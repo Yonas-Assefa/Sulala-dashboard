@@ -13,8 +13,9 @@ export const getCachedPersonalInfo = async () => {
   }
 
   const personalInfo = await getPersonalInfo();
-
-  cache.set(`personal_info_${decodedToken?.user_id}`, personalInfo);
+  if (personalInfo) {
+    cache.set(`personal_info_${decodedToken?.user_id}`, personalInfo);
+  }
 
   return personalInfo;
 };
