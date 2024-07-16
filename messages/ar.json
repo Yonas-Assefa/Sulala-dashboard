@@ -137,7 +137,8 @@
     "faq": "التعليمات",
     "shop_products": "منتجات المتجر",
     "shop_services": "خدمات المتجر",
-    "shop_drivers": "سائقي المتجر"
+    "shop_drivers": "سائقي المتجر",
+    "delivery_partners": "شركاء التوصيل"
   },
   "Dashboard": {
     "settings": "إعدادات",

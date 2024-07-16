@@ -137,7 +137,8 @@
     "faq": "FAQ",
     "shop_products": "Shop Products",
     "shop_services": "Shop Services",
-    "shop_drivers": "Shop Drivers"
+    "shop_drivers": "Shop Drivers",
+    "delivery_partners": "Delivery Partners"
   },
   "Dashboard": {
     "settings": "Settings",

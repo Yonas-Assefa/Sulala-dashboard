@@ -82,6 +82,13 @@ const routes = [
     path: "/dashboard/shop-drivers?filter=pending",
     protected: true,
   },
+  {
+    icon: "/icons/users.svg",
+    activeIcon: "/icons/users_active.svg",
+    name: "delivery_partners",
+    path: "/dashboard/delivery-partners?filter=all",
+    protected: true,
+  },
 ];
 
 export default routes;
