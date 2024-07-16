@@ -9,7 +9,7 @@ export const customerSupportTableSchema: TableSchema = {
   include: {
     checkbox: false,
     actions: {
-      detail: true,
+      detail: false,
     },
   },
   schema: [
