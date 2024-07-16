@@ -14,34 +14,39 @@ export const customerSupportTableSchema: TableSchema = {
   },
   schema: [
     {
-      key: "first_name",
-      title: "First Name",
+      key: "driver_name",
+      title: "Driver Name",
       type: "string",
     },
     {
-      key: "last_name",
-      title: "Last Name",
+      key: "online_status",
+      title: "Online Status",
       type: "string",
     },
     {
-      key: "email",
-      title: "Email Address",
+      key: "license_image",
+      title: "License",
       type: "string",
     },
     {
-      key: "username",
-      title: "Username",
+      key: "civil_id_image",
+      title: "Civil Id",
       type: "string",
     },
     {
-      key: "phone_number",
-      title: "Phone number",
+      key: "vehicle",
+      title: "Vehicle Driving",
       type: "string",
     },
     {
-      key: "address",
-      title: "Address",
+      key: "availability",
+      title: "Availability",
       type: "string",
+    },
+    {
+      key: "orders_delivered",
+      title: "Orders Delivered",
+      type: "number",
     },
   ],
 };

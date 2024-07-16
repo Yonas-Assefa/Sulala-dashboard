@@ -24,18 +24,18 @@ export const promotionData: PromotionDataItem[] = [
 ];
 
 export const promotionSortData = [
-  {
-    label: "Date",
-    value: "start_date",
-  },
-  {
-    label: "Product title",
-    value: "name",
-  },
-  {
-    label: "Created at",
-    value: "created_at",
-  },
+  // {
+  //   label: "Date",
+  //   value: "start_date",
+  // },
+  // {
+  //   label: "Product title",
+  //   value: "name",
+  // },
+  // {
+  //   label: "Created at",
+  //   value: "created_at",
+  // },
 ];
 
-export const promotionFilterData = ["all", "approved", "pending", "rejected"];
+export const promotionFilterData = ["all"];
