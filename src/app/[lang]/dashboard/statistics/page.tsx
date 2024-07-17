@@ -1,215 +1,260 @@
 "use client";
 import React from "react";
 import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  ZAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  AreaChart,
-  Area,
-  BarChart,
+  // ArcElement,
+  BarElement,
+  // CategoryScale,
+  Chart,
+  // Filler,
+  // Legend,
+  // LineElement,
+  // LinearScale,
+  // PointElement,
+  // RadialLinearScale,
+  // Title,
+  // Tooltip,
+} from "chart.js";
+
+import {
+  // Line,
   Bar,
-  ComposedChart,
-  PieChart,
-  Pie,
-  ScatterChart,
-  Scatter,
-} from "recharts";
+  // Doughnut,
+  // Scatter
+} from "react-chartjs-2";
 
-type TChartData = {
-  name: string;
-  uv: number;
-  pv: number;
-  amt: number;
+export const registerCharts = () => {
+  Chart.register(
+    // ArcElement,
+    BarElement,
+    // CategoryScale,
+    // Legend,
+    // LineElement,
+    // LinearScale,
+    // PointElement,
+    // Title,
+    // Tooltip,
+    // RadialLinearScale,
+    // Filler
+  );
 };
 
-type TChartData01 = {
-  name: string;
-  value: number;
+// const LineChart = () => {
+//   const options = {
+//     responsive: true,
+//     plugins: {
+//       legend: {
+//         position: "top" as const,
+//       },
+//       title: {
+//         display: true,
+//         text: "Line Chart: Monthly Sales Trend for Products A & B",
+//       },
+//     },
+//   }
+
+//   const labels = ["January", "February", "March", "April", "May", "June", "July"]
+
+//   const productASales = [120, 135, 125, 145, 160, 150, 170]
+
+//   const productBSales = [80, 75, 95, 100, 110, 105, 120, 115]
+
+//   const data = {
+//     labels,
+//     datasets: [
+//       {
+//         label: "Product A Sales",
+//         data: productASales,
+//         borderColor: "rgb(255, 99, 132)",
+//         backgroundColor: "rgba(255, 99, 132)",
+//       },
+//       {
+//         label: "Product B Sales",
+//         data: productBSales,
+//         borderColor: "rgb(53, 162, 235)",
+//         backgroundColor: "rgba(53, 162, 235)",
+//       },
+//     ],
+//   }
+
+//   return <Line options={options} data={data} />
+// }
+
+const BarChart = () => {
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top" as const,
+      },
+      title: {
+        display: true,
+        text: "Bar Chart: Quarterly Revenue & Expenses Comparison",
+      },
+    },
+  };
+
+  const labels = [
+    "Product A",
+    "Product B",
+    "Product C",
+    "Product D",
+    "Product E",
+  ];
+  const data1 = [45, 75, 55, 90, 60];
+  const data2 = [65, 40, 70, 80, 50];
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Q1 Sales",
+        data: data1,
+        backgroundColor: "rgba(75, 192, 192)",
+        borderColor: "rgb(75, 192, 192)",
+        borderWidth: 1,
+      },
+      {
+        label: "Q2 Sales",
+        data: data2,
+        backgroundColor: "rgba(255, 159, 64)",
+        borderColor: "rgb(255, 159, 64)",
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  return <Bar options={options} data={data} />;
 };
 
-const initData: TChartData[] = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
+// const DoughnutChart = () => {
+//   const labels = ["January", "February", "March", "April", "May", "June", "July"]
+//   const dataValues = [100, 50, 80, 60, 70, 40, 90]
 
-const initData01 = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 },
-];
-const initData02 = [
-  { name: "A1", value: 100 },
-  { name: "A2", value: 300 },
-  { name: "B1", value: 100 },
-  { name: "B2", value: 80 },
-];
+//   const data = {
+//     labels,
+//     datasets: [
+//       {
+//         data: dataValues,
+//         backgroundColor: [
+//           "rgba(255, 99, 132)",
+//           "rgba(53, 162, 235)",
+//           "rgba(255, 206, 86)",
+//           "rgba(75, 192, 192)",
+//           "rgba(153, 102, 255)",
+//           "rgba(255, 159, 64)",
+//           "rgba(201, 203, 207)",
+//         ],
+//         borderColor: [
+//           "rgb(255, 99, 132)",
+//           "rgb(53, 162, 235)",
+//           "rgb(255, 206, 86)",
+//           "rgb(75, 192, 192)",
+//           "rgb(153, 102, 255)",
+//           "rgb(255, 159, 64)",
+//           "rgb(201, 203, 207)",
+//         ],
+//         borderWidth: 1,
+//       },
+//     ],
+//   }
+
+//   const options = {
+//     responsive: true,
+//     maintainAspectRatio: true,
+//     aspectRatio: 2,
+//     plugins: {
+//       legend: {
+//         position: "top" as const,
+//       },
+//       title: {
+//         display: true,
+//         text: "Doughnut Chart: Monthly Sales",
+//       },
+//     },
+//   }
+
+//   return <Doughnut data={data} options={options} />
+// }
+
+// const ScatterChart = () => {
+//   const labels = ["January", "February", "March", "April", "May", "June", "July"]
+//   const dataPoints = [
+//     { x: 20, y: 80 },
+//     { x: 30, y: 70 },
+//     { x: 50, y: 60 },
+//     { x: 40, y: 50 },
+//     { x: 70, y: 40 },
+//     { x: 60, y: 30 },
+//     { x: 90, y: 20 },
+//   ]
+
+//   const data = {
+//     labels,
+//     datasets: [
+//       {
+//         label: "Scatter Chart: Monthly Sales vs Expenses",
+//         data: dataPoints,
+//         backgroundColor: "rgba(53, 162, 235)",
+//         borderColor: "rgb(53, 162, 235)",
+//         borderWidth: 1,
+//         pointRadius: 5, // Adjust the size of the points
+//       },
+//     ],
+//   }
+
+//   const options = {
+//     responsive: true,
+//     scales: {
+//       x: {
+//         beginAtZero: true,
+//         title: {
+//           display: true,
+//           text: "Sales",
+//         },
+//       },
+//       y: {
+//         beginAtZero: true,
+//         title: {
+//           display: true,
+//           text: "Expenses",
+//         },
+//       },
+//     },
+//     plugins: {
+//       legend: {
+//         position: "top" as const,
+//       },
+//       title: {
+//         display: true,
+//         text: "Monthly Sales vs Expenses Scatter Plot",
+//       },
+//     },
+//   }
+
+//   return <Scatter data={data} options={options} />
+// }
 
 function page() {
-  const [data, setData] = React.useState<TChartData[]>([]);
-  const [data01, setData01] = React.useState<TChartData01[]>([]);
-  const [data02, setData02] = React.useState<TChartData01[]>([]);
-
+  return null;
   React.useEffect(() => {
-    setData(initData);
-    setData01(initData01);
-    setData02(initData02);
+    registerCharts();
   }, []);
-
   return (
-    <div>
-      <p className="text-black">Stat graph here</p>
-      <AreaChart
-        width={730}
-        height={250}
-        data={data}
-        margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-      >
-        <defs>
-          <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
-            <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
-          </linearGradient>
-          <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
-            <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
-          </linearGradient>
-        </defs>
-        <XAxis dataKey="name" />
-        <YAxis />
-        <CartesianGrid strokeDasharray="3 3" />
-        <Tooltip />
-        <Area
-          type="monotone"
-          dataKey="uv"
-          stroke="#8884d8"
-          fillOpacity={1}
-          fill="url(#colorUv)"
-        />
-        <Area
-          type="monotone"
-          dataKey="pv"
-          stroke="#82ca9d"
-          fillOpacity={1}
-          fill="url(#colorPv)"
-        />
-      </AreaChart>
-
-      <BarChart width={730} height={250} data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="pv" fill="#8884d8" />
-        <Bar dataKey="uv" fill="#82ca9d" />
-      </BarChart>
-
-      <ComposedChart width={730} height={250} data={data}>
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <CartesianGrid stroke="#f5f5f5" />
-        <Area type="monotone" dataKey="amt" fill="#8884d8" stroke="#8884d8" />
-        <Bar dataKey="pv" barSize={20} fill="#413ea0" />
-        <Line type="monotone" dataKey="uv" stroke="#ff7300" />
-      </ComposedChart>
-
-      <PieChart width={730} height={250}>
-        <Pie
-          data={data01}
-          dataKey="value"
-          nameKey="name"
-          cx="50%"
-          cy="50%"
-          outerRadius={50}
-          fill="#8884d8"
-        />
-        <Pie
-          data={data02}
-          dataKey="value"
-          nameKey="name"
-          cx="50%"
-          cy="50%"
-          innerRadius={60}
-          outerRadius={80}
-          fill="#82ca9d"
-          label
-        />
-      </PieChart>
-
-      <ScatterChart
-        width={730}
-        height={250}
-        margin={{
-          top: 20,
-          right: 20,
-          bottom: 10,
-          left: 10,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="x" type="number" name="stature" unit="cm" />
-        <YAxis dataKey="y" type="number" name="weight" unit="kg" />
-        <ZAxis
-          dataKey="z"
-          type="number"
-          range={[64, 144]}
-          name="score"
-          unit="km"
-        />
-        <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-        <Legend />
-        <Scatter name="A school" data={data01} fill="#8884d8" />
-        <Scatter name="B school" data={data02} fill="#82ca9d" />
-      </ScatterChart>
+    <div className="container">
+      <h1>React charts examples</h1>
+      {/* <div className="graph-container">
+        <LineChart />
+      </div> */}
+      <div className="graph-container">
+        <BarChart />
+      </div>
+      {/* 
+      <div className="graph-container">
+        <DoughnutChart />
+      </div>
+      <div className="graph-container">
+        <ScatterChart />
+      </div> */}
     </div>
   );
 }
