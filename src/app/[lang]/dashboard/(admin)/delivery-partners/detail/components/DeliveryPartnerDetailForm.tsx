@@ -15,27 +15,17 @@ import { useFormState } from "react-dom";
 type Props = {
   initialData: any;
 };
-function CustomerDetailForm({ initialData }: Props) {
+function DeliveryPartnerDetailForm({ initialData }: Props) {
   const t = useTranslations("Manage");
   const [fileFullScreen, setFileFullScreen] = React.useState(false);
   const [file, setfile] = React.useState<
     "profile_photo" | "license_front" | "license_back" | "id_front" | "id_back"
   >();
-  const [status, setStatus] = React.useState<"APPROVE" | "REJECT">();
 
   const TABS = ["license_front", "license_back", "id_front", "id_back"];
 
-  const [formState, action] = useFormState(approveReject, EMPTY_FORM_STATE);
-
-  useToastMessage(formState);
-  useRedirectRoute(formState);
-
   const handleFileFullScreen = () => {
     setFileFullScreen(!fileFullScreen);
-  };
-
-  const handleStatusChange = () => {
-    setStatus(status === "APPROVE" ? "REJECT" : "APPROVE");
   };
 
   return (
@@ -138,112 +128,28 @@ function CustomerDetailForm({ initialData }: Props) {
         </div>
       </div>
       <div className="bg-tertiary dark:bg-gray-800 text-black dark:text-white p-8 rounded-[40px] flex flex-col gap-3">
-        <h3 className="font-semibold text-xl">{t("driver_approval_action")}</h3>
-        <form action={action} className="flex flex-col gap-4">
-          <input
-            type="text"
-            value={initialData.id}
-            name="vendor_id"
-            id="vendor_id"
-            onChange={() => {}}
-            hidden
-          />
-          <div className="flex flex-col gap-3 text-black dark:text-white bg-white dark:bg-gray-600 p-4 rounded-lg">
-            <h4 className="font-semibold ">{t("notify_the_user_via")}</h4>
-            <div className="flex flex-row gap-3 text-sm">
-              <div className="flex flex-row gap-1 cursor-pointer">
-                <input
-                  type="radio"
-                  name="notify_via"
-                  value="phone"
-                  id="phone"
-                  className="radio"
-                  defaultChecked={
-                    initialData.phone_number && !initialData.email
-                  }
-                />
-                <label htmlFor="phone">{t("phone")}</label>
-              </div>
-              <div className="flex flex-row gap-1 cursor-pointer">
-                <input
-                  type="radio"
-                  name="notify_via"
-                  value="email"
-                  id="email"
-                  className="radio"
-                  defaultChecked={
-                    initialData.email && !initialData.phone_number
-                  }
-                />
-                <label htmlFor="email">{t("email")}</label>
-              </div>
-            </div>
-            {formState?.fieldErrors?.notify_via?.[0] && (
-              <span className="text-xs text-danger">
-                {formState?.fieldErrors?.notify_via?.[0]}
-              </span>
-            )}
-          </div>
-          <div className="flex flex-col gap-3">
-            <div className="flex flex-col gap-3">
-              <div className="flex flex-row gap-1">
-                <input
-                  type="radio"
-                  name="status"
-                  value="APPROVE"
-                  id="approve"
-                  className="radio radio-warning"
-                  onChange={handleStatusChange}
-                  checked={status == "APPROVE"}
-                />
-                <label
-                  htmlFor="approve"
-                  className={`cursor-pointer ${status == "APPROVE" && "font-semibold text-warning drop-shadow-md"}`}
-                >
-                  {t("approve")}
-                </label>
-              </div>
-              <div className="flex flex-row gap-1">
-                <input
-                  type="radio"
-                  name="status"
-                  value="REJECT"
-                  id="reject"
-                  className="radio radio-error"
-                  onChange={handleStatusChange}
-                  checked={status == "REJECT"}
-                />
-                <label
-                  htmlFor="reject"
-                  className={`cursor-pointer ${status == "REJECT" && "font-semibold text-error drop-shadow-md"}`}
-                >
-                  {t("reject")}
-                </label>
-              </div>
-              {formState?.fieldErrors?.status?.[0] && (
-                <span className="text-xs text-danger">
-                  {formState?.fieldErrors?.status?.[0]}
-                </span>
-              )}
-            </div>
-            {status == "REJECT" && (
-              <TextAreaInput
-                label={t("reason")}
-                placeholder={t("type_here")}
-                name="reason"
-                id="reason"
-                required
-                error={formState?.fieldErrors?.reason?.[0]}
-              />
-            )}
-          </div>
-          <div className="">
-            <PrimaryButton disabled={!status?.length} padding="md" />
-          </div>
-        </form>
+        <h3 className="font-semibold text-xl">{t("driver_status")}</h3>
+        <TextInput
+          defaultValue={initialData?.online_status}
+          disabled
+          label={t("online_status")}
+          type="text"
+        />
+        <TextInput
+          defaultValue={initialData?.availability}
+          disabled
+          label={t("availability")}
+          type="text"
+        />
+        <TextInput
+          defaultValue={initialData?.orders_delivered}
+          disabled
+          label={t("orders_delivered")}
+          type="text"
+        />
       </div>
     </div>
   );
 }
 
-export default CustomerDetailForm;
+export default DeliveryPartnerDetailForm;

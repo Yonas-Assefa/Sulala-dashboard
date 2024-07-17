@@ -5,11 +5,21 @@ import { customerSupportTableSchema } from "./schema/schema";
 import { TableProps as Props } from "@/types/props.type";
 import { getTranslations } from "next-intl/server";
 import { changeObjToFormData } from "@/lib/helper";
+import { getDeliveryPartners } from "@/actions/admin-manage/get-delivery-partners";
 
 async function page({
-  searchParams: { search, filter, sort, sort_by },
+  searchParams: { search, filter, sort, sort_by, page, page_size },
 }: Props) {
-  const getDeliveryPartners: any[] = [];
+  const deliveryPartners = await getDeliveryPartners(
+    changeObjToFormData({
+      search,
+      filter,
+      sort,
+      sort_by,
+      page,
+      page_size,
+    }),
+  );
 
   const t = await getTranslations("Manage");
 
@@ -18,13 +28,12 @@ async function page({
       <div className="text-black flex flex-col w-full h-full p-8 gap-10">
         <div className="flex flex-row justify-between">
           <h1 className="text-2xl md:text-4xl font-semibold font-serif">
-            {"Manage Delivery Partners"}
+            {t("manage_delivery_partners")}
           </h1>
         </div>
 
-        {/* <PromotionCampaignTable /> */}
         <Table
-          data={getDeliveryPartners}
+          data={deliveryPartners}
           filterData={promotionFilterData}
           tableSchema={customerSupportTableSchema}
           sortData={promotionSortData}

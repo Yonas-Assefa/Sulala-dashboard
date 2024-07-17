@@ -332,7 +332,13 @@
     "notify_the_user_via": "Notify the user via",
     "driver_approval_action": "Driver Approval Action",
     "driver_details": "Driver Details",
-    "driver_info": "Driver Info"
+    "driver_info": "Driver Info",
+    "manage_delivery_partners": "Manage Delivery Partners",
+    "delivery_partner_details": "Delivery Partner Details",
+    "driver_status": "Driver Status",
+    "online_status": "Online Status",
+    "availability": "Availability",
+    "orders_delivered": "Orders Delivered"
   },
   "Commons": {
     "instagram_link": "Instagram link",

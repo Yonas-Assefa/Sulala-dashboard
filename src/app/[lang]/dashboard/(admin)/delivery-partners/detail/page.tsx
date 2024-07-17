@@ -1,9 +1,9 @@
 import BackButton from "@/components/common/ui/BackButton";
 import React from "react";
-import DriverDetailForm from "./components/DriverDetailForm";
+import DeliveryPartnerDetailForm from "./components/DeliveryPartnerDetailForm";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { getOnePendingDriver } from "@/actions/admin-manage/get-pending-drivers";
+import { getOneDeliveryPartner } from "@/actions/admin-manage/get-delivery-partners";
 
 type Props = {
   searchParams: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 async function page({ searchParams: { item } }: Props) {
-  const driverDetail = await getOnePendingDriver(item);
+  const deliveryPartnerDetail = await getOneDeliveryPartner(item);
   const t = await getTranslations("Manage");
 
   return (
@@ -30,10 +30,10 @@ async function page({ searchParams: { item } }: Props) {
           <BackButton />
         </div>
         <h2 className="capitalize text-2xl md:text-3xl">
-          {t("driver_details")}
+          {t("delivery_partner_details")}
         </h2>
       </div>
-      <DriverDetailForm initialData={driverDetail} />
+      <DeliveryPartnerDetailForm initialData={deliveryPartnerDetail} />
     </div>
   );
 }

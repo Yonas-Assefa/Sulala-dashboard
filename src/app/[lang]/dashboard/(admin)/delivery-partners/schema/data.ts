@@ -38,4 +38,10 @@ export const promotionSortData = [
   // },
 ];
 
-export const promotionFilterData = ["all"];
+export const promotionFilterData = [
+  "all",
+  "online",
+  "offline",
+  "assigned",
+  "free",
+];
