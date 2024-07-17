@@ -59,7 +59,7 @@ function TextInput({
         {required && (
           <span className="text-danger">
             *&nbsp;
-            {/* <sup className="text-xs opacity-70">(required)</sup> */}
+            {/* <sup className="text-xs opacity-60">(required)</sup> */}
           </span>
         )}
       </p>
@@ -96,7 +96,7 @@ function TextInput({
                   ? "text-red-800 dark:text-red-500"
                   : "text-black dark:text-white disabled:text-secondary ")
             } 
-            ${disabled && "cursor-not-allowed opacity-50"}
+            ${disabled && "cursor-not-allowed opacity-60"}
             `}
           autoComplete={autoComplete || "false"}
           value={value}
@@ -111,7 +111,7 @@ function TextInput({
             onClick={handleClear}
             className={`absolute bottom-[13px] z-10 ${lang !== "ar" ? "right-[13px]" : "left-[13px]"} ${
               disabled
-                ? "opacity-40 cursor-not-allowed"
+                ? "opacity-60 cursor-not-allowed"
                 : "opacity-100 cursor-pointer"
             }`}
           >

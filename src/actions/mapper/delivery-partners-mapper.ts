@@ -35,7 +35,7 @@ export const deliveryPartnersMapper = async (data: any) => {
       online_status: item.is_active ? "Online" : "Offline",
       vehicle_driving: "Bike",
       availability: item.is_assigned ? "Assigned" : "Free",
-      orders_delivered: item.orders_delivered + "" || "0",
+      orders_delivered: (item.orders_delivered || 0) + "",
     };
   }
   if (Array.isArray(data)) {
