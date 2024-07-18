@@ -5,7 +5,7 @@ import { CategoryScale } from "chart.js";
 import LineChart from "./components/LineChart";
 import Data from "./data/index.json";
 import StatisticNav from "./components/StatisticNav";
-import DateRangeSelector from "../../../../components/common/form/DateRangeSelector";
+import DateRangeSelector from "@/components/common/form/DateRangeSelector";
 
 Chart.register(CategoryScale);
 
