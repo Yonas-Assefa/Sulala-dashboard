@@ -10,6 +10,7 @@ function LineChart({ chartData, chartText, className, label }: ChartProps) {
       <Line
         data={chartData!}
         options={{
+          responsive: true,
           plugins: {
             title: {
               display: true,

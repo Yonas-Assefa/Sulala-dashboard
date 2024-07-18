@@ -31,8 +31,16 @@ function page() {
   return (
     <div className="w-full h-full">
       <StatisticNav />
-      <DateRangeSelector />
-      <div className="grid grid-cols-2 grid-rows-2 gap-4 p-8 w-full h-full">
+      <div className="flex flex-row justify-end w-full items-center mt-4">
+        <div className="max-w-[500px] border-2 rounded-md border-primary/50">
+          <DateRangeSelector />
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 p-8 w-full h-full">
+        <div className="bg-gradient-to-r from-primary/5 to-primary/15 p-3 col-span-3 row-span-2">
+          <LineChart chartData={chartData} />
+        </div>
+        <div className="bg-tertiary p-3 row-span-2"></div>
         <div className="bg-tertiary p-3">
           <LineChart chartData={chartData} />
         </div>

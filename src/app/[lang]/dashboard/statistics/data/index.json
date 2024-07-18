@@ -28,5 +28,35 @@
     "year": 2020,
     "userGain": 4300,
     "userLost": 234
+  },
+  {
+    "id": 6,
+    "year": 2021,
+    "userGain": 10000,
+    "userLost": 1000
+  },
+  {
+    "id": 7,
+    "year": 2022,
+    "userGain": 20000,
+    "userLost": 2000
+  },
+  {
+    "id": 8,
+    "year": 2023,
+    "userGain": 30000,
+    "userLost": 3000
+  },
+  {
+    "id": 9,
+    "year": 2024,
+    "userGain": 40000,
+    "userLost": 4000
+  },
+  {
+    "id": 10,
+    "year": 2025,
+    "userGain": 50000,
+    "userLost": 5000
   }
 ]
