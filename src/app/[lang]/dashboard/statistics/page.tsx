@@ -38,20 +38,26 @@ function page() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 p-8 w-full h-full">
         <div className="bg-gradient-to-r from-primary/5 to-primary/15 p-3 col-span-3 row-span-2">
-          <LineChart chartData={chartData} />
+          <LineChart
+            chartData={chartData}
+            chartText="Order & Delivery Metrics"
+          />
         </div>
         <div className="bg-tertiary p-3 row-span-2"></div>
         <div className="bg-tertiary p-3">
-          <LineChart chartData={chartData} />
+          <LineChart chartData={chartData} chartText="Order Fulfillment Rate" />
         </div>
         <div className="bg-tertiary p-3">
-          <LineChart chartData={chartData} />
+          <LineChart chartData={chartData} chartText="Average Delivery Time" />
         </div>
         <div className="bg-tertiary p-3">
-          <LineChart chartData={chartData} />
+          <LineChart chartData={chartData} chartText="Return Rate" />
         </div>
         <div className="bg-tertiary p-3">
-          <LineChart chartData={chartData} />
+          <LineChart
+            chartData={chartData}
+            chartText="Order Cancellation Rate"
+          />
         </div>
       </div>
     </div>
