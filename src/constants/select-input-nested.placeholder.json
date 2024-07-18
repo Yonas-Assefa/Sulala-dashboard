@@ -1,104 +1,104 @@
 [
-    {
-        "label": "Pet foods and treats",
-        "value": "pet-foods-and-treats",
-        "options": [
-            {
-                "value": "dog-food",
-                "label": "Dog food"
-            },
-            {
-                "value": "cat-food",
-                "label": "Cat food"
-            },
-            {
-                "value": "bird-food",
-                "label": "Bird food"
-            },
-            {
-                "value": "fish-food",
-                "label": "Fish food"
-            },
-            {
-                "value": "small-pet-food",
-                "label": "Small pet food"
-            },
-            {
-                "value": "reptile-food",
-                "label": "Reptile food"
-            },
-            {
-                "value": "horse-food",
-                "label": "Horse food"
-            }
-        ]
-    },
-    {
-        "label": "Pet accessories",
-        "value": "pet-accessories",
-        "options": [
-            {
-                "value": "dog-accessories",
-                "label": "Dog accessories"
-            },
-            {
-                "value": "cat-accessories",
-                "label": "Cat accessories"
-            },
-            {
-                "value": "bird-accessories",
-                "label": "Bird accessories"
-            },
-            {
-                "value": "fish-accessories",
-                "label": "Fish accessories"
-            },
-            {
-                "value": "small-pet-accessories",
-                "label": "Small pet accessories"
-            },
-            {
-                "value": "reptile-accessories",
-                "label": "Reptile accessories"
-            },
-            {
-                "value": "horse-accessories",
-                "label": "Horse accessories"
-            }
-        ]
-    },
-    {
-        "label": "Pet toys",
-        "value": "pet-toys",
-        "options": [
-            {
-                "value": "dog-toys",
-                "label": "Dog toys"
-            },
-            {
-                "value": "cat-toys",
-                "label": "Cat toys"
-            },
-            {
-                "value": "bird-toys",
-                "label": "Bird toys"
-            },
-            {
-                "value": "fish-toys",
-                "label": "Fish toys"
-            },
-            {
-                "value": "small-pet-toys",
-                "label": "Small pet toys"
-            },
-            {
-                "value": "reptile-toys",
-                "label": "Reptile toys"
-            },
-            {
-                "value": "horse-toys",
-                "label": "Horse toys"
-            }
-        ]
-    }
+  {
+    "label": "Pet foods and treats",
+    "value": "pet-foods-and-treats",
+    "options": [
+      {
+        "value": "dog-food",
+        "label": "Dog food"
+      },
+      {
+        "value": "cat-food",
+        "label": "Cat food"
+      },
+      {
+        "value": "bird-food",
+        "label": "Bird food"
+      },
+      {
+        "value": "fish-food",
+        "label": "Fish food"
+      },
+      {
+        "value": "small-pet-food",
+        "label": "Small pet food"
+      },
+      {
+        "value": "reptile-food",
+        "label": "Reptile food"
+      },
+      {
+        "value": "horse-food",
+        "label": "Horse food"
+      }
+    ]
+  },
+  {
+    "label": "Pet accessories",
+    "value": "pet-accessories",
+    "options": [
+      {
+        "value": "dog-accessories",
+        "label": "Dog accessories"
+      },
+      {
+        "value": "cat-accessories",
+        "label": "Cat accessories"
+      },
+      {
+        "value": "bird-accessories",
+        "label": "Bird accessories"
+      },
+      {
+        "value": "fish-accessories",
+        "label": "Fish accessories"
+      },
+      {
+        "value": "small-pet-accessories",
+        "label": "Small pet accessories"
+      },
+      {
+        "value": "reptile-accessories",
+        "label": "Reptile accessories"
+      },
+      {
+        "value": "horse-accessories",
+        "label": "Horse accessories"
+      }
+    ]
+  },
+  {
+    "label": "Pet toys",
+    "value": "pet-toys",
+    "options": [
+      {
+        "value": "dog-toys",
+        "label": "Dog toys"
+      },
+      {
+        "value": "cat-toys",
+        "label": "Cat toys"
+      },
+      {
+        "value": "bird-toys",
+        "label": "Bird toys"
+      },
+      {
+        "value": "fish-toys",
+        "label": "Fish toys"
+      },
+      {
+        "value": "small-pet-toys",
+        "label": "Small pet toys"
+      },
+      {
+        "value": "reptile-toys",
+        "label": "Reptile toys"
+      },
+      {
+        "value": "horse-toys",
+        "label": "Horse toys"
+      }
+    ]
+  }
 ]

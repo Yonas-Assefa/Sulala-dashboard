@@ -18,10 +18,10 @@ function RevenueCard({
         revenuePeriod == "Total"
           ? "bg-[#E1ECB9]"
           : revenuePeriod == "Weekly"
-          ? "bg-[#FEF6D0]"
-          : revenuePeriod == "Daily"
-          ? "bg-[#CCF4D8]"
-          : "bg-gray-200"
+            ? "bg-[#FEF6D0]"
+            : revenuePeriod == "Daily"
+              ? "bg-[#CCF4D8]"
+              : "bg-gray-200"
       }`}
     >
       <div className="flex flex-col gap-3">
@@ -29,10 +29,10 @@ function RevenueCard({
           {revenuePeriod == "Total"
             ? "Total revenue "
             : revenuePeriod == "Weekly"
-            ? "Weekly Sales "
-            : revenuePeriod == "Daily"
-            ? "Today Sales "
-            : null}{" "}
+              ? "Weekly Sales "
+              : revenuePeriod == "Daily"
+                ? "Today Sales "
+                : null}{" "}
           (after fee)
         </h2>
         <h1 className="text-primary/100 font-bold text-2xl font-serif leading-8">

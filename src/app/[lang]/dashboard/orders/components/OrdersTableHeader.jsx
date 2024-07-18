@@ -14,8 +14,9 @@ function OrdersTableHeader() {
               <Link
                 href={`?filter=${filter}`}
                 role="tab"
-                className={`tab capitalize rounded-[30px] bg-white text-black ${searchParams.get("filter") === filter ? "tab-active" : ""
-                  } bg-white text-black`}
+                className={`tab capitalize rounded-[30px] bg-white text-black ${
+                  searchParams.get("filter") === filter ? "tab-active" : ""
+                } bg-white text-black`}
               >
                 {filter}
               </Link>

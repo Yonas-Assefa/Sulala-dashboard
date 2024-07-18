@@ -1,22 +1,22 @@
 {
-    "id": "daily_budgeting",
-    "label": "Daily budgeting",
-    "value": "daily_budgeting",
-    "options": [
-        {
-            "id": "daily_budgeting_1",
-            "label": "Daily budgeting",
-            "value": "daily_budgeting"
-        },
-        {
-            "id": "weekly_budgeting_2",
-            "label": "Weekly budgeting",
-            "value": "weekly_budgeting"
-        }
-    ],
-    "input": {
-        "label": "Budget",
-        "placeholder": "Enter your budget",
-        "type": "text"
+  "id": "daily_budgeting",
+  "label": "Daily budgeting",
+  "value": "daily_budgeting",
+  "options": [
+    {
+      "id": "daily_budgeting_1",
+      "label": "Daily budgeting",
+      "value": "daily_budgeting"
+    },
+    {
+      "id": "weekly_budgeting_2",
+      "label": "Weekly budgeting",
+      "value": "weekly_budgeting"
     }
+  ],
+  "input": {
+    "label": "Budget",
+    "placeholder": "Enter your budget",
+    "type": "text"
+  }
 }

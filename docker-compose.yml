@@ -1,5 +1,4 @@
 services:
-
   dashboard:
     image: yosephtadesse/sulala-dashboard:latest
     # image: sulala-dashboard

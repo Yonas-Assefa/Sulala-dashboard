@@ -1,7 +1,7 @@
-'use server'
+"use server";
 
-import { clearBrowserCookie } from "../../lib/helper"
+import { clearBrowserCookie } from "../../lib/helper";
 
 export const clearCookie = async () => {
-    clearBrowserCookie()
-}
+  clearBrowserCookie();
+};

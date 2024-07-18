@@ -1,62 +1,62 @@
 {
-    "id": "promotional_discount_type",
-    "label": "Promotional discount type",
-    "value": "promotional_discount_type",
-    "options": [
-        {
-            "id": "percentage_off_1",
-            "label": "Percentage off",
-            "value": "percentage_off",
-            "input": {
-                "label": "Discount amount %",
-                "placeholder": "Enter discount amount",
-                "type": "text"
-            }
-        },
-        {
-            "id": "one_plus_one_2",
-            "label": "One plus one",
-            "value": "one_plus_one",
-            "input": {
-                "label": "Budget",
-                "placeholder": "Enter your budget",
-                "type": "select"
-            }
-        },
-        {
-            "id": "limited_price_3",
-            "label": "Limited price",
-            "value": "limited_price",
-            "input": {
-                "label": "Discount amount",
-                "placeholder": "Enter discount amount",
-                "type": "text"
-            }
-        },
-        {
-            "id": "percentage_off_the_minimum_cart_size_4",
-            "label": "Percentage off the minimum cart size",
-            "value": "percentage_off_the_minimum_cart_size",
-            "input": {
-                "label": "Discount amount",
-                "placeholder": "Enter discount amount",
-                "type": "text"
-            }
-        },
-        {
-            "id": "free_shipping_5",
-            "label": "Free shipping",
-            "value": "free_shipping",
-            "input": {
-                "label": "Discount amount",
-                "placeholder": "Enter discount amount",
-                "type": "text"
-            }
-        },
-        {
-            "id": "none_6",
-            "label": "None",
-            "value": "none"
-        }
-    ]
+  "id": "promotional_discount_type",
+  "label": "Promotional discount type",
+  "value": "promotional_discount_type",
+  "options": [
+    {
+      "id": "percentage_off_1",
+      "label": "Percentage off",
+      "value": "percentage_off",
+      "input": {
+        "label": "Discount amount %",
+        "placeholder": "Enter discount amount",
+        "type": "text"
+      }
+    },
+    {
+      "id": "one_plus_one_2",
+      "label": "One plus one",
+      "value": "one_plus_one",
+      "input": {
+        "label": "Budget",
+        "placeholder": "Enter your budget",
+        "type": "select"
+      }
+    },
+    {
+      "id": "limited_price_3",
+      "label": "Limited price",
+      "value": "limited_price",
+      "input": {
+        "label": "Discount amount",
+        "placeholder": "Enter discount amount",
+        "type": "text"
+      }
+    },
+    {
+      "id": "percentage_off_the_minimum_cart_size_4",
+      "label": "Percentage off the minimum cart size",
+      "value": "percentage_off_the_minimum_cart_size",
+      "input": {
+        "label": "Discount amount",
+        "placeholder": "Enter discount amount",
+        "type": "text"
+      }
+    },
+    {
+      "id": "free_shipping_5",
+      "label": "Free shipping",
+      "value": "free_shipping",
+      "input": {
+        "label": "Discount amount",
+        "placeholder": "Enter discount amount",
+        "type": "text"
+      }
+    },
+    {
+      "id": "none_6",
+      "label": "None",
+      "value": "none"
+    }
+  ]
 }

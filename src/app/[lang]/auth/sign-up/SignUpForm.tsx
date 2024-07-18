@@ -35,16 +35,16 @@ function SignUpForm({ by }: SignUpProps) {
         />
       )}
 
-      <input type="text" hidden name="by" value={by} onChange={() => { }} />
+      <input type="text" hidden name="by" value={by} onChange={() => {}} />
 
       {/* SIGN UP LINK */}
       <div className="flex flex-col gap-3 w-full items-center">
         <div className="w-full flex flex-col">
-          <PrimaryButton name={t('continue')} type="submit" />
+          <PrimaryButton name={t("continue")} type="submit" />
         </div>
 
-        <p className="text-[#70757f]">{t('already_have_an_account')}</p>
-        <SecondaryButton name={t('signin')} href={"/auth/sign-in"} />
+        <p className="text-[#70757f]">{t("already_have_an_account")}</p>
+        <SecondaryButton name={t("signin")} href={"/auth/sign-in"} />
       </div>
     </form>
   );

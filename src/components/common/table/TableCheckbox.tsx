@@ -28,7 +28,7 @@ function TableCheckbox({ item_id, isHeader, items_id }: Props) {
         const selected_items =
           searchParams.get("item")?.toString()?.split(",") || [];
         const new_selected_items = selected_items?.filter(
-          (item) => item !== item_id + ""
+          (item) => item !== item_id + "",
         );
         createQueryStringAndPush("item", new_selected_items?.join(","));
       } else {
