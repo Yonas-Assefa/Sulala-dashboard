@@ -403,7 +403,15 @@
     "pagination_showing": "Showing",
     "pagination_of": "of",
     "pagination_orders": "orders",
-    "no_photo": "No Photo"
+    "no_photo": "No Photo",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "last_sth_days": "Last {days} days",
+    "this_month": "This month",
+    "last_month": "Last month",
+    "this_year": "This year",
+    "last_year": "Last year",
+    "custom_range": "Custom range"
   },
   "Error": {
     "trouble_loading_page": "We're sorry, we're having some trouble loading the page right now",

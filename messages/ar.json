@@ -407,7 +407,15 @@
     "continue": "يكمل",
     "pagination_showing": "عرض",
     "pagination_of": "ل",
-    "pagination_orders": "طلبات"
+    "pagination_orders": "طلبات",
+    "today": "اليوم",
+    "yesterday": "أمس",
+    "last_sth_days": "آخر {days} أيام",
+    "this_month": "هذا الشهر",
+    "last_month": "الشهر الماضي",
+    "this_year": "هذا العام",
+    "last_year": "العام الماضي",
+    "custom_range": "نطاق مخصص"
   },
   "Error": {
     "trouble_loading_page": "عذرًا، نواجه بعض المشاكل في تحميل الصفحة الآن",

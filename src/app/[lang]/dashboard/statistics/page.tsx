@@ -5,6 +5,7 @@ import { CategoryScale } from "chart.js";
 import LineChart from "./components/LineChart";
 import Data from "./data/index.json";
 import StatisticNav from "./components/StatisticNav";
+import DateRangeSelector from "../../../../components/common/form/DateRangeSelector";
 
 Chart.register(CategoryScale);
 
@@ -30,6 +31,7 @@ function page() {
   return (
     <div className="w-full h-full">
       <StatisticNav />
+      <DateRangeSelector />
       <div className="grid grid-cols-2 grid-rows-2 gap-4 p-8 w-full h-full">
         <div className="bg-tertiary p-3">
           <LineChart chartData={chartData} />
