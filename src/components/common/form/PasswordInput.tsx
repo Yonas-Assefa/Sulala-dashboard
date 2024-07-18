@@ -64,7 +64,7 @@ function PasswordInput({
           <button
             onClick={toggleShowHidePassword}
             type="button"
-            className="absolute top-[13px] right-[13px]"
+            className={`absolute top-[13px] ${lang !== "ar" ? "right-[13px]" : "left-[13px]"}`}
           >
             <img
               src="/closed-eye.svg"
