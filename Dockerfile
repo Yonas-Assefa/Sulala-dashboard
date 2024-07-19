@@ -1,16 +1,17 @@
-FROM node:20-alpine AS builder
+FROM oven/bun AS builder
 
 WORKDIR /app
 
 COPY package* ./
+COPY bun.lockb ./
 
-RUN npm ci
+RUN bun install --production
 
 COPY . .
 
-RUN npm run build
+RUN bun run build
 
-FROM node:20-alpine
+FROM oven/bun
 
 WORKDIR /app
 
@@ -22,13 +23,13 @@ ENV NODE_ENV production
 ENV ENV production
 ENV PORT 3000
 
-RUN addgroup --system --gid 1001 nodejs
+RUN addgroup --system --gid 1001 ovenbun
 RUN adduser --system --uid 1001 nextjs
 
-RUN chown -R nextjs:nodejs .
+RUN chown -R nextjs:ovenbun .
 
 USER nextjs
 
 EXPOSE 3000
 
-CMD ["node", "server.js"]
+CMD ["bun", "server.js"]
