@@ -10,7 +10,7 @@ function InfoMetricsPanelLarge({
   chartText,
 }: InfoMetricsPanelProps) {
   return (
-    <div className="bg-tertiary bg-primary/5 p-3 col-span-3 row-span-2">
+    <div className="bg-primary/5 p-3 col-span-3 row-span-2">
       {chartType !== ChartType.NONE ? (
         getChartComponent({ chartType, chartData, caChartData, chartText })
       ) : (

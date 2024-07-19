@@ -55,3 +55,8 @@ export enum ChartType {
   SCATTER_PLOT = "scatter-plot",
   NONE = "none",
 }
+
+export type TRawChartData = {
+  year: number;
+  userGain: number;
+};

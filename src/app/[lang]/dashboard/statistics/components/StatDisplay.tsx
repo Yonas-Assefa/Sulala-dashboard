@@ -9,39 +9,69 @@ import InfoMetricsPanelLarge from "./InfoMetrics/InfoMetricsPanelLarge";
 import InfoMetricsDescription from "./InfoMetrics/InfoMetricsDescription";
 import InfoMetricsPanelSmall from "./InfoMetrics/InfoMetricsPanelSmall";
 import { ChartType } from "../types/chart-props.type";
+import getChartData from "../utils/getChartData";
+import SelectInput from "@/components/common/form/SelectInput";
+import { getoneFromArray } from "@/utils/getOneFromArray";
 
 Chart.register(CategoryScale);
 
 function StatDisplay() {
-  const chartData = {
-    labels: Data.map((data) => data.year),
-    datasets: [
-      {
-        label: "Users Gained ",
-        data: Data.map((data) => data.userGain),
-        backgroundColor: [
-          "rgba(75,192,192,1)",
-          "#50AF95",
-          "#f3ba2f",
-          "#2a71d0",
-        ],
-        borderColor: "black",
-        borderWidth: 2,
-      },
-    ],
+  const [chartType, setChartType] = React.useState(ChartType.NONE);
+  const [chartData, setChartData] = React.useState(getChartData(Data));
+  const [chartTitle, setChartTitle] = React.useState<string>();
+
+  const changeChartType = (chartType: ChartType, chartTitle?: string) => {
+    setChartType(chartType);
+    setChartTitle(chartTitle);
+    setChartData(getChartData(Data));
   };
+
   return (
     <div className="w-full h-full">
       <StatisticNav />
       <div className="flex flex-row justify-end w-full items-center -mb-6 mt-2">
+        <div className="max-w-[500px] min-w-[300px] border-2 bg-primary rounded-md flex justify-center items-center pb-2">
+          <SelectInput
+            data={[
+              {
+                label: "Bar Chart",
+                value: ChartType.BAR,
+              },
+              {
+                label: "Line Chart",
+                value: ChartType.LINE,
+              },
+              {
+                label: "Scatter Plot",
+                value: ChartType.SCATTER_PLOT,
+              },
+              {
+                label: "Pie Chart",
+                value: ChartType.PIE,
+              },
+              {
+                label: "Doughnut Chart",
+                value: ChartType.DOUGHNUT,
+              },
+              {
+                label: "Cohort Analysis",
+                value: ChartType.COHORT_ANALYSIS,
+              },
+            ]}
+            placeholder="Change Chart Type"
+            onChange={(value) => setChartType(getoneFromArray(value))}
+            disabled={chartType === ChartType.NONE}
+          />
+        </div>
         <div className="max-w-[500px] border-2 rounded-md border-primary/5">
           <DateRangeSelector />
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 p-8 w-full h-full">
         <InfoMetricsPanelLarge
-          chartType={ChartType.BAR}
+          chartType={chartType}
           chartData={chartData}
+          chartText={chartTitle}
         />
         <InfoMetricsDescription
           label="Order Metrics"
@@ -63,26 +93,31 @@ function StatDisplay() {
               content: "The rate at which orders are cancelled",
             },
           ]}
+          onClick={() => setChartType(ChartType.LINE)}
         />
         <InfoMetricsPanelSmall
           chartType={ChartType.LINE}
           chartData={chartData}
           chartText="Order Fulfillment Rate"
+          onClick={changeChartType}
         />
         <InfoMetricsPanelSmall
           chartType={ChartType.SCATTER_PLOT}
           chartData={chartData}
           chartText="Average Delivery Time"
+          onClick={changeChartType}
         />
         <InfoMetricsPanelSmall
           chartType={ChartType.LINE}
           chartData={chartData}
           chartText="Return Rate"
+          onClick={changeChartType}
         />
         <InfoMetricsPanelSmall
           chartType={ChartType.SCATTER_PLOT}
           chartData={chartData}
           chartText="Order Cancellation Rate"
+          onClick={changeChartType}
         />
       </div>
     </div>

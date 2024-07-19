@@ -8,7 +8,7 @@ import {
 type BaseInputProps = {
   id?: string;
   placeholder?: string;
-  label: string;
+  label?: string;
   name?: string;
   autoComplete?: string;
   error?: string;
@@ -46,6 +46,7 @@ export type CustomSelectInputProps = Omit<BaseInputProps, "defaultValue"> & {
   data?: SelectInputSchema[];
   searchable?: boolean;
   defaultValue?: string | number | string[] | number[];
+  onChange?: (value: string | number | string[] | number[]) => void;
 };
 
 export type CustomRadioInputProps = {

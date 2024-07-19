@@ -35,6 +35,7 @@ function SelectInput({
   defaultValue,
   searchable = false,
   required,
+  onChange,
 }: CustomSelectInputProps) {
   const [options, setOptions] = React.useState<SelectInputSchema[]>(data || []);
 
@@ -173,9 +174,11 @@ function SelectInput({
     if (selected.length === 0) {
       setComputedValue("");
       if (setValue) setValue("");
+      if (onChange) onChange("");
     } else {
       setComputedValue(selected.map((item) => item.label).join(", "));
       if (setValue) setValue(selected.map((item) => item.label).join(", "));
+      if (onChange) onChange(selected.map((item) => item.value));
     }
   }, [selected]);
 

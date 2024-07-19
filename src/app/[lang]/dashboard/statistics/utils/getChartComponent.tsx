@@ -1,4 +1,3 @@
-import { CAChartData, ChartData, ChartType } from "../types/chart-props.type";
 import LineChart from "../components/LineChart";
 import BarChart from "../components/BarChart";
 import CohortAnalysisChart from "../components/CohortAnalysisChart";
@@ -6,6 +5,7 @@ import DoughnutChart from "../components/DoughnutChart";
 import PieChart from "../components/PieChart";
 import ScatterChart from "../components/ScatterPlotChart";
 import { InfoMetricsPanelProps } from "../types/metrics-info.type";
+import { ChartType } from "../types/chart-props.type";
 
 const getChartComponent = ({
   caChartData,
@@ -29,7 +29,11 @@ const getChartComponent = ({
     case ChartType.SCATTER_PLOT:
       return <ScatterChart chartData={chartData} chartText={chartText} />;
     default:
-      return <div>Chart type not supported</div>;
+      return (
+        <div className="h-full w-full flex flex-col justify-center items-center text-danger">
+          <p>Chart type not supported!</p>
+        </div>
+      );
   }
 };
 
