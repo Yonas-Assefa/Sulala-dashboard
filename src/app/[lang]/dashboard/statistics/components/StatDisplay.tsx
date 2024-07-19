@@ -61,11 +61,30 @@ const selectChartData = [
     // },
 ]
 
+const metricsDescriptions = [
+    {
+        title: "Order Fulfillment Rate",
+        content: "The rate at which orders are fulfilled",
+    },
+    {
+        title: "Average Delivery Time",
+        content: "The average time taken to deliver orders",
+    },
+    {
+        title: "Return Rate",
+        content: "The rate at which orders are returned",
+    },
+    {
+        title: "Order Cancellation Rate",
+        content: "The rate at which orders are cancelled",
+    },
+]
+
 function StatDisplay() {
     const [chartType, setChartType] = React.useState(ChartType.NONE);
     const [chartData, setChartData] = React.useState(getChartData(Data));
     const [chartTitle, setChartTitle] = React.useState<string>();
-    const [rangeType, setRangeType] = React.useState<RangeType>(RangeType.DAY);
+    const [_rangeType, setRangeType] = React.useState<RangeType>(RangeType.DAY);
 
     const changeChartType = (chartType: ChartType, chartTitle?: string) => {
         setChartType(chartType);
@@ -129,24 +148,7 @@ function StatDisplay() {
                 />
                 <InfoMetricsDescription
                     label="Order Metrics"
-                    descriptions={[
-                        {
-                            title: "Order Fulfillment Rate",
-                            content: "The rate at which orders are fulfilled",
-                        },
-                        {
-                            title: "Average Delivery Time",
-                            content: "The average time taken to deliver orders",
-                        },
-                        {
-                            title: "Return Rate",
-                            content: "The rate at which orders are returned",
-                        },
-                        {
-                            title: "Order Cancellation Rate",
-                            content: "The rate at which orders are cancelled",
-                        },
-                    ]}
+                    descriptions={metricsDescriptions}
                     onClick={() => setChartType(ChartType.LINE)}
                 />
                 <InfoMetricsPanelSmall
