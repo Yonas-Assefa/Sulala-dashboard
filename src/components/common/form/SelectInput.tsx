@@ -36,6 +36,9 @@ function SelectInput({
   searchable = false,
   required,
   onChange,
+  className,
+  inputAreaOnly,
+  disabled
 }: CustomSelectInputProps) {
   const [options, setOptions] = React.useState<SelectInputSchema[]>(data || []);
 
@@ -44,24 +47,24 @@ function SelectInput({
     : typeof defaultValue === "string" || typeof defaultValue === "number"
       ? nested
         ? options
-            .map((option) => option.options)
-            ?.flatMap((opt) => opt)
-            ?.filter((opt) => opt && opt.value == defaultValue)
+          .map((option) => option.options)
+          ?.flatMap((opt) => opt)
+          ?.filter((opt) => opt && opt.value == defaultValue)
         : options
-            .filter((option) => option.value == defaultValue)
-            .filter(Boolean)
+          .filter((option) => option.value == defaultValue)
+          .filter(Boolean)
       : Array.isArray(defaultValue)
         ? defaultValue.length == 0
           ? []
           : defaultValue
-              .map((val) => {
-                if (typeof val == "string" || typeof val == "number") {
-                  return options.find((option) => option.value == val);
-                } else {
-                  return val;
-                }
-              })
-              .filter(Boolean)
+            .map((val) => {
+              if (typeof val == "string" || typeof val == "number") {
+                return options.find((option) => option.value == val);
+              } else {
+                return val;
+              }
+            })
+            .filter(Boolean)
         : typeof defaultValue === "object"
           ? [defaultValue as SelectInputSchema]
           : [];
@@ -212,18 +215,18 @@ function SelectInput({
       const filteredOptions =
         multi && !selectedParent
           ? data?.filter((option) =>
-              option.label.toLowerCase().includes(value.toLowerCase()),
-            )
+            option.label.toLowerCase().includes(value.toLowerCase()),
+          )
           : options.filter((option) =>
-              option.label.toLowerCase().includes(value.toLowerCase()),
-            );
+            option.label.toLowerCase().includes(value.toLowerCase()),
+          );
       setOptions(filteredOptions || []);
     } else {
       setOptions(
         !selectedParent
           ? data || []
           : data?.find((option) => option.value === selectedParent?.value)
-              ?.options || [],
+            ?.options || [],
       );
     }
   };
@@ -247,10 +250,10 @@ function SelectInput({
           value={item.value}
           key={i}
           hidden
-          onChange={() => {}}
+          onChange={() => { }}
         />
       ))}
-      <p className="self-start capitalize">
+      {!inputAreaOnly && <p className="self-start capitalize">
         {label}
         {required && (
           <span className="text-danger">
@@ -258,14 +261,15 @@ function SelectInput({
             {/* <sup className="text-xs opacity-70">{t("(required)")}</sup> */}
           </span>
         )}
-      </p>
+      </p>}
       <details
         ref={selectRef}
-        className={`dropdown bg-white dark:bg-gray-800 rounded-[30px] m-0 p-0 border w-full hover:bg-white dark:hover:bg-gray-700 outline-none `}
+        onClick={(e) => disabled && e.preventDefault()}
+        className={`dropdown bg-white dark:bg-gray-800 rounded-[30px] m-0 p-0 border w-full hover:bg-white dark:hover:bg-gray-700 outline-none ${className}`}
       >
         {/* SUMMARY HOLDS SELECTED COMPUTED VALUE OR PLACEHOLDER IF THERE IS NO SELECTED VALUE */}
         <summary
-          className={`flex items-center overflow-hidden px-3 justify-between gap-0 rounded-[40px] w-full cursor-pointer input select-none focus:outline-none ${computedValue ? "text-black dark:text-white" : "text-gray-400"} ${error ? "border-danger bg-dangerlight" : "focus-within:border-primary bg-transparent"}`}
+          className={`flex items-center overflow-hidden px-3 justify-between gap-0 rounded-[40px] w-full cursor-pointer input select-none focus:outline-none ${computedValue ? "text-black dark:text-white" : "text-gray-400"} ${className} ${error ? "border-danger bg-dangerlight" : "focus-within:border-primary bg-transparent"} ${disabled && "opacity-50 cursor-not-allowed"}`}
         >
           <p className="truncate">
             {computedValue || placeholder || t("select_one")}
@@ -370,35 +374,35 @@ function SelectInput({
                       {nested && !selectedParent ? (
                         <img src="/icons/chevron-right.svg" alt="" />
                       ) : // THIS LINE CHECKS IF NESTED SELECTION IS ALLOWED AND SELECTED PARENT IS NOT NULL,
-                      // OR NESTED SELECTION IS NOT ALLOWED AND SELECTED PARENT IS NULL,
-                      // THEN IT CHECKS THE SELECTED ITEMS LIST EQAULS TO THIS ITEM
-                      ((nested && selectedParent) ||
+                        // OR NESTED SELECTION IS NOT ALLOWED AND SELECTED PARENT IS NULL,
+                        // THEN IT CHECKS THE SELECTED ITEMS LIST EQAULS TO THIS ITEM
+                        ((nested && selectedParent) ||
                           (!nested && !selectedParent)) &&
-                        selected.find((item) => item.value === option.value) ? (
-                        // IF MULTIPLE SELECTION IS ENABLED, CHECKBOX WILL APPEAR
-                        // IF MULTIPLE SELECTION IS DISABLED, CHECK MARK WILL APPEAR
-                        multi ? (
-                          <input
-                            type="checkbox"
-                            className={`checkbox checkbox-success ${hasError && "checkbox-error"}`}
-                            checked={true}
-                          />
-                        ) : (
-                          <img
-                            src="/icons/check.svg"
-                            alt=""
-                            className="w-[20px]"
-                          />
-                        )
-                      ) : // ELSE IF SELECTED ITEM DOES NOT MATCH THIS ITEM, AND IF MULTI IS ENABLED, UNCHECKED CHECKBOX WILL APPEAR
-                      // ELSE IF SELECTED ITEM DOES NOT MATCH THIS ITEM, AND IF MULTI IS DISABLED, NOTHING WILL APPEAR
-                      multi ? (
-                        <input
-                          type="checkbox"
-                          className="checkbox border-secondary"
-                          checked={false}
-                        />
-                      ) : null}
+                          selected.find((item) => item.value === option.value) ? (
+                          // IF MULTIPLE SELECTION IS ENABLED, CHECKBOX WILL APPEAR
+                          // IF MULTIPLE SELECTION IS DISABLED, CHECK MARK WILL APPEAR
+                          multi ? (
+                            <input
+                              type="checkbox"
+                              className={`checkbox checkbox-success ${hasError && "checkbox-error"}`}
+                              checked={true}
+                            />
+                          ) : (
+                            <img
+                              src="/icons/check.svg"
+                              alt=""
+                              className="w-[20px]"
+                            />
+                          )
+                        ) : // ELSE IF SELECTED ITEM DOES NOT MATCH THIS ITEM, AND IF MULTI IS ENABLED, UNCHECKED CHECKBOX WILL APPEAR
+                          // ELSE IF SELECTED ITEM DOES NOT MATCH THIS ITEM, AND IF MULTI IS DISABLED, NOTHING WILL APPEAR
+                          multi ? (
+                            <input
+                              type="checkbox"
+                              className="checkbox border-secondary"
+                              checked={false}
+                            />
+                          ) : null}
                     </div>
                   </li>
                 );
@@ -407,13 +411,13 @@ function SelectInput({
           </div>
         </div>
       </details>
-      {error && (
+      {!inputAreaOnly && error && (
         <span className="text-xs text-danger">
           {childErrorItem
             ? error?.replace(
-                /\[.+]/,
-                `(${childErrorItem?.map((obj) => obj.title).join(", ")})`,
-              )
+              /\[.+]/,
+              `(${childErrorItem?.map((obj) => obj.title).join(", ")})`,
+            )
             : error}
         </span>
       )}

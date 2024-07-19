@@ -32,10 +32,10 @@ export type SelectInputProps = Omit<BaseInputProps, "defaultValue"> & {
   multi?: boolean;
   options?: string[];
   defaultValue?:
-    | string
-    | { value: string; label: string }
-    | { value: string; label: string }[]
-    | null;
+  | string
+  | { value: string; label: string }
+  | { value: string; label: string }[]
+  | null;
 };
 
 export type CustomSelectInputProps = Omit<BaseInputProps, "defaultValue"> & {
@@ -47,6 +47,8 @@ export type CustomSelectInputProps = Omit<BaseInputProps, "defaultValue"> & {
   searchable?: boolean;
   defaultValue?: string | number | string[] | number[];
   onChange?: (value: string | number | string[] | number[]) => void;
+  className?: string;
+  inputAreaOnly?: boolean;
 };
 
 export type CustomRadioInputProps = {
