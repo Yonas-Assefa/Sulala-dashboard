@@ -45,3 +45,13 @@ export type ChartProps = {
   className?: string;
   chartText?: string;
 };
+
+export enum ChartType {
+  LINE = "line",
+  BAR = "bar",
+  PIE = "pie",
+  DOUGHNUT = "doughnut",
+  COHORT_ANALYSIS = "cohort-analysis",
+  SCATTER_PLOT = "scatter-plot",
+  NONE = "none",
+}
