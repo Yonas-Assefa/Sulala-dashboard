@@ -27,7 +27,7 @@ function SideBarNav({ isSuperUser }: Props) {
   return (
     <nav
       ref={ref}
-      className="md:min-w-[300px] z-50 drop-shadow-lg md:h-full bg-tertiary dark:bg-gradient-to-b dark:from-black dark:via-gray-950 dark:to-gray-900 dark:border-0 fixed md:relative md:w-auto w-full h-auto md:flex flex-col justify-between"
+      className="md:min-w-[300px] z-50 drop-shadow-lg md:h-full bg-tertiary dark:bg-gray-900 dark:border-0 fixed md:relative md:w-auto w-full h-auto md:flex flex-col justify-between"
     >
       <div className="group">
         <div className="flex flex-row justify-between items-center">

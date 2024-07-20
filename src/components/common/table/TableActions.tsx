@@ -29,7 +29,8 @@ function TableActions({
   toggle,
   actionOptions,
 }: Props) {
-  const { createQueryString } = useCreateQueryString();
+  const { createQueryString, createQueryStringAndPush } =
+    useCreateQueryString();
   const [formState, setFormState] = useState(EMPTY_FORM_STATE);
   const pathname = usePathname();
   const [toggleValue, setToggleValue] = useState({
@@ -50,6 +51,14 @@ function TableActions({
 
   useToastMessage(formState);
   useRedirectRoute(formState);
+
+  React.useEffect(() => {
+    setToggleValue({
+      checked:
+        product[actionOptions?.toggle?.key as string] ==
+        actionOptions?.toggle?.active,
+    });
+  }, [product]);
 
   const promotion_id = Array.isArray(product?.promotion_campaigns)
     ? product?.promotion_campaigns?.[0]?.id
@@ -138,27 +147,28 @@ function TableActions({
 
   const handleToogle = async () => {
     if (!toggleValue.checked) {
-      const confirmation = await openModal("confirm_item_table_modal", true);
-      if (!confirmation) {
-        return;
-      }
+      createQueryStringAndPush("item", product.id as string);
+      await openModal("confirm_item_table_modal");
+    } else {
+      addOptimisticToggleValue(!toggleValue.checked);
+      startTransition(async () => {
+        if (toggle && actionOptions?.toggle) {
+          const formData = new FormData();
+          const toInclude = actionOptions.toggle.formData || [];
+          toInclude.map((fd) => {
+            formData.append(fd.formDataKey, product[fd.itemKey]);
+          });
+          actionOptions.toggle
+            .action(formState, formData)
+            .then((res: FormState) => {
+              setFormState(res);
+              if (res.status === "SUCCESS") {
+                setToggleValue({ checked: !toggleValue.checked });
+              }
+            });
+        }
+      });
     }
-    addOptimisticToggleValue(!toggleValue.checked);
-    startTransition(async () => {
-      if (toggle && actionOptions?.toggle) {
-        const formData = new FormData();
-        const toInclude = actionOptions.toggle.formData || [];
-        toInclude.map((fd) => {
-          formData.append(fd.formDataKey, product[fd.itemKey]);
-        });
-        actionOptions.toggle.action(formData).then((res: FormState) => {
-          setFormState(res);
-          if (res.status === "SUCCESS") {
-            setToggleValue({ checked: !toggleValue.checked });
-          }
-        });
-      }
-    });
   };
 
   return (

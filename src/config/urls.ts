@@ -76,15 +76,15 @@ export const INSTAGRAM_BASE_URL = "https://www.instagram.com/";
 export const FACEBOOK_BASE_URL = "https://www.facebook.com/";
 
 // ADMIN URLS
-export const GET_PENDING_SHOPS = `${VENDOR_BASE_URL}review_vendor_registration/`;
+export const GET_PENDING_SHOPS = `${VENDOR_BASE_URL}requests/`;
 export const GET_SUPPORT_REQUESTS = `${VENDOR_BASE_URL}customer-support/`;
-export const ANSWER_SUPPORT_REQUESTS = `${VENDOR_BASE_URL}customer-support-response/`;
-export const APPROVE_SHOPS = `${VENDOR_BASE_URL}approve_vendor_registration/`;
-export const REJECT_SHOPS = `${VENDOR_BASE_URL}reject_vendor_registration/`;
+export const ANSWER_SUPPORT_REQUESTS = `${VENDOR_BASE_URL}customer-support/answer/`;
+export const APPROVE_SHOPS = `${VENDOR_BASE_URL}requests/approve/`;
+export const REJECT_SHOPS = `${VENDOR_BASE_URL}requests/reject/`;
 export const ACCEPT_SHOP_APPROVAL = `${VENDOR_BASE_URL}account-access-link/`;
-export const GET_PENDING_DRIVERS = `${API_URL}review-driver-registration/`;
-export const REJECT_DRIVER_URL = `${API_URL}reject-driver-registration/`;
-export const APPROVE_DRIVER_URL = `${API_URL}approve-driver-registration/`;
+export const GET_PENDING_DRIVERS = `${API_URL}requests/`;
+export const REJECT_DRIVER_URL = `${API_URL}requests/reject/`;
+export const APPROVE_DRIVER_URL = `${API_URL}requests/approve/`;
 
 // OPEN TELEMETRY URLS
 export const SENTRY_DSN = process.env.SENTRY_DNS!;

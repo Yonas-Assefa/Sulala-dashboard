@@ -3,6 +3,7 @@ import { SelectInputSchema } from "@/types/input-field.type";
 import { CustomSelectInputProps } from "@/types/props.type";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { useParams } from "next/navigation";
 import React, { useEffect } from "react";
 import { useDetectClickOutside } from "react-detect-click-outside";
 
@@ -92,6 +93,8 @@ function SelectInput({
   const ref: React.RefObject<HTMLDivElement> = useDetectClickOutside({
     onTriggered: closeDropdown,
   });
+
+  const { lang } = useParams();
 
   const handleSelect = (value: string) => {
     if (nested) {
@@ -222,6 +225,11 @@ function SelectInput({
     }
   };
 
+  const handleClearSearch = () => {
+    setSearch("");
+    setOptions(data || []);
+  };
+
   return (
     // REF IS USED TO DETECT CLICK OUTSIDE THE DROPDOWN PARENT DIV ELEMENT TO TRIGGER CLOSE DROPDOWN
     // SELECT REF IS USED TO OPEN AND CLOSE THE DROPDOWN
@@ -244,7 +252,7 @@ function SelectInput({
         {required && (
           <span className="text-danger">
             *&nbsp;
-            <sup className="text-xs opacity-70">{t("(required)")}</sup>
+            {/* <sup className="text-xs opacity-70">{t("(required)")}</sup> */}
           </span>
         )}
       </p>
@@ -273,15 +281,30 @@ function SelectInput({
           {
             // searchable &&
             searchable && (
-              <input
-                type="text"
-                name={`search-${id}`}
-                id={`search-${id}`}
-                placeholder={`${t("search")} ${label?.toLowerCase()}...`}
-                className="bg-primary/10 border m-2 p-1 rounded-[10px] w-11/12 focus:border-primary selection:bg-primary selection:text-tertiary caret-primary"
-                value={search}
-                onChange={handleSearch}
-              />
+              <div className="relative w-11/12">
+                <input
+                  type="text"
+                  name={`search-${id}`}
+                  id={`search-${id}`}
+                  placeholder={`${t("search")} ${label?.toLowerCase()}...`}
+                  className="bg-primary/10 border m-2 p-1 rounded-[10px] w-full focus:border-primary selection:bg-primary selection:text-tertiary caret-primary"
+                  value={search}
+                  onChange={handleSearch}
+                />
+                {search && (
+                  <button
+                    type="button"
+                    onClick={handleClearSearch}
+                    className={`absolute bottom-[14px] z-10 ${lang !== "ar" ? "right-[0px]" : "left-[0px]"}`}
+                  >
+                    <img
+                      src="/x-circle.svg"
+                      alt=""
+                      className="mr-0 stroke-emerald-500 w-[17px] aspect-square"
+                    />
+                  </button>
+                )}
+              </div>
             )
           }
           {/* IF THERE IS SELECTED PARENT, THE FOLLOWING COMPONENT APPEARS WITH TITLE OF SELECTED PARENT AND BACK BUTTON */}

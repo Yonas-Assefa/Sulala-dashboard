@@ -9,7 +9,15 @@
     "lint": "next lint",
     "prepare": "husky",
     "tag:version": "./scripts/git/BUMP_VERSION.sh",
+    "tag:version:latest": "./scripts/git/BUMP_VERSION.sh --latest",
+    "tag:version:patch": "./scripts/git/BUMP_VERSION.sh --patch",
+    "tag:version:minor": "./scripts/git/BUMP_VERSION.sh --minor",
+    "tag:version:major": "./scripts/git/BUMP_VERSION.sh --major",
+    "docker:login": "./scripts/docker/LOGIN.sh",
+    "docker:logout": "./scripts/docker/LOGOUT.sh",
     "docker:build": "./scripts/docker/ALL.sh",
+    "docker:run": "docker compose up --build",
+    "docker:push": "./scripts/docker/PUSH.sh",
     "test": "vitest run"
   },
   "dependencies": {
@@ -30,6 +38,7 @@
     "next": "14.2.3",
     "next-auth": "^4.24.7",
     "next-intl": "^3.14.1",
+    "node-cache": "^5.1.2",
     "prettier": "^3.3.2",
     "primereact": "^10.6.6",
     "react": "^18",

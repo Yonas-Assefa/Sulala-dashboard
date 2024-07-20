@@ -6,6 +6,7 @@ import { LOCALES } from "@/i18n/config";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import SelectAccount from "./components/SelectAccount";
+import { FRONTEND_BASE_URL } from "@/config/urls";
 
 type Props = {
   params: {
@@ -29,7 +30,9 @@ export async function generateMetadata({
     description: t("description"),
     icons: ["/sulala-logo.svg"],
     openGraph: {
-      images: ["/sulala-logo.svg"],
+      images: [
+        new URL(`${lang}/opengraph-image`, FRONTEND_BASE_URL).toString(),
+      ],
       title: t("title"),
     },
   };
@@ -42,7 +45,6 @@ export default function Landing({ params: { lang } }: Props) {
   return (
     <div className="overflow-hidden">
       <LandingNavBar lang={lang} />
-
       <section className="min-h-screen min-w-screen bg-gradient-to-b relative from-primary to-primary/50 text-white grid grid-cols-1 md:grid-cols-2">
         <div className="h-full flex flex-col justify-between md:justify-center gap-12 py-24 md:py-4 items-center z-20 md:z-auto">
           <div className="flex flex-row justify-center items-center gap-3 ">

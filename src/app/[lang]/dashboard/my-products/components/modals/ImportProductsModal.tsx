@@ -68,15 +68,8 @@ function ImportProductsModal() {
             .filter((content: any) => content?.length > 1)
             .map((content: any) => content?.[0] as string)
             .filter((category) => {
-              console.log({
-                category,
-                fileContents,
-                isValid: !/^\d+$/.test(category),
-              });
               return !/^\d+$/.test(category);
             });
-
-          console.log({ invalidCategories });
 
           if (missingColumns.length > 0) {
             setFormState(

@@ -7,12 +7,14 @@ import {
 import { UPDATE_VENDOR_ACCOUNT } from "../../config/urls";
 import { personalInfoSettingSchema } from "../schema/zod-schema";
 import {
-  clearPersonalInfo,
   getRequestHeaders,
   getResponseBody,
   getResponseErrorMessage,
 } from "../../lib/helper";
 import { revalidatePath } from "next/cache";
+import cache from "@/cache/node-cache";
+import { Console } from "@/lib/print";
+import { revalidateCachedPersonalInfo } from "@/cache/get-cached-personal-info";
 
 export const updatePersonalInfo = async (
   formState: FormState,
@@ -39,7 +41,7 @@ export const updatePersonalInfo = async (
       throw new Error(message || "Failed to submit form");
     }
 
-    clearPersonalInfo();
+    await revalidateCachedPersonalInfo();
 
     const successMessage = body.message || "Successfully updated personal info";
 

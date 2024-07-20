@@ -33,7 +33,7 @@ export const contactSupportSchema = z.object({
     .string()
     .min(3, "Full name must be at least 3 characters long")
     .regex(/^[a-zA-Z]+ [a-zA-Z]+$/, "Full name must have a space in between"),
-  message: z.string().min(20, "Message must be at least 20 character long"),
+  question: z.string().min(20, "Message must be at least 20 character long"),
 });
 
 export const emailSignInSchema = z.object({
@@ -375,6 +375,50 @@ export const createPromoCampaingSchema = basePromoCampaignSchema.refine(
 
 export const updatePromoCampaingSchema = basePromoCampaignSchema.partial();
 
+export const updatePromoStatus = z.object({
+  start_date: z
+    .string()
+    .refine(
+      (val) => {
+        try {
+          new Date(val);
+          return true;
+        } catch (error) {
+          return false;
+        }
+      },
+      {
+        message: "Please provide a valid date",
+      },
+    )
+    .optional(),
+  end_date: z
+    .string()
+    .refine(
+      (val) => {
+        try {
+          new Date(val);
+          return true;
+        } catch (error) {
+          return false;
+        }
+      },
+      {
+        message: "Please provide a valid date",
+      },
+    )
+    .refine((val) => new Date(val) >= new Date(), {
+      message: "End date must be in the future",
+    })
+    .optional(),
+  status: z
+    .string({
+      message: "Status type is a required field",
+    })
+    .refine((val) => ["PAUSED", "ACTIVE"].includes(val), {
+      message: "Invalid status type",
+    }),
+});
 export const approveRejectShopsSchema = z.object({
   status: z
     .string({

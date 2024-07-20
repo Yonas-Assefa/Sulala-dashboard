@@ -104,6 +104,7 @@ function BannerAdsForm({ products, promotion }: Props) {
               placeholder={t("enter_campaign_name")}
               label={t("campaign_name")}
               error={formState?.fieldErrors?.name?.[0]}
+              required
             />
             {/* <TextAreaInput id='description' placeholder='Enter description/promotional quotes' label='Description/Promotional quotes'   /> */}
             <div className="grid grid-cols-1 md:grid-cols-2">
@@ -114,6 +115,7 @@ function BannerAdsForm({ products, promotion }: Props) {
                 id="start_datetime"
                 name="start_datetime"
                 error={formState?.fieldErrors?.start_date?.[0]}
+                required
               />
               <DateInput
                 setValue={setEndDate}
@@ -122,6 +124,7 @@ function BannerAdsForm({ products, promotion }: Props) {
                 id="end_datetime"
                 name="end_datetime"
                 error={formState?.fieldErrors?.end_date?.[0]}
+                required
               />
             </div>
             <div className="col-span-2">
@@ -142,12 +145,19 @@ function BannerAdsForm({ products, promotion }: Props) {
                     },
                   ],
                 }}
+                required
               />
             </div>
           </div>
         </div>
         <div className="flex flex-col gap-5 bg-tertiary dark:bg-gray-700 rounded-[30px] p-8">
-          <h3 className="font-semibold text-xl">{t("destination")}</h3>
+          <div className="flex">
+            <h3 className="font-semibold text-xl">{t("destination")}</h3>
+            <span className="text-danger">
+              *&nbsp;
+              {/* <sup className="text-xs opacity-70">(required)</sup> */}
+            </span>
+          </div>
           <div className="max-w-[1300px] gap-6 flex flex-col">
             <CustomRadioWithConditionalInput
               data={destinationOptions}
@@ -181,7 +191,13 @@ function BannerAdsForm({ products, promotion }: Props) {
           </div>
         </div>
         <div className="flex flex-col gap-5 bg-tertiary dark:bg-gray-700 rounded-[30px] p-8">
-          <h3 className="font-semibold text-xl">{t("budgeting")}</h3>
+          <div className="flex">
+            <h3 className="font-semibold text-xl">{t("budgeting")}</h3>
+            <span className="text-danger">
+              *&nbsp;
+              {/* <sup className="text-xs opacity-70">(required)</sup> */}
+            </span>
+          </div>
           <div className="max-w-[1300px] gap-6 flex flex-col">
             <CustomRadioWithConditionalInput
               data={budgetingOptions}

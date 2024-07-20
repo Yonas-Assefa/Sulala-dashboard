@@ -10,7 +10,7 @@ import { getSupportRequests } from "@/actions/admin-manage/get-support-requests"
 async function page({
   searchParams: { search, filter, sort, sort_by },
 }: Props) {
-  const pendingShops: any = await getSupportRequests(
+  const supportRequests: any = await getSupportRequests(
     changeObjToFormData({ search, filter, sort, sort_by }),
   );
   const t = await getTranslations("Manage");
@@ -27,7 +27,7 @@ async function page({
 
         {/* <PromotionCampaignTable /> */}
         <Table
-          data={pendingShops}
+          data={supportRequests}
           filterData={promotionFilterData}
           tableSchema={customerSupportTableSchema}
           sortData={promotionSortData}

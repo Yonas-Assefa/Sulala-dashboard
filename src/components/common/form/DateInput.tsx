@@ -10,7 +10,9 @@ type Props = {
   name?: string;
   error?: string;
   defaultValue?: string;
+  value?: string;
   disabled?: boolean;
+  required?: boolean;
 };
 
 const extractDateAndTime = (dateTime: string | undefined) => {
@@ -41,6 +43,8 @@ function DateInput({
   error,
   defaultValue,
   disabled,
+  value,
+  required,
 }: Props) {
   const [time, setTime] = React.useState<string>(
     extractDateAndTime(defaultValue)?.time,
@@ -86,6 +90,14 @@ function DateInput({
   };
 
   React.useEffect(() => {
+    if (value) {
+      const { time, date } = extractDateAndTime(value);
+      setTime(time);
+      setDate(date);
+    }
+  }, [value]);
+
+  React.useEffect(() => {
     if (setValue) {
       const datetime = createDateTime();
       setValue(datetime);
@@ -94,14 +106,20 @@ function DateInput({
 
   return (
     <div ref={ref}>
-      <p>
+      <p className="text-black dark:text-white">
         {label}{" "}
+        {required && (
+          <span className="text-danger">
+            *&nbsp;
+            {/* <sup className="text-xs opacity-70">(required)</sup> */}
+          </span>
+        )}
         <span className="text-secondary text-[10px] block md:inline-block">
           {getUserTimezone().userTimezoneWithOffset}
         </span>
       </p>
       <div
-        className={`flex flex-col md:flex-row p-2 gap-2 w-full flex-wrap ${disabled && "opacity-50"}`}
+        className={`flex flex-col text-black dark:text-white md:flex-row p-2 gap-2 w-full flex-wrap ${disabled && "opacity-50"}`}
       >
         <input
           type="text"

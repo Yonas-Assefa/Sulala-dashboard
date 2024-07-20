@@ -232,26 +232,6 @@ export const getBearerToken = () => {
   return token;
 };
 
-export const cachePersonalInfo = (data: any) => {
-  try {
-    cookies().set({
-      name: "personal_info",
-      value: JSON.stringify(data),
-    });
-  } catch (error) {
-    Console.error(error);
-  }
-};
-
-export const retrievePersonalInfo = () => {
-  const personalInfo = cookies().get("personal_info")?.value;
-  return personalInfo ? JSON.parse(personalInfo) : undefined;
-};
-
-export const clearPersonalInfo = () => {
-  cookies().delete("personal_info");
-};
-
 export const getRequestHeaders = () => {
   return {
     Authorization: getBearerToken(),

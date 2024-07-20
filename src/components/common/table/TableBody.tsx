@@ -46,7 +46,7 @@ function TableBody({ tableSchema, data, actionOptions, isSuperUser }: Props) {
                       last_items={last_items}
                     />
                   ) : (
-                    <div className="flex flex-row gap-3 items-center">
+                    <div className="flex flex-row gap-3 items-center max-w-[30vw] text-center overflow-x-hidden">
                       {schema.image && (
                         <div className=" w-[30px] h-[40px] content-stretch flex flex-col justify-center">
                           <Image
@@ -61,7 +61,7 @@ function TableBody({ tableSchema, data, actionOptions, isSuperUser }: Props) {
                         </div>
                       )}
                       {!schema.breadcrumb ? (
-                        <p className="capitalize">
+                        <p className="">
                           {!product_key
                             ? "N/A"
                             : schema.type == "money"

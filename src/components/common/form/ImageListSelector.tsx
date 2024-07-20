@@ -32,6 +32,7 @@ type Props = {
     formData: { key: string; value: string | Function }[];
   };
   usePreUploader?: boolean;
+  required?: boolean;
 };
 
 function ImageListSelector({
@@ -44,6 +45,7 @@ function ImageListSelector({
   setValue,
   onDelete,
   usePreUploader,
+  required,
 }: Props) {
   const [fileList, setFileList] = React.useState<(File | string)[]>(
     convertToArray(defaultValues),
@@ -63,7 +65,6 @@ function ImageListSelector({
   const handleDelete = async (file?: string) => {
     startTransition(async () => {
       const formData = new FormData();
-      Console.log({ file, onDelete });
       onDelete?.formData.forEach((ele) => {
         formData.append(
           ele.key,
@@ -128,7 +129,15 @@ function ImageListSelector({
     <div ref={ref} className="flex flex-col gap-1">
       <ImageDeleteModal isPending={isPending} />
       <div className="flex flex-row gap-2">
-        <p>{label || t("images")}</p>
+        <div className="flex">
+          <p>{label || t("images")}</p>
+          {required && (
+            <span className="text-danger">
+              *&nbsp;
+              {/* <sup className="text-xs opacity-70">(required)</sup> */}
+            </span>
+          )}
+        </div>
         {!multi && fileList?.length > 0 && fileList[0] instanceof File && (
           <div
             className="flex flex-row gap-2 justify-end tooltip tooltip-top tooltip-hover hover:cursor-pointer tooltip-error animate-pulse"

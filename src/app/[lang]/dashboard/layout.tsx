@@ -2,8 +2,8 @@ import React from "react";
 import SideBarNav from "./components/SideBarNav";
 import { Metadata } from "next";
 // import { redirect } from "@/i18n/navigation";
-import { getPersonalInfo } from "@/actions/settings/get-personal-info";
 import { getTranslations } from "next-intl/server";
+import { getCachedPersonalInfo } from "@/cache/get-cached-personal-info";
 
 export async function generateMetadata({
   params: { locale },
@@ -22,7 +22,7 @@ export async function generateMetadata({
 export default async function DashboardLayout({
   children,
 }: Readonly<{ children: React.ReactNode; params: { lang: string } }>) {
-  const personalInfo = await getPersonalInfo();
+  const personalInfo = await getCachedPersonalInfo();
   return (
     <>
       <div className="w-screen h-screen overflow-hidden flex md:flex-row flex-col">

@@ -137,7 +137,8 @@
     "faq": "FAQ",
     "shop_products": "Shop Products",
     "shop_services": "Shop Services",
-    "shop_drivers": "Shop Drivers"
+    "shop_drivers": "Shop Drivers",
+    "delivery_partners": "Delivery Partners"
   },
   "Dashboard": {
     "settings": "Settings",
@@ -331,7 +332,13 @@
     "notify_the_user_via": "Notify the user via",
     "driver_approval_action": "Driver Approval Action",
     "driver_details": "Driver Details",
-    "driver_info": "Driver Info"
+    "driver_info": "Driver Info",
+    "manage_delivery_partners": "Manage Delivery Partners",
+    "delivery_partner_details": "Delivery Partner Details",
+    "driver_status": "Driver Status",
+    "online_status": "Online Status",
+    "availability": "Availability",
+    "orders_delivered": "Orders Delivered"
   },
   "Commons": {
     "instagram_link": "Instagram link",
@@ -395,7 +402,8 @@
     "continue": "Continue",
     "pagination_showing": "Showing",
     "pagination_of": "of",
-    "pagination_orders": "orders"
+    "pagination_orders": "orders",
+    "no_photo": "No Photo"
   },
   "Error": {
     "trouble_loading_page": "We're sorry, we're having some trouble loading the page right now",

@@ -13,7 +13,7 @@ async function page({
   const pendingDrivers: any = await getPendingDrivers(
     changeObjToFormData({ search, filter, sort, sort_by }),
   );
-  console.log({ pendingDrivers });
+
   const t = await getTranslations("Manage");
 
   return (

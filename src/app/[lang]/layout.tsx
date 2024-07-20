@@ -24,7 +24,7 @@ export async function generateMetadata({
     description: t("description"),
     icons: ["/sulala-logo.svg"],
     openGraph: {
-      images: ["/sulala-logo.svg"],
+      images: ["/sulala-logo-light.svg"],
       title: t("title"),
     },
     locale: lang,

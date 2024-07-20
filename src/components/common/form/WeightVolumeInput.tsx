@@ -142,7 +142,7 @@ function WeightVolumeInput({
       >
         <input
           id={id}
-          type={"text"}
+          type={"number"}
           placeholder={placeholder || "Type here"}
           name={name || "text-input"}
           className={`input text-black dark:text-white disabled:text-secondary w-full bg-transparent rounded-none disabled:bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none ${disabled && "cursor-not-allowed opacity-50"}`}

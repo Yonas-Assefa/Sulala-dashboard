@@ -8,6 +8,8 @@ import {
   getResponseErrorMessage,
 } from "../../lib/helper";
 import { revalidatePath } from "next/cache";
+import cache from "@/cache/node-cache";
+import { revalidateCachedPersonalInfo } from "@/cache/get-cached-personal-info";
 
 export const deleteShopProfile = async (formData: FormData) => {
   const response = await fetch(UPDATE_SHOP_ACCOUNT, {
@@ -22,6 +24,8 @@ export const deleteShopProfile = async (formData: FormData) => {
       getResponseErrorMessage(body) || "Failed to delete shop profile",
     );
   }
+
+  await revalidateCachedPersonalInfo();
 
   revalidatePath("/dashboard/settings/shop-info");
 

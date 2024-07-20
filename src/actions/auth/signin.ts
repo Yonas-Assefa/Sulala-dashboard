@@ -12,8 +12,8 @@ import {
   getResponseErrorMessage,
   setBrowserCookie,
 } from "../../lib/helper";
-import { getPersonalInfo } from "../settings/get-personal-info";
 import { resendVerificationLink } from "./resend-verification-link";
+import { getCachedPersonalInfo } from "@/cache/get-cached-personal-info";
 
 export const signIn = async (formState: FormState, formData: FormData) => {
   try {
@@ -70,7 +70,7 @@ export const signIn = async (formState: FormState, formData: FormData) => {
         ? "Signin successful!."
         : "Check your message for the verification code";
 
-    const personalInfo = by == "email" ? await getPersonalInfo() : null;
+    const personalInfo = by == "email" ? await getCachedPersonalInfo() : null;
 
     const redirectUrl =
       by == "email"
@@ -79,10 +79,6 @@ export const signIn = async (formState: FormState, formData: FormData) => {
           : "/dashboard/settings"
         : `/auth/enter-otp?phone=${encodeURIComponent(data.phone_number!)}&action=signin`;
 
-    if (by == "email") {
-      // this fetches user info and caches it
-      await getPersonalInfo();
-    }
     return toFormState("SUCCESS", successMessage, redirectUrl);
   } catch (error) {
     return fromErrorToFormState(error);

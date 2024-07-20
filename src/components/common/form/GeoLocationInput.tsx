@@ -33,7 +33,9 @@ function GeoLocationInput({
   //   long: string;
   //   is_manual: boolean;
   // }>();
-  const [geoLocation, setGeoLocation] = React.useState<string>();
+  const [geoLocation, setGeoLocation] = React.useState<string>(
+    defaultValue || otVal || "",
+  );
   const dropdownRef = React.useRef<HTMLDetailsElement>(null);
   const optionListRef = useDetectClickOutside({
     onTriggered: () => {
@@ -64,7 +66,6 @@ function GeoLocationInput({
           const places = await getLocationSuggetion(inputValue || "");
           dropdownRef.current?.setAttribute("open", "true");
           setAddressOptions(places);
-          console.log({ places });
         });
       } catch (error) {
         console.error(error);
@@ -100,7 +101,6 @@ function GeoLocationInput({
       startTransition(async () => {
         const data = await getLocationGeoCode(address);
         setGeoLocation(data);
-        console.log({ fetchedData: data });
       });
     } catch (error) {
       console.error(error);
@@ -112,7 +112,6 @@ function GeoLocationInput({
     // emitVal && emitVal(selectedValue);
     // setAddressOptions([]);
     getGeoLocation(selectedValue);
-    console.log({ selectedValue });
     dropdownRef.current?.removeAttribute("open");
   };
 

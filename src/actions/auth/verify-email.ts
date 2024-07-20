@@ -7,6 +7,8 @@ import {
   makeRequest,
   setBrowserCookie,
 } from "../../lib/helper";
+import cache from "@/cache/node-cache";
+import { revalidateCachedPersonalInfo } from "@/cache/get-cached-personal-info";
 
 type VerifyEmailArgs = {
   vendor_id: string;
@@ -39,6 +41,8 @@ export const verifyEmail = async ({
     }
 
     setBrowserCookie(response);
+
+    await revalidateCachedPersonalInfo();
 
     const successMessage = "Verification successful!";
 

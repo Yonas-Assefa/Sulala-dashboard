@@ -14,6 +14,8 @@ import {
   removeNullAndUndefined,
 } from "../../lib/helper";
 import { revalidatePath, revalidateTag } from "next/cache";
+import cache from "@/cache/node-cache";
+import { revalidateCachedPersonalInfo } from "@/cache/get-cached-personal-info";
 
 export const updateShopInfo = async (
   formState: FormState,
@@ -42,6 +44,8 @@ export const updateShopInfo = async (
     if (!response.ok) {
       throw new Error(getResponseErrorMessage(body) || "Failed to submit form");
     }
+
+    await revalidateCachedPersonalInfo();
 
     const successMessage = body.message || "Successfully updated shop info";
 

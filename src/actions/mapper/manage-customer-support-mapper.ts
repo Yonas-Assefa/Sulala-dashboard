@@ -17,7 +17,7 @@ export const manageCustomerSupport = async (
       id: item.id,
       full_name: item.full_name,
       email: item.email,
-      message: item.message,
+      message: item.question,
       status: item.answered ? "answered" : "pending",
     };
   }

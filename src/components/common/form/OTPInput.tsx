@@ -25,7 +25,6 @@ function OTPInput({ submitBtn, formRef, setDisabled, otp, setOTP }: Props) {
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const index = parseInt(e.target.name.slice(-1));
     setOTP(otp.map((value, i) => (i === index - 1 ? e.target.value : value)));
-    console.log("e.target.value", e.target.value, index);
     if (index < 6) {
       switch (index) {
         case 1:

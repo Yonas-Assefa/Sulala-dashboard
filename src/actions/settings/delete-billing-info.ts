@@ -7,6 +7,8 @@ import {
 import { BILLING_INFO } from "../../config/urls";
 import { getRequestHeaders, getResponseErrorMessage } from "../../lib/helper";
 import { revalidateTag } from "next/cache";
+import cache from "@/cache/node-cache";
+import { revalidateCachedPersonalInfo } from "@/cache/get-cached-personal-info";
 
 export const deleteBillingInfo = async (
   formState: FormState,
@@ -32,6 +34,9 @@ export const deleteBillingInfo = async (
       const body = await response.json();
       throw new Error(getResponseErrorMessage(body) || "Failed to submit form");
     }
+
+    await revalidateCachedPersonalInfo();
+
     const successMessage = "Successfully deleted payment method";
 
     revalidateTag("billing");

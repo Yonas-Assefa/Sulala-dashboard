@@ -64,6 +64,7 @@ export type CustomRadioInputProps = {
   childDefaultValue?: any;
   childDisabled?: any;
   defaultValue?: string;
+  required?: boolean;
 };
 
 type AcceptFileFormate =

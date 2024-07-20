@@ -7,7 +7,10 @@ import {
   makeRequest,
   setBrowserCookie,
 } from "../../lib/helper";
-import { getPersonalInfo } from "../settings/get-personal-info";
+import {
+  getCachedPersonalInfo,
+  revalidateCachedPersonalInfo,
+} from "@/cache/get-cached-personal-info";
 
 type AcceptApprovalArgs = {
   vendor_id: string;
@@ -38,9 +41,7 @@ export const acceptApproval = async ({
 
     const successMessage = "Approval successful!";
 
-    // this fetches user info and caches it
-    await getPersonalInfo();
-
+    await revalidateCachedPersonalInfo();
     const redirectUrl = "/dashboard/settings";
 
     return toFormState("SUCCESS", successMessage, redirectUrl);

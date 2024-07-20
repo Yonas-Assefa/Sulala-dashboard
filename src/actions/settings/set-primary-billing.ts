@@ -11,6 +11,8 @@ import {
   getResponseErrorMessage,
 } from "../../lib/helper";
 import { revalidatePath } from "next/cache";
+import cache from "@/cache/node-cache";
+import { revalidateCachedPersonalInfo } from "@/cache/get-cached-personal-info";
 
 export const setPrimaryBilling = async (
   formState: FormState,
@@ -36,6 +38,8 @@ export const setPrimaryBilling = async (
     if (!response.ok) {
       throw new Error(getResponseErrorMessage(body) || "Failed to submit form");
     }
+
+    await revalidateCachedPersonalInfo();
 
     const successMessage =
       body.message || "Successfully setted primary billing";

@@ -50,7 +50,7 @@ export const uploadImage = async (
       );
     }
 
-    const message = getoneFromArray(body.data);
+    const message = getoneFromArray(body.data?.results);
 
     return toFormState("SUCCESS", message);
   } catch (error) {

@@ -137,7 +137,12 @@
     "faq": "التعليمات",
     "shop_products": "منتجات المتجر",
     "shop_services": "خدمات المتجر",
-    "shop_drivers": "سائقي المتجر"
+    "shop_drivers": "سائقي المتجر",
+    "delivery_partners": "شركاء التوصيل",
+    "driver_status": "حالة السائق",
+    "online_status": "حالة الانترنت",
+    "availability": "التوفر",
+    "orders_delivered": "تم توصيل الطلبات"
   },
   "Dashboard": {
     "settings": "إعدادات",
@@ -336,7 +341,9 @@
     "notify_the_user_via": "إخطار المستخدم عبر",
     "driver_approval_action": "إجراء موافقة السائق",
     "driver_details": "تفاصيل السائق",
-    "driver_info": "معلومات السائق"
+    "driver_info": "معلومات السائق",
+    "manage_delivery_partners": "إدارة شركاء التوصيل",
+    "delivery_partner_details": "تفاصيل شريك التوصيل"
   },
   "Commons": {
     "instagram_link": "رابط الانستقرام",

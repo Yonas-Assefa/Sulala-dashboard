@@ -59,7 +59,7 @@ function TextInput({
         {required && (
           <span className="text-danger">
             *&nbsp;
-            <sup className="text-xs opacity-70">(required)</sup>
+            {/* <sup className="text-xs opacity-60">(required)</sup> */}
           </span>
         )}
       </p>
@@ -83,10 +83,21 @@ function TextInput({
         )}
         <input
           id={id}
-          type={type == "number" ? "text" : type}
+          type={type}
           placeholder={placeholder || "Type here"}
           name={name || "text-input"}
-          className={`input text-black dark:text-white disabled:text-secondary w-full bg-transparent disabled:bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none ${disabled && "cursor-not-allowed opacity-50"}`}
+          className={`input w-full bg-transparent disabled:bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none 
+            ${
+              dynamicPlaceholder &&
+              placeholder &&
+              (value?.length == placeholder?.length
+                ? "text-green-800 dark:text-green-500"
+                : value?.length > placeholder?.length
+                  ? "text-red-800 dark:text-red-500"
+                  : "text-black dark:text-white disabled:text-secondary ")
+            } 
+            ${disabled && "cursor-not-allowed opacity-60"}
+            `}
           autoComplete={autoComplete || "false"}
           value={value}
           onChange={handleChange}
@@ -98,9 +109,9 @@ function TextInput({
           <button
             type="button"
             onClick={handleClear}
-            className={`absolute bottom-[13px] ${lang !== "ar" ? "right-[13px]" : "left-[13px]"} ${
+            className={`absolute bottom-[13px] z-10 ${lang !== "ar" ? "right-[13px]" : "left-[13px]"} ${
               disabled
-                ? "opacity-40 cursor-not-allowed"
+                ? "opacity-60 cursor-not-allowed"
                 : "opacity-100 cursor-pointer"
             }`}
           >

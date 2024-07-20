@@ -38,4 +38,4 @@ export const promotionSortData = [
   },
 ];
 
-export const promotionFilterData = ["all", "answered", "pending"];
+export const promotionFilterData = ["all", "approved", "pending", "rejected"];

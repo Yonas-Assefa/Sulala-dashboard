@@ -1,6 +1,5 @@
 "use client";
 import { verifyEmail } from "@/actions/auth/verify-email";
-import { getPersonalInfo } from "@/actions/settings/get-personal-info";
 import pushNotification from "@/utils/pushNotification.util";
 import { redirect, useRouter } from "@/i18n/navigation";
 import React from "react";

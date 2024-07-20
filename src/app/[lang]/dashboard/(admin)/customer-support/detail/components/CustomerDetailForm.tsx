@@ -51,7 +51,10 @@ function CustomerDetailForm({ initialData }: Props) {
       </div>
       <div className="bg-tertiary text-black dark:bg-gray-800 dark:text-white p-8 rounded-[40px] flex flex-col gap-3">
         <h3 className="font-semibold text-xl">{t("respond_to_customer")}</h3>
-        <form action={action} className="max-w-[1300px] grid grid-cols-1 gap-3">
+        <form
+          action={action}
+          className="max-w-[1300px] grid grid-cols-1 gap-3 h-full"
+        >
           <input
             type="text"
             id="id"

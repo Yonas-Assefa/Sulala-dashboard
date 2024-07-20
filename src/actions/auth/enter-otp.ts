@@ -12,7 +12,10 @@ import {
   makeRequest,
   setBrowserCookie,
 } from "../../lib/helper";
-import { getPersonalInfo } from "../settings/get-personal-info";
+import {
+  getCachedPersonalInfo,
+  revalidateCachedPersonalInfo,
+} from "@/cache/get-cached-personal-info";
 
 export const enterOtp = async (formState: FormState, formData: FormData) => {
   try {
@@ -40,7 +43,7 @@ export const enterOtp = async (formState: FormState, formData: FormData) => {
 
     const successMessage = "Verification successful!";
 
-    const personalInfo = await getPersonalInfo();
+    const personalInfo = await getCachedPersonalInfo();
 
     const redirectUrl =
       action === "signup"
@@ -49,9 +52,7 @@ export const enterOtp = async (formState: FormState, formData: FormData) => {
           ? "/dashboard/shops?filter=pending"
           : "/dashboard/settings";
 
-    if (action == "signin") {
-      await getPersonalInfo();
-    }
+    await revalidateCachedPersonalInfo();
 
     return toFormState("SUCCESS", successMessage, redirectUrl);
   } catch (error) {

@@ -39,7 +39,7 @@ type ActionOptions = {
     params?: { absolute?: boolean; value: string };
   };
   toggle?: {
-    action: (formData: FormData) => Promise<FormState>;
+    action: (formState: FormState, formData: FormData) => Promise<FormState>;
     key: string;
     active: string;
     formData: { formDataKey: string; itemKey: string }[];
