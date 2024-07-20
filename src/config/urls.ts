@@ -69,7 +69,6 @@ export const REMOVE_PROMOTION_FILE = `${API_URL}remove_promotion_file/`;
 //ORDERS URLS
 export const ORDERS = `${API_URL}orders/`;
 export const ORDERS_URL = `${ORDERS}vendor-orders/`;
-export const ACCEPT_DECLINE_ORDER = `${ORDERS}accept_reject_order/`;
 
 //SHOP URLS
 export const SHOP_REVENUE_URL = `${VENDOR_BASE_URL}shops/revenue/`;

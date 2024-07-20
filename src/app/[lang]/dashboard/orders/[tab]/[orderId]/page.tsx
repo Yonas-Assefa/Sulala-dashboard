@@ -1,5 +1,6 @@
 import { getSingleOrder } from "@/actions/orders/get-vendor-orders";
 import OrderDetailPage from "./components/OrderDetailPage";
+
 type Props = {
   params: {
     orderId: string;
@@ -10,9 +11,8 @@ type Props = {
 };
 
 async function page({ params: { orderId }, searchParams: { item } }: Props) {
-  const res = await getSingleOrder(item);
-  console.log("params of detail: ", item, res);
+  const orderDetail = await getSingleOrder(item);
 
-  return <OrderDetailPage res={res} />;
+  return <OrderDetailPage orderDetail={orderDetail} />;
 }
 export default page;

@@ -140,6 +140,30 @@
     "shop_info": "Shop Info",
     "billing_info": "Billing Info"
   },
+  "Order": {
+    "order": "Order",
+    "order_detail": "Order Details",
+    "order_placed": "Order Placed",
+    "status": "Status",
+    "payment": "Payment",
+    "driver": "Driver",
+    "quantity": "quantity",
+    "unit_price": "Unit Price",
+    "fee": "Fee",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "total_fee": "Total Fee",
+    "promotion_fee": "Promotion Fee",
+    "discount": "Discount",
+    "customer_details": "Customer Details",
+    "order_history": "Order History",
+    "order_accept": "Accept",
+    "order_cancel": "Cancel",
+    "name": "Name",
+    "email": "Email",
+    "address": "Address"
+  },
+
   "Settings": {
     "PersonalInfo": {
       "email": "Email",

@@ -7,16 +7,25 @@ import { useToastMessage } from "@/hooks/useToastMessage";
 import { useFormState } from "react-dom";
 import { acceptCancelOrder } from "@/actions/orders/accept-cancel-new-order";
 import { EMPTY_FORM_STATE } from "@/utils/formStateHelper";
-function OrderDetailPage({ res }: any) {
+import { usePathname } from "next/navigation";
+import { notFound } from "next/navigation";
+import { useTranslations } from "next-intl";
+
+function OrderDetailPage({ orderDetail }: any) {
+  const pathname = usePathname();
+  const t = useTranslations("Order");
+  const hasOrders = pathname.includes("items");
+  if (!hasOrders) {
+    return notFound();
+  }
+
   const [status, setStatus] = React.useState<"APPROVE" | "REJECT">();
   const handleStatusChange = () => {
     setStatus(status === "APPROVE" ? "REJECT" : "APPROVE");
   };
 
   const [formState, action] = useFormState(acceptCancelOrder, EMPTY_FORM_STATE);
-
   useToastMessage(formState);
-  console.log("id of order: ", res, res.id);
 
   return (
     <div className="flex flex-col md:gap-3 gap-2  bg-gray-200 text-black w-full h-screen overflow-scroll">
@@ -27,11 +36,11 @@ function OrderDetailPage({ res }: any) {
         <div className="flex flex-row justify-between items-center md:mx-6 md:px-5 mx-3 px-3">
           <div>
             <h1 className="text-2xl md:text-4xl">
-              Order: <span className="font-bold ">#{res.id}</span>
+              {t("order")} <span className="font-bold ">#{orderDetail.id}</span>
             </h1>
           </div>
 
-          {!res.orderApproved && (
+          {orderDetail.status === "NEW" && (
             <div>
               <form action={action}>
                 <div className="flex flex-col gap-3">
@@ -50,7 +59,7 @@ function OrderDetailPage({ res }: any) {
                         htmlFor="approve"
                         className={`cursor-pointer text-xl`}
                       >
-                        Accept
+                        {t("order_accept")}
                       </label>
                     </div>
 
@@ -68,7 +77,7 @@ function OrderDetailPage({ res }: any) {
                         htmlFor="reject"
                         className={`cursor-pointer text-xl`}
                       >
-                        Cancel
+                        {t("order_cancel")}
                       </label>
                     </div>
                   </div>
@@ -92,26 +101,30 @@ function OrderDetailPage({ res }: any) {
         <div className="flex flex-col col-span-2">
           {/* start order */}
           <div className=" text-xl  flex flex-col gap-3 bg-tertiary md:mx-6 md:px-5 mx-3 px-3 py-5">
-            <h1 className="font-bold text-xl capitalize py-4">order details</h1>
+            <h1 className="font-bold text-xl capitalize py-4">
+              {t("order_detail")}
+            </h1>
 
             <div className="flex flex-row justify-between items-center mb-5">
               <div className="flex flex-col gap-2 ">
-                <h1 className="capitalize text-gray-400">order placed</h1>
-                <h2 className="capitalize">{res.ordered_at}</h2>
+                <h1 className="capitalize text-gray-400">
+                  {t("order_placed")}
+                </h1>
+                <h2 className="capitalize">{orderDetail.ordered_at}</h2>
               </div>
               <div className="flex flex-col gap-4 pr-5 md:flex-row justify-around md:gap-16 text-md ">
                 <div className="flex flex-col  items-end">
-                  <h4 className="text-gray-400 capitalize">Status</h4>
-                  <StatusBadge status={res.status} />
+                  <h4 className="text-gray-400 capitalize"> {t("status")}</h4>
+                  <StatusBadge status={orderDetail.status} />
                 </div>
 
                 <div className="flex flex-col  items-end">
-                  <h4 className="text-gray-400 capitalize">payment</h4>
+                  <h4 className="text-gray-400 capitalize">{t("payment")}</h4>
                   <StatusBadge status="Paid" />
                 </div>
 
                 <div className="flex flex-col items-end">
-                  <h4 className="text-gray-400 capitalize">driver </h4>
+                  <h4 className="text-gray-400 capitalize">{t("driver")} </h4>
                   <StatusBadge status="Assigned" />
                 </div>
               </div>
@@ -121,7 +134,7 @@ function OrderDetailPage({ res }: any) {
 
             {/* start order items detail  */}
             <div className="flex flex-col gap-3 text-sm">
-              {res.order_items.map((order_item: any, index: any) => {
+              {orderDetail.order_items.map((order_item: any, index: any) => {
                 return (
                   <div className="flex flex-row justify-between mt-5 shadow-sm">
                     <div className="flex flex-row justify-between">
@@ -138,138 +151,36 @@ function OrderDetailPage({ res }: any) {
                       </div>
 
                       <div className="flex flex-col justify-around text-lg">
-                        <h2 className="text-primary">
+                        <h2 className="text-primary ">
                           {order_item.product_name}
                         </h2>
-                        <p>product short discription</p>
-                        <p> quantity: {order_item.quantity}</p>
+
+                        <p>
+                          {" "}
+                          {t("quantity")}: {order_item.quantity}
+                        </p>
                       </div>
                     </div>
 
                     <div className="flex flex-col justify-around text-lg ">
                       <div className="flex flex-row justify-between gap-10 w-[200px]">
-                        <h3 className="text-gray-400">unit price: </h3>
+                        <h3 className="text-gray-400">{t("unit_price")}: </h3>
                         <p>{order_item.unit_price}</p>
                       </div>
 
                       <div className="flex flex-row justify-between gap-10 w-[200px]">
-                        <h3 className="text-gray-400">Fee: </h3>
+                        <h3 className="text-gray-400">{t("fee")}: </h3>
                         <p>{order_item.fee}</p>
                       </div>
 
                       <div className="flex flex-row justify-between gap-10 w-[200px]">
-                        <h3 className="text-gray-400">Total: </h3>
+                        <h3 className="text-gray-400">{t("total")}: </h3>
                         <p>{order_item.total_price}</p>
                       </div>
                     </div>
                   </div>
                 );
               })}
-
-              {/* <div className="flex flex-row justify-between mt-10">
-                <div className="flex flex-row justify-between">
-                  <div className="flex flex-row items-center pr-4">
-                    <img
-                      className="w-24 h-24"
-                      src="/cat.jpeg"
-                      alt="product image "
-                    />
-                  </div>
-
-                  <div className="flex flex-col justify-around text-lg">
-                    <h2 className="text-primary">product name</h2>
-                    <p>product short discription</p>
-                    <p> quantity: 3</p>
-                  </div>
-                </div>
-
-                <div className="flex flex-col justify-around text-lg ">
-                  <div className="flex flex-row justify-between gap-10 w-[200px]">
-                    <h3 className="text-gray-400">unit price: </h3>
-                    <p>$123</p>
-                  </div>
-
-                  <div className="flex flex-row justify-between gap-10 w-[200px]">
-                    <h3 className="text-gray-400">Fee: </h3>
-                    <p>$13</p>
-                  </div>
-
-                  <div className="flex flex-row justify-between gap-10 w-[200px]">
-                    <h3 className="text-gray-400">Total: </h3>
-                    <p>$183</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-row justify-between mt-10">
-                <div className="flex flex-row justify-between">
-                  <div className="flex flex-row items-center pr-4">
-                    <img
-                      className="w-24 h-24"
-                      src="/cat.jpeg"
-                      alt="product image "
-                    />
-                  </div>
-
-                  <div className="flex flex-col justify-around text-lg">
-                    <h2 className="text-primary">product name</h2>
-                    <p>product short discription</p>
-                    <p> quantity: 3</p>
-                  </div>
-                </div>
-
-                <div className="flex flex-col justify-around text-lg ">
-                  <div className="flex flex-row justify-between gap-10 w-[200px]">
-                    <h3 className="text-gray-400">unit price: </h3>
-                    <p>$123</p>
-                  </div>
-
-                  <div className="flex flex-row justify-between gap-10 w-[200px]">
-                    <h3 className="text-gray-400">Fee: </h3>
-                    <p>$13</p>
-                  </div>
-
-                  <div className="flex flex-row justify-between gap-10 w-[200px]">
-                    <h3 className="text-gray-400">Total: </h3>
-                    <p>$183</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-row justify-between mt-10">
-                <div className="flex flex-row justify-between">
-                  <div className="flex flex-row items-center pr-4">
-                    <img
-                      className="w-24 h-24"
-                      src="/cat.jpeg"
-                      alt="product image "
-                    />
-                  </div>
-
-                  <div className="flex flex-col justify-around text-lg">
-                    <h2 className="text-primary">product name</h2>
-                    <p>product short discription</p>
-                    <p> quantity: 3</p>
-                  </div>
-                </div>
-
-                <div className="flex flex-col justify-around text-lg ">
-                  <div className="flex flex-row justify-between gap-10 w-[200px]">
-                    <h3 className="text-gray-400">unit price: </h3>
-                    <p>$123</p>
-                  </div>
-
-                  <div className="flex flex-row justify-between gap-10 w-[200px]">
-                    <h3 className="text-gray-400">Fee: </h3>
-                    <p>$13</p>
-                  </div>
-
-                  <div className="flex flex-row justify-between gap-10 w-[200px]">
-                    <h3 className="text-gray-400">Total: </h3>
-                    <p>$183</p>
-                  </div>
-                </div>
-              </div> */}
             </div>
             {/* end order items detail  */}
 
@@ -277,21 +188,21 @@ function OrderDetailPage({ res }: any) {
 
             <div className="flex flex-col my-8 gap-3">
               <div className="flex flex-row justify-between">
-                <p>Subtotal</p>
-                <p>$12390</p>
+                <p>{t("subtotal")}</p>
+                <p>{orderDetail.order_total}</p>
               </div>
               <div className="flex flex-row justify-between">
-                <p>Promotion Fee</p>
-                <p>----</p>
+                <p>{t("discount")}</p>
+                <p>- {orderDetail.discount}</p>
               </div>
               <div className="flex flex-row justify-between">
-                <p>Total Fee</p>
-                <p>+ $120</p>
+                <p>{t("total_fee")}</p>
+                <p>+ {orderDetail.fee}</p>
               </div>
               <hr />
               <div className="flex flex-row justify-between my-5 font-bold">
-                <h1>Total</h1>
-                <p>$98987</p>
+                <h1>{t("total")}</h1>
+                <p>{orderDetail}</p>
               </div>
             </div>
           </div>
@@ -299,7 +210,9 @@ function OrderDetailPage({ res }: any) {
 
           {/* start history */}
           <div className=" text-xl  flex flex-col gap-3 bg-tertiary md:mx-6 md:px-5 mx-3 px-3 py-5 mt-5">
-            <h1 className="font-bold text-xl capitalize py-4">Order History</h1>
+            <h1 className="font-bold text-xl capitalize py-4">
+              {t("order_history")}
+            </h1>
             <div className="pl-10">
               <ol className="relative text-gray-500 border-s border-gray-200 dark:border-gray-700 dark:text-gray-400">
                 <li className="mb-10 ms-6">
@@ -470,18 +383,23 @@ function OrderDetailPage({ res }: any) {
         <div className="bg-tertiary flex flex-col gap-5 p-6 ">
           <div>
             <h1 className="capitalize text-xl font-bold pb-3">
-              Customer Details
+              {t("customer_detail")}
             </h1>
             <div className="flex flex-row w-fit gap-8">
               <div className="text-gray-400">
-                <p>name</p>
-                <p>email</p>
-                <p>Address</p>
+                <p>{t("name")}</p>
+                <p>{t("email")}</p>
+                <p>{t("address")}</p>
               </div>
 
               <div>
-                <p>Yoseph Taddessees</p>
-                <p>yosephtadesseaworkemeil@gmail.com</p>
+                <p>
+                  {orderDetail.user.first_name +
+                    " " +
+                    orderDetail.user.last_name}{" "}
+                  name_placeholder
+                </p>
+                <p>{orderDetail.user.email}</p>
                 <p>st. Jorge St, Bole, rwuande, addis ababa, ethiopia</p>
               </div>
             </div>
@@ -512,13 +430,13 @@ function OrderDetailPage({ res }: any) {
 
           <div>
             <h1 className="capitalize text-xl font-bold pb-3">
-              Billing Address
+              Billing AddorderDetails
             </h1>
             <div className="flex flex-row w-fit gap-8">
               <div className="text-gray-400">
                 <p>name</p>
                 <p>email</p>
-                <p>Address</p>
+                <p>AddorderDetails</p>
               </div>
 
               <div>

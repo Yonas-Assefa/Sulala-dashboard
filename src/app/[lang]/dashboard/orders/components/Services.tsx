@@ -29,7 +29,7 @@ async function Services({ searchParams }: ServicesProps) {
   return (
     <>
       <div className="text-black flex flex-col w-full h-full gap-10">
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           <RevenueCard
             revenuePeriod="Total"
             totalCurrentSale={shopRevenueStat.total.revenue}

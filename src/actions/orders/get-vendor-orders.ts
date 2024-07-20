@@ -44,7 +44,6 @@ export const getOrders = async (formData: FormData) => {
 
 export const getSingleOrder = async (item: string) => {
   const url = `http://34.18.54.116:3001/api/v1/orders/${item}/vendor-detail-order/`;
-  console.log("url of detail: ", url);
   const response = await fetch(url, {
     method: "GET",
     headers: getRequestHeaders(),
@@ -66,8 +65,5 @@ export const getSingleOrder = async (item: string) => {
 
   const modifiedOrderDetail = await orderDetailMapper(body.data);
 
-  return {
-    ...modifiedOrderDetail,
-    orderApproved: false,
-  };
+  return modifiedOrderDetail;
 };

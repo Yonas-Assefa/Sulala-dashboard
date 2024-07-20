@@ -8,7 +8,7 @@ type Props = {
 const bgColors = {
   default: "bg-[#fef6d0] text-[#43464c]",
   fail: "bg-[#f6f6f6] text-[#52565d]",
-  success: "bg-[#f0f5ff] text-[#1e3a8a]",
+  success: "bg-[#edfbe6] text-[#1d7941]",
 };
 
 const BG_COLORS_MAPPER = {
@@ -34,9 +34,10 @@ type ORDER_STATUS =
 function StatusBadge({ status, statusType = "default" }: Props) {
   // Determine if the status belongs to "fail" or "success"
   const determineStatusType = (): keyof typeof bgColors => {
-    if (BG_COLORS_MAPPER.fail.includes(status)) {
+    console.log("to uppercase", status.toUpperCase());
+    if (BG_COLORS_MAPPER.fail.includes(status.toUpperCase())) {
       return "fail";
-    } else if (BG_COLORS_MAPPER.success.includes(status)) {
+    } else if (BG_COLORS_MAPPER.success.includes(status.toUpperCase())) {
       return "success";
     } else {
       return "default";
