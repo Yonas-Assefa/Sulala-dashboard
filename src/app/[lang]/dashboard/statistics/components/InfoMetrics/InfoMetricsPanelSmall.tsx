@@ -9,10 +9,11 @@ function InfoMetricsPanelSmall({
   onClick,
   chartText,
   id,
+  isSelected,
 }: InfoMetricsPanelProps) {
   return (
     <div
-      className="bg-tertiary p-3 cursor-pointer"
+      className={`bg-tertiary p-3 cursor-pointer ${isSelected ? "border-2 border-primary/50 rounded-lg" : "border-2 border-transparent"}`}
       onClick={() => id && onClick && onClick(id)}
     >
       {getChartComponent({ chartType, chartData, chartText })}

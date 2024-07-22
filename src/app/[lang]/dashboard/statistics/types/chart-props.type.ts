@@ -13,6 +13,9 @@ export type MetricsData = {
   id: string;
   title: string;
   content: string;
+  XAxis: string;
+  YAxis: string;
+  legend: string;
   data: {
     year?: number;
     month?: number;

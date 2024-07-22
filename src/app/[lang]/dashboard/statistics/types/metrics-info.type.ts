@@ -7,4 +7,5 @@ export type InfoMetricsPanelProps = {
   chartText?: string;
   onClick?: (id: string) => void;
   id?: string;
+  isSelected?: boolean;
 };

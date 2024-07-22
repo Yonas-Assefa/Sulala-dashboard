@@ -273,11 +273,11 @@ function ColorPaletteInput({
                 handleClick={() => setColorPalette([...colorPalette, color])}
               />
             </div>
-            <ul>
+            <ul className="bg-tertiary w-full flex flex-col justify-center items-center p-2 gap-2">
               {colorPalette.map((color, i) => (
                 <li
                   key={i}
-                  className="flex flex-row justify-between items-center gap-3"
+                  className="flex flex-row justify-between items-center gap-3 text-xs bg-white p-1 rounded-md"
                 >
                   <div
                     className="w-8 h-8 rounded-full"

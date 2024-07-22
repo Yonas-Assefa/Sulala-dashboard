@@ -54,10 +54,10 @@ const selectChartData = [
     label: "Scatter Plot",
     value: ChartType.SCATTER_PLOT,
   },
-  // {
-  //     label: "Pie Chart",
-  //     value: ChartType.PIE,
-  // },
+  {
+    label: "Pie Chart",
+    value: ChartType.PIE,
+  },
   // {
   //     label: "Doughnut Chart",
   //     value: ChartType.DOUGHNUT,
@@ -73,6 +73,9 @@ const metricsData: MetricsData[] = [
     id: "order_fulfillment_rate",
     title: "Order Fulfillment Rate",
     content: "The rate at which orders are fulfilled",
+    legend: "Orders Fulfilled",
+    XAxis: "Year",
+    YAxis: "Orders Fulfilled",
     data: [
       {
         year: 2021,
@@ -101,6 +104,9 @@ const metricsData: MetricsData[] = [
     id: "average_delivery_time",
     title: "Average Delivery Time",
     content: "The average time taken to deliver orders",
+    legend: "Average Delivery Time",
+    XAxis: "Year",
+    YAxis: "Average Delivery Time",
     data: [
       {
         year: 2021,
@@ -123,12 +129,15 @@ const metricsData: MetricsData[] = [
         value: 9,
       },
     ],
-    defaultChartType: ChartType.SCATTER_PLOT,
+    defaultChartType: ChartType.LINE,
   },
   {
     id: "return_rate",
     title: "Return Rate",
     content: "The rate at which orders are returned",
+    legend: "Orders Returned",
+    XAxis: "Year",
+    YAxis: "Orders Returned",
     data: [
       {
         year: 2021,
@@ -157,6 +166,9 @@ const metricsData: MetricsData[] = [
     id: "order_cancellation_rate",
     title: "Order Cancellation Rate",
     content: "The rate at which orders are cancelled",
+    legend: "Orders Cancelled",
+    XAxis: "Year",
+    YAxis: "Orders Cancelled",
     data: [
       {
         year: 2021,
@@ -179,7 +191,7 @@ const metricsData: MetricsData[] = [
         value: 25,
       },
     ],
-    defaultChartType: ChartType.SCATTER_PLOT,
+    defaultChartType: ChartType.LINE,
   },
 ];
 
@@ -233,6 +245,11 @@ function StatDisplay() {
       setRangeType(rangeType as RangeType);
   };
 
+  const handleColorPaletteSelect = (value: string[]) => {
+    if (value.length > 0) setColorPalette(value);
+    else setColorPalette(["#176635", "#a2a6ac"]);
+  };
+
   const convertMetricsToChartData = (
     data?: MetricsData,
   ): ChartData | undefined => {
@@ -246,7 +263,10 @@ function StatDisplay() {
         {
           label: data.title,
           data: data.data.map((item) => item.value),
-          backgroundColor: colorPalette.slice(1, data.data.length),
+          backgroundColor:
+            colorPalette.length > 1
+              ? colorPalette.slice(1, colorPalette.length)
+              : colorPalette,
           borderColor: colorPalette[0],
           borderWidth: 1,
         },
@@ -261,11 +281,12 @@ function StatDisplay() {
         <div className="max-w-[500px] min-w-[300px] rounded-md flex justify-center items-center pb-2">
           <ColorPaletteInput
             data={selectRangeData}
-            placeholder="Select Range"
-            onChange={(colors: string[]) => setColorPalette(colors)}
+            placeholder="Select Color Palette"
+            onChange={handleColorPaletteSelect}
             disabled={chartType === ChartType.NONE}
             className="rounded-md border-1 border-primary/5"
             inputAreaOnly
+            defaultValue={colorPalette}
           />
         </div>
         <div className="max-w-[500px] min-w-[300px] rounded-md flex justify-center items-center pb-2">
@@ -311,6 +332,8 @@ function StatDisplay() {
             chartData={convertMetricsToChartData(data)}
             chartText={data.title}
             id={data.id}
+            onClick={changeChartData}
+            isSelected={chartData?.id === data.id}
           />
         ))}
       </div>
