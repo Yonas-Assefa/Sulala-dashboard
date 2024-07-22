@@ -5,4 +5,6 @@ export type InfoMetricsPanelProps = {
   caChartData?: CAChartData;
   chartType: ChartType;
   chartText?: string;
+  onClick?: (id: string) => void;
+  id?: string;
 };

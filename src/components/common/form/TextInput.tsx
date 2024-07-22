@@ -86,7 +86,7 @@ function TextInput({
           type={type}
           placeholder={placeholder || "Type here"}
           name={name || "text-input"}
-          className={`input w-full bg-transparent disabled:bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none 
+          className={`input w-full text-black dark:text-white bg-transparent disabled:bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none 
             ${
               dynamicPlaceholder &&
               placeholder &&

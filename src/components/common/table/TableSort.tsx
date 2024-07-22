@@ -20,7 +20,9 @@ function TableSort({ sortData }: Props) {
   )?.label;
   const sort_by = searchParams.get("sort_by") || "newest";
 
-  const handleSortBy = () => {
+  const handleSortBy = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (sort_by === "newest") {
       createQueryStringAndPush("sort_by", "oldest");
     } else {
@@ -36,8 +38,13 @@ function TableSort({ sortData }: Props) {
           role="button"
           className="bg-white border dark:border-gray-700 rounded-[30px] p-1 px-3 flex flex-row gap-2 text-black dark:bg-black dark:text-white"
         >
-          <SwapVertIcon />
-          <p className="capitalize">
+          <button
+            className={`from-primary/20 to-white hover:bg-gradient-to-b hover:scale-110 transition-all rounded-full w-[25px] ${sort_by === "newest" ? "transform rotate-180" : ""}`}
+            onClick={handleSortBy}
+          >
+            <SwapVertIcon />
+          </button>
+          <p className="capitalize text-sm">
             Sort by {sort_filter}: <span>{sort_by}</span>
           </p>
         </div>

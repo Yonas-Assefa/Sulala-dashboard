@@ -6,18 +6,16 @@ import { ChartType } from "../../types/chart-props.type";
 function InfoMetricsPanelSmall({
   chartData,
   chartType,
-  chartText,
-  caChartData,
   onClick,
-}: InfoMetricsPanelProps & {
-  onClick: (chartType: ChartType, chartTitle?: string) => void;
-}) {
-  const handleClick = () => {
-    onClick(chartType, chartText);
-  };
+  chartText,
+  id,
+}: InfoMetricsPanelProps) {
   return (
-    <div className="bg-tertiary p-3 cursor-pointer" onClick={handleClick}>
-      {getChartComponent({ chartType, chartData, caChartData, chartText })}
+    <div
+      className="bg-tertiary p-3 cursor-pointer"
+      onClick={() => id && onClick && onClick(id)}
+    >
+      {getChartComponent({ chartType, chartData, chartText })}
     </div>
   );
 }

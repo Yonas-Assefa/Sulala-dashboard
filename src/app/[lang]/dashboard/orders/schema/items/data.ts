@@ -127,16 +127,16 @@ export const orderItemData: OrderItemDataItem[] = [
 
 export const orderItemSortData = [
   {
+    label: "Order Number",
+    value: "order_id",
+  },
+  {
     label: "Date",
     value: "date",
   },
   {
-    label: "Product title",
-    value: "product_title",
-  },
-  {
-    label: "Created",
-    value: "created",
+    label: "Price",
+    value: "price",
   },
 ];
 
