@@ -373,7 +373,6 @@ export const Fetch = async (args: TFetch) => {
     Object.assign(options, { next });
   }
 
-  console.log({ requestUrl });
   const response = await fetch(requestUrl, {
     ...options,
   });
