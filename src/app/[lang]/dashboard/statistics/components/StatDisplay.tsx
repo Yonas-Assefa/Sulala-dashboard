@@ -246,7 +246,7 @@ function StatDisplay() {
         {
           label: data.title,
           data: data.data.map((item) => item.value),
-          backgroundColor: colorPalette.slice(0, data.data.length),
+          backgroundColor: colorPalette.slice(1, data.data.length),
           borderColor: colorPalette[0],
           borderWidth: 1,
         },
