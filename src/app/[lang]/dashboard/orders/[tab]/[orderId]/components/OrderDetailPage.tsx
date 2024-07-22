@@ -202,7 +202,7 @@ function OrderDetailPage({ orderDetail }: any) {
               <hr />
               <div className="flex flex-row justify-between my-5 font-bold">
                 <h1>{t("total")}</h1>
-                <p>{orderDetail}</p>
+                <p>{orderDetail.total_amount}</p>
               </div>
             </div>
           </div>
@@ -394,10 +394,12 @@ function OrderDetailPage({ orderDetail }: any) {
 
               <div>
                 <p>
-                  {orderDetail.user.first_name +
-                    " " +
-                    orderDetail.user.last_name}{" "}
-                  name_placeholder
+                  {" "}
+                  {orderDetail.user.first_name
+                    ? orderDetail.user.first_name +
+                      " " +
+                      orderDetail.user.last_name
+                    : "Uknown"}
                 </p>
                 <p>{orderDetail.user.email}</p>
                 <p>st. Jorge St, Bole, rwuande, addis ababa, ethiopia</p>

@@ -1,7 +1,13 @@
 import { OrderDataItem } from "../type";
 
 export type OrderItemDataItem = OrderDataItem & {
-  status: "delivered" | "cancelled" | "in_delivery";
+  status:
+    | "delivered"
+    | "cancelled"
+    | "in_delivery"
+    | "new"
+    | "accepted"
+    | "declined";
   items?: Items[];
 };
 

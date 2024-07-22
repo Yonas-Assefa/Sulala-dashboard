@@ -1,11 +1,12 @@
 import { TableSchema } from "@/types/table.type";
 
 export const orderItemBadgeColorSchema = {
-  new: "bg-[#f0f5ff] text-[#1e3a8a]",
-  accepted: "bg-[#f0f5ff] text-[#1e3a8a]",
   delivered: "bg-[#edfbe6] text-[#1d7941]",
   cancelled: "bg-[#f6f6f6] text-[#52565d]",
   in_delivery: "bg-[#fef6d0] text-[#43464c]",
+  new: "bg-[#e7f3fe] text-[#1a73e8]",
+  accepted: "bg-[#e0f7fa] text-[#00796b]",
+  declined: "bg-[#fdeceb] text-[#d93025]",
 };
 
 export const orderItemTableSchema: TableSchema = {
@@ -67,6 +68,7 @@ export const orderItemTableSchema: TableSchema = {
       title: "Items",
       type: "string",
       dropdown: true,
+      orderItemBadgeColorSchema,
     },
   ],
 };

@@ -127,16 +127,16 @@ export const orderItemData: OrderItemDataItem[] = [
 
 export const orderItemSortData = [
   {
-    label: "Date",
-    value: "date",
+    label: "Price",
+    value: "price",
   },
   {
-    label: "Product title",
-    value: "product_title",
+    label: "Order number",
+    value: "order_number",
   },
   {
     label: "Created",
-    value: "created",
+    value: "created_at",
   },
 ];
 
@@ -147,4 +147,5 @@ export const orderItemFilterData = [
   "delivered",
   "in_delivery",
   "cancelled",
+  "declined",
 ];
