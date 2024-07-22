@@ -58,13 +58,13 @@ const selectChartData = [
     label: "Pie Chart",
     value: ChartType.PIE,
   },
+  {
+    label: "Doughnut Chart",
+    value: ChartType.DOUGHNUT,
+  },
   // {
-  //     label: "Doughnut Chart",
-  //     value: ChartType.DOUGHNUT,
-  // },
-  // {
-  //     label: "Cohort Analysis",
-  //     value: ChartType.COHORT_ANALYSIS,
+  //   label: "Cohort Analysis",
+  //   value: ChartType.COHORT_ANALYSIS,
   // },
 ];
 

@@ -4,9 +4,11 @@ import { ChartProps } from "../types/chart-props.type";
 
 function CohortAnalysisChart({ caChartData, className, label }: ChartProps) {
   return (
-    <div className={className}>
-      <h2>{label}</h2>
-      <CohortGraph data={caChartData!} />
+    <div className={`h-full w-full ${className}`}>
+      <div className="h-full w-auto mx-auto px-auto ">
+        <h2>{label}</h2>
+        <CohortGraph data={caChartData!} />
+      </div>
     </div>
   );
 }
