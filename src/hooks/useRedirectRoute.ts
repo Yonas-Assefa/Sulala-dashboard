@@ -13,7 +13,7 @@ export const useRedirectRoute = (formState: FormState) => {
     pathname !== formState.redirectUrl;
 
   useEffect(() => {
-    if (doRedirect) {
+    if (doRedirect && formState.redirectUrl) {
       prevTimestamp.current = formState.timestamp;
       router.push(formState.redirectUrl as any);
     }

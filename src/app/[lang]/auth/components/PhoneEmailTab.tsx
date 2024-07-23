@@ -14,13 +14,13 @@ function PhoneEmailTab() {
     >
       <Link
         href={createQueryString("by", "phone") as any}
-        className={`w-1/2 p-2 text-center ${searchParams.get("by") !== "email" && "text-primary border-b-2 border-primary"}`}
+        className={`w-1/2 p-2 text-center ${searchParams.get("by") == "phone" && "text-primary border-b-2 border-primary"}`}
       >
         {t("via_phone_number")}
       </Link>
       <Link
         href={createQueryString("by", "email") as any}
-        className={`w-1/2 p-2 text-center ${searchParams.get("by") === "email" && "text-primary border-b-2 border-primary"}`}
+        className={`w-1/2 p-2 text-center ${searchParams.get("by") != "phone" && "text-primary border-b-2 border-primary"}`}
       >
         {t("via_email")}
       </Link>

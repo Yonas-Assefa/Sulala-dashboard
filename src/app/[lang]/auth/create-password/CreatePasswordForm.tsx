@@ -16,7 +16,7 @@ function CreatePasswordForm() {
   useToastMessage(formState);
   useRedirectRoute(formState);
   useIntervalRequest({
-    time: 5,
+    time: 10,
     redirect: "/auth/setup-account",
     message: "Password created successfully",
     property: "is_password_set",

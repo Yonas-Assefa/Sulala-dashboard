@@ -6,11 +6,11 @@ import { clearBrowserCookie, getRequestHeaders } from "../../lib/helper";
 import { redirect } from "@/i18n/navigation";
 import { invalidateCachedPersonalInfo } from "@/cache/get-cached-personal-info";
 
-export const logout = async () => {
-  await fetch(LOGOUT, {
-    method: "POST",
-    headers: getRequestHeaders(),
-  });
+export const logout = () => {
+  // fetch(LOGOUT, {
+  //   method: "POST",
+  //   headers: getRequestHeaders(),
+  // });
 
   invalidateCachedPersonalInfo();
 

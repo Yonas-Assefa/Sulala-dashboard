@@ -12,6 +12,7 @@ import {
   getResponseBody,
   getResponseErrorMessage,
 } from "../../lib/helper";
+import { revalidateCachedPersonalInfo } from "@/cache/get-cached-personal-info";
 
 export const createPassword = async (
   formState: FormState,
@@ -35,6 +36,7 @@ export const createPassword = async (
       );
     }
 
+    await revalidateCachedPersonalInfo();
     const successMessage = "Password created successfully!";
 
     const redirectUrl = "/auth/setup-account";

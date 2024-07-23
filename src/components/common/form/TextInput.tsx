@@ -84,17 +84,16 @@ function TextInput({
         <input
           id={id}
           type={type}
-          placeholder={placeholder || "Type here"}
+          placeholder={disabled ? 'N/A' : (placeholder || "Type here")}
           name={name || "text-input"}
-          className={`input w-full text-black dark:text-white bg-transparent disabled:bg-transparent caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none 
-            ${
-              dynamicPlaceholder &&
-              placeholder &&
-              (value?.length == placeholder?.length
-                ? "text-green-800 dark:text-green-500"
-                : value?.length > placeholder?.length
-                  ? "text-red-800 dark:text-red-500"
-                  : "text-black dark:text-white disabled:text-secondary ")
+          className={`input w-full text-black dark:text-white bg-transparent disabled:bg-transparent disabled:text-black disabled:placeholder:text-black caret-primary selection:bg-primary selection:text-tertiary focus:bg-transparent border-0 focus:border-0 active:border-0 focus:outline-none 
+            ${dynamicPlaceholder &&
+            placeholder &&
+            (value?.length == placeholder?.length
+              ? "text-green-800 dark:text-green-500"
+              : value?.length > placeholder?.length
+                ? "text-red-800 dark:text-red-500"
+                : "text-black dark:text-white disabled:text-black ")
             } 
             ${disabled && "cursor-not-allowed opacity-60"}
             `}
@@ -103,17 +102,16 @@ function TextInput({
           onChange={handleChange}
           defaultValue={defaultValue}
           disabled={disabled}
-          // {...props}
+        // {...props}
         />
         {value && (
           <button
             type="button"
             onClick={handleClear}
-            className={`absolute bottom-[13px] z-10 ${lang !== "ar" ? "right-[13px]" : "left-[13px]"} ${
-              disabled
-                ? "opacity-60 cursor-not-allowed"
-                : "opacity-100 cursor-pointer"
-            }`}
+            className={`absolute bottom-[13px] z-10 ${lang !== "ar" ? "right-[13px]" : "left-[13px]"} ${disabled
+              ? "opacity-60 cursor-not-allowed"
+              : "opacity-100 cursor-pointer"
+              }`}
           >
             <img
               src="/x-circle.svg"

@@ -14,6 +14,7 @@ export const guardSetupAccount = async (request: NextRequest) => {
     return NextResponse.redirect(new URL("/dashboard/shops", request.url));
 
   const shop = personalInfo?.shops?.[0];
+  // const has_onboarded = personalInfo?.has_onboarded;
   const stage = request.nextUrl.searchParams.get("stage");
   const { last_name, first_name, email } = personalInfo;
 

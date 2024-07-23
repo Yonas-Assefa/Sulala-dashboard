@@ -7,6 +7,7 @@ import { handleGoogleSignIn } from "@/actions/auth/ggoleSigninHelper";
 import { useTranslations } from "next-intl";
 import ResendVerificationModal from "./modal/ResendVerificationModal";
 import ResendCreatePasswordModal from "./modal/ResendCreatePasswordModal";
+import SocialAuthentication from "@/components/common/form/SocialAuthentication";
 
 export const metadata: Metadata = {
   title: "Sulala | Auth Sign In",
@@ -36,17 +37,7 @@ function SignIn({ searchParams: { by }, params: { lang } }: SignupProps) {
         <div className="divider"></div>
 
         {/* SOCIAL SIGN UP */}
-        <div className="flex gap-4">
-          <button className="btn border-0 h-100px aspect-square bg-[#f6f6f6] rounded-full hover:bg-primary/20">
-            <img src="/applelogo.svg" alt="" />
-          </button>
-          <button
-            className="btn border-0 h-100px aspect-square bg-[#f6f6f6] rounded-full hover:bg-primary/20"
-            onClick={handleGoogleSignIn}
-          >
-            <img src="/googlelogo.svg" alt="" />
-          </button>
-        </div>
+        <SocialAuthentication />
       </div>
     </>
   );

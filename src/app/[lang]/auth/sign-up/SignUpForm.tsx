@@ -26,7 +26,7 @@ function SignUpForm({ by }: SignUpProps) {
   return (
     <form action={action} className="flex flex-col gap-6 w-full md:px-10">
       {/* SIGN IN INPUT */}
-      {by !== "email" ? (
+      {by == "phone" ? (
         <AuthWithPhone error={formState.fieldErrors?.phone_number?.[0]} />
       ) : (
         <AuthWithEmail
@@ -35,7 +35,7 @@ function SignUpForm({ by }: SignUpProps) {
         />
       )}
 
-      <input type="text" hidden name="by" value={by} onChange={() => {}} />
+      <input type="text" hidden name="by" value={by} onChange={() => { }} />
 
       {/* SIGN UP LINK */}
       <div className="flex flex-col gap-3 w-full items-center">

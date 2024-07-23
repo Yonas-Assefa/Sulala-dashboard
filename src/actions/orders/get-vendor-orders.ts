@@ -1,13 +1,15 @@
 "use server";
 
-import { ORDERS, ORDERS_URL } from "@/config/urls";
+import { ORDERS_URL } from "@/config/urls";
 import {
   Fetch,
   getRequestHeaders,
+  getResponseBody,
   getResponseErrorMessage,
 } from "@/lib/helper";
-import { ordersMapper } from "../mapper/orders-mapper";
-import { getFilterSortOrdering } from "@/lib/table";
+import { orderDetailMapper, ordersMapper } from "../mapper/orders-mapper";
+import { getFilterSortOrdering } from "@/lib/filter-sort-ordering";
+import { notFound } from "next/navigation";
 
 export const getOrders = async (formData: FormData) => {
   const { search, status, ordering, page, page_size } =

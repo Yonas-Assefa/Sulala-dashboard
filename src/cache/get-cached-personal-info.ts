@@ -23,8 +23,10 @@ export const getCachedPersonalInfo = async () => {
     }
 
     const personalInfo = await getPersonalInfo();
-    if (personalInfo) {
+    if (personalInfo && isValidForCache(personalInfo)) {
       cache.set(`personal_info_${decodedToken?.user_id}`, personalInfo);
+    } else {
+      console.log('caching skipped');
     }
 
     return personalInfo;
@@ -37,7 +39,12 @@ export const revalidateCachedPersonalInfo = async () => {
   const token = cookies().get("access")?.value || "";
   const decodedToken = token && decodeJwt(token);
   const personalInfo = await getPersonalInfo();
-  cache.set(`personal_info_${decodedToken?.user_id}`, personalInfo);
+  if (personalInfo && isValidForCache(personalInfo)) {
+    cache.set(`personal_info_${decodedToken?.user_id}`, personalInfo);
+  } else {
+    console.log('caching skipped');
+  }
+  console.log('revalidateCachedPersonalInfo', personalInfo);
   return personalInfo;
 };
 
@@ -46,3 +53,16 @@ export const invalidateCachedPersonalInfo = () => {
   const decodedToken = token && decodeJwt(token);
   cache.set(`personal_info_${decodedToken?.user_id}`, null);
 };
+
+type TPersonalInfo = {
+  email_verified: boolean;
+  phone_verified: boolean;
+  is_password_set: boolean;
+  has_onboarded: boolean;
+}
+const isValidForCache = (personalInfo: TPersonalInfo) => {
+  return personalInfo &&
+    (personalInfo.email_verified || personalInfo.phone_verified) &&
+    personalInfo.is_password_set &&
+    personalInfo.has_onboarded
+}

@@ -58,7 +58,7 @@ export const getPendingShops = async (formData: FormData) => {
 };
 
 export const getOnePendingShop = async (vendor_id: string) => {
-  const response = await fetch(`${GET_PENDING_SHOPS}`, {
+  const response = await fetch(`${GET_PENDING_SHOPS}${vendor_id}/`, {
     method: "GET",
     headers: getRequestHeaders(),
     next: {
@@ -74,7 +74,5 @@ export const getOnePendingShop = async (vendor_id: string) => {
     throw new Error(body.message || "Failed to get pending shops");
   }
 
-  return manageShopsMapper(
-    body.data?.results?.find((vendor: any) => vendor.id == vendor_id),
-  );
+  return manageShopsMapper(body.data);
 };

@@ -3,8 +3,9 @@ import React from "react";
 import PhoneEmailTab from "../components/PhoneEmailTab";
 import SignUpForm from "./SignUpForm";
 import { useTranslations } from "next-intl";
-import { handleGoogleSignIn } from "@/actions/auth/ggoleSigninHelper";
+import { handleGoogleSignIn, handleAppleSignIn } from "@/actions/auth/ggoleSigninHelper";
 import { Metadata } from "next";
+import SocialAuthentication from "@/components/common/form/SocialAuthentication";
 
 export const metadata: Metadata = {
   title: "Sulala | Auth Sign Up",
@@ -31,17 +32,7 @@ function SignUp({ searchParams: { by } }: SignupProps) {
       <div className="divider"></div>
 
       {/* SOCIAL SIGN UP */}
-      <div className="flex gap-4">
-        <button className="btn border-0 h-100px aspect-square bg-[#f6f6f6] rounded-full hover:bg-primary/20">
-          <img src="/applelogo.svg" alt="" />
-        </button>
-        <button
-          className="btn border-0 h-100px aspect-square bg-[#f6f6f6] rounded-full hover:bg-primary/20"
-          onClick={handleGoogleSignIn}
-        >
-          <img src="/googlelogo.svg" alt="" />
-        </button>
-      </div>
+      <SocialAuthentication />
     </div>
   );
 }

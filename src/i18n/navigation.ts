@@ -16,6 +16,7 @@ export const pathnames = {
   "/dashboard": "/dashboard",
   "/dashboard/settings": "/dashboard/settings",
   "/dashboard/settings/shop-info": "/dashboard/settings/shop-info",
+  "/auth/setup-account": "/auth/setup-account",
   "/auth/setup-account?stage=one": "/auth/setup-account?stage=one",
   // '/dashboard/promotion/add?type=product': '/dashboard/promotion/add?type=product',
   // '/dashboard/promotion/add?type=service': '/dashboard/promotion/add?type=service',

@@ -18,6 +18,7 @@ export const useIntervalRequest = ({
   const router = useRouter();
   const checkFn = async () => {
     const personalInfo = await getPersonalInfo();
+    console.log({ personalInfo })
     if (personalInfo?.[property]) {
       pushSuccessNotification(message);
       await revalidateCachedPersonalInfo();

@@ -52,7 +52,7 @@ function SelectAccount() {
         router.push("/auth/download-app?store=appstore");
       }
     } else if (selectedAccount === "vendor") {
-      const href = "/auth/sign-up";
+      const href = "/auth/sign-in";
       router.push(href);
     }
   };
