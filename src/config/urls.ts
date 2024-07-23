@@ -86,6 +86,7 @@ export const ACCEPT_SHOP_APPROVAL = `${VENDOR_BASE_URL}account-access-link/`;
 export const GET_PENDING_DRIVERS = `${API_URL}requests/`;
 export const REJECT_DRIVER_URL = `${API_URL}requests/reject/`;
 export const APPROVE_DRIVER_URL = `${API_URL}requests/approve/`;
+export const GET_ORDERS_VIEW_URL = `${API_URL}}staff/admin-orders-view/`;
 
 // OPEN TELEMETRY URLS
 export const SENTRY_DSN = process.env.SENTRY_DNS!;

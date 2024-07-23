@@ -1,6 +1,6 @@
 "use server";
 
-import { ORDERS_URL } from "@/config/urls";
+import { GET_ORDERS_VIEW_URL } from "@/config/urls";
 import {
   Fetch,
   getRequestHeaders,
@@ -11,11 +11,11 @@ import { orderDetailMapper, ordersMapper } from "../mapper/orders-mapper";
 import { getFilterSortOrdering } from "@/lib/filter-sort-ordering";
 import { notFound } from "next/navigation";
 
-export const getOrders = async (formData: FormData) => {
+export const getManageOrders = async (formData: FormData) => {
   const { search, status, ordering, page, page_size } =
     getFilterSortOrdering(formData);
   const ordersResponse = await Fetch({
-    url: ORDERS_URL,
+    url: GET_ORDERS_VIEW_URL,
     method: "GET",
     headers: getRequestHeaders(),
     params: {
@@ -41,8 +41,21 @@ export const getOrders = async (formData: FormData) => {
   };
 };
 
-export const getSingleOrder = async (item: string) => {
-  const url = `http://34.18.54.116:3001/api/v1/orders/${item}/vendor-detail-order/`;
+export const getSingleOrder = async (
+  item: string,
+  page: string,
+  page_size: string,
+) => {
+  const query = new URLSearchParams();
+
+  if (page) {
+    query.append("page", page);
+  }
+
+  if (page_size) {
+    query.append("page_size", page_size);
+  }
+  const url = `${GET_ORDERS_VIEW_URL}/?${query.toString()}`;
   const response = await fetch(url, {
     method: "GET",
     headers: getRequestHeaders(),
@@ -62,7 +75,9 @@ export const getSingleOrder = async (item: string) => {
     );
   }
 
-  const modifiedOrderDetail = await orderDetailMapper(body.data);
+  const modifiedOrderDetail = await orderDetailMapper(
+    body.data?.results.find((order: any) => order.id == item),
+  );
 
   return modifiedOrderDetail;
 };
