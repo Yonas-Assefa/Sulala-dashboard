@@ -7,6 +7,7 @@ import { redirect } from "@/i18n/navigation";
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_ID!;
 const GOOGLE_CLEINT_SECRET = process.env.GOOGLE_SECRET!;
+const NEXT_SECRET = process.env.SECRET;
 
 const authOption: NextAuthOptions = {
   session: {
@@ -18,6 +19,7 @@ const authOption: NextAuthOptions = {
       clientSecret: GOOGLE_CLEINT_SECRET,
     }),
   ],
+  secret: NEXT_SECRET,
   callbacks: {
     async signIn({ account, profile }) {
       if (!account) {
