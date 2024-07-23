@@ -1,13 +1,13 @@
 "use server";
 
-import { ORDERS_URL } from "@/config/urls";
+import { ORDERS, ORDERS_URL } from "@/config/urls";
 import {
   Fetch,
   getRequestHeaders,
   getResponseErrorMessage,
 } from "@/lib/helper";
 import { ordersMapper } from "../mapper/orders-mapper";
-import { getFilterSortOrdering } from "@/lib/filter-sort-ordering";
+import { getFilterSortOrdering } from "@/lib/table";
 
 export const getOrders = async (formData: FormData) => {
   const { search, status, ordering, page, page_size } =
@@ -37,4 +37,30 @@ export const getOrders = async (formData: FormData) => {
     data,
     count: ordersBody.data.count,
   };
+};
+
+export const getSingleOrder = async (item: string) => {
+  const url = `http://34.18.54.116:3001/api/v1/orders/${item}/vendor-detail-order/`;
+  const response = await fetch(url, {
+    method: "GET",
+    headers: getRequestHeaders(),
+    next: {
+      tags: [`order-${item}`],
+    },
+  });
+
+  const body = await getResponseBody(response);
+
+  if (!response.ok) {
+    if (response.status === 404) {
+      notFound();
+    }
+    throw new Error(
+      getResponseErrorMessage(body) || "Failed to get order detail",
+    );
+  }
+
+  const modifiedOrderDetail = await orderDetailMapper(body.data);
+
+  return modifiedOrderDetail;
 };

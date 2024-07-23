@@ -44,6 +44,7 @@ function TableBody({ tableSchema, data, actionOptions, isSuperUser }: Props) {
                       items={product_key}
                       label={schema.title}
                       last_items={last_items}
+                      productId={product.id}
                     />
                   ) : (
                     <div className="flex flex-row gap-3 items-center max-w-[30vw] text-center overflow-x-hidden">

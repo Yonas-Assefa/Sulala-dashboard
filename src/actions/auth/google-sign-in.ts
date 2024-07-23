@@ -7,6 +7,7 @@ import {
   fromErrorToFormState,
   toFormState,
 } from "@/utils/formStateHelper";
+import { getPersonalInfo } from "../settings/get-personal-info";
 
 import { redirect } from "@/i18n/navigation";
 export const googleSingIn = async (accessToken: string) => {
@@ -20,16 +21,14 @@ export const googleSingIn = async (accessToken: string) => {
     });
 
     const body = await getResponseBody(response);
+    setBrowserCookie(response);
     if (!response.ok) {
       throw new Error(body.message || "Failed to signin");
     }
-    setBrowserCookie(response);
 
-    const successMessage = "Signin successful!.";
-
-    redirect("/auth/account-setup");
-
-    return toFormState("SUCCESS", successMessage);
+    const personalInfo = await getPersonalInfo();
+    const shop = personalInfo?.shops?.[0];
+    console.log("response of google2: ");
   } catch (error) {
     return fromErrorToFormState(error);
   }

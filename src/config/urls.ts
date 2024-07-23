@@ -66,7 +66,8 @@ export const PROMOTIONS = `${API_URL}promotions/`;
 export const REMOVE_PROMOTION_FILE = `${API_URL}remove_promotion_file/`;
 
 //ORDERS URLS
-export const ORDERS_URL = `${API_URL}orders/vendor-orders/`;
+export const ORDERS = `${API_URL}orders/`;
+export const ORDERS_URL = `${ORDERS}vendor-orders/`;
 
 //SHOP URLS
 export const SHOP_REVENUE_URL = `${VENDOR_BASE_URL}shops/revenue/`;

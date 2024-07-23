@@ -150,6 +150,28 @@
     "shop_info": "معلومات المتجر",
     "billing_info": "معلومات الفواتير"
   },
+  "Order": {
+    "order": "الطلب",
+    "order_detail": "تفاصيل الطلب",
+    "order_placed": "تم الطلب",
+    "status": "الحالة",
+    "payment": "الدفع",
+    "driver": "السائق",
+    "quantity": "الكمية",
+    "unit_price": "سعر الوحدة",
+    "fee": "الرسوم",
+    "subtotal": "المجموع الفرعي",
+    "total": "المجموع",
+    "total_fee": "إجمالي الرسوم",
+    "promotion_fee": "رسوم الترقية",
+    "customer_detail": "تفاصيل العميل",
+    "order_history": "سجل الطلبات",
+    "order_accept": "قبول الطلب",
+    "order_cancel": "إلغاء الطلب",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "address": "العنوان"
+  },
   "Settings": {
     "PersonalInfo": {
       "email": "بريد إلكتروني",
