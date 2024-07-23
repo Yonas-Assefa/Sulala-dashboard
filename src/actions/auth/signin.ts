@@ -14,6 +14,7 @@ import {
 } from "../../lib/helper";
 import { resendVerificationLink } from "./resend-verification-link";
 import { getCachedPersonalInfo } from "@/cache/get-cached-personal-info";
+import { resendCreatePasswordLink } from "./resend-create-password-link";
 
 export const signIn = async (formState: FormState, formData: FormData) => {
   try {
@@ -21,9 +22,9 @@ export const signIn = async (formState: FormState, formData: FormData) => {
 
     const data: { email?: string; password?: string; phone_number?: string } =
       {};
-    const SIGNIN_URL = by == "email" ? EMAIL_SIGNIN_URL : PHONE_SIGNIN_URL;
+    const SIGNIN_URL = by != "phone" ? EMAIL_SIGNIN_URL : PHONE_SIGNIN_URL;
 
-    if (by == "email") {
+    if (by != "phone") {
       const ZodObj = emailSignInSchema.parse({
         email: formData.get("email"),
         password: formData.get("password"),
@@ -49,15 +50,26 @@ export const signIn = async (formState: FormState, formData: FormData) => {
 
     const body = await getResponseBody(response);
 
+    const email = formData.get("email")?.toString();
+
     if (!response.ok) {
-      if ("error" in body) {
+      if ("error" in body && email) {
         if (body?.error?.verification_error) {
-          await resendVerificationLink({ email: body.error?.old_email });
+          await resendVerificationLink({ email });
           return toFormState(
             "INFO",
             "Check your email for verification link",
-            `/auth/confirm-letter?email=${encodeURIComponent(body.error?.old_email)}&action=signup`,
+            `/auth/confirm-letter?email=${encodeURIComponent(email)}&action=signup`,
           );
+        } else if (body?.error?.password_set == false) {
+          await resendCreatePasswordLink({ email });
+          return toFormState(
+            "INFO",
+            "Check your email for the password setup link",
+            `/auth/create-password?email=${encodeURIComponent(email)}`,
+          );
+        } else {
+          throw new Error(getResponseErrorMessage(body) || "Failed to signin");
         }
       }
       throw new Error(getResponseErrorMessage(body) || "Failed to signin");
@@ -66,14 +78,14 @@ export const signIn = async (formState: FormState, formData: FormData) => {
     setBrowserCookie(response);
 
     const successMessage =
-      by == "email"
+      by != "phone"
         ? "Signin successful!."
         : "Check your message for the verification code";
 
-    const personalInfo = by == "email" ? await getCachedPersonalInfo() : null;
+    const personalInfo = by != "phone" ? await getCachedPersonalInfo() : null;
 
     const redirectUrl =
-      by == "email"
+      by != "phone"
         ? personalInfo?.is_superuser
           ? "/dashboard/shops?filter=pending"
           : "/dashboard/settings"

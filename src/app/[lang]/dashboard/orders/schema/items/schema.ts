@@ -68,7 +68,7 @@ export const orderItemTableSchema: TableSchema = {
       title: "Items",
       type: "string",
       dropdown: true,
-      orderItemBadgeColorSchema,
+      // orderItemBadgeColorSchema
     },
   ],
 };

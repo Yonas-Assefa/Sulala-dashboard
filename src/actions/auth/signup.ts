@@ -21,7 +21,7 @@ export const signUp = async (formState: FormState, formData: FormData) => {
 
     const data: { phone_number?: string; email?: string } = {};
 
-    if (by == "email") {
+    if (by != "phone") {
       const ZodObj = emailSignUpSchema.parse({
         email: formData.get("email"),
       });
@@ -54,12 +54,12 @@ export const signUp = async (formState: FormState, formData: FormData) => {
     await revalidateCachedPersonalInfo();
 
     const successMessage =
-      by == "email"
+      by != "phone"
         ? "Check your email for the verification link"
         : "Check your message for the verification code";
 
     const redirectUrl =
-      by == "email"
+      by != "phone"
         ? `/auth/confirm-letter?email=${encodeURIComponent(data.email!)}&action=signup`
         : `/auth/enter-otp?phone=${encodeURIComponent(data.phone_number!)}&action=signup`;
 

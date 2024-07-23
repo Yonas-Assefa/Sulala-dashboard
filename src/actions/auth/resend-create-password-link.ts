@@ -7,6 +7,7 @@ import {
   getResponseBody,
   getResponseErrorMessage,
   makeRequest,
+  setBrowserCookie,
 } from "../../lib/helper";
 
 export const resendCreatePasswordLink = async ({
@@ -25,6 +26,7 @@ export const resendCreatePasswordLink = async ({
       "POST",
     );
 
+    setBrowserCookie(response);
     const body = await getResponseBody(response);
 
     if (!response.ok) {

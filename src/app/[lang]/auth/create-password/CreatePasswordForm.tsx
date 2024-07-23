@@ -55,7 +55,7 @@ function CreatePasswordForm() {
       {/* SIGN UP LINK */}
       <div className="flex flex-col gap-3 w-full items-center">
         <div className="flex flex-col w-full">
-          <PrimaryButton name="Sign in" type="submit" />
+          <PrimaryButton name="Create" type="submit" />
         </div>
       </div>
     </form>

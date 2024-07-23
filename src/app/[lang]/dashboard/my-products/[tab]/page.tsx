@@ -18,6 +18,28 @@ type Props = {
   };
 };
 
+// export async function generateMetadata({
+//   params: { lang, tab },
+//   searchParams: { item },
+// }: {
+//   params: { lang: string, tab: string };
+//   searchParams: { item: string };
+// }) {
+//   const product = item ? await getOneProduct(item) : null;
+
+//   return {
+//     title: tab == "add" ? "Add Product" : "Edit " + product?.title,
+//     description: tab == "add" ? "Add a new product" : product?.description,
+//     icons: tab == "add" ? [] : product?.images,
+//     openGraph: {
+//       images: tab == "add" ? [] : product?.images,
+//       title: tab == "add" ? "Add Product" : "Edit " + product?.title,
+//     },
+//     locale: lang,
+//     type: "website",
+//   };
+// }
+
 async function page({ params: { tab }, searchParams: { item } }: Props) {
   if (!["add", "edit"].includes(tab)) {
     return notFound();

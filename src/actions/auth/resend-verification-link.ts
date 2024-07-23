@@ -6,6 +6,7 @@ import {
   getResponseBody,
   getResponseErrorMessage,
   makeRequest,
+  setBrowserCookie,
 } from "../../lib/helper";
 
 export const resendVerificationLink = async ({ email }: { email: string }) => {
@@ -15,7 +16,7 @@ export const resendVerificationLink = async ({ email }: { email: string }) => {
     });
 
     const response = await makeRequest(RESEND_VERIFICATION_LINK, data, "PATCH");
-
+    setBrowserCookie(response);
     const body = await getResponseBody(response);
 
     if (!response.ok) {

@@ -4,6 +4,7 @@ import {
   guardCreatePassword,
   guardDashboard,
   guardAdminOnly,
+  guardConfirmLetter,
 } from "./handlers/middleware.handler";
 
 export async function guardMiddleware(request: NextRequest) {
@@ -12,6 +13,7 @@ export async function guardMiddleware(request: NextRequest) {
   // GET WHERE THE USER IS
   const isAtSetupAccount = pathname.includes("/auth/setup-account");
   const isAtCreatePassword = pathname.includes("/auth/create-password");
+  const isAtConfirmLetter = pathname.includes("/auth/confirm-letter");
   const isAtDashboard = pathname.includes("/dashboard");
   const isAtManage =
     pathname.includes("/dashboard/shops") ||
@@ -22,6 +24,8 @@ export async function guardMiddleware(request: NextRequest) {
     return guardSetupAccount(request);
   } else if (isAtCreatePassword) {
     return guardCreatePassword(request);
+  } else if (isAtConfirmLetter) {
+    return guardConfirmLetter(request);
   } else if (isAtDashboard) {
     return guardDashboard(request);
   } else if (isAtManage) {

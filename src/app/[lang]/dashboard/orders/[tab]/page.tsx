@@ -22,7 +22,6 @@ async function OrdersPage({
   params: { tab },
   searchParams: { search, filter, sort, sort_by, page_size, page },
 }: Props) {
-  console.log("console log: ", tab);
   const activeTab = tab ? tab : "items";
   const tabs = [
     { name: "Items", id: "items" },

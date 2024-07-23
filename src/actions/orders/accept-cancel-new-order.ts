@@ -12,7 +12,7 @@ export const acceptCancelOrder = async (
   formState: FormState,
   formData: FormData,
 ) => {
-  const ACCEPT_DECLINE_ORDER = `http://34.18.54.116:3001/api/v1/orders/${orderId}/`;
+  const ACCEPT_DECLINE_ORDER = `http://34.18.54.116:3001/api/v1/orders/${formData.get("id")}/`;
   try {
     console.log(
       "am called here: now the order status is: ",

@@ -131,6 +131,24 @@ export const guardDashboard = async (request: NextRequest) => {
   }
 };
 
+export const guardConfirmLetter = async (request: NextRequest) => {
+  const pathname = request.nextUrl.pathname;
+
+  if (!isAuthenticated(request)) {
+    return NextResponse.redirect(new URL("/auth/sign-in", request.url));
+  }
+
+  const personalInfo = isAuthenticated(request)
+    ? await getCachedPersonalInfo()
+    : null;
+
+  if (personalInfo?.email_verified) {
+    return NextResponse.redirect(new URL("/auth/create-password", request.url));
+  } else {
+    return;
+  }
+};
+
 export const guardAdminOnly = async (request: NextRequest) => {
   if (!isAuthenticated(request)) {
     return NextResponse.redirect(new URL("/auth/sign-in", request.url));

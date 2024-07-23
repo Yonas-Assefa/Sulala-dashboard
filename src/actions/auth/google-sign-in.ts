@@ -28,7 +28,6 @@ export const googleSingIn = async (accessToken: string) => {
 
     const personalInfo = await getPersonalInfo();
     const shop = personalInfo?.shops?.[0];
-    console.log("response of google2: ");
   } catch (error) {
     return fromErrorToFormState(error);
   }

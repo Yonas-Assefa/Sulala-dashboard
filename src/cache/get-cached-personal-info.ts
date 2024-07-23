@@ -18,7 +18,13 @@ export const getCachedPersonalInfo = async () => {
     const token = cookies().get("access")?.value || "";
     const decodedToken = token && decodeJwt(token);
 
-    if (cache.has(`personal_info_${decodedToken?.user_id}`)) {
+    const cachedPersonalInfo = cache.has(
+      `personal_info_${decodedToken?.user_id}`,
+    )
+      ? cache.get(`personal_info_${decodedToken?.user_id}`)
+      : null;
+
+    if (cachedPersonalInfo) {
       return cache.get(`personal_info_${decodedToken?.user_id}`);
     }
 
@@ -26,7 +32,7 @@ export const getCachedPersonalInfo = async () => {
     if (personalInfo && isValidForCache(personalInfo)) {
       cache.set(`personal_info_${decodedToken?.user_id}`, personalInfo);
     } else {
-      console.log('caching skipped');
+      console.log("caching skipped");
     }
 
     return personalInfo;
@@ -42,9 +48,8 @@ export const revalidateCachedPersonalInfo = async () => {
   if (personalInfo && isValidForCache(personalInfo)) {
     cache.set(`personal_info_${decodedToken?.user_id}`, personalInfo);
   } else {
-    console.log('caching skipped');
+    console.log("caching skipped");
   }
-  console.log('revalidateCachedPersonalInfo', personalInfo);
   return personalInfo;
 };
 
@@ -59,10 +64,12 @@ type TPersonalInfo = {
   phone_verified: boolean;
   is_password_set: boolean;
   has_onboarded: boolean;
-}
+};
 const isValidForCache = (personalInfo: TPersonalInfo) => {
-  return personalInfo &&
+  return (
+    personalInfo &&
     (personalInfo.email_verified || personalInfo.phone_verified) &&
     personalInfo.is_password_set &&
     personalInfo.has_onboarded
-}
+  );
+};

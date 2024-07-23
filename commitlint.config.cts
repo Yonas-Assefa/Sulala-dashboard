@@ -9,6 +9,7 @@ module.exports = {
       [
         "feat",
         "fix",
+        "hotfix",
         "docs",
         "chore",
         "style",
