@@ -6,18 +6,21 @@ import {
   guardAdminOnly,
   guardConfirmLetter,
 } from "./handlers/middleware.handler";
+import routes from "@/app/[lang]/dashboard/components/sideBarRoutes";
 
 export async function guardMiddleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
+  const superAdminPaths = routes
+    .filter((route) => route.protected)
+    .map((route) => route.path)
+    .map((path) => path.split("?")[0]);
 
   // GET WHERE THE USER IS
   const isAtSetupAccount = pathname.includes("/auth/setup-account");
   const isAtCreatePassword = pathname.includes("/auth/create-password");
   const isAtConfirmLetter = pathname.includes("/auth/confirm-letter");
   const isAtDashboard = pathname.includes("/dashboard");
-  const isAtManage =
-    pathname.includes("/dashboard/shops") ||
-    pathname.includes("/dashboard/customer-support");
+  const isAtManage = superAdminPaths.some((path) => pathname.includes(path));
 
   // GUARD IMPLEMENTATION
   if (isAtSetupAccount) {

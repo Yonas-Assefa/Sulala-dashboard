@@ -55,6 +55,13 @@ const routes = [
     protected: true,
   },
   {
+    icon: "/icons/shopping_bag.svg",
+    activeIcon: "/icons/shopping_bag_active.svg",
+    name: "manage_orders",
+    path: "/dashboard/manage-orders/items?filter=all",
+    protected: true,
+  },
+  {
     icon: "/icons/customer_support.svg",
     activeIcon: "/icons/customer_support_active.svg",
     name: "customer_support",

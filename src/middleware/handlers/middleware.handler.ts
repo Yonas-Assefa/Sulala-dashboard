@@ -132,8 +132,6 @@ export const guardDashboard = async (request: NextRequest) => {
 };
 
 export const guardConfirmLetter = async (request: NextRequest) => {
-  const pathname = request.nextUrl.pathname;
-
   if (!isAuthenticated(request)) {
     return NextResponse.redirect(new URL("/auth/sign-in", request.url));
   }

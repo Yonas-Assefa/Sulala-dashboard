@@ -132,6 +132,7 @@
     "promotion": "Promotion",
     "drivers": "Drivers",
     "manage_shops": "Manage Shops",
+    "manage_orders": "Manage Orders",
     "customer_support": "Customer Support",
     "manage_customer_support": "Manage Customer Support",
     "faq": "FAQ",
@@ -169,7 +170,6 @@
     "email": "Email",
     "address": "Address"
   },
-
   "Settings": {
     "PersonalInfo": {
       "email": "Email",
