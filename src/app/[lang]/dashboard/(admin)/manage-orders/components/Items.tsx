@@ -10,6 +10,7 @@ import { orderItemTableSchema } from "../schema/items/schema";
 import { getVendorsRevenueStas } from "@/actions/orders/get-vendors-revenue-stat";
 import { getOrders } from "@/actions/orders/get-vendor-orders";
 import { changeObjToFormData } from "@/lib/helper";
+import { getManageOrders } from "@/actions/admin-manage/get-manage-orders";
 
 type SearchParams = {
   search: string;
@@ -51,7 +52,8 @@ async function Items({ searchParams }: ItemsProps) {
     },
   };
   // const orders = await getOrders(ordersFormData);
-  const orders: object[] = [];
+  const orders = await getManageOrders(ordersFormData);
+  console.log({ orders });
 
   return (
     <div className="text-black flex flex-col w-full h-full gap-10">

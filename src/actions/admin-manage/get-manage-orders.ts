@@ -7,13 +7,14 @@ import {
   getResponseBody,
   getResponseErrorMessage,
 } from "@/lib/helper";
-import { orderDetailMapper, ordersMapper } from "../mapper/orders-mapper";
 import { getFilterSortOrdering } from "@/lib/filter-sort-ordering";
 import { notFound } from "next/navigation";
+import { manageOrdersMapper } from "../mapper/manage-orders-mapper";
 
 export const getManageOrders = async (formData: FormData) => {
   const { search, status, ordering, page, page_size } =
     getFilterSortOrdering(formData);
+  console.log({ GET_ORDERS_VIEW_URL });
   const ordersResponse = await Fetch({
     url: GET_ORDERS_VIEW_URL,
     method: "GET",
@@ -34,7 +35,7 @@ export const getManageOrders = async (formData: FormData) => {
     );
   }
 
-  const data = await ordersMapper(ordersBody.data.results);
+  const data = await manageOrdersMapper(ordersBody.data.results);
   return {
     data,
     count: ordersBody.data.count,
@@ -75,7 +76,7 @@ export const getSingleOrder = async (
     );
   }
 
-  const modifiedOrderDetail = await orderDetailMapper(
+  const modifiedOrderDetail = await manageOrdersMapper(
     body.data?.results.find((order: any) => order.id == item),
   );
 
