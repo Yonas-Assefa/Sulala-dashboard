@@ -19,7 +19,7 @@ export const getPendingShops = async (formData: FormData) => {
     throw new Error(body.message || "Failed to get pending shops");
   }
 
-  return manageShopsMapper(body.data);
+  return manageShopsMapper(body.data.results);
 };
 
 export const getOnePendingShop = async (vendor_id: string) => {
@@ -31,6 +31,7 @@ export const getOnePendingShop = async (vendor_id: string) => {
     },
   });
   const body = await getResponseBody(response);
+  console.log("bodyyy of bodyy", body);
 
   if (!response.ok || !body.data) {
     if (response.status === 404) {
@@ -40,6 +41,6 @@ export const getOnePendingShop = async (vendor_id: string) => {
   }
 
   return manageShopsMapper(
-    body.data?.find((vendor: any) => vendor.id == vendor_id),
+    body.data.results?.find((vendor: any) => vendor.id == vendor_id),
   );
 };
