@@ -14,7 +14,6 @@ type Props = {
 
 async function page({ params: { orderId }, searchParams: { item } }: Props) {
   const orderDetail = await getSingleManageOrder(item);
-  debugger;
   const rawDeliveryPartners = await getDeliveryPartners();
   const deliveryPartners = await customMapper({
     data: rawDeliveryPartners.data,

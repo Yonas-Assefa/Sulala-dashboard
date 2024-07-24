@@ -43,7 +43,7 @@ type TOrderItems = {
   auto_delivery: boolean;
   frequency: number;
   next_delivery_date: string | null;
-  driver: string | null;
+  driver: { id: string } | null;
   label: string;
   image: string;
 };
@@ -94,6 +94,7 @@ export const manageOrderDetailMapper = async (
   return {
     ...order,
     order_id: order?.id,
+    driver_id: order?.order_items?.[0]?.driver?.id,
     ordered_at: formatDate(order?.order_items?.[0]?.ordered_at),
     canceled_at: formatDate(order?.order_items?.[0]?.canceled_at),
     delivered_at: formatDate(order?.order_items?.[0]?.delivered_at),
