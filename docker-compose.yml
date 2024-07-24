@@ -10,3 +10,14 @@ services:
       - 3000:3000
     env_file:
       - .env
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    ports:
+      - 9000:9000
+    volumes:
+      - portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+volumes:
+  portainer_data:
