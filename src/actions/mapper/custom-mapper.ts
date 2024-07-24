@@ -4,7 +4,6 @@ type Args = {
 };
 
 export const customMapper = async ({ data, opt }: Args) => {
-  console.log({ data, opt });
   const convert = (item: any) => {
     const convertedObj = {};
     opt.map((meta) => {

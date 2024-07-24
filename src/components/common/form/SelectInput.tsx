@@ -40,7 +40,6 @@ function SelectInput({
   inputAreaOnly,
   disabled,
 }: CustomSelectInputProps) {
-  console.log({ data });
   const [options, setOptions] = React.useState<SelectInputSchema[]>(data || []);
 
   const defaultSelected = !defaultValue

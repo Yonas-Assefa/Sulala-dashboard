@@ -17,7 +17,7 @@ import {
 export const getManageOrders = async (formData: FormData) => {
   const { search, status, ordering, page, page_size } =
     getFilterSortOrdering(formData);
-  console.log({ GET_ORDERS_VIEW_URL });
+
   const ordersResponse = await Fetch({
     url: GET_ORDERS_VIEW_URL,
     method: "GET",
