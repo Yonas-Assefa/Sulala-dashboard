@@ -19,9 +19,9 @@ function OrderDetailPage({ orderDetail }: any) {
     return notFound();
   }
 
-  const [status, setStatus] = React.useState<"APPROVE" | "REJECT">();
+  const [status, setStatus] = React.useState<"ACCEPTED" | "DECLINED">();
   const handleStatusChange = () => {
-    setStatus(status === "APPROVE" ? "REJECT" : "APPROVE");
+    setStatus(status === "ACCEPTED" ? "DECLINED" : "ACCEPTED");
   };
 
   const [formState, action] = useFormState(acceptCancelOrder, EMPTY_FORM_STATE);
@@ -43,20 +43,28 @@ function OrderDetailPage({ orderDetail }: any) {
           {orderDetail.status === "NEW" && (
             <div>
               <form action={action}>
+                <input
+                  type="text"
+                  value={orderDetail.id}
+                  name="vendor_id"
+                  id="vendor_id"
+                  onChange={() => {}}
+                  hidden
+                />
                 <div className="flex flex-col gap-3">
                   <div className="flex flex-col gap-3 md:flex-row md:gap-12">
                     <div className="flex flex-row gap-1">
                       <input
                         type="radio"
                         name="status"
-                        value="APPROVE"
-                        id="approve"
+                        value="ACCEPTED"
+                        id="accept"
                         onChange={handleStatusChange}
-                        checked={status == "APPROVE"}
+                        checked={status == "ACCEPTED"}
                         className="radio radio-success"
                       />
                       <label
-                        htmlFor="approve"
+                        htmlFor="accept"
                         className={`cursor-pointer text-xl`}
                       >
                         {t("order_accept")}
@@ -67,24 +75,24 @@ function OrderDetailPage({ orderDetail }: any) {
                       <input
                         type="radio"
                         name="status"
-                        value="REJECT"
-                        id="reject"
+                        value="DECLINED"
+                        id="decline"
                         className="radio radio-error"
-                        checked={status == "REJECT"}
+                        checked={status == "DECLINED"}
                         onChange={handleStatusChange}
                       />
                       <label
-                        htmlFor="reject"
+                        htmlFor="decline"
                         className={`cursor-pointer text-xl`}
                       >
-                        {t("order_cancel")}
+                        {t("order_decline")}
                       </label>
                     </div>
                   </div>
                 </div>
 
                 <div className="mt-5">
-                  <PrimaryButton padding="xsm" />
+                  <PrimaryButton disabled={!status?.length} padding="xsm" />
                 </div>
               </form>
             </div>
