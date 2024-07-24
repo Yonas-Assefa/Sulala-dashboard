@@ -325,10 +325,16 @@ function ProductDiscountAdsForm({ products, promotion }: Props) {
             />
           )}
           {promoDiscountType === "PERCENTAGE_OFF_THE_MINIMUM_CART_SIZE" && (
-            <SummaryDescription
-              title={t("end_date_&_time")}
-              description={formatPiece(+cartTotal || 0)}
-            />
+            <>
+              <SummaryDescription
+                title={t("discount_amount")}
+                description={priceFormatter(+discount || 0)}
+              />
+              <SummaryDescription
+                title={t("cart_total")}
+                description={formatPiece(+cartTotal || 0)}
+              />
+            </>
           )}
           {/* <SummaryDescription title='Destination' description='List of products' /> */}
           <SummaryDescription
