@@ -6,7 +6,7 @@ import { getRequestHeaders, getResponseBody } from "../../lib/helper";
 import { getFilterSortOrdering } from "@/lib/filter-sort-ordering";
 import { deliveryPartnersMapper } from "../mapper/delivery-partners-mapper";
 
-export const getDeliveryPartners = async (formData: FormData) => {
+export const getDeliveryPartners = async (formData?: FormData) => {
   const { search, page, page_size, status } = getFilterSortOrdering(formData);
 
   const query = new URLSearchParams();

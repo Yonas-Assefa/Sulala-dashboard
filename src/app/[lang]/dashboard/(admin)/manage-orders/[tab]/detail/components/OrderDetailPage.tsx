@@ -10,8 +10,9 @@ import { EMPTY_FORM_STATE } from "@/utils/formStateHelper";
 import { usePathname } from "next/navigation";
 import { notFound } from "next/navigation";
 import { useTranslations } from "next-intl";
+import SelectInput from "@/components/common/form/SelectInput";
 
-function OrderDetailPage({ orderDetail }: any) {
+function OrderDetailPage({ orderDetail, deliveryPartners }: any) {
   const pathname = usePathname();
   const t = useTranslations("Order");
   const hasOrders = pathname.includes("items");
@@ -466,6 +467,18 @@ function OrderDetailPage({ orderDetail }: any) {
                 <p>st. Jorge St, Bole, rwuande, addis ababa, ethiopia</p>
               </div>
             </div>
+          </div>
+
+          <hr />
+
+          <div>
+            <h1 className="capitalize text-xl font-bold pb-3">Assign Driver</h1>
+            <form action="" className="flex flex-col gap-3">
+              <SelectInput label="Driver" data={deliveryPartners} />
+              <div className="w-full flex justify-center">
+                <PrimaryButton name="Assign" padding="md" />
+              </div>
+            </form>
           </div>
         </div>
       </div>

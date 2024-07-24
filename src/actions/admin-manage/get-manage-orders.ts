@@ -9,7 +9,10 @@ import {
 } from "@/lib/helper";
 import { getFilterSortOrdering } from "@/lib/filter-sort-ordering";
 import { notFound } from "next/navigation";
-import { manageOrdersMapper } from "../mapper/manage-orders-mapper";
+import {
+  manageOrderDetailMapper,
+  manageOrdersMapper,
+} from "../mapper/manage-orders-mapper";
 
 export const getManageOrders = async (formData: FormData) => {
   const { search, status, ordering, page, page_size } =
@@ -42,26 +45,12 @@ export const getManageOrders = async (formData: FormData) => {
   };
 };
 
-export const getSingleOrder = async (
-  item: string,
-  page: string,
-  page_size: string,
-) => {
-  const query = new URLSearchParams();
-
-  if (page) {
-    query.append("page", page);
-  }
-
-  if (page_size) {
-    query.append("page_size", page_size);
-  }
-  const url = `${GET_ORDERS_VIEW_URL}/?${query.toString()}`;
-  const response = await fetch(url, {
+export const getSingleManageOrder = async (item: string) => {
+  const response = await fetch(GET_ORDERS_VIEW_URL, {
     method: "GET",
     headers: getRequestHeaders(),
     next: {
-      tags: [`order-${item}`],
+      tags: [`manage-order-${item}`],
     },
   });
 
@@ -76,8 +65,9 @@ export const getSingleOrder = async (
     );
   }
 
-  const modifiedOrderDetail = await manageOrdersMapper(
-    body.data?.results.find((order: any) => order.id == item),
+  const modifiedOrderDetail = await manageOrderDetailMapper(
+    body.data.results,
+    item,
   );
 
   return modifiedOrderDetail;

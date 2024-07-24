@@ -1,6 +1,6 @@
 type Args = {
   data: any;
-  opt: { from: string; to: string; converter?: (item: any) => any }[];
+  opt: { from?: string; to: string; converter?: (item: any) => any }[];
 };
 
 export const customMapper = async ({ data, opt }: Args) => {
@@ -9,9 +9,9 @@ export const customMapper = async ({ data, opt }: Args) => {
     opt.map((meta) => {
       if (meta.converter) {
         Object.assign(convertedObj, {
-          [meta.to]: meta.converter(item[meta.from]),
+          [meta.to]: meta.converter(!meta.from ? item : item[meta.from]),
         });
-      } else {
+      } else if (meta.from) {
         Object.assign(convertedObj, { [meta.to]: item[meta.from] });
       }
     });
