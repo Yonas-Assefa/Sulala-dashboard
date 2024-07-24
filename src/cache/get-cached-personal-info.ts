@@ -32,7 +32,6 @@ export const getCachedPersonalInfo = async () => {
     if (personalInfo && isValidForCache(personalInfo)) {
       cache.set(`personal_info_${decodedToken?.user_id}`, personalInfo);
     } else {
-      console.log("caching skipped");
     }
 
     return personalInfo;
@@ -48,7 +47,6 @@ export const revalidateCachedPersonalInfo = async () => {
   if (personalInfo && isValidForCache(personalInfo)) {
     cache.set(`personal_info_${decodedToken?.user_id}`, personalInfo);
   } else {
-    console.log("caching skipped");
   }
   return personalInfo;
 };

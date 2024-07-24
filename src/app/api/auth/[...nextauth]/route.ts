@@ -30,8 +30,6 @@ const authOption: NextAuthOptions = {
         console.error("errors:", login);
 
         if (login?.status === "ERROR") {
-          console.log("Login response: ", login, typeof login);
-
           return "/auth/setup-account?stage=one";
         }
 
@@ -43,8 +41,6 @@ const authOption: NextAuthOptions = {
     },
 
     async redirect({ url, baseUrl }) {
-      console.log("url 0: ", baseUrl, url);
-
       return `${baseUrl}/auth/setup-account?stage=one`;
     },
   },

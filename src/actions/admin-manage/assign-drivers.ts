@@ -32,7 +32,6 @@ export const assignOrder = async (formState: FormState, formData: FormData) => {
     });
 
     const body = await getResponseBody(response);
-    console.log({ body });
 
     if (!response.ok) {
       throw new Error(getResponseErrorMessage(body) || "Failed to submit form");

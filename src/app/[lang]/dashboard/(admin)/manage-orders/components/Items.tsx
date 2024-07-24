@@ -53,7 +53,6 @@ async function Items({ searchParams }: ItemsProps) {
   };
   // const orders = await getOrders(ordersFormData);
   const orders = await getManageOrders(ordersFormData);
-  console.log({ orders: JSON.stringify(orders, null, 4) });
 
   return (
     <div className="text-black flex flex-col w-full h-full gap-10">
