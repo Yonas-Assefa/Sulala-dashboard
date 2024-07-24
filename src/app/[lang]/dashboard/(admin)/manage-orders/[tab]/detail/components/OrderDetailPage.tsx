@@ -5,30 +5,28 @@ import PrimaryButton from "@/components/common/ui/PrimaryButton";
 import StatusBadge from "@/components/common/ui/StatusBadge";
 import { useToastMessage } from "@/hooks/useToastMessage";
 import { useFormState } from "react-dom";
-import { acceptCancelOrder } from "@/actions/orders/accept-cancel-new-order";
 import { EMPTY_FORM_STATE } from "@/utils/formStateHelper";
 import { usePathname } from "next/navigation";
 import { notFound } from "next/navigation";
 import { useTranslations } from "next-intl";
 import SelectInput from "@/components/common/form/SelectInput";
+import { assignOrder } from "@/actions/admin-manage/assign-drivers";
+import { useRedirectRoute } from "@/hooks/useRedirectRoute";
 
 function OrderDetailPage({ orderDetail, deliveryPartners }: any) {
   const pathname = usePathname();
   const t = useTranslations("Order");
   const hasOrders = pathname.includes("items");
 
-  console.log({ deliveryPartners });
+  console.log({ orderDetail });
   if (!hasOrders) {
     return notFound();
   }
 
-  const [status, setStatus] = React.useState<"APPROVE" | "REJECT">();
-  const handleStatusChange = () => {
-    setStatus(status === "APPROVE" ? "REJECT" : "APPROVE");
-  };
+  const [formState, action] = useFormState(assignOrder, EMPTY_FORM_STATE);
 
-  const [formState, action] = useFormState(acceptCancelOrder, EMPTY_FORM_STATE);
   useToastMessage(formState);
+  useRedirectRoute(formState);
 
   return (
     <div className="flex flex-col md:gap-3 gap-2  bg-gray-200 text-black w-full h-screen overflow-scroll">
@@ -42,61 +40,6 @@ function OrderDetailPage({ orderDetail, deliveryPartners }: any) {
               {t("order")} <span className="font-bold ">#{orderDetail.id}</span>
             </h1>
           </div>
-
-          {orderDetail.status === "NEW" && (
-            <div>
-              <form action={action}>
-                <div className="flex flex-col gap-3">
-                  <div className="flex flex-col gap-3 md:flex-row md:gap-12">
-                    <div className="flex flex-row gap-1">
-                      <input
-                        type="radio"
-                        name="status"
-                        value="APPROVE"
-                        id="approve"
-                        onChange={handleStatusChange}
-                        checked={status == "APPROVE"}
-                        className="radio radio-success"
-                      />
-                      <label
-                        htmlFor="approve"
-                        className={`cursor-pointer text-xl`}
-                      >
-                        {t("order_accept")}
-                      </label>
-                    </div>
-
-                    <div className="flex flex-row gap-1">
-                      <input
-                        type="radio"
-                        name="status"
-                        value="REJECT"
-                        id="reject"
-                        className="radio radio-error"
-                        checked={status == "REJECT"}
-                        onChange={handleStatusChange}
-                      />
-                      <label
-                        htmlFor="reject"
-                        className={`cursor-pointer text-xl`}
-                      >
-                        {t("order_cancel")}
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-5">
-                  <PrimaryButton padding="xsm" />
-                </div>
-              </form>
-            </div>
-          )}
-
-          {/* <div className=" flex flex-col md:flex-row  md:justify-center gap-3 md:items-center">
-              <PrimaryButton name="Accept" />
-              <PrimaryButton name="Decline" action="cancel" />
-            </div> */}
         </div>
       </div>
 
@@ -475,8 +418,31 @@ function OrderDetailPage({ orderDetail, deliveryPartners }: any) {
 
           <div>
             <h1 className="capitalize text-xl font-bold pb-3">Assign Driver</h1>
-            <form action="" className="flex flex-col gap-3">
-              <SelectInput label="Driver" data={deliveryPartners} />
+            <form action={action} className="flex flex-col gap-3">
+              <input
+                type="text"
+                hidden
+                name="order_id"
+                id="order_id"
+                value={orderDetail.order_id}
+                onChange={() => {}}
+              />
+              <input
+                type="text"
+                hidden
+                name="shop_id"
+                id="shop_id"
+                value={orderDetail.shop_id}
+                onChange={() => {}}
+              />
+              <SelectInput
+                label="Driver"
+                data={deliveryPartners}
+                withImage
+                name="driver_id"
+                id="driver_id"
+                error={formState?.fieldErrors?.driver_id?.[0]}
+              />
               <div className="w-full flex justify-center">
                 <PrimaryButton name="Assign" padding="md" />
               </div>

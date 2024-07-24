@@ -38,8 +38,9 @@ function SelectInput({
   onChange,
   className,
   inputAreaOnly,
-  disabled
+  disabled,
 }: CustomSelectInputProps) {
+  console.log({ data });
   const [options, setOptions] = React.useState<SelectInputSchema[]>(data || []);
 
   const defaultSelected = !defaultValue
@@ -47,24 +48,24 @@ function SelectInput({
     : typeof defaultValue === "string" || typeof defaultValue === "number"
       ? nested
         ? options
-          .map((option) => option.options)
-          ?.flatMap((opt) => opt)
-          ?.filter((opt) => opt && opt.value == defaultValue)
+            .map((option) => option.options)
+            ?.flatMap((opt) => opt)
+            ?.filter((opt) => opt && opt.value == defaultValue)
         : options
-          .filter((option) => option.value == defaultValue)
-          .filter(Boolean)
+            .filter((option) => option.value == defaultValue)
+            .filter(Boolean)
       : Array.isArray(defaultValue)
         ? defaultValue.length == 0
           ? []
           : defaultValue
-            .map((val) => {
-              if (typeof val == "string" || typeof val == "number") {
-                return options.find((option) => option.value == val);
-              } else {
-                return val;
-              }
-            })
-            .filter(Boolean)
+              .map((val) => {
+                if (typeof val == "string" || typeof val == "number") {
+                  return options.find((option) => option.value == val);
+                } else {
+                  return val;
+                }
+              })
+              .filter(Boolean)
         : typeof defaultValue === "object"
           ? [defaultValue as SelectInputSchema]
           : [];
@@ -215,18 +216,18 @@ function SelectInput({
       const filteredOptions =
         multi && !selectedParent
           ? data?.filter((option) =>
-            option.label.toLowerCase().includes(value.toLowerCase()),
-          )
+              option.label.toLowerCase().includes(value.toLowerCase()),
+            )
           : options.filter((option) =>
-            option.label.toLowerCase().includes(value.toLowerCase()),
-          );
+              option.label.toLowerCase().includes(value.toLowerCase()),
+            );
       setOptions(filteredOptions || []);
     } else {
       setOptions(
         !selectedParent
           ? data || []
           : data?.find((option) => option.value === selectedParent?.value)
-            ?.options || [],
+              ?.options || [],
       );
     }
   };
@@ -250,18 +251,20 @@ function SelectInput({
           value={item.value}
           key={i}
           hidden
-          onChange={() => { }}
+          onChange={() => {}}
         />
       ))}
-      {!inputAreaOnly && <p className="self-start capitalize">
-        {label}
-        {required && (
-          <span className="text-danger">
-            *&nbsp;
-            {/* <sup className="text-xs opacity-70">{t("(required)")}</sup> */}
-          </span>
-        )}
-      </p>}
+      {!inputAreaOnly && (
+        <p className="self-start capitalize">
+          {label}
+          {required && (
+            <span className="text-danger">
+              *&nbsp;
+              {/* <sup className="text-xs opacity-70">{t("(required)")}</sup> */}
+            </span>
+          )}
+        </p>
+      )}
       <details
         ref={selectRef}
         onClick={(e) => disabled && e.preventDefault()}
@@ -374,35 +377,35 @@ function SelectInput({
                       {nested && !selectedParent ? (
                         <img src="/icons/chevron-right.svg" alt="" />
                       ) : // THIS LINE CHECKS IF NESTED SELECTION IS ALLOWED AND SELECTED PARENT IS NOT NULL,
-                        // OR NESTED SELECTION IS NOT ALLOWED AND SELECTED PARENT IS NULL,
-                        // THEN IT CHECKS THE SELECTED ITEMS LIST EQAULS TO THIS ITEM
-                        ((nested && selectedParent) ||
+                      // OR NESTED SELECTION IS NOT ALLOWED AND SELECTED PARENT IS NULL,
+                      // THEN IT CHECKS THE SELECTED ITEMS LIST EQAULS TO THIS ITEM
+                      ((nested && selectedParent) ||
                           (!nested && !selectedParent)) &&
-                          selected.find((item) => item.value === option.value) ? (
-                          // IF MULTIPLE SELECTION IS ENABLED, CHECKBOX WILL APPEAR
-                          // IF MULTIPLE SELECTION IS DISABLED, CHECK MARK WILL APPEAR
-                          multi ? (
-                            <input
-                              type="checkbox"
-                              className={`checkbox checkbox-success ${hasError && "checkbox-error"}`}
-                              checked={true}
-                            />
-                          ) : (
-                            <img
-                              src="/icons/check.svg"
-                              alt=""
-                              className="w-[20px]"
-                            />
-                          )
-                        ) : // ELSE IF SELECTED ITEM DOES NOT MATCH THIS ITEM, AND IF MULTI IS ENABLED, UNCHECKED CHECKBOX WILL APPEAR
-                          // ELSE IF SELECTED ITEM DOES NOT MATCH THIS ITEM, AND IF MULTI IS DISABLED, NOTHING WILL APPEAR
-                          multi ? (
-                            <input
-                              type="checkbox"
-                              className="checkbox border-secondary"
-                              checked={false}
-                            />
-                          ) : null}
+                        selected.find((item) => item.value === option.value) ? (
+                        // IF MULTIPLE SELECTION IS ENABLED, CHECKBOX WILL APPEAR
+                        // IF MULTIPLE SELECTION IS DISABLED, CHECK MARK WILL APPEAR
+                        multi ? (
+                          <input
+                            type="checkbox"
+                            className={`checkbox checkbox-success ${hasError && "checkbox-error"}`}
+                            checked={true}
+                          />
+                        ) : (
+                          <img
+                            src="/icons/check.svg"
+                            alt=""
+                            className="w-[20px]"
+                          />
+                        )
+                      ) : // ELSE IF SELECTED ITEM DOES NOT MATCH THIS ITEM, AND IF MULTI IS ENABLED, UNCHECKED CHECKBOX WILL APPEAR
+                      // ELSE IF SELECTED ITEM DOES NOT MATCH THIS ITEM, AND IF MULTI IS DISABLED, NOTHING WILL APPEAR
+                      multi ? (
+                        <input
+                          type="checkbox"
+                          className="checkbox border-secondary"
+                          checked={false}
+                        />
+                      ) : null}
                     </div>
                   </li>
                 );
@@ -415,9 +418,9 @@ function SelectInput({
         <span className="text-xs text-danger">
           {childErrorItem
             ? error?.replace(
-              /\[.+]/,
-              `(${childErrorItem?.map((obj) => obj.title).join(", ")})`,
-            )
+                /\[.+]/,
+                `(${childErrorItem?.map((obj) => obj.title).join(", ")})`,
+              )
             : error}
         </span>
       )}

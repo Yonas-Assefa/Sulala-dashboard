@@ -49,6 +49,7 @@ type TOrderItems = {
 };
 
 type TManageOrders = {
+  id: number;
   shop_id: number;
   shop_name: string;
   user: TUser;
@@ -65,7 +66,8 @@ type TManageOrders = {
 export const manageOrdersMapper = async (orders: TManageOrders[]) => {
   const modifeidOrders = orders.map((order) => ({
     ...order,
-    order_id: order.order_items?.[0]?.id,
+    order_id: order?.id,
+    shop_id: order.shop_id,
     ordered_at: changeLocalToISODateOnly(order?.order_items?.[0]?.ordered_at),
     status: order?.order_items?.[0]?.status,
     price: order?.total_amount,
@@ -91,6 +93,7 @@ export const manageOrderDetailMapper = async (
   const order = orders.find((order) => order?.order_items?.[0]?.id == +id);
   return {
     ...order,
+    order_id: order?.id,
     ordered_at: formatDate(order?.order_items?.[0]?.ordered_at),
     canceled_at: formatDate(order?.order_items?.[0]?.canceled_at),
     delivered_at: formatDate(order?.order_items?.[0]?.delivered_at),

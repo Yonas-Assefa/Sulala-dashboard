@@ -87,6 +87,7 @@ export const GET_PENDING_DRIVERS = `${API_URL}requests/`;
 export const REJECT_DRIVER_URL = `${API_URL}requests/reject/`;
 export const APPROVE_DRIVER_URL = `${API_URL}requests/approve/`;
 export const GET_ORDERS_VIEW_URL = `${API_URL}staff/admin-orders-view/`;
+export const ASSING_DRIVERS_URL = `${API_URL}staff/admin-orders-view/assign-driver/`;
 
 // OPEN TELEMETRY URLS
 export const SENTRY_DSN = process.env.SENTRY_DNS!;

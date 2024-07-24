@@ -489,3 +489,9 @@ export const uploadImageSchema = z.object({
     .refine(fileRefine.existFn, fileRefine.existMg)
     .refine(fileRefine.acceptFn(IMAGE_TYPES), fileRefine.acceptMg("image")),
 });
+
+export const assignDriverSchema = z.object({
+  driver_id: z.string().min(1, "Driver is required"),
+  order_id: z.string().min(1, "Order id is missing"),
+  shop_id: z.string().min(1, "Shop id is missing"),
+});
