@@ -437,6 +437,7 @@ function OrderDetailPage({ orderDetail, deliveryPartners }: any) {
               <SelectInput
                 label="Driver"
                 data={deliveryPartners}
+                defaultValue={orderDetail.driver_id}
                 withImage
                 name="driver_id"
                 id="driver_id"
