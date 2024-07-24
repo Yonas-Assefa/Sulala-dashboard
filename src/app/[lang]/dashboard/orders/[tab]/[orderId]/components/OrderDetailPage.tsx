@@ -123,7 +123,7 @@ function OrderDetailPage({ orderDetail }: any) {
               <div className="flex flex-col gap-4 pr-5 md:flex-row justify-around md:gap-16 text-md ">
                 <div className="flex flex-col  items-end">
                   <h4 className="text-gray-400 capitalize"> {t("status")}</h4>
-                  <StatusBadge status={orderDetail.status} />
+                  <StatusBadge status={orderDetail.vendor_order_status} />
                 </div>
 
                 <div className="flex flex-col  items-end">

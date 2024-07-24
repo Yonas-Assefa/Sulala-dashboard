@@ -32,7 +32,6 @@ type ORDER_STATUS =
   | "DELIVERED";
 
 function StatusBadge({ status, statusType = "default" }: Props) {
-  // Determine if the status belongs to "fail" or "success"
   const determineStatusType = (): keyof typeof bgColors => {
     if (BG_COLORS_MAPPER.fail.includes(status.toUpperCase())) {
       return "fail";
@@ -43,7 +42,6 @@ function StatusBadge({ status, statusType = "default" }: Props) {
     }
   };
 
-  // Get the appropriate statusType based on the status
   const resolvedStatusType = determineStatusType();
 
   return (
