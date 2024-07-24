@@ -14,11 +14,6 @@ export const acceptCancelOrder = async (
 ) => {
   const ACCEPT_DECLINE_ORDER = `http://34.18.54.116:3001/api/v1/orders/${formData.get("id")}/`;
   try {
-    console.log(
-      "am called here: now the order status is: ",
-      formData.get("id"),
-      formData.get("status"),
-    );
     revalidateTag("order-item");
 
     return toFormState("SUCCESS", "Order status updated", "/auth/sign-in/");

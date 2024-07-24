@@ -16,7 +16,6 @@ async function page({ params: { orderId }, searchParams: { item } }: Props) {
   const orderDetail = await getSingleManageOrder(item);
   debugger;
   const rawDeliveryPartners = await getDeliveryPartners();
-  console.log({ rawDeliveryPartners });
   const deliveryPartners = await customMapper({
     data: rawDeliveryPartners.data,
     opt: [
@@ -35,7 +34,6 @@ async function page({ params: { orderId }, searchParams: { item } }: Props) {
       },
     ],
   });
-  console.log({ orderDetail });
 
   return (
     <OrderDetailPage

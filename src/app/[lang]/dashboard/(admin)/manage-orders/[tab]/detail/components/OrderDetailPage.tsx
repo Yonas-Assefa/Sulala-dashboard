@@ -18,7 +18,6 @@ function OrderDetailPage({ orderDetail, deliveryPartners }: any) {
   const t = useTranslations("Order");
   const hasOrders = pathname.includes("items");
 
-  console.log({ orderDetail });
   if (!hasOrders) {
     return notFound();
   }
