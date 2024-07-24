@@ -60,6 +60,7 @@ export const invalidateCachedPersonalInfo = () => {
 };
 
 type TPersonalInfo = {
+  is_superuser: boolean;
   email_verified: boolean;
   phone_verified: boolean;
   is_password_set: boolean;
@@ -67,9 +68,10 @@ type TPersonalInfo = {
 };
 const isValidForCache = (personalInfo: TPersonalInfo) => {
   return (
-    personalInfo &&
-    (personalInfo.email_verified || personalInfo.phone_verified) &&
-    personalInfo.is_password_set &&
-    personalInfo.has_onboarded
+    personalInfo?.is_superuser ||
+    (personalInfo &&
+      (personalInfo.email_verified || personalInfo.phone_verified) &&
+      personalInfo.is_password_set &&
+      personalInfo.has_onboarded)
   );
 };
