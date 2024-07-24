@@ -40,7 +40,7 @@ function OrderDetailPage({ orderDetail }: any) {
             </h1>
           </div>
 
-          {orderDetail.status === "NEW" && (
+          {orderDetail.vendor_order_status.toUpperCase() === "NEW" && (
             <div>
               <form action={action}>
                 <input
