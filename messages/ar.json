@@ -168,7 +168,7 @@
     "customer_detail": "تفاصيل العميل",
     "order_history": "سجل الطلبات",
     "order_accept": "قبول الطلب",
-    "order_cancel": "إلغاء الطلب",
+    "order_decline": "رفض",
     "name": "الاسم",
     "email": "البريد الإلكتروني",
     "address": "العنوان"

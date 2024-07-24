@@ -165,7 +165,7 @@
     "customer_detail": "Customer Details",
     "order_history": "Order History",
     "order_accept": "Accept",
-    "order_cancel": "Cancel",
+    "order_decline": "Decline",
     "name": "Name",
     "email": "Email",
     "address": "Address"
