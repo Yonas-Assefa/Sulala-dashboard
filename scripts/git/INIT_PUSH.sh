@@ -2,25 +2,7 @@
 
 cd "$(git rev-parse --show-toplevel)"
 
-# Function to get the version increment argument based on commit message
-getVersionIncrementArg() {
-  local recent_commit_message
-  recent_commit_message=$(git log -n 1 --pretty=format:%s)
 
-  local version_increment
-
-  if [[ $recent_commit_message =~ (--patch|#patch) ]]; then
-    version_increment="--patch"
-  elif [[ $recent_commit_message =~ (--minor|#minor) ]]; then
-    version_increment="--minor"
-  elif [[ $recent_commit_message =~ (--major|#major) ]]; then
-    version_increment="--major"
-  else
-    version_increment=""
-  fi
-
-  echo "$version_increment"
-}
 
 # Function to validate version bump conditions
 validateVersionBump() {
@@ -45,13 +27,10 @@ validateVersionBump() {
 
 # Main function to orchestrate the version bump
 main() {
-  local version_increment_arg
-  version_increment_arg=$(getVersionIncrementArg)
-
   validateVersionBump
 
   # Execute version bump script with the determined increment argument
-  ./scripts/git/TAG.sh "$version_increment_arg"
+  ./scripts/git/PUSH.sh
 }
 
 # Call main function to start the script
