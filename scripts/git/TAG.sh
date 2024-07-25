@@ -33,6 +33,6 @@ new_tag=$(git tag --sort=-version:refname | head -n 1)
 echo -e "\e[0;34;49mTagging finished.\e[0m"
 echo -e "\e[0;32;49mNew tag is $new_tag\e[0m"
 
-git push origin "$new_tag"
+git push origin "$new_tag" --quiet
 
 echo -e "\e[0;34;49mTag pushed.\e[0m"
