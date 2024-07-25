@@ -1,9 +1,8 @@
 #!/bin/bash
 
 ./scripts/git/INIT_TAG.sh
-./scripts/git/INIT_PUSH.sh
 npm install
 
-printf "\e[0;33;49mRun \e[0m\e[0;34;49mnpm run docker:build\e[0m\e[0;33;49m to build docker images.\e[0m"
-printf "\e[0;33;49mRun \e[0m\e[0;34;49mnpm run docker:push\e[0m\e[0;33;49m to push a docker images.\e[0m"
-printf "\e[0;33;49mRun \e[0m\e[0;34;49mnpm run docker:run\e[0m\e[0;33;49m to run docker container from the new docker image.\e[0m"
+printf "\e[0;33;49mRun \e[0m\e[0;34;49mnpm run docker:build\e[0m\e[0;33;49m to build docker images.\e[0m\n"
+printf "\e[0;33;49mRun \e[0m\e[0;34;49mnpm run docker:push\e[0m\e[0;33;49m to push a docker images.\e[0m\n"
+printf "\e[0;33;49mRun \e[0m\e[0;34;49mnpm run docker:run\e[0m\e[0;33;49m to run docker container from the new docker image.\e[0m\n"

@@ -9,7 +9,7 @@ if [ $? -ne 0 ]; then
 fi
 
 latest_tag=$(git tag --sort=-version:refname | head -n 1)
-latest_tag=${latest_tag#v}
+# latest_tag=${latest_tag#v}
 
 git push origin "$latest_tag"
 

@@ -23,6 +23,11 @@ else
     exit 1
 fi
 
+if [ $? -ne 0 ]; then
+    echo -e "\e[0;31;49mFailed to increment version. Exiting...\e[0m"
+    exit 0
+fi
+
 new_tag=$(git tag --sort=-version:refname | head -n 1)
 
 echo -e "\e[0;34;49mTagging finished.\e[0m"
