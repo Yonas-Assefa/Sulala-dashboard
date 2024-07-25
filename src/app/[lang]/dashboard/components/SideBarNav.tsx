@@ -7,10 +7,12 @@ import { usePathname } from "@/i18n/navigation";
 import { useDetectClickOutside } from "react-detect-click-outside";
 import SideBarOptions from "./SideBarOptions";
 import { useTranslations } from "next-intl";
+import VersionTag from "@/components/common/ui/VersionTag";
 
 type Props = {
   isSuperUser: boolean;
 };
+
 function SideBarNav({ isSuperUser }: Props) {
   const pathname = usePathname();
   const menuRef = React.useRef<ElementRef<"input">>(null);
@@ -89,6 +91,7 @@ function SideBarNav({ isSuperUser }: Props) {
         </div>
         <SideBarOptions />
       </div>
+      <VersionTag />
     </nav>
   );
 }
