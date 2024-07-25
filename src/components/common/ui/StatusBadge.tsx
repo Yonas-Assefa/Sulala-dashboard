@@ -33,7 +33,9 @@ type ORDER_STATUS =
 
 function StatusBadge({ status, statusType = "default" }: Props) {
   const determineStatusType = (): keyof typeof bgColors => {
-    if (BG_COLORS_MAPPER.fail.includes(status.toUpperCase())) {
+    if (statusType) {
+      return statusType;
+    } else if (BG_COLORS_MAPPER.fail.includes(status.toUpperCase())) {
       return "fail";
     } else if (BG_COLORS_MAPPER.success.includes(status.toUpperCase())) {
       return "success";
@@ -43,6 +45,12 @@ function StatusBadge({ status, statusType = "default" }: Props) {
   };
 
   const resolvedStatusType = determineStatusType();
+
+  console.log({
+    resolvedStatusType,
+    bgColors,
+    color: bgColors[resolvedStatusType],
+  });
 
   return (
     <div
