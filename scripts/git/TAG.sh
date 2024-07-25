@@ -35,4 +35,4 @@ echo -e "\e[0;32;49mNew tag is $new_tag\e[0m"
 
 git push origin "$new_tag"
 
-echo -e "\e[0;34;49mTag pushed.\e[0m"
+echo -e "\e[0;34;49mTag pushed to origin.\e[0m"
