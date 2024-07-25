@@ -6,6 +6,7 @@ import landingImage from "@/../public/landing.png";
 import Image from "next/image";
 import LangSwitch from "../components/LangSwitch";
 import ThemeSwitch from "../components/ThemeSwitch";
+import VersionTag from "@/components/common/ui/VersionTag";
 
 export const metadata: Metadata = {
   title: "Sulala | Auth",
@@ -36,6 +37,7 @@ export default function AuthPageLayout({
           </div>
           {children}
           <Footer />
+          <VersionTag />
         </div>
       </div>
     </div>
