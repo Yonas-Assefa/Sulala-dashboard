@@ -120,7 +120,9 @@
     "resend_create_password_description": "هل تريد إعادة إرسال رسالة إعادة تعيين كلمة المرور عبر البريد الإلكتروني؟",
     "confirming_action": "تأكيد الإجراء",
     "yes": "نعم",
-    "cancel": "يلغي"
+    "cancel": "يلغي",
+    "session_expired_title": "انتهت صلاحية الجلسة",
+    "session_expired_description": "انتهت صلاحية جلستك. يرجى تسجيل الدخول مرة أخرى."
   },
   "SideBar": {
     "statistics": "إحصائيات",

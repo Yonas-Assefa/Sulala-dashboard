@@ -120,7 +120,9 @@
     "resend_create_password_description": "Do you want to resend the create password email?",
     "confirming_action": "Confirming action",
     "yes": "Yes",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "session_expired_title": "Session Expired!",
+    "session_expired_description": "Your session has expired. Please sign in again."
   },
   "SideBar": {
     "statistics": "Statistics",

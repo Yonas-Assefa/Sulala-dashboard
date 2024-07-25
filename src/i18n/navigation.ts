@@ -30,6 +30,7 @@ export const pathnames = {
   "/auth": "/auth",
   "/auth/sign-in": "/auth/sign-in",
   "/auth/sign-up": "/auth/sign-up",
+  "/auth/session-expired": "/auth/session-expired",
   "/auth/account-setup": "/auth/account-setup",
   "/auth/forgot-password": "/auth/forgot-password",
 

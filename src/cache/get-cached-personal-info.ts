@@ -35,6 +35,15 @@ export const getCachedPersonalInfo = async () => {
     }
 
     return personalInfo;
+  } catch (e: unknown) {
+    if (
+      e &&
+      typeof e == "object" &&
+      "message" in e &&
+      e.message === "Unauthorized"
+    ) {
+      throw new Error("Unauthorized");
+    }
   } finally {
     isFetchingPersonalInfo = false;
   }
