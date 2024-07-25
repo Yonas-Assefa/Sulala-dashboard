@@ -15,8 +15,9 @@ function FileInput({
   sizeLimit,
   handleFile: emitValue,
   setValue,
+  file: value,
 }: FileInputProps) {
-  const [file, setFile] = React.useState<File | null | undefined>(null);
+  const [file, setFile] = React.useState<File | null | undefined>(value);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const ref = useScrollToErrorField<HTMLDivElement>(error);
 
@@ -35,6 +36,16 @@ function FileInput({
       setValue && setValue(file || null);
     }
   }, [file]);
+
+  React.useEffect(() => {
+    console.log("value changed", { value });
+    if (inputRef.current) {
+      const dataTransfer = new DataTransfer();
+      value instanceof File && dataTransfer.items.add(value);
+      inputRef.current.files = dataTransfer.files;
+      setFile && setFile(value || null);
+    }
+  }, [value]);
 
   const acceptFilesList = accept.map((fileType, index) => {
     const filteredFileType = fileType.replace(".", "").toUpperCase();

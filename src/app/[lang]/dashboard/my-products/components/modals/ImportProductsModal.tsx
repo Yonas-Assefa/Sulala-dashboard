@@ -154,6 +154,16 @@ function ImportProductsModal() {
     }
   };
 
+  const resetForm = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setFile(null);
+    setFormState(EMPTY_FORM_STATE);
+    setShowPreview(false);
+    setPreviewData([]);
+    setIsDisabled(true);
+    closeModal("import_products_modal");
+  };
+
   return (
     <dialog id="import_products_modal" className="modal">
       <div className="modal-box w-11/12 max-w-sm bg-white dark:bg-gray-800 px-0">
@@ -215,6 +225,7 @@ function ImportProductsModal() {
             name="csv"
             label={t("please_attach_the_csv_file")}
             setValue={handleFile}
+            file={file}
             accept={[".csv"]}
             sizeLimit={{ value: 5, unit: "MB" }}
             error={formState.status == "ERROR" && formState.message}
@@ -253,7 +264,7 @@ function ImportProductsModal() {
             </div>
           )}
       </div>
-      <form method="dialog" className="modal-backdrop">
+      <form method="dialog" className="modal-backdrop" onSubmit={resetForm}>
         <button className="text-black"></button>
       </form>
     </dialog>
