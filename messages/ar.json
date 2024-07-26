@@ -168,6 +168,8 @@
     "total_fee": "إجمالي الرسوم",
     "promotion_fee": "رسوم الترقية",
     "customer_detail": "تفاصيل العميل",
+    "shipping_info": "معلومات الشحن",
+    "driver_detail": "تفاصيل السائق",
     "order_history": "سجل الطلبات",
     "order_accept": "قبول الطلب",
     "order_decline": "رفض",
