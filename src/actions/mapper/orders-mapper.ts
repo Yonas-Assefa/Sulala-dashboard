@@ -15,6 +15,7 @@ export const ordersMapper = async (orders: any) => {
   const modifeidOrders = orders.map((order: any) => ({
     ...order,
     ordered_at: changeLocalToISODateOnly(order?.date),
+    status: order.vendor_order_status,
     payment_type: order.cash_on_delivery ? "Cash on Delivery" : "Online",
     id: order?.order_id,
     order_items: order.order_items.map((order_item: any) => ({

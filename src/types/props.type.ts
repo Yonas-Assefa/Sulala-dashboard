@@ -117,6 +117,7 @@ export type FileInputProps = Pick<
 export type SignupProps = {
   searchParams: {
     by: "phone" | "email" | undefined;
+    error?: string;
   };
   params: { lang: string };
 };
