@@ -26,11 +26,6 @@ function OrderDetailPage({ orderDetail }: any) {
 
   const [formState, action] = useFormState(acceptCancelOrder, EMPTY_FORM_STATE);
   useToastMessage(formState);
-  console.log(
-    "console.log of vendor_order_status",
-    orderDetail.vendor_order_status,
-    orderDetail.vendor_order_status.toUpperCase(),
-  );
 
   return (
     <div className="flex flex-col md:gap-3 gap-2  bg-gray-200 text-black w-full h-screen overflow-scroll">

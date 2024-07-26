@@ -66,7 +66,6 @@ export const getOnePendingShop = async (vendor_id: string) => {
     },
   });
   const body = await getResponseBody(response);
-  console.log("bodyyy of bodyy", body);
 
   if (!response.ok || !body.data) {
     if (response.status === 404) {

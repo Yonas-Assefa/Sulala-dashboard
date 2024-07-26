@@ -115,8 +115,6 @@ function GeoLocationInput({
     dropdownRef.current?.removeAttribute("open");
   };
 
-  console.log("locations possible: ", addressOptions);
-
   return (
     <label
       ref={ref}
