@@ -156,7 +156,7 @@ function SetupAccountStageThree({
       <FileInput
         label={t("please_attach_the_certificates")}
         handleFile={handleCertificate}
-        file={certificate}
+        // file={certificate}
         accept={[".pdf", "image/*"]}
         id="certificate"
         name="certificate"
@@ -165,7 +165,7 @@ function SetupAccountStageThree({
       <FileInput
         label={t("please_attach_the_tax_section")}
         handleFile={handleTaxForm}
-        file={taxForm}
+        // file={taxForm}
         accept={[".pdf", "image/*"]}
         id="tax_form"
         name="tax_form"

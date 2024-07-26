@@ -106,7 +106,7 @@ export type FileInputProps = Pick<
 > & {
   accept: AcceptFileFormate[];
   handleFile?: ChangeEventHandler<HTMLInputElement>;
-  file?: FileList | null;
+  file?: File | null;
   sizeLimit?: {
     value: number;
     unit: "KB" | "MB" | "GB" | "TB";

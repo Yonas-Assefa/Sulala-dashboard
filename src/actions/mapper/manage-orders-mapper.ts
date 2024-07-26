@@ -133,5 +133,6 @@ export const manageOrderDetailMapper = async (
     total_price: formatNumber(order?.order_items?.[0]?.total_price ?? 0),
     unit_price: formatNumber(order?.order_items?.[0]?.unit_price ?? 0),
     total_amount: formatNumber(order?.total_amount ?? 0),
+    is_paid: order?.order_items?.[0]?.paid,
   };
 };

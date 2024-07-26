@@ -65,12 +65,17 @@ function OrderDetailPage({ orderDetail, deliveryPartners }: any) {
 
                 <div className="flex flex-col  items-end">
                   <h4 className="text-gray-400 capitalize">{t("payment")}</h4>
-                  <StatusBadge status="Paid" />
+                  <StatusBadge
+                    status={orderDetail?.is_paid ? "Paid" : "Pending"}
+                  />
                 </div>
 
                 <div className="flex flex-col items-end">
                   <h4 className="text-gray-400 capitalize">{t("driver")} </h4>
-                  <StatusBadge status="Assigned" />
+                  <StatusBadge
+                    status={orderDetail?.driver_id ? "Assigned" : "Unassigned"}
+                    statusType={orderDetail?.driver_id ? "success" : "default"}
+                  />
                 </div>
               </div>
             </div>
