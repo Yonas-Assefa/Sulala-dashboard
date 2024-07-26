@@ -45,13 +45,6 @@ function StatusBadge({ status, statusType = "default" }: Props) {
   };
 
   const resolvedStatusType = determineStatusType();
-
-  console.log({
-    resolvedStatusType,
-    bgColors,
-    color: bgColors[resolvedStatusType],
-  });
-
   return (
     <div
       className={`${bgColors[resolvedStatusType]} text-sm text-black px-3 py-1 rounded-md `}

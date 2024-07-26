@@ -15,7 +15,6 @@ async function page({ searchParams }: Props) {
   const metrics: MetricsData[] = await getAllOrderDeliveryMetrics(
     changeObjToFormData({ ...searchParams }),
   );
-  console.log({ metrics });
   return (
     <div className="w-full h-full">
       <StatDisplay metricsData={metrics} />

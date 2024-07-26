@@ -20,7 +20,6 @@ function ExportProductsModal({ exportData }: Props) {
   const t = useTranslations("Products");
 
   const prepareExportData = (data: any[]) => {
-    console.log({ toBeExported: data });
     return data.map((item) => {
       return {
         category: item.category_value,

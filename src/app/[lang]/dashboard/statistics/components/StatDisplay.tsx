@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 // import Data from "../data/index.json";
@@ -73,11 +73,14 @@ const selectChartData = [
 function StatDisplay({ metricsData }: { metricsData: MetricsData[] }) {
   const { createQueryStringAndPush, searchParams } = useCreateQueryString();
 
+  const start_date = searchParams.get("start_date");
+  const end_date = searchParams.get("end_date");
+
   const [chartType, setChartType] = React.useState(ChartType.NONE);
   const [chartData, setChartData] = React.useState<MetricsData>();
   const [_rangeType, setRangeType] = React.useState<RangeType>(RangeType.DAY);
   const [dateRange, setDateRange] = React.useState<DateValueType>(
-    searchParams.get("start_date") && searchParams.get("end_date")
+    start_date && end_date
       ? {
           startDate: new Date(searchParams.get("start_date") || ""),
           endDate: new Date(searchParams.get("end_date") || ""),
@@ -91,6 +94,21 @@ function StatDisplay({ metricsData }: { metricsData: MetricsData[] }) {
     "#176635",
     "#a2a6ac",
   ]);
+
+  useEffect(() => {
+    if (metricsData.length > 0) {
+      if (chartData) {
+        const data = metricsData.find((item) => item.id === chartData.id);
+        if (data) {
+          setChartData(data);
+          setChartType(data.defaultChartType);
+        }
+      } else {
+        setChartData(metricsData[0]);
+        setChartType(metricsData[0].defaultChartType);
+      }
+    }
+  }, [metricsData]);
 
   const changeChartData = (id: string) => {
     const data = metricsData.find((item) => item.id === id);
@@ -183,7 +201,11 @@ function StatDisplay({ metricsData }: { metricsData: MetricsData[] }) {
             data={selectRangeData}
             placeholder="Select Color Palette"
             onChange={handleColorPaletteSelect}
-            disabled={chartType === ChartType.NONE}
+            disabled={
+              chartType === ChartType.NONE ||
+              start_date === null ||
+              end_date === null
+            }
             className="rounded-md border-1 border-primary/5"
             inputAreaOnly
             defaultValue={colorPalette}
@@ -194,7 +216,11 @@ function StatDisplay({ metricsData }: { metricsData: MetricsData[] }) {
             data={selectRangeData}
             placeholder="Select Range"
             onChange={handleSelectRangeType}
-            disabled={chartType === ChartType.NONE}
+            disabled={
+              chartType === ChartType.NONE ||
+              start_date === null ||
+              end_date === null
+            }
             className="rounded-md border-1 border-primary/5"
             inputAreaOnly
           />
@@ -204,7 +230,11 @@ function StatDisplay({ metricsData }: { metricsData: MetricsData[] }) {
             data={selectChartData}
             placeholder="Change Chart Type"
             onChange={handleSelectChartType}
-            disabled={chartType === ChartType.NONE}
+            disabled={
+              chartType === ChartType.NONE ||
+              start_date === null ||
+              end_date === null
+            }
             className="rounded-md border-1 border-primary/5"
             inputAreaOnly
           />

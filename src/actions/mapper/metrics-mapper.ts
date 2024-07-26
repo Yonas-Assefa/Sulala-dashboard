@@ -83,7 +83,7 @@ const getDatesAndValues = (
 ) => {
   return results.map((result) => ({
     date:
-      range === "daily"
+      range === "custom"
         ? new Date(result.date).toLocaleDateString()
         : range === "weekly"
           ? new Date(result.date).toLocaleDateString()

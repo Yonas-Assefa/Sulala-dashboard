@@ -38,7 +38,6 @@ function FileInput({
   }, [file]);
 
   React.useEffect(() => {
-    console.log("value changed", { value });
     if (inputRef.current) {
       const dataTransfer = new DataTransfer();
       value instanceof File && dataTransfer.items.add(value);
