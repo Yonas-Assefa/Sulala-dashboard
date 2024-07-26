@@ -6,8 +6,9 @@ import Datepicker, { DateValueType } from "react-tailwindcss-datepicker";
 type Props = {
   onChange?: (value: DateValueType) => void;
   value?: DateValueType;
+  disabled?: boolean;
 };
-function DateRangeSelector({ onChange, value: incomingVal }: Props) {
+function DateRangeSelector({ onChange, value: incomingVal, disabled }: Props) {
   const [value, setValue] = useState<DateValueType>(
     incomingVal || {
       startDate: null,
@@ -51,6 +52,7 @@ function DateRangeSelector({ onChange, value: incomingVal }: Props) {
       onChange={handleValueChange}
       showShortcuts={true}
       primaryColor={"emerald"}
+      disabled={disabled}
       configs={{
         shortcuts: {
           today: t("today"),

@@ -86,7 +86,7 @@ const getDatesAndValues = (
       range === "daily"
         ? new Date(result.date).toLocaleDateString()
         : range === "weekly"
-          ? new Date(result.date).toLocaleString("en-US", { weekday: "long" })
+          ? new Date(result.date).toLocaleDateString()
           : range === "monthly"
             ? new Date(result.date).toLocaleString("en-US", { month: "long" })
             : new Date(result.date).toLocaleString("en-US", {

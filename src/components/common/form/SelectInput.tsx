@@ -239,7 +239,10 @@ function SelectInput({
   return (
     // REF IS USED TO DETECT CLICK OUTSIDE THE DROPDOWN PARENT DIV ELEMENT TO TRIGGER CLOSE DROPDOWN
     // SELECT REF IS USED TO OPEN AND CLOSE THE DROPDOWN
-    <div ref={ref} className="flex flex-col w-full gap-3">
+    <div
+      ref={ref}
+      className={`flex flex-col w-full gap-3 ${disabled ? "cursor-not-allowed" : "cursor-pointer"}`}
+    >
       {/* <input type="text" id={id} name={name} value={multi ? selected.map(s => s.value) : selected[0]?.value} hidden onChange={() => { }} /> */}
       {/* HIDDEN INPUTS OF SELECTED VALUE FOR FORM DATA SUBMISSION */}
       {selected.map((item, i) => (
@@ -271,7 +274,7 @@ function SelectInput({
       >
         {/* SUMMARY HOLDS SELECTED COMPUTED VALUE OR PLACEHOLDER IF THERE IS NO SELECTED VALUE */}
         <summary
-          className={`flex items-center overflow-hidden px-3 justify-between gap-0 rounded-[40px] w-full cursor-pointer input select-none focus:outline-none ${computedValue ? "text-black dark:text-white" : "text-gray-400"} ${className} ${error ? "border-danger bg-dangerlight" : "focus-within:border-primary bg-transparent"} ${disabled && "opacity-50 cursor-not-allowed"}`}
+          className={`flex items-center overflow-hidden px-3 justify-between gap-0 rounded-[40px] w-full input select-none focus:outline-none ${computedValue ? "text-black dark:text-white" : "text-gray-400"} ${className} ${error ? "border-danger bg-dangerlight" : !disabled ? "focus-within:border-primary bg-transparent" : "bg-transparent"} ${disabled && "opacity-50"}`}
         >
           <p className="truncate">
             {computedValue || placeholder || t("select_one")}
@@ -330,7 +333,7 @@ function SelectInput({
                 <img src="/icons/arrow-left.svg" alt="" />
                 <label
                   htmlFor="1"
-                  className="label-text font-semibold cursor-pointer label w-full flex justify-between text-black dark:text-white text-md"
+                  className="label-text font-semibold label w-full flex justify-between text-black dark:text-white text-md"
                 >
                   {selectedParent.label}
                 </label>
@@ -367,7 +370,7 @@ function SelectInput({
                       )}
                       <label
                         htmlFor="1"
-                        className={`label-text label w-full flex justify-between text-black dark:text-white text-md ${disabled ? "opacity-50 cursor-not-allowed" : "opacity-100 cursor-pointer"} ${hasError && "text-danger"}`}
+                        className={`label-text label w-full flex justify-between text-black dark:text-white text-md ${disabled ? "opacity-50" : "opacity-100"} ${hasError && "text-danger"}`}
                       >
                         {option.label}
                       </label>
