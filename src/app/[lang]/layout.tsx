@@ -57,6 +57,7 @@ export default async function AppLayout({
             toastClassName="bg-white dark:bg-gray-800 text-black dark:text-white"
             closeButton={false}
             // theme="dark"
+            position={params.lang === "ar" ? "top-left" : "top-right"}
           />
           <Suspense fallback={<PageSuspense />}>
             <SetupAccountStoreProvider>
