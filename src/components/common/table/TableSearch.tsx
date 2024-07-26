@@ -56,6 +56,12 @@ function TableSearch({ action }: Props) {
   //     setValue(search || '')
   // }, [search])
 
+  React.useEffect(() => {
+    if (value == "") {
+      handleSearchEnterClick();
+    }
+  }, [value]);
+
   return (
     <div className="relative">
       <form
@@ -71,8 +77,9 @@ function TableSearch({ action }: Props) {
           onChange={handleChange}
           value={value}
           type="text"
-          className="bg-white outline-none border-0 focus:outline-none text-black dark:bg-black dark:text-white"
+          className={`bg-white outline-none border-0 focus:outline-none text-black dark:bg-black dark:text-white `}
           placeholder="Seach my products"
+          disabled={isPending}
         />
         {/* {isPending && <span className="loading loading-dots loading-xs text-primary/80 absolute right-2 top-2"></span>} */}
       </form>

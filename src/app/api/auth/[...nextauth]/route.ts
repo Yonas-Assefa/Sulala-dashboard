@@ -2,6 +2,7 @@ import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 import { googleSingIn } from "@/actions/auth/google-sign-in";
+import { getSession } from "next-auth/react";
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_ID!;
 const GOOGLE_CLEINT_SECRET = process.env.GOOGLE_SECRET!;
@@ -27,21 +28,19 @@ const authOption: NextAuthOptions = {
         }
 
         const login = await googleSingIn(account.access_token as string);
-        console.error("errors:", login);
 
         if (login?.status === "ERROR") {
-          return "/auth/setup-account?stage=one";
+          return `/auth/sign-up?by=email&error=${login.message}`;
         }
 
         return true;
       } catch (error: any) {
-        console.error("Error during sign-in:", error.message);
         throw new Error(error.message || "Sign in error");
       }
     },
 
     async redirect({ url, baseUrl }) {
-      return `${baseUrl}/auth/setup-account?stage=one`;
+      return `${baseUrl}/auth/sign-up?by=email"`;
     },
   },
 };

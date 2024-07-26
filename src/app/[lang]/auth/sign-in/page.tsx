@@ -1,5 +1,5 @@
 import { SignupProps } from "@/types/props.type";
-import React from "react";
+import React, { useEffect } from "react";
 import PhoneEmailTab from "../components/PhoneEmailTab";
 import SignInForm from "./SignInForm";
 import { Metadata } from "next";

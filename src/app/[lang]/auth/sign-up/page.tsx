@@ -1,39 +1,12 @@
+import SignUpMetadata from "./SignUpMetadata";
+import SignUpPage from "./SignUpPage";
 import { SignupProps } from "@/types/props.type";
-import React from "react";
-import PhoneEmailTab from "../components/PhoneEmailTab";
-import SignUpForm from "./SignUpForm";
-import { useTranslations } from "next-intl";
-import { handleGoogleSignIn, handleAppleSignIn } from "@/actions/auth/ggoleSigninHelper";
-import { Metadata } from "next";
-import SocialAuthentication from "@/components/common/form/SocialAuthentication";
-
-export const metadata: Metadata = {
-  title: "Sulala | Auth Sign Up",
-  description: "Register to Sulala account",
-  icons: ["/sulala-logo.svg"],
-};
-
-function SignUp({ searchParams: { by } }: SignupProps) {
-  const t = useTranslations("Auth");
-
+function SignUp({ searchParams: { by, error } }: SignupProps) {
   return (
-    <div className="w-10/12 flex flex-col gap-5 items-center">
-      {/* SIGN IN HEADER */}
-      <h1 className="text-3xl md:text-5xl font-serif font-semibold">
-        {t("signup")}
-      </h1>
-
-      {/* SIGN IN OPTIONS */}
-      <PhoneEmailTab />
-
-      {/* FORM */}
-      <SignUpForm by={by} />
-
-      <div className="divider"></div>
-
-      {/* SOCIAL SIGN UP */}
-      <SocialAuthentication />
-    </div>
+    <>
+      <SignUpMetadata />
+      <SignUpPage by={by} error={error} />
+    </>
   );
 }
 
