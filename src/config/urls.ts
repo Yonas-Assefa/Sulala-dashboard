@@ -102,3 +102,11 @@ export const GOOGLE_MAPS_AUTOCOMPLETE_URL = `${GOOGLE_MAPS_API_URL}place/autocom
 
 // USER LOCATION URL
 export const USER_LOCATION_URL = "https://ipapi.co/json/";
+
+// STATISTICS AND METRICS URLS
+export const ORDER_AND_DELIVERY_METRICS = {
+  ALL_METRICS: `${API_URL}staff/order-metrics/all-metrics/`,
+  ORDER_CANCEL_RATE: `${API_URL}staff/order-metrics/order-cancel-rate/`,
+  AVERAGE_DELIVERY_TIME: `${API_URL}staff/order-metrics/average-delivery-time/`,
+  ORDER_FULFILLMENT_RATE: `${API_URL}staff/order-metrics/fulfillment-rate/?time_frame=weekly`,
+};

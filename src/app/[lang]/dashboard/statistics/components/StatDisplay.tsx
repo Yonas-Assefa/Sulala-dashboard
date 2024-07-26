@@ -68,134 +68,134 @@ const selectChartData = [
   // },
 ];
 
-const metricsData: MetricsData[] = [
-  {
-    id: "order_fulfillment_rate",
-    title: "Order Fulfillment Rate",
-    content: "The rate at which orders are fulfilled",
-    legend: "Orders Fulfilled",
-    XAxis: "Year",
-    YAxis: "Orders Fulfilled",
-    data: [
-      {
-        year: 2021,
-        value: 100,
-      },
-      {
-        year: 2022,
-        value: 90,
-      },
-      {
-        year: 2023,
-        value: 80,
-      },
-      {
-        year: 2024,
-        value: 70,
-      },
-      {
-        year: 2025,
-        value: 60,
-      },
-    ],
-    defaultChartType: ChartType.LINE,
-  },
-  {
-    id: "average_delivery_time",
-    title: "Average Delivery Time",
-    content: "The average time taken to deliver orders",
-    legend: "Average Delivery Time",
-    XAxis: "Year",
-    YAxis: "Average Delivery Time",
-    data: [
-      {
-        year: 2021,
-        value: 5,
-      },
-      {
-        year: 2022,
-        value: 6,
-      },
-      {
-        year: 2023,
-        value: 7,
-      },
-      {
-        year: 2024,
-        value: 8,
-      },
-      {
-        year: 2025,
-        value: 9,
-      },
-    ],
-    defaultChartType: ChartType.LINE,
-  },
-  {
-    id: "return_rate",
-    title: "Return Rate",
-    content: "The rate at which orders are returned",
-    legend: "Orders Returned",
-    XAxis: "Year",
-    YAxis: "Orders Returned",
-    data: [
-      {
-        year: 2021,
-        value: 10,
-      },
-      {
-        year: 2022,
-        value: 20,
-      },
-      {
-        year: 2023,
-        value: 30,
-      },
-      {
-        year: 2024,
-        value: 40,
-      },
-      {
-        year: 2025,
-        value: 50,
-      },
-    ],
-    defaultChartType: ChartType.LINE,
-  },
-  {
-    id: "order_cancellation_rate",
-    title: "Order Cancellation Rate",
-    content: "The rate at which orders are cancelled",
-    legend: "Orders Cancelled",
-    XAxis: "Year",
-    YAxis: "Orders Cancelled",
-    data: [
-      {
-        year: 2021,
-        value: 5,
-      },
-      {
-        year: 2022,
-        value: 10,
-      },
-      {
-        year: 2023,
-        value: 15,
-      },
-      {
-        year: 2024,
-        value: 20,
-      },
-      {
-        year: 2025,
-        value: 25,
-      },
-    ],
-    defaultChartType: ChartType.LINE,
-  },
-];
+// const metricsData: MetricsData[] = [
+//   {
+//     id: "order_fulfillment_rate",
+//     title: "Order Fulfillment Rate",
+//     content: "The rate at which orders are fulfilled",
+//     legend: "Orders Fulfilled",
+//     XAxis: "Year",
+//     YAxis: "Orders Fulfilled",
+//     data: [
+//       {
+//         year: 2021,
+//         value: 100,
+//       },
+//       {
+//         year: 2022,
+//         value: 90,
+//       },
+//       {
+//         year: 2023,
+//         value: 80,
+//       },
+//       {
+//         year: 2024,
+//         value: 70,
+//       },
+//       {
+//         year: 2025,
+//         value: 60,
+//       },
+//     ],
+//     defaultChartType: ChartType.LINE,
+//   },
+//   {
+//     id: "average_delivery_time",
+//     title: "Average Delivery Time",
+//     content: "The average time taken to deliver orders",
+//     legend: "Average Delivery Time",
+//     XAxis: "Year",
+//     YAxis: "Average Delivery Time",
+//     data: [
+//       {
+//         year: 2021,
+//         value: 5,
+//       },
+//       {
+//         year: 2022,
+//         value: 6,
+//       },
+//       {
+//         year: 2023,
+//         value: 7,
+//       },
+//       {
+//         year: 2024,
+//         value: 8,
+//       },
+//       {
+//         year: 2025,
+//         value: 9,
+//       },
+//     ],
+//     defaultChartType: ChartType.LINE,
+//   },
+//   {
+//     id: "return_rate",
+//     title: "Return Rate",
+//     content: "The rate at which orders are returned",
+//     legend: "Orders Returned",
+//     XAxis: "Year",
+//     YAxis: "Orders Returned",
+//     data: [
+//       {
+//         year: 2021,
+//         value: 10,
+//       },
+//       {
+//         year: 2022,
+//         value: 20,
+//       },
+//       {
+//         year: 2023,
+//         value: 30,
+//       },
+//       {
+//         year: 2024,
+//         value: 40,
+//       },
+//       {
+//         year: 2025,
+//         value: 50,
+//       },
+//     ],
+//     defaultChartType: ChartType.LINE,
+//   },
+//   {
+//     id: "order_cancellation_rate",
+//     title: "Order Cancellation Rate",
+//     content: "The rate at which orders are cancelled",
+//     legend: "Orders Cancelled",
+//     XAxis: "Year",
+//     YAxis: "Orders Cancelled",
+//     data: [
+//       {
+//         year: 2021,
+//         value: 5,
+//       },
+//       {
+//         year: 2022,
+//         value: 10,
+//       },
+//       {
+//         year: 2023,
+//         value: 15,
+//       },
+//       {
+//         year: 2024,
+//         value: 20,
+//       },
+//       {
+//         year: 2025,
+//         value: 25,
+//       },
+//     ],
+//     defaultChartType: ChartType.LINE,
+//   },
+// ];
 
-function StatDisplay() {
+function StatDisplay({ metricsData }: { metricsData: MetricsData[] }) {
   const [chartType, setChartType] = React.useState(ChartType.NONE);
   const [chartData, setChartData] = React.useState<MetricsData>();
   const [_rangeType, setRangeType] = React.useState<RangeType>(RangeType.DAY);
