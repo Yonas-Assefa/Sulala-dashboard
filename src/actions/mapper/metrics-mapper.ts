@@ -34,12 +34,12 @@ export const metricsMapper = (data: IIncomintRawMetricsData): MetricsData[] => {
     title: "Order Fulfillment Rate",
     content: "The rate at which orders are fulfilled",
     legend: "Orders Fulfilled",
-    XAxis: "Year",
+    XAxis: getDateRange(data.fulfillment_rate.time_frame as TIncomingRange),
     YAxis: "Orders Fulfilled",
-    data: data.fulfillment_rate.results.map((result) => ({
-      year: new Date(result.date).getFullYear(),
-      value: result.metric_value,
-    })),
+    data: getDatesAndValues(
+      data.fulfillment_rate.results,
+      data.fulfillment_rate.time_frame as TIncomingRange,
+    ),
     defaultChartType: ChartType.LINE,
   };
   const averageDeliveryTime: MetricsData = {
@@ -47,12 +47,14 @@ export const metricsMapper = (data: IIncomintRawMetricsData): MetricsData[] => {
     title: "Average Delivery Time",
     content: "The average time taken to deliver orders",
     legend: "Average Delivery Time",
-    XAxis: "Year",
+    XAxis: getDateRange(
+      data.average_delivery_time.time_frame as TIncomingRange,
+    ),
     YAxis: "Average Delivery Time",
-    data: data.average_delivery_time.results.map((result) => ({
-      year: new Date(result.date).getFullYear(),
-      value: result.metric_value,
-    })),
+    data: getDatesAndValues(
+      data.average_delivery_time.results,
+      data.average_delivery_time.time_frame as TIncomingRange,
+    ),
     defaultChartType: ChartType.LINE,
   };
 
@@ -61,14 +63,45 @@ export const metricsMapper = (data: IIncomintRawMetricsData): MetricsData[] => {
     title: "Order Cancellation Rate",
     content: "The rate at which orders are cancelled",
     legend: "Orders Cancelled",
-    XAxis: "Year",
+    XAxis: getDateRange(data.cancellation_rate.time_frame as TIncomingRange),
     YAxis: "Orders Cancelled",
-    data: data.cancellation_rate.results.map((result) => ({
-      year: new Date(result.date).getFullYear(),
-      value: result.metric_value,
-    })),
+    data: getDatesAndValues(
+      data.cancellation_rate.results,
+      data.cancellation_rate.time_frame as TIncomingRange,
+    ),
     defaultChartType: ChartType.LINE,
   };
 
   return [orderFulfillmentRate, averageDeliveryTime, orderCancellationRate];
+};
+
+type TIncomingRange = "annually" | "monthly" | "weekly" | "daily" | "custom";
+
+const getDatesAndValues = (
+  results: IMetricsDataResponse[],
+  range: TIncomingRange,
+) => {
+  return results.map((result) => ({
+    date:
+      range === "daily"
+        ? new Date(result.date).toLocaleDateString()
+        : range === "weekly"
+          ? new Date(result.date).toLocaleString("en-US", { weekday: "long" })
+          : range === "monthly"
+            ? new Date(result.date).toLocaleString("en-US", { month: "long" })
+            : new Date(result.date).toLocaleString("en-US", {
+                year: "numeric",
+              }),
+    value: result.metric_value,
+  }));
+};
+
+const getDateRange = (range: TIncomingRange) => {
+  return range === "custom"
+    ? "Day"
+    : range === "weekly"
+      ? "Week"
+      : range === "monthly"
+        ? "Month"
+        : "Year";
 };

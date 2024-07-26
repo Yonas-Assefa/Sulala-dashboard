@@ -17,10 +17,7 @@ export type MetricsData = {
   YAxis: string;
   legend: string;
   data: {
-    year?: number;
-    month?: number;
-    week?: number;
-    day?: number;
+    date: string;
     value: number;
   }[];
   defaultChartType: ChartType;

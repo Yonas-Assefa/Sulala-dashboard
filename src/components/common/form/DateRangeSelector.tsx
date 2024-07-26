@@ -1,13 +1,19 @@
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Datepicker, { DateValueType } from "react-tailwindcss-datepicker";
 
-function DateRangeSelector() {
-  const [value, setValue] = useState<DateValueType>({
-    startDate: null,
-    endDate: null,
-  });
+type Props = {
+  onChange?: (value: DateValueType) => void;
+  value?: DateValueType;
+};
+function DateRangeSelector({ onChange, value: incomingVal }: Props) {
+  const [value, setValue] = useState<DateValueType>(
+    incomingVal || {
+      startDate: null,
+      endDate: null,
+    },
+  );
 
   const { lang } = useParams();
   const t = useTranslations("Commons");
@@ -15,6 +21,28 @@ function DateRangeSelector() {
   const handleValueChange = (newValue: DateValueType) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    if (onChange) {
+      onChange(value);
+    }
+  }, [value]);
+
+  useEffect(() => {
+    if (
+      (incomingVal?.endDate &&
+        incomingVal?.startDate &&
+        incomingVal?.endDate !== value?.endDate) ||
+      incomingVal?.startDate !== value?.startDate
+    ) {
+      setValue(
+        incomingVal || {
+          startDate: null,
+          endDate: null,
+        },
+      );
+    }
+  }, [incomingVal]);
 
   return (
     <Datepicker

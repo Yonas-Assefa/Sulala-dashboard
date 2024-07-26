@@ -19,6 +19,8 @@ import getChartData from "../utils/getChartData";
 import SelectInput from "@/components/common/form/SelectInput";
 import { getoneFromArray } from "@/utils/getOneFromArray";
 import ColorPaletteInput from "@/components/common/form/ColorPaletteInput";
+import { useCreateQueryString } from "@/hooks/useCreateQueryString";
+import { DateValueType } from "react-tailwindcss-datepicker";
 
 Chart.register(CategoryScale);
 
@@ -196,10 +198,22 @@ const selectChartData = [
 // ];
 
 function StatDisplay({ metricsData }: { metricsData: MetricsData[] }) {
+  const { createQueryStringAndPush, searchParams } = useCreateQueryString();
+
   const [chartType, setChartType] = React.useState(ChartType.NONE);
   const [chartData, setChartData] = React.useState<MetricsData>();
   const [_rangeType, setRangeType] = React.useState<RangeType>(RangeType.DAY);
-  const [dateRange, setDateRange] = React.useState<DateRange>();
+  const [dateRange, setDateRange] = React.useState<DateValueType>(
+    searchParams.get("start_date") && searchParams.get("end_date")
+      ? {
+          startDate: new Date(searchParams.get("start_date") || ""),
+          endDate: new Date(searchParams.get("end_date") || ""),
+        }
+      : {
+          startDate: new Date(),
+          endDate: new Date(),
+        },
+  );
   const [colorPalette, setColorPalette] = React.useState<string[]>([
     "#176635",
     "#a2a6ac",
@@ -221,8 +235,14 @@ function StatDisplay({ metricsData }: { metricsData: MetricsData[] }) {
     setRangeType(type);
   };
 
-  const changeDateRange = (range: DateRange) => {
-    setDateRange(range);
+  const changeDateRange = (range: DateValueType) => {
+    if (range && range.startDate && range.endDate) {
+      createQueryStringAndPush([
+        { key: "start_date", value: range.startDate?.toString() },
+        { key: "end_date", value: range?.endDate?.toString() },
+      ]);
+      setDateRange(range);
+    }
   };
 
   const isChartType = (value: unknown): value is ChartType => {
@@ -242,7 +262,17 @@ function StatDisplay({ metricsData }: { metricsData: MetricsData[] }) {
   const handleSelectRangeType = (value: unknown) => {
     const rangeType = getoneFromArray(value);
     if (rangeType && typeof rangeType === "string" && isRangeType(rangeType))
-      setRangeType(rangeType as RangeType);
+      createQueryStringAndPush(
+        "time_frame",
+        rangeType == RangeType.DAY
+          ? "custom"
+          : rangeType == RangeType.WEEK
+            ? "weekly"
+            : rangeType == RangeType.MONTH
+              ? "monthly"
+              : "annually",
+      );
+    setRangeType(rangeType as RangeType);
   };
 
   const handleColorPaletteSelect = (value: string[]) => {
@@ -255,10 +285,7 @@ function StatDisplay({ metricsData }: { metricsData: MetricsData[] }) {
   ): ChartData | undefined => {
     if (!data) return undefined;
     return {
-      labels: data.data.map(
-        (item) =>
-          (item.year || item.month || item.week || item.day)?.toString() || "",
-      ),
+      labels: data.data.map((item) => item.date?.toString() || ""),
       datasets: [
         {
           label: data.title,
@@ -310,7 +337,7 @@ function StatDisplay({ metricsData }: { metricsData: MetricsData[] }) {
           />
         </div>
         <div className="max-w-[500px] border-2 h-full py-[3px] rounded-md border-primary/5">
-          <DateRangeSelector />
+          <DateRangeSelector onChange={changeDateRange} />
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 p-8 w-full h-full">
