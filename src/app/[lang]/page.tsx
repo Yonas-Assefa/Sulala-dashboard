@@ -7,7 +7,6 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import SelectAccount from "./components/SelectAccount";
 import { FRONTEND_BASE_URL } from "@/config/urls";
-import { version } from "../../../package.json";
 
 type Props = {
   params: {
@@ -325,7 +324,6 @@ export default function Landing({ params: { lang } }: Props) {
             {/* <p className="font-thin font-serif text-xs md:text-sm">sulala.com</p> */}
             <p className="font-thin font-serif text-xs md:text-sm">
               {t("copyright")}{" "}
-              <span className="text-secondary text-xs">version {version}</span>
             </p>
           </div>
           <div className="flex flex-row gap-0">

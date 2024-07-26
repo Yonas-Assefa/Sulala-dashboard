@@ -2,7 +2,7 @@
 import React from "react";
 
 function VersionTag() {
-  const [version, setVersion] = React.useState<string>("");
+  const [version, setVersion] = React.useState<string>("0.0.0");
   React.useEffect(() => {
     import("../../../../package.json").then((data) => {
       setVersion(data.version);

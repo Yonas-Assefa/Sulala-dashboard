@@ -6,6 +6,7 @@ import { getUserLocation } from "@/utils/getUserLocation";
 import { splitPhoneNumber } from "@/utils/splitPhoneNumber";
 import { useTranslations } from "next-intl";
 import { useScrollToErrorField } from "@/hooks/useScrollToErrorField";
+import { useParams } from "next/navigation";
 
 function PhoneNumberInput({
   error,
@@ -38,6 +39,8 @@ function PhoneNumberInput({
   const countryCodeRef = React.useRef<ElementRef<"details">>(null);
   const [filterCountry, setFilterCountry] = React.useState("");
   const deferredFilterCountry = useDeferredValue(filterCountry);
+
+  const { lang } = useParams();
 
   const ref = useScrollToErrorField<HTMLDivElement>(error);
 
@@ -180,7 +183,7 @@ function PhoneNumberInput({
           </details>
           {/* PHONE NUMBER INPUT AND CLEAR BUTTON */}
           <div
-            className={`flex border-l w-full justify-between pr-3 ${error ? "border-danger" : "focus-within:border-primary"}`}
+            className={`flex ${lang == "ar" ? "border-r" : "border-l"} w-full justify-between pr-3 ${error ? "border-danger" : "focus-within:border-primary"}`}
           >
             <input
               type="text"
