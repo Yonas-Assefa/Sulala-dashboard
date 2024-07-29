@@ -1,7 +1,7 @@
 "use server";
 
 import { ORDER_AND_DELIVERY_METRICS } from "../../config/urls";
-import { metricsMapper } from "../mapper/metrics-mapper";
+import { orderDeliveryMetricsMapper } from "../mapper/order-delivery-metrics-mapper";
 import {
   Fetch,
   getRequestHeaders,
@@ -53,5 +53,5 @@ export const getAllOrderDeliveryMetrics = async <T>(
     );
   }
 
-  return metricsMapper(body.data);
+  return orderDeliveryMetricsMapper(body.data);
 };

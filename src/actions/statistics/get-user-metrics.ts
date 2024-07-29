@@ -1,7 +1,7 @@
 "use server";
 
 import { USER_METRICS } from "../../config/urls";
-import { metricsMapper } from "../mapper/metrics-mapper";
+import { userMetricsMapper } from "../mapper/user-metrics-mapper";
 import {
   Fetch,
   getRequestHeaders,
@@ -55,5 +55,5 @@ export const getAllUserMetrics = async <T>(
     );
   }
 
-  return metricsMapper(body.data);
+  return userMetricsMapper(body.data);
 };

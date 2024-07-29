@@ -28,7 +28,9 @@ interface IIncomintRawMetricsData {
   cancellation_rate: IMetricsResponse;
 }
 
-export const metricsMapper = (data: IIncomintRawMetricsData): MetricsData[] => {
+export const orderDeliveryMetricsMapper = (
+  data: IIncomintRawMetricsData,
+): MetricsData[] => {
   const orderFulfillmentRate: MetricsData = {
     id: "order_fulfillment_rate",
     title: "Order Fulfillment Rate",

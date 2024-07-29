@@ -4,17 +4,22 @@ import { MetricsData } from "./types/chart-props.type";
 import { getAllOrderDeliveryMetrics } from "@/actions/statistics/get-order-and-delivery-metrics";
 import { changeObjToFormData } from "@/lib/helper";
 import StatisticNav from "./components/StatisticNav";
+import { getAllUserMetrics } from "@/actions/statistics/get-user-metrics";
 
 type Props = {
   searchParams: {
     start_date: string;
     end_date: string;
     time_frame: string;
+    metrics: string;
   };
 };
-async function page({ searchParams }: Props) {
+async function page({ searchParams: { metrics, ...searchParams } }: Props) {
   const formData = changeObjToFormData({ ...searchParams });
-  const metrics: MetricsData[] = await getAllOrderDeliveryMetrics(formData);
+  const metricsData: MetricsData[] =
+    metrics === "order_delivery_metrics"
+      ? await getAllOrderDeliveryMetrics(formData)
+      : await getAllUserMetrics(formData);
   const metricsNav = [
     {
       label: "Order & Delivery Metrics",
@@ -28,7 +33,7 @@ async function page({ searchParams }: Props) {
   return (
     <div className="w-full h-full">
       <StatisticNav metricsNav={metricsNav} />
-      <StatDisplay metricsData={metrics} />
+      <StatDisplay metricsData={metricsData} />
     </div>
   );
 }
