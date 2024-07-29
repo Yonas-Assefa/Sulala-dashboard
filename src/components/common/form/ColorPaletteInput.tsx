@@ -174,15 +174,19 @@ function ColorPaletteInput({
         >
           <div className="overflow-hidden truncate">
             {colorPalette.length > 0 ? (
-              <div className="flex flex-row gap-2 items-center">
-                {colorPalette.map((color, i) => (
+              <div className="avatar-group -space-x-6 rtl:space-x-reverse">
+                {colorPalette.slice(0, 5).map((color, i) => (
                   <span
                     key={i}
-                    className="w-8 h-8 rounded-full"
+                    className="w-8 h-8 rounded-full avatar border-0"
                     style={{ backgroundColor: color }}
                   ></span>
                 ))}
-                <p className="text-black text-xl">{`(${colorPalette.length})`}</p>
+                <div className="avatar placeholder border-0 text-black">
+                  <div className="bg-gray-800 text-white border-0 w-8">
+                    <span>+{colorPalette.length}</span>
+                  </div>
+                </div>
               </div>
             ) : (
               <p className="truncate">{placeholder || t("select_one")}</p>

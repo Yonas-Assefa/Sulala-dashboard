@@ -4,7 +4,7 @@ import { animalMapper } from "./animal-mapper";
 import {
   ChartType,
   MetricsData,
-} from "@/app/[lang]/dashboard/statistics/types/chart-props.type";
+} from "@/app/[lang]/dashboard/(admin)/statistics/types/chart-props.type";
 
 interface IMetricsDataResponse {
   date: string;

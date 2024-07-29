@@ -193,8 +193,7 @@ function StatDisplay({ metricsData }: { metricsData: MetricsData[] }) {
   };
 
   return (
-    <div className="w-full h-full">
-      <StatisticNav />
+    <>
       <div className="flex flex-col md:flex-row justify-center md:justify-end w-full items-stretch -mb-6 mt-2">
         <div className="max-w-[500px] min-w-[300px] rounded-md flex justify-center items-center pb-2">
           <ColorPaletteInput
@@ -270,7 +269,7 @@ function StatDisplay({ metricsData }: { metricsData: MetricsData[] }) {
           />
         ))}
       </div>
-    </div>
+    </>
   );
 }
 

@@ -108,5 +108,12 @@ export const ORDER_AND_DELIVERY_METRICS = {
   ALL_METRICS: `${API_URL}staff/order-metrics/all-metrics/`,
   ORDER_CANCEL_RATE: `${API_URL}staff/order-metrics/order-cancel-rate/`,
   AVERAGE_DELIVERY_TIME: `${API_URL}staff/order-metrics/average-delivery-time/`,
-  ORDER_FULFILLMENT_RATE: `${API_URL}staff/order-metrics/fulfillment-rate/?time_frame=weekly`,
+  ORDER_FULFILLMENT_RATE: `${API_URL}staff/order-metrics/fulfillment-rate/`,
+};
+export const USER_METRICS = {
+  ALL_METRICS: `${API_URL}vendors/user-statistics/all-metrics/`,
+  USER_OVER_TIME: `${API_URL}vendors/user-statistics/total-users-over-time/`,
+  NEW_USER_REGISTRATION: `${API_URL}vendors/user-statistics/new-users/`,
+  ACTIVE_USERS: `${API_URL}vendors/user-statistics/active-users/`,
+  USER_RETENTION_DATA: `${API_URL}vendors/user-statistics/user-retention-rate/`,
 };
