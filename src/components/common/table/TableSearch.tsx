@@ -12,12 +12,14 @@ function TableSearch({ action }: Props) {
   const { createQueryStringAndPush, searchParams } = useCreateQueryString();
   const search = searchParams.get("search");
   const [value, setValue] = React.useState(search || "");
+  const previousValue = React.useRef(value);
   const [searchResult, setSearchResult] = React.useState<
     { name: string; id: number }[]
   >([]);
   const [isPending, startTransition] = React.useTransition();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    previousValue.current = value;
     setValue(e.target.value);
   };
 
@@ -57,7 +59,8 @@ function TableSearch({ action }: Props) {
   // }, [search])
 
   React.useEffect(() => {
-    if (value == "") {
+    console.log({ value, previousValue: previousValue.current });
+    if (value == "" && previousValue.current != "") {
       handleSearchEnterClick();
     }
   }, [value]);
@@ -77,6 +80,7 @@ function TableSearch({ action }: Props) {
           onChange={handleChange}
           value={value}
           type="text"
+          autoFocus
           className={`bg-white outline-none border-0 focus:outline-none text-black dark:bg-black dark:text-white `}
           placeholder="Seach my products"
           disabled={isPending}
