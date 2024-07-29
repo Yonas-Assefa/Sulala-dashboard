@@ -1,6 +1,6 @@
 "use server";
 
-import { ORDERS_URL } from "@/config/urls";
+import { ORDERS_URL, ORDERS } from "@/config/urls";
 import {
   Fetch,
   getRequestHeaders,
@@ -42,7 +42,7 @@ export const getOrders = async (formData: FormData) => {
 };
 
 export const getSingleOrder = async (item: string) => {
-  const url = `http://34.18.54.116:3001/api/v1/orders/${item}/vendor-detail-order/`;
+  const url = `${ORDERS}${item}/vendor-detail-order/`;
   const response = await fetch(url, {
     method: "GET",
     headers: getRequestHeaders(),

@@ -18,6 +18,11 @@ function OrderDetailPage({ orderDetail }: any) {
   if (!hasOrders) {
     return notFound();
   }
+  console.log(
+    "driver detail: ",
+    orderDetail.driver_assigned,
+    orderDetail.driver_detail,
+  );
 
   const [status, setStatus] = React.useState<"ACCEPTED" | "DECLINED">();
   const handleStatusChange = () => {
@@ -171,17 +176,17 @@ function OrderDetailPage({ orderDetail }: any) {
                     </div>
 
                     <div className="flex flex-col justify-around text-lg ">
-                      <div className="flex flex-row justify-between gap-10 w-[200px]">
+                      <div className="flex flex-row justify-between gap-10 min-w-[210px]">
                         <h3 className="text-gray-400">{t("unit_price")}: </h3>
                         <p>{order_item.unit_price}</p>
                       </div>
 
-                      <div className="flex flex-row justify-between gap-10 w-[200px]">
+                      <div className="flex flex-row justify-between gap-10 min-w-[210px]">
                         <h3 className="text-gray-400">{t("fee")}: </h3>
                         <p>{order_item.fee}</p>
                       </div>
 
-                      <div className="flex flex-row justify-between gap-10 w-[200px]">
+                      <div className="flex flex-row justify-between gap-10 min-w-[210px]">
                         <h3 className="text-gray-400">{t("total")}: </h3>
                         <p>{order_item.total_price}</p>
                       </div>
@@ -397,7 +402,6 @@ function OrderDetailPage({ orderDetail }: any) {
               <div className="text-gray-400">
                 <p>{t("name")}</p>
                 <p>{t("email")}</p>
-                <p>{t("address")}</p>
               </div>
 
               <div>
@@ -410,7 +414,6 @@ function OrderDetailPage({ orderDetail }: any) {
                     : "Uknown"}
                 </p>
                 <p>{orderDetail.user.email}</p>
-                <p>st. Jorge St, Bole, rwuande, addis ababa, ethiopia</p>
               </div>
             </div>
           </div>
@@ -419,23 +422,26 @@ function OrderDetailPage({ orderDetail }: any) {
 
           <div>
             <h1 className="capitalize text-xl font-bold pb-3">
-              Shipping Address
+              {t("shipping_info")}
             </h1>
             <div className="flex flex-row w-fit gap-8">
               <div className="text-gray-400">
-                <p>name</p>
-                <p>email</p>
-                <p>Address</p>
+                <p>Shipping Type</p>
+                <p>Shipping Address</p>
+                <p>Scheduled Delivery start</p>
+                <p>Scheduled Delivery end</p>
               </div>
 
               <div>
-                <p>Yoseph Taddessees</p>
-                <p>yosephtadesseaworkemeil@gmail.com</p>
-                <p>st. Jorge St, Bole, rwuande, addis ababa, ethiopia</p>
+                <p>{orderDetail.pickup_type}</p>
+                <p>{orderDetail.pickup_point}</p>
+
+                <p>{orderDetail.schedule_delivery_start}</p>
+                <p>{orderDetail.schedule_delivery_end}</p>
               </div>
             </div>
           </div>
-
+          {/* 
           <hr />
 
           <div>
@@ -455,26 +461,34 @@ function OrderDetailPage({ orderDetail }: any) {
                 <p>st. Jorge St, Bole, rwuande, addis ababa, ethiopia</p>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <hr />
 
-          <div>
-            <h1 className="capitalize text-xl font-bold pb-3">Driver Detail</h1>
-            <div className="flex flex-row w-fit gap-8">
-              <div className="text-gray-400">
-                <p>name</p>
-                <p>email</p>
-                <p>Address</p>
-              </div>
+          {orderDetail.driver_assigned && (
+            <div>
+              <h1 className="capitalize text-xl font-bold pb-3">
+                {t("driver_detail")}
+              </h1>
+              <div className="flex flex-row w-fit gap-8">
+                <div className="text-gray-400">
+                  <p>name</p>
+                  <p>phone number</p>
+                  <p>email</p>
+                </div>
 
-              <div>
-                <p>Yoseph Taddessees</p>
-                <p>yosephtadesseaworkemeil@gmail.com</p>
-                <p>st. Jorge St, Bole, rwuande, addis ababa, ethiopia</p>
+                <div>
+                  <p>
+                    {orderDetail.driver_detail.first_name +
+                      " " +
+                      orderDetail.driver_detail.last_name}
+                  </p>
+                  <p>{orderDetail.driver_detail.phone_number}</p>
+                  <p>{orderDetail.driver_detail.email}</p>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

@@ -34,25 +34,19 @@ export const orderDetailMapper = async (order: any) => {
   return {
     ...order,
     ordered_at: formatDate(order.ordered_at),
-    customer_detail: {
-      id: order.user.id,
-      email: order.user.email,
-      first_name: order.user.first_name,
-      last_name: order.user.last_name,
-    },
-    shipping_address: {
-      pickup_type: order.pickup_type,
-      pickup_address: order.pickup_point,
-    },
-    billing_address: "",
-    driver_detail: null,
-    order_status: [
-      {
-        status: order.status,
-        scheduled_delivery_start: order.schedule_delivery_start,
-        scheduled_delivery_end: order.schedule_delivery_end,
-      },
-    ],
+    schedule_delivery_start: formatDate(order.schedule_delivery_start),
+    schedule_delivery_end: formatDate(order.schedule_delivery_end),
+    driver_assigned:
+      order.order_items &&
+      order.order_items.length > 0 &&
+      order.order_items[0].driver !== null
+        ? "Assigned"
+        : "Unassigned",
+    driver_detail:
+      order.order_items &&
+      order.order_items.length > 0 &&
+      order.order_items[0].driver,
+
     order_items: order.order_items.map((item: any) => ({
       ...item,
       unit_price: formatNumber(item.unit_price),

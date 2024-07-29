@@ -165,6 +165,8 @@
     "promotion_fee": "Promotion Fee",
     "discount": "Discount",
     "customer_detail": "Customer Details",
+    "shipping_info": "Shipping Info",
+    "driver_detail": "Driver Detail",
     "order_history": "Order History",
     "order_accept": "Accept",
     "order_decline": "Decline",
