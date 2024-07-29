@@ -202,12 +202,12 @@ _Below is an overview of the folder structure used in this project. It uilizes t
 ├── docker-compose.yml
 ├── Dockerfile
 ├── LICENSE.txt
-├── messages ==> Translation files like ar.json
+├── messages                       # 🗣 Translation files like ar.json
 ├── package.json
 ├── PROJECT_GUIDELINES.md
-├── public ==> Assets and Images
+├── public                         # 🖼️ Assets and Images
 ├── README.md
-├── scripts ==> Scripts to facilitate development process
+├── scripts                        # 🛠️ Scripts to facilitate development process
 │   ├── docker
 │   │   ├── BUILD.sh
 │   │   └── ...
@@ -218,36 +218,36 @@ _Below is an overview of the folder structure used in this project. It uilizes t
 ├── ...
 ├── src
 │   ├── actions
-│   │   ├── admin-manage ==> Server Action for making API requests
+│   │   ├── admin-manage           # 🛠️ Server Action for making API requests
 │   │   │   ├── answer-support-request.ts
 │   │   │   ├── ...
 │   │   ├── ...
-│   │   ├── google ==> For google geolocation encoding
+│   │   ├── google                 # 🌍 For Google Geolocation encoding
 │   │   │   ├── get-location-geocode.ts
 │   │   │   └── get-location-suggestion.ts
-│   │   ├── mapper ==> For data transfer object
+│   │   ├── mapper                 # 🔄 For Data Transfer Objects
 │   │   │   ├── animal-mapper.ts
 │   │   │   ├── ...
 │   ├── app
-│   │   ├── api ==> For Google authentication and api request to nextjs
+│   │   ├── api                    # 🔐 For Google Authentication and API requests to Next.js
 │   │   │   └── auth
 │   │   │       └── [...nextauth]
 │   │   │           └── route.ts
-│   │   ├── error.tsx ==> handling error
+│   │   ├── error.tsx              # 🚫 Handling Errors
 │   │   ├── favicon.ico
-│   │   ├── global-error.tsx ==> handling error
+│   │   ├── global-error.tsx       # 🚫 Handling Global Errors
 │   │   ├── globals.css
-│   │   ├── [lang] ==> For localization
-│   │   │   ├── api ==> For Google authentication and api request to nextjs
+│   │   ├── [lang]                 # 🌐 For Localization
+│   │   │   ├── api                # 🔐 For Google Authentication and API requests to Next.js
 │   │   │   │   └── auth
 │   │   │   │       └── [...nextauth]
 │   │   │   │           └── route.ts
-│   │   │   ├── auth ==> Authentication related page for vendor and admin
+│   │   │   ├── auth               # 🔑 Authentication related pages for Vendor and Admin
 │   │   │   │   ├── approval
 │   │   │   │   │   ├── loading.tsx
 │   │   │   │   │   └── page.tsx
 │   │   │   │   ├── ...
-│   │   │   ├── components ==> Common Compnents
+│   │   │   ├── components          # 🛠️ Common Components
 │   │   │   │   ├── ErrorDisplay.tsx
 │   │   │   │   ├── LandingNavBar.tsx
 │   │   │   │   ├── LangSwitch.tsx
@@ -255,8 +255,8 @@ _Below is an overview of the folder structure used in this project. It uilizes t
 │   │   │   │   ├── SelectAccount.tsx
 │   │   │   │   ├── ThemeSwitch.tsx
 │   │   │   │   └── WebsiteUsageAgreement.tsx
-│   │   │   ├── dashboard ==> For dashboard related page for vendor and admin
-│   │   │   │   ├── (admin) ==> Admin page group (the brace won't have effect on route url)
+│   │   │   ├── dashboard           # 📊 Dashboard related pages for Vendor and Admin
+│   │   │   │   ├── (admin)         # 🛠️ Admin page group (the brace won't have effect on route URL)
 │   │   │   │   │   ├── customer-support
 │   │   │   │   │   │   ├── detail
 │   │   │   │   │   │   │   ├── page.tsx
@@ -266,12 +266,12 @@ _Below is an overview of the folder structure used in this project. It uilizes t
 │   │   │   │   │   │   ├── loading.tsx
 │   │   │   │   │   │   ├── not-found.tsx
 │   │   │   │   │   │   ├── page.tsx
-│   │   │   │   │   │   └── schema ==> For Table
+│   │   │   │   │   │   └── schema  # 📚 For Table Schema
 │   │   │   │   │   │       ├── data.ts
 │   │   │   │   │   │       ├── schema.ts
 │   │   │   │   │   │       └── type.ts
 │   │   │   │   │   ├── ...
-│   │   │   │   │   └── statistics ==> For statistics part
+│   │   │   │   │   └── statistics  # 📈 For Statistics
 │   │   │   │   │       ├── page.tsx
 │   │   │   │   │       ├── ...
 │   │   │   │   ├── layout.tsx
@@ -279,15 +279,15 @@ _Below is an overview of the folder structure used in this project. It uilizes t
 │   │   │   ├── error.tsx
 │   │   │   ├── layout.tsx
 │   │   │   ├── not-found.tsx
-│   │   │   ├── opengraph-image.tsx ==> For Open Graph Image description and image (linkedin, twitter and others)
+│   │   │   ├── opengraph-image.tsx # 🖼️ For Open Graph Image description (LinkedIn, Twitter, etc.)
 │   │   │   ├── page.tsx
 │   │   │   └── ...
 │   │   ├── layout.tsx
-│   │   ├── manifest.ts ==> For PWA and SEO Indexing
+│   │   ├── manifest.ts             # 📄 For PWA and SEO Indexing
 │   │   ├── not-found.tsx
 │   │   ├── page.tsx
-│   │   └── sitemap.ts ==> For Web crowlers
-│   ├── components ==> Common Components for all Pages
+│   │   └── sitemap.ts              # 🗺️ For Web Crawlers
+│   ├── components                  # 🔧 Common Components for all Pages
 │   │   ├── AuthWithEmail.tsx
 │   │   ├── AuthWithPhone.tsx
 │   │   └── common
@@ -309,26 +309,26 @@ _Below is an overview of the folder structure used in this project. It uilizes t
 │   ├── constants
 │   │   ├── countries.json
 │   │   └── ...
-│   ├── error ==> Custom Errors
+│   ├── error                       # 🛠️ Custom Errors
 │   │   └── custom-zod.error.ts
 │   ├── hooks
 │   │   ├── useCreateQueryString.ts
 │   │   └── ...
-│   ├── i18n ==> Localization Config
+│   ├── i18n                        # 🌐 Localization Config
 │   │   ├── config.ts
 │   │   └── navigation.ts
 │   ├── i18n.ts
-│   ├── instrumentation.ts ==> For Instrumentation and Monitoring with Sentry
-│   ├── lib ==> Common libraries for all pages
+│   ├── instrumentation.ts          # 📊 For Instrumentation and Monitoring with Sentry
+│   ├── lib                         # 🛠️ Common Libraries for all Pages
 │   │   ├── detect
 │   │   │   ├── client.ts
 │   │   │   └── server.ts
 │   │   └── ...
-│   ├── middleware ==> Middlewares
+│   ├── middleware                  # 🔒 Middleware
 │   │   ├── authMiddleware.ts
 │   │   └── ...
 │   ├── middleware.ts
-│   ├── providers ==> Zustand store providers
+│   ├── providers                   # 🛠️ Zustand Store Providers
 │   │   └── setup-account-store-provider.tsx
 │   ├── stores
 │   ├── types
