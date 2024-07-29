@@ -9,6 +9,7 @@ import InfoMetricsPanelLarge from "./InfoMetrics/InfoMetricsPanelLarge";
 import InfoMetricsDescription from "./InfoMetrics/InfoMetricsDescription";
 import InfoMetricsPanelSmall from "./InfoMetrics/InfoMetricsPanelSmall";
 import {
+  CAChartData,
   ChartData,
   ChartType,
   DateRange,
@@ -173,23 +174,51 @@ function StatDisplay({ metricsData }: { metricsData: MetricsData[] }) {
 
   const convertMetricsToChartData = (
     data?: MetricsData,
-  ): ChartData | undefined => {
+  ): ChartData | CAChartData | undefined => {
     if (!data) return undefined;
-    return {
-      labels: data.data.map((item) => item.date?.toString() || ""),
-      datasets: [
-        {
-          label: data.title,
-          data: data.data.map((item) => item.value),
-          backgroundColor:
-            colorPalette.length > 1
-              ? colorPalette.slice(1, colorPalette.length)
-              : colorPalette,
-          borderColor: colorPalette[0],
-          borderWidth: 1,
+    if (chartType !== ChartType.COHORT_ANALYSIS)
+      return {
+        labels: data.data.map((item) => item.date?.toString() || ""),
+        datasets: [
+          {
+            label: data.title,
+            data: data.data.map((item) => item.value),
+            backgroundColor:
+              colorPalette.length > 1
+                ? colorPalette.slice(1, colorPalette.length)
+                : colorPalette,
+            borderColor: colorPalette[0],
+            borderWidth: 1,
+          },
+        ],
+      };
+    else
+      return {
+        weeks: {
+          "Week 1": [1, 2, 3, 4, 5],
+          "Week 2": [2, 3, 4, 5, 6],
+          "Week 3": [3, 4, 5, 6, 7],
+          "Week 4": [4, 5, 6, 7, 8],
         },
-      ],
-    };
+        days: {
+          "Day 1": [1, 2, 3, 4, 5],
+          "Day 2": [2, 3, 4, 5, 6],
+          "Day 3": [3, 4, 5, 6, 7],
+          "Day 4": [4, 5, 6, 7, 8],
+        },
+        months: {
+          January: [1, 2, 3, 4, 5],
+          February: [2, 3, 4, 5, 6],
+          March: [3, 4, 5, 6, 7],
+          April: [4, 5, 6, 7, 8],
+        },
+        years: {
+          "2021": [1, 2, 3, 4, 5],
+          "2022": [2, 3, 4, 5, 6],
+          "2023": [3, 4, 5, 6, 7],
+          "2024": [4, 5, 6, 7, 8],
+        },
+      };
   };
 
   return (

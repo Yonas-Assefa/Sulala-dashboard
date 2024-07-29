@@ -87,7 +87,7 @@ export const userMetricsMapper = (
       data.user_retention_rate.results,
       data.user_retention_rate.time_frame as TIncomingRange,
     ),
-    defaultChartType: ChartType.LINE,
+    defaultChartType: ChartType.COHORT_ANALYSIS,
   };
 
   return [totalUsers, activeUsers, newUsers, userRetentionRate];
