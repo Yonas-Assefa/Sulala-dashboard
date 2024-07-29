@@ -10,7 +10,16 @@ function CohortAnalysisChart({ chartData, className, label }: ChartProps) {
     <div className={`h-full w-full ${className}`}>
       <div className="h-full w-auto mx-auto px-auto ">
         <h2>{label}</h2>
-        <CohortGraph data={data} />
+        <CohortGraph
+          data={{
+            weeks: {
+              "Week 1": [1, 2, 3, 4, 5],
+              "Week 2": [2, 3, 4, 5, 6],
+              "Week 3": [3, 4, 5, 6, 7],
+              "Week 4": [4, 5, 6, 7, 8],
+            },
+          }}
+        />
       </div>
     </div>
   );

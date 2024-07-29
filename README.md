@@ -83,9 +83,25 @@ Experience the excellence of Sulala and elevate your animal-related endeavors in
 
 The project is built with technologies:
 
-- [![Next][Next.js]][Next-url]
-- [![React][React.js]][React-url]
-- [![Tailwind][Tailwindcss]][Tailwind-url]
+- Next.js
+- NextAuth
+- React
+- Tailwind
+- DaisyUI
+- ChartJS
+- Framer-motion
+- lodash
+- husky
+- dayjs
+- intl-tel-input
+- libphonenumber-js
+- react-qr-code
+- zod
+- zustand
+- Sentry
+- Playwright
+- Vitetest
+- Docker
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -120,22 +136,43 @@ _Below is an instruction of installing and setting up sulala app._
 4. Configure your environmental variables (in `.env`) using `.env.example`
 
    ```sh
+    # backend api url
     BACKEND_BASE_URL = 'http://<url>/'
+    # the deployed frontend url of this website
     FRONTEND_BASE_URL = 'http://<url>/'
+    # the url for images bucket
     IMAGE_BASE_URL = 'http://<url>/'
 
+    # sentry dns
     SENTRY_DNS = 'https://<api-key>.ingest.us.sentry.io/<secret-key>'
+    # sentry auth token
     SENTRY_AUTH_TOKEN = 'sntrys_<auth-token>'
+    # sentry organization id
     SENTRY_ORG = '<sentry-org>'
+    # sentry project id
     SENTRY_PROJECT = '<sentry-project>'
 
+    # google id for google signup
     GOOGLE_ID='<google-id>.apps.googleusercontent.com'
+    # google secret key for google signup
     GOOGLE_SECRET='GOCSPX-<google-secret>'
 
-    NEXT_PUBLIC_GOOGLE_MAPS_KEY='<google-geo-encoding-api-key>'
-    NEXT_PUBLIC_DEFAULT_ITEMS_PER_PAGE=20
-    NEXT_PUBLIC_DEFAULT_LOCALE='AR'
+    # random key for next-auth
+    NEXTAUTH_SECRET='<next-auth-secret-key>'
+    # random key for next-auth
+    SECRET="<secret-key>"
+    # production url for this website
+    NEXTAUTH_URL='https://<next-auth-url>/'
+    # development url for this website
+    NEXTAUTH_URL_INTERNAL='http://<next-auth-dev-url>/'
 
+    # google maps key for location auto complete
+    NEXT_PUBLIC_GOOGLE_MAPS_KEY='<google-geo-encoding-api-key>'
+    # default number of items to be displayed
+    NEXT_PUBLIC_DEFAULT_ITEMS_PER_PAGE='20'
+    # default localization to redirect user when no locale found
+    NEXT_PUBLIC_DEFAULT_LOCALE='AR'
+    # to use sentry for monitoring bugs, errors and web performance
     NEXT_PUBLIC_USE_MONITORING='<true | false>'
    ```
 
@@ -154,6 +191,193 @@ _Below is an instruction of installing and setting up sulala app._
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
+
+### Folder Structure
+
+_Below is an overview of the folder structure used in this project. It uilizes the nextjs conventional app router folder structure._
+
+```
+├── CHANGELOG
+├── commitlint.config.cts
+├── docker-compose.yml
+├── Dockerfile
+├── LICENSE.txt
+├── messages ==> Translation files like ar.json
+├── package.json
+├── PROJECT_GUIDELINES.md
+├── public ==> Assets and Images
+├── README.md
+├── scripts ==> Scripts to facilitate development process
+│   ├── docker
+│   │   ├── BUILD.sh
+│   │   └── ...
+│   └── git
+│       ├── BUMP_VERSION.sh
+│       └── ...
+├── sentry.client.config.ts
+├── ...
+├── src
+│   ├── actions
+│   │   ├── admin-manage ==> Server Action for making API requests
+│   │   │   ├── answer-support-request.ts
+│   │   │   ├── ...
+│   │   ├── ...
+│   │   ├── google ==> For google geolocation encoding
+│   │   │   ├── get-location-geocode.ts
+│   │   │   └── get-location-suggestion.ts
+│   │   ├── mapper ==> For data transfer object
+│   │   │   ├── animal-mapper.ts
+│   │   │   ├── ...
+│   ├── app
+│   │   ├── api ==> For Google authentication and api request to nextjs
+│   │   │   └── auth
+│   │   │       └── [...nextauth]
+│   │   │           └── route.ts
+│   │   ├── error.tsx ==> handling error
+│   │   ├── favicon.ico
+│   │   ├── global-error.tsx ==> handling error
+│   │   ├── globals.css
+│   │   ├── [lang] ==> For localization
+│   │   │   ├── api ==> For Google authentication and api request to nextjs
+│   │   │   │   └── auth
+│   │   │   │       └── [...nextauth]
+│   │   │   │           └── route.ts
+│   │   │   ├── auth ==> Authentication related page for vendor and admin
+│   │   │   │   ├── approval
+│   │   │   │   │   ├── loading.tsx
+│   │   │   │   │   └── page.tsx
+│   │   │   │   ├── ...
+│   │   │   ├── components ==> Common Compnents
+│   │   │   │   ├── ErrorDisplay.tsx
+│   │   │   │   ├── LandingNavBar.tsx
+│   │   │   │   ├── LangSwitch.tsx
+│   │   │   │   ├── LogoutSwitch.tsx
+│   │   │   │   ├── SelectAccount.tsx
+│   │   │   │   ├── ThemeSwitch.tsx
+│   │   │   │   └── WebsiteUsageAgreement.tsx
+│   │   │   ├── dashboard ==> For dashboard related page for vendor and admin
+│   │   │   │   ├── (admin) ==> Admin page group (the brace won't have effect on route url)
+│   │   │   │   │   ├── customer-support
+│   │   │   │   │   │   ├── detail
+│   │   │   │   │   │   │   ├── page.tsx
+│   │   │   │   │   │   │   └── utils
+│   │   │   │   │   │   │       └── helper.util.ts
+│   │   │   │   │   │   ├── error.tsx
+│   │   │   │   │   │   ├── loading.tsx
+│   │   │   │   │   │   ├── not-found.tsx
+│   │   │   │   │   │   ├── page.tsx
+│   │   │   │   │   │   └── schema ==> For Table
+│   │   │   │   │   │       ├── data.ts
+│   │   │   │   │   │       ├── schema.ts
+│   │   │   │   │   │       └── type.ts
+│   │   │   │   │   ├── ...
+│   │   │   │   │   └── statistics ==> For statistics part
+│   │   │   │   │       ├── page.tsx
+│   │   │   │   │       ├── ...
+│   │   │   │   ├── layout.tsx
+│   │   │   │   ├── ...
+│   │   │   ├── error.tsx
+│   │   │   ├── layout.tsx
+│   │   │   ├── not-found.tsx
+│   │   │   ├── opengraph-image.tsx ==> For Open Graph Image description and image (linkedin, twitter and others)
+│   │   │   ├── page.tsx
+│   │   │   └── ...
+│   │   ├── layout.tsx
+│   │   ├── manifest.ts ==> For PWA and SEO Indexing
+│   │   ├── not-found.tsx
+│   │   ├── page.tsx
+│   │   └── sitemap.ts ==> For Web crowlers
+│   ├── components ==> Common Components for all Pages
+│   │   ├── AuthWithEmail.tsx
+│   │   ├── AuthWithPhone.tsx
+│   │   └── common
+│   │       ├── form
+│   │       │   ├── ColorPaletteInput.tsx
+│   │       │   └── ...
+│   │       ├── modal
+│   │       │   ├── CropImageModal.tsx
+│   │       │   └── ...
+│   │       ├── table
+│   │       │   ├── TableActions.tsx
+│   │       │   └── ...
+│   │       └── ui
+│   │           ├── BackButton.tsx
+│   │           └── ...
+│   ├── config
+│   │   ├── table.config.ts
+│   │   └── urls.ts
+│   ├── constants
+│   │   ├── countries.json
+│   │   └── ...
+│   ├── error ==> Custom Errors
+│   │   └── custom-zod.error.ts
+│   ├── hooks
+│   │   ├── useCreateQueryString.ts
+│   │   └── ...
+│   ├── i18n ==> Localization Config
+│   │   ├── config.ts
+│   │   └── navigation.ts
+│   ├── i18n.ts
+│   ├── instrumentation.ts ==> For Instrumentation and Monitoring with Sentry
+│   ├── lib ==> Common libraries for all pages
+│   │   ├── detect
+│   │   │   ├── client.ts
+│   │   │   └── server.ts
+│   │   └── ...
+│   ├── middleware ==> Middlewares
+│   │   ├── authMiddleware.ts
+│   │   └── ...
+│   ├── middleware.ts
+│   ├── providers ==> Zustand store providers
+│   │   └── setup-account-store-provider.tsx
+│   ├── stores
+│   ├── types
+│   │   ├── props.type.ts
+│   │   └── ...
+│   └── utils
+│       ├── convertDataURLtoFile.ts
+│       └── ...
+├── ...
+└── tailwind.config.ts
+```
+
+This Project utilizes NextJs.
+
+1. **SSR (Server Side Rendering)**:
+
+- Mainly for SEO Optimization and protecting some data fetching endpoints like google map key
+
+2. **SSG (Server Side Generation)**:
+
+- The landing page is made to be SSG to reduce server side rendering on each request and since there is no data fetching needed for the landing page.
+
+3. **CSR (Client Side Rendering)**:
+
+- Most of Dynamic Forms and Input uses CSR for interactivity with the user
+
+4. **SA (Server Actions)**:
+
+- All of data request to the backend are made with the new nextjs server actions. This enable us to request data using Fetch and also stateful response using FormState. Beside this, it hides the implementation and url, enabling us to secure google maps key and other things.
+
+## SEO Optimization
+
+This website is built to be friendly with SEO engines. Below is list of optimization techniques this project utilizes.
+
+1. **Manifest File**: is a simple file that tells the users browser about the website, and how it should be installed on the users mobile or desktop device. This makes it possible that this website to be installed on users mobile application as PWA website
+
+2. **OpenGraph**: this allows us to set Open Graph and Twitter images for a route segment. They are useful for setting the images that appear on social networks and messaging apps when a user shares a link to sulala site.
+
+3. **SiteMaps**: is a file that contains information about this site's pages, images, and other files and the relationships between them. Search engines like Google read this file to more intelligently crawl your site.
+
+4. **Robots File**: is a file that tells search engine crawlers or bots which URLs they can access or not on your website. This help us to prevent search engines from indexing certain private pages
+
+5. **MetaTags(title and description)**: this defines the application meta data dynamically (in arabic or in english dynamically) and help search enginer to index the page
+
+6. **Canonical Tags**: this helps search engines understand which version of website page should be preferred version when multiple pages have similar or identical content. Since this website have only one version, the canonical url might not have usecase, but it is implemented incase this website going to have multiple versions in the future.
+
+_For more examples, please refer to the [Documentation](https://example.com)_
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Usage
 
@@ -267,6 +491,7 @@ Project Link: [https://github.com/DevSulala/Sulala-ShopDashboard](https://github
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: /public/screenshot.png
+[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
