@@ -12,7 +12,7 @@ import { getFilterSortOrdering } from "@/lib/filter-sort-ordering";
 import { notFound } from "next/navigation";
 
 export const getOrders = async (formData: FormData) => {
-  const { search, status, ordering, page, page_size } =
+  const { search, status, ordering, page, page_size, filter } =
     getFilterSortOrdering(formData);
   const ordersResponse = await Fetch({
     url: ORDERS_URL,
@@ -24,6 +24,7 @@ export const getOrders = async (formData: FormData) => {
       ordering,
       page,
       page_size,
+      filter,
     },
   });
   const ordersBody = await ordersResponse.json();

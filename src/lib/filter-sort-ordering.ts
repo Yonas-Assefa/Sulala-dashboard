@@ -2,7 +2,9 @@ import { DEFAULT_ITEMS_PER_PAGE } from "@/config/table.config";
 
 export const getFilterSortOrdering = (formData?: FormData) => {
   const search = getFormDataItem("search", formData);
-  const filter = (formData?.get("filter") || "").toString()?.toUpperCase();
+  const filter = (formData?.get("vendor_status") || "")
+    .toString()
+    ?.toUpperCase();
   const status = filter == "ALL" ? "" : filter;
 
   const sort_by = getFormDataItem("sort_by", formData);
@@ -21,7 +23,7 @@ export const getFilterSortOrdering = (formData?: FormData) => {
       ? initialPageSize
       : DEFAULT_ITEMS_PER_PAGE;
 
-  return { search, status, ordering, page, page_size };
+  return { search, status, ordering, page, page_size, filter };
 };
 
 const getFormDataItem = (key: string, formData?: FormData) => {

@@ -125,7 +125,7 @@ export type SignupProps = {
 export type TableProps = {
   searchParams: {
     search: string | undefined;
-    filter: string | undefined;
+    vendor_status: string | undefined;
     sort: string | undefined;
     sort_by: string | undefined;
     page: string | undefined;

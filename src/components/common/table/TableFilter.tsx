@@ -15,12 +15,12 @@ function TableFilter({ filterData }: Props) {
       {filterData.map((filter) => {
         const filter_label = filter.replace(/_/g, " ");
         const isActive =
-          searchParams.get("filter") === filter ||
-          (!searchParams.get("filter") && filter === "all");
+          searchParams.get("vendor_status") === filter ||
+          (!searchParams.get("vendor_status") && filter === "all");
         return (
           <Link
             key={filter}
-            href={createQueryString("filter", filter) as any}
+            href={createQueryString("vendor_status", filter) as any}
             role="tab"
             className={`tab capitalize rounded-[30px] ${
               isActive
