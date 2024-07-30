@@ -45,6 +45,13 @@ validateVersionBump() {
 
 # Main function to orchestrate the version bump
 main() {
+  local confirm_version_bump
+  read -p "Do you want to tag the current commit? (y/n): " confirm_version_bump
+
+  if [[ $confirm_version_bump != "y" ]]; then
+    printf "\e[0;33;49mSkipping versioning script...\e[0m\n"
+    exit 0
+  fi
   local version_increment_arg
   version_increment_arg=$(getVersionIncrementArg)
 
