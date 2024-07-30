@@ -41,3 +41,13 @@
 - Changed API response format
 
 ### Removed
+
+## V1.3.~
+
+### Added or Changed
+- Bug fixed on signup and account setup flow
+- Statistics, charts and graphs added
+- google geo-location encoding added for address inputs
+- delivery partners and orders page added for admin dashboard
+
+### Removed
