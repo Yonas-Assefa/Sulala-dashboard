@@ -530,7 +530,7 @@ Project Link: [https://github.com/DevSulala/Sulala-ShopDashboard](https://github
 [license-url]: https://github.com/DevSulala/Sulala-ShopDashboard/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: /public/screenshot.png
+[product-screenshot]: https://raw.githubusercontent.com/DevSulala/Sulala-ShopDashboard/main/public/screenshot.png?token=GHSAT0AAAAAACVJLPLTTHGGJW3P6OYJ4KWGZVI3XEQ
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
