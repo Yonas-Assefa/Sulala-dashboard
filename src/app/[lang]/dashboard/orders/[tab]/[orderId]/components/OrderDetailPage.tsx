@@ -307,25 +307,25 @@ function OrderDetailPage({ orderDetail }: any) {
 
             <div className="flex flex-col">
               <div className="flex flex-row justify-between gap-4 md:gap-6">
-                <p className="max-w-xs">Shipping Type</p>
+                <p className="max-w-xs">{t("shipping_type")}</p>
                 <p className="max-w-xs text-right">{orderDetail.pickup_type}</p>
               </div>
               <div className="flex flex-row justify-between gap-4 md:gap-6">
-                <p className="max-w-xs">Shipping Address</p>
+                <p className="max-w-xs">{t("shipping_address")}</p>
                 <p className="max-w-xs text-right">
-                  231 Escuela Ave, Mountain View, CA 9404 3, USA
+                  {orderDetail.pickup_point}
                 </p>
               </div>
 
               <div className="flex flex-row justify-between gap-4 md:gap-6">
-                <p className="max-w-xs">Scheduled Delivery start</p>
+                <p className="max-w-xs">{t("scheduled_delivery_start")}</p>
                 <p className="max-w-xs text-right">
                   {orderDetail.schedule_delivery_start}
                 </p>
               </div>
 
               <div className="flex flex-row justify-between gap-4 md:gap-6">
-                <p className="max-w-xs">Scheduled Delivery end</p>
+                <p className="max-w-xs">{t("scheduled_delivery_end")}</p>
                 <p className="max-w-xs text-right">
                   {orderDetail.schedule_delivery_end}
                 </p>
