@@ -1,7 +1,7 @@
 "use server";
 
-import { ORDER_AND_DELIVERY_METRICS } from "../../config/urls";
-import { orderDeliveryMetricsMapper } from "../mapper/order-delivery-metrics-mapper";
+import { USER_METRICS } from "../../config/urls";
+import { userMetricsMapper } from "../mapper/user-metrics-mapper";
 import {
   Fetch,
   getRequestHeaders,
@@ -16,27 +16,29 @@ type Args = {
   search: string | undefined;
 };
 
-export const getAllOrderDeliveryMetrics = async <T>(
+export const getAllUserMetrics = async <T>(
   formData: FormData,
 ): Promise<MetricsData[]> => {
   const { end_date, item_type, start_date, time_frame } =
     getStatisticsMetricsQuery(formData);
 
   const URL =
-    item_type === "order_cancel_rate"
-      ? ORDER_AND_DELIVERY_METRICS.ORDER_CANCEL_RATE
-      : item_type === "average_delivery_time"
-        ? ORDER_AND_DELIVERY_METRICS.AVERAGE_DELIVERY_TIME
-        : item_type === "order_fulfillment_rate"
-          ? ORDER_AND_DELIVERY_METRICS.ORDER_FULFILLMENT_RATE
-          : ORDER_AND_DELIVERY_METRICS.ALL_METRICS;
+    item_type === "new_user_registration"
+      ? USER_METRICS.NEW_USER_REGISTRATION
+      : item_type === "active_users"
+        ? USER_METRICS.ACTIVE_USERS
+        : item_type === "user_over_time"
+          ? USER_METRICS.USER_OVER_TIME
+          : item_type === "user_retention_data"
+            ? USER_METRICS.USER_RETENTION_DATA
+            : USER_METRICS.ALL_METRICS;
 
   const response = await Fetch({
     url: URL,
     method: "GET",
     headers: getRequestHeaders(),
     next: {
-      tags: ["all-order-delivery-metrics"],
+      tags: ["all-user-metrics"],
     },
     params: {
       start_date,
@@ -53,5 +55,5 @@ export const getAllOrderDeliveryMetrics = async <T>(
     );
   }
 
-  return orderDeliveryMetricsMapper(body.data);
+  return userMetricsMapper(body.data);
 };

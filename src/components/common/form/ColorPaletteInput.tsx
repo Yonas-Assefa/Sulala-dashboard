@@ -172,9 +172,26 @@ function ColorPaletteInput({
         <summary
           className={`flex items-center overflow-hidden px-3 justify-between gap-0 rounded-[40px] w-full input select-none focus:outline-none ${computedValue ? "text-black dark:text-white" : "text-gray-400"} ${className} ${error ? "border-danger bg-dangerlight" : !disabled ? "focus-within:border-primary bg-transparent" : "bg-transparent"} ${disabled && "opacity-50"}`}
         >
-          <p className="truncate">
-            {computedValue || placeholder || t("select_one")}
-          </p>
+          <div className="overflow-hidden truncate">
+            {colorPalette.length > 0 ? (
+              <div className="avatar-group -space-x-6 rtl:space-x-reverse">
+                {colorPalette.slice(0, 5).map((color, i) => (
+                  <span
+                    key={i}
+                    className="w-8 h-8 rounded-full avatar border-0"
+                    style={{ backgroundColor: color }}
+                  ></span>
+                ))}
+                <div className="avatar placeholder border-0 text-black">
+                  <div className="bg-gray-800 text-white border-0 w-8">
+                    <span>+{colorPalette.length}</span>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <p className="truncate">{placeholder || t("select_one")}</p>
+            )}
+          </div>
           <img
             src="/icons/chevron-down.svg"
             alt=""

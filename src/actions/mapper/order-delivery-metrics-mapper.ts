@@ -4,7 +4,7 @@ import { animalMapper } from "./animal-mapper";
 import {
   ChartType,
   MetricsData,
-} from "@/app/[lang]/dashboard/statistics/types/chart-props.type";
+} from "@/app/[lang]/dashboard/(admin)/statistics/types/chart-props.type";
 
 interface IMetricsDataResponse {
   date: string;
@@ -28,7 +28,9 @@ interface IIncomintRawMetricsData {
   cancellation_rate: IMetricsResponse;
 }
 
-export const metricsMapper = (data: IIncomintRawMetricsData): MetricsData[] => {
+export const orderDeliveryMetricsMapper = (
+  data: IIncomintRawMetricsData,
+): MetricsData[] => {
   const orderFulfillmentRate: MetricsData = {
     id: "order_fulfillment_rate",
     title: "Order Fulfillment Rate",

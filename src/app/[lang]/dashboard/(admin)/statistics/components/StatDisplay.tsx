@@ -9,6 +9,7 @@ import InfoMetricsPanelLarge from "./InfoMetrics/InfoMetricsPanelLarge";
 import InfoMetricsDescription from "./InfoMetrics/InfoMetricsDescription";
 import InfoMetricsPanelSmall from "./InfoMetrics/InfoMetricsPanelSmall";
 import {
+  CAChartData,
   ChartData,
   ChartType,
   DateRange,
@@ -173,28 +174,37 @@ function StatDisplay({ metricsData }: { metricsData: MetricsData[] }) {
 
   const convertMetricsToChartData = (
     data?: MetricsData,
-  ): ChartData | undefined => {
+  ): ChartData | CAChartData | undefined => {
     if (!data) return undefined;
-    return {
-      labels: data.data.map((item) => item.date?.toString() || ""),
-      datasets: [
-        {
-          label: data.title,
-          data: data.data.map((item) => item.value),
-          backgroundColor:
-            colorPalette.length > 1
-              ? colorPalette.slice(1, colorPalette.length)
-              : colorPalette,
-          borderColor: colorPalette[0],
-          borderWidth: 1,
+    if (chartType !== ChartType.COHORT_ANALYSIS)
+      return {
+        labels: data.data.map((item) => item.date?.toString() || ""),
+        datasets: [
+          {
+            label: data.title,
+            data: data.data.map((item) => item.value),
+            backgroundColor:
+              colorPalette.length > 1
+                ? colorPalette.slice(1, colorPalette.length)
+                : colorPalette,
+            borderColor: colorPalette[0],
+            borderWidth: 1,
+          },
+        ],
+      };
+    else
+      return {
+        weeks: {
+          "Week 1": [1, 2, 3, 4, 5],
+          "Week 2": [2, 3, 4, 5, 6],
+          "Week 3": [3, 4, 5, 6, 7],
+          "Week 4": [4, 5, 6, 7, 8],
         },
-      ],
-    };
+      };
   };
 
   return (
-    <div className="w-full h-full">
-      <StatisticNav />
+    <>
       <div className="flex flex-col md:flex-row justify-center md:justify-end w-full items-stretch -mb-6 mt-2">
         <div className="max-w-[500px] min-w-[300px] rounded-md flex justify-center items-center pb-2">
           <ColorPaletteInput
@@ -270,7 +280,7 @@ function StatDisplay({ metricsData }: { metricsData: MetricsData[] }) {
           />
         ))}
       </div>
-    </div>
+    </>
   );
 }
 

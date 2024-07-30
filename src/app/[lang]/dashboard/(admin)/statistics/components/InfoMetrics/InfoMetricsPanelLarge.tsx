@@ -6,13 +6,12 @@ import { ChartType } from "../../types/chart-props.type";
 function InfoMetricsPanelLarge({
   chartData,
   chartType,
-  caChartData,
   chartText,
 }: InfoMetricsPanelProps) {
   return (
     <div className="bg-primary/5 p-3 col-span-3 row-span-2">
       {chartType !== ChartType.NONE ? (
-        getChartComponent({ chartType, chartData, caChartData, chartText })
+        getChartComponent({ chartType, chartData, chartText })
       ) : (
         <div className="h-full w-full flex flex-col justify-center items-center text-black/30 relative">
           <img
