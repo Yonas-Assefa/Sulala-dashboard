@@ -4,6 +4,7 @@ import { orderItemBadgeColorSchema } from "@/app/[lang]/dashboard/orders/schema/
 type Props = {
   status: string;
   type?: "ORDER" | "PAYMENT" | "DRIVER" | "DEFAULT";
+  statusType?: string;
 };
 
 const driverAndPaymentStatusColors = {

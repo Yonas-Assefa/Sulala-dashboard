@@ -2,7 +2,6 @@
 import React from "react";
 import BackButton from "@/components/common/ui/BackButton";
 import PrimaryButton from "@/components/common/ui/PrimaryButton";
-import StatusBadge from "@/components/common/ui/StatusBadge";
 import { useToastMessage } from "@/hooks/useToastMessage";
 import { useFormState } from "react-dom";
 import { EMPTY_FORM_STATE } from "@/utils/formStateHelper";
@@ -12,6 +11,7 @@ import { useTranslations } from "next-intl";
 import SelectInput from "@/components/common/form/SelectInput";
 import { assignOrder } from "@/actions/admin-manage/assign-drivers";
 import { useRedirectRoute } from "@/hooks/useRedirectRoute";
+import StatusBadge from "@/app/[lang]/dashboard/orders/[tab]/[orderId]/components/StatusBadge";
 
 function OrderDetailPage({ orderDetail, deliveryPartners }: any) {
   const pathname = usePathname();
