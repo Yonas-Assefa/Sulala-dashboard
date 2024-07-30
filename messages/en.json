@@ -172,7 +172,13 @@
     "order_decline": "Decline",
     "name": "Name",
     "email": "Email",
-    "address": "Address"
+    "phone_number": "Phone Number",
+    "address": "Address",
+    "shipping_type": "Shipping Type",
+    "shipping_address": "Shipping Address",
+    "scheduled_delivery_start": "Scheduled Delivery Start ",
+    "scheduled_delivery_end": "Scheduled Delivery End",
+    "no_timeline_message": "No timeline available."
   },
   "Settings": {
     "PersonalInfo": {

@@ -2,7 +2,7 @@
 import React from "react";
 import BackButton from "@/components/common/ui/BackButton";
 import PrimaryButton from "@/components/common/ui/PrimaryButton";
-import StatusBadge from "@/components/common/ui/StatusBadge";
+import StatusBadge from "./StatusBadge";
 import { useToastMessage } from "@/hooks/useToastMessage";
 import { useFormState } from "react-dom";
 import { acceptCancelOrder } from "@/actions/orders/accept-cancel-new-order";
@@ -10,6 +10,7 @@ import { EMPTY_FORM_STATE } from "@/utils/formStateHelper";
 import { usePathname } from "next/navigation";
 import { notFound } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { OrderTimelineEvent } from "@/actions/mapper/orders-mapper";
 
 function OrderDetailPage({ orderDetail }: any) {
   const pathname = usePathname();
@@ -18,15 +19,10 @@ function OrderDetailPage({ orderDetail }: any) {
   if (!hasOrders) {
     return notFound();
   }
-  console.log(
-    "driver detail: ",
-    orderDetail.driver_assigned,
-    orderDetail.driver_detail,
-  );
 
   const [status, setStatus] = React.useState<"ACCEPTED" | "DECLINED">();
-  const handleStatusChange = () => {
-    setStatus(status === "ACCEPTED" ? "DECLINED" : "ACCEPTED");
+  const handleStatusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setStatus(e.target.value === "ACCEPTED" ? "ACCEPTED" : "DECLINED");
   };
 
   const [formState, action] = useFormState(acceptCancelOrder, EMPTY_FORM_STATE);
@@ -125,20 +121,26 @@ function OrderDetailPage({ orderDetail }: any) {
                 </h1>
                 <h2 className="capitalize">{orderDetail.ordered_at}</h2>
               </div>
-              <div className="flex flex-col gap-4 pr-5 md:flex-row justify-around md:gap-16 text-md ">
+              <div className="flex flex-col gap-2 pr-5 md:flex-row justify-around md:gap-4 text-md ">
                 <div className="flex flex-col  items-end">
                   <h4 className="text-gray-400 capitalize"> {t("status")}</h4>
-                  <StatusBadge status={orderDetail.vendor_order_status} />
+                  <StatusBadge
+                    status={orderDetail.vendor_order_status}
+                    type="ORDER"
+                  />
                 </div>
 
-                <div className="flex flex-col  items-end">
+                {/* <div className="flex flex-col  items-end">
                   <h4 className="text-gray-400 capitalize">{t("payment")}</h4>
-                  <StatusBadge status="Paid" />
-                </div>
+                  <StatusBadge status="Paid" type="PAYMENT" />
+                </div> */}
 
                 <div className="flex flex-col items-end">
                   <h4 className="text-gray-400 capitalize">{t("driver")} </h4>
-                  <StatusBadge status="Assigned" />
+                  <StatusBadge
+                    status={orderDetail.driver_assigned}
+                    type="DRIVER"
+                  />
                 </div>
               </div>
             </div>
@@ -149,7 +151,7 @@ function OrderDetailPage({ orderDetail }: any) {
             <div className="flex flex-col gap-3 text-sm">
               {orderDetail.order_items.map((order_item: any, index: any) => {
                 return (
-                  <div className="flex flex-row justify-between mt-5 shadow-sm">
+                  <div className="flex flex-row justify-between mt-2 shadow-sm">
                     <div className="flex flex-row justify-between">
                       <div className="flex flex-row items-center pr-4">
                         <img
@@ -163,8 +165,8 @@ function OrderDetailPage({ orderDetail }: any) {
                         />
                       </div>
 
-                      <div className="flex flex-col justify-around text-lg">
-                        <h2 className="text-primary ">
+                      <div className="flex flex-col justify-center text-lg">
+                        <h2 className="text-primary py-1">
                           {order_item.product_name}
                         </h2>
 
@@ -197,23 +199,22 @@ function OrderDetailPage({ orderDetail }: any) {
             </div>
             {/* end order items detail  */}
 
-            <hr />
-
-            <div className="flex flex-col my-8 gap-3">
-              <div className="flex flex-row justify-between">
+            <div className="flex flex-col md:my-6 md-2 gap-3">
+              <div className="flex flex-row justify-between text-lg">
                 <p>{t("subtotal")}</p>
                 <p>{orderDetail.order_total}</p>
               </div>
-              <div className="flex flex-row justify-between">
+              <div className="flex flex-row justify-between text-lg">
                 <p>{t("discount")}</p>
                 <p>- {orderDetail.discount}</p>
               </div>
-              <div className="flex flex-row justify-between">
+              <div className="flex flex-row justify-between text-lg">
                 <p>{t("total_fee")}</p>
                 <p>+ {orderDetail.fee}</p>
               </div>
+
               <hr />
-              <div className="flex flex-row justify-between my-5 font-bold">
+              <div className="flex flex-row justify-between my-4 font-bold text-lg">
                 <h1>{t("total")}</h1>
                 <p>{orderDetail.total_amount}</p>
               </div>
@@ -228,165 +229,42 @@ function OrderDetailPage({ orderDetail }: any) {
             </h1>
             <div className="pl-10">
               <ol className="relative text-gray-500 border-s border-gray-200 dark:border-gray-700 dark:text-gray-400">
-                <li className="mb-10 ms-6">
-                  <span className="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
-                    <img
-                      src="/icons/order-placed.svg"
-                      alt="checkmark icon"
-                      className="w-3.5 h-3.5 text-green-500 dark:text-green-400"
-                    />
-                  </span>
-                  <div className="flex flex-row justify-between items-center w-full">
-                    <div className="flex flex-col justify-around gap-10">
-                      <h3 className="font-medium leading-tight">
-                        Order Placed
-                      </h3>
-                      <p className="text-sm">Jan 21, 2021</p>
-                    </div>
+                {orderDetail.order_timeline.length == 0 ? (
+                  <li className="mb-10 ms-6 text-center">
+                    <p className="text-gray-500 dark:text-gray-400">
+                      {t("no_timeline_message")}
+                    </p>
+                  </li>
+                ) : (
+                  orderDetail.order_timeline.map(
+                    ({ event, created_at }: OrderTimelineEvent) => (
+                      <li className="mb-10 ms-6">
+                        <span className="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
+                          <img
+                            src="/icons/order-placed.svg"
+                            alt="checkmark icon"
+                            className="w-3.5 h-3.5 text-green-500 dark:text-green-400"
+                          />
+                        </span>
+                        <div className="flex flex-row justify-between items-center w-full">
+                          <div className="flex flex-col justify-around gap-10">
+                            <h3 className="font-medium leading-tight">
+                              {event}
+                            </h3>
+                            <p className="text-sm">
+                              {created_at.split(",")[0]},{" "}
+                              {created_at.split(",")[1]}
+                            </p>
+                          </div>
 
-                    <div>
-                      <h2>12:30</h2>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="mb-10 ms-6">
-                  <span className="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
-                    <img
-                      src="/icons/order-placed.svg"
-                      alt="checkmark icon"
-                      className="w-3.5 h-3.5 text-green-500 dark:text-green-400"
-                    />
-                  </span>
-
-                  <div className="flex flex-row justify-between items-center w-full">
-                    <div className="flex flex-col justify-around gap-10">
-                      <h3 className="font-medium leading-tight">
-                        Order Accepted
-                      </h3>
-                      <p className="text-sm">Jan 22, 2021</p>
-                    </div>
-
-                    <div>
-                      <h2>09:30</h2>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="mb-10 ms-6">
-                  <span className="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
-                    <img
-                      src="/icons/order-placed.svg"
-                      alt="checkmark icon"
-                      className="w-3.5 h-3.5 text-green-500 dark:text-green-400"
-                    />
-                  </span>
-
-                  <div className="flex flex-row justify-between items-center w-full">
-                    <div className="flex flex-col justify-around gap-10">
-                      <h3 className="font-medium leading-tight">
-                        Order Declined
-                      </h3>
-                      <p className="text-sm">Jan 23, 2021</p>
-                    </div>
-
-                    <div>
-                      <h2>01:30</h2>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="mb-10 ms-6">
-                  <span className="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
-                    <img
-                      src="/icons/order-placed.svg"
-                      alt="checkmark icon"
-                      className="w-3.5 h-3.5 text-green-500 dark:text-green-400"
-                    />
-                  </span>
-
-                  <div className="flex flex-row justify-between items-center w-full">
-                    <div className="flex flex-col justify-around gap-10">
-                      <h3 className="font-medium leading-tight">
-                        Order Shipped
-                      </h3>
-                      <p className="text-sm">Jan 27, 2021</p>
-                    </div>
-
-                    <div>
-                      <h2>02:30</h2>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="mb-10 ms-6">
-                  <span className="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
-                    <img
-                      src="/icons/order-placed.svg"
-                      alt="checkmark icon"
-                      className="w-3.5 h-3.5 text-green-500 dark:text-green-400"
-                    />
-                  </span>
-
-                  <div className="flex flex-row justify-between items-center w-full">
-                    <div className="flex flex-col justify-around gap-10">
-                      <h3 className="font-medium leading-tight">
-                        Order Payment Placed
-                      </h3>
-                      <p className="text-sm">Jan 29, 2021</p>
-                    </div>
-
-                    <div>
-                      <h2>10:50</h2>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="mb-10 ms-6">
-                  <span className="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
-                    <img
-                      src="/icons/order-placed.svg"
-                      alt="checkmark icon"
-                      className="w-3.5 h-3.5 text-green-500 dark:text-green-400"
-                    />
-                  </span>
-
-                  <div className="flex flex-row justify-between items-center w-full">
-                    <div className="flex flex-col justify-around gap-10">
-                      <h3 className="font-medium leading-tight">
-                        Order Delivered
-                      </h3>
-                      <p className="text-sm">Jan 29, 2021</p>
-                    </div>
-
-                    <div>
-                      <h2>01:30</h2>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="mb-10 ms-6">
-                  <span className="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
-                    <img
-                      src="/icons/order-placed.svg"
-                      alt="checkmark icon"
-                      className="w-3.5 h-3.5 text-green-500 dark:text-green-400"
-                    />
-                  </span>
-
-                  <div className="flex flex-row justify-between items-center w-full">
-                    <div className="flex flex-col justify-around gap-10">
-                      <h3 className="font-medium leading-tight">
-                        Order Marked as Completed
-                      </h3>
-                      <p className="text-sm">Jan 29, 2021</p>
-                    </div>
-
-                    <div>
-                      <h2>10:30</h2>
-                    </div>
-                  </div>
-                </li>
+                          <div>
+                            <h2>{created_at.split(",")[2]}</h2>
+                          </div>
+                        </div>
+                      </li>
+                    ),
+                  )
+                )}
               </ol>
             </div>
           </div>
@@ -411,9 +289,11 @@ function OrderDetailPage({ orderDetail }: any) {
                     ? orderDetail.user.first_name +
                       " " +
                       orderDetail.user.last_name
-                    : "Uknown"}
+                    : "Unknown"}
                 </p>
-                <p>{orderDetail.user.email}</p>
+                <p>
+                  {orderDetail.user.email ? orderDetail.user.email : "Unknown"}
+                </p>
               </div>
             </div>
           </div>
@@ -424,7 +304,35 @@ function OrderDetailPage({ orderDetail }: any) {
             <h1 className="capitalize text-xl font-bold pb-3">
               {t("shipping_info")}
             </h1>
-            <div className="flex flex-row w-fit gap-8">
+
+            <div className="flex flex-col">
+              <div className="flex flex-row justify-between gap-4 md:gap-6">
+                <p className="max-w-xs">{t("shipping_type")}</p>
+                <p className="max-w-xs text-right">{orderDetail.pickup_type}</p>
+              </div>
+              <div className="flex flex-row justify-between gap-4 md:gap-6">
+                <p className="max-w-xs">{t("shipping_address")}</p>
+                <p className="max-w-xs text-right">
+                  {orderDetail.pickup_point}
+                </p>
+              </div>
+
+              <div className="flex flex-row justify-between gap-4 md:gap-6">
+                <p className="max-w-xs">{t("scheduled_delivery_start")}</p>
+                <p className="max-w-xs text-right">
+                  {orderDetail.schedule_delivery_start}
+                </p>
+              </div>
+
+              <div className="flex flex-row justify-between gap-4 md:gap-6">
+                <p className="max-w-xs">{t("scheduled_delivery_end")}</p>
+                <p className="max-w-xs text-right">
+                  {orderDetail.schedule_delivery_end}
+                </p>
+              </div>
+            </div>
+
+            {/* <div className="flex flex-row w-fit gap-8">
               <div className="text-gray-400">
                 <p>Shipping Type</p>
                 <p>Shipping Address</p>
@@ -439,7 +347,7 @@ function OrderDetailPage({ orderDetail }: any) {
                 <p>{orderDetail.schedule_delivery_start}</p>
                 <p>{orderDetail.schedule_delivery_end}</p>
               </div>
-            </div>
+            </div> */}
           </div>
           {/* 
           <hr />
@@ -463,31 +371,32 @@ function OrderDetailPage({ orderDetail }: any) {
             </div>
           </div> */}
 
-          <hr />
+          {orderDetail.driver_detail !== null && (
+            <>
+              <hr />
+              <div>
+                <h1 className="capitalize text-xl font-bold pb-3">
+                  {t("driver_detail")}
+                </h1>
+                <div className="flex flex-row w-fit gap-8">
+                  <div className="text-gray-400">
+                    <p>{t("name")}</p>
+                    <p>{t("phone_number")}</p>
+                    <p>{t("email")}</p>
+                  </div>
 
-          {orderDetail.driver_assigned && (
-            <div>
-              <h1 className="capitalize text-xl font-bold pb-3">
-                {t("driver_detail")}
-              </h1>
-              <div className="flex flex-row w-fit gap-8">
-                <div className="text-gray-400">
-                  <p>name</p>
-                  <p>phone number</p>
-                  <p>email</p>
-                </div>
-
-                <div>
-                  <p>
-                    {orderDetail.driver_detail.first_name +
-                      " " +
-                      orderDetail.driver_detail.last_name}
-                  </p>
-                  <p>{orderDetail.driver_detail.phone_number}</p>
-                  <p>{orderDetail.driver_detail.email}</p>
+                  <div>
+                    <p>
+                      {orderDetail.driver_detail.first_name +
+                        " " +
+                        orderDetail.driver_detail.last_name}
+                    </p>
+                    <p>{orderDetail.driver_detail.phone_number}</p>
+                    <p>{orderDetail.driver_detail.email}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </>
           )}
         </div>
       </div>

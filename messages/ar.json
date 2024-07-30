@@ -165,6 +165,7 @@
     "fee": "الرسوم",
     "subtotal": "المجموع الفرعي",
     "total": "المجموع",
+    "discount": "تخفيض",
     "total_fee": "إجمالي الرسوم",
     "promotion_fee": "رسوم الترقية",
     "customer_detail": "تفاصيل العميل",
@@ -175,7 +176,13 @@
     "order_decline": "رفض",
     "name": "الاسم",
     "email": "البريد الإلكتروني",
-    "address": "العنوان"
+    "address": "العنوان",
+    "phone_number": "رقم التليفون",
+    "shipping_type": " نوع الشحن",
+    "shipping_address": " عنوان الشحن",
+    "scheduled_delivery_start": " بدء التسليم المجدول",
+    "scheduled_delivery_end": " نهاية التسليم المجدول",
+    "no_timeline_message": "لا يوجد خط زمني متاح"
   },
   "Settings": {
     "PersonalInfo": {
