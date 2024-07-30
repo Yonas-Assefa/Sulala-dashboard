@@ -2,7 +2,7 @@
 import React from "react";
 import BackButton from "@/components/common/ui/BackButton";
 import PrimaryButton from "@/components/common/ui/PrimaryButton";
-import StatusBadge from "@/components/common/ui/StatusBadge";
+import StatusBadge from "./StatusBadge";
 import { useToastMessage } from "@/hooks/useToastMessage";
 import { useFormState } from "react-dom";
 import { acceptCancelOrder } from "@/actions/orders/accept-cancel-new-order";
@@ -18,15 +18,10 @@ function OrderDetailPage({ orderDetail }: any) {
   if (!hasOrders) {
     return notFound();
   }
-  console.log(
-    "driver detail: ",
-    orderDetail.driver_assigned,
-    orderDetail.driver_detail,
-  );
 
   const [status, setStatus] = React.useState<"ACCEPTED" | "DECLINED">();
-  const handleStatusChange = () => {
-    setStatus(status === "ACCEPTED" ? "DECLINED" : "ACCEPTED");
+  const handleStatusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setStatus(e.target.value === "ACCEPTED" ? "ACCEPTED" : "DECLINED");
   };
 
   const [formState, action] = useFormState(acceptCancelOrder, EMPTY_FORM_STATE);
@@ -125,20 +120,26 @@ function OrderDetailPage({ orderDetail }: any) {
                 </h1>
                 <h2 className="capitalize">{orderDetail.ordered_at}</h2>
               </div>
-              <div className="flex flex-col gap-4 pr-5 md:flex-row justify-around md:gap-16 text-md ">
+              <div className="flex flex-col gap-2 pr-5 md:flex-row justify-around md:gap-4 text-md ">
                 <div className="flex flex-col  items-end">
                   <h4 className="text-gray-400 capitalize"> {t("status")}</h4>
-                  <StatusBadge status={orderDetail.vendor_order_status} />
+                  <StatusBadge
+                    status={orderDetail.vendor_order_status}
+                    type="ORDER"
+                  />
                 </div>
 
-                <div className="flex flex-col  items-end">
+                {/* <div className="flex flex-col  items-end">
                   <h4 className="text-gray-400 capitalize">{t("payment")}</h4>
-                  <StatusBadge status="Paid" />
-                </div>
+                  <StatusBadge status="Paid" type="PAYMENT" />
+                </div> */}
 
                 <div className="flex flex-col items-end">
                   <h4 className="text-gray-400 capitalize">{t("driver")} </h4>
-                  <StatusBadge status="Assigned" />
+                  <StatusBadge
+                    status={orderDetail.driver_assigned}
+                    type="DRIVER"
+                  />
                 </div>
               </div>
             </div>
@@ -149,7 +150,7 @@ function OrderDetailPage({ orderDetail }: any) {
             <div className="flex flex-col gap-3 text-sm">
               {orderDetail.order_items.map((order_item: any, index: any) => {
                 return (
-                  <div className="flex flex-row justify-between mt-5 shadow-sm">
+                  <div className="flex flex-row justify-between mt-2 shadow-sm">
                     <div className="flex flex-row justify-between">
                       <div className="flex flex-row items-center pr-4">
                         <img
@@ -163,8 +164,8 @@ function OrderDetailPage({ orderDetail }: any) {
                         />
                       </div>
 
-                      <div className="flex flex-col justify-around text-lg">
-                        <h2 className="text-primary ">
+                      <div className="flex flex-col justify-center text-lg">
+                        <h2 className="text-primary py-1">
                           {order_item.product_name}
                         </h2>
 
@@ -197,23 +198,22 @@ function OrderDetailPage({ orderDetail }: any) {
             </div>
             {/* end order items detail  */}
 
-            <hr />
-
-            <div className="flex flex-col my-8 gap-3">
-              <div className="flex flex-row justify-between">
+            <div className="flex flex-col md:my-6 md-2 gap-3">
+              <div className="flex flex-row justify-between text-lg">
                 <p>{t("subtotal")}</p>
                 <p>{orderDetail.order_total}</p>
               </div>
-              <div className="flex flex-row justify-between">
+              <div className="flex flex-row justify-between text-lg">
                 <p>{t("discount")}</p>
                 <p>- {orderDetail.discount}</p>
               </div>
-              <div className="flex flex-row justify-between">
+              <div className="flex flex-row justify-between text-lg">
                 <p>{t("total_fee")}</p>
                 <p>+ {orderDetail.fee}</p>
               </div>
+
               <hr />
-              <div className="flex flex-row justify-between my-5 font-bold">
+              <div className="flex flex-row justify-between my-4 font-bold text-lg">
                 <h1>{t("total")}</h1>
                 <p>{orderDetail.total_amount}</p>
               </div>
@@ -411,9 +411,11 @@ function OrderDetailPage({ orderDetail }: any) {
                     ? orderDetail.user.first_name +
                       " " +
                       orderDetail.user.last_name
-                    : "Uknown"}
+                    : "Unknown"}
                 </p>
-                <p>{orderDetail.user.email}</p>
+                <p>
+                  {orderDetail.user.email ? orderDetail.user.email : "Unknown"}
+                </p>
               </div>
             </div>
           </div>
@@ -424,7 +426,35 @@ function OrderDetailPage({ orderDetail }: any) {
             <h1 className="capitalize text-xl font-bold pb-3">
               {t("shipping_info")}
             </h1>
-            <div className="flex flex-row w-fit gap-8">
+
+            <div className="flex flex-col">
+              <div className="flex flex-row justify-between gap-4 md:gap-6">
+                <p className="max-w-xs">Shipping Type</p>
+                <p className="max-w-xs text-right">{orderDetail.pickup_type}</p>
+              </div>
+              <div className="flex flex-row justify-between gap-4 md:gap-6">
+                <p className="max-w-xs">Shipping Address</p>
+                <p className="max-w-xs text-right">
+                  231 Escuela Ave, Mountain View, CA 9404 3, USA
+                </p>
+              </div>
+
+              <div className="flex flex-row justify-between gap-4 md:gap-6">
+                <p className="max-w-xs">Scheduled Delivery start</p>
+                <p className="max-w-xs text-right">
+                  {orderDetail.schedule_delivery_start}
+                </p>
+              </div>
+
+              <div className="flex flex-row justify-between gap-4 md:gap-6">
+                <p className="max-w-xs">Scheduled Delivery end</p>
+                <p className="max-w-xs text-right">
+                  {orderDetail.schedule_delivery_end}
+                </p>
+              </div>
+            </div>
+
+            {/* <div className="flex flex-row w-fit gap-8">
               <div className="text-gray-400">
                 <p>Shipping Type</p>
                 <p>Shipping Address</p>
@@ -439,7 +469,7 @@ function OrderDetailPage({ orderDetail }: any) {
                 <p>{orderDetail.schedule_delivery_start}</p>
                 <p>{orderDetail.schedule_delivery_end}</p>
               </div>
-            </div>
+            </div> */}
           </div>
           {/* 
           <hr />
@@ -463,31 +493,32 @@ function OrderDetailPage({ orderDetail }: any) {
             </div>
           </div> */}
 
-          <hr />
+          {orderDetail.driver_detail !== null && (
+            <>
+              <hr />
+              <div>
+                <h1 className="capitalize text-xl font-bold pb-3">
+                  {t("driver_detail")}
+                </h1>
+                <div className="flex flex-row w-fit gap-8">
+                  <div className="text-gray-400">
+                    <p>name</p>
+                    <p>phone number</p>
+                    <p>email</p>
+                  </div>
 
-          {orderDetail.driver_assigned && (
-            <div>
-              <h1 className="capitalize text-xl font-bold pb-3">
-                {t("driver_detail")}
-              </h1>
-              <div className="flex flex-row w-fit gap-8">
-                <div className="text-gray-400">
-                  <p>name</p>
-                  <p>phone number</p>
-                  <p>email</p>
-                </div>
-
-                <div>
-                  <p>
-                    {orderDetail.driver_detail.first_name +
-                      " " +
-                      orderDetail.driver_detail.last_name}
-                  </p>
-                  <p>{orderDetail.driver_detail.phone_number}</p>
-                  <p>{orderDetail.driver_detail.email}</p>
+                  <div>
+                    <p>
+                      {orderDetail.driver_detail.first_name +
+                        " " +
+                        orderDetail.driver_detail.last_name}
+                    </p>
+                    <p>{orderDetail.driver_detail.phone_number}</p>
+                    <p>{orderDetail.driver_detail.email}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </>
           )}
         </div>
       </div>
