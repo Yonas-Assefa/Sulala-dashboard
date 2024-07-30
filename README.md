@@ -223,9 +223,10 @@ _Below is an instruction of installing and setting up sulala app._
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-6. There is also `Dockerfile` and `docker-compose.yml` for quick start for production
+6. There is also `Dockerfile` and `docker-compose.yml` for quick start
    ```sh
-    docker compose up --build -d
+    npm run docker:build
+    npm run docker:run
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -385,7 +386,7 @@ This Project utilizes NextJs.
 
 1. **SSR (Server Side Rendering)**:
 
-- Mainly for SEO Optimization and protecting some data fetching endpoints like google map key
+- Mainly for SEO Optimization and protecting some data fetching endpoints like google map key and reduce request and extra calculation on the users browser.
 
 2. **SSG (Server Side Generation)**:
 
@@ -421,7 +422,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 ## Usage
 
-Running the app and going to the browser `localhost:3000` if you manually started it or `localhost` if you used docker compose, you will see the landing page .
+Running the app and going to the browser `localhost:3000`, you will see the landing page .
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
@@ -434,8 +435,9 @@ This project also utilize some helper `scripts` and `git hooks`.
 1. Scripts:
 
 - the `scripts` folder holds two types of scripts, for docker, and for git.
-- the git scripts are used for tagging images and pushing the tag to source code repository
-- the script fetched the current tag from source code repo, and increament the version based on args given.
+- the git scripts are used for tagging commits and pushing the tag to source code repository
+- the docker scripts are used for building docker images and pushing it to docker registry
+- the script increament the version based on args given.
 - argument `--patch` or no argument increases the patch version of the app.
 - argument `--minor` increases the minor version of the app.
 - argument `--major` inceases the major version of the app.
@@ -444,7 +446,7 @@ This project also utilize some helper `scripts` and `git hooks`.
   - **minor**: Apply a minor version for changes that go beyond bug fixes, including the addition of new features, without breaking existing functionality.
   - **major**: Apply a major version for features that introduce significant changes and may cause compatibility issues with previous versions of the app, potentially leading to crashes.
 
-2. Hooks:
+1. Hooks:
 
 - This project utilizes Git hooks to perform various operations on Git actions, such as:
   - Linting and formatting code using Prettier, and checking commit messages before committing changes (`pre-commit`).
@@ -462,15 +464,17 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 - [x] Add Changelog
 - [x] Add back to top links
+- [x] Add meaningful commit message (eg `fix: fix issue with something`). Other wise husky will not let you continue.
+- [x] Multi-language Support
+  - [x] Arabic
+  - [x] English
+- [x] Theme Support
+  - [x] Dark Mode
+  - [x] Light Mode
 - [ ] Add Additional Templates w/ Examples
 - [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Add meaningful commit message (eg `fix: fix issue with something`). Other wise husky will not let you continue.
-- [ ] Multi-language Support
-  - [ ] Arabic
-  - [ ] English
-- [ ] Theme Support
-  - [ ] Dark Mode
-  - [ ] Light Mode
+
+_For more examples, please refer to the [CHANGELOG](./CHANGELOG)_
 
 See the [open issues](https://github.com/DevSulala/Sulala-ShopDashboard/issues) for a full list of proposed features (and known issues).
 
