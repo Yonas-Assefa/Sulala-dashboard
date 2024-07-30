@@ -175,7 +175,8 @@
     "order_decline": "رفض",
     "name": "الاسم",
     "email": "البريد الإلكتروني",
-    "address": "العنوان"
+    "address": "العنوان",
+    "no_timeline_message": "لا يوجد خط زمني متاح"
   },
   "Settings": {
     "PersonalInfo": {

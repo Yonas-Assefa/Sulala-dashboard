@@ -10,7 +10,30 @@ type TOrder = {
   date: string;
 };
 
-// export const ordersMapper = (orders: TOrder[]) => {
+export interface OrderTimelineEvent {
+  event: string;
+  created_at: string;
+}
+
+export type OrderEventType =
+  | "PLACED"
+  | "ACCEPTED"
+  | "CANCELLED"
+  | "DECLINED"
+  | "SHIPPED"
+  | "PAYMENT_PLACED"
+  | "DELIVERED";
+
+const ORDER_TIMELINE_MAPPER: Record<OrderEventType, string> = {
+  PLACED: "Order Placed",
+  ACCEPTED: "Order Accepted",
+  CANCELLED: "Order Cancelled",
+  DECLINED: "Order Declined",
+  SHIPPED: "Order Shipped",
+  PAYMENT_PLACED: "Order Payment Placed",
+  DELIVERED: "Order Delivered",
+};
+
 export const ordersMapper = async (orders: any) => {
   const modifeidOrders = orders.map((order: any) => ({
     ...order,
@@ -58,6 +81,18 @@ export const orderDetailMapper = async (order: any) => {
         ? constructImageUrl(item?.product.images, true)
         : "",
     })),
+
+    order_timeline: order.order_timeline
+      .sort(
+        (a: OrderTimelineEvent, b: OrderTimelineEvent) =>
+          new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+      )
+      .map(({ event, created_at }: OrderTimelineEvent) => ({
+        event:
+          ORDER_TIMELINE_MAPPER[event.toUpperCase() as OrderEventType] ||
+          "Unknown Event",
+        created_at: formatDate(created_at),
+      })),
 
     fee: formatNumber(order.fee),
     discount: formatNumber(order.discount),

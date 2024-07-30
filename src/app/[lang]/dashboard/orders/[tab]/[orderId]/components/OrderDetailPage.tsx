@@ -10,6 +10,7 @@ import { EMPTY_FORM_STATE } from "@/utils/formStateHelper";
 import { usePathname } from "next/navigation";
 import { notFound } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { OrderTimelineEvent } from "@/actions/mapper/orders-mapper";
 
 function OrderDetailPage({ orderDetail }: any) {
   const pathname = usePathname();
@@ -228,165 +229,42 @@ function OrderDetailPage({ orderDetail }: any) {
             </h1>
             <div className="pl-10">
               <ol className="relative text-gray-500 border-s border-gray-200 dark:border-gray-700 dark:text-gray-400">
-                <li className="mb-10 ms-6">
-                  <span className="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
-                    <img
-                      src="/icons/order-placed.svg"
-                      alt="checkmark icon"
-                      className="w-3.5 h-3.5 text-green-500 dark:text-green-400"
-                    />
-                  </span>
-                  <div className="flex flex-row justify-between items-center w-full">
-                    <div className="flex flex-col justify-around gap-10">
-                      <h3 className="font-medium leading-tight">
-                        Order Placed
-                      </h3>
-                      <p className="text-sm">Jan 21, 2021</p>
-                    </div>
+                {orderDetail.order_timeline.length == 0 ? (
+                  <li className="mb-10 ms-6 text-center">
+                    <p className="text-gray-500 dark:text-gray-400">
+                      {t("no_timeline_message")}
+                    </p>
+                  </li>
+                ) : (
+                  orderDetail.order_timeline.map(
+                    ({ event, created_at }: OrderTimelineEvent) => (
+                      <li className="mb-10 ms-6">
+                        <span className="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
+                          <img
+                            src="/icons/order-placed.svg"
+                            alt="checkmark icon"
+                            className="w-3.5 h-3.5 text-green-500 dark:text-green-400"
+                          />
+                        </span>
+                        <div className="flex flex-row justify-between items-center w-full">
+                          <div className="flex flex-col justify-around gap-10">
+                            <h3 className="font-medium leading-tight">
+                              {event}
+                            </h3>
+                            <p className="text-sm">
+                              {created_at.split(",")[0]},{" "}
+                              {created_at.split(",")[1]}
+                            </p>
+                          </div>
 
-                    <div>
-                      <h2>12:30</h2>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="mb-10 ms-6">
-                  <span className="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
-                    <img
-                      src="/icons/order-placed.svg"
-                      alt="checkmark icon"
-                      className="w-3.5 h-3.5 text-green-500 dark:text-green-400"
-                    />
-                  </span>
-
-                  <div className="flex flex-row justify-between items-center w-full">
-                    <div className="flex flex-col justify-around gap-10">
-                      <h3 className="font-medium leading-tight">
-                        Order Accepted
-                      </h3>
-                      <p className="text-sm">Jan 22, 2021</p>
-                    </div>
-
-                    <div>
-                      <h2>09:30</h2>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="mb-10 ms-6">
-                  <span className="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
-                    <img
-                      src="/icons/order-placed.svg"
-                      alt="checkmark icon"
-                      className="w-3.5 h-3.5 text-green-500 dark:text-green-400"
-                    />
-                  </span>
-
-                  <div className="flex flex-row justify-between items-center w-full">
-                    <div className="flex flex-col justify-around gap-10">
-                      <h3 className="font-medium leading-tight">
-                        Order Declined
-                      </h3>
-                      <p className="text-sm">Jan 23, 2021</p>
-                    </div>
-
-                    <div>
-                      <h2>01:30</h2>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="mb-10 ms-6">
-                  <span className="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
-                    <img
-                      src="/icons/order-placed.svg"
-                      alt="checkmark icon"
-                      className="w-3.5 h-3.5 text-green-500 dark:text-green-400"
-                    />
-                  </span>
-
-                  <div className="flex flex-row justify-between items-center w-full">
-                    <div className="flex flex-col justify-around gap-10">
-                      <h3 className="font-medium leading-tight">
-                        Order Shipped
-                      </h3>
-                      <p className="text-sm">Jan 27, 2021</p>
-                    </div>
-
-                    <div>
-                      <h2>02:30</h2>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="mb-10 ms-6">
-                  <span className="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
-                    <img
-                      src="/icons/order-placed.svg"
-                      alt="checkmark icon"
-                      className="w-3.5 h-3.5 text-green-500 dark:text-green-400"
-                    />
-                  </span>
-
-                  <div className="flex flex-row justify-between items-center w-full">
-                    <div className="flex flex-col justify-around gap-10">
-                      <h3 className="font-medium leading-tight">
-                        Order Payment Placed
-                      </h3>
-                      <p className="text-sm">Jan 29, 2021</p>
-                    </div>
-
-                    <div>
-                      <h2>10:50</h2>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="mb-10 ms-6">
-                  <span className="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
-                    <img
-                      src="/icons/order-placed.svg"
-                      alt="checkmark icon"
-                      className="w-3.5 h-3.5 text-green-500 dark:text-green-400"
-                    />
-                  </span>
-
-                  <div className="flex flex-row justify-between items-center w-full">
-                    <div className="flex flex-col justify-around gap-10">
-                      <h3 className="font-medium leading-tight">
-                        Order Delivered
-                      </h3>
-                      <p className="text-sm">Jan 29, 2021</p>
-                    </div>
-
-                    <div>
-                      <h2>01:30</h2>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="mb-10 ms-6">
-                  <span className="absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900">
-                    <img
-                      src="/icons/order-placed.svg"
-                      alt="checkmark icon"
-                      className="w-3.5 h-3.5 text-green-500 dark:text-green-400"
-                    />
-                  </span>
-
-                  <div className="flex flex-row justify-between items-center w-full">
-                    <div className="flex flex-col justify-around gap-10">
-                      <h3 className="font-medium leading-tight">
-                        Order Marked as Completed
-                      </h3>
-                      <p className="text-sm">Jan 29, 2021</p>
-                    </div>
-
-                    <div>
-                      <h2>10:30</h2>
-                    </div>
-                  </div>
-                </li>
+                          <div>
+                            <h2>{created_at.split(",")[2]}</h2>
+                          </div>
+                        </div>
+                      </li>
+                    ),
+                  )
+                )}
               </ol>
             </div>
           </div>

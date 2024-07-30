@@ -172,7 +172,8 @@
     "order_decline": "Decline",
     "name": "Name",
     "email": "Email",
-    "address": "Address"
+    "address": "Address",
+    "no_timeline_message": "No timeline available."
   },
   "Settings": {
     "PersonalInfo": {
