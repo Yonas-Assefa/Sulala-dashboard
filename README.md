@@ -57,7 +57,7 @@
       <a href="#architecture">Architecture</a>
       <ul>
         <li><a href="#technology-stack">Technology Stack</a></li>
-        <li><a href="#libraries-and-tools">libraries-and-tools</a></li>
+        <li><a href="#libraries-and-tools">Libraries and Tools</a></li> 
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
