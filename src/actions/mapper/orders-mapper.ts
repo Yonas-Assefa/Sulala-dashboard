@@ -43,9 +43,9 @@ export const orderDetailMapper = async (order: any) => {
         ? "Assigned"
         : "Unassigned",
     driver_detail:
-      order.order_items &&
-      order.order_items.length > 0 &&
-      order.order_items[0].driver,
+      order.order_items && order.order_items.length > 0
+        ? order.order_items[0].driver
+        : null,
 
     order_items: order.order_items.map((item: any) => ({
       ...item,
