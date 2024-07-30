@@ -206,17 +206,7 @@ The architecture of the Sulala dashboard frontend is designed to provide a robus
     - **Role:** Sentry is an error tracking and performance monitoring tool.
     - **Usage:** We use Sentry to monitor and track errors, performance issues, and application health. It provides real-time insights and helps in identifying and resolving issues quickly.
 
-12. **Playwright**
-
-    - **Role:** Playwright is a framework for end-to-end testing of web applications.
-    - **Usage:** We use Playwright to automate browser testing and ensure the application behaves as expected across different browsers and devices. It helps in validating end-to-end workflows and catching potential issues.
-
-13. **Vitetest**
-
-    - **Role:** Vitetest is a testing framework for Vite projects.
-    - **Usage:** We use Vitetest to run unit tests and validate the functionality of our Vite-based application. It integrates with Vite to provide a streamlined testing experience.
-
-14. **Docker**
+12. **Docker**
     - **Role:** Docker is a containerization platform for creating and managing consistent development and production environments.
     - **Usage:** We use Docker to containerize the application, ensuring that it runs consistently across different environments. It helps in simplifying deployment and managing dependencies.
 
