@@ -177,6 +177,7 @@
     "name": "الاسم",
     "email": "البريد الإلكتروني",
     "address": "العنوان",
+    "phone_number": "رقم التليفون",
     "shipping_type": " نوع الشحن",
     "shipping_address": " عنوان الشحن",
     "scheduled_delivery_start": " بدء التسليم المجدول",

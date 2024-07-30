@@ -380,9 +380,9 @@ function OrderDetailPage({ orderDetail }: any) {
                 </h1>
                 <div className="flex flex-row w-fit gap-8">
                   <div className="text-gray-400">
-                    <p>name</p>
-                    <p>phone number</p>
-                    <p>email</p>
+                    <p>{t("name")}</p>
+                    <p>{t("phone_number")}</p>
+                    <p>{t("email")}</p>
                   </div>
 
                   <div>

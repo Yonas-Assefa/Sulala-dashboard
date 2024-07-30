@@ -172,6 +172,7 @@
     "order_decline": "Decline",
     "name": "Name",
     "email": "Email",
+    "phone_number": "Phone Number",
     "address": "Address",
     "shipping_type": "Shipping Type",
     "shipping_address": "Shipping Address",
