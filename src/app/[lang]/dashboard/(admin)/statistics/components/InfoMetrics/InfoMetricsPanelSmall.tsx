@@ -16,7 +16,7 @@ function InfoMetricsPanelSmall({
       className={`bg-tertiary p-3 cursor-pointer ${isSelected ? "border-2 border-primary/50 rounded-lg" : "border-2 border-transparent"}`}
       onClick={() => id && onClick && onClick(id)}
     >
-      {getChartComponent({ chartType, chartData, chartText })}
+      {getChartComponent({ chartType, chartData, chartText }, "small")}
     </div>
   );
 }

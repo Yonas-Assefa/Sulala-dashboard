@@ -3,7 +3,7 @@ const routes = [
     icon: "/icons/bar_chart.svg",
     activeIcon: "/icons/bar_chart_active.svg",
     name: "statistics",
-    path: "/dashboard/statistics",
+    path: `/dashboard/statistics?start_date=${new Date().toISOString().split("T")[0]}&end_date=${new Date().toISOString().split("T")[0]}`,
     protected: true,
   },
   {

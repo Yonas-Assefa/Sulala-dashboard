@@ -11,11 +11,10 @@ import {
 } from "../types/metrics-info.type";
 import { ChartType } from "../types/chart-props.type";
 
-const getChartComponent = ({
-  chartData,
-  chartType,
-  chartText,
-}: InfoMetricsPanelProps) => {
+const getChartComponent = (
+  { chartData, chartType, chartText }: InfoMetricsPanelProps,
+  size: "small" | "large",
+) => {
   switch (chartType) {
     case ChartType.LINE:
       return (
@@ -50,6 +49,7 @@ const getChartComponent = ({
         <CohortAnalysisChart
           caChartData={isCAChartData(chartData) ? chartData : undefined}
           chartText={chartText}
+          style={size === "small" ? { scale: 0.8 } : undefined}
         />
       );
     case ChartType.SCATTER_PLOT:

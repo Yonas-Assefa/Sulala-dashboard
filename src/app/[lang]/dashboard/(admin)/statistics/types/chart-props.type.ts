@@ -62,6 +62,7 @@ export type ChartProps = {
   chartOptions?: ChartOptions;
   label?: string;
   className?: string;
+  style?: React.CSSProperties;
   chartText?: string;
 };
 

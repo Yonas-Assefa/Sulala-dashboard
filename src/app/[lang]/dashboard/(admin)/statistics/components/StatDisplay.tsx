@@ -113,9 +113,10 @@ function StatDisplay({ metricsData }: { metricsData: MetricsData[] }) {
 
   const changeChartData = (id: string) => {
     const data = metricsData.find((item) => item.id === id);
+    console.log({ data });
     if (data) {
+      // setChartType(data.defaultChartType);
       setChartData(data);
-      setChartType(data.defaultChartType);
     }
   };
 
@@ -258,7 +259,7 @@ function StatDisplay({ metricsData }: { metricsData: MetricsData[] }) {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 p-8 w-full h-full">
         <InfoMetricsPanelLarge
-          chartType={chartType}
+          chartType={chartData?.defaultChartType!}
           chartData={convertMetricsToChartData(chartData)}
           chartText={chartData?.title}
         />
