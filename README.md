@@ -53,6 +53,13 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
+    <li>
+      <a href="#architecture">Architecture</a>
+      <ul>
+        <li><a href="#technology-stack">Technology Stack</a></li>
+        <li><a href="#libraries-and-tools">Libraries and Tools</a></li> 
+      </ul>
+    </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
@@ -71,14 +78,6 @@
 
 Discover Sulala, the premier Middle Eastern marketplace for animals, equipment, tools, foods, and products. Experience unrivaled selection, trusted sellers, and seamless transactions. Join a vibrant community dedicated to animal care and find everything you need in one place. Sulala: Your ultimate destination for all things animal-related in the Middle East.
 
-<!-- Here's why:
-
-- Unmatched selection: Explore an extensive range of animals, equipment, tools, foods, and products.
-- Trusted sellers: Connect with reputable sellers who offer high-quality items.
-- Seamless transactions: Enjoy a smooth and secure buying and selling experience.
-- Vibrant community: Join a passionate community of animal enthusiasts and professionals.
-- Convenience: Find everything you need in one place, saving you time and effort.
-- Dedicated to animal care: Access a platform focused on providing the best care for animals. -->
 
 ### Key Features
 
@@ -119,29 +118,94 @@ Experience the excellence of Sulala and elevate your animal-related endeavors in
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Built With
+<!-- Architecture -->
+## Architecture
 
-The project is built with technologies:
+The architecture of the Sulala dashboard frontend is designed to provide a robust, scalable, and maintainable solution for managing a comprehensive marketplace platform. It leverages a combination of modern frameworks, libraries, and tools to ensure a seamless and efficient user experience. The following sections describe the key technologies used in the project, their roles, and how they are utilized.
 
-- Next.js
-- NextAuth
-- React
-- Tailwind
-- DaisyUI
-- ChartJS
-- Framer-motion
-- lodash
-- husky
-- dayjs
-- intl-tel-input
-- libphonenumber-js
-- react-qr-code
-- zod
-- zustand
-- Sentry
-- Playwright
-- Vitetest
-- Docker
+### Technology Stack
+
+1. **Next.js**
+   - **Role:** Next.js is a React framework for server-side rendering and static site generation.
+   - **Usage:** We use Next.js to handle routing, server-side rendering, and static generation of pages to improve performance and SEO. It helps streamline the development of the frontend with built-in features and optimizations.
+
+2. **NextAuth**
+   - **Role:** NextAuth is a library for handling authentication and authorization in Next.js applications.
+   - **Usage:** We use NextAuth to manage user sign-in, sign-out, and session management. It supports various authentication providers, which allows us to offer flexible login options and secure access to user accounts.
+
+3. **React**
+   - **Role:** React is a JavaScript library for building user interfaces based on components.
+   - **Usage:** React is used to create interactive and dynamic UIs. Its component-based architecture helps in building reusable components and managing state and lifecycle in a structured manner.
+
+4. **Tailwind CSS**
+   - **Role:** Tailwind CSS is a utility-first CSS framework for styling applications.
+   - **Usage:** We use Tailwind CSS for rapid UI development, providing a consistent design system with utility classes. It allows for flexible and responsive design without writing custom CSS.
+
+5. **DaisyUI**
+   - **Role:** DaisyUI is a component library built on top of Tailwind CSS.
+   - **Usage:** DaisyUI provides pre-built components that enhance development speed and consistency. We use it to integrate ready-to-use UI elements and components, which align with our design requirements.
+
+### Libraries and Tools
+
+1. **ChartJS**
+   - **Role:** ChartJS is a library for creating interactive charts and graphs.
+   - **Usage:** We use ChartJS to visualize data through various types of charts, such as bar charts and line charts. It helps in presenting analytics and metrics in an interactive and engaging manner.
+
+2. **Framer-motion**
+   - **Role:** Framer-motion is a library for animations in React applications.
+   - **Usage:** We use Framer-motion to create smooth and dynamic animations for UI components. It helps enhance user experience by providing visually appealing transitions and interactions.
+
+3. **lodash**
+   - **Role:** Lodash is a utility library that provides helpful functions for working with arrays, objects, and functions.
+   - **Usage:** We use lodash to simplify common programming tasks such as data manipulation and function handling. Its utilities help in writing cleaner and more efficient code.
+
+4. **husky**
+   - **Role:** Husky manages Git hooks to automate tasks before commits and pushes.
+   - **Usage:** We use husky to enforce code quality by running linting, formatting, and tests automatically during the commit process. It ensures code consistency and reduces manual errors.
+
+5. **dayjs**
+   - **Role:** Dayjs is a lightweight library for date and time manipulation.
+   - **Usage:** We use dayjs for handling and formatting dates and times. It provides a simple API for parsing, formatting, and manipulating date values, making it easy to manage date-related operations.
+
+6. **intl-tel-input**
+   - **Role:** intl-tel-input is a library for managing international telephone input fields.
+   - **Usage:** We use intl-tel-input to provide users with a phone number input field that includes country code selection. It helps in standardizing phone number entry and validation across different regions.
+
+7. **libphonenumber-js**
+   - **Role:** libphonenumber-js is a library for validating and formatting phone numbers.
+   - **Usage:** We use libphonenumber-js to ensure accurate phone number formatting and validation. It helps in processing and validating phone numbers according to international standards.
+
+8. **react-qr-code**
+   - **Role:** react-qr-code is a library for generating QR codes within React components.
+   - **Usage:** We use react-qr-code to create QR codes for various purposes, such as user authentication or data sharing. It integrates seamlessly with React to provide QR code generation functionality.
+
+9. **zod**
+   - **Role:** Zod is a schema validation library for TypeScript and JavaScript.
+   - **Usage:** We use Zod to validate user input and define expected data schemas. It helps in ensuring that data conforms to defined structures and provides clear error messages when validation fails.
+
+10. **zustand**
+    - **Role:** Zustand is a state management library for React applications.
+    - **Usage:** We use Zustand to manage global state across the application. It provides a simple API for state management and helps in maintaining a consistent application state.
+
+11. **Sentry**
+    - **Role:** Sentry is an error tracking and performance monitoring tool.
+    - **Usage:** We use Sentry to monitor and track errors, performance issues, and application health. It provides real-time insights and helps in identifying and resolving issues quickly.
+
+12. **Playwright**
+    - **Role:** Playwright is a framework for end-to-end testing of web applications.
+    - **Usage:** We use Playwright to automate browser testing and ensure the application behaves as expected across different browsers and devices. It helps in validating end-to-end workflows and catching potential issues.
+
+13. **Vitetest**
+    - **Role:** Vitetest is a testing framework for Vite projects.
+    - **Usage:** We use Vitetest to run unit tests and validate the functionality of our Vite-based application. It integrates with Vite to provide a streamlined testing experience.
+
+14. **Docker**
+    - **Role:** Docker is a containerization platform for creating and managing consistent development and production environments.
+    - **Usage:** We use Docker to containerize the application, ensuring that it runs consistently across different environments. It helps in simplifying deployment and managing dependencies.
+
+
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
