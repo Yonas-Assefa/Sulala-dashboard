@@ -47,18 +47,18 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li>
       <a href="#architecture">Architecture</a>
       <ul>
         <li><a href="#technology-stack">Technology Stack</a></li>
         <li><a href="#libraries-and-tools">Libraries and Tools</a></li> 
         <li><a href="#folder-structure">Folder Structure</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
