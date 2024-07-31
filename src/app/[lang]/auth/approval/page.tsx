@@ -12,9 +12,7 @@ type Props = {
   };
 };
 
-async function VerifyEmail({
-  searchParams: { approval_token, vendor_id },
-}: Props) {
+function VerifyEmail({ searchParams: { approval_token, vendor_id } }: Props) {
   // const checkEmailVerification = async () => {
   //   const personalInfo = await getCachedPersonalInfo()
   //   if (!personalInfo?.email_verified && pathname !== '/auth/verify-email') {

@@ -17,18 +17,18 @@ type Props = {
 async function page({ searchParams: { metrics, ...searchParams } }: Props) {
   const formData = changeObjToFormData({ ...searchParams });
   const metricsData: MetricsData[] =
-    // metrics === "order_delivery_metrics" ?
-    await getAllOrderDeliveryMetrics(formData);
-  // : await getAllUserMetrics(formData);
+    metrics === "order_delivery_metrics"
+      ? await getAllOrderDeliveryMetrics(formData)
+      : await getAllUserMetrics(formData);
   const metricsNav = [
     {
       label: "Order & Delivery Metrics",
       value: "order_delivery_metrics",
     },
-    // {
-    //   label: "User Metrics",
-    //   value: "user_metrics",
-    // },
+    {
+      label: "User Metrics",
+      value: "user_metrics",
+    },
   ];
   return (
     <div className="w-full h-full">

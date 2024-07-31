@@ -11,7 +11,12 @@ type TChildError = {
   id: string;
   title: string;
 };
-function NoItemPlaceholder() {
+
+/**
+ * Component to display a placeholder when there are no items to select.
+ * @returns {JSX.Element} A placeholder message indicating no items are available.
+ */
+function NoItemPlaceholder(): JSX.Element {
   const t = useTranslations("Commons");
   return (
     <div className="bg-tertiary/50 dark:bg-gray-600 hover:cursor-pointer hover:bg-tertiary dark:hover:bg-gray-800 p-3 select-none flex flex-row justify-center gap-2 text-center font-semibold text-secondary">
@@ -21,6 +26,11 @@ function NoItemPlaceholder() {
   );
 }
 
+/**
+ * Custom select input component with support for nested, multi-select, and searchable options.
+ * @param {CustomSelectInputProps} props - Props for configuring the SelectInput component.
+ * @returns {JSX.Element} The custom select input component.
+ */
 function SelectInput({
   setValue,
   placeholder,
@@ -39,9 +49,10 @@ function SelectInput({
   className,
   inputAreaOnly,
   disabled,
-}: CustomSelectInputProps) {
+}: CustomSelectInputProps): JSX.Element {
   const [options, setOptions] = React.useState<SelectInputSchema[]>(data || []);
 
+  // Compute the initial selected options based on the defaultValue prop
   const defaultSelected = !defaultValue
     ? []
     : typeof defaultValue === "string" || typeof defaultValue === "number"
@@ -84,6 +95,7 @@ function SelectInput({
 
   const t = useTranslations("Commons");
 
+  // Functions to open and close the dropdown
   const openDropdown = () => {
     selectRef.current?.setAttribute("open", "true");
     setOpen(true);
@@ -94,55 +106,65 @@ function SelectInput({
     setOpen(false);
   };
 
+  // Handle click outside the component to close the dropdown
   const ref: React.RefObject<HTMLDivElement> = useDetectClickOutside({
     onTriggered: closeDropdown,
   });
 
   const { lang } = useParams();
 
+  /**
+   * Handle selecting an option.
+   * @param {string} value - The value of the selected option.
+   */
   const handleSelect = (value: string) => {
     if (nested) {
-      // IF NESTED SET TO TRUE, AND SELECTED PARENT IS NULL, SET SELECTED PARENT
+      // If the select is nested, handle parent-child selection logic
       if (!selectedParent) {
+        // If no parent is selected, handle parent selection logic
         const selectedParentValue = options.find(
           (option) => option.value === value,
         ) as SelectInputSchema;
         if (selectedParentValue && selectedParentValue.options) {
-          // SET THE DROPDOWN OPTIONS TO THE SELECTED PARENT OPTIONS
+          // If the selected parent has child options, set the selected parent and options
           setSelectedParent(selectedParentValue);
           setOptions(selectedParentValue.options);
           openDropdown();
         }
       } else {
-        // IF NESTED SET TO TRUE, AND SELECTED PARENT IS NOT NULL, SET SELECT CHILD
+        // If a parent is selected, handle child selection logic
         if (selectedParent) {
           const selectedChildValue = options.find(
             (option) => option.value === value,
           ) as SelectInputSchema;
           if (multi) {
-            // IF MULTI SELECT IS TRUE, ADD OR REMOVE THE SELECTED CHILD TO THE SELECTED ARRAY
+            // Handle multi-select logic for nested options
             if (
               selected.find((item) => item.value == selectedChildValue?.value)
             ) {
+              // If the child is already selected, remove it from the selected array
               setSelected(
                 selected.filter(
                   (item) => item.value != selectedChildValue?.value,
                 ),
               );
             } else if (selectedChildValue) {
+              // If the child is not selected, add it to the selected array
               setSelected([...selected, selectedChildValue]);
             }
           } else {
-            // IF MULTI SELECT IS FALSE, SET THE SELECTED CHILD TO THE SELECTED ARRAY AS THE ONLY ITEM
+            // Handle single-select logic for nested options
             if (
               selected.find((item) => item.value == selectedChildValue?.value)
             ) {
+              // If the child is already selected, remove it from the selected array
               setSelected(
                 selected.filter(
                   (item) => item.value != selectedChildValue?.value,
                 ),
               );
             } else {
+              // If the child is not selected, set it as the only selected item
               setSelected([selectedChildValue]);
             }
             setSelectedParent(null);
@@ -154,25 +176,27 @@ function SelectInput({
       return;
     }
 
-    // IF NESTED SET TO FALSE, SET THE SELECTED VALUE TO THE SELECTED ARRAY
+    // Non-nested select logic
     const selectedValue = options.find((option) => option.value === value);
     if (multi) {
-      // IF MULTI SELECT IS TRUE, ADD OR REMOVE THE SELECTED VALUE TO THE SELECTED ARRAY
+      // Handle multi-select logic
       if (selected.find((item) => item.value === selectedValue?.value)) {
+        // If the item is already selected, remove it from the selected array
         setSelected(
           selected.filter((item) => item.value !== selectedValue?.value),
         );
       } else if (selectedValue) {
+        // If the item is not selected, add it to the selected array
         setSelected([...selected, selectedValue]);
       }
     } else if (selectedValue) {
-      // IF MULTI SELECT IS FALSE, SET THE SELECTED VALUE TO THE SELECTED ARRAY AS THE ONLY ITEM
+      // Handle single select logic
       setSelected([selectedValue]);
       closeDropdown();
     }
   };
 
-  // THIS COMPUTED VALUE IS USED TO DISPLAY THE SELECTED ITEMS IN THE INPUT FIELD
+  // Update the computed value and call setValue and onChange callbacks
   useEffect(() => {
     if (selected.length === 0) {
       setComputedValue("");
@@ -185,6 +209,7 @@ function SelectInput({
     }
   }, [selected]);
 
+  // Scroll to the component if there's an error and extract child error items if any
   useEffect(() => {
     if (ref.current && error) {
       ref.current?.scrollIntoView({ behavior: "smooth" });
@@ -208,10 +233,15 @@ function SelectInput({
     setChildErrorItem(extractedObjects);
   }, [error]);
 
+  /**
+   * Handle search input change to filter options.
+   * @param {React.ChangeEvent<HTMLInputElement>} e - The search input change event.
+   */
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearch(e.target.value);
     if (value) {
+      // If the search input is not empty, filter the options based on the search value
       const filteredOptions =
         multi && !selectedParent
           ? data?.filter((option) =>
@@ -222,6 +252,7 @@ function SelectInput({
             );
       setOptions(filteredOptions || []);
     } else {
+      // If the search input is empty, reset the options to the original data
       setOptions(
         !selectedParent
           ? data || []
