@@ -1,6 +1,6 @@
 "use client";
 import { useCreateQueryString } from "@/hooks/useCreateQueryString";
-import React from "react";
+import React, { useRef } from "react";
 import { debounce, set } from "lodash";
 import { FormState } from "@/utils/formStateHelper";
 import SearchIcon from "@/assets/icons/SearchIcon";
@@ -61,11 +61,11 @@ function TableSearch({ action }: Props) {
   // }, [search])
 
   React.useEffect(() => {
-    // if (value == "" && previousValue.current != "") {
-    handleSearchEnterClick();
-    // }
+    if (previousValue.current != "") {
+      handleSearchEnterClick();
+    }
   }, [debouncedSearch]);
-  console.log("consoe, ", debouncedSearch);
+  console.log("consoe, ", debouncedSearch, "hii", previousValue.current);
 
   return (
     <div className="relative">

@@ -1,6 +1,11 @@
 import { DEFAULT_ITEMS_PER_PAGE } from "@/config/table.config";
 
-export const getFilterSortOrdering = (type?: string, formData?: FormData) => {
+type Prop = {
+  type?: string;
+  formData?: FormData;
+};
+
+export const getFilterSortOrdering = ({ type = "default", formData }: Prop) => {
   const search = getFormDataItem("search", formData);
   const filterType = type === "order" ? "vendor_status" : "filter";
   const filter = (formData?.get(`${filterType}`) || "")
