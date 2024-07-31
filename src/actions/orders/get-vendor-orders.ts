@@ -20,7 +20,6 @@ export const getOrders = async (formData: FormData) => {
     headers: getRequestHeaders(),
     params: {
       search,
-      status,
       ordering,
       page,
       page_size,
