@@ -7,6 +7,8 @@ import TableDropDown from "./TableDropDown";
 import { formatNumber } from "@/utils/priceFormatter.util";
 import { formatPiece } from "@/utils/pieceFormatter.util";
 import Image from "next/image";
+import TableData from "./TableData";
+import TableBreadCrumb from "./TableBreadCrumb";
 
 type Props = {
   tableSchema: TableSchema;
@@ -62,34 +64,9 @@ function TableBody({ tableSchema, data, actionOptions, isSuperUser }: Props) {
                         </div>
                       )}
                       {!schema.breadcrumb ? (
-                        <p className="">
-                          {!product_key
-                            ? "N/A"
-                            : schema.type == "money"
-                              ? formatNumber(product_key)
-                              : schema.type == "pieces"
-                                ? formatPiece(product_key)
-                                : (product_key + "").toLowerCase()}
-                        </p>
+                        <TableData product_key={product_key} schema={schema} />
                       ) : (
-                        <div className="max-w-xs text-sm breadcrumbs">
-                          <ul className="bg-tertiary p-1 rounded-md drop-shadow-sm hover:cursor-pointer">
-                            {Array.isArray(product_key) ? (
-                              product_key.map((item, index) => {
-                                return (
-                                  <li
-                                    key={index}
-                                    className="text-xs text-black dark:text-white"
-                                  >
-                                    <p>{item}</p>
-                                  </li>
-                                );
-                              })
-                            ) : (
-                              <li>{product_key}</li>
-                            )}
-                          </ul>
-                        </div>
+                        <TableBreadCrumb product_key={product_key} />
                       )}
                     </div>
                   )}
