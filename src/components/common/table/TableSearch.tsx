@@ -65,7 +65,6 @@ function TableSearch({ action }: Props) {
       handleSearchEnterClick();
     }
   }, [debouncedSearch]);
-  console.log("consoe, ", debouncedSearch, "hii", previousValue.current);
 
   return (
     <div className="relative">

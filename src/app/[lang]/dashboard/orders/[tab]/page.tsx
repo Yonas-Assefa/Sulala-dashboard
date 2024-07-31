@@ -43,7 +43,7 @@ async function OrdersPage({
           >
             Items
           </Link>
-          <Link
+          {/* <Link
             href={"/dashboard/orders/services"}
             className={`tab border-b-2 px-6 -mb-[1px] ${
               activeTab == "services"
@@ -52,7 +52,7 @@ async function OrdersPage({
             }`}
           >
             Services
-          </Link>
+          </Link> */}
         </div>
       </div>
 
@@ -71,12 +71,14 @@ async function OrdersPage({
           />
         </Suspense>
       ) : activeTab == "services" ? (
-        <Suspense fallback={<ServicesLoading />}>
-          <Services
-            searchParams={{ search, vendor_status, sort, sort_by, page_size }}
-          />
-        </Suspense>
-      ) : null}
+        <div></div>
+      ) : // <Suspense fallback={<ServicesLoading />}>
+      //   <Services
+      //     searchParams={{ search, filter, sort, sort_by, page_size }}
+      //   />
+      // </Suspense>
+
+      null}
     </div>
   );
 }
