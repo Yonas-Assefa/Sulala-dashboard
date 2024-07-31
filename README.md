@@ -58,6 +58,7 @@
       <ul>
         <li><a href="#technology-stack">Technology Stack</a></li>
         <li><a href="#libraries-and-tools">Libraries and Tools</a></li> 
+        <li><a href="#folder-stracture">Folder Structure</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -149,6 +150,8 @@ The architecture of the Sulala dashboard frontend is designed to provide a robus
    - **Role:** DaisyUI is a component library built on top of Tailwind CSS.
    - **Usage:** DaisyUI provides pre-built components that enhance development speed and consistency. We use it to integrate ready-to-use UI elements and components, which align with our design requirements.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ### Libraries and Tools
 
 1. **ChartJS**
@@ -212,93 +215,6 @@ The architecture of the Sulala dashboard frontend is designed to provide a robus
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- GETTING STARTED -->
-
-## Getting Started
-
-This is a comprehensive guild on how to get started on this project.
-
-### Prerequisites
-
-Make sure you have node and npm installed on your system. Node version `v20.12.2` and NPM version `10.5.0`
-
-- npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-_Below is an instruction of installing and setting up sulala app._
-
-1. Setup git with token credential
-2. Clone the repo
-   ```sh
-   git clone https://github.com/DevSulala/Sulala-ShopDashboard.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Configure your environmental variables (in `.env`) using `.env.example`
-
-   ```sh
-    # backend api url
-    BACKEND_BASE_URL = 'http://<url>/'
-    # the deployed frontend url of this website
-    FRONTEND_BASE_URL = 'http://<url>/'
-    # the url for images bucket
-    IMAGE_BASE_URL = 'http://<url>/'
-
-    # sentry dns
-    SENTRY_DNS = 'https://<api-key>.ingest.us.sentry.io/<secret-key>'
-    # sentry auth token
-    SENTRY_AUTH_TOKEN = 'sntrys_<auth-token>'
-    # sentry organization id
-    SENTRY_ORG = '<sentry-org>'
-    # sentry project id
-    SENTRY_PROJECT = '<sentry-project>'
-
-    # google id for google signup
-    GOOGLE_ID='<google-id>.apps.googleusercontent.com'
-    # google secret key for google signup
-    GOOGLE_SECRET='GOCSPX-<google-secret>'
-
-    # random key for next-auth
-    NEXTAUTH_SECRET='<next-auth-secret-key>'
-    # random key for next-auth
-    SECRET="<secret-key>"
-    # production url for this website
-    NEXTAUTH_URL='https://<next-auth-url>/'
-    # development url for this website
-    NEXTAUTH_URL_INTERNAL='http://<next-auth-dev-url>/'
-
-    # google maps key for location auto complete
-    NEXT_PUBLIC_GOOGLE_MAPS_KEY='<google-geo-encoding-api-key>'
-    # default number of items to be displayed
-    NEXT_PUBLIC_DEFAULT_ITEMS_PER_PAGE='20'
-    # default localization to redirect user when no locale found
-    NEXT_PUBLIC_DEFAULT_LOCALE='AR'
-    # to use sentry for monitoring bugs, errors and web performance
-    NEXT_PUBLIC_USE_MONITORING='<true | false>'
-   ```
-
-5. Run in development mode
-   ```sh
-   npm run dev
-   ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-6. There is also `Dockerfile` and `docker-compose.yml` for quick start
-   ```sh
-    npm run docker:build
-    npm run docker:run
-   ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- USAGE EXAMPLES -->
 
 ### Folder Structure
 
@@ -466,6 +382,98 @@ This Project utilizes NextJs.
 4. **SA (Server Actions)**:
 
 - All of data request to the backend are made with the new nextjs server actions. This enable us to request data using Fetch and also stateful response using FormState. Beside this, it hides the implementation and url, enabling us to secure google maps key and other things.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
+
+## Getting Started
+
+This is a comprehensive guild on how to get started on this project.
+
+### Prerequisites
+
+Make sure you have node and npm installed on your system. Node version `v20.12.2` and NPM version `10.5.0`
+
+- npm
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Installation
+
+_Below is an instruction of installing and setting up sulala app._
+
+1. Setup git with token credential
+2. Clone the repo
+   ```sh
+   git clone https://github.com/DevSulala/Sulala-ShopDashboard.git
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Configure your environmental variables (in `.env`) using `.env.example`
+
+   ```sh
+    # backend api url
+    BACKEND_BASE_URL = 'http://<url>/'
+    # the deployed frontend url of this website
+    FRONTEND_BASE_URL = 'http://<url>/'
+    # the url for images bucket
+    IMAGE_BASE_URL = 'http://<url>/'
+
+    # sentry dns
+    SENTRY_DNS = 'https://<api-key>.ingest.us.sentry.io/<secret-key>'
+    # sentry auth token
+    SENTRY_AUTH_TOKEN = 'sntrys_<auth-token>'
+    # sentry organization id
+    SENTRY_ORG = '<sentry-org>'
+    # sentry project id
+    SENTRY_PROJECT = '<sentry-project>'
+
+    # google id for google signup
+    GOOGLE_ID='<google-id>.apps.googleusercontent.com'
+    # google secret key for google signup
+    GOOGLE_SECRET='GOCSPX-<google-secret>'
+
+    # random key for next-auth
+    NEXTAUTH_SECRET='<next-auth-secret-key>'
+    # random key for next-auth
+    SECRET="<secret-key>"
+    # production url for this website
+    NEXTAUTH_URL='https://<next-auth-url>/'
+    # development url for this website
+    NEXTAUTH_URL_INTERNAL='http://<next-auth-dev-url>/'
+
+    # google maps key for location auto complete
+    NEXT_PUBLIC_GOOGLE_MAPS_KEY='<google-geo-encoding-api-key>'
+    # default number of items to be displayed
+    NEXT_PUBLIC_DEFAULT_ITEMS_PER_PAGE='20'
+    # default localization to redirect user when no locale found
+    NEXT_PUBLIC_DEFAULT_LOCALE='AR'
+    # to use sentry for monitoring bugs, errors and web performance
+    NEXT_PUBLIC_USE_MONITORING='<true | false>'
+   ```
+
+5. Run in development mode
+   ```sh
+   npm run dev
+   ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+6. There is also `Dockerfile` and `docker-compose.yml` for quick start
+   ```sh
+    npm run docker:build
+    npm run docker:run
+   ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- USAGE EXAMPLES -->
+
+
 
 ## SEO Optimization
 
