@@ -18,7 +18,7 @@ function TableSearch({ action }: Props) {
     { name: string; id: number }[]
   >([]);
   const [isPending, startTransition] = React.useTransition();
-  const debouncedSearch = useDebounce(search ? search : "");
+  const debouncedSearch = useDebounce(value ? value : "");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     previousValue.current = value;
