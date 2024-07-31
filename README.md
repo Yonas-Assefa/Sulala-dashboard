@@ -58,7 +58,7 @@
       <ul>
         <li><a href="#technology-stack">Technology Stack</a></li>
         <li><a href="#libraries-and-tools">Libraries and Tools</a></li> 
-        <li><a href="#folder-stracture">Folder Structure</a></li>
+        <li><a href="#folder-structure">Folder Structure</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
