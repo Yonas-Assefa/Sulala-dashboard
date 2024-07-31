@@ -22,6 +22,7 @@ const nextConfig = () => {
         },
       ],
       minimumCacheTTL: 60,
+      domains: ["sulala.com"], // Add the domain of the external images you want to allow
     },
     logging: {
       fetches: {

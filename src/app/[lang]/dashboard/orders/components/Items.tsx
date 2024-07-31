@@ -66,6 +66,7 @@ async function Items({ searchParams }: ItemsProps) {
         filterData={orderItemFilterData}
         sortData={orderItemSortData}
         tableSchema={orderItemTableSchema}
+        tableType="order"
       />
     </div>
   );
