@@ -6,21 +6,22 @@ import { useCreateQueryString } from "@/hooks/useCreateQueryString";
 
 type Props = {
   filterData: FilterData;
+  filterTarget?: string;
 };
 
-function TableFilter({ filterData }: Props) {
+function TableFilter({ filterData, filterTarget }: Props) {
   const { createQueryString, searchParams } = useCreateQueryString();
   return (
     <div role="tablist" className="tabs">
       {filterData.map((filter) => {
         const filter_label = filter.replace(/_/g, " ");
         const isActive =
-          searchParams.get("filter") === filter ||
-          (!searchParams.get("filter") && filter === "all");
+          searchParams.get(`${filterTarget}`) === filter ||
+          (!searchParams.get(`${filterTarget}`) && filter === "all");
         return (
           <Link
             key={filter}
-            href={createQueryString("filter", filter) as any}
+            href={createQueryString(`${filterTarget}`, filter) as any}
             role="tab"
             className={`tab capitalize rounded-[30px] ${
               isActive

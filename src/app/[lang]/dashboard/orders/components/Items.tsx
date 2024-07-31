@@ -13,7 +13,7 @@ import { changeObjToFormData } from "@/lib/helper";
 
 type SearchParams = {
   search: string;
-  filter: string;
+  vendor_status: string;
   sort: string;
   sort_by: string;
   page_size: string;
@@ -25,10 +25,11 @@ type ItemsProps = {
 };
 
 async function Items({ searchParams }: ItemsProps) {
-  const { search, filter, sort, sort_by, page_size, page } = searchParams;
+  const { search, vendor_status, sort, sort_by, page_size, page } =
+    searchParams;
   const ordersFormData = changeObjToFormData({
     search,
-    filter,
+    vendor_status,
     sort,
     sort_by,
     page_size,
@@ -65,6 +66,7 @@ async function Items({ searchParams }: ItemsProps) {
         filterData={orderItemFilterData}
         sortData={orderItemSortData}
         tableSchema={orderItemTableSchema}
+        tableType="order"
       />
     </div>
   );

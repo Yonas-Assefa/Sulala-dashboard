@@ -4,6 +4,8 @@ import {
 } from "@/utils/dateFormatter.util";
 import { constructImageUrl } from "@/lib/images";
 import { formatNumber } from "@/utils/priceFormatter.util";
+import { filterUniqueOrderTimline } from "@/utils/filterDuplicateObject.util";
+
 type TOrder = {
   id: number;
   order_items: any[];
@@ -82,7 +84,7 @@ export const orderDetailMapper = async (order: any) => {
         : "",
     })),
 
-    order_timeline: order.order_timeline
+    order_timeline: filterUniqueOrderTimline(order.order_timeline)
       .sort(
         (a: OrderTimelineEvent, b: OrderTimelineEvent) =>
           new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),

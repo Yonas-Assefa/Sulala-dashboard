@@ -24,6 +24,7 @@ type Props = {
   data: Meta | Data;
   sortData: SortSchema;
   actionOptions?: ActionOptions;
+  tableType?: string;
 };
 
 async function Table({
@@ -32,11 +33,16 @@ async function Table({
   data: meta,
   sortData,
   actionOptions,
+  tableType,
 }: Props) {
   const data = "count" in meta ? meta.data : meta;
   const count = "count" in meta ? meta.count : undefined;
+  let filterTarget = "filter";
 
   const personalInfo = await getCachedPersonalInfo();
+  if (tableType == "order") {
+    filterTarget = "vendor_status";
+  }
 
   return (
     <div className="flex flex-col">
@@ -45,7 +51,7 @@ async function Table({
       <div className="overflow-x-visible min-w-[900px] border dark:border-gray-600 rounded-[20px]">
         <div className="flex justify-between p-3 items-center">
           <div className="flex items-center gap-4">
-            <TableFilter filterData={filterData} />
+            <TableFilter filterTarget={filterTarget} filterData={filterData} />
             <TableSearch action={actionOptions?.search?.action} />
           </div>
           <TableSort sortData={sortData} />
