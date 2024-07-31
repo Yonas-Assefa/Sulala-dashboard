@@ -7,7 +7,10 @@ import { manageShopsMapper } from "../mapper/manage-shop-mapper";
 import { getFilterSortOrdering } from "@/lib/filter-sort-ordering";
 
 export const getPendingShops = async (formData: FormData) => {
-  const { status, search, page, page_size } = getFilterSortOrdering(formData);
+  const { status, search, page, page_size } = getFilterSortOrdering(
+    undefined,
+    formData,
+  );
 
   const query = new URLSearchParams();
   query.append("page", page?.toString());
