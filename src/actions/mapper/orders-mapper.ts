@@ -18,20 +18,20 @@ export interface OrderTimelineEvent {
 }
 
 export type OrderEventType =
-  | "PLACED"
+  | "NEW"
   | "ACCEPTED"
   | "CANCELLED"
   | "DECLINED"
-  | "SHIPPED"
+  | "IN_DELIVERY"
   | "PAYMENT_PLACED"
   | "DELIVERED";
 
 const ORDER_TIMELINE_MAPPER: Record<OrderEventType, string> = {
-  PLACED: "Order Placed",
+  NEW: "Order Placed",
   ACCEPTED: "Order Accepted",
   CANCELLED: "Order Cancelled",
   DECLINED: "Order Declined",
-  SHIPPED: "Order Shipped",
+  IN_DELIVERY: "Order Shipped",
   PAYMENT_PLACED: "Order Payment Placed",
   DELIVERED: "Order Delivered",
 };
@@ -84,7 +84,7 @@ export const orderDetailMapper = async (order: any) => {
         : "",
     })),
 
-    order_timeline: filterUniqueOrderTimline(order.order_timeline)
+    order_timeline: order.order_timeline
       .sort(
         (a: OrderTimelineEvent, b: OrderTimelineEvent) =>
           new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),

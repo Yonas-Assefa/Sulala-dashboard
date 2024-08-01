@@ -35,7 +35,9 @@ function TableBadge({ product_key, schema, last_items, isSuperUser }: Prop) {
         <summary
           className={`flex relative gap-1 flex-row items-center p-2 cursor-pointer rounded-[30px] px-3 ${
             schema.schema_colors?.[
-              product_key.toLocaleLowerCase() as keyof typeof schema.schema_colors
+              product_key
+                .toLocaleLowerCase()
+                .replace(" ", "_") as keyof typeof schema.schema_colors
             ]
           }`}
         >
@@ -54,7 +56,8 @@ function TableBadge({ product_key, schema, last_items, isSuperUser }: Prop) {
         >
           <div className="flex flex-col gap-3 p-2">
             {Object.keys(schema.schema_colors || {}).map((color_key) => {
-              const isSelected = product_key.toLocaleLowerCase() === color_key;
+              const isSelected =
+                product_key.toLocaleLowerCase().replace(" ", "_") === color_key;
               return (
                 <div
                   className={`flex flex-row justify-between gap-2 items-center cursor-pointer ${isSelected || isSuperUser ? "flex" : "hidden"}`}
