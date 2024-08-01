@@ -215,7 +215,6 @@ The architecture of the Sulala dashboard frontend is designed to provide a robus
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 ### Folder Structure
 
 _Below is an overview of the folder structure used in this project. It uilizes the nextjs conventional app router folder structure._
@@ -393,12 +392,53 @@ This is a comprehensive guild on how to get started on this project.
 
 ### Prerequisites
 
-Make sure you have node and npm installed on your system. Node version `v20.12.2` and NPM version `10.5.0`
+Make sure you have node and npm installed on your system. Node version `v20.12.2` and NPM version `10.5.0`. You can install latest version of npm and node using the following command.
 
 - npm
+
   ```sh
   npm install npm@latest -g
   ```
+
+  or using nvm
+
+  ```sh
+  # 1. Installs nvm (Node Version Manager)
+
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+  # 2. Download and install Node.js (you may need to restart the terminal)
+
+  nvm install 20
+
+  # 3. Verifies the right Node.js version is in the environment
+
+  node -v # should print `v**.**.**`
+
+  # 4. Verifies the right npm version is in the environment
+
+  npm -v # should print `**.**.**`
+  ```
+
+You will also need docker installed on you machine. We used docker with version of `26.1.0` . We suggest to use same or above to follow up with this instruction. For installation of latest docker, you can run using the following command
+
+- docker
+
+  ```sh
+   # 1. download the script
+
+   curl -fsSL https://get.docker.com -o install-docker.sh
+
+   # 2. verify the script's content
+
+   cat install-docker.sh
+
+   # 4. run the script either as root, or using sudo to perform the installation.
+
+   sudo sh install-docker.sh
+  ```
+
+````
 
 ### Installation
 
@@ -408,7 +448,8 @@ _Below is an instruction of installing and setting up sulala app._
 2. Clone the repo
    ```sh
    git clone https://github.com/DevSulala/Sulala-ShopDashboard.git
-   ```
+````
+
 3. Install NPM packages
    ```sh
    npm install
@@ -464,16 +505,152 @@ _Below is an instruction of installing and setting up sulala app._
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 6. There is also `Dockerfile` and `docker-compose.yml` for quick start
+   **comment out the image that points to the docker hub registry and make it to build from the code instead of pulling it from registry as shown below**
+   ```yml
+      ...
+      dashboard:
+         # image: yosephtadesse/sulala-dashboard:latest
+         image: sulala-dashboard
+         build:
+           context: .
+           dockerfile: Dockerfile
+         restart: unless-stopped
+      ...
+   ```
+   > Otherwise you will get permission denied error. If you want to run it by pulling the image from docker registry, you should configure the credentials first. You can find how to configure on the topic `Development, Building and Pushing images to Docker HUB` below
+   > **build and run the docker container**
    ```sh
     npm run docker:build
     npm run docker:run
+   ```
+   > If you keep getting ` 401 Unauthorized` Error, try running
+   ```sh
+   npm run docker:logout
+   npm run docker:build
+   npm run docker:run
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
 
+### Development, Building and Pushing images to Docker HUB
 
+_Below is an instruction of installing and setting up sulala app._
+
+- The image is stored in a docker registry opened with email address yoseph@sulala.com
+- For credential, please ask your contractor or employer
+
+1. Login into github account
+   ```sh
+   npm run docker:login
+   ```
+2. Configure your environmental variables (in `.env`) using `.env.example`
+
+   ```sh
+    # backend api url
+    BACKEND_BASE_URL = 'http://<url>/'
+    # the deployed frontend url of this website
+    FRONTEND_BASE_URL = 'http://<url>/'
+    # the url for images bucket
+    IMAGE_BASE_URL = 'http://<url>/'
+
+    # sentry dns
+    SENTRY_DNS = 'https://<api-key>.ingest.us.sentry.io/<secret-key>'
+    # sentry auth token
+    SENTRY_AUTH_TOKEN = 'sntrys_<auth-token>'
+    # sentry organization id
+    SENTRY_ORG = '<sentry-org>'
+    # sentry project id
+    SENTRY_PROJECT = '<sentry-project>'
+
+    # google id for google signup
+    GOOGLE_ID='<google-id>.apps.googleusercontent.com'
+    # google secret key for google signup
+    GOOGLE_SECRET='GOCSPX-<google-secret>'
+
+    # random key for next-auth
+    NEXTAUTH_SECRET='<next-auth-secret-key>'
+    # random key for next-auth
+    SECRET="<secret-key>"
+    # production url for this website
+    NEXTAUTH_URL='https://<next-auth-url>/'
+    # development url for this website
+    NEXTAUTH_URL_INTERNAL='http://<next-auth-dev-url>/'
+
+    # google maps key for location auto complete
+    NEXT_PUBLIC_GOOGLE_MAPS_KEY='<google-geo-encoding-api-key>'
+    # default number of items to be displayed
+    NEXT_PUBLIC_DEFAULT_ITEMS_PER_PAGE='20'
+    # default localization to redirect user when no locale found
+    NEXT_PUBLIC_DEFAULT_LOCALE='AR'
+    # to use sentry for monitoring bugs, errors and web performance
+    NEXT_PUBLIC_USE_MONITORING='<true | false>'
+   ```
+
+   > There are some environmental properties needed at build time, so make sure you have one before building the docker image
+
+3. Build the docker image
+   ```sh
+   npm run docker:build
+   ```
+   > This command will pick the latest version from git tag, and apply the version tag on the image
+   > You will also be prompt to tag the version latest or not. Tagging the latest will result in remove latest tag from the previous image and apply the tag on the current one.
+4. Push the docker image
+   ```sh
+   npm run docker:push
+   ```
+   > This will push images with the version tag and with the latest tag image.
+   > This command will save time and energy from manually writing all the commands and helps in being consistant
+5. Running a container from the image
+   ```sh
+   npm run docker:run
+   ```
+   > This will run two containers, one the built dashboard container and one a portainer container to monitor containers with GUI.
+   > Before running, make sure port 3000 is not occupied by other application.
+6. You can also check if the image with the right tag exist by going to `https://hub.docker.com/repository/docker/yosephtadesse/sulala-dashboard/general`
+   > This registry repository is PRIVATE, so make sure you have the right access before everything.
+
+### Debugging, Error tracking and Performance Monitoring
+
+_Below is an instruction of debugging, error tracking and performace monitoring of sulala app._
+
+- This application utilizes the brand new nextjs perfomance monitoring hook `instrumentation hook` along side with `sentry`
+  > you can read more about instrumentation hook from this `https://nextjs.org/docs/app/building-your-application/optimizing/instrumentation`
+  > and about sentry from this `https://docs.sentry.io/platforms/javascript/guides/nextjs/`.
+- For local development, debugger is already configure for vscode users. You can check it in `.vscode` folder in this repository. All you have to do is start the debugger using `F5` command on your PC keyboard.
+- For production, Sentry and Nextjs Instrumentation Hook is already configured. you can go to `https://sulala.sentry.io/issues/?project=4507542365995008`. You can easily see the trigger, user actions, the request time that cause the bug to happen. We are on Free Plane, so there might be some threshold on what you can do.
+
+### Versioning and Releasing
+
+_Below is an instruction of versioning and release of sulala app._
+
+This application uses semantic versioning. more on this on section (versioning)
+
+1. To run patch version update run
+   ```sh
+   npm run tag:version:patch
+   ```
+   yea i know. that's pretty mouthful. or instead you can run
+   ```sh
+   ./scripts/git/INIT_TAG.sh --patch
+   ```
+2. To run minor version, you probably guessed it
+   ```sh
+   npm run tag:version:minor
+   ```
+   or instead you can run
+   ```sh
+   ./scripts/git/INIT_TAG.sh --minor
+   ```
+3. To run major version
+   ```sh
+   npm run tag:version:major
+   ```
+   or instead you can run
+   ```sh
+   ./scripts/git/INIT_TAG.sh --major
+   ```
 
 ## SEO Optimization
 

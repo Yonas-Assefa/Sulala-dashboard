@@ -45,3 +45,5 @@ next-env.d.ts
 /playwright/.cache/
 
 certificates
+
+.developer/.credentials.txt

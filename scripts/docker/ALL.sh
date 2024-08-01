@@ -35,11 +35,11 @@ if [ "$label_latest" == "y" ]; then
   docker tag sulala-dashboard yosephtadesse/sulala-dashboard:latest
 fi
 
-# push the docker image to docker hub
-docker push yosephtadesse/sulala-dashboard:$latest_tag
-if [ "$label_latest" == "y" ]; then
-  docker push yosephtadesse/sulala-dashboard:latest
-fi
+# # push the docker image to docker hub
+# docker push yosephtadesse/sulala-dashboard:$latest_tag
+# if [ "$label_latest" == "y" ]; then
+#   docker push yosephtadesse/sulala-dashboard:latest
+# fi
 
-echo -e "\e[0;34;49mDocker image pushed to Docker Hub\e[0m"
-echo -e "\e[0;33;49mDocker image tags: yosephtadesse/sulala-dashboard:$latest_tag\e[0m"
+# echo -e "\e[0;34;49mDocker image pushed to Docker Hub\e[0m"
+# echo -e "\e[0;33;49mDocker image tags: yosephtadesse/sulala-dashboard:$latest_tag\e[0m"

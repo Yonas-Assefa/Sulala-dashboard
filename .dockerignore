@@ -1,4 +1,5 @@
 .dockerignore
+.developer
 
 node_modules
 logs
