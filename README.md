@@ -611,6 +611,8 @@ _Below is an instruction of installing and setting up sulala app._
 6. You can also check if the image with the right tag exist by going to `https://hub.docker.com/repository/docker/yosephtadesse/sulala-dashboard/general`
    > This registry repository is PRIVATE, so make sure you have the right access before everything.
 
+[![Docker Registry][docker-screenshot]](https://hub.docker.com/repository/docker/yosephtadesse/sulala-dashboard/general)
+
 ### Debugging, Error tracking and Performance Monitoring
 
 _Below is an instruction of debugging, error tracking and performace monitoring of sulala app._
@@ -620,6 +622,7 @@ _Below is an instruction of debugging, error tracking and performace monitoring 
   > and about sentry from this `https://docs.sentry.io/platforms/javascript/guides/nextjs/`.
 - For local development, debugger is already configure for vscode users. You can check it in `.vscode` folder in this repository. All you have to do is start the debugger using `F5` command on your PC keyboard.
 - For production, Sentry and Nextjs Instrumentation Hook is already configured. you can go to `https://sulala.sentry.io/issues/?project=4507542365995008`. You can easily see the trigger, user actions, the request time that cause the bug to happen. We are on Free Plane, so there might be some threshold on what you can do.
+- [![Sentry][sentry-screenshot]](https://sulala.sentry.io/issues/?project=4507542365995008)
 
 ### Versioning and Releasing
 
@@ -787,6 +790,8 @@ Project Link: [https://github.com/DevSulala/Sulala-ShopDashboard](https://github
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: /public/screenshot.png
+[docker-screenshot]: /.developer/docker-hub.png
+[sentry-screenshot]: /.developer/sentry.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
