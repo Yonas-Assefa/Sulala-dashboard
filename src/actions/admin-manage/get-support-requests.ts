@@ -11,7 +11,9 @@ import { manageCustomerSupport } from "../mapper/manage-customer-support-mapper"
 import { getFilterSortOrdering } from "@/lib/filter-sort-ordering";
 
 export const getSupportRequests = async (formData: FormData) => {
-  const { status, search } = getFilterSortOrdering(formData);
+  const { status, search } = getFilterSortOrdering({
+    formData,
+  });
 
   const query = new URLSearchParams();
   if (status && status.toLowerCase() !== "all") {

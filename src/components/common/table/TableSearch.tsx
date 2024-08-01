@@ -1,9 +1,10 @@
 "use client";
 import { useCreateQueryString } from "@/hooks/useCreateQueryString";
-import React from "react";
+import React, { useRef } from "react";
 import { debounce, set } from "lodash";
 import { FormState } from "@/utils/formStateHelper";
 import SearchIcon from "@/assets/icons/SearchIcon";
+import { useDebounce } from "@/hooks/useDebounce";
 
 type Props = {
   action: ((formData: FormData) => Promise<FormState>) | undefined;
@@ -17,6 +18,7 @@ function TableSearch({ action }: Props) {
     { name: string; id: number }[]
   >([]);
   const [isPending, startTransition] = React.useTransition();
+  const debouncedSearch = useDebounce(value ? value : "");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     previousValue.current = value;
@@ -44,7 +46,7 @@ function TableSearch({ action }: Props) {
   const handleSearchEnterClick = () => {
     startTransition(() => {
       setSearchResult([]);
-      createQueryStringAndPush("search", value);
+      createQueryStringAndPush("search", debouncedSearch);
     });
   };
 
@@ -59,11 +61,10 @@ function TableSearch({ action }: Props) {
   // }, [search])
 
   React.useEffect(() => {
-    console.log({ value, previousValue: previousValue.current });
-    if (value == "" && previousValue.current != "") {
+    if (previousValue.current != "") {
       handleSearchEnterClick();
     }
-  }, [value]);
+  }, [debouncedSearch]);
 
   return (
     <div className="relative">

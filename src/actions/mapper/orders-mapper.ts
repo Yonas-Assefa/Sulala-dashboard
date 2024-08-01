@@ -4,6 +4,8 @@ import {
 } from "@/utils/dateFormatter.util";
 import { constructImageUrl } from "@/lib/images";
 import { formatNumber } from "@/utils/priceFormatter.util";
+import { filterUniqueOrderTimline } from "@/utils/filterDuplicateObject.util";
+
 type TOrder = {
   id: number;
   order_items: any[];
@@ -16,20 +18,20 @@ export interface OrderTimelineEvent {
 }
 
 export type OrderEventType =
-  | "PLACED"
+  | "NEW"
   | "ACCEPTED"
   | "CANCELLED"
   | "DECLINED"
-  | "SHIPPED"
+  | "IN_DELIVERY"
   | "PAYMENT_PLACED"
   | "DELIVERED";
 
 const ORDER_TIMELINE_MAPPER: Record<OrderEventType, string> = {
-  PLACED: "Order Placed",
+  NEW: "Order Placed",
   ACCEPTED: "Order Accepted",
   CANCELLED: "Order Cancelled",
   DECLINED: "Order Declined",
-  SHIPPED: "Order Shipped",
+  IN_DELIVERY: "Order Shipped",
   PAYMENT_PLACED: "Order Payment Placed",
   DELIVERED: "Order Delivered",
 };

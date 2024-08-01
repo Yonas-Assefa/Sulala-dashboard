@@ -17,8 +17,9 @@ type Args = {
 };
 
 export const getPromotions = async <T>(formData: FormData): Promise<T> => {
-  const { search, status, ordering, page, page_size } =
-    getFilterSortOrdering(formData);
+  const { search, status, ordering, page, page_size } = getFilterSortOrdering({
+    formData,
+  });
 
   const response = await Fetch({
     url: PROMOTIONS,

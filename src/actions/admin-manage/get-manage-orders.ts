@@ -15,8 +15,9 @@ import {
 } from "../mapper/manage-orders-mapper";
 
 export const getManageOrders = async (formData: FormData) => {
-  const { search, status, ordering, page, page_size } =
-    getFilterSortOrdering(formData);
+  const { search, status, ordering, page, page_size } = getFilterSortOrdering({
+    formData,
+  });
 
   const ordersResponse = await Fetch({
     url: GET_ORDERS_VIEW_URL,
