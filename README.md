@@ -625,7 +625,7 @@ _Below is an instruction of debugging, error tracking and performace monitoring 
 
 _Below is an instruction of versioning and release of sulala app._
 
-This application uses semantic versioning. more on this on section (versioning)
+This application uses semantic versioning. more on this on section (`Helpers`)
 
 1. To run patch version update run
    ```sh
