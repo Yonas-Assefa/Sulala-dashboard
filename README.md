@@ -429,16 +429,14 @@ You will also need docker installed on you machine. We used docker with version 
 
    curl -fsSL https://get.docker.com -o install-docker.sh
 
-   # 2. verify the script's content
+   # 2. verify the content of the script
 
    cat install-docker.sh
 
-   # 4. run the script either as root, or using sudo to perform the installation.
+   # 3. run the script either as root, or using sudo to perform the installation.
 
    sudo sh install-docker.sh
   ```
-
-````
 
 ### Installation
 
@@ -446,15 +444,16 @@ _Below is an instruction of installing and setting up sulala app._
 
 1. Setup git with token credential
 2. Clone the repo
+
    ```sh
    git clone https://github.com/DevSulala/Sulala-ShopDashboard.git
-````
+   ```
 
 3. Install NPM packages
    ```sh
    npm install
    ```
-4. Configure your environmental variables (in `.env`) using `.env.example`
+4. Configure your environmental variables (in `.env`) using `.env.example`. Or you can request `.credential.txt` and `.env` file from your employer.
 
    ```sh
     # backend api url
@@ -506,6 +505,7 @@ _Below is an instruction of installing and setting up sulala app._
 
 6. There is also `Dockerfile` and `docker-compose.yml` for quick start
    **comment out the image that points to the docker hub registry and make it to build from the code instead of pulling it from registry as shown below**
+
    ```yml
       ...
       dashboard:
@@ -517,13 +517,18 @@ _Below is an instruction of installing and setting up sulala app._
          restart: unless-stopped
       ...
    ```
-   > Otherwise you will get permission denied error. If you want to run it by pulling the image from docker registry, you should configure the credentials first. You can find how to configure on the topic `Development, Building and Pushing images to Docker HUB` below
-   > **build and run the docker container**
+
+   > Otherwise you will get permission denied error. If you want to run it by pulling the image from docker registry, you should configure the credentials first. You can find how to configure on the topic <span align="right">(<a href="#development-building-pushing-images">`Development, Building and Pushing images to Docker HUB`</a>)</span> below
+
+   **build and run the docker container**
+
    ```sh
     npm run docker:build
     npm run docker:run
    ```
+
    > If you keep getting ` 401 Unauthorized` Error, try running
+
    ```sh
    npm run docker:logout
    npm run docker:build
@@ -533,6 +538,8 @@ _Below is an instruction of installing and setting up sulala app._
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
+
+<a name="development-building-pushing-images"></a>
 
 ### Development, Building and Pushing images to Docker HUB
 
@@ -608,7 +615,7 @@ _Below is an instruction of installing and setting up sulala app._
    ```
    > This will run two containers, one the built dashboard container and one a portainer container to monitor containers with GUI.
    > Before running, make sure port 3000 is not occupied by other application.
-6. You can also check if the image with the right tag exist by going to `https://hub.docker.com/repository/docker/yosephtadesse/sulala-dashboard/general`
+6. You can also check if the image with the right tag exist by going to [`https://hub.docker.com/repository/docker/yosephtadesse/sulala-dashboard/general`](https://hub.docker.com/repository/docker/yosephtadesse/sulala-dashboard/general)
    > This registry repository is PRIVATE, so make sure you have the right access before everything.
 
 [![Docker Registry][docker-screenshot]](https://hub.docker.com/repository/docker/yosephtadesse/sulala-dashboard/general)
@@ -618,17 +625,17 @@ _Below is an instruction of installing and setting up sulala app._
 _Below is an instruction of debugging, error tracking and performace monitoring of sulala app._
 
 - This application utilizes the brand new nextjs perfomance monitoring hook `instrumentation hook` along side with `sentry`
-  > you can read more about instrumentation hook from this `https://nextjs.org/docs/app/building-your-application/optimizing/instrumentation`
-  > and about sentry from this `https://docs.sentry.io/platforms/javascript/guides/nextjs/`.
+  > you can read more about instrumentation hook from this [`https://nextjs.org/docs/app/building-your-application/optimizing/instrumentation`](https://nextjs.org/docs/app/building-your-application/optimizing/instrumentation)
+  > and about sentry from this [`https://docs.sentry.io/platforms/javascript/guides/nextjs/`](https://docs.sentry.io/platforms/javascript/guides/nextjs/).
 - For local development, debugger is already configure for vscode users. You can check it in `.vscode` folder in this repository. All you have to do is start the debugger using `F5` command on your PC keyboard.
-- For production, Sentry and Nextjs Instrumentation Hook is already configured. you can go to `https://sulala.sentry.io/issues/?project=4507542365995008`. You can easily see the trigger, user actions, the request time that cause the bug to happen. We are on Free Plane, so there might be some threshold on what you can do.
+- For production, Sentry and Nextjs Instrumentation Hook is already configured. you can go to [`https://sulala.sentry.io/issues/?project=4507542365995008`](https://sulala.sentry.io/issues/?project=4507542365995008). You can easily see the trigger, user actions, the request time that cause the bug to happen. We are on Free Plane, so there might be some threshold on what you can do.
 - [![Sentry][sentry-screenshot]](https://sulala.sentry.io/issues/?project=4507542365995008)
 
 ### Versioning and Releasing
 
 _Below is an instruction of versioning and release of sulala app._
 
-This application uses semantic versioning. more on this on section (`Helpers`)
+This application uses semantic versioning. more on this on section <span align="right">(<a href="#helpers">`Helpers`</a>)</span>
 
 1. To run patch version update run
    ```sh
@@ -682,6 +689,8 @@ Running the app and going to the browser `localhost:3000`, you will see the land
 _For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="helpers"></a>
 
 ## Helpers
 
