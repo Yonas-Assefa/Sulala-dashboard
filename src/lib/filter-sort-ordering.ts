@@ -1,13 +1,14 @@
 import { DEFAULT_ITEMS_PER_PAGE } from "@/config/table.config";
 
 type Prop = {
-  type?: string;
+  type?: "ORDER" | "MANAGE_ORDER" | "PRODUCT" | "DEFAULT";
   formData?: FormData;
 };
 
-export const getFilterSortOrdering = ({ type = "default", formData }: Prop) => {
+export const getFilterSortOrdering = ({ type = "DEFAULT", formData }: Prop) => {
   const search = getFormDataItem("search", formData);
-  const filterType = type === "order" ? "vendor_status" : "filter";
+  const filterType =
+    type === "ORDER" || type === "MANAGE_ORDER" ? "vendor_status" : "filter";
   const filter = (formData?.get(`${filterType}`) || "")
     .toString()
     ?.toUpperCase();

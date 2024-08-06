@@ -24,7 +24,7 @@ type Props = {
   data: Meta | Data;
   sortData: SortSchema;
   actionOptions?: ActionOptions;
-  tableType?: string;
+  tableType?: "ORDER" | "MANAGE_ORDER";
 };
 
 async function Table({
@@ -40,7 +40,7 @@ async function Table({
   let filterTarget = "filter";
 
   const personalInfo = await getCachedPersonalInfo();
-  if (tableType == "order") {
+  if (tableType == "ORDER" || tableType == "MANAGE_ORDER") {
     filterTarget = "vendor_status";
   }
 

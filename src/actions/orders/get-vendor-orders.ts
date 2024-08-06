@@ -13,7 +13,7 @@ import { notFound } from "next/navigation";
 
 export const getOrders = async (formData: FormData) => {
   const { search, status, ordering, page, page_size } = getFilterSortOrdering({
-    type: "order",
+    type: "ORDER",
     formData: formData,
   });
   const ordersResponse = await Fetch({

@@ -16,6 +16,7 @@ import {
 
 export const getManageOrders = async (formData: FormData) => {
   const { search, status, ordering, page, page_size } = getFilterSortOrdering({
+    type: "MANAGE_ORDER",
     formData,
   });
 
@@ -25,7 +26,7 @@ export const getManageOrders = async (formData: FormData) => {
     headers: getRequestHeaders(),
     params: {
       search,
-      status,
+      vendor_status: status,
       ordering,
       page,
       page_size,

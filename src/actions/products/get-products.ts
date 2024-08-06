@@ -13,7 +13,7 @@ import { getFilterSortOrdering } from "@/lib/filter-sort-ordering";
 
 export const getProducts = async (formData?: FormData) => {
   const { search, status, ordering, page, page_size } = getFilterSortOrdering({
-    type: "product",
+    type: "PRODUCT",
     formData,
   });
 

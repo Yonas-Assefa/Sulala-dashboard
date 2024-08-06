@@ -56,7 +56,11 @@ function TableBody({ tableSchema, data, actionOptions, isSuperUser }: Props) {
                             width={100}
                             height={100}
                             src={
-                              product[schema.image_key as keyof typeof product]
+                              product.images.length > 0
+                                ? product[
+                                    schema.image_key as keyof typeof product
+                                  ]
+                                : "/images/product-placeholder.jpg"
                             }
                             alt=""
                             className="max-w-[30px] max-h-[30px]"
