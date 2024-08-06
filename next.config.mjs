@@ -21,7 +21,9 @@ const nextConfig = () => {
           pathname: "/**",
         },
       ],
-      domains: ["sulala.com"],
+      loader: "custom",
+      loaderFile: "./src/app/loader.ts",
+      // domains: ["sulala.com"],
       minimumCacheTTL: 60,
     },
 

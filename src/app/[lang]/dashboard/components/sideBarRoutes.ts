@@ -10,7 +10,7 @@ const routes = [
     icon: "/icons/shopping_bag.svg",
     activeIcon: "/icons/shopping_bag_active.svg",
     name: "orders",
-    path: "/dashboard/orders?filter=all",
+    path: "/dashboard/orders?vendor_status=all",
     protected: false,
   },
   {

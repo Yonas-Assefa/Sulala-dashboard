@@ -25,7 +25,7 @@ function TableDropDown({ items, label, productId }: Props) {
     const renderedItems = items.slice(0, 5).map((item, index) => (
       <div key={index} className="flex flex-row items-center gap-3">
         <img
-          src={item.image ? item.image : "/images/product-placeholder.jpg"}
+          src={item.image ? item.image : "/placeholder.png"}
           alt=""
           className="w-6 h-6"
         />

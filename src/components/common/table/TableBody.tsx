@@ -53,6 +53,7 @@ function TableBody({ tableSchema, data, actionOptions, isSuperUser }: Props) {
                       {schema.image && (
                         <div className=" w-[30px] h-[40px] content-stretch flex flex-col justify-center">
                           <Image
+                            priority
                             width={100}
                             height={100}
                             src={
@@ -60,7 +61,7 @@ function TableBody({ tableSchema, data, actionOptions, isSuperUser }: Props) {
                                 ? product[
                                     schema.image_key as keyof typeof product
                                   ]
-                                : "/images/product-placeholder.jpg"
+                                : "/placeholder.png"
                             }
                             alt=""
                             className="max-w-[30px] max-h-[30px]"

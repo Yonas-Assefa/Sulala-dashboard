@@ -159,7 +159,7 @@ function OrderDetailPage({ orderDetail }: any) {
                           src={
                             order_item.image
                               ? order_item.image
-                              : "/images/product-placeholder.jpg"
+                              : "/placeholder.png"
                           }
                           alt="product image "
                         />
