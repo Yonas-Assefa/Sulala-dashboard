@@ -25,8 +25,6 @@ export const pathnames = {
   "/dashboard/settings/personal-info": "/dashboard/settings/personal-info",
   "/dashboard/settings/billing-info": "/dashboard/settings/billing-info",
 
-  "/settings": "/dashboard/settings",
-
   "/auth": "/auth",
   "/auth/sign-in": "/auth/sign-in",
   "/auth/sign-up": "/auth/sign-up",
